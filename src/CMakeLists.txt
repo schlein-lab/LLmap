@@ -65,7 +65,9 @@ add_library(llmap_self_interference STATIC
     self_interference/faiss_wrapper_search.cpp
     self_interference/faiss_wrapper_util.cpp
     self_interference/similarity_graph.cpp
-    self_interference/leiden_clustering.cpp
+    self_interference/leiden_clustering_core.cpp
+    self_interference/leiden_clustering_phases.cpp
+    self_interference/leiden_clustering_result.cpp
     self_interference/self_wavecollapse.cpp
     self_interference/cluster_rep.cpp
     self_interference/allpair_pipeline.cpp
@@ -97,6 +99,7 @@ endif()
 add_library(llmap_reference_collapse STATIC
     reference_collapse/reference_index.cpp
     reference_collapse/em_iterator.cpp
+    reference_collapse/collapse_check.cpp
 )
 
 target_include_directories(llmap_reference_collapse PUBLIC
