@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 11 |
-| Total iterations | 11 |
+| Last successful iteration | 12 |
+| Total iterations | 12 |
 
 ---
 
@@ -35,6 +35,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 2.2: Sparse k-NN extraction → similarity graph (180 tests pass)
   - [x] Phase 2.3: Leiden community detection (214 tests pass)
   - [x] Phase 2.4: Self-WaveCollapse intra-cluster EM (249 tests pass)
+  - [x] Phase 2.5: Cluster representative selection (288 tests pass)
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
 - [ ] Phase 4: Classical Path + WFA2
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
@@ -50,10 +51,10 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 2
 task: self_interference_stage1
-substep: 5/6
-last_action: SelfWaveCollapse class for intra-cluster EM refinement; probability-based read assignment; 35 new tests; 249 total pass
-next_action: implement cluster_rep.{h,cpp} for cluster representative selection (medoid)
-acceptance: ClusterRepSelector picks representative reads per cluster; tests pass
+substep: 6/6
+last_action: ClusterRepSelector for medoid-based representative selection; 39 new tests; 288 total pass
+next_action: implement llmap allpair CLI command
+acceptance: llmap allpair reads FASTQ, clusters, outputs Parquet with cluster assignments
 ```
 
 ---
@@ -71,8 +72,8 @@ acceptance: ClusterRepSelector picks representative reads per cluster; tests pas
 9. ~~Phase 2.2: Sparse k-NN extraction → similarity graph~~ ✅ done
 10. ~~Phase 2.3: Leiden community detection~~ ✅ done
 11. ~~Phase 2.4: Self-WaveCollapse intra-cluster EM~~ ✅ done
-12. Phase 2.5: Cluster representative selection ← CURRENT
-13. Phase 2.6: `llmap allpair` CLI command
+12. ~~Phase 2.5: Cluster representative selection~~ ✅ done
+13. Phase 2.6: `llmap allpair` CLI command ← CURRENT
 14. ... (continues per LLmap_SPEC.md)
 
 ---
@@ -108,6 +109,7 @@ acceptance: ClusterRepSelector picks representative reads per cluster; tests pas
 | 9 | 2026-05-13 | n/a | SimilarityGraph for sparse k-NN | similarity_graph.{h,cpp}; CSR format; 40 new tests; 180 total pass |
 | 10 | 2026-05-13 | n/a | Leiden community detection | leiden_clustering.{h,cpp}; modularity-based partitioning; 34 new tests; 214 total pass |
 | 11 | 2026-05-13 | n/a | Self-WaveCollapse intra-cluster EM | self_wavecollapse.{h,cpp}; EM-based read refinement within clusters; 35 new tests; 249 total pass |
+| 12 | 2026-05-13 | n/a | Cluster representative selection | cluster_rep.{h,cpp}; medoid-based representative selection; 39 new tests; 288 total pass |
 
 ---
 
