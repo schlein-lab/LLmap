@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 13 |
-| Total iterations | 13 |
+| Last successful iteration | 14 |
+| Total iterations | 14 |
 
 ---
 
@@ -38,6 +38,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 2.5: Cluster representative selection (288 tests pass)
   - [x] Phase 2.6: `llmap allpair` CLI + tests (348 tests pass)
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
+  - [x] Phase 3.1: Reference index structure (375 tests pass)
 - [ ] Phase 4: Classical Path + WFA2
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
 - [ ] Phase 6: Dual Output (BAM + Parquet)
@@ -52,10 +53,10 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 3
 task: reference_wavecollapse
-substep: 1/6
-last_action: Phase 2.6 complete — llmap allpair CLI tests + FastqReader::HasMore() bugfix; 348 tests pass
-next_action: Begin Phase 3 Stage 2 Reference WaveCollapse — implement reference index structure
-acceptance: reference_index.{h,cpp} + tests for building/loading reference index
+substep: 2/6
+last_action: Phase 3.1 complete — ReferenceIndex for Stage 2 WaveCollapse; 375 tests pass
+next_action: Implement em_iteration CUDA kernel (P-update, λ-update, K-smoothing) — CPU fallback first
+acceptance: em_iterator.{h,cpp} with CPU implementation + tests for EM iteration step
 ```
 
 ---
@@ -75,8 +76,13 @@ acceptance: reference_index.{h,cpp} + tests for building/loading reference index
 11. ~~Phase 2.4: Self-WaveCollapse intra-cluster EM~~ ✅ done
 12. ~~Phase 2.5: Cluster representative selection~~ ✅ done
 13. ~~Phase 2.6: `llmap allpair` CLI command~~ ✅ done
-14. Phase 3.1: Reference index structure ← CURRENT
-15. ... (continues per LLmap_SPEC.md)
+14. ~~Phase 3.1: Reference index structure~~ ✅ done
+15. Phase 3.2: EM iteration kernel (CPU fallback) ← CURRENT
+16. Phase 3.3: Collapse check + dropout
+17. Phase 3.4: Refinement (coarse→fine expansion)
+18. Phase 3.5: Member propagation
+19. Phase 3.6: Stage 2 pipeline orchestrator
+20. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -113,6 +119,7 @@ acceptance: reference_index.{h,cpp} + tests for building/loading reference index
 | 11 | 2026-05-13 | n/a | Self-WaveCollapse intra-cluster EM | self_wavecollapse.{h,cpp}; EM-based read refinement within clusters; 35 new tests; 249 total pass |
 | 12 | 2026-05-13 | n/a | Cluster representative selection | cluster_rep.{h,cpp}; medoid-based representative selection; 39 new tests; 288 total pass |
 | 13 | 2026-05-13 | n/a | llmap allpair CLI tests + bugfix | test_llmap_cli.cpp (14 tests); fixed FastqReader::HasMore() peek EOF; 348 total pass |
+| 14 | 2026-05-13 | n/a | Phase 3.1 ReferenceIndex structure | reference_index.{h,cpp}; Builder pattern; save/load serialization; spatial bucket lookup; 27 new tests; 375 total pass |
 
 ---
 
