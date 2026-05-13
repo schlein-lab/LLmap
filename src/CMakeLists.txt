@@ -173,5 +173,10 @@ target_compile_features(llmap_validation PUBLIC cxx_std_23)
 target_link_libraries(llmap_validation PUBLIC llmap_core llmap_classical llmap_io)
 
 # CLI — full CLI surface
-add_executable(llmap cli/llmap_main.cpp)
+add_executable(llmap
+    cli/llmap_main.cpp
+    cli/cmd_allpair.cpp
+    cli/cmd_generate_synth.cpp
+    cli/cmd_validate_real.cpp
+)
 target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation)
