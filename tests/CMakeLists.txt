@@ -362,3 +362,20 @@ if(LLMAP_ENABLE_BENCH)
         llmap_ai
     )
 endif()
+
+# ========== Integration Tests ==========
+# These test end-to-end workflows across multiple modules
+
+add_executable(test_align_integration
+    integration/test_align_integration.cpp
+)
+target_link_libraries(test_align_integration
+    PRIVATE
+    llmap_classical
+    llmap_io
+    llmap_output
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_align_integration)
