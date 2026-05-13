@@ -156,6 +156,17 @@ target_link_libraries(test_bam_writer
 )
 gtest_discover_tests(test_bam_writer)
 
+add_executable(test_parquet_writer
+    unit/test_parquet_writer.cpp
+)
+target_link_libraries(test_parquet_writer
+    PRIVATE
+    llmap_output
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_parquet_writer)
+
 # Allpair pipeline tests
 add_executable(test_allpair_pipeline
     unit/test_allpair_pipeline.cpp

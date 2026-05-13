@@ -30,6 +30,9 @@ add_library(llmap_output STATIC
     output/cluster_writer.cpp
     output/bam_writer.cpp
     output/bam_writer_cigar.cpp
+    output/parquet_writer.cpp
+    output/parquet_writer_convert.cpp
+    output/parquet_writer_write.cpp
 )
 
 target_include_directories(llmap_output PUBLIC
