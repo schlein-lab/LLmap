@@ -11,11 +11,11 @@
 
 namespace {
 
-constexpr const char* kVersion = "0.1.0-phase5";
+constexpr const char* kVersion = "0.1.0-phase6";
 
 void print_banner() {
     std::puts(
-        "LLmap " "0.1.0-phase5" "\n"
+        "LLmap " "0.1.0-phase6" "\n"
         "Lossless. LLM-augmented. Wave-particle.\n"
         "Where reads see each other first.\n"
         "https://losslessmap.com\n"
@@ -72,6 +72,10 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "validate-real") == 0) {
         return llmap::cli::run_validate_real(argc - 2, argv + 2);
+    }
+
+    if (std::strcmp(argv[1], "align") == 0) {
+        return llmap::cli::run_align(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,
