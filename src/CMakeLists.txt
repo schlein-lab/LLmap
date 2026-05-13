@@ -34,6 +34,8 @@ add_library(llmap_output STATIC
     output/parquet_writer_convert.cpp
     output/parquet_writer_write.cpp
     output/parquet_reader.cpp
+    output/parquet_reader_read.cpp
+    output/parquet_reader_util.cpp
 )
 
 target_include_directories(llmap_output PUBLIC
@@ -184,5 +186,6 @@ add_executable(llmap
     cli/cmd_allpair.cpp
     cli/cmd_generate_synth.cpp
     cli/cmd_validate_real.cpp
+    cli/cmd_align.cpp
 )
 target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation)

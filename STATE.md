@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 33 |
-| Total iterations | 33 |
+| Last successful iteration | 34 |
+| Total iterations | 34 |
 
 ---
 
@@ -59,6 +59,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 6.1: BAM/SAM output writer (710 tests pass)
   - [x] Phase 6.2: Parquet probabilistic output (733 tests pass)
   - [x] Phase 6.3: Parquet reader + round-trip validation (757 tests pass)
+  - [x] Phase 6.4: `llmap align` CLI with --parquet/--bam flags (761 tests pass)
 - [ ] Phase 7: Claude Agent Integration
 - [ ] Phase 8: Performance Optimization
 - [ ] Phase 9: Single-Cell + Paralog Production
@@ -70,13 +71,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 6
 task: dual_output
-substep: 3/N — Parquet reader + round-trip validation complete
-last_action: Phase 6.3 — implemented parquet_reader.{h,cpp}; ParquetReader class for reading Parquet/CSV; ParseCSVLine, ReadParquet, GroupByReadId, ValidateRoundTrip functions; full round-trip tests (write→read→compare); 10K entry lossless invariant test; 24 new tests; 757 total pass
-next_action: Phase 6.4 — `llmap align` CLI with --parquet/--bam flags
-  - Add cmd_align.cpp with full align workflow
-  - Wire Stage1→Stage2→classical pipeline
-  - Output to BAM (--bam) or Parquet (--parquet) or both
-acceptance: llmap align -r reads.fq -o out.sam --parquet out.parquet produces valid outputs
+substep: 4/N — `llmap align` CLI complete
+last_action: Phase 6.4 — implemented cmd_align.cpp; full align CLI with --bam/--sam/--parquet flags; wires classical pipeline (minimizer→chain→WFA2); split parquet_reader.cpp monolith (446→3 files: 111+166+146 LOC); updated test_llmap_cli.cpp; 4 new tests; 761 total pass
+next_action: Phase 6.5 — Integration test for full align workflow
+  - Create end-to-end test with synthetic reads + reference
+  - Verify SAM output format compliance
+  - Verify Parquet round-trip for align results
+acceptance: llmap align produces valid SAM/Parquet from synthetic data
 ```
 
 ---
@@ -116,8 +117,9 @@ acceptance: llmap align -r reads.fq -o out.sam --parquet out.parquet produces va
 31. ~~Phase 6.1: BAM/SAM output writer~~ ✅ done
 32. ~~Phase 6.2: Parquet probabilistic output~~ ✅ done
 33. ~~Phase 6.3: Parquet reader + round-trip validation~~ ✅ done
-34. Phase 6.4: `llmap align` CLI with --parquet/--bam ← NEXT
-35. ... (continues per LLmap_SPEC.md)
+34. ~~Phase 6.4: `llmap align` CLI with --parquet/--bam~~ ✅ done
+35. Phase 6.5: Integration test for full align workflow ← NEXT
+36. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -174,6 +176,7 @@ acceptance: llmap align -r reads.fq -o out.sam --parquet out.parquet produces va
 | 31 | 2026-05-13 | n/a | Phase 6.1 BAM/SAM output writer | bam_writer.{h,cpp} for SAM output; BamWriter class with mapped/unmapped/tentative support; CIGAR utilities (generate, stats, validate); WaveCollapse tags (XC/XL/XI/XP); paralog tags (PD/PC/PP); XA for alternatives; split bam_writer_cigar.cpp; htslib-ready; 26 new tests; 710 total pass |
 | 32 | 2026-05-13 | n/a | Phase 6.2 Parquet probabilistic output | parquet_writer.{h,cpp}; ParquetWriter class with Arrow/Parquet support (CSV fallback); ProbabilityEntry schema (read_id, bucket_id, probability, confidence, level, iteration, is_collapsed); RecordToEntries conversion; filtering by min_probability; lossless invariant test; 23 new tests; 733 total pass |
 | 33 | 2026-05-13 | n/a | Phase 6.3 Parquet reader + round-trip validation | parquet_reader.{h,cpp}; ParquetReader class for reading Parquet/CSV; ParseCSVLine, ReadParquet, GroupByReadId, ValidateRoundTrip functions; full round-trip tests (write→read→compare); 10K entry lossless invariant; 24 new tests; 757 total pass |
+| 34 | 2026-05-13 | n/a | Phase 6.4 `llmap align` CLI + parquet_reader split | cmd_align.cpp for full align workflow; wires classical pipeline (minimizer→chain→WFA2); --bam/--sam/--parquet flags; split parquet_reader.cpp (446 LOC) → 3 files (parquet_reader.cpp, parquet_reader_read.cpp, parquet_reader_util.cpp); monolith count 1→0; 4 new CLI tests; 761 total pass |
 
 ---
 

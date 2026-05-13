@@ -196,11 +196,50 @@ TEST_F(LlmapCliTest, IndexNotImplemented) {
     EXPECT_TRUE(result.output.find("not yet implemented") != std::string::npos);
 }
 
-TEST_F(LlmapCliTest, AlignNotImplemented) {
-    auto result = Exec(llmap_bin_ + " align");
+// ========== Align Subcommand ==========
+
+TEST_F(LlmapCliTest, AlignHelp) {
+    auto result = Exec(llmap_bin_ + " align --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Align reads") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--reads") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--reference") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--output") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--parquet") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignMissingReads) {
+    auto result = Exec(llmap_bin_ + " align -x /tmp/ref.fa -o /tmp/out.sam");
 
     EXPECT_NE(result.exit_code, 0);
-    EXPECT_TRUE(result.output.find("not yet implemented") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--reads") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignMissingReference) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() + " -o /tmp/out.sam");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--reference") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignMissingOutput) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() + " -x /tmp/ref.fa");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--output") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignFileNotFound) {
+    auto result = Exec(llmap_bin_ + " align -r /nonexistent/reads.fastq -x /tmp/ref.fa -o /tmp/out.sam");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("not found") != std::string::npos);
 }
 
 // ========== Regression: Banner Shows on Empty Args ==========
