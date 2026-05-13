@@ -24,6 +24,12 @@ export SCHLEIN_LAB_TOKEN
 export GIT_ASKPASS="${HOME}/llmap-local/scripts/git_askpass.sh"
 export GIT_TERMINAL_PROMPT=0
 
+# Cron has no ssh-agent socket — point at the user's gnome-keyring agent.
+# Without this, ssh hummel-login fails publickey auth under cron.
+if [[ -z "${SSH_AUTH_SOCK:-}" ]] && [[ -S "/run/user/$(id -u)/keyring/ssh" ]]; then
+    export SSH_AUTH_SOCK="/run/user/$(id -u)/keyring/ssh"
+fi
+
 LLMAP_HOME="${LLMAP_HOME:-${HOME}/llmap-local}"
 LOG="${LLMAP_HOME}/autonomous_run.log"
 STATE="${LLMAP_HOME}/STATE.md"
@@ -120,12 +126,12 @@ if [[ ! -f "$PROMPT_FILE" ]]; then
 fi
 
 log "spawning claude continuation (subprocess, non-interactive)"
-# --print: non-interactive
-# --output-format text: clean log lines
-# Timeout: 13 minutes — leaves 2 minutes headroom before next cron cycle
+# Claude CLI 2.1.x with --print expects the prompt via stdin (positional
+# arg of multi-line content gets misparsed). Pipe the prompt in.
+# Timeout: 13 minutes — leaves 2 minutes headroom before next cron cycle.
 timeout 780 claude --print --output-format text \
     --add-dir "$LLMAP_HOME" \
-    "$(cat "$PROMPT_FILE")" \
+    < "$PROMPT_FILE" \
     >> "$LOG" 2>&1
 claude_rc=$?
 log "claude subprocess exit code: $claude_rc"
