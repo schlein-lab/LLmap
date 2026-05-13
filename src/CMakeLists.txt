@@ -191,6 +191,7 @@ add_library(llmap_claude_agent STATIC
     claude_agent/cuda_sandbox_patterns.cpp
     claude_agent/cuda_sandbox_compile.cpp
     claude_agent/cuda_sandbox_load.cpp
+    claude_agent/pipeline_agent.cpp
 )
 
 target_include_directories(llmap_claude_agent PUBLIC

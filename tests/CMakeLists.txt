@@ -420,6 +420,17 @@ target_link_libraries(test_cuda_sandbox
 )
 gtest_discover_tests(test_cuda_sandbox)
 
+add_executable(test_pipeline_agent
+    unit/test_pipeline_agent.cpp
+)
+target_link_libraries(test_pipeline_agent
+    PRIVATE
+    llmap_claude_agent
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_pipeline_agent)
+
 # ========== Integration Tests ==========
 # These test end-to-end workflows across multiple modules
 
