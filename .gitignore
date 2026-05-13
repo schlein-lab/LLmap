@@ -88,3 +88,13 @@ autonomous_run.pid
 *~
 .directory
 Thumbs.db
+
+# Autonomous driver runtime state (not for git)
+.driver.lock
+.iteration_count
+.hummel_status
+.deadline_epoch
+.last_commit_sha
+.stuck_count
+.stuck_notified_*
+.deadline_notified
