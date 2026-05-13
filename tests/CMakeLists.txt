@@ -226,6 +226,17 @@ target_link_libraries(test_member_propagation
 )
 gtest_discover_tests(test_member_propagation)
 
+add_executable(test_stage2_pipeline
+    unit/test_stage2_pipeline.cpp
+)
+target_link_libraries(test_stage2_pipeline
+    PRIVATE
+    llmap_reference_collapse
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_stage2_pipeline)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
