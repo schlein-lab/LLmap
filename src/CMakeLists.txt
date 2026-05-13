@@ -14,6 +14,7 @@ target_compile_features(llmap_core PUBLIC cxx_std_23)
 # AI module — foundation model embedders
 add_library(llmap_ai STATIC
     ai/foundation_embedder.cpp
+    ai/bucket_embedder.cpp
 )
 
 target_include_directories(llmap_ai PUBLIC

@@ -54,3 +54,25 @@ target_link_libraries(test_foundation_embedder
     GTest::gtest_main
 )
 gtest_discover_tests(test_foundation_embedder)
+
+add_executable(test_bucket_embedder
+    unit/test_bucket_embedder.cpp
+)
+target_link_libraries(test_bucket_embedder
+    PRIVATE
+    llmap_ai
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_bucket_embedder)
+
+# Embedder throughput benchmark (standalone, not using Google Benchmark)
+if(LLMAP_ENABLE_BENCH)
+    add_executable(bench_embedder_throughput
+        bench/bench_embedder_throughput.cpp
+    )
+    target_link_libraries(bench_embedder_throughput
+        PRIVATE
+        llmap_ai
+    )
+endif()
