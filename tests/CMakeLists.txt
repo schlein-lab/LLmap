@@ -352,6 +352,18 @@ target_link_libraries(test_real_reference
 )
 gtest_discover_tests(test_real_reference)
 
+# Profiler tests
+add_executable(test_profiler
+    unit/test_profiler.cpp
+)
+target_link_libraries(test_profiler
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_profiler)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
@@ -361,6 +373,16 @@ if(LLMAP_ENABLE_BENCH)
         PRIVATE
         llmap_ai
     )
+
+    add_executable(bench_classical_pipeline
+        bench/bench_classical_pipeline.cpp
+    )
+    target_link_libraries(bench_classical_pipeline
+        PRIVATE
+        llmap_classical
+        llmap_core
+    )
+    target_compile_definitions(bench_classical_pipeline PRIVATE LLMAP_ENABLE_PROFILING)
 endif()
 
 # ========== Claude Agent Module Tests ==========
