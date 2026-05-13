@@ -411,6 +411,18 @@ target_link_libraries(test_thread_pool
 )
 gtest_discover_tests(test_thread_pool)
 
+# Cache layout tests
+add_executable(test_cache_layout
+    unit/test_cache_layout.cpp
+)
+target_link_libraries(test_cache_layout
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_cache_layout)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
