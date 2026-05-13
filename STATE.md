@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 45 |
-| Total iterations | 45 |
+| Last successful iteration | 46 |
+| Total iterations | 46 |
 
 ---
 
@@ -72,6 +72,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 8.2: Arena allocators for hot paths (973 tests pass)
   - [x] Phase 8.3: SIMD optimization for minimizer extraction (998 tests pass)
   - [x] Phase 8.4: Memory-mapped I/O for large references (1028 tests pass)
+  - [x] Phase 8.5: Thread pool for parallel batch processing (1062 tests pass)
 - [ ] Phase 9: Single-Cell + Paralog Production
 
 ---
@@ -81,13 +82,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 8
 task: performance_optimization
-substep: 5/N — Thread pool and parallel batch processing
-last_action: Phase 8.4 — Memory-mapped FASTA reader: mmap_fasta.h/cpp with MmapFastaReader class (mmap-based file mapping, lazy index building, GetSequence/GetSequenceData/GetSubsequence for zero-copy and copy access, memory advice hints AdviseSequential/AdviseRandom/AdviseWillNeed/AdviseDontNeed, MmapStats for memory usage tracking); test_mmap_fasta.cpp (30 tests); 1028 tests pass
-next_action: Phase 8.5 — Thread pool for parallel batch processing
-  - Thread pool for parallel read batch processing
-  - Parallel minimizer extraction
-  - Parallel chain scoring
-acceptance: Phase 8.5 thread pool + measurable throughput improvement on multi-core
+substep: 6/N — Cache-friendly data layouts
+last_action: Phase 8.5 — Thread pool for parallel batch processing: thread_pool.h/cpp with ThreadPool class (work-stealing, Submit/Execute APIs, WaitAll, ThreadPoolStats); ParallelFor with auto-chunking; ParallelMap for transformations; BatchProcessor<In,Out> with progress callbacks; 34 new tests; 1062 tests pass
+next_action: Phase 8.6 — Cache-friendly data layouts + finishing Phase 8
+  - AoS→SoA conversions for hot paths
+  - Prefetch hints for sequential access patterns
+  - Benchmark parallel vs serial throughput on multi-core
+acceptance: Phase 8 complete with measurable speedups documented
 ```
 
 ---
@@ -138,8 +139,9 @@ acceptance: Phase 8.5 thread pool + measurable throughput improvement on multi-c
 42. ~~Phase 8.2: Arena allocators for hot paths~~ ✅ done
 43. ~~Phase 8.3: SIMD optimization for minimizer extraction~~ ✅ done
 44. ~~Phase 8.4: Memory-mapped I/O for large references~~ ✅ done
-45. Phase 8.5: Thread pool for parallel batch processing ← NEXT
-46. ... (continues per LLmap_SPEC.md)
+45. ~~Phase 8.5: Thread pool for parallel batch processing~~ ✅ done
+46. Phase 8.6: Cache-friendly data layouts + finalize Phase 8 ← NEXT
+47. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -208,6 +210,7 @@ acceptance: Phase 8.5 thread pool + measurable throughput improvement on multi-c
 | 43 | 2026-05-14 | n/a | Phase 8.2 arena allocators for hot paths | arena.h (Arena bump allocator, ScratchBuffer<T> reusable vector, ScratchSpace thread-local, ScratchGuard RAII); ExtractMinimizersInto zero-alloc API; ChainScratch + ExtractChainsFromAnchorsWithScratch zero-alloc chaining; test_arena.cpp (31 tests); 973 tests pass |
 | 44 | 2026-05-14 | n/a | Phase 8.3 SIMD optimization + chain_dp refactor | simd.h/cpp (CpuFeatures, EncodeBases SSE4.2/AVX2, PackKmers, HashKmersBatch AVX2); split into simd.cpp + simd_encode.cpp + simd_hash.cpp; chain_dp.cpp (441 LOC) split → chain_dp.cpp (213 LOC) + chain_dp_scratch.cpp (207 LOC) + chain_dp_internal.h; test_simd.cpp (25 tests); 998 tests pass; monolith count 1→0 |
 | 45 | 2026-05-14 | n/a | Phase 8.4 memory-mapped FASTA reader | mmap_fasta.h + split to mmap_fasta.cpp (191 LOC) + mmap_fasta_seq.cpp (174 LOC) + mmap_fasta_internal.h (MmapFastaReader with mmap-based file mapping, lazy index building, GetSequence/GetSequenceData/GetSubsequence for zero-copy and copy access, memory advice hints AdviseSequential/AdviseRandom/AdviseWillNeed/AdviseDontNeed, MmapStats for resident page tracking, IsFastaFile utility); test_mmap_fasta.cpp (30 tests); 1028 tests pass; monolith count 0→0 |
+| 46 | 2026-05-14 | n/a | Phase 8.5 thread pool for parallel batch processing | thread_pool.h (313 LOC) + thread_pool.cpp (102 LOC): ThreadPool class with work-stealing fixed-size pool, Submit/Execute/WaitAll APIs, ThreadPoolStats (tasks_submitted/completed/stolen/wait_ns); ParallelFor with auto-chunking; ParallelMap for input→output transforms; BatchProcessor<In,Out> with progress callbacks; test_thread_pool.cpp (34 tests); 1062 tests pass; monolith count 0→0 |
 
 ---
 

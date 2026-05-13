@@ -399,6 +399,18 @@ target_link_libraries(test_simd
 )
 gtest_discover_tests(test_simd)
 
+# Thread pool tests
+add_executable(test_thread_pool
+    unit/test_thread_pool.cpp
+)
+target_link_libraries(test_thread_pool
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_thread_pool)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
