@@ -10,6 +10,20 @@
 
 set -uo pipefail
 
+# --- environment: cron does not inherit shell env, source secrets ourselves
+if [[ -f "${HOME}/.env" ]]; then
+    set -a
+    # shellcheck disable=SC1090
+    . "${HOME}/.env"
+    set +a
+fi
+# Normalize token name (the .env uses GITHUB_TOKEN_SCHLEIN_LAB,
+# git_askpass.sh and other scripts expect SCHLEIN_LAB_TOKEN)
+: "${SCHLEIN_LAB_TOKEN:=${GITHUB_TOKEN_SCHLEIN_LAB:-}}"
+export SCHLEIN_LAB_TOKEN
+export GIT_ASKPASS="${HOME}/llmap-local/scripts/git_askpass.sh"
+export GIT_TERMINAL_PROMPT=0
+
 LLMAP_HOME="${LLMAP_HOME:-${HOME}/llmap-local}"
 LOG="${LLMAP_HOME}/autonomous_run.log"
 STATE="${LLMAP_HOME}/STATE.md"
@@ -65,14 +79,18 @@ echo "$cur_status" > "$HUMMEL_STATUS_FILE"
 
 if [[ "$cur_status" != "$prev_status" ]]; then
     log "Hummel status transition: $prev_status -> $cur_status"
-    if [[ "$cur_status" == "DOWN" ]]; then
-        "${LLMAP_HOME}/scripts/zyrkel_notify.sh" \
-            "🚨 Hummel-2 unreachable. VPN renewal needed. LLmap autonomous loop paused on Hummel-dependent tasks." \
-            || true
-    else
-        "${LLMAP_HOME}/scripts/zyrkel_notify.sh" \
-            "✅ Hummel-2 reachable again. LLmap autonomous loop resuming." \
-            || true
+    # Suppress notification on first run when prev was UNKNOWN — initial probe
+    # is not a real transition.
+    if [[ "$prev_status" != "UNKNOWN" ]]; then
+        if [[ "$cur_status" == "DOWN" ]]; then
+            "${LLMAP_HOME}/scripts/zyrkel_notify.sh" \
+                "🚨 Hummel-2 unreachable. VPN renewal needed. LLmap autonomous loop paused on Hummel-dependent tasks." \
+                || true
+        else
+            "${LLMAP_HOME}/scripts/zyrkel_notify.sh" \
+                "✅ Hummel-2 reachable again. LLmap autonomous loop resuming." \
+                || true
+        fi
     fi
 fi
 
@@ -81,9 +99,18 @@ if [[ "$cur_status" == "DOWN" ]]; then
     # Still allow local-only Claude work (docs, host-side code) to proceed
 fi
 
-# --- git sync ------------------------------------------------------------
+# --- git sync (stash any uncommitted to survive concurrent edits) --------
+stashed=0
+if [[ -n "$(git status --porcelain)" ]]; then
+    log "uncommitted changes present, stashing before pull"
+    git stash push -u -m "driver auto-stash iteration $iter" >> "$LOG" 2>&1 && stashed=1
+fi
 log "git pull --rebase origin main"
 git pull --rebase origin main >> "$LOG" 2>&1 || log "WARN: git pull failed"
+if (( stashed )); then
+    log "restoring auto-stash"
+    git stash pop >> "$LOG" 2>&1 || log "WARN: git stash pop failed (manual inspection needed)"
+fi
 
 # --- spawn claude continuation -------------------------------------------
 PROMPT_FILE="${LLMAP_HOME}/scripts/continuation_prompt.md"
