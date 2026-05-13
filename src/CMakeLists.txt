@@ -91,6 +91,18 @@ if(LLMAP_FAISS_AVAILABLE)
     endif()
 endif()
 
+# Reference collapse module — Stage 2 (reference-based WaveCollapse)
+add_library(llmap_reference_collapse STATIC
+    reference_collapse/reference_index.cpp
+)
+
+target_include_directories(llmap_reference_collapse PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_reference_collapse PUBLIC cxx_std_23)
+target_link_libraries(llmap_reference_collapse PUBLIC llmap_core llmap_ai)
+
 # CLI — full CLI surface
 add_executable(llmap cli/llmap_main.cpp)
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse)

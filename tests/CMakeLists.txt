@@ -170,6 +170,18 @@ target_link_libraries(test_llmap_cli
 add_dependencies(test_llmap_cli llmap)
 gtest_discover_tests(test_llmap_cli)
 
+# Reference collapse module tests
+add_executable(test_reference_index
+    unit/test_reference_index.cpp
+)
+target_link_libraries(test_reference_index
+    PRIVATE
+    llmap_reference_collapse
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_reference_index)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
