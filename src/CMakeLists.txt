@@ -102,10 +102,13 @@ endif()
 # Reference collapse module — Stage 2 (reference-based WaveCollapse)
 add_library(llmap_reference_collapse STATIC
     reference_collapse/reference_index.cpp
+    reference_collapse/reference_index_builder.cpp
+    reference_collapse/reference_index_io.cpp
     reference_collapse/em_iterator.cpp
     reference_collapse/collapse_check.cpp
     reference_collapse/refinement.cpp
     reference_collapse/member_propagation.cpp
+    reference_collapse/stage2_pipeline.cpp
 )
 
 target_include_directories(llmap_reference_collapse PUBLIC
