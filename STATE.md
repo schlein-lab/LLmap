@@ -49,17 +49,25 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 2
-task: self_interference_stage1
-substep: 6/6
-last_action: ClusterRepSelector for medoid-based representative selection; 39 new tests; 288 total pass
-next_action: implement llmap allpair CLI command
-acceptance: llmap allpair reads FASTQ, clusters, outputs Parquet with cluster assignments
+phase: refactor-debt
+task: split_monolithic_files
+substep: 1/1
+last_action: ClusterRepSelector done (288 tests); user set explicit no-monoliths constraint at iter 13
+next_action: BEFORE continuing Phase 2.6/3 — split files > 400 LOC per scripts/continuation_prompt.md "Modular architecture" section. Priority order (largest first):
+  1. src/self_interference/faiss_wrapper.cpp (665) → split into faiss_index.cpp + faiss_search.cpp + faiss_serialize.cpp
+  2. src/self_interference/leiden_clustering.cpp (624) → leiden_modularity.cpp + leiden_refine.cpp + leiden_partition.cpp
+  3. src/self_interference/allpair_pipeline.cpp (575) → split per stage (embed/faiss/cluster/swc/rep) helpers
+  4. src/self_interference/cluster_rep.cpp (573) → cluster_rep_medoid.cpp + cluster_rep_methods.cpp
+  5. src/ai/bucket_embedder.cpp (509), self_wavecollapse.cpp (495), similarity_graph.cpp (488), foundation_embedder.cpp (420), igh_locus_generator.cpp (410)
+After splits: re-run ctest, no regression. Then resume Phase 2.6.
+acceptance: every src/*.cpp ≤ 400 LOC (soft cap) / 700 LOC (hard cap); 288 tests still green; one git commit per split with message "refactor: split <file> per modular constraint"
 ```
 
 ---
 
 ## Next task queue (FIFO)
+
+0. **refactor-debt**: split 9 src/ files > 400 LOC per new modular constraint ← DO FIRST
 
 1. ~~Phase 0.1: AlignmentRecord type + tests~~ ✅ done
 2. ~~Phase 0.2: BucketPyramid data structure + serialization~~ ✅ done

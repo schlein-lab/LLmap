@@ -41,6 +41,22 @@ If Hummel is down (check `.hummel_status` file), do only local-host work this it
 - Never push to `main` if tests fail.
 - If you hit an algorithmic dead-end you can't resolve, write the blocker in STATE.md → `## Blockers / open questions`, send a Zyrkel notification via the `mcp__zyrkel__notify` tool, and exit cleanly. The next iteration will see the blocker.
 
+## Modular architecture — NO MONOLITHS
+
+This is an explicit user-set constraint. Build small, focused modules — never god-classes or 1000-line files.
+
+- **One concept per header**: if a header has more than ~3 unrelated classes/structs, split it.
+- **Soft cap 400 LOC per .cpp file**: above that, refactor into helpers in a sibling file. Hard limit 700 LOC.
+- **Free functions over methods** when the function doesn't own state.
+- **Clear module boundaries**: anything in `src/core/` cannot depend on `src/ai/` or `src/claude_agent/`. The dependency graph flows core → classical → ai → reference_collapse → output → cli.
+- **Headers ≤ 200 LOC**: if a header grows past 200, the public surface is too wide — split it.
+- **PIMPL when a header would otherwise need a heavy third-party include** (e.g. ONNX Runtime, FAISS). The pattern is already used in `foundation_embedder.cpp` — follow it.
+- **One CMake target per logical unit**: don't pile everything into one static lib. Sub-libraries help compile-time and enforce boundaries.
+- **Avoid utility/helper grab-bag files**: `utils.h` is a code smell. If you find yourself adding a third unrelated function to one file, split it.
+- **Test files mirror source files 1:1**: `src/foo/bar.cpp` ↔ `tests/unit/test_bar.cpp`. No "test_misc.cpp".
+
+When in doubt: prefer two 200-line files over one 400-line file.
+
 ## Style
 
 - C++23 modern style; `std::optional`, no raw new/delete, RAII.
