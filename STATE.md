@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 15 |
-| Total iterations | 15 |
+| Last successful iteration | 16 |
+| Total iterations | 16 |
 
 ---
 
@@ -40,6 +40,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
   - [x] Phase 3.1: Reference index structure (375 tests pass)
   - [x] Phase 3.2: EM iteration kernel (CPU fallback) (400 tests pass)
+  - [x] Phase 3.3: Collapse check + dropout (426 tests pass)
 - [ ] Phase 4: Classical Path + WFA2
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
 - [ ] Phase 6: Dual Output (BAM + Parquet)
@@ -53,15 +54,15 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 3
-task: collapse_check_dropout
-substep: 1/5
-last_action: Phase 3.2 done (400 tests); refactored faiss_wrapper.cpp 665→3 files; em_iterator 25 tests; monolith count 10→9
-next_action: Implement collapse_check.{h,cpp} — convergence test + dropout marking
-  - Check max P(b|r) >= tau_collapse for each read
-  - Mark converged reads as collapsed (already have WaveState support)
-  - Return dropout statistics
-  - Add tests for edge cases
-acceptance: collapse_check module works with em_iterator, ≥ 8 new tests, total ≥ 408, zero regression
+task: refinement_coarse_to_fine
+substep: 1/4
+last_action: Phase 3.3 done (426 tests); split leiden_clustering.cpp (624 LOC) → 3 files; collapse_check module with 26 tests; monolith count 9→8
+next_action: Implement refinement.{h,cpp} — coarse→fine bucket expansion
+  - Expand high-probability L0/L1 buckets to finer resolution (L1/L2)
+  - Re-initialize probabilities proportional to parent
+  - Update WaveState level tracking
+  - Add tests for multi-level expansion
+acceptance: refinement module integrates with WaveState and collapse_check, ≥ 10 new tests, total ≥ 436, zero regression
 ```
 
 ---
@@ -83,8 +84,8 @@ acceptance: collapse_check module works with em_iterator, ≥ 8 new tests, total
 13. ~~Phase 2.6: `llmap allpair` CLI command~~ ✅ done
 14. ~~Phase 3.1: Reference index structure~~ ✅ done
 15. ~~Phase 3.2: EM iteration kernel (CPU fallback)~~ ✅ done
-16. Phase 3.3: Collapse check + dropout ← CURRENT
-17. Phase 3.4: Refinement (coarse→fine expansion)
+16. ~~Phase 3.3: Collapse check + dropout~~ ✅ done
+17. Phase 3.4: Refinement (coarse→fine expansion) ← CURRENT
 18. Phase 3.5: Member propagation
 19. Phase 3.6: Stage 2 pipeline orchestrator
 20. ... (continues per LLmap_SPEC.md)
@@ -126,6 +127,7 @@ acceptance: collapse_check module works with em_iterator, ≥ 8 new tests, total
 | 13 | 2026-05-13 | n/a | llmap allpair CLI tests + bugfix | test_llmap_cli.cpp (14 tests); fixed FastqReader::HasMore() peek EOF; 348 total pass |
 | 14 | 2026-05-13 | n/a | Phase 3.1 ReferenceIndex structure | reference_index.{h,cpp}; Builder pattern; save/load serialization; spatial bucket lookup; 27 new tests; 375 total pass |
 | 15 | 2026-05-13 | n/a | refactor faiss_wrapper + Phase 3.2 em_iterator | split faiss_wrapper.cpp (665 LOC) → 3 files; em_iterator.{h,cpp} for EM step CPU fallback; 25 new tests; 400 total pass; monolith count 10→9 |
+| 16 | 2026-05-13 | n/a | refactor leiden_clustering + Phase 3.3 collapse_check | split leiden_clustering.cpp (624 LOC) → 3 files; collapse_check.{h,cpp} for convergence/dropout; 26 new tests; 426 total pass; monolith count 9→8 |
 
 ---
 
