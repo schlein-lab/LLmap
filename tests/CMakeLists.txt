@@ -133,6 +133,17 @@ target_link_libraries(test_fastq_reader
 )
 gtest_discover_tests(test_fastq_reader)
 
+add_executable(test_mmap_fasta
+    unit/test_mmap_fasta.cpp
+)
+target_link_libraries(test_mmap_fasta
+    PRIVATE
+    llmap_io
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_mmap_fasta)
+
 # Output module tests
 add_executable(test_cluster_writer
     unit/test_cluster_writer.cpp

@@ -19,6 +19,8 @@ target_compile_features(llmap_core PUBLIC cxx_std_23)
 add_library(llmap_io STATIC
     io/fasta_reader.cpp
     io/fastq_reader.cpp
+    io/mmap_fasta.cpp
+    io/mmap_fasta_seq.cpp
 )
 
 target_include_directories(llmap_io PUBLIC
