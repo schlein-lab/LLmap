@@ -158,6 +158,7 @@ endif()
 # Validation module — kill-switch validation framework
 add_library(llmap_validation STATIC
     validation/killswitch.cpp
+    validation/end_to_end.cpp
 )
 
 target_include_directories(llmap_validation PUBLIC
@@ -165,7 +166,7 @@ target_include_directories(llmap_validation PUBLIC
 )
 
 target_compile_features(llmap_validation PUBLIC cxx_std_23)
-target_link_libraries(llmap_validation PUBLIC llmap_core)
+target_link_libraries(llmap_validation PUBLIC llmap_core llmap_classical)
 
 # CLI — full CLI surface
 add_executable(llmap cli/llmap_main.cpp)

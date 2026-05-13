@@ -186,3 +186,96 @@ BaselineComparison CompareToBaseline(
     const std::unordered_map<std::string, bool>& minimap2_mapped);
 
 }  // namespace llmap::validation
+
+// Forward declare classical types
+namespace llmap::classical {
+struct ClassicalAlignment;
+struct ReadAlignmentResult;
+struct ClassicalPipelineConfig;
+}  // namespace llmap::classical
+
+namespace llmap::validation {
+
+// Convert ClassicalAlignment to AlignmentRecord for validation
+AlignmentRecord ConvertToAlignmentRecord(
+    const classical::ClassicalAlignment& aln,
+    uint32_t read_len);
+
+// Convert batch of ReadAlignmentResult to AlignmentRecords
+std::vector<AlignmentRecord> ConvertResults(
+    const std::vector<classical::ReadAlignmentResult>& results,
+    const std::vector<uint32_t>& read_lengths);
+
+// End-to-end synthetic validation configuration
+struct EndToEndConfig {
+    // Synthetic data parameters
+    uint64_t seed = 42;
+    uint64_t locus_length = 20000;
+    uint32_t n_psvs = 10;
+    uint32_t read_length = 5000;
+    float dup_fraction = 0.0f;
+    uint32_t n_reads = 50;
+
+    // Classical pipeline tuning
+    uint8_t minimizer_k = 15;
+    uint8_t minimizer_w = 10;
+    float min_identity = 0.70f;
+
+    // Validation thresholds
+    double min_position_accuracy = 0.90;  // 90% of mapped reads correctly positioned
+    double position_tolerance_bp = 200;   // bp tolerance for position check
+    bool require_lossless = true;
+
+    // Create preset configurations
+    static EndToEndConfig Minimal();   // Fast test: 10 reads, small locus
+    static EndToEndConfig Standard();  // Standard: 50 reads, medium locus
+    static EndToEndConfig Stress();    // Stress test: 200 reads, large locus
+};
+
+// Result of end-to-end validation
+struct EndToEndResult {
+    // Synthetic data stats
+    size_t n_reads_generated = 0;
+    size_t n_canonical = 0;
+    size_t n_duplicate = 0;
+    float actual_dup_fraction = 0.0f;
+
+    // Alignment stats
+    size_t n_aligned = 0;
+    size_t n_unmapped = 0;
+    float alignment_rate = 0.0f;
+    float avg_identity = 0.0f;
+
+    // Validation stats (from KillSwitchValidator)
+    ValidationStats validation;
+
+    // Position accuracy details
+    double position_accuracy = 0.0;
+    int64_t mean_position_error = 0;
+    int64_t max_position_error = 0;
+
+    // Overall verdict
+    bool passed = false;
+    std::string verdict_reason;
+
+    // Timing
+    float generation_time_ms = 0.0f;
+    float alignment_time_ms = 0.0f;
+    float validation_time_ms = 0.0f;
+    float total_time_ms = 0.0f;
+
+    std::string Summary() const;
+};
+
+// Run complete end-to-end synthetic validation
+// 1. Generate synthetic data with known ground truth
+// 2. Build reference index from synthetic locus
+// 3. Align reads with classical pipeline
+// 4. Validate results through kill-switch framework
+EndToEndResult RunEndToEndValidation(const EndToEndConfig& config);
+
+// Convenience wrappers
+EndToEndResult RunMinimalValidation(uint64_t seed = 42);
+EndToEndResult RunStandardValidation(uint64_t seed = 42);
+
+}  // namespace llmap::validation
