@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 40 |
-| Total iterations | 40 |
+| Last successful iteration | 41 |
+| Total iterations | 41 |
 
 ---
 
@@ -61,11 +61,12 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 6.3: Parquet reader + round-trip validation (757 tests pass)
   - [x] Phase 6.4: `llmap align` CLI with --parquet/--bam flags (761 tests pass)
   - [x] Phase 6.5: Integration tests for full align workflow (770 tests pass)
-- [ ] **Phase 7: Claude Agent Integration**
+- [x] **Phase 7: Claude Agent Integration** ✓
   - [x] Phase 7.1: Agent types, API client, session management (839 tests pass)
   - [x] Phase 7.2: CUDA sandbox for agent-generated kernels (894 tests pass)
   - [x] Phase 7.3: Session integration with align pipeline (919 tests pass)
   - [x] Phase 7.4: `--llm` flag for `llmap align` (923 tests pass)
+  - [x] Phase 7.5: Refactor cmd_align.cpp + Phase 7 complete (923 tests pass)
 - [ ] Phase 8: Performance Optimization
 - [ ] Phase 9: Single-Cell + Paralog Production
 
@@ -74,17 +75,16 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 7
-task: claude_agent_integration
-substep: 5/N — Phase 7 completion + Phase 8 (Performance Optimization) planning (next)
-last_action: Phase 7.4 — `--llm` flag for `llmap align` CLI; --llm, --llm-api-key, --llm-threshold, --llm-work-dir flags; PipelineAgent integration for low-mapping-rate diagnostics; GetApiKey helper (env var fallback); RunLlmDiagnostics with WriteWaveStateJson; 4 new tests; 923 tests pass
-next_action: Phase 7.5 — review/finalize Claude Agent Integration OR begin Phase 8
-  - Consider adding WaveCollapse integration (neural path uses agent for stall resolution)
-  - OR begin Phase 8: Performance Optimization
-  - GPU kernel profiling
-  - Memory optimization
+phase: 8
+task: performance_optimization
+substep: 1/N — Phase 8 planning
+last_action: Phase 7.5 — refactored cmd_align.cpp (524 LOC) → 3 files (cmd_align.cpp 303 LOC, cmd_align_args.cpp 104 LOC, cmd_align_llm.cpp 107 LOC) + internal header; monolith count 1→0; Phase 7 complete
+next_action: Phase 8.1 — begin Performance Optimization
+  - Profile hot paths (minimizer extraction, chain scoring, WFA2 extension)
+  - Memory allocation optimization (arena allocators)
   - Batch processing improvements
-acceptance: Phase 7 complete with full --llm integration OR Phase 8 started
+  - SIMD acceleration for inner loops
+acceptance: Phase 8.1 profiling infrastructure + initial benchmarks
 ```
 
 ---
@@ -130,8 +130,9 @@ acceptance: Phase 7 complete with full --llm integration OR Phase 8 started
 37. ~~Phase 7.2: CUDA Sandbox for agent-generated kernels~~ ✅ done
 38. ~~Phase 7.3: Session integration with align pipeline~~ ✅ done
 39. ~~Phase 7.4: `--llm` flag implementation~~ ✅ done
-40. Phase 7.5: Phase 7 completion review ← NEXT
-41. ... (continues per LLmap_SPEC.md)
+40. ~~Phase 7.5: cmd_align refactor + Phase 7 complete~~ ✅ done
+41. Phase 8.1: Performance profiling infrastructure ← NEXT
+42. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -195,6 +196,7 @@ acceptance: Phase 7 complete with full --llm integration OR Phase 8 started
 | 38 | 2026-05-13 | n/a | Phase 7.2 refactor cuda_sandbox_analyzer | split cuda_sandbox_analyzer.cpp (493 LOC) → 3 files: cuda_sandbox_analyzer.cpp (152 LOC), cuda_sandbox_parse.cpp (160 LOC), cuda_sandbox_patterns.cpp (200 LOC); cuda_sandbox_internal.h internal header; monolith count 1→0; 894 tests pass |
 | 39 | 2026-05-13 | n/a | Phase 7.3 pipeline agent integration | pipeline_agent.{h,cpp} for session integration with align pipeline; PipelineAgent class wiring DiagnosticSession + ReporterSession + CudaSandbox for stall detection and resolution; StallDetector for entropy-based stall detection (NoProgress, Oscillation, HighUncertainty); WriteWaveStateJson/AnalyzeWaveStateForStall utilities; 25 new tests; 919 tests pass |
 | 40 | 2026-05-14 | n/a | Phase 7.4 `--llm` flag for align CLI | `--llm`, `--llm-api-key`, `--llm-threshold`, `--llm-work-dir` flags in cmd_align.cpp; PipelineAgent integration with low-mapping-rate diagnostics; GetApiKey helper with ANTHROPIC_API_KEY env fallback; RunLlmDiagnostics outputs stall pattern/root cause/resolution; 4 new CLI tests (AlignHelpShowsLlmFlag, AlignLlmFlagNoApiKey, AlignLlmThreshold, AlignLlmWorkDir); 923 tests pass |
+| 41 | 2026-05-14 | n/a | Phase 7.5 cmd_align refactor + Phase 7 COMPLETE | split cmd_align.cpp (524 LOC) → 3 files: cmd_align.cpp (303 LOC), cmd_align_args.cpp (104 LOC), cmd_align_llm.cpp (107 LOC) + cmd_align_internal.h (52 LOC); monolith count 1→0; 923 tests pass; Phase 7 complete |
 
 ---
 
