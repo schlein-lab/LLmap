@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 43 |
-| Total iterations | 43 |
+| Last successful iteration | 44 |
+| Total iterations | 44 |
 
 ---
 
@@ -70,6 +70,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase 8: Performance Optimization** (in progress)
   - [x] Phase 8.1: Profiling infrastructure + benchmarks (942 tests pass)
   - [x] Phase 8.2: Arena allocators for hot paths (973 tests pass)
+  - [x] Phase 8.3: SIMD optimization for minimizer extraction (998 tests pass)
 - [ ] Phase 9: Single-Cell + Paralog Production
 
 ---
@@ -79,13 +80,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 8
 task: performance_optimization
-substep: 3/N — SIMD optimization for minimizer extraction
-last_action: Phase 8.2 — Arena allocators: arena.h (Arena bump allocator, ScratchBuffer<T> vector-like container, ScratchSpace thread-local storage, ScratchGuard RAII reset); ExtractMinimizersInto for zero-alloc minimizer extraction; ExtractChainsFromAnchorsWithScratch + ChainScratch for zero-alloc chaining; test_arena.cpp (31 tests); 973 tests pass
-next_action: Phase 8.3 — SIMD optimization
-  - Vectorize k-mer hashing in minimizer extraction
-  - SIMD-accelerated base encoding
-  - Profile and optimize remaining hot paths
-acceptance: Phase 8.3 SIMD minimizer extraction + measurable speedup in benchmarks
+substep: 4/N — Memory-mapped I/O for large references
+last_action: Phase 8.3 — SIMD optimization: simd.h (CpuFeatures runtime detection, EncodeBases SSE4.2/AVX2 accelerated base encoding, AllValid/CountValid/FindNextInvalid validity mask operations, PackKmers forward+reverse-complement k-mer packing, HashKmersBatch AVX2 batch hashing); split into simd.cpp + simd_encode.cpp + simd_hash.cpp; chain_dp.cpp split into chain_dp.cpp + chain_dp_scratch.cpp; test_simd.cpp (25 tests); 998 tests pass
+next_action: Phase 8.4 — Memory-mapped I/O
+  - mmap-based FASTA reader for large references
+  - Lazy loading for reference sequences
+  - Profile memory usage improvements
+acceptance: Phase 8.4 mmap-based reference loading + reduced memory footprint
 ```
 
 ---
@@ -134,8 +135,9 @@ acceptance: Phase 8.3 SIMD minimizer extraction + measurable speedup in benchmar
 40. ~~Phase 7.5: cmd_align refactor + Phase 7 complete~~ ✅ done
 41. ~~Phase 8.1: Profiling infrastructure + benchmarks~~ ✅ done
 42. ~~Phase 8.2: Arena allocators for hot paths~~ ✅ done
-43. Phase 8.3: SIMD optimization for minimizer extraction ← NEXT
-44. ... (continues per LLmap_SPEC.md)
+43. ~~Phase 8.3: SIMD optimization for minimizer extraction~~ ✅ done
+44. Phase 8.4: Memory-mapped I/O for large references ← NEXT
+45. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -202,6 +204,7 @@ acceptance: Phase 8.3 SIMD minimizer extraction + measurable speedup in benchmar
 | 41 | 2026-05-14 | n/a | Phase 7.5 cmd_align refactor + Phase 7 COMPLETE | split cmd_align.cpp (524 LOC) → 3 files: cmd_align.cpp (303 LOC), cmd_align_args.cpp (104 LOC), cmd_align_llm.cpp (107 LOC) + cmd_align_internal.h (52 LOC); monolith count 1→0; 923 tests pass; Phase 7 complete |
 | 42 | 2026-05-14 | n/a | Phase 8.1 profiling infrastructure + benchmarks | profiler.h (ProfileStats, ProfileRegistry, ScopedTimer, ManualTimer); bench_classical_pipeline.cpp (minimizer/chain/WFA2/full pipeline benchmarks); test_profiler.cpp (19 tests); LLMAP_PROFILE_SCOPE macro; 942 tests pass; Phase 8 started |
 | 43 | 2026-05-14 | n/a | Phase 8.2 arena allocators for hot paths | arena.h (Arena bump allocator, ScratchBuffer<T> reusable vector, ScratchSpace thread-local, ScratchGuard RAII); ExtractMinimizersInto zero-alloc API; ChainScratch + ExtractChainsFromAnchorsWithScratch zero-alloc chaining; test_arena.cpp (31 tests); 973 tests pass |
+| 44 | 2026-05-14 | n/a | Phase 8.3 SIMD optimization + chain_dp refactor | simd.h/cpp (CpuFeatures, EncodeBases SSE4.2/AVX2, PackKmers, HashKmersBatch AVX2); split into simd.cpp + simd_encode.cpp + simd_hash.cpp; chain_dp.cpp (441 LOC) split → chain_dp.cpp (213 LOC) + chain_dp_scratch.cpp (207 LOC) + chain_dp_internal.h; test_simd.cpp (25 tests); 998 tests pass; monolith count 1→0 |
 
 ---
 

@@ -2,6 +2,9 @@ add_library(llmap_core STATIC
     core/alignment_record.cpp
     core/bucket_pyramid.cpp
     core/wave_state.cpp
+    core/simd.cpp
+    core/simd_encode.cpp
+    core/simd_hash.cpp
     synthetic/igh_locus_generator_core.cpp
     synthetic/igh_locus_generator_presets.cpp
 )
@@ -145,6 +148,7 @@ add_library(llmap_classical STATIC
     classical/minimizer_index_extract.cpp
     classical/chain_score.cpp
     classical/chain_dp.cpp
+    classical/chain_dp_scratch.cpp
     classical/wfa2_aligner_core.cpp
     classical/wfa2_aligner_align.cpp
     classical/classical_pipeline.cpp

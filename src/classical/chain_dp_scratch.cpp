@@ -1,28 +1,26 @@
-#include "classical/chain.h"
 #include "classical/chain_dp_internal.h"
-#include "classical/minimizer_index.h"
 
 #include <algorithm>
 #include <chrono>
 #include <limits>
-#include <numeric>
 
 namespace llmap::classical {
 
 namespace internal {
 
-void ChainSingleRefStrand(
+void ChainSingleRefStrandScratch(
     std::span<const Anchor> anchors,
     std::span<const size_t> sorted_indices,
-    std::vector<DpState>& dp,
+    core::ScratchBuffer<int32_t>& dp_score,
+    core::ScratchBuffer<int32_t>& dp_pred,
     const ChainConfig& config)
 {
     const size_t n = sorted_indices.size();
     if (n == 0) return;
 
     for (size_t idx : sorted_indices) {
-        dp[idx].score = config.match_score;
-        dp[idx].pred = -1;
+        dp_score[idx] = config.match_score;
+        dp_pred[idx] = -1;
     }
 
     for (size_t i = 1; i < n; ++i) {
@@ -45,32 +43,36 @@ void ChainSingleRefStrand(
                 continue;
             }
 
-            int32_t new_score = dp[prev_idx].score + pair_score;
-            if (new_score > dp[curr_idx].score) {
-                dp[curr_idx].score = new_score;
-                dp[curr_idx].pred = static_cast<int32_t>(prev_idx);
+            int32_t new_score = dp_score[prev_idx] + pair_score;
+            if (new_score > dp_score[curr_idx]) {
+                dp_score[curr_idx] = new_score;
+                dp_pred[curr_idx] = static_cast<int32_t>(prev_idx);
             }
         }
     }
 }
 
-Chain BacktrackChain(
+Chain BacktrackChainScratch(
     std::span<const Anchor> anchors,
-    const std::vector<DpState>& dp,
-    size_t end_idx)
+    const core::ScratchBuffer<int32_t>& dp_score,
+    const core::ScratchBuffer<int32_t>& dp_pred,
+    size_t end_idx,
+    core::ScratchBuffer<uint32_t>& backtrack)
 {
     Chain chain;
-    chain.score = dp[end_idx].score;
+    chain.score = dp_score[end_idx];
 
-    std::vector<uint32_t> indices;
+    backtrack.clear();
     int32_t idx = static_cast<int32_t>(end_idx);
     while (idx >= 0) {
-        indices.push_back(static_cast<uint32_t>(idx));
-        idx = dp[idx].pred;
+        backtrack.push_back(static_cast<uint32_t>(idx));
+        idx = dp_pred[idx];
     }
 
-    std::reverse(indices.begin(), indices.end());
-    chain.anchors = std::move(indices);
+    chain.anchors.resize(backtrack.size());
+    for (size_t i = 0; i < backtrack.size(); ++i) {
+        chain.anchors[i] = backtrack[backtrack.size() - 1 - i];
+    }
 
     const Anchor& first = anchors[chain.anchors.front()];
     const Anchor& last = anchors[chain.anchors.back()];
@@ -93,10 +95,11 @@ Chain BacktrackChain(
 
 }  // namespace internal
 
-ChainResult ExtractChainsFromAnchors(
+ChainResult ExtractChainsFromAnchorsWithScratch(
     std::span<const Anchor> anchors,
     uint32_t query_len,
-    const ChainConfig& config)
+    const ChainConfig& config,
+    ChainScratch& scratch)
 {
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -107,62 +110,73 @@ ChainResult ExtractChainsFromAnchors(
         return result;
     }
 
-    std::vector<std::pair<uint64_t, size_t>> keyed_indices;
-    keyed_indices.reserve(anchors.size());
-    for (size_t i = 0; i < anchors.size(); ++i) {
+    const size_t n = anchors.size();
+
+    scratch.dp_score.resize(n);
+    scratch.dp_pred.resize(n);
+    scratch.used.resize_zero(n);
+
+    scratch.keyed_indices.clear();
+    scratch.keyed_indices.reserve(n);
+    for (size_t i = 0; i < n; ++i) {
         uint64_t key = (static_cast<uint64_t>(anchors[i].ref_id) << 1) |
                        (anchors[i].same_strand ? 1 : 0);
-        keyed_indices.emplace_back(key, i);
+        scratch.keyed_indices.push_back({key, i});
     }
 
-    std::sort(keyed_indices.begin(), keyed_indices.end(),
+    std::sort(scratch.keyed_indices.begin(), scratch.keyed_indices.end(),
         [&](const auto& a, const auto& b) {
             if (a.first != b.first) return a.first < b.first;
             return anchors[a.second].ref_pos < anchors[b.second].ref_pos;
         });
 
-    std::vector<internal::DpState> dp(anchors.size());
-    std::vector<bool> used(anchors.size(), false);
-
     size_t group_start = 0;
-    while (group_start < keyed_indices.size()) {
-        uint64_t group_key = keyed_indices[group_start].first;
+    while (group_start < scratch.keyed_indices.size()) {
+        uint64_t group_key = scratch.keyed_indices[group_start].first;
         size_t group_end = group_start + 1;
-        while (group_end < keyed_indices.size() &&
-               keyed_indices[group_end].first == group_key) {
+        while (group_end < scratch.keyed_indices.size() &&
+               scratch.keyed_indices[group_end].first == group_key) {
             ++group_end;
         }
 
-        std::vector<size_t> group_indices;
-        group_indices.reserve(group_end - group_start);
+        scratch.group_indices.clear();
         for (size_t i = group_start; i < group_end; ++i) {
-            group_indices.push_back(keyed_indices[i].second);
+            scratch.group_indices.push_back(scratch.keyed_indices[i].second);
         }
 
-        internal::ChainSingleRefStrand(anchors, group_indices, dp, config);
+        internal::ChainSingleRefStrandScratch(
+            anchors, scratch.group_indices.span(),
+            scratch.dp_score, scratch.dp_pred, config);
 
         group_start = group_end;
     }
 
-    std::vector<size_t> score_order(anchors.size());
-    std::iota(score_order.begin(), score_order.end(), 0);
-    std::sort(score_order.begin(), score_order.end(),
-        [&](size_t a, size_t b) { return dp[a].score > dp[b].score; });
+    scratch.score_order.resize(n);
+    for (size_t i = 0; i < n; ++i) {
+        scratch.score_order[i] = i;
+    }
+    std::sort(scratch.score_order.begin(), scratch.score_order.end(),
+        [&](size_t a, size_t b) {
+            return scratch.dp_score[a] > scratch.dp_score[b];
+        });
 
     std::vector<Chain> all_chains;
 
-    for (size_t end_idx : score_order) {
-        if (used[end_idx]) continue;
-        if (dp[end_idx].score < config.min_chain_score) break;
+    for (size_t i = 0; i < scratch.score_order.size(); ++i) {
+        size_t end_idx = scratch.score_order[i];
+        if (scratch.used[end_idx]) continue;
+        if (scratch.dp_score[end_idx] < config.min_chain_score) break;
 
-        Chain chain = internal::BacktrackChain(anchors, dp, end_idx);
+        Chain chain = internal::BacktrackChainScratch(
+            anchors, scratch.dp_score, scratch.dp_pred,
+            end_idx, scratch.backtrack);
 
         if (chain.NumAnchors() < config.min_chain_anchors) {
             continue;
         }
 
         for (uint32_t idx : chain.anchors) {
-            used[idx] = true;
+            scratch.used[idx] = true;
         }
 
         all_chains.push_back(std::move(chain));
@@ -188,26 +202,6 @@ ChainResult ExtractChainsFromAnchors(
         std::chrono::duration<float, std::milli>(end - start).count();
 
     return result;
-}
-
-ChainResult ExtractChains(
-    std::span<const MinimizerHit> hits,
-    uint32_t query_len,
-    const ChainConfig& config)
-{
-    std::vector<Anchor> anchors;
-    anchors.reserve(hits.size());
-
-    for (const auto& hit : hits) {
-        anchors.push_back({
-            hit.ref_id,
-            hit.ref_pos,
-            hit.query_pos,
-            hit.same_strand
-        });
-    }
-
-    return ExtractChainsFromAnchors(anchors, query_len, config);
 }
 
 }  // namespace llmap::classical
