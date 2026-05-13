@@ -409,6 +409,17 @@ target_link_libraries(test_biology_prior
 )
 gtest_discover_tests(test_biology_prior)
 
+add_executable(test_cuda_sandbox
+    unit/test_cuda_sandbox.cpp
+)
+target_link_libraries(test_cuda_sandbox
+    PRIVATE
+    llmap_claude_agent
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_cuda_sandbox)
+
 # ========== Integration Tests ==========
 # These test end-to-end workflows across multiple modules
 
