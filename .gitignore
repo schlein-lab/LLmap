@@ -34,6 +34,9 @@ models/foundation/*.bin
 models/heads/*.onnx
 !models/**/README.md
 
+# Third-party libraries (large binaries, not for git)
+third_party/
+
 # Test data (large)
 tests/data/*.fa
 tests/data/*.fastq*

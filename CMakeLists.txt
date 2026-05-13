@@ -61,24 +61,28 @@ if(LLMAP_ENABLE_FOUNDATION)
         message(STATUS "ONNX Runtime found via find_package")
         set(LLMAP_ONNXRUNTIME_AVAILABLE ON)
     else()
-        # Try to find onnxruntime in common system paths
+        # Try to find onnxruntime in common system paths + project third_party
         find_path(ONNXRUNTIME_INCLUDE_DIR
             NAMES onnxruntime_cxx_api.h
             PATHS
+                ${CMAKE_SOURCE_DIR}/third_party/onnxruntime/include
                 /usr/include/onnxruntime
                 /usr/local/include/onnxruntime
                 /opt/onnxruntime/include
                 $ENV{ONNXRUNTIME_ROOT}/include
             PATH_SUFFIXES onnxruntime core session
+            NO_DEFAULT_PATH
         )
         find_library(ONNXRUNTIME_LIBRARY
             NAMES onnxruntime
             PATHS
+                ${CMAKE_SOURCE_DIR}/third_party/onnxruntime/lib
                 /usr/lib
                 /usr/lib/x86_64-linux-gnu
                 /usr/local/lib
                 /opt/onnxruntime/lib
                 $ENV{ONNXRUNTIME_ROOT}/lib
+            NO_DEFAULT_PATH
         )
         if(ONNXRUNTIME_INCLUDE_DIR AND ONNXRUNTIME_LIBRARY)
             message(STATUS "ONNX Runtime found: ${ONNXRUNTIME_LIBRARY}")
