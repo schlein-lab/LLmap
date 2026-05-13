@@ -66,6 +66,17 @@ target_link_libraries(test_bucket_embedder
 )
 gtest_discover_tests(test_bucket_embedder)
 
+add_executable(test_faiss_wrapper
+    unit/test_faiss_wrapper.cpp
+)
+target_link_libraries(test_faiss_wrapper
+    PRIVATE
+    llmap_self_interference
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_faiss_wrapper)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput

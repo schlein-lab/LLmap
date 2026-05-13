@@ -20,6 +20,7 @@ endif()
 # Build options — GPU/AI optional but architecturally assumed
 option(LLMAP_ENABLE_CUDA       "Build CUDA kernels (WaveCollapse on GPU)" ON)
 option(LLMAP_ENABLE_FOUNDATION "Build foundation-model inference path"    ON)
+option(LLMAP_ENABLE_FAISS      "Build FAISS integration for ANN search"   ON)
 option(LLMAP_ENABLE_CLAUDE     "Build Claude-agent integration"           ON)
 option(LLMAP_ENABLE_TESTS      "Build unit and integration tests"         ON)
 option(LLMAP_ENABLE_BENCH      "Build benchmark harness"                  ON)
@@ -102,6 +103,70 @@ else()
     set(LLMAP_ONNXRUNTIME_AVAILABLE OFF)
 endif()
 
+# FAISS — ANN search for read-vs-read similarity
+if(LLMAP_ENABLE_FAISS)
+    find_package(faiss QUIET)
+    if(faiss_FOUND)
+        message(STATUS "FAISS found via find_package")
+        set(LLMAP_FAISS_AVAILABLE ON)
+    else()
+        # Try to find FAISS in common system paths
+        find_path(FAISS_INCLUDE_DIR
+            NAMES faiss/Index.h
+            PATHS
+                ${CMAKE_SOURCE_DIR}/third_party/faiss/include
+                /usr/include
+                /usr/local/include
+                /opt/faiss/include
+                $ENV{FAISS_ROOT}/include
+        )
+        find_library(FAISS_LIBRARY
+            NAMES faiss
+            PATHS
+                ${CMAKE_SOURCE_DIR}/third_party/faiss/lib
+                /usr/lib
+                /usr/lib/x86_64-linux-gnu
+                /usr/local/lib
+                /opt/faiss/lib
+                $ENV{FAISS_ROOT}/lib
+        )
+        if(FAISS_INCLUDE_DIR AND FAISS_LIBRARY)
+            message(STATUS "FAISS found: ${FAISS_LIBRARY}")
+            set(LLMAP_FAISS_AVAILABLE ON)
+            add_library(faiss::faiss UNKNOWN IMPORTED)
+            set_target_properties(faiss::faiss PROPERTIES
+                IMPORTED_LOCATION "${FAISS_LIBRARY}"
+                INTERFACE_INCLUDE_DIRECTORIES "${FAISS_INCLUDE_DIR}"
+            )
+            # Check for FAISS-GPU (faiss_gpu or faiss with GPU support)
+            find_library(FAISS_GPU_LIBRARY
+                NAMES faiss_gpu faiss-gpu
+                PATHS
+                    ${CMAKE_SOURCE_DIR}/third_party/faiss/lib
+                    /usr/lib
+                    /usr/lib/x86_64-linux-gnu
+                    /usr/local/lib
+                    /opt/faiss/lib
+                    $ENV{FAISS_ROOT}/lib
+            )
+            if(FAISS_GPU_LIBRARY AND LLMAP_ENABLE_CUDA)
+                message(STATUS "FAISS-GPU found: ${FAISS_GPU_LIBRARY}")
+                set(LLMAP_FAISS_GPU_AVAILABLE ON)
+            else()
+                set(LLMAP_FAISS_GPU_AVAILABLE OFF)
+            endif()
+        else()
+            message(STATUS "FAISS not found — ANN search will use fallback implementation")
+            message(STATUS "  To enable: install faiss-cpu or faiss-gpu, or set FAISS_ROOT")
+            set(LLMAP_FAISS_AVAILABLE OFF)
+            set(LLMAP_FAISS_GPU_AVAILABLE OFF)
+        endif()
+    endif()
+else()
+    set(LLMAP_FAISS_AVAILABLE OFF)
+    set(LLMAP_FAISS_GPU_AVAILABLE OFF)
+endif()
+
 # Subdirectories
 add_subdirectory(src)
 
@@ -124,6 +189,8 @@ message(STATUS "  C++ standard    : C++${CMAKE_CXX_STANDARD}")
 message(STATUS "  CUDA            : ${LLMAP_ENABLE_CUDA}")
 message(STATUS "  Foundation Model: ${LLMAP_ENABLE_FOUNDATION}")
 message(STATUS "  ONNX Runtime    : ${LLMAP_ONNXRUNTIME_AVAILABLE}")
+message(STATUS "  FAISS           : ${LLMAP_FAISS_AVAILABLE}")
+message(STATUS "  FAISS-GPU       : ${LLMAP_FAISS_GPU_AVAILABLE}")
 message(STATUS "  Claude Agent    : ${LLMAP_ENABLE_CLAUDE}")
 message(STATUS "  Tests           : ${LLMAP_ENABLE_TESTS}")
 message(STATUS "  Benchmarks      : ${LLMAP_ENABLE_BENCH}")

@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 7 |
-| Total iterations | 7 |
+| Last successful iteration | 8 |
+| Total iterations | 8 |
 
 ---
 
@@ -31,6 +31,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 1.2: Test ONNX model + verified embedder inference (85 tests pass)
   - [x] Phase 1.3: BucketEmbedder + benchmark (110 tests pass)
 - [ ] Phase 2: Stage 1 Self-Interference
+  - [x] Phase 2.1: FAISS-GPU IndexIVFFlat wrapper (140 tests pass)
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
 - [ ] Phase 4: Classical Path + WFA2
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
@@ -46,10 +47,10 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 2
 task: self_interference_stage1
-substep: 1/6
-last_action: completed Phase 1 - BucketEmbedder class + unit tests + throughput benchmark; 110 tests pass
-next_action: wire FAISS-GPU IndexIVFFlat wrapper for read embeddings (ANN search)
-acceptance: FAISS wrapper compiles and passes basic nearest-neighbor search tests
+substep: 2/6
+last_action: FAISS wrapper (FlatL2, FlatIP, IVFFlat, IVFPQ) with GPU fallback; 30 new tests; 140 total pass
+next_action: implement similarity_graph.{h,cpp} for sparse k-NN extraction
+acceptance: SimilarityGraph class can build edge list from batch k-NN results; tests pass
 ```
 
 ---
@@ -63,8 +64,8 @@ acceptance: FAISS wrapper compiles and passes basic nearest-neighbor search test
 5. ~~Phase 1.1: ONNX Runtime CUDA-EP wired~~ ✅ done
 6. ~~Phase 1.2: Test ONNX model + verified embedder inference~~ ✅ done
 7. ~~Phase 1.3: BucketEmbedder + benchmark~~ ✅ done
-8. Phase 2.1: FAISS-GPU IndexIVFFlat wrapper ← CURRENT
-9. Phase 2.2: Sparse k-NN extraction → similarity graph
+8. ~~Phase 2.1: FAISS-GPU IndexIVFFlat wrapper~~ ✅ done
+9. Phase 2.2: Sparse k-NN extraction → similarity graph ← CURRENT
 10. Phase 2.3: Leiden community detection
 11. ... (continues per LLmap_SPEC.md)
 
@@ -97,6 +98,7 @@ acceptance: FAISS wrapper compiles and passes basic nearest-neighbor search test
 | 5 | 2026-05-13 | n/a | wire ONNX Runtime + FoundationEmbedder | CMake finds ONNX RT; FoundationEmbedder CPU/CUDA/TRT; 75 tests pass |
 | 6 | 2026-05-13 | n/a | test ONNX model + embedder verification | Python model generator; real inference tests; 85 tests pass |
 | 7 | 2026-05-13 | n/a | BucketEmbedder + throughput benchmark | bucket_embedder.{h,cpp}; 25 new tests; bench_embedder_throughput; 110 tests pass |
+| 8 | 2026-05-13 | n/a | FAISS wrapper for ANN search | faiss_wrapper.{h,cpp}; CMake FAISS detection; 30 new tests; 140 total pass |
 
 ---
 
