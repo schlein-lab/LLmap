@@ -1,0 +1,90 @@
+# Build artifacts
+build/
+build-*/
+out/
+cmake-build-*/
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.exe
+*.pdb
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+compile_commands.json
+
+# CUDA
+*.fatbin
+*.cubin
+*.ptx
+*.sass
+
+# Models (large, downloaded at build-time)
+models/foundation/*.onnx
+models/foundation/*.bin
+models/heads/*.onnx
+!models/**/README.md
+
+# Test data (large)
+tests/data/*.fa
+tests/data/*.fastq*
+tests/data/*.bam
+tests/data/*.parquet
+!tests/data/README.md
+!tests/data/small/**
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.tox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs / state
+*.log
+logs/
+state/
+*.tmp
+
+# Secrets — never commit
+.env
+.env.local
+*.key
+*.pem
+anthropic_api_key
+SCHLEIN_LAB_TOKEN
+
+# Claude-generated artifacts (audit log only, not the kernels themselves)
+generated_kernels/*.so
+generated_kernels/*.cu
+!generated_kernels/audit.log
+!generated_kernels/README.md
+
+# Autonomous run state
+autonomous_run.log
+autonomous_run.pid
+.last_iteration
+
+# OS / editor
+*~
+.directory
+Thumbs.db
