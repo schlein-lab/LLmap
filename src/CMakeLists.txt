@@ -66,7 +66,9 @@ add_library(llmap_self_interference STATIC
     self_interference/faiss_wrapper_index.cpp
     self_interference/faiss_wrapper_search.cpp
     self_interference/faiss_wrapper_util.cpp
-    self_interference/similarity_graph.cpp
+    self_interference/similarity_graph_build.cpp
+    self_interference/similarity_graph_query.cpp
+    self_interference/similarity_graph_io.cpp
     self_interference/leiden_clustering_core.cpp
     self_interference/leiden_clustering_phases.cpp
     self_interference/leiden_clustering_result.cpp
@@ -127,6 +129,8 @@ add_library(llmap_classical STATIC
     classical/minimizer_index_core.cpp
     classical/minimizer_index_io.cpp
     classical/minimizer_index_extract.cpp
+    classical/chain_score.cpp
+    classical/chain_dp.cpp
 )
 
 target_include_directories(llmap_classical PUBLIC

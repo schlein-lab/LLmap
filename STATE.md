@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 21 |
-| Total iterations | 21 |
+| Last successful iteration | 22 |
+| Total iterations | 22 |
 
 ---
 
@@ -46,6 +46,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 3.6: Stage 2 pipeline orchestrator (493 tests pass)
 - [ ] Phase 4: Classical Path + WFA2
   - [x] Phase 4.1: Minimizer index structure (529 tests pass)
+  - [x] Phase 4.2: Chain extraction (552 tests pass)
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
 - [ ] Phase 6: Dual Output (BAM + Parquet)
 - [ ] Phase 7: Claude Agent Integration
@@ -58,14 +59,14 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 4
-task: chain_extraction
-substep: 1/3
-last_action: Phase 4.1 complete — minimizer_index.{h,cpp} with k-mer extraction, canonical minimizers, Builder pattern, query/serialization; split self_wavecollapse.cpp (495 LOC) → 3 files; split minimizer_index.cpp → 3 files; 36 new tests; 529 total pass; monolith count 5→4
-next_action: Phase 4.2 — Chain extraction keeping all chains ≥ 0.9× best
-  - chain.{h,cpp}: anchor chaining from minimizer hits
-  - Dynamic programming for colinear chain extension
-  - Filter chains by score relative to best chain
-acceptance: chain extraction produces high-quality chains from minimizer hits
+task: wfa2_extension
+substep: 1/2
+last_action: Phase 4.2 complete — chain.{h,cpp} with colinear chaining DP, anchor pair scoring, score filtering ≥ 0.9× best; split similarity_graph.cpp (488 LOC) → 3 files; 23 new tests; 552 total pass; monolith count 4→3
+next_action: Phase 4.3 — WFA2-lib FFI for gap-affine extension
+  - wfa2_aligner.{h,cpp}: wrapper for WFA2-lib
+  - Gap-affine alignment for chain extension
+  - Integration with chain endpoints
+acceptance: WFA2 produces accurate gap-affine alignments
 ```
 
 ---
@@ -93,8 +94,8 @@ acceptance: chain extraction produces high-quality chains from minimizer hits
 19. ~~Phase 3.6: Stage 2 pipeline orchestrator~~ ✅ done
 20. ~~Phase 3 refactor: bucket_embedder.cpp split~~ ✅ done
 21. ~~Phase 4.1: Minimizer index structure~~ ✅ done
-22. Phase 4.2: Chain extraction ← NEXT
-23. Phase 4.3: WFA2-lib FFI for gap-affine extension
+22. ~~Phase 4.2: Chain extraction~~ ✅ done
+23. Phase 4.3: WFA2-lib FFI for gap-affine extension ← NEXT
 24. Phase 4.4: CPU-only fallback end-to-end
 25. ... (continues per LLmap_SPEC.md)
 
@@ -141,6 +142,7 @@ acceptance: chain extraction produces high-quality chains from minimizer hits
 | 19 | 2026-05-13 | n/a | refactor reference_index + Phase 3.6 stage2_pipeline | split reference_index.cpp (543 LOC) → 3 files; stage2_pipeline.{h,cpp} orchestrator wiring all Stage 2 components; 24 new tests; 493 total pass; monolith count 6→5; Phase 3 complete |
 | 20 | 2026-05-13 | n/a | refactor bucket_embedder | split bucket_embedder.cpp (509 LOC) → 3 files (core, tokenize, embed); internal impl header for PIMPL; 493 tests pass; monolith count 6→5 |
 | 21 | 2026-05-13 | n/a | Phase 4.1 minimizer_index + refactor | minimizer_index.{h,cpp} with k-mer extraction, Builder, query, serialization; split self_wavecollapse.cpp (495 LOC) → 3 files; split minimizer_index → 3 files; 36 new tests; 529 total pass; monolith count 5→4 |
+| 22 | 2026-05-13 | n/a | Phase 4.2 chain extraction + refactor | chain.{h,cpp} with colinear DP chaining, anchor scoring, 0.9× best filter; split similarity_graph.cpp (488 LOC) → 3 files; 23 new tests; 552 total pass; monolith count 4→3 |
 
 ---
 
