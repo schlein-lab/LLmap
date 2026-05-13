@@ -69,7 +69,9 @@ add_library(llmap_self_interference STATIC
     self_interference/leiden_clustering_phases.cpp
     self_interference/leiden_clustering_result.cpp
     self_interference/self_wavecollapse.cpp
-    self_interference/cluster_rep.cpp
+    self_interference/cluster_rep_selector.cpp
+    self_interference/cluster_rep_methods.cpp
+    self_interference/cluster_rep_result.cpp
     self_interference/allpair_pipeline.cpp
     self_interference/allpair_pipeline_io.cpp
     self_interference/allpair_pipeline_stages.cpp
@@ -103,6 +105,7 @@ add_library(llmap_reference_collapse STATIC
     reference_collapse/em_iterator.cpp
     reference_collapse/collapse_check.cpp
     reference_collapse/refinement.cpp
+    reference_collapse/member_propagation.cpp
 )
 
 target_include_directories(llmap_reference_collapse PUBLIC
@@ -110,7 +113,7 @@ target_include_directories(llmap_reference_collapse PUBLIC
 )
 
 target_compile_features(llmap_reference_collapse PUBLIC cxx_std_23)
-target_link_libraries(llmap_reference_collapse PUBLIC llmap_core llmap_ai)
+target_link_libraries(llmap_reference_collapse PUBLIC llmap_core llmap_ai llmap_self_interference)
 
 # CLI — full CLI surface
 add_executable(llmap cli/llmap_main.cpp)

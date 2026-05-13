@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 17 |
-| Total iterations | 17 |
+| Last successful iteration | 18 |
+| Total iterations | 18 |
 
 ---
 
@@ -42,6 +42,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 3.2: EM iteration kernel (CPU fallback) (400 tests pass)
   - [x] Phase 3.3: Collapse check + dropout (426 tests pass)
   - [x] Phase 3.4: Refinement (coarse→fine expansion) (443 tests pass)
+  - [x] Phase 3.5: Member propagation (469 tests pass)
 - [ ] Phase 4: Classical Path + WFA2
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
 - [ ] Phase 6: Dual Output (BAM + Parquet)
@@ -55,15 +56,15 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 3
-task: member_propagation
+task: stage2_pipeline
 substep: 1/4
-last_action: Phase 3.4 done (443 tests); split allpair_pipeline.cpp (575 LOC) → 3 files; refinement module with ChildIndex + coarse→fine expansion; 17 new tests; monolith count 8→7
-next_action: Implement member_propagation.{h,cpp} — propagate assignments from representatives to cluster members
-  - After refinement, representatives have converged positions
-  - Propagate those positions to cluster members with uncertainty
-  - Weight propagation by cluster cohesion / confidence
-  - Add tests for single-cluster and multi-cluster propagation
-acceptance: member_propagation module integrates with cluster_rep and refinement, ≥ 10 new tests, total ≥ 453, zero regression
+last_action: Phase 3.5 done (469 tests); split cluster_rep.cpp (573 LOC) → 3 files; member_propagation.{h,cpp} for propagating representative positions to members; 26 new tests; monolith count 7→6
+next_action: Implement stage2_pipeline.{h,cpp} — Stage 2 reference WaveCollapse orchestrator
+  - Wire together: reference_index + em_iterator + collapse_check + refinement + member_propagation
+  - Build pipeline: load ref → initialize WaveState → EM loop → refinement → propagate
+  - Add progress callback support like allpair_pipeline
+  - Add tests for full Stage 2 flow
+acceptance: stage2_pipeline module orchestrates full Stage 2, ≥ 15 new tests, total ≥ 484, zero regression
 ```
 
 ---
@@ -87,8 +88,8 @@ acceptance: member_propagation module integrates with cluster_rep and refinement
 15. ~~Phase 3.2: EM iteration kernel (CPU fallback)~~ ✅ done
 16. ~~Phase 3.3: Collapse check + dropout~~ ✅ done
 17. ~~Phase 3.4: Refinement (coarse→fine expansion)~~ ✅ done
-18. Phase 3.5: Member propagation ← CURRENT
-19. Phase 3.6: Stage 2 pipeline orchestrator
+18. ~~Phase 3.5: Member propagation~~ ✅ done
+19. Phase 3.6: Stage 2 pipeline orchestrator ← CURRENT
 20. ... (continues per LLmap_SPEC.md)
 
 ---
@@ -130,6 +131,7 @@ acceptance: member_propagation module integrates with cluster_rep and refinement
 | 15 | 2026-05-13 | n/a | refactor faiss_wrapper + Phase 3.2 em_iterator | split faiss_wrapper.cpp (665 LOC) → 3 files; em_iterator.{h,cpp} for EM step CPU fallback; 25 new tests; 400 total pass; monolith count 10→9 |
 | 16 | 2026-05-13 | n/a | refactor leiden_clustering + Phase 3.3 collapse_check | split leiden_clustering.cpp (624 LOC) → 3 files; collapse_check.{h,cpp} for convergence/dropout; 26 new tests; 426 total pass; monolith count 9→8 |
 | 17 | 2026-05-13 | n/a | refactor allpair_pipeline + Phase 3.4 refinement | split allpair_pipeline.cpp (575 LOC) → 3 files; refinement.{h,cpp} for coarse→fine expansion; ChildIndex for parent→child mapping; 17 new tests; 443 total pass; monolith count 8→7 |
+| 18 | 2026-05-13 | n/a | refactor cluster_rep + Phase 3.5 member_propagation | split cluster_rep.cpp (573 LOC) → 3 files; member_propagation.{h,cpp} for propagating rep positions to members; fixed allpair_pipeline build error; 26 new tests; 469 total pass; monolith count 7→6 |
 
 ---
 
