@@ -38,7 +38,9 @@ target_link_libraries(llmap_output PUBLIC llmap_core)
 # AI module — foundation model embedders
 add_library(llmap_ai STATIC
     ai/foundation_embedder.cpp
-    ai/bucket_embedder.cpp
+    ai/bucket_embedder_core.cpp
+    ai/bucket_embedder_tokenize.cpp
+    ai/bucket_embedder_embed.cpp
 )
 
 target_include_directories(llmap_ai PUBLIC

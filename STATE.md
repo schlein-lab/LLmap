@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 19 |
-| Total iterations | 19 |
+| Last successful iteration | 20 |
+| Total iterations | 20 |
 
 ---
 
@@ -37,7 +37,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 2.4: Self-WaveCollapse intra-cluster EM (249 tests pass)
   - [x] Phase 2.5: Cluster representative selection (288 tests pass)
   - [x] Phase 2.6: `llmap allpair` CLI + tests (348 tests pass)
-- [ ] Phase 3: Stage 2 Reference WaveCollapse
+- [x] **Phase 3: Stage 2 Reference WaveCollapse** ✓
   - [x] Phase 3.1: Reference index structure (375 tests pass)
   - [x] Phase 3.2: EM iteration kernel (CPU fallback) (400 tests pass)
   - [x] Phase 3.3: Collapse check + dropout (426 tests pass)
@@ -45,6 +45,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 3.5: Member propagation (469 tests pass)
   - [x] Phase 3.6: Stage 2 pipeline orchestrator (493 tests pass)
 - [ ] Phase 4: Classical Path + WFA2
+  - [ ] Phase 4.1: Minimizer index structure
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
 - [ ] Phase 6: Dual Output (BAM + Parquet)
 - [ ] Phase 7: Claude Agent Integration
@@ -56,18 +57,15 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 3
-task: stage2_complete
-substep: 1/1
-last_action: Phase 3.6 done (493 tests); split reference_index.cpp (543 LOC) → 3 files; stage2_pipeline.{h,cpp} orchestrator wiring reference_index + em_iterator + collapse_check + refinement + member_propagation; 24 new tests; monolith count 6→5
-next_action: Phase 3 complete — Stage 2 Reference WaveCollapse fully implemented
-  - reference_index: Builder pattern, L0/L1/L2 bucket hierarchy, save/load serialization
-  - em_iterator: EM step kernel (CPU fallback), probability updates
-  - collapse_check: convergence detection, dropout logic
-  - refinement: coarse→fine expansion via ChildIndex
-  - member_propagation: propagate representative positions to cluster members
-  - stage2_pipeline: full orchestrator wiring all components together
-acceptance: Phase 3 complete, all components integrated, ready for Phase 4 Classical Path + WFA2
+phase: 4
+task: minimizer_index
+substep: 1/4
+last_action: Refactored bucket_embedder.cpp (509 LOC) → 3 modular files (bucket_embedder_core.cpp, bucket_embedder_tokenize.cpp, bucket_embedder_embed.cpp); internal header bucket_embedder_impl.h for PIMPL; monolith count 6→5; Phase 3 marked complete
+next_action: Phase 4.1 — Implement minimizer index structure for classical alignment path
+  - minimizer_index.{h,cpp}: k-mer based minimizer extraction + index
+  - Support for k, w (window size), canonical minimizers
+  - Efficient storage + lookup for L(r|b) sequence likelihood term
+acceptance: minimizer_index passes unit tests, integrates with Stage 2 for L(r|b) computation
 ```
 
 ---
@@ -93,8 +91,12 @@ acceptance: Phase 3 complete, all components integrated, ready for Phase 4 Class
 17. ~~Phase 3.4: Refinement (coarse→fine expansion)~~ ✅ done
 18. ~~Phase 3.5: Member propagation~~ ✅ done
 19. ~~Phase 3.6: Stage 2 pipeline orchestrator~~ ✅ done
-20. Phase 4.1: Classical Path + WFA2 ← NEXT
-21. ... (continues per LLmap_SPEC.md)
+20. ~~Phase 3 refactor: bucket_embedder.cpp split~~ ✅ done
+21. Phase 4.1: Minimizer index structure ← NEXT
+22. Phase 4.2: Chain extraction
+23. Phase 4.3: WFA2-lib FFI for gap-affine extension
+24. Phase 4.4: CPU-only fallback end-to-end
+25. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -137,6 +139,7 @@ acceptance: Phase 3 complete, all components integrated, ready for Phase 4 Class
 | 17 | 2026-05-13 | n/a | refactor allpair_pipeline + Phase 3.4 refinement | split allpair_pipeline.cpp (575 LOC) → 3 files; refinement.{h,cpp} for coarse→fine expansion; ChildIndex for parent→child mapping; 17 new tests; 443 total pass; monolith count 8→7 |
 | 18 | 2026-05-13 | n/a | refactor cluster_rep + Phase 3.5 member_propagation | split cluster_rep.cpp (573 LOC) → 3 files; member_propagation.{h,cpp} for propagating rep positions to members; fixed allpair_pipeline build error; 26 new tests; 469 total pass; monolith count 7→6 |
 | 19 | 2026-05-13 | n/a | refactor reference_index + Phase 3.6 stage2_pipeline | split reference_index.cpp (543 LOC) → 3 files; stage2_pipeline.{h,cpp} orchestrator wiring all Stage 2 components; 24 new tests; 493 total pass; monolith count 6→5; Phase 3 complete |
+| 20 | 2026-05-13 | n/a | refactor bucket_embedder | split bucket_embedder.cpp (509 LOC) → 3 files (core, tokenize, embed); internal impl header for PIMPL; 493 tests pass; monolith count 6→5 |
 
 ---
 
