@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 30 |
-| Total iterations | 30 |
+| Last successful iteration | 31 |
+| Total iterations | 31 |
 
 ---
 
@@ -55,7 +55,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 5.3: Real reference integration infrastructure (684 tests pass)
   - [x] Phase 5.4: `validate-real` CLI + SLURM script (684 tests pass)
   - [x] Phase 5.5: `generate-synth` CLI + modular commands + GPU validation script (684 tests pass)
-- [ ] Phase 6: Dual Output (BAM + Parquet)
+- [ ] **Phase 6: Dual Output (BAM + Parquet)** ★
+  - [x] Phase 6.1: BAM/SAM output writer (710 tests pass)
 - [ ] Phase 7: Claude Agent Integration
 - [ ] Phase 8: Performance Optimization
 - [ ] Phase 9: Single-Cell + Paralog Production
@@ -65,16 +66,15 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 5
-task: kill_switch_validation
-substep: 6/6 — Phase 5 complete pending GPU availability
-last_action: Phase 5.5 — added `llmap generate-synth` CLI command; refactored llmap_main.cpp (538 LOC) into modular cmd_*.cpp files (main now 82 LOC); created scripts/slurm_phase55_validation.sh for full GPU validation pipeline; CPU validation passes (100% recall, no drops); 684 tests pass
-next_action: Phase 6.1 — BAM output writer
-  - Implement SAM/BAM output for alignment results
-  - CIGAR string generation from WFA2 alignment
-  - Header generation with reference sequences
-  - Optional: use htslib if available
-acceptance: Valid BAM output that passes samtools quickcheck
+phase: 6
+task: dual_output
+substep: 1/N — BAM/SAM writer complete
+last_action: Phase 6.1 — implemented bam_writer.{h,cpp} for SAM output; BamWriter class with CIGAR utilities; SAM header + mapped/unmapped/tentative records; WaveCollapse tags (XC/XL/XI/XP); paralog tags (PD/PC/PP); XA for alternatives; htslib-ready (BAM when available); split to bam_writer_cigar.cpp; 26 new tests; 710 total pass
+next_action: Phase 6.2 — Parquet probabilistic output
+  - Apache Arrow/Parquet C++ integration
+  - Full lossless probabilistic output
+  - Per-read × per-bucket × probability matrix
+acceptance: Valid Parquet file readable by pyarrow
 ```
 
 ---
@@ -111,8 +111,9 @@ acceptance: Valid BAM output that passes samtools quickcheck
 28. ~~Phase 5.4 refactor: real_reference.cpp split~~ ✅ done
 29. ~~Phase 5.4 validate-real CLI + SLURM script~~ ✅ done
 30. ~~Phase 5.5: generate-synth CLI + modular commands + GPU validation~~ ✅ done (CPU validated, GPU pending cluster access)
-31. Phase 6.1: BAM output writer ← NEXT
-32. ... (continues per LLmap_SPEC.md)
+31. ~~Phase 6.1: BAM/SAM output writer~~ ✅ done
+32. Phase 6.2: Parquet probabilistic output ← NEXT
+33. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -166,6 +167,7 @@ acceptance: Valid BAM output that passes samtools quickcheck
 | 28 | 2026-05-13 | n/a | Phase 5.4 refactor real_reference | split real_reference.cpp (611 LOC) → 3 files (parse, validate, slurm); internal header for shared utils; monolith count 1→0; 684 tests pass |
 | 29 | 2026-05-13 | yes | Phase 5.4 validate-real CLI + SLURM | added `llmap validate-real` CLI command with arg parsing; scripts/slurm_validate_real.sh for GPU job submission; 684 tests pass |
 | 30 | 2026-05-13 | yes | Phase 5.5 generate-synth + modular CLI | added `llmap generate-synth` CLI; split llmap_main.cpp (538→82 LOC) into cmd_allpair.cpp, cmd_generate_synth.cpp, cmd_validate_real.cpp; scripts/slurm_phase55_validation.sh; CPU validation passes (100% recall); GPU awaits manual Hummel submission; 684 tests pass; Phase 5 functionally complete |
+| 31 | 2026-05-13 | n/a | Phase 6.1 BAM/SAM output writer | bam_writer.{h,cpp} for SAM output; BamWriter class with mapped/unmapped/tentative support; CIGAR utilities (generate, stats, validate); WaveCollapse tags (XC/XL/XI/XP); paralog tags (PD/PC/PP); XA for alternatives; split bam_writer_cigar.cpp; htslib-ready; 26 new tests; 710 total pass |
 
 ---
 

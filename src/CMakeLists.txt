@@ -25,9 +25,11 @@ target_include_directories(llmap_io PUBLIC
 target_compile_features(llmap_io PUBLIC cxx_std_23)
 target_link_libraries(llmap_io PUBLIC llmap_core)
 
-# Output module — writers (cluster assignments, BAM/Parquet stubs)
+# Output module — writers (cluster assignments, BAM/Parquet)
 add_library(llmap_output STATIC
     output/cluster_writer.cpp
+    output/bam_writer.cpp
+    output/bam_writer_cigar.cpp
 )
 
 target_include_directories(llmap_output PUBLIC
