@@ -204,6 +204,17 @@ target_link_libraries(test_collapse_check
 )
 gtest_discover_tests(test_collapse_check)
 
+add_executable(test_refinement
+    unit/test_refinement.cpp
+)
+target_link_libraries(test_refinement
+    PRIVATE
+    llmap_reference_collapse
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_refinement)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput

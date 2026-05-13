@@ -71,6 +71,8 @@ add_library(llmap_self_interference STATIC
     self_interference/self_wavecollapse.cpp
     self_interference/cluster_rep.cpp
     self_interference/allpair_pipeline.cpp
+    self_interference/allpair_pipeline_io.cpp
+    self_interference/allpair_pipeline_stages.cpp
 )
 
 target_include_directories(llmap_self_interference PUBLIC
@@ -100,6 +102,7 @@ add_library(llmap_reference_collapse STATIC
     reference_collapse/reference_index.cpp
     reference_collapse/em_iterator.cpp
     reference_collapse/collapse_check.cpp
+    reference_collapse/refinement.cpp
 )
 
 target_include_directories(llmap_reference_collapse PUBLIC
