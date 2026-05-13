@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 41 |
-| Total iterations | 41 |
+| Last successful iteration | 42 |
+| Total iterations | 42 |
 
 ---
 
@@ -67,7 +67,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 7.3: Session integration with align pipeline (919 tests pass)
   - [x] Phase 7.4: `--llm` flag for `llmap align` (923 tests pass)
   - [x] Phase 7.5: Refactor cmd_align.cpp + Phase 7 complete (923 tests pass)
-- [ ] Phase 8: Performance Optimization
+- [ ] **Phase 8: Performance Optimization** (in progress)
+  - [x] Phase 8.1: Profiling infrastructure + benchmarks (942 tests pass)
 - [ ] Phase 9: Single-Cell + Paralog Production
 
 ---
@@ -77,14 +78,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 8
 task: performance_optimization
-substep: 1/N — Phase 8 planning
-last_action: Phase 7.5 — refactored cmd_align.cpp (524 LOC) → 3 files (cmd_align.cpp 303 LOC, cmd_align_args.cpp 104 LOC, cmd_align_llm.cpp 107 LOC) + internal header; monolith count 1→0; Phase 7 complete
-next_action: Phase 8.1 — begin Performance Optimization
-  - Profile hot paths (minimizer extraction, chain scoring, WFA2 extension)
-  - Memory allocation optimization (arena allocators)
-  - Batch processing improvements
-  - SIMD acceleration for inner loops
-acceptance: Phase 8.1 profiling infrastructure + initial benchmarks
+substep: 2/N — Arena allocators for hot paths
+last_action: Phase 8.1 — profiling infrastructure: profiler.h (ProfileStats, ProfileRegistry, ScopedTimer, ManualTimer classes with thread-safe atomics); bench_classical_pipeline.cpp (individual minimizer/chain/WFA2 benchmarks + full pipeline); test_profiler.cpp (19 tests); LLMAP_PROFILE_SCOPE/LLMAP_PROFILE_FUNCTION macros; 942 tests pass
+next_action: Phase 8.2 — Arena allocators
+  - Implement arena allocator for minimizer extraction
+  - Pool allocator for anchor/chain storage
+  - Reduce heap allocations in hot paths
+acceptance: Phase 8.2 arena allocator + reduced allocation count in benchmarks
 ```
 
 ---
@@ -131,8 +131,9 @@ acceptance: Phase 8.1 profiling infrastructure + initial benchmarks
 38. ~~Phase 7.3: Session integration with align pipeline~~ ✅ done
 39. ~~Phase 7.4: `--llm` flag implementation~~ ✅ done
 40. ~~Phase 7.5: cmd_align refactor + Phase 7 complete~~ ✅ done
-41. Phase 8.1: Performance profiling infrastructure ← NEXT
-42. ... (continues per LLmap_SPEC.md)
+41. ~~Phase 8.1: Profiling infrastructure + benchmarks~~ ✅ done
+42. Phase 8.2: Arena allocators for hot paths ← NEXT
+43. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -197,6 +198,7 @@ acceptance: Phase 8.1 profiling infrastructure + initial benchmarks
 | 39 | 2026-05-13 | n/a | Phase 7.3 pipeline agent integration | pipeline_agent.{h,cpp} for session integration with align pipeline; PipelineAgent class wiring DiagnosticSession + ReporterSession + CudaSandbox for stall detection and resolution; StallDetector for entropy-based stall detection (NoProgress, Oscillation, HighUncertainty); WriteWaveStateJson/AnalyzeWaveStateForStall utilities; 25 new tests; 919 tests pass |
 | 40 | 2026-05-14 | n/a | Phase 7.4 `--llm` flag for align CLI | `--llm`, `--llm-api-key`, `--llm-threshold`, `--llm-work-dir` flags in cmd_align.cpp; PipelineAgent integration with low-mapping-rate diagnostics; GetApiKey helper with ANTHROPIC_API_KEY env fallback; RunLlmDiagnostics outputs stall pattern/root cause/resolution; 4 new CLI tests (AlignHelpShowsLlmFlag, AlignLlmFlagNoApiKey, AlignLlmThreshold, AlignLlmWorkDir); 923 tests pass |
 | 41 | 2026-05-14 | n/a | Phase 7.5 cmd_align refactor + Phase 7 COMPLETE | split cmd_align.cpp (524 LOC) → 3 files: cmd_align.cpp (303 LOC), cmd_align_args.cpp (104 LOC), cmd_align_llm.cpp (107 LOC) + cmd_align_internal.h (52 LOC); monolith count 1→0; 923 tests pass; Phase 7 complete |
+| 42 | 2026-05-14 | n/a | Phase 8.1 profiling infrastructure + benchmarks | profiler.h (ProfileStats, ProfileRegistry, ScopedTimer, ManualTimer); bench_classical_pipeline.cpp (minimizer/chain/WFA2/full pipeline benchmarks); test_profiler.cpp (19 tests); LLMAP_PROFILE_SCOPE macro; 942 tests pass; Phase 8 started |
 
 ---
 
