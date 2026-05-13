@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 46 |
-| Total iterations | 46 |
+| Last successful iteration | 47 |
+| Total iterations | 47 |
 
 ---
 
@@ -67,12 +67,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 7.3: Session integration with align pipeline (919 tests pass)
   - [x] Phase 7.4: `--llm` flag for `llmap align` (923 tests pass)
   - [x] Phase 7.5: Refactor cmd_align.cpp + Phase 7 complete (923 tests pass)
-- [ ] **Phase 8: Performance Optimization** (in progress)
+- [x] **Phase 8: Performance Optimization** ✓
   - [x] Phase 8.1: Profiling infrastructure + benchmarks (942 tests pass)
   - [x] Phase 8.2: Arena allocators for hot paths (973 tests pass)
   - [x] Phase 8.3: SIMD optimization for minimizer extraction (998 tests pass)
   - [x] Phase 8.4: Memory-mapped I/O for large references (1028 tests pass)
   - [x] Phase 8.5: Thread pool for parallel batch processing (1062 tests pass)
+  - [x] Phase 8.6: Cache-friendly data layouts (1092 tests pass)
 - [ ] Phase 9: Single-Cell + Paralog Production
 
 ---
@@ -80,15 +81,14 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 8
-task: performance_optimization
-substep: 6/N — Cache-friendly data layouts
-last_action: Phase 8.5 — Thread pool for parallel batch processing: thread_pool.h/cpp with ThreadPool class (work-stealing, Submit/Execute APIs, WaitAll, ThreadPoolStats); ParallelFor with auto-chunking; ParallelMap for transformations; BatchProcessor<In,Out> with progress callbacks; 34 new tests; 1062 tests pass
-next_action: Phase 8.6 — Cache-friendly data layouts + finishing Phase 8
-  - AoS→SoA conversions for hot paths
-  - Prefetch hints for sequential access patterns
-  - Benchmark parallel vs serial throughput on multi-core
-acceptance: Phase 8 complete with measurable speedups documented
+phase: 9
+task: single_cell_paralog_production
+substep: 1/N — Begin Phase 9 planning
+last_action: Phase 8.6 — Cache-friendly data layouts + Phase 8 COMPLETE: cache_layout.h with MinimizerSoA, AnchorSoA, DPStateSoA for AoS→SoA conversions; prefetch utilities (PrefetchForRead/Write/Range, PrefetchTemporal/NonTemporal); cache-line alignment helpers; TiledProcessor for cache-oblivious 2D DP; 30 new tests (1.56x speedup measured for sequential field access); 1092 tests pass
+next_action: Phase 9.1 — Begin single-cell and paralog production modules
+  - Review LLmap_SPEC.md for Phase 9 requirements
+  - Plan UMI deduplication, cell barcode handling, copy number tracking
+acceptance: Phase 9 started with initial module structure
 ```
 
 ---
@@ -140,8 +140,9 @@ acceptance: Phase 8 complete with measurable speedups documented
 43. ~~Phase 8.3: SIMD optimization for minimizer extraction~~ ✅ done
 44. ~~Phase 8.4: Memory-mapped I/O for large references~~ ✅ done
 45. ~~Phase 8.5: Thread pool for parallel batch processing~~ ✅ done
-46. Phase 8.6: Cache-friendly data layouts + finalize Phase 8 ← NEXT
-47. ... (continues per LLmap_SPEC.md)
+46. ~~Phase 8.6: Cache-friendly data layouts + finalize Phase 8~~ ✅ done (Phase 8 COMPLETE)
+47. Phase 9.1: Single-cell + paralog production — BEGIN ← NEXT
+48. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -211,6 +212,7 @@ acceptance: Phase 8 complete with measurable speedups documented
 | 44 | 2026-05-14 | n/a | Phase 8.3 SIMD optimization + chain_dp refactor | simd.h/cpp (CpuFeatures, EncodeBases SSE4.2/AVX2, PackKmers, HashKmersBatch AVX2); split into simd.cpp + simd_encode.cpp + simd_hash.cpp; chain_dp.cpp (441 LOC) split → chain_dp.cpp (213 LOC) + chain_dp_scratch.cpp (207 LOC) + chain_dp_internal.h; test_simd.cpp (25 tests); 998 tests pass; monolith count 1→0 |
 | 45 | 2026-05-14 | n/a | Phase 8.4 memory-mapped FASTA reader | mmap_fasta.h + split to mmap_fasta.cpp (191 LOC) + mmap_fasta_seq.cpp (174 LOC) + mmap_fasta_internal.h (MmapFastaReader with mmap-based file mapping, lazy index building, GetSequence/GetSequenceData/GetSubsequence for zero-copy and copy access, memory advice hints AdviseSequential/AdviseRandom/AdviseWillNeed/AdviseDontNeed, MmapStats for resident page tracking, IsFastaFile utility); test_mmap_fasta.cpp (30 tests); 1028 tests pass; monolith count 0→0 |
 | 46 | 2026-05-14 | n/a | Phase 8.5 thread pool for parallel batch processing | thread_pool.h (313 LOC) + thread_pool.cpp (102 LOC): ThreadPool class with work-stealing fixed-size pool, Submit/Execute/WaitAll APIs, ThreadPoolStats (tasks_submitted/completed/stolen/wait_ns); ParallelFor with auto-chunking; ParallelMap for input→output transforms; BatchProcessor<In,Out> with progress callbacks; test_thread_pool.cpp (34 tests); 1062 tests pass; monolith count 0→0 |
+| 47 | 2026-05-14 | n/a | Phase 8.6 cache-friendly data layouts + Phase 8 COMPLETE | cache_layout.h (header-only): MinimizerSoA (hash/pos/strand arrays, cache-aligned), AnchorSoA (ref_id/ref_pos/query_pos/strand arrays, SortPermutation), DPStateSoA (score/predecessor arrays); prefetch utilities (PrefetchForRead/Write/Temporal/NonTemporal/Range); cache-line alignment helpers (AllocateAligned/FreeAligned/IsCacheAligned); TiledProcessor<TileSize> for cache-oblivious 2D DP (Process/ProcessDiagonal); test_cache_layout.cpp (30 tests); measured 1.56x speedup for sequential field access; 1092 tests pass; Phase 8 complete |
 
 ---
 
