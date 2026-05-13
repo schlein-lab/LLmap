@@ -121,6 +121,42 @@ target_link_libraries(test_cluster_rep
 )
 gtest_discover_tests(test_cluster_rep)
 
+# IO module tests
+add_executable(test_fastq_reader
+    unit/test_fastq_reader.cpp
+)
+target_link_libraries(test_fastq_reader
+    PRIVATE
+    llmap_io
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_fastq_reader)
+
+# Output module tests
+add_executable(test_cluster_writer
+    unit/test_cluster_writer.cpp
+)
+target_link_libraries(test_cluster_writer
+    PRIVATE
+    llmap_output
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_cluster_writer)
+
+# Allpair pipeline tests
+add_executable(test_allpair_pipeline
+    unit/test_allpair_pipeline.cpp
+)
+target_link_libraries(test_allpair_pipeline
+    PRIVATE
+    llmap_self_interference
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_allpair_pipeline)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
