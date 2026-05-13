@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 9 |
-| Total iterations | 9 |
+| Last successful iteration | 10 |
+| Total iterations | 10 |
 
 ---
 
@@ -33,6 +33,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] Phase 2: Stage 1 Self-Interference
   - [x] Phase 2.1: FAISS-GPU IndexIVFFlat wrapper (140 tests pass)
   - [x] Phase 2.2: Sparse k-NN extraction → similarity graph (180 tests pass)
+  - [x] Phase 2.3: Leiden community detection (214 tests pass)
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
 - [ ] Phase 4: Classical Path + WFA2
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
@@ -48,10 +49,10 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 2
 task: self_interference_stage1
-substep: 3/6
-last_action: SimilarityGraph class with CSR storage, k-NN → edge extraction, distance→weight conversion, filtering, serialization; 40 new tests; 180 total pass
-next_action: implement leiden_clustering.{h,cu} for GPU Leiden community detection
-acceptance: LeidenClustering can partition SimilarityGraph into communities; tests pass
+substep: 4/6
+last_action: LeidenClustering class for CPU Leiden community detection; modularity optimization; 34 new tests; 214 total pass
+next_action: implement self_wavecollapse.{h,cpp} for intra-cluster EM refinement
+acceptance: SelfWaveCollapse iteratively refines read assignments within clusters; tests pass
 ```
 
 ---
@@ -67,8 +68,9 @@ acceptance: LeidenClustering can partition SimilarityGraph into communities; tes
 7. ~~Phase 1.3: BucketEmbedder + benchmark~~ ✅ done
 8. ~~Phase 2.1: FAISS-GPU IndexIVFFlat wrapper~~ ✅ done
 9. ~~Phase 2.2: Sparse k-NN extraction → similarity graph~~ ✅ done
-10. Phase 2.3: Leiden community detection ← CURRENT
-11. Phase 2.4: Self-WaveCollapse intra-cluster EM
+10. ~~Phase 2.3: Leiden community detection~~ ✅ done
+11. Phase 2.4: Self-WaveCollapse intra-cluster EM ← CURRENT
+12. Phase 2.5: Cluster representative selection
 12. ... (continues per LLmap_SPEC.md)
 
 ---
@@ -102,6 +104,7 @@ acceptance: LeidenClustering can partition SimilarityGraph into communities; tes
 | 7 | 2026-05-13 | n/a | BucketEmbedder + throughput benchmark | bucket_embedder.{h,cpp}; 25 new tests; bench_embedder_throughput; 110 tests pass |
 | 8 | 2026-05-13 | n/a | FAISS wrapper for ANN search | faiss_wrapper.{h,cpp}; CMake FAISS detection; 30 new tests; 140 total pass |
 | 9 | 2026-05-13 | n/a | SimilarityGraph for sparse k-NN | similarity_graph.{h,cpp}; CSR format; 40 new tests; 180 total pass |
+| 10 | 2026-05-13 | n/a | Leiden community detection | leiden_clustering.{h,cpp}; modularity-based partitioning; 34 new tests; 214 total pass |
 
 ---
 

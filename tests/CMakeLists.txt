@@ -88,6 +88,17 @@ target_link_libraries(test_similarity_graph
 )
 gtest_discover_tests(test_similarity_graph)
 
+add_executable(test_leiden_clustering
+    unit/test_leiden_clustering.cpp
+)
+target_link_libraries(test_leiden_clustering
+    PRIVATE
+    llmap_self_interference
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_leiden_clustering)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
