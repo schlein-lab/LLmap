@@ -306,6 +306,19 @@ target_link_libraries(test_end_to_end
 )
 gtest_discover_tests(test_end_to_end)
 
+add_executable(test_real_reference
+    unit/test_real_reference.cpp
+)
+target_link_libraries(test_real_reference
+    PRIVATE
+    llmap_validation
+    llmap_classical
+    llmap_io
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_real_reference)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput

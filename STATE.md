@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 26 |
-| Total iterations | 26 |
+| Last successful iteration | 27 |
+| Total iterations | 27 |
 
 ---
 
@@ -52,6 +52,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
   - [x] Phase 5.1: Kill-switch validation framework (631 tests pass)
   - [x] Phase 5.2: End-to-end synthetic validation (654 tests pass)
+  - [x] Phase 5.3: Real reference integration infrastructure (684 tests pass)
 - [ ] Phase 6: Dual Output (BAM + Parquet)
 - [ ] Phase 7: Claude Agent Integration
 - [ ] Phase 8: Performance Optimization
@@ -64,14 +65,15 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 5
 task: kill_switch_validation
-substep: 3/3
-last_action: Phase 5.2 complete — end_to_end.cpp with ClassicalAlignment→AlignmentRecord conversion; EndToEndConfig presets (Minimal/Standard/Stress); RunEndToEndValidation orchestrator wiring synthetic generator → classical pipeline → kill-switch validation; position/timing/verdict metrics; 23 new tests; 654 total pass
-next_action: Phase 5.3 — Real reference integration test (needs Hummel)
-  - Build reference index from chr14 IGH locus (hg38)
-  - Align synthetic reads from Phase 5.2 to real reference
-  - Validate kill-switch thresholds on real coordinates
-  - Submit SLURM job for GPU-enabled runs
-acceptance: Real reference validation with minimap2 baseline comparison
+substep: 3/4
+last_action: Phase 5.3 infrastructure complete — real_reference.{h,cpp} with RealReferenceConfig, RealGroundTruth, RealReferenceResult; ParseGroundTruthBed for BED file parsing; ParseMinimap2Bam for baseline extraction; GenerateSlurmScript/SubmitSlurmJob/CheckSlurmJob for Hummel job management; fasta_reader.{h,cpp} for reference loading; SLURM template script; 30 new tests; 684 total pass
+next_action: Phase 5.4 — Submit Hummel SLURM job for GPU validation
+  - Copy validation infrastructure to Hummel
+  - Download/prepare hg38 chr14 IGH locus reference
+  - Run minimap2 baseline alignment
+  - Submit SLURM job for GPU-enabled LLmap validation
+  - Poll for completion and parse results
+acceptance: GPU validation job completes with recall ≥ 99.5% of minimap2
 ```
 
 ---
@@ -104,8 +106,9 @@ acceptance: Real reference validation with minimap2 baseline comparison
 24. ~~Phase 4.4: CPU-only fallback end-to-end~~ ✅ done
 25. ~~Phase 5.1: Kill-switch validation framework~~ ✅ done
 26. ~~Phase 5.2: End-to-end synthetic validation~~ ✅ done
-27. Phase 5.3: Real reference integration test ← NEXT
-28. ... (continues per LLmap_SPEC.md)
+27. ~~Phase 5.3: Real reference integration infrastructure~~ ✅ done
+28. Phase 5.4: Submit Hummel SLURM job for GPU validation ← NEXT
+29. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -155,6 +158,7 @@ acceptance: Real reference validation with minimap2 baseline comparison
 | 24 | 2026-05-13 | n/a | Phase 4.4 classical_pipeline + refactor | classical_pipeline.{h,cpp} orchestrator wiring minimizer_index + chain + wfa2_aligner; seed-chain-extend end-to-end; split stage2_pipeline.cpp (415 LOC) → 3 files; 23 new tests; 610 total pass; monolith count 2→1; Phase 4 complete |
 | 25 | 2026-05-13 | n/a | Phase 5.1 killswitch validation + refactor | killswitch.{h,cpp} validation framework; KillSwitchValidator class for lossless/position/origin checks; baseline comparison; split igh_locus_generator.cpp (410 LOC) → 2 files; 21 new tests; 631 total pass; monolith count 1→0 |
 | 26 | 2026-05-13 | n/a | Phase 5.2 end-to-end synthetic validation | end_to_end.cpp with ClassicalAlignment→AlignmentRecord conversion; EndToEndConfig presets; RunEndToEndValidation orchestrator; position/timing/verdict metrics; 23 new tests; 654 total pass |
+| 27 | 2026-05-13 | yes | Phase 5.3 real reference infrastructure | real_reference.{h,cpp} with RealReferenceConfig/RealGroundTruth/RealReferenceResult; BED/BAM parsing; SLURM job management; fasta_reader.{h,cpp}; SLURM template script; 30 new tests; 684 total pass |
 
 ---
 

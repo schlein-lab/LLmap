@@ -1,0 +1,139 @@
+#!/bin/bash
+#SBATCH --job-name=llmap_phase5_validation
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=4:00:00
+#SBATCH --output=/beegfs/u/bbg6775/llmap/logs/validation_%j.out
+#SBATCH --error=/beegfs/u/bbg6775/llmap/logs/validation_%j.err
+
+# LLmap Phase 5.3 — Real reference validation on Hummel-2
+# This script validates LLmap against real hg38 chr14 IGH locus data.
+
+set -euo pipefail
+
+# Configuration (override via environment or edit directly)
+LLMAP_ROOT="${LLMAP_ROOT:-/beegfs/u/bbg6775/llmap}"
+LLMAP_BUILD="${LLMAP_BUILD:-${LLMAP_ROOT}/build}"
+DATA_DIR="${DATA_DIR:-${LLMAP_ROOT}/data}"
+OUTPUT_DIR="${OUTPUT_DIR:-${LLMAP_ROOT}/results/phase5_validation_$(date +%Y%m%d_%H%M%S)}"
+
+# Reference files (should be pre-downloaded)
+REFERENCE_FASTA="${DATA_DIR}/hg38_chr14_igh.fa"
+READS_FASTQ="${DATA_DIR}/synthetic_igh_reads.fq"
+MINIMAP2_BAM="${DATA_DIR}/minimap2_baseline.bam"
+GROUND_TRUTH_BED="${DATA_DIR}/synthetic_ground_truth.bed"
+
+echo "=============================================="
+echo "LLmap Phase 5.3 Real Reference Validation"
+echo "=============================================="
+echo "Date: $(date)"
+echo "Host: $(hostname)"
+echo "Job ID: ${SLURM_JOB_ID:-local}"
+echo "Working dir: ${LLMAP_ROOT}"
+echo "Output dir: ${OUTPUT_DIR}"
+echo "=============================================="
+
+# Load modules
+module load cuda/12.3 || echo "CUDA module not available, using system CUDA"
+module load gcc/13.2 || echo "GCC module not available, using system GCC"
+
+# Verify GPU availability
+echo ""
+echo "GPU Status:"
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader || \
+    echo "Warning: nvidia-smi failed, GPU may not be available"
+
+# Create output directory
+mkdir -p "${OUTPUT_DIR}"
+mkdir -p "${OUTPUT_DIR}/logs"
+
+# Check required files exist
+check_file() {
+    if [[ ! -f "$1" ]]; then
+        echo "ERROR: Required file not found: $1"
+        exit 1
+    fi
+}
+
+echo ""
+echo "Checking required files..."
+check_file "${REFERENCE_FASTA}"
+check_file "${READS_FASTQ}"
+echo "All required files present."
+
+# Optional files
+HAS_BASELINE=false
+HAS_TRUTH=false
+
+if [[ -f "${MINIMAP2_BAM}" ]]; then
+    HAS_BASELINE=true
+    echo "Minimap2 baseline: ${MINIMAP2_BAM}"
+fi
+
+if [[ -f "${GROUND_TRUTH_BED}" ]]; then
+    HAS_TRUTH=true
+    echo "Ground truth: ${GROUND_TRUTH_BED}"
+fi
+
+# Build validation command
+echo ""
+echo "Running LLmap validation..."
+
+VALIDATION_CMD="${LLMAP_BUILD}/llmap validate-real"
+VALIDATION_CMD+=" --reference ${REFERENCE_FASTA}"
+VALIDATION_CMD+=" --reads ${READS_FASTQ}"
+VALIDATION_CMD+=" --output-dir ${OUTPUT_DIR}"
+VALIDATION_CMD+=" --k 15 --w 10"
+VALIDATION_CMD+=" --min-identity 0.70"
+VALIDATION_CMD+=" --gpu 0"
+
+if [[ "${HAS_BASELINE}" == "true" ]]; then
+    VALIDATION_CMD+=" --baseline ${MINIMAP2_BAM}"
+fi
+
+if [[ "${HAS_TRUTH}" == "true" ]]; then
+    VALIDATION_CMD+=" --truth ${GROUND_TRUTH_BED}"
+fi
+
+echo "Command: ${VALIDATION_CMD}"
+echo ""
+
+# Run validation
+START_TIME=$(date +%s)
+
+${VALIDATION_CMD} 2>&1 | tee "${OUTPUT_DIR}/validation_output.log"
+
+EXIT_CODE=${PIPESTATUS[0]}
+END_TIME=$(date +%s)
+ELAPSED=$((END_TIME - START_TIME))
+
+echo ""
+echo "=============================================="
+echo "Validation completed"
+echo "Exit code: ${EXIT_CODE}"
+echo "Elapsed time: ${ELAPSED} seconds"
+echo "Output: ${OUTPUT_DIR}"
+echo "=============================================="
+
+# Parse results and emit summary
+if [[ -f "${OUTPUT_DIR}/validation_output.log" ]]; then
+    echo ""
+    echo "=== VALIDATION SUMMARY ==="
+    grep -E "(Overall:|Recall|Lossless|PASS|FAIL)" "${OUTPUT_DIR}/validation_output.log" || true
+fi
+
+# Write machine-readable status
+cat > "${OUTPUT_DIR}/status.json" << EOF
+{
+    "job_id": "${SLURM_JOB_ID:-local}",
+    "exit_code": ${EXIT_CODE},
+    "elapsed_seconds": ${ELAPSED},
+    "timestamp": "$(date -Iseconds)",
+    "host": "$(hostname)",
+    "gpu": "$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1 || echo 'none')"
+}
+EOF
+
+exit ${EXIT_CODE}
