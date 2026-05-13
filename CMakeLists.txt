@@ -51,6 +51,53 @@ if(LLMAP_ENABLE_CUDA)
     endif()
 endif()
 
+# ONNX Runtime — foundation model inference
+include(FetchContent)
+if(LLMAP_ENABLE_FOUNDATION)
+    # ONNX Runtime provides pre-built binaries. We use find_package first,
+    # falling back to system paths if not found.
+    find_package(onnxruntime QUIET)
+    if(onnxruntime_FOUND)
+        message(STATUS "ONNX Runtime found via find_package")
+        set(LLMAP_ONNXRUNTIME_AVAILABLE ON)
+    else()
+        # Try to find onnxruntime in common system paths
+        find_path(ONNXRUNTIME_INCLUDE_DIR
+            NAMES onnxruntime_cxx_api.h
+            PATHS
+                /usr/include/onnxruntime
+                /usr/local/include/onnxruntime
+                /opt/onnxruntime/include
+                $ENV{ONNXRUNTIME_ROOT}/include
+            PATH_SUFFIXES onnxruntime core session
+        )
+        find_library(ONNXRUNTIME_LIBRARY
+            NAMES onnxruntime
+            PATHS
+                /usr/lib
+                /usr/lib/x86_64-linux-gnu
+                /usr/local/lib
+                /opt/onnxruntime/lib
+                $ENV{ONNXRUNTIME_ROOT}/lib
+        )
+        if(ONNXRUNTIME_INCLUDE_DIR AND ONNXRUNTIME_LIBRARY)
+            message(STATUS "ONNX Runtime found: ${ONNXRUNTIME_LIBRARY}")
+            set(LLMAP_ONNXRUNTIME_AVAILABLE ON)
+            add_library(onnxruntime::onnxruntime UNKNOWN IMPORTED)
+            set_target_properties(onnxruntime::onnxruntime PROPERTIES
+                IMPORTED_LOCATION "${ONNXRUNTIME_LIBRARY}"
+                INTERFACE_INCLUDE_DIRECTORIES "${ONNXRUNTIME_INCLUDE_DIR}"
+            )
+        else()
+            message(STATUS "ONNX Runtime not found — foundation model inference disabled")
+            message(STATUS "  To enable: install onnxruntime or set ONNXRUNTIME_ROOT")
+            set(LLMAP_ONNXRUNTIME_AVAILABLE OFF)
+        endif()
+    endif()
+else()
+    set(LLMAP_ONNXRUNTIME_AVAILABLE OFF)
+endif()
+
 # Subdirectories
 add_subdirectory(src)
 
@@ -72,6 +119,7 @@ message(STATUS "  Build type      : ${CMAKE_BUILD_TYPE}")
 message(STATUS "  C++ standard    : C++${CMAKE_CXX_STANDARD}")
 message(STATUS "  CUDA            : ${LLMAP_ENABLE_CUDA}")
 message(STATUS "  Foundation Model: ${LLMAP_ENABLE_FOUNDATION}")
+message(STATUS "  ONNX Runtime    : ${LLMAP_ONNXRUNTIME_AVAILABLE}")
 message(STATUS "  Claude Agent    : ${LLMAP_ENABLE_CLAUDE}")
 message(STATUS "  Tests           : ${LLMAP_ENABLE_TESTS}")
 message(STATUS "  Benchmarks      : ${LLMAP_ENABLE_BENCH}")

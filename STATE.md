@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 4 |
-| Total iterations | 4 |
+| Last successful iteration | 5 |
+| Total iterations | 5 |
 
 ---
 
@@ -43,10 +43,10 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 1
 task: foundation_model_integration
-substep: 1/3
-last_action: implemented synthetic IGH-locus generator with 16 new tests (56 total pass); created pbsim3/ART wrapper scripts
-next_action: wire ONNX Runtime with CUDA-EP; create foundation_embedder.h/cpp wrapper for Caduceus-Ph distilled model
-acceptance: ONNX Runtime links and initializes; placeholder inference path works CPU-only; GPU path stubbed
+substep: 2/3
+last_action: wired ONNX Runtime CMake integration + created FoundationEmbedder class with CPU/CUDA/TensorRT EP support; 19 new tests (75 total pass)
+next_action: implement Caduceus-Ph distillation pipeline + create minimal test ONNX model; verify embedder produces real embeddings
+acceptance: embedder loads a real ONNX model; produces 256-dim embeddings for DNA sequences; batch inference works
 ```
 
 ---
@@ -57,8 +57,8 @@ acceptance: ONNX Runtime links and initializes; placeholder inference path works
 2. ~~Phase 0.2: BucketPyramid data structure + serialization~~ ✅ done
 3. ~~Phase 0.3: WaveState sparse CSR + GPU stub~~ ✅ done
 4. ~~Phase 0.4: Synthetic IGH-locus generator + simulator wrappers~~ ✅ done
-5. Phase 1.1: ONNX Runtime CUDA-EP wired ← CURRENT
-6. Phase 1.2: Caduceus-Ph distilled embedder
+5. ~~Phase 1.1: ONNX Runtime CUDA-EP wired~~ ✅ done
+6. Phase 1.2: Caduceus-Ph distilled embedder ← CURRENT
 7. Phase 1.3: Bucket embedder via Evo-1.5B
 8. ... (continues per LLmap_SPEC.md)
 
@@ -88,6 +88,7 @@ acceptance: ONNX Runtime links and initializes; placeholder inference path works
 | 2 | 2026-05-13 | n/a | implement bucket_pyramid | L0/L1/L2 hierarchy + serialization; 11 tests pass |
 | 3 | 2026-05-13 | n/a | implement wave_state | sparse CSR format + collapse/level mgmt; 21 tests pass |
 | 4 | 2026-05-13 | n/a | implement synthetic_data_generator | IGH-locus generator + pbsim3/ART wrappers; 56 tests pass |
+| 5 | 2026-05-13 | n/a | wire ONNX Runtime + FoundationEmbedder | CMake finds ONNX RT; FoundationEmbedder CPU/CUDA/TRT; 75 tests pass |
 
 ---
 

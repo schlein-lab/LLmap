@@ -43,3 +43,14 @@ target_link_libraries(test_igh_locus_generator
     GTest::gtest_main
 )
 gtest_discover_tests(test_igh_locus_generator)
+
+add_executable(test_foundation_embedder
+    unit/test_foundation_embedder.cpp
+)
+target_link_libraries(test_foundation_embedder
+    PRIVATE
+    llmap_ai
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_foundation_embedder)
