@@ -41,6 +41,20 @@ If Hummel is down (check `.hummel_status` file), do only local-host work this it
 - Never push to `main` if tests fail.
 - If you hit an algorithmic dead-end you can't resolve, write the blocker in STATE.md → `## Blockers / open questions`, send a Zyrkel notification via the `mcp__zyrkel__notify` tool, and exit cleanly. The next iteration will see the blocker.
 
+## HARD RULE — before any new code each iteration
+
+Run this command FIRST every iteration:
+
+```bash
+find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
+```
+
+If the list is non-empty (which it currently is — 10 files), this iteration MUST split at least one of them per the modular rule below, in addition to (or instead of) advancing the current phase task. **A Phase 3.x commit alone is not sufficient if any src/*.cpp > 400 LOC exists.** Bundle the refactor into the same commit or do it as a preceding commit.
+
+Refactor target naming: split file `foo.cpp` into `foo_<aspect>.cpp` (e.g. `faiss_wrapper.cpp` → `faiss_wrapper_index.cpp` + `faiss_wrapper_search.cpp` + `faiss_wrapper_serialize.cpp`). All sub-files compiled together via the same CMake target. Tests still mirror the original logical unit.
+
+Acceptance for every iteration: at least one of {(a) the monolith list shrank, (b) the list was empty already}. If neither, the iteration is rejected — undo your changes and split one file instead.
+
 ## Modular architecture — NO MONOLITHS
 
 This is an explicit user-set constraint. Build small, focused modules — never god-classes or 1000-line files.
