@@ -13,18 +13,19 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 3 |
-| Total iterations | 3 |
+| Last successful iteration | 4 |
+| Total iterations | 4 |
 
 ---
 
 ## Phase progress
 
 - [x] **Phase -1: Bootstrap** — repo + scaffolding + driver
-- [ ] **Phase 0: Foundations** — CMake, AlignmentRecord, BucketPyramid, synthetic data
+- [x] **Phase 0: Foundations** — CMake, AlignmentRecord, BucketPyramid, synthetic data
   - [x] Phase 0.1: AlignmentRecord type + tests (8 tests pass)
   - [x] Phase 0.2: BucketPyramid data structure + serialization (11 tests pass)
   - [x] Phase 0.3: WaveState sparse CSR + GPU stub (21 tests pass)
+  - [x] Phase 0.4: Synthetic IGH-locus generator + simulator wrappers (56 tests pass)
 - [ ] Phase 1: Foundation Model Integration
 - [ ] Phase 2: Stage 1 Self-Interference
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
@@ -40,12 +41,12 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 0
-task: synthetic_data_generator
-substep: 4/4
-last_action: implemented WaveState sparse CSR format with 21 tests pass (collapse detection, level management, CSR accessors)
-next_action: implement synthetic IGH-locus generator in src/synthetic/ with planted PSVs, controlled mosaic-dup-fraction, plus sequence-identical-exon edge case; create pbsim3/ART wrapper scripts
-acceptance: synthetic FASTQ generator produces reads with known PSVs and dup-fraction; simulator wrappers work; deterministic by seed
+phase: 1
+task: foundation_model_integration
+substep: 1/3
+last_action: implemented synthetic IGH-locus generator with 16 new tests (56 total pass); created pbsim3/ART wrapper scripts
+next_action: wire ONNX Runtime with CUDA-EP; create foundation_embedder.h/cpp wrapper for Caduceus-Ph distilled model
+acceptance: ONNX Runtime links and initializes; placeholder inference path works CPU-only; GPU path stubbed
 ```
 
 ---
@@ -55,8 +56,8 @@ acceptance: synthetic FASTQ generator produces reads with known PSVs and dup-fra
 1. ~~Phase 0.1: AlignmentRecord type + tests~~ ✅ done
 2. ~~Phase 0.2: BucketPyramid data structure + serialization~~ ✅ done
 3. ~~Phase 0.3: WaveState sparse CSR + GPU stub~~ ✅ done
-4. Phase 0.4: Synthetic IGH-locus generator + simulator wrappers (pbsim3, ART) ← CURRENT
-5. Phase 1.1: ONNX Runtime CUDA-EP wired
+4. ~~Phase 0.4: Synthetic IGH-locus generator + simulator wrappers~~ ✅ done
+5. Phase 1.1: ONNX Runtime CUDA-EP wired ← CURRENT
 6. Phase 1.2: Caduceus-Ph distilled embedder
 7. Phase 1.3: Bucket embedder via Evo-1.5B
 8. ... (continues per LLmap_SPEC.md)
@@ -86,6 +87,7 @@ acceptance: synthetic FASTQ generator produces reads with known PSVs and dup-fra
 | 1 | 2026-05-13 | n/a | verify alignment_record | confirmed 8 tests pass; advanced to phase 0.2 |
 | 2 | 2026-05-13 | n/a | implement bucket_pyramid | L0/L1/L2 hierarchy + serialization; 11 tests pass |
 | 3 | 2026-05-13 | n/a | implement wave_state | sparse CSR format + collapse/level mgmt; 21 tests pass |
+| 4 | 2026-05-13 | n/a | implement synthetic_data_generator | IGH-locus generator + pbsim3/ART wrappers; 56 tests pass |
 
 ---
 

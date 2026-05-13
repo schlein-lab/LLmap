@@ -32,3 +32,14 @@ target_link_libraries(test_wave_state
     GTest::gtest_main
 )
 gtest_discover_tests(test_wave_state)
+
+add_executable(test_igh_locus_generator
+    unit/test_igh_locus_generator.cpp
+)
+target_link_libraries(test_igh_locus_generator
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_igh_locus_generator)

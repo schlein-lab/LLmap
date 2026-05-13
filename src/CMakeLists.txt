@@ -2,6 +2,7 @@ add_library(llmap_core STATIC
     core/alignment_record.cpp
     core/bucket_pyramid.cpp
     core/wave_state.cpp
+    synthetic/igh_locus_generator.cpp
 )
 
 target_include_directories(llmap_core PUBLIC
