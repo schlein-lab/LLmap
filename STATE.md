@@ -51,12 +51,15 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 3
-task: reference_wavecollapse
+phase: 3 (with REFACTOR-DEBT enforcement — HARD RULE)
+task: split_one_monolith_AND_em_iterator
 substep: 2/6
-last_action: Phase 3.1 complete — ReferenceIndex for Stage 2 WaveCollapse; 375 tests pass
-next_action: Implement em_iteration CUDA kernel (P-update, λ-update, K-smoothing) — CPU fallback first
-acceptance: em_iterator.{h,cpp} with CPU implementation + tests for EM iteration step
+last_action: Phase 3.1 ReferenceIndex done (375 tests); 10 src/*.cpp > 400 LOC remain; iter 14+15 ignored refactor rule, user reinforced
+next_action: TWO things this iteration, both required (per scripts/continuation_prompt.md HARD RULE):
+  1. RUN PRE-CHECK: `find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn`
+  2. SPLIT the largest monolith in that list into 2-3 smaller files per the "Modular architecture" section. All 375 tests must still pass after the split. Single commit message starts with "refactor: split <file>".
+  3. THEN implement em_iterator.{h,cpp} CPU fallback (P-update + λ-update + K-smoothing one EM step). KEEP IT ≤ 400 LOC from day one. Single commit message "phase 3.2: em_iterator CPU fallback".
+acceptance: monolith count drops by ≥ 1 (from 10 to ≤ 9), em_iterator builds, ≥ 5 new tests, total ≥ 380, zero regression
 ```
 
 ---
