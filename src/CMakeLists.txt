@@ -37,7 +37,9 @@ target_link_libraries(llmap_output PUBLIC llmap_core)
 
 # AI module — foundation model embedders
 add_library(llmap_ai STATIC
-    ai/foundation_embedder.cpp
+    ai/foundation_embedder_core.cpp
+    ai/foundation_embedder_tokenize.cpp
+    ai/foundation_embedder_embed.cpp
     ai/bucket_embedder_core.cpp
     ai/bucket_embedder_tokenize.cpp
     ai/bucket_embedder_embed.cpp
@@ -131,6 +133,8 @@ add_library(llmap_classical STATIC
     classical/minimizer_index_extract.cpp
     classical/chain_score.cpp
     classical/chain_dp.cpp
+    classical/wfa2_aligner_core.cpp
+    classical/wfa2_aligner_align.cpp
 )
 
 target_include_directories(llmap_classical PUBLIC
@@ -139,6 +143,13 @@ target_include_directories(llmap_classical PUBLIC
 
 target_compile_features(llmap_classical PUBLIC cxx_std_23)
 target_link_libraries(llmap_classical PUBLIC llmap_core)
+
+# Link WFA2-lib if available
+if(LLMAP_WFA2_AVAILABLE)
+    target_compile_definitions(llmap_classical PRIVATE LLMAP_HAS_WFA2)
+    target_link_libraries(llmap_classical PUBLIC ${WFA2_LIBRARY})
+    target_include_directories(llmap_classical PUBLIC ${WFA2_INCLUDE_DIR})
+endif()
 
 # CLI — full CLI surface
 add_executable(llmap cli/llmap_main.cpp)

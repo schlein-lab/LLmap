@@ -260,6 +260,17 @@ target_link_libraries(test_chain
 )
 gtest_discover_tests(test_chain)
 
+add_executable(test_wfa2_aligner
+    unit/test_wfa2_aligner.cpp
+)
+target_link_libraries(test_wfa2_aligner
+    PRIVATE
+    llmap_classical
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_wfa2_aligner)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
