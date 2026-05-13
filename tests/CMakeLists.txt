@@ -237,6 +237,18 @@ target_link_libraries(test_stage2_pipeline
 )
 gtest_discover_tests(test_stage2_pipeline)
 
+# Classical module tests
+add_executable(test_minimizer_index
+    unit/test_minimizer_index.cpp
+)
+target_link_libraries(test_minimizer_index
+    PRIVATE
+    llmap_classical
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_minimizer_index)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
