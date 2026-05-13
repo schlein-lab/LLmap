@@ -33,6 +33,7 @@ add_library(llmap_output STATIC
     output/parquet_writer.cpp
     output/parquet_writer_convert.cpp
     output/parquet_writer_write.cpp
+    output/parquet_reader.cpp
 )
 
 target_include_directories(llmap_output PUBLIC
