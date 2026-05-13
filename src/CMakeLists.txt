@@ -38,6 +38,7 @@ endif()
 # Self-interference module — Stage 1 (read-vs-read ANN clustering)
 add_library(llmap_self_interference STATIC
     self_interference/faiss_wrapper.cpp
+    self_interference/similarity_graph.cpp
 )
 
 target_include_directories(llmap_self_interference PUBLIC
