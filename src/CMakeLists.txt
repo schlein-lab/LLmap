@@ -180,6 +180,21 @@ target_include_directories(llmap_validation PUBLIC
 target_compile_features(llmap_validation PUBLIC cxx_std_23)
 target_link_libraries(llmap_validation PUBLIC llmap_core llmap_classical llmap_io)
 
+# Claude agent module — LLM integration for adaptive alignment
+add_library(llmap_claude_agent STATIC
+    claude_agent/agent_types.cpp
+    claude_agent/anthropic_client.cpp
+    claude_agent/agent_session.cpp
+    claude_agent/biology_prior.cpp
+)
+
+target_include_directories(llmap_claude_agent PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_claude_agent PUBLIC cxx_std_23)
+target_link_libraries(llmap_claude_agent PUBLIC llmap_core)
+
 # CLI — full CLI surface
 add_executable(llmap
     cli/llmap_main.cpp
@@ -188,4 +203,4 @@ add_executable(llmap
     cli/cmd_validate_real.cpp
     cli/cmd_align.cpp
 )
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent)
