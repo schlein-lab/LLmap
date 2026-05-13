@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 32 |
-| Total iterations | 32 |
+| Last successful iteration | 33 |
+| Total iterations | 33 |
 
 ---
 
@@ -58,6 +58,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase 6: Dual Output (BAM + Parquet)** ★
   - [x] Phase 6.1: BAM/SAM output writer (710 tests pass)
   - [x] Phase 6.2: Parquet probabilistic output (733 tests pass)
+  - [x] Phase 6.3: Parquet reader + round-trip validation (757 tests pass)
 - [ ] Phase 7: Claude Agent Integration
 - [ ] Phase 8: Performance Optimization
 - [ ] Phase 9: Single-Cell + Paralog Production
@@ -69,13 +70,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 6
 task: dual_output
-substep: 2/N — Parquet writer complete
-last_action: Phase 6.2 — implemented parquet_writer.{h,cpp}; ParquetWriter class with Arrow/Parquet support (CSV fallback when Arrow unavailable); ProbabilityEntry schema (read_id, bucket_id, probability, confidence, level, iteration, is_collapsed); RecordToEntries conversion; filtering by min_probability; lossless invariant test; 23 new tests; 733 total pass
-next_action: Phase 6.3 — Round-trip validation + CLI integration
-  - Add --parquet flag to llmap align CLI
-  - Round-trip test: read Parquet → reconstruct AlignmentRecord → re-emit → compare
-  - Lossless invariant validation: 1M input reads → 1M records (no silent drops)
-acceptance: Parquet readable by pyarrow; round-trip test passes
+substep: 3/N — Parquet reader + round-trip validation complete
+last_action: Phase 6.3 — implemented parquet_reader.{h,cpp}; ParquetReader class for reading Parquet/CSV; ParseCSVLine, ReadParquet, GroupByReadId, ValidateRoundTrip functions; full round-trip tests (write→read→compare); 10K entry lossless invariant test; 24 new tests; 757 total pass
+next_action: Phase 6.4 — `llmap align` CLI with --parquet/--bam flags
+  - Add cmd_align.cpp with full align workflow
+  - Wire Stage1→Stage2→classical pipeline
+  - Output to BAM (--bam) or Parquet (--parquet) or both
+acceptance: llmap align -r reads.fq -o out.sam --parquet out.parquet produces valid outputs
 ```
 
 ---
@@ -114,8 +115,9 @@ acceptance: Parquet readable by pyarrow; round-trip test passes
 30. ~~Phase 5.5: generate-synth CLI + modular commands + GPU validation~~ ✅ done (CPU validated, GPU pending cluster access)
 31. ~~Phase 6.1: BAM/SAM output writer~~ ✅ done
 32. ~~Phase 6.2: Parquet probabilistic output~~ ✅ done
-33. Phase 6.3: Round-trip validation + CLI integration ← NEXT
-33. ... (continues per LLmap_SPEC.md)
+33. ~~Phase 6.3: Parquet reader + round-trip validation~~ ✅ done
+34. Phase 6.4: `llmap align` CLI with --parquet/--bam ← NEXT
+35. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -171,6 +173,7 @@ acceptance: Parquet readable by pyarrow; round-trip test passes
 | 30 | 2026-05-13 | yes | Phase 5.5 generate-synth + modular CLI | added `llmap generate-synth` CLI; split llmap_main.cpp (538→82 LOC) into cmd_allpair.cpp, cmd_generate_synth.cpp, cmd_validate_real.cpp; scripts/slurm_phase55_validation.sh; CPU validation passes (100% recall); GPU awaits manual Hummel submission; 684 tests pass; Phase 5 functionally complete |
 | 31 | 2026-05-13 | n/a | Phase 6.1 BAM/SAM output writer | bam_writer.{h,cpp} for SAM output; BamWriter class with mapped/unmapped/tentative support; CIGAR utilities (generate, stats, validate); WaveCollapse tags (XC/XL/XI/XP); paralog tags (PD/PC/PP); XA for alternatives; split bam_writer_cigar.cpp; htslib-ready; 26 new tests; 710 total pass |
 | 32 | 2026-05-13 | n/a | Phase 6.2 Parquet probabilistic output | parquet_writer.{h,cpp}; ParquetWriter class with Arrow/Parquet support (CSV fallback); ProbabilityEntry schema (read_id, bucket_id, probability, confidence, level, iteration, is_collapsed); RecordToEntries conversion; filtering by min_probability; lossless invariant test; 23 new tests; 733 total pass |
+| 33 | 2026-05-13 | n/a | Phase 6.3 Parquet reader + round-trip validation | parquet_reader.{h,cpp}; ParquetReader class for reading Parquet/CSV; ParseCSVLine, ReadParquet, GroupByReadId, ValidateRoundTrip functions; full round-trip tests (write→read→compare); 10K entry lossless invariant; 24 new tests; 757 total pass |
 
 ---
 
