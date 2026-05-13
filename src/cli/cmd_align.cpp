@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <filesystem>
 #include <sstream>
@@ -11,6 +12,7 @@
 #include <vector>
 
 #include "classical/classical_pipeline.h"
+#include "claude_agent/pipeline_agent.h"
 #include "core/alignment_record.h"
 #include "io/fasta_reader.h"
 #include "io/fastq_reader.h"
@@ -47,6 +49,12 @@ void print_align_usage() {
         "  -t, --threads INT       Number of threads [1]\n"
         "  --max-chains INT        Max chains to extend per read [10]\n"
         "\n"
+        "LLM-assisted diagnostics:\n"
+        "  --llm                   Enable Claude LLM for alignment diagnostics\n"
+        "  --llm-api-key KEY       Anthropic API key (or set ANTHROPIC_API_KEY)\n"
+        "  --llm-threshold FLOAT   Mapping rate threshold to trigger diagnostics [0.50]\n"
+        "  --llm-work-dir DIR      Working directory for LLM artifacts\n"
+        "\n"
         "Other:\n"
         "  -v, --verbose           Verbose output\n"
         "  -h, --help              Show this help\n"
@@ -54,6 +62,7 @@ void print_align_usage() {
         "Example:\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.sam\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.bam --bam --parquet out.parquet\n"
+        "  llmap align -r reads.fastq -x ref.fasta -o out.sam --llm\n"
     );
 }
 
@@ -72,6 +81,11 @@ struct AlignArgs {
     int max_chains = 10;
     bool verbose = false;
     bool help = false;
+
+    bool enable_llm = false;
+    std::string llm_api_key;
+    float llm_threshold = 0.50f;
+    std::string llm_work_dir;
 };
 
 bool parse_align_args(int argc, char** argv, AlignArgs& args) {
@@ -109,6 +123,14 @@ bool parse_align_args(int argc, char** argv, AlignArgs& args) {
             args.max_chains = std::stoi(argv[++i]);
         } else if (arg == "-v" || arg == "--verbose") {
             args.verbose = true;
+        } else if (arg == "--llm") {
+            args.enable_llm = true;
+        } else if (arg == "--llm-api-key" && i + 1 < argc) {
+            args.llm_api_key = argv[++i];
+        } else if (arg == "--llm-threshold" && i + 1 < argc) {
+            args.llm_threshold = std::stof(argv[++i]);
+        } else if (arg == "--llm-work-dir" && i + 1 < argc) {
+            args.llm_work_dir = argv[++i];
         } else if (arg[0] == '-') {
             std::fprintf(stderr, "Unknown option: %s\n", arg.c_str());
             return false;
@@ -136,6 +158,102 @@ AlignmentRecord ConvertAlignment(const classical::ClassicalAlignment& aln,
     hit.nm = static_cast<std::uint32_t>((1.0f - aln.identity) * aln.AlignedBases());
 
     return make_mapped(aln.query_name, read_len, std::move(hit));
+}
+
+std::string GetApiKey(const AlignArgs& args) {
+    if (!args.llm_api_key.empty()) {
+        return args.llm_api_key;
+    }
+    const char* env_key = std::getenv("ANTHROPIC_API_KEY");
+    return env_key ? std::string(env_key) : "";
+}
+
+std::optional<claude_agent::PipelineAgent> CreatePipelineAgent(
+    const AlignArgs& args, bool verbose) {
+
+    std::string api_key = GetApiKey(args);
+    if (api_key.empty()) {
+        if (verbose) {
+            std::fprintf(stderr, "Warning: --llm enabled but no API key provided. "
+                         "Set ANTHROPIC_API_KEY or use --llm-api-key\n");
+        }
+        return std::nullopt;
+    }
+
+    claude_agent::PipelineAgentConfig config;
+    config.agent.api_key = api_key;
+    config.agent.model = "claude-sonnet-4-20250514";
+    config.agent.max_tokens = 4096;
+    config.enable_diagnostics = true;
+    config.enable_reporter = true;
+    config.enable_cuda_codegen = false;
+
+    if (!args.llm_work_dir.empty()) {
+        config.work_dir = args.llm_work_dir;
+    } else {
+        config.work_dir = std::filesystem::temp_directory_path() / "llmap_llm";
+    }
+
+    std::filesystem::create_directories(config.work_dir);
+
+    return claude_agent::PipelineAgent(std::move(config));
+}
+
+void RunLlmDiagnostics(
+    claude_agent::PipelineAgent& agent,
+    const AlignArgs& args,
+    const std::vector<classical::ReadAlignmentResult>& results,
+    std::size_t n_mapped, std::size_t n_unmapped,
+    float avg_identity) {
+
+    float mapping_rate = static_cast<float>(n_mapped) /
+        static_cast<float>(n_mapped + n_unmapped);
+
+    std::printf("\n--- LLM Diagnostics ---\n");
+    std::printf("Session ID: %s\n", agent.SessionId().c_str());
+
+    claude_agent::StallMetrics stall;
+    stall.type = claude_agent::StallType::NoProgress;
+    stall.reads_affected = n_unmapped;
+
+    std::vector<std::pair<std::string, double>> bucket_probs;
+    for (std::size_t i = 0; i < std::min(results.size(), std::size_t{100}); ++i) {
+        const auto& r = results[i];
+        double prob = r.HasAlignment() ? 1.0 : 0.0;
+        bucket_probs.emplace_back(r.query_name, prob);
+    }
+
+    auto work_dir = agent.GetConfig().work_dir;
+    auto wave_state = claude_agent::WriteWaveStateJson(
+        work_dir, 1, 1.0 - mapping_rate, bucket_probs);
+
+    if (wave_state.empty()) {
+        std::fprintf(stderr, "Warning: failed to write wave state for diagnostics\n");
+        return;
+    }
+
+    claude_agent::DiagnosticContext ctx;
+    ctx.stall = stall;
+    ctx.wave_state_path = wave_state;
+    ctx.output_dir = work_dir / "diagnostics";
+
+    std::printf("Analyzing alignment issues...\n");
+    auto resolution = agent.DiagnoseAndResolve(ctx);
+
+    std::printf("\nDiagnostic Report:\n");
+    std::printf("  Stall Pattern:    %s\n", resolution.report.stall_pattern.c_str());
+    std::printf("  Root Cause:       %s\n", resolution.report.root_cause.c_str());
+    std::printf("  Resolution:       %s\n", resolution.report.resolution.c_str());
+    std::printf("  Latency:          %ld ms\n", resolution.latency.count());
+
+    if (resolution.report.custom_kernel_path) {
+        std::printf("  Custom Kernel:    %s\n", resolution.report.custom_kernel_path->c_str());
+    }
+    if (resolution.report.kernel_hot_loaded) {
+        std::printf("  Kernel Loaded:    yes\n");
+    }
+
+    std::printf("-----------------------\n");
 }
 
 }  // namespace
@@ -366,10 +484,13 @@ int run_align(int argc, char** argv) {
         end_time - start_time).count();
 
     // Summary
+    float mapping_rate = static_cast<float>(n_mapped) /
+        static_cast<float>(read_names.size());
+
     std::printf("Alignment complete:\n");
     std::printf("  Input reads:    %zu\n", read_names.size());
     std::printf("  Mapped:         %zu (%.1f%%)\n",
-                n_mapped, 100.0f * n_mapped / read_names.size());
+                n_mapped, 100.0f * mapping_rate);
     std::printf("  Unmapped:       %zu\n", n_unmapped);
     std::printf("  Align time:     %.2f s\n", align_time_ms / 1000.0f);
     std::printf("  Total time:     %.2f s\n", total_time_ms / 1000.0f);
@@ -378,6 +499,23 @@ int run_align(int argc, char** argv) {
     std::printf("  Output:         %s\n", args.output.c_str());
     if (!args.parquet_output.empty()) {
         std::printf("  Parquet:        %s\n", args.parquet_output.c_str());
+    }
+
+    if (args.enable_llm && mapping_rate < args.llm_threshold) {
+        if (args.verbose) {
+            std::fprintf(stderr, "\nMapping rate %.1f%% below threshold %.1f%%, "
+                         "running LLM diagnostics...\n",
+                         100.0f * mapping_rate, 100.0f * args.llm_threshold);
+        }
+
+        auto agent = CreatePipelineAgent(args, args.verbose);
+        if (agent) {
+            float avg_identity = pipeline.Stats().avg_identity;
+            RunLlmDiagnostics(*agent, args, results, n_mapped, n_unmapped, avg_identity);
+        }
+    } else if (args.enable_llm && args.verbose) {
+        std::fprintf(stderr, "Mapping rate %.1f%% meets threshold, "
+                     "skipping LLM diagnostics\n", 100.0f * mapping_rate);
     }
 
     return 0;

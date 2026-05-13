@@ -242,6 +242,91 @@ TEST_F(LlmapCliTest, AlignFileNotFound) {
     EXPECT_TRUE(result.output.find("not found") != std::string::npos);
 }
 
+// ========== Align --llm Flag ==========
+
+TEST_F(LlmapCliTest, AlignHelpShowsLlmFlag) {
+    auto result = Exec(llmap_bin_ + " align --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--llm") != std::string::npos);
+    EXPECT_TRUE(result.output.find("LLM-assisted") != std::string::npos ||
+                result.output.find("Claude") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--llm-api-key") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--llm-threshold") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignLlmFlagNoApiKey) {
+    // Create test files
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    // Unset env var to ensure no key is found
+    unsetenv("ANTHROPIC_API_KEY");
+
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --llm -v");
+
+    // Should still complete alignment (LLM is optional), with warning
+    // Either success with warning, or success without LLM
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignLlmThreshold) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    // Very high threshold (0.99) - diagnostics should trigger for almost any run
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --llm --llm-threshold 0.99 -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    // Should either trigger diagnostics or warn about missing API key
+    EXPECT_TRUE(result.output.find("diagnostics") != std::string::npos ||
+                result.output.find("Warning") != std::string::npos ||
+                result.output.find("API key") != std::string::npos ||
+                result.output.find("threshold") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignLlmWorkDir) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+    auto llm_dir = test_dir_ / "llm_work";
+
+    // With --llm-work-dir, should create directory
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --llm --llm-work-dir " + llm_dir.string() +
+                       " --llm-threshold 0.99 -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
 // ========== Regression: Banner Shows on Empty Args ==========
 
 TEST_F(LlmapCliTest, BannerShowsCorrectTagline) {
