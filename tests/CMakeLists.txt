@@ -99,6 +99,17 @@ target_link_libraries(test_leiden_clustering
 )
 gtest_discover_tests(test_leiden_clustering)
 
+add_executable(test_self_wavecollapse
+    unit/test_self_wavecollapse.cpp
+)
+target_link_libraries(test_self_wavecollapse
+    PRIVATE
+    llmap_self_interference
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_self_wavecollapse)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
