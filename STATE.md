@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 27 |
-| Total iterations | 27 |
+| Last successful iteration | 28 |
+| Total iterations | 28 |
 
 ---
 
@@ -65,9 +65,9 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 5
 task: kill_switch_validation
-substep: 3/4
-last_action: Phase 5.3 infrastructure complete — real_reference.{h,cpp} with RealReferenceConfig, RealGroundTruth, RealReferenceResult; ParseGroundTruthBed for BED file parsing; ParseMinimap2Bam for baseline extraction; GenerateSlurmScript/SubmitSlurmJob/CheckSlurmJob for Hummel job management; fasta_reader.{h,cpp} for reference loading; SLURM template script; 30 new tests; 684 total pass
-next_action: Phase 5.4 — Submit Hummel SLURM job for GPU validation
+substep: 4/4
+last_action: Phase 5.4 refactor — split real_reference.cpp (611 LOC) into 3 modular files: real_reference_parse.cpp (131 LOC), real_reference_validate.cpp (266 LOC), real_reference_slurm.cpp (218 LOC); added real_reference_internal.h for shared utilities; monolith count 1→0; 684 tests pass
+next_action: Phase 5.5 — Submit Hummel SLURM job for GPU validation
   - Copy validation infrastructure to Hummel
   - Download/prepare hg38 chr14 IGH locus reference
   - Run minimap2 baseline alignment
@@ -107,7 +107,8 @@ acceptance: GPU validation job completes with recall ≥ 99.5% of minimap2
 25. ~~Phase 5.1: Kill-switch validation framework~~ ✅ done
 26. ~~Phase 5.2: End-to-end synthetic validation~~ ✅ done
 27. ~~Phase 5.3: Real reference integration infrastructure~~ ✅ done
-28. Phase 5.4: Submit Hummel SLURM job for GPU validation ← NEXT
+28. ~~Phase 5.4 refactor: real_reference.cpp split~~ ✅ done
+29. Phase 5.5: Submit Hummel SLURM job for GPU validation ← NEXT
 29. ... (continues per LLmap_SPEC.md)
 
 ---
@@ -159,6 +160,7 @@ acceptance: GPU validation job completes with recall ≥ 99.5% of minimap2
 | 25 | 2026-05-13 | n/a | Phase 5.1 killswitch validation + refactor | killswitch.{h,cpp} validation framework; KillSwitchValidator class for lossless/position/origin checks; baseline comparison; split igh_locus_generator.cpp (410 LOC) → 2 files; 21 new tests; 631 total pass; monolith count 1→0 |
 | 26 | 2026-05-13 | n/a | Phase 5.2 end-to-end synthetic validation | end_to_end.cpp with ClassicalAlignment→AlignmentRecord conversion; EndToEndConfig presets; RunEndToEndValidation orchestrator; position/timing/verdict metrics; 23 new tests; 654 total pass |
 | 27 | 2026-05-13 | yes | Phase 5.3 real reference infrastructure | real_reference.{h,cpp} with RealReferenceConfig/RealGroundTruth/RealReferenceResult; BED/BAM parsing; SLURM job management; fasta_reader.{h,cpp}; SLURM template script; 30 new tests; 684 total pass |
+| 28 | 2026-05-13 | n/a | Phase 5.4 refactor real_reference | split real_reference.cpp (611 LOC) → 3 files (parse, validate, slurm); internal header for shared utils; monolith count 1→0; 684 tests pass |
 
 ---
 
