@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 44 |
-| Total iterations | 44 |
+| Last successful iteration | 45 |
+| Total iterations | 45 |
 
 ---
 
@@ -71,6 +71,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 8.1: Profiling infrastructure + benchmarks (942 tests pass)
   - [x] Phase 8.2: Arena allocators for hot paths (973 tests pass)
   - [x] Phase 8.3: SIMD optimization for minimizer extraction (998 tests pass)
+  - [x] Phase 8.4: Memory-mapped I/O for large references (1028 tests pass)
 - [ ] Phase 9: Single-Cell + Paralog Production
 
 ---
@@ -80,13 +81,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 8
 task: performance_optimization
-substep: 4/N — Memory-mapped I/O for large references
-last_action: Phase 8.3 — SIMD optimization: simd.h (CpuFeatures runtime detection, EncodeBases SSE4.2/AVX2 accelerated base encoding, AllValid/CountValid/FindNextInvalid validity mask operations, PackKmers forward+reverse-complement k-mer packing, HashKmersBatch AVX2 batch hashing); split into simd.cpp + simd_encode.cpp + simd_hash.cpp; chain_dp.cpp split into chain_dp.cpp + chain_dp_scratch.cpp; test_simd.cpp (25 tests); 998 tests pass
-next_action: Phase 8.4 — Memory-mapped I/O
-  - mmap-based FASTA reader for large references
-  - Lazy loading for reference sequences
-  - Profile memory usage improvements
-acceptance: Phase 8.4 mmap-based reference loading + reduced memory footprint
+substep: 5/N — Thread pool and parallel batch processing
+last_action: Phase 8.4 — Memory-mapped FASTA reader: mmap_fasta.h/cpp with MmapFastaReader class (mmap-based file mapping, lazy index building, GetSequence/GetSequenceData/GetSubsequence for zero-copy and copy access, memory advice hints AdviseSequential/AdviseRandom/AdviseWillNeed/AdviseDontNeed, MmapStats for memory usage tracking); test_mmap_fasta.cpp (30 tests); 1028 tests pass
+next_action: Phase 8.5 — Thread pool for parallel batch processing
+  - Thread pool for parallel read batch processing
+  - Parallel minimizer extraction
+  - Parallel chain scoring
+acceptance: Phase 8.5 thread pool + measurable throughput improvement on multi-core
 ```
 
 ---
@@ -136,8 +137,9 @@ acceptance: Phase 8.4 mmap-based reference loading + reduced memory footprint
 41. ~~Phase 8.1: Profiling infrastructure + benchmarks~~ ✅ done
 42. ~~Phase 8.2: Arena allocators for hot paths~~ ✅ done
 43. ~~Phase 8.3: SIMD optimization for minimizer extraction~~ ✅ done
-44. Phase 8.4: Memory-mapped I/O for large references ← NEXT
-45. ... (continues per LLmap_SPEC.md)
+44. ~~Phase 8.4: Memory-mapped I/O for large references~~ ✅ done
+45. Phase 8.5: Thread pool for parallel batch processing ← NEXT
+46. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -205,6 +207,7 @@ acceptance: Phase 8.4 mmap-based reference loading + reduced memory footprint
 | 42 | 2026-05-14 | n/a | Phase 8.1 profiling infrastructure + benchmarks | profiler.h (ProfileStats, ProfileRegistry, ScopedTimer, ManualTimer); bench_classical_pipeline.cpp (minimizer/chain/WFA2/full pipeline benchmarks); test_profiler.cpp (19 tests); LLMAP_PROFILE_SCOPE macro; 942 tests pass; Phase 8 started |
 | 43 | 2026-05-14 | n/a | Phase 8.2 arena allocators for hot paths | arena.h (Arena bump allocator, ScratchBuffer<T> reusable vector, ScratchSpace thread-local, ScratchGuard RAII); ExtractMinimizersInto zero-alloc API; ChainScratch + ExtractChainsFromAnchorsWithScratch zero-alloc chaining; test_arena.cpp (31 tests); 973 tests pass |
 | 44 | 2026-05-14 | n/a | Phase 8.3 SIMD optimization + chain_dp refactor | simd.h/cpp (CpuFeatures, EncodeBases SSE4.2/AVX2, PackKmers, HashKmersBatch AVX2); split into simd.cpp + simd_encode.cpp + simd_hash.cpp; chain_dp.cpp (441 LOC) split → chain_dp.cpp (213 LOC) + chain_dp_scratch.cpp (207 LOC) + chain_dp_internal.h; test_simd.cpp (25 tests); 998 tests pass; monolith count 1→0 |
+| 45 | 2026-05-14 | n/a | Phase 8.4 memory-mapped FASTA reader | mmap_fasta.h + split to mmap_fasta.cpp (191 LOC) + mmap_fasta_seq.cpp (174 LOC) + mmap_fasta_internal.h (MmapFastaReader with mmap-based file mapping, lazy index building, GetSequence/GetSequenceData/GetSubsequence for zero-copy and copy access, memory advice hints AdviseSequential/AdviseRandom/AdviseWillNeed/AdviseDontNeed, MmapStats for resident page tracking, IsFastaFile utility); test_mmap_fasta.cpp (30 tests); 1028 tests pass; monolith count 0→0 |
 
 ---
 
