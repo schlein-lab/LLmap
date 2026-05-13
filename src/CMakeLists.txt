@@ -2,7 +2,8 @@ add_library(llmap_core STATIC
     core/alignment_record.cpp
     core/bucket_pyramid.cpp
     core/wave_state.cpp
-    synthetic/igh_locus_generator.cpp
+    synthetic/igh_locus_generator_core.cpp
+    synthetic/igh_locus_generator_presets.cpp
 )
 
 target_include_directories(llmap_core PUBLIC
@@ -154,6 +155,18 @@ if(LLMAP_WFA2_AVAILABLE)
     target_include_directories(llmap_classical PUBLIC ${WFA2_INCLUDE_DIR})
 endif()
 
+# Validation module — kill-switch validation framework
+add_library(llmap_validation STATIC
+    validation/killswitch.cpp
+)
+
+target_include_directories(llmap_validation PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_validation PUBLIC cxx_std_23)
+target_link_libraries(llmap_validation PUBLIC llmap_core)
+
 # CLI — full CLI surface
 add_executable(llmap cli/llmap_main.cpp)
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation)

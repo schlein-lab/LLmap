@@ -1,4 +1,4 @@
-// LLmap — Synthetic IGH-locus generator implementation.
+// LLmap — Synthetic IGH-locus generator core implementation.
 
 #include "synthetic/igh_locus_generator.h"
 
@@ -60,14 +60,11 @@ std::string IGHLocusGenerator::apply_errors(const std::string& seq, float error_
             float et = error_type(rng_);
 
             if (et < 0.7f) {
-                // Substitution (most common in HiFi)
                 result[i] = mutate_base(result[i]);
             } else if (et < 0.85f) {
-                // Deletion (skip this base by shifting)
                 result.erase(i, 1);
                 if (i > 0) --i;
             } else {
-                // Insertion
                 result.insert(i, 1, random_base());
                 ++i;
             }
@@ -89,7 +86,7 @@ std::string IGHLocusGenerator::generate_quality_string(std::uint64_t length, flo
 
     for (std::uint64_t i = 0; i < length; ++i) {
         int q = std::clamp(static_cast<int>(qual_dist(rng_)), 0, 50);
-        quals.push_back(static_cast<char>(q + 33));  // Phred+33
+        quals.push_back(static_cast<char>(q + 33));
     }
 
     return quals;
@@ -98,23 +95,17 @@ std::string IGHLocusGenerator::generate_quality_string(std::uint64_t length, flo
 GeneratedLocus IGHLocusGenerator::generate_locus() {
     GeneratedLocus locus;
 
-    // Generate canonical sequence
     locus.canonical_sequence = generate_random_sequence(config_.locus_length);
-
-    // Start with duplicate as copy of canonical
     locus.duplicate_sequence = locus.canonical_sequence;
 
-    // Determine sequence-identical regions
     std::uint64_t identical_length = static_cast<std::uint64_t>(
         config_.locus_length * config_.seq_identical_fraction);
 
     if (identical_length > 0) {
-        // Place identical region in the middle (simulates sequence-identical exons)
         std::uint64_t start = (config_.locus_length - identical_length) / 2;
         locus.identical_regions.push_back({start, start + identical_length});
     }
 
-    // Plant PSVs outside identical regions
     std::vector<std::uint64_t> available_positions;
     for (std::uint64_t pos = 0; pos < config_.locus_length; ++pos) {
         bool in_identical = false;
@@ -129,7 +120,6 @@ GeneratedLocus IGHLocusGenerator::generate_locus() {
         }
     }
 
-    // Shuffle and pick PSV positions
     std::shuffle(available_positions.begin(), available_positions.end(), rng_);
 
     std::uint32_t n_psvs = std::min(config_.n_psvs,
@@ -140,14 +130,12 @@ GeneratedLocus IGHLocusGenerator::generate_locus() {
         available_positions.begin() + n_psvs);
     std::sort(psv_positions.begin(), psv_positions.end());
 
-    // Assign gene contexts based on position
     std::uint64_t segment_size = config_.locus_length / config_.gene_names.size();
 
     for (std::uint64_t pos : psv_positions) {
         char canonical_allele = locus.canonical_sequence[pos];
         char dup_allele = mutate_base(canonical_allele);
 
-        // Apply the mutation to the duplicate
         locus.duplicate_sequence[pos] = dup_allele;
 
         std::size_t gene_idx = std::min(
@@ -163,13 +151,12 @@ GeneratedLocus IGHLocusGenerator::generate_locus() {
         });
     }
 
-    // Add non-discriminating "PSVs" in identical regions for tracking
     for (const auto& region : locus.identical_regions) {
         std::uint64_t mid = (region.start + region.end) / 2;
         locus.psvs.push_back({
             .position = mid,
             .canonical_allele = locus.canonical_sequence[mid],
-            .duplicate_allele = locus.canonical_sequence[mid],  // same!
+            .duplicate_allele = locus.canonical_sequence[mid],
             .gene_context = "IDENTICAL_REGION",
             .is_discriminating = false,
         });
@@ -181,7 +168,6 @@ GeneratedLocus IGHLocusGenerator::generate_locus() {
 std::vector<SyntheticRead> IGHLocusGenerator::generate_reads(const GeneratedLocus& locus) {
     std::vector<SyntheticRead> reads;
 
-    // Calculate effective depths
     float dup_fraction = config_.mosaic.dup_fraction;
     std::uint32_t total_depth = config_.mosaic.canonical_depth;
 
@@ -191,7 +177,6 @@ std::vector<SyntheticRead> IGHLocusGenerator::generate_reads(const GeneratedLocu
                        static_cast<float>(total_depth);
     }
 
-    // Estimate number of reads needed to achieve coverage
     std::uint64_t total_bases_needed = config_.locus_length * total_depth;
     std::uint64_t approx_reads = total_bases_needed / config_.read_length;
 
@@ -200,28 +185,19 @@ std::vector<SyntheticRead> IGHLocusGenerator::generate_reads(const GeneratedLocu
         config_.read_length_stddev);
 
     std::uniform_real_distribution<float> origin_dist(0.0f, 1.0f);
-    std::uniform_int_distribution<std::uint64_t> canonical_pos_dist(
-        0, config_.locus_length > config_.read_length ?
-           config_.locus_length - config_.read_length : 0);
-    std::uniform_int_distribution<std::uint64_t> dup_pos_dist(
-        0, config_.locus_length > config_.read_length ?
-           config_.locus_length - config_.read_length : 0);
 
     for (std::uint64_t i = 0; i < approx_reads; ++i) {
         SyntheticRead read;
 
-        // Determine origin based on dup_fraction
         bool from_dup = origin_dist(rng_) < dup_fraction;
         read.origin = from_dup ? SyntheticRead::Origin::Duplicate
                                : SyntheticRead::Origin::Canonical;
 
-        // Determine read length
         int read_len = std::clamp(
             static_cast<int>(len_dist(rng_)),
             100,
             static_cast<int>(config_.locus_length));
 
-        // Determine start position
         std::uint64_t max_start = config_.locus_length > static_cast<std::uint64_t>(read_len)
                                       ? config_.locus_length - read_len
                                       : 0;
@@ -231,32 +207,25 @@ std::vector<SyntheticRead> IGHLocusGenerator::generate_reads(const GeneratedLocu
         read.true_start = start;
         read.true_end = start + read_len;
 
-        // Assign gene context
         std::uint64_t segment_size = config_.locus_length / config_.gene_names.size();
         std::size_t gene_idx = std::min(
             start / segment_size,
             config_.gene_names.size() - 1);
         read.source_gene = config_.gene_names[gene_idx];
 
-        // Extract sequence from appropriate copy
         const std::string& source = from_dup ? locus.duplicate_sequence
                                              : locus.canonical_sequence;
         std::string raw_seq = source.substr(start, read_len);
 
-        // Apply sequencing errors
         read.sequence = apply_errors(raw_seq, config_.error_rate);
-
-        // Generate quality string matching the (post-error) sequence length
         read.quality = generate_quality_string(read.sequence.size(), config_.error_rate);
 
-        // Track covered PSVs
         for (const auto& psv : locus.psvs) {
             if (psv.position >= start && psv.position < start + read_len) {
                 read.covered_psv_positions.push_back(psv.position);
             }
         }
 
-        // Generate read ID encoding ground truth for validation
         std::ostringstream id;
         id << "synth_" << i
            << "_" << (from_dup ? "DUP" : "CAN")
@@ -276,7 +245,6 @@ GeneratedDataset IGHLocusGenerator::generate() {
     dataset.locus = generate_locus();
     dataset.reads = generate_reads(dataset.locus);
 
-    // Compute summary statistics
     for (const auto& read : dataset.reads) {
         if (read.origin == SyntheticRead::Origin::Canonical) {
             ++dataset.n_canonical_reads;
@@ -327,84 +295,5 @@ void IGHLocusGenerator::write_ground_truth(const GeneratedDataset& dataset,
             << read.covered_psv_positions.size() << '\n';
     }
 }
-
-// Preset implementations
-
-namespace presets {
-
-IGHLocusConfig canonical_only(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.mosaic.dup_fraction = 0.0f;
-    cfg.mosaic.canonical_depth = 30;
-    return cfg;
-}
-
-IGHLocusConfig balanced_mosaic(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.mosaic.dup_fraction = 0.5f;
-    cfg.mosaic.canonical_depth = 15;
-    cfg.mosaic.dup_depth = 15;
-    return cfg;
-}
-
-IGHLocusConfig dup_fraction_5(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.mosaic.dup_fraction = 0.05f;
-    return cfg;
-}
-
-IGHLocusConfig dup_fraction_10(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.mosaic.dup_fraction = 0.10f;
-    return cfg;
-}
-
-IGHLocusConfig dup_fraction_30(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.mosaic.dup_fraction = 0.30f;
-    return cfg;
-}
-
-IGHLocusConfig dup_fraction_50(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.mosaic.dup_fraction = 0.50f;
-    return cfg;
-}
-
-IGHLocusConfig dup_fraction_100(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.mosaic.dup_fraction = 1.0f;
-    return cfg;
-}
-
-IGHLocusConfig seq_identical_stress(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.seq_identical_fraction = 0.5f;  // half the locus is identical
-    cfg.mosaic.dup_fraction = 0.5f;
-    cfg.n_psvs = 10;  // fewer PSVs because less space
-    return cfg;
-}
-
-IGHLocusConfig tiny_test(std::uint64_t seed) {
-    IGHLocusConfig cfg;
-    cfg.seed = seed;
-    cfg.locus_length = 5000;
-    cfg.n_psvs = 5;
-    cfg.read_length = 1000;
-    cfg.read_length_stddev = 100.0f;
-    cfg.mosaic.canonical_depth = 10;
-    cfg.mosaic.dup_fraction = 0.3f;
-    return cfg;
-}
-
-}  // namespace presets
 
 }  // namespace llmap::synthetic
