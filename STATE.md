@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 0 (bootstrap) |
-| Total iterations | 0 |
+| Last successful iteration | 2 |
+| Total iterations | 2 |
 
 ---
 
@@ -22,6 +22,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 - [x] **Phase -1: Bootstrap** — repo + scaffolding + driver
 - [ ] **Phase 0: Foundations** — CMake, AlignmentRecord, BucketPyramid, synthetic data
+  - [x] Phase 0.1: AlignmentRecord type + tests (8 tests pass)
+  - [x] Phase 0.2: BucketPyramid data structure + serialization (11 tests pass)
 - [ ] Phase 1: Foundation Model Integration
 - [ ] Phase 2: Stage 1 Self-Interference
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
@@ -38,20 +40,20 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 0
-task: write_initial_alignment_record_type
-substep: 1/4
-last_action: bootstrap commit pushed
-next_action: implement src/core/alignment_record.h with Mapped|Tentative|Unmapped triad enforced at type level; write tests/unit/test_alignment_record.cpp; ensure cmake build + ctest pass
-acceptance: gtest passes on alignment_record type; lossless triad invariant enforced; ALL input read IDs round-trip through AlignmentRecord
+task: wave_state_sparse_csr
+substep: 3/4
+last_action: implemented BucketPyramid with L0/L1/L2 hierarchy, serialization, 11 tests pass
+next_action: implement src/core/wave_state.{h,cpp} with sparse CSR format for Read×Bucket probability matrix; CPU implementation with GPU stub (d_ vectors placeholder); write tests/unit/test_wave_state.cpp
+acceptance: WaveState builds, stores per-read bucket probabilities in CSR format; accessors work; collapse/dropout flag management works; tests pass
 ```
 
 ---
 
 ## Next task queue (FIFO)
 
-1. Phase 0.1: AlignmentRecord type + tests
-2. Phase 0.2: BucketPyramid data structure + serialization
-3. Phase 0.3: WaveState sparse CSR + GPU stub
+1. ~~Phase 0.1: AlignmentRecord type + tests~~ ✅ done
+2. ~~Phase 0.2: BucketPyramid data structure + serialization~~ ✅ done
+3. Phase 0.3: WaveState sparse CSR + GPU stub ← CURRENT
 4. Phase 0.4: Synthetic IGH-locus generator + simulator wrappers (pbsim3, ART)
 5. Phase 1.1: ONNX Runtime CUDA-EP wired
 6. Phase 1.2: Caduceus-Ph distilled embedder
@@ -80,6 +82,8 @@ acceptance: gtest passes on alignment_record type; lossless triad invariant enfo
 | Iteration | Timestamp | Hummel-up? | Action | Outcome |
 |---|---|---|---|---|
 | 0 | 2026-05-13 | yes | bootstrap | repo created, scaffold committed |
+| 1 | 2026-05-13 | n/a | verify alignment_record | confirmed 8 tests pass; advanced to phase 0.2 |
+| 2 | 2026-05-13 | n/a | implement bucket_pyramid | L0/L1/L2 hierarchy + serialization; 11 tests pass |
 
 ---
 

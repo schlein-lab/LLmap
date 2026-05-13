@@ -10,3 +10,14 @@ target_link_libraries(test_alignment_record
     GTest::gtest_main
 )
 gtest_discover_tests(test_alignment_record)
+
+add_executable(test_bucket_pyramid
+    unit/test_bucket_pyramid.cpp
+)
+target_link_libraries(test_bucket_pyramid
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_bucket_pyramid)

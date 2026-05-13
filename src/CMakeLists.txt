@@ -1,5 +1,6 @@
 add_library(llmap_core STATIC
     core/alignment_record.cpp
+    core/bucket_pyramid.cpp
 )
 
 target_include_directories(llmap_core PUBLIC
