@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 2 |
-| Total iterations | 2 |
+| Last successful iteration | 3 |
+| Total iterations | 3 |
 
 ---
 
@@ -24,6 +24,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase 0: Foundations** — CMake, AlignmentRecord, BucketPyramid, synthetic data
   - [x] Phase 0.1: AlignmentRecord type + tests (8 tests pass)
   - [x] Phase 0.2: BucketPyramid data structure + serialization (11 tests pass)
+  - [x] Phase 0.3: WaveState sparse CSR + GPU stub (21 tests pass)
 - [ ] Phase 1: Foundation Model Integration
 - [ ] Phase 2: Stage 1 Self-Interference
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
@@ -40,11 +41,11 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 0
-task: wave_state_sparse_csr
-substep: 3/4
-last_action: implemented BucketPyramid with L0/L1/L2 hierarchy, serialization, 11 tests pass
-next_action: implement src/core/wave_state.{h,cpp} with sparse CSR format for Read×Bucket probability matrix; CPU implementation with GPU stub (d_ vectors placeholder); write tests/unit/test_wave_state.cpp
-acceptance: WaveState builds, stores per-read bucket probabilities in CSR format; accessors work; collapse/dropout flag management works; tests pass
+task: synthetic_data_generator
+substep: 4/4
+last_action: implemented WaveState sparse CSR format with 21 tests pass (collapse detection, level management, CSR accessors)
+next_action: implement synthetic IGH-locus generator in src/synthetic/ with planted PSVs, controlled mosaic-dup-fraction, plus sequence-identical-exon edge case; create pbsim3/ART wrapper scripts
+acceptance: synthetic FASTQ generator produces reads with known PSVs and dup-fraction; simulator wrappers work; deterministic by seed
 ```
 
 ---
@@ -53,8 +54,8 @@ acceptance: WaveState builds, stores per-read bucket probabilities in CSR format
 
 1. ~~Phase 0.1: AlignmentRecord type + tests~~ ✅ done
 2. ~~Phase 0.2: BucketPyramid data structure + serialization~~ ✅ done
-3. Phase 0.3: WaveState sparse CSR + GPU stub ← CURRENT
-4. Phase 0.4: Synthetic IGH-locus generator + simulator wrappers (pbsim3, ART)
+3. ~~Phase 0.3: WaveState sparse CSR + GPU stub~~ ✅ done
+4. Phase 0.4: Synthetic IGH-locus generator + simulator wrappers (pbsim3, ART) ← CURRENT
 5. Phase 1.1: ONNX Runtime CUDA-EP wired
 6. Phase 1.2: Caduceus-Ph distilled embedder
 7. Phase 1.3: Bucket embedder via Evo-1.5B
@@ -84,6 +85,7 @@ acceptance: WaveState builds, stores per-read bucket probabilities in CSR format
 | 0 | 2026-05-13 | yes | bootstrap | repo created, scaffold committed |
 | 1 | 2026-05-13 | n/a | verify alignment_record | confirmed 8 tests pass; advanced to phase 0.2 |
 | 2 | 2026-05-13 | n/a | implement bucket_pyramid | L0/L1/L2 hierarchy + serialization; 11 tests pass |
+| 3 | 2026-05-13 | n/a | implement wave_state | sparse CSR format + collapse/level mgmt; 21 tests pass |
 
 ---
 
