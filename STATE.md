@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 20 |
-| Total iterations | 20 |
+| Last successful iteration | 21 |
+| Total iterations | 21 |
 
 ---
 
@@ -45,7 +45,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 3.5: Member propagation (469 tests pass)
   - [x] Phase 3.6: Stage 2 pipeline orchestrator (493 tests pass)
 - [ ] Phase 4: Classical Path + WFA2
-  - [ ] Phase 4.1: Minimizer index structure
+  - [x] Phase 4.1: Minimizer index structure (529 tests pass)
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
 - [ ] Phase 6: Dual Output (BAM + Parquet)
 - [ ] Phase 7: Claude Agent Integration
@@ -58,14 +58,14 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 4
-task: minimizer_index
-substep: 1/4
-last_action: Refactored bucket_embedder.cpp (509 LOC) → 3 modular files (bucket_embedder_core.cpp, bucket_embedder_tokenize.cpp, bucket_embedder_embed.cpp); internal header bucket_embedder_impl.h for PIMPL; monolith count 6→5; Phase 3 marked complete
-next_action: Phase 4.1 — Implement minimizer index structure for classical alignment path
-  - minimizer_index.{h,cpp}: k-mer based minimizer extraction + index
-  - Support for k, w (window size), canonical minimizers
-  - Efficient storage + lookup for L(r|b) sequence likelihood term
-acceptance: minimizer_index passes unit tests, integrates with Stage 2 for L(r|b) computation
+task: chain_extraction
+substep: 1/3
+last_action: Phase 4.1 complete — minimizer_index.{h,cpp} with k-mer extraction, canonical minimizers, Builder pattern, query/serialization; split self_wavecollapse.cpp (495 LOC) → 3 files; split minimizer_index.cpp → 3 files; 36 new tests; 529 total pass; monolith count 5→4
+next_action: Phase 4.2 — Chain extraction keeping all chains ≥ 0.9× best
+  - chain.{h,cpp}: anchor chaining from minimizer hits
+  - Dynamic programming for colinear chain extension
+  - Filter chains by score relative to best chain
+acceptance: chain extraction produces high-quality chains from minimizer hits
 ```
 
 ---
@@ -92,8 +92,8 @@ acceptance: minimizer_index passes unit tests, integrates with Stage 2 for L(r|b
 18. ~~Phase 3.5: Member propagation~~ ✅ done
 19. ~~Phase 3.6: Stage 2 pipeline orchestrator~~ ✅ done
 20. ~~Phase 3 refactor: bucket_embedder.cpp split~~ ✅ done
-21. Phase 4.1: Minimizer index structure ← NEXT
-22. Phase 4.2: Chain extraction
+21. ~~Phase 4.1: Minimizer index structure~~ ✅ done
+22. Phase 4.2: Chain extraction ← NEXT
 23. Phase 4.3: WFA2-lib FFI for gap-affine extension
 24. Phase 4.4: CPU-only fallback end-to-end
 25. ... (continues per LLmap_SPEC.md)
@@ -140,6 +140,7 @@ acceptance: minimizer_index passes unit tests, integrates with Stage 2 for L(r|b
 | 18 | 2026-05-13 | n/a | refactor cluster_rep + Phase 3.5 member_propagation | split cluster_rep.cpp (573 LOC) → 3 files; member_propagation.{h,cpp} for propagating rep positions to members; fixed allpair_pipeline build error; 26 new tests; 469 total pass; monolith count 7→6 |
 | 19 | 2026-05-13 | n/a | refactor reference_index + Phase 3.6 stage2_pipeline | split reference_index.cpp (543 LOC) → 3 files; stage2_pipeline.{h,cpp} orchestrator wiring all Stage 2 components; 24 new tests; 493 total pass; monolith count 6→5; Phase 3 complete |
 | 20 | 2026-05-13 | n/a | refactor bucket_embedder | split bucket_embedder.cpp (509 LOC) → 3 files (core, tokenize, embed); internal impl header for PIMPL; 493 tests pass; monolith count 6→5 |
+| 21 | 2026-05-13 | n/a | Phase 4.1 minimizer_index + refactor | minimizer_index.{h,cpp} with k-mer extraction, Builder, query, serialization; split self_wavecollapse.cpp (495 LOC) → 3 files; split minimizer_index → 3 files; 36 new tests; 529 total pass; monolith count 5→4 |
 
 ---
 

@@ -70,7 +70,9 @@ add_library(llmap_self_interference STATIC
     self_interference/leiden_clustering_core.cpp
     self_interference/leiden_clustering_phases.cpp
     self_interference/leiden_clustering_result.cpp
-    self_interference/self_wavecollapse.cpp
+    self_interference/self_wavecollapse_core.cpp
+    self_interference/self_wavecollapse_em.cpp
+    self_interference/self_wavecollapse_result.cpp
     self_interference/cluster_rep_selector.cpp
     self_interference/cluster_rep_methods.cpp
     self_interference/cluster_rep_result.cpp
@@ -120,6 +122,20 @@ target_include_directories(llmap_reference_collapse PUBLIC
 target_compile_features(llmap_reference_collapse PUBLIC cxx_std_23)
 target_link_libraries(llmap_reference_collapse PUBLIC llmap_core llmap_ai llmap_self_interference)
 
+# Classical module — minimizers, chains, WFA2 extension
+add_library(llmap_classical STATIC
+    classical/minimizer_index_core.cpp
+    classical/minimizer_index_io.cpp
+    classical/minimizer_index_extract.cpp
+)
+
+target_include_directories(llmap_classical PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_classical PUBLIC cxx_std_23)
+target_link_libraries(llmap_classical PUBLIC llmap_core)
+
 # CLI — full CLI surface
 add_executable(llmap cli/llmap_main.cpp)
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical)
