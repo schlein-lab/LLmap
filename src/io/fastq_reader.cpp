@@ -196,7 +196,14 @@ std::vector<FastqRecord> FastqReader::ReadAll() {
 }
 
 bool FastqReader::HasMore() const {
-    return !impl_->at_eof;
+    if (impl_->at_eof) {
+        return false;
+    }
+    // Peek to check if there's more data
+    if (impl_->file.peek() == std::ifstream::traits_type::eof()) {
+        return false;
+    }
+    return true;
 }
 
 bool FastqReader::IsCompressed() const {

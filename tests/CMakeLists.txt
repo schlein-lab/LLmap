@@ -157,6 +157,19 @@ target_link_libraries(test_allpair_pipeline
 )
 gtest_discover_tests(test_allpair_pipeline)
 
+# CLI tests (integration-style, uses subprocess)
+add_executable(test_llmap_cli
+    unit/test_llmap_cli.cpp
+)
+target_link_libraries(test_llmap_cli
+    PRIVATE
+    GTest::gtest
+    GTest::gtest_main
+)
+# CLI tests need the llmap binary to exist
+add_dependencies(test_llmap_cli llmap)
+gtest_discover_tests(test_llmap_cli)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
