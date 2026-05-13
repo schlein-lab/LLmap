@@ -363,6 +363,52 @@ if(LLMAP_ENABLE_BENCH)
     )
 endif()
 
+# ========== Claude Agent Module Tests ==========
+
+add_executable(test_agent_types
+    unit/test_agent_types.cpp
+)
+target_link_libraries(test_agent_types
+    PRIVATE
+    llmap_claude_agent
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_agent_types)
+
+add_executable(test_anthropic_client
+    unit/test_anthropic_client.cpp
+)
+target_link_libraries(test_anthropic_client
+    PRIVATE
+    llmap_claude_agent
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_anthropic_client)
+
+add_executable(test_agent_session
+    unit/test_agent_session.cpp
+)
+target_link_libraries(test_agent_session
+    PRIVATE
+    llmap_claude_agent
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_agent_session)
+
+add_executable(test_biology_prior
+    unit/test_biology_prior.cpp
+)
+target_link_libraries(test_biology_prior
+    PRIVATE
+    llmap_claude_agent
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_biology_prior)
+
 # ========== Integration Tests ==========
 # These test end-to-end workflows across multiple modules
 

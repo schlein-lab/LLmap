@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 35 |
-| Total iterations | 35 |
+| Last successful iteration | 36 |
+| Total iterations | 36 |
 
 ---
 
@@ -61,7 +61,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 6.3: Parquet reader + round-trip validation (757 tests pass)
   - [x] Phase 6.4: `llmap align` CLI with --parquet/--bam flags (761 tests pass)
   - [x] Phase 6.5: Integration tests for full align workflow (770 tests pass)
-- [ ] Phase 7: Claude Agent Integration
+- [ ] **Phase 7: Claude Agent Integration**
+  - [x] Phase 7.1: Agent types, API client, session management (839 tests pass)
 - [ ] Phase 8: Performance Optimization
 - [ ] Phase 9: Single-Cell + Paralog Production
 
@@ -72,13 +73,15 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 7
 task: claude_agent_integration
-substep: 1/N — Begin Claude Agent integration
-last_action: Phase 6.5 — Created tests/integration/test_align_integration.cpp; 9 new integration tests for full align workflow; SAM format compliance tests; Parquet/CSV round-trip validation; multi-read/multi-ref alignment tests; edge case coverage; 770 total tests pass; Phase 6 COMPLETE
-next_action: Phase 7.1 — Claude Agent API integration
-  - Define Claude agent interface for alignment review
-  - Implement agent-assisted ambiguity resolution
-  - Add agent-driven confidence calibration
-acceptance: Claude agent can review and improve tentative alignments
+substep: 2/N — CUDA sandbox + session integration
+last_action: Phase 7.1 — Created src/claude_agent module with agent_types.h/cpp (AgentMode, SessionType, AgentConfig, AgentResult, BiologyPrior, SampleParams, DiagnosticReport, AnalysisReport); anthropic_client.h/cpp (AnthropicClient with TokenBucket rate limiter, async Send/RunConversation); agent_session.h/cpp (IndexBuildSession, SampleInitSession, DiagnosticSession, ReporterSession); biology_prior.h/cpp (JSON serialization for BiologyPrior and SampleParams); 69 new unit tests; 839 total tests pass
+next_action: Phase 7.2 — CUDA Sandbox for agent-generated kernels
+  - Static AST analyzer for .cu files (no syscalls/IO/network)
+  - Bubblewrap containerized nvcc compilation
+  - Symbol allow-list enforcement
+  - Kernel budget enforcement
+  - Audit logging
+acceptance: Agent-generated CUDA code safely compiled and hot-loaded
 ```
 
 ---
@@ -120,8 +123,11 @@ acceptance: Claude agent can review and improve tentative alignments
 33. ~~Phase 6.3: Parquet reader + round-trip validation~~ ✅ done
 34. ~~Phase 6.4: `llmap align` CLI with --parquet/--bam~~ ✅ done
 35. ~~Phase 6.5: Integration tests for full align workflow~~ ✅ done
-36. Phase 7.1: Claude Agent API integration ← NEXT
-37. ... (continues per LLmap_SPEC.md)
+36. ~~Phase 7.1: Claude Agent API integration~~ ✅ done
+37. Phase 7.2: CUDA Sandbox for agent-generated kernels ← NEXT
+38. Phase 7.3: Session integration with align pipeline
+39. Phase 7.4: `--llm` flag implementation
+40. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -180,6 +186,7 @@ acceptance: Claude agent can review and improve tentative alignments
 | 33 | 2026-05-13 | n/a | Phase 6.3 Parquet reader + round-trip validation | parquet_reader.{h,cpp}; ParquetReader class for reading Parquet/CSV; ParseCSVLine, ReadParquet, GroupByReadId, ValidateRoundTrip functions; full round-trip tests (write→read→compare); 10K entry lossless invariant; 24 new tests; 757 total pass |
 | 34 | 2026-05-13 | n/a | Phase 6.4 `llmap align` CLI + parquet_reader split | cmd_align.cpp for full align workflow; wires classical pipeline (minimizer→chain→WFA2); --bam/--sam/--parquet flags; split parquet_reader.cpp (446 LOC) → 3 files (parquet_reader.cpp, parquet_reader_read.cpp, parquet_reader_util.cpp); monolith count 1→0; 4 new CLI tests; 761 total pass |
 | 35 | 2026-05-13 | n/a | Phase 6.5 integration tests + Phase 6 COMPLETE | tests/integration/test_align_integration.cpp; 9 integration tests for full align workflow; SAM format compliance; Parquet/CSV round-trip; multi-ref alignment; edge cases (empty, short, unmappable reads); unique test dirs for parallel safety; 9 new tests; 770 total pass; Phase 6 complete |
+| 36 | 2026-05-13 | n/a | Phase 7.1 Claude Agent API + session management | src/claude_agent module: agent_types.{h,cpp} (AgentMode, SessionType, AgentConfig, AgentResult, BiologyPrior, SampleParams, DiagnosticReport, AnalysisReport variants); anthropic_client.{h,cpp} (AnthropicClient PIMPL with TokenBucket rate limiter, async SendAsync/RunConversation); agent_session.{h,cpp} (4 session types: IndexBuildSession, SampleInitSession, DiagnosticSession, ReporterSession); biology_prior.{h,cpp} (JSON serialization for BiologyPrior and SampleParams); 69 new tests; 839 total pass |
 
 ---
 
