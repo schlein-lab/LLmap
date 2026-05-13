@@ -116,7 +116,9 @@ add_library(llmap_reference_collapse STATIC
     reference_collapse/collapse_check.cpp
     reference_collapse/refinement.cpp
     reference_collapse/member_propagation.cpp
-    reference_collapse/stage2_pipeline.cpp
+    reference_collapse/stage2_pipeline_core.cpp
+    reference_collapse/stage2_pipeline_init.cpp
+    reference_collapse/stage2_pipeline_em.cpp
 )
 
 target_include_directories(llmap_reference_collapse PUBLIC
@@ -135,6 +137,7 @@ add_library(llmap_classical STATIC
     classical/chain_dp.cpp
     classical/wfa2_aligner_core.cpp
     classical/wfa2_aligner_align.cpp
+    classical/classical_pipeline.cpp
 )
 
 target_include_directories(llmap_classical PUBLIC
