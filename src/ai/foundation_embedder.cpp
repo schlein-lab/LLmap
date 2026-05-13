@@ -156,6 +156,10 @@ bool FoundationEmbedder::Initialize() {
         session_->error_message = e.what();
         session_->initialized = false;
         return false;
+    } catch (const std::exception& e) {
+        session_->error_message = e.what();
+        session_->initialized = false;
+        return false;
     }
 #else
     // No ONNX Runtime available — embedder is not functional but compiles
@@ -368,6 +372,13 @@ std::string FoundationEmbedder::ModelName() const {
 
 std::string FoundationEmbedder::ModelVersion() const {
     return "1.0";  // Placeholder — would extract from ONNX model metadata
+}
+
+std::string FoundationEmbedder::LastError() const {
+    if (session_) {
+        return session_->error_message;
+    }
+    return "Session not initialized";
 }
 
 // Global utility functions

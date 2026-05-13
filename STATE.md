@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 5 |
-| Total iterations | 5 |
+| Last successful iteration | 6 |
+| Total iterations | 6 |
 
 ---
 
@@ -43,10 +43,10 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 1
 task: foundation_model_integration
-substep: 2/3
-last_action: wired ONNX Runtime CMake integration + created FoundationEmbedder class with CPU/CUDA/TensorRT EP support; 19 new tests (75 total pass)
-next_action: implement Caduceus-Ph distillation pipeline + create minimal test ONNX model; verify embedder produces real embeddings
-acceptance: embedder loads a real ONNX model; produces 256-dim embeddings for DNA sequences; batch inference works
+substep: 3/3
+last_action: created test ONNX model generator + verified FoundationEmbedder with real ONNX Runtime inference; 10 new tests (85 total pass)
+next_action: implement Evo-1.5B bucket embedder or wire real Caduceus-Ph model download; add benchmark for embedder throughput
+acceptance: bucket embedding pipeline ready; throughput benchmarked on representative sequences
 ```
 
 ---
@@ -58,8 +58,8 @@ acceptance: embedder loads a real ONNX model; produces 256-dim embeddings for DN
 3. ~~Phase 0.3: WaveState sparse CSR + GPU stub~~ ✅ done
 4. ~~Phase 0.4: Synthetic IGH-locus generator + simulator wrappers~~ ✅ done
 5. ~~Phase 1.1: ONNX Runtime CUDA-EP wired~~ ✅ done
-6. Phase 1.2: Caduceus-Ph distilled embedder ← CURRENT
-7. Phase 1.3: Bucket embedder via Evo-1.5B
+6. ~~Phase 1.2: Test ONNX model + verified embedder inference~~ ✅ done
+7. Phase 1.3: Bucket embedder via Evo-1.5B ← CURRENT
 8. ... (continues per LLmap_SPEC.md)
 
 ---
@@ -89,6 +89,7 @@ acceptance: embedder loads a real ONNX model; produces 256-dim embeddings for DN
 | 3 | 2026-05-13 | n/a | implement wave_state | sparse CSR format + collapse/level mgmt; 21 tests pass |
 | 4 | 2026-05-13 | n/a | implement synthetic_data_generator | IGH-locus generator + pbsim3/ART wrappers; 56 tests pass |
 | 5 | 2026-05-13 | n/a | wire ONNX Runtime + FoundationEmbedder | CMake finds ONNX RT; FoundationEmbedder CPU/CUDA/TRT; 75 tests pass |
+| 6 | 2026-05-13 | n/a | test ONNX model + embedder verification | Python model generator; real inference tests; 85 tests pass |
 
 ---
 

@@ -94,6 +94,9 @@ public:
     // Status check
     bool IsReady() const { return session_ != nullptr; }
 
+    // Get last error message (for debugging initialization failures)
+    std::string LastError() const;
+
 private:
     explicit FoundationEmbedder(const EmbedderConfig& config);
 
