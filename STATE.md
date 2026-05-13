@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 8 |
-| Total iterations | 8 |
+| Last successful iteration | 9 |
+| Total iterations | 9 |
 
 ---
 
@@ -32,6 +32,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 1.3: BucketEmbedder + benchmark (110 tests pass)
 - [ ] Phase 2: Stage 1 Self-Interference
   - [x] Phase 2.1: FAISS-GPU IndexIVFFlat wrapper (140 tests pass)
+  - [x] Phase 2.2: Sparse k-NN extraction → similarity graph (180 tests pass)
 - [ ] Phase 3: Stage 2 Reference WaveCollapse
 - [ ] Phase 4: Classical Path + WFA2
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
@@ -47,10 +48,10 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 2
 task: self_interference_stage1
-substep: 2/6
-last_action: FAISS wrapper (FlatL2, FlatIP, IVFFlat, IVFPQ) with GPU fallback; 30 new tests; 140 total pass
-next_action: implement similarity_graph.{h,cpp} for sparse k-NN extraction
-acceptance: SimilarityGraph class can build edge list from batch k-NN results; tests pass
+substep: 3/6
+last_action: SimilarityGraph class with CSR storage, k-NN → edge extraction, distance→weight conversion, filtering, serialization; 40 new tests; 180 total pass
+next_action: implement leiden_clustering.{h,cu} for GPU Leiden community detection
+acceptance: LeidenClustering can partition SimilarityGraph into communities; tests pass
 ```
 
 ---
@@ -65,9 +66,10 @@ acceptance: SimilarityGraph class can build edge list from batch k-NN results; t
 6. ~~Phase 1.2: Test ONNX model + verified embedder inference~~ ✅ done
 7. ~~Phase 1.3: BucketEmbedder + benchmark~~ ✅ done
 8. ~~Phase 2.1: FAISS-GPU IndexIVFFlat wrapper~~ ✅ done
-9. Phase 2.2: Sparse k-NN extraction → similarity graph ← CURRENT
-10. Phase 2.3: Leiden community detection
-11. ... (continues per LLmap_SPEC.md)
+9. ~~Phase 2.2: Sparse k-NN extraction → similarity graph~~ ✅ done
+10. Phase 2.3: Leiden community detection ← CURRENT
+11. Phase 2.4: Self-WaveCollapse intra-cluster EM
+12. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -99,6 +101,7 @@ acceptance: SimilarityGraph class can build edge list from batch k-NN results; t
 | 6 | 2026-05-13 | n/a | test ONNX model + embedder verification | Python model generator; real inference tests; 85 tests pass |
 | 7 | 2026-05-13 | n/a | BucketEmbedder + throughput benchmark | bucket_embedder.{h,cpp}; 25 new tests; bench_embedder_throughput; 110 tests pass |
 | 8 | 2026-05-13 | n/a | FAISS wrapper for ANN search | faiss_wrapper.{h,cpp}; CMake FAISS detection; 30 new tests; 140 total pass |
+| 9 | 2026-05-13 | n/a | SimilarityGraph for sparse k-NN | similarity_graph.{h,cpp}; CSR format; 40 new tests; 180 total pass |
 
 ---
 

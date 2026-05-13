@@ -77,6 +77,17 @@ target_link_libraries(test_faiss_wrapper
 )
 gtest_discover_tests(test_faiss_wrapper)
 
+add_executable(test_similarity_graph
+    unit/test_similarity_graph.cpp
+)
+target_link_libraries(test_similarity_graph
+    PRIVATE
+    llmap_self_interference
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_similarity_graph)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
