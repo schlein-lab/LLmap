@@ -187,6 +187,8 @@ add_library(llmap_claude_agent STATIC
     claude_agent/agent_session.cpp
     claude_agent/biology_prior.cpp
     claude_agent/cuda_sandbox_analyzer.cpp
+    claude_agent/cuda_sandbox_parse.cpp
+    claude_agent/cuda_sandbox_patterns.cpp
     claude_agent/cuda_sandbox_compile.cpp
     claude_agent/cuda_sandbox_load.cpp
 )
