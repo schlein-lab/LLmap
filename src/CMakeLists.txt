@@ -40,6 +40,7 @@ add_library(llmap_self_interference STATIC
     self_interference/faiss_wrapper.cpp
     self_interference/similarity_graph.cpp
     self_interference/leiden_clustering.cpp
+    self_interference/self_wavecollapse.cpp
 )
 
 target_include_directories(llmap_self_interference PUBLIC
