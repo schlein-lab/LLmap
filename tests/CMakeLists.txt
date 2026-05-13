@@ -249,6 +249,17 @@ target_link_libraries(test_minimizer_index
 )
 gtest_discover_tests(test_minimizer_index)
 
+add_executable(test_chain
+    unit/test_chain.cpp
+)
+target_link_libraries(test_chain
+    PRIVATE
+    llmap_classical
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_chain)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput
