@@ -35,6 +35,33 @@ if(LLMAP_ONNXRUNTIME_AVAILABLE)
     endif()
 endif()
 
+# Self-interference module — Stage 1 (read-vs-read ANN clustering)
+add_library(llmap_self_interference STATIC
+    self_interference/faiss_wrapper.cpp
+)
+
+target_include_directories(llmap_self_interference PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_self_interference PUBLIC cxx_std_23)
+target_link_libraries(llmap_self_interference PUBLIC llmap_core)
+
+# Link FAISS if available
+if(LLMAP_FAISS_AVAILABLE)
+    target_compile_definitions(llmap_self_interference PRIVATE LLMAP_HAS_FAISS)
+    if(TARGET faiss::faiss)
+        target_link_libraries(llmap_self_interference PUBLIC faiss::faiss)
+    elseif(FAISS_LIBRARY)
+        target_link_libraries(llmap_self_interference PUBLIC ${FAISS_LIBRARY})
+        target_include_directories(llmap_self_interference PUBLIC ${FAISS_INCLUDE_DIR})
+    endif()
+    if(LLMAP_FAISS_GPU_AVAILABLE)
+        target_compile_definitions(llmap_self_interference PRIVATE LLMAP_HAS_FAISS_GPU)
+        target_link_libraries(llmap_self_interference PUBLIC ${FAISS_GPU_LIBRARY})
+    endif()
+endif()
+
 # CLI placeholder — will grow into full CLI surface in later phases
 add_executable(llmap cli/llmap_main.cpp)
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_self_interference)
