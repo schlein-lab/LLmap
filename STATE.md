@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 28 |
-| Total iterations | 28 |
+| Last successful iteration | 29 |
+| Total iterations | 29 |
 
 ---
 
@@ -53,6 +53,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 5.1: Kill-switch validation framework (631 tests pass)
   - [x] Phase 5.2: End-to-end synthetic validation (654 tests pass)
   - [x] Phase 5.3: Real reference integration infrastructure (684 tests pass)
+  - [x] Phase 5.4: `validate-real` CLI + SLURM script (684 tests pass)
 - [ ] Phase 6: Dual Output (BAM + Parquet)
 - [ ] Phase 7: Claude Agent Integration
 - [ ] Phase 8: Performance Optimization
@@ -65,14 +66,16 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 5
 task: kill_switch_validation
-substep: 4/4
-last_action: Phase 5.4 refactor — split real_reference.cpp (611 LOC) into 3 modular files: real_reference_parse.cpp (131 LOC), real_reference_validate.cpp (266 LOC), real_reference_slurm.cpp (218 LOC); added real_reference_internal.h for shared utilities; monolith count 1→0; 684 tests pass
+substep: 5/6
+last_action: Phase 5.4 — added `llmap validate-real` CLI command + scripts/slurm_validate_real.sh; CLI parses --reference, --reads, --baseline, --truth, --k, --w, --min-identity, --gpu flags and calls RunRealReferenceValidation; SLURM script loads cuda/gcc modules and submits GPU job; 684 tests pass
 next_action: Phase 5.5 — Submit Hummel SLURM job for GPU validation
-  - Copy validation infrastructure to Hummel
-  - Download/prepare hg38 chr14 IGH locus reference
+  - SSH to Hummel and sync repo
+  - Build LLmap with CUDA enabled on Hummel
+  - Download hg38 chr14 IGH locus reference (~1MB)
+  - Generate synthetic reads with ground truth
   - Run minimap2 baseline alignment
   - Submit SLURM job for GPU-enabled LLmap validation
-  - Poll for completion and parse results
+  - Mark as awaiting_slurm_job_<id> if submitted
 acceptance: GPU validation job completes with recall ≥ 99.5% of minimap2
 ```
 
@@ -108,8 +111,9 @@ acceptance: GPU validation job completes with recall ≥ 99.5% of minimap2
 26. ~~Phase 5.2: End-to-end synthetic validation~~ ✅ done
 27. ~~Phase 5.3: Real reference integration infrastructure~~ ✅ done
 28. ~~Phase 5.4 refactor: real_reference.cpp split~~ ✅ done
-29. Phase 5.5: Submit Hummel SLURM job for GPU validation ← NEXT
-29. ... (continues per LLmap_SPEC.md)
+29. ~~Phase 5.4 validate-real CLI + SLURM script~~ ✅ done
+30. Phase 5.5: Submit Hummel SLURM job for GPU validation ← NEXT
+31. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -161,6 +165,7 @@ acceptance: GPU validation job completes with recall ≥ 99.5% of minimap2
 | 26 | 2026-05-13 | n/a | Phase 5.2 end-to-end synthetic validation | end_to_end.cpp with ClassicalAlignment→AlignmentRecord conversion; EndToEndConfig presets; RunEndToEndValidation orchestrator; position/timing/verdict metrics; 23 new tests; 654 total pass |
 | 27 | 2026-05-13 | yes | Phase 5.3 real reference infrastructure | real_reference.{h,cpp} with RealReferenceConfig/RealGroundTruth/RealReferenceResult; BED/BAM parsing; SLURM job management; fasta_reader.{h,cpp}; SLURM template script; 30 new tests; 684 total pass |
 | 28 | 2026-05-13 | n/a | Phase 5.4 refactor real_reference | split real_reference.cpp (611 LOC) → 3 files (parse, validate, slurm); internal header for shared utils; monolith count 1→0; 684 tests pass |
+| 29 | 2026-05-13 | yes | Phase 5.4 validate-real CLI + SLURM | added `llmap validate-real` CLI command with arg parsing; scripts/slurm_validate_real.sh for GPU job submission; 684 tests pass |
 
 ---
 
