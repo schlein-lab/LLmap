@@ -282,6 +282,18 @@ target_link_libraries(test_classical_pipeline
 )
 gtest_discover_tests(test_classical_pipeline)
 
+# Validation module tests
+add_executable(test_killswitch
+    unit/test_killswitch.cpp
+)
+target_link_libraries(test_killswitch
+    PRIVATE
+    llmap_validation
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_killswitch)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput

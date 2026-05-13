@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 24 |
-| Total iterations | 24 |
+| Last successful iteration | 25 |
+| Total iterations | 25 |
 
 ---
 
@@ -50,6 +50,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 4.3: WFA2-lib FFI for gap-affine extension (587 tests pass)
   - [x] Phase 4.4: CPU-only fallback end-to-end (610 tests pass)
 - [ ] **Phase 5: KILL-SWITCH VALIDATION** ★
+  - [x] Phase 5.1: Kill-switch validation framework (631 tests pass)
 - [ ] Phase 6: Dual Output (BAM + Parquet)
 - [ ] Phase 7: Claude Agent Integration
 - [ ] Phase 8: Performance Optimization
@@ -62,13 +63,14 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 5
 task: kill_switch_validation
-substep: 1/3
-last_action: Phase 4.4 complete — classical_pipeline.{h,cpp} orchestrator; seed-chain-extend wired end-to-end; 23 new tests; split stage2_pipeline.cpp (415 LOC) → 3 files; 610 total pass; monolith count 2→1; Phase 4 complete
-next_action: Phase 5.1 — Kill-switch validation framework
-  - Create validation test harness for lossless guarantee
-  - Test that all input reads appear in output with valid positions
-  - Verify position accuracy using synthetic ground truth
-acceptance: Kill-switch invariant tests codified and passing
+substep: 2/3
+last_action: Phase 5.1 complete — killswitch.{h,cpp} validation framework; KillSwitchValidator class; lossless guarantee checks; position accuracy validation; origin accuracy for synthetic data; baseline comparison support; split igh_locus_generator.cpp (410 LOC) → 2 files; 21 new tests; 631 total pass; monolith count 1→0
+next_action: Phase 5.2 — End-to-end synthetic validation
+  - Wire classical pipeline through validation framework
+  - Generate synthetic dataset, align, validate
+  - Verify position accuracy ≥95% with ground truth
+  - Verify lossless guarantee (all input reads produce output)
+acceptance: Synthetic end-to-end validation passing with position accuracy metrics
 ```
 
 ---
@@ -99,8 +101,9 @@ acceptance: Kill-switch invariant tests codified and passing
 22. ~~Phase 4.2: Chain extraction~~ ✅ done
 23. ~~Phase 4.3: WFA2-lib FFI for gap-affine extension~~ ✅ done
 24. ~~Phase 4.4: CPU-only fallback end-to-end~~ ✅ done
-25. Phase 5.1: Kill-switch validation framework ← NEXT
-26. ... (continues per LLmap_SPEC.md)
+25. ~~Phase 5.1: Kill-switch validation framework~~ ✅ done
+26. Phase 5.2: End-to-end synthetic validation ← NEXT
+27. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -148,6 +151,7 @@ acceptance: Kill-switch invariant tests codified and passing
 | 22 | 2026-05-13 | n/a | Phase 4.2 chain extraction + refactor | chain.{h,cpp} with colinear DP chaining, anchor scoring, 0.9× best filter; split similarity_graph.cpp (488 LOC) → 3 files; 23 new tests; 552 total pass; monolith count 4→3 |
 | 23 | 2026-05-13 | n/a | Phase 4.3 WFA2 aligner + refactor | wfa2_aligner.{h,cpp} with Gotoh gap-affine DP fallback; PIMPL for native WFA2-lib; Align/ExtendLeft/ExtendRight/AlignBatch APIs; split foundation_embedder.cpp (420 LOC) → 3 files; 35 new tests; 587 total pass; monolith count 3→2 |
 | 24 | 2026-05-13 | n/a | Phase 4.4 classical_pipeline + refactor | classical_pipeline.{h,cpp} orchestrator wiring minimizer_index + chain + wfa2_aligner; seed-chain-extend end-to-end; split stage2_pipeline.cpp (415 LOC) → 3 files; 23 new tests; 610 total pass; monolith count 2→1; Phase 4 complete |
+| 25 | 2026-05-13 | n/a | Phase 5.1 killswitch validation + refactor | killswitch.{h,cpp} validation framework; KillSwitchValidator class for lossless/position/origin checks; baseline comparison; split igh_locus_generator.cpp (410 LOC) → 2 files; 21 new tests; 631 total pass; monolith count 1→0 |
 
 ---
 
