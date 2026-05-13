@@ -13,6 +13,7 @@
 #include "self_interference/allpair_pipeline.h"
 #include "self_interference/cluster_rep.h"
 #include "self_interference/faiss_wrapper.h"
+#include "self_interference/leiden_clustering.h"
 #include "self_interference/self_wavecollapse.h"
 #include "self_interference/similarity_graph.h"
 
