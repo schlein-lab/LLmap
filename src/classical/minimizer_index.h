@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core/arena.h"
+
 #include <cstdint>
 #include <memory>
 #include <optional>
@@ -156,6 +158,19 @@ private:
 std::vector<Minimizer> ExtractMinimizers(
     std::string_view sequence,
     const MinimizerConfig& config = {});
+
+// Extract minimizers into a pre-allocated scratch buffer (zero-allocation hot path)
+//
+// Parameters:
+//   sequence: DNA sequence (A/C/G/T/N)
+//   config: minimizer extraction parameters
+//   out: scratch buffer to fill with results (cleared, then filled)
+//
+// Use this version when calling repeatedly to avoid heap allocations.
+void ExtractMinimizersInto(
+    std::string_view sequence,
+    const MinimizerConfig& config,
+    core::ScratchBuffer<Minimizer>& out);
 
 // Hash a k-mer using the invertible hash function
 uint64_t HashKmer(uint64_t kmer, uint64_t seed);

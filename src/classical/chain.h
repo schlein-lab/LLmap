@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core/arena.h"
+
 #include <cstdint>
 #include <span>
 #include <vector>
@@ -104,5 +106,33 @@ bool IsColinear(
     const Anchor& a,
     const Anchor& b,
     const ChainConfig& config);
+
+// Scratch buffers for zero-allocation chaining
+struct ChainScratch {
+    // DP state: (score, predecessor) per anchor
+    core::ScratchBuffer<int32_t> dp_score;
+    core::ScratchBuffer<int32_t> dp_pred;
+
+    // Used flags for backtracking
+    core::ScratchBuffer<bool> used;
+
+    // Sorted indices
+    core::ScratchBuffer<std::pair<uint64_t, size_t>> keyed_indices;
+    core::ScratchBuffer<size_t> group_indices;
+    core::ScratchBuffer<size_t> score_order;
+
+    // Backtrack buffer
+    core::ScratchBuffer<uint32_t> backtrack;
+};
+
+// Extract chains using pre-allocated scratch buffers (zero-allocation hot path)
+//
+// Call this version when processing many reads to avoid repeated heap allocations.
+// The scratch buffers will grow as needed but won't shrink, so they get reused.
+ChainResult ExtractChainsFromAnchorsWithScratch(
+    std::span<const Anchor> anchors,
+    uint32_t query_len,
+    const ChainConfig& config,
+    ChainScratch& scratch);
 
 }  // namespace llmap::classical
