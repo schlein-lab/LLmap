@@ -160,7 +160,9 @@ endif()
 add_library(llmap_validation STATIC
     validation/killswitch.cpp
     validation/end_to_end.cpp
-    validation/real_reference.cpp
+    validation/real_reference_parse.cpp
+    validation/real_reference_validate.cpp
+    validation/real_reference_slurm.cpp
 )
 
 target_include_directories(llmap_validation PUBLIC
