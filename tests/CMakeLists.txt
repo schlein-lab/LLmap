@@ -182,6 +182,17 @@ target_link_libraries(test_reference_index
 )
 gtest_discover_tests(test_reference_index)
 
+add_executable(test_em_iterator
+    unit/test_em_iterator.cpp
+)
+target_link_libraries(test_em_iterator
+    PRIVATE
+    llmap_reference_collapse
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_em_iterator)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput

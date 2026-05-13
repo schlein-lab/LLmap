@@ -61,7 +61,9 @@ endif()
 
 # Self-interference module — Stage 1 (read-vs-read ANN clustering)
 add_library(llmap_self_interference STATIC
-    self_interference/faiss_wrapper.cpp
+    self_interference/faiss_wrapper_index.cpp
+    self_interference/faiss_wrapper_search.cpp
+    self_interference/faiss_wrapper_util.cpp
     self_interference/similarity_graph.cpp
     self_interference/leiden_clustering.cpp
     self_interference/self_wavecollapse.cpp
@@ -94,6 +96,7 @@ endif()
 # Reference collapse module — Stage 2 (reference-based WaveCollapse)
 add_library(llmap_reference_collapse STATIC
     reference_collapse/reference_index.cpp
+    reference_collapse/em_iterator.cpp
 )
 
 target_include_directories(llmap_reference_collapse PUBLIC

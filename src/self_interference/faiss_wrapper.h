@@ -8,6 +8,10 @@
 #include <utility>
 #include <vector>
 
+#ifdef LLMAP_HAS_FAISS
+namespace faiss { class Index; }
+#endif
+
 namespace llmap::self_interference {
 
 // Search result for a single query vector
@@ -183,6 +187,14 @@ private:
     std::vector<float> NormalizeVectorsCopy(
         std::span<const float> vectors,
         size_t num_vectors) const;
+
+#ifdef LLMAP_HAS_FAISS
+    // Index factory helpers (defined in faiss_wrapper_index.cpp)
+    std::unique_ptr<faiss::Index> CreateFlatL2Index(int dim, bool use_gpu);
+    std::unique_ptr<faiss::Index> CreateFlatIPIndex(int dim, bool use_gpu);
+    std::unique_ptr<faiss::Index> CreateIVFFlatIndex(int dim, bool use_gpu);
+    std::unique_ptr<faiss::Index> CreateIVFPQIndex(int dim, bool use_gpu);
+#endif
 
     FaissIndexConfig config_;
     FaissProvider active_provider_;
