@@ -5,6 +5,7 @@ add_library(llmap_core STATIC
     core/simd.cpp
     core/simd_encode.cpp
     core/simd_hash.cpp
+    core/thread_pool.cpp
     synthetic/igh_locus_generator_core.cpp
     synthetic/igh_locus_generator_presets.cpp
 )
