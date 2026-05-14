@@ -113,3 +113,4 @@ benchmarks/reports/*/*/rep*/slurm.out
 benchmarks/reports/*/*/rep*/slurm.err
 benchmarks/reports/*/*/rep*/submit.sbatch
 benchmarks/reports/*/*/rep*/star_tmp/
+benchmarks/reports/tool_versions.json
