@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 77 |
-| Total iterations | 77 |
+| Last successful iteration | 78 |
+| Total iterations | 78 |
 
 ---
 
@@ -96,7 +96,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 11.3: Tool installation manifest + version-verification gate (1454 tests pass)
   - [x] Phase 11.4: Per-tool runner shake-down (smoke tests for each runner) (1454 tests pass)
   - [x] Phase 11.5: Metrics collector unit tests (1454 C++ tests + 31 Python tests pass)
-  - [ ] Phase 11.6: SLURM submission orchestrator end-to-end test
+  - [x] Phase 11.6: SLURM submission orchestrator end-to-end test (1454 C++ + 61 Python tests pass)
   - [ ] Phase 11.7: Report generator (per-task README + cross-tool tables + plots)
   - [ ] Phase 11.8: Run T1, T2 (synthetic, local CPU) and aggregate
   - [ ] Phase 11.9: SLURM submission for T3–T6 (Hummel, user submits)
@@ -109,19 +109,19 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 11
-task: 11.6_slurm_orchestrator
-substep: SLURM submission orchestrator end-to-end test
+task: 11.7_report_generator
+substep: Report generator (per-task README + cross-tool tables + plots)
 inputs:
-  - benchmarks/runners/ (tool wrappers)
-  - benchmarks/datasets/ (test datasets)
-  - benchmarks/metrics/ (metrics extraction, now tested)
+  - benchmarks/orchestrate.py (orchestrator)
+  - benchmarks/metrics/ (compute.py, concordance.py)
+  - benchmarks/reports/ (output from benchmark runs)
 expected_files_changed:
-  - benchmarks/orchestrate.py (new, SLURM job orchestrator)
-  - benchmarks/test_orchestrate.py (new, orchestrator tests)
+  - benchmarks/report.py (new, report generator)
+  - benchmarks/test_report.py (new, report tests)
 acceptance:
-  - orchestrate.py can generate SLURM sbatch scripts
-  - dry-run mode works without actual submission
-  - job dependency chains are correctly formed
+  - report.py generates per-task README.md summaries
+  - cross-tool comparison tables (TSV/Markdown)
+  - plot generation stubs (or matplotlib plots)
   - monolith count remains 0
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
@@ -197,8 +197,8 @@ hard_rule_precheck:
 63. ~~Phase 11.3: Tool installation manifest + version verification~~ ✅ done
 64. ~~Phase 11.4: Per-tool runner shake-down (smoke tests)~~ ✅ done
 65. ~~Phase 11.5: Metrics collector unit tests~~ ✅ done
-66. Phase 11.6: SLURM submission orchestrator ← NEXT
-66. Phase 11.6: SLURM submission orchestrator end-to-end test
+66. ~~Phase 11.6: SLURM submission orchestrator~~ ✅ done
+67. Phase 11.7: Report generator ← NEXT
 67. Phase 11.7: Report generator (per-task README + plots)
 68. Phase 11.8: Run T1, T2 locally + aggregate
 69. Phase 11.9: SLURM submission for T3–T6 (manual on Hummel)
@@ -305,6 +305,7 @@ hard_rule_precheck:
 | 75 | 2026-05-14 | n/a | Phase 11.3: tool manifest + version gate | check_versions.sh enhanced with pass/fail verification (exit 0 on match, exit 1 on mismatch); JSON output with tool status, SHA256, binary path; install_tools.sh for conda/module installation; INSTALL.md documentation; tools.yaml binary path fixed; 1454 tests pass; monolith count 0 |
 | 76 | 2026-05-14 | n/a | Phase 11.4: per-tool smoke tests | benchmarks/datasets/smoke/{smoke_ref.fa, smoke_reads.fq} mini dataset (10 reads, 500bp ref); benchmarks/runners/smoke_test.sh runner script; --verbose/--json/--tools flags; tests minimap2 + llmap locally; skips missing tools gracefully; validates SAM output with samtools; 1454 tests pass; monolith count 0 |
 | 77 | 2026-05-14 | n/a | Phase 11.5: metrics unit tests | test_compute.py (12 tests): mapping summary, MAPQ histogram, ground truth evaluation; test_concordance.py (19 tests): pairwise BAM concordance classification; run_tests.sh runner script; creates mini BAM files via pysam for testing; 1454 C++ + 31 Python tests pass; monolith count 0 |
+| 78 | 2026-05-14 | n/a | Phase 11.6: SLURM orchestrator | orchestrate.py: Python orchestrator for benchmark matrix with dry-run mode, auto-detection (sbatch vs local), task/tool filtering, replicate management, SLURM sbatch script generation, GPU allocation for LLmap real-data tasks, job dependency chaining for metrics aggregation; test_orchestrate.py (30 tests): matrix expansion, cell filtering, script generation, completion detection, dry-run mode; 1454 C++ + 61 Python tests pass; monolith count 0 |
 
 ---
 
