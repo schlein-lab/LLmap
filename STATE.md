@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 48 |
-| Total iterations | 48 |
+| Last successful iteration | 49 |
+| Total iterations | 49 |
 
 ---
 
@@ -76,6 +76,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 8.6: Cache-friendly data layouts (1092 tests pass)
 - [ ] **Phase 9: Single-Cell + Paralog Production**
   - [x] Phase 9.1: Cell barcode preservation module (1129 tests pass)
+  - [x] Phase 9.2: Per-cell paralog matrix + cb_preservation refactor (1155 tests pass)
 
 ---
 
@@ -84,13 +85,12 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 9
 task: single_cell_paralog_production
-substep: 2/N — Per-cell paralog matrix
-last_action: Phase 9.1 — Cell barcode preservation module: src/singlecell/cb_preservation.{h,cpp} with SingleCellTags struct (CB/CR/CY/UB/UR/UY/RG/BC/QT tags); TagType enum and conversions; TagValue for string/int; extraction from SAM aux strings, tag pairs, read names (10x-style); FormatTagsAsAux/AsPairs for output; barcode/UMI validation; CellBarcodeWhitelist with Hamming-distance correction (LoadFromFile, FindNearest); BarcodeExtractionConfig for platform presets (10x, Parse, Kinnex); 37 new tests; 1129 tests pass
-next_action: Phase 9.2 — Per-cell paralog matrix output
-  - Implement per_cell_paralog.{h,cpp}
-  - Cell × paralog probability matrix
-  - AnnData .h5ad export (or simple CSV/TSV for V1.0)
-acceptance: Per-cell paralog matrix with export functionality
+substep: 3/N — sc-paralog-matrix CLI
+last_action: Phase 9.2 — Per-cell paralog matrix + cb_preservation refactor: split cb_preservation.cpp (499 LOC) → 3 files (cb_preservation.cpp 166, cb_preservation_extract.cpp 216, cb_preservation_whitelist.cpp 128) + internal header; per_cell_paralog.{h,cpp} with CellParalogMatrix class (AddRecord, AddRecords, Finalize, GetEntries, GetDenseMatrix); CellParalogEntry struct; aggregation methods (Mean/Max/Sum/Weighted); filtering (min_probability, min_reads_per_cell); row normalization; CSV/TSV/dense export (ExportToCSV/ToTSV/ToDenseCSV); ImportFromCSV; CellParalogMatrixBuilder; 26 new tests; 1155 tests pass
+next_action: Phase 9.3 — `llmap sc-paralog-matrix` CLI command
+  - CLI command to read parquet and produce cell × paralog CSV/h5ad
+  - Integration with existing align pipeline output
+acceptance: CLI command with --parquet --output flags
 ```
 
 ---
@@ -144,8 +144,9 @@ acceptance: Per-cell paralog matrix with export functionality
 45. ~~Phase 8.5: Thread pool for parallel batch processing~~ ✅ done
 46. ~~Phase 8.6: Cache-friendly data layouts + finalize Phase 8~~ ✅ done (Phase 8 COMPLETE)
 47. ~~Phase 9.1: Cell barcode preservation module~~ ✅ done
-48. Phase 9.2: Per-cell paralog matrix output ← NEXT
-49. ... (continues per LLmap_SPEC.md)
+48. ~~Phase 9.2: Per-cell paralog matrix + cb_preservation refactor~~ ✅ done
+49. Phase 9.3: `llmap sc-paralog-matrix` CLI ← NEXT
+50. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -217,6 +218,7 @@ acceptance: Per-cell paralog matrix with export functionality
 | 46 | 2026-05-14 | n/a | Phase 8.5 thread pool for parallel batch processing | thread_pool.h (313 LOC) + thread_pool.cpp (102 LOC): ThreadPool class with work-stealing fixed-size pool, Submit/Execute/WaitAll APIs, ThreadPoolStats (tasks_submitted/completed/stolen/wait_ns); ParallelFor with auto-chunking; ParallelMap for input→output transforms; BatchProcessor<In,Out> with progress callbacks; test_thread_pool.cpp (34 tests); 1062 tests pass; monolith count 0→0 |
 | 47 | 2026-05-14 | n/a | Phase 8.6 cache-friendly data layouts + Phase 8 COMPLETE | cache_layout.h (header-only): MinimizerSoA (hash/pos/strand arrays, cache-aligned), AnchorSoA (ref_id/ref_pos/query_pos/strand arrays, SortPermutation), DPStateSoA (score/predecessor arrays); prefetch utilities (PrefetchForRead/Write/Temporal/NonTemporal/Range); cache-line alignment helpers (AllocateAligned/FreeAligned/IsCacheAligned); TiledProcessor<TileSize> for cache-oblivious 2D DP (Process/ProcessDiagonal); test_cache_layout.cpp (30 tests); measured 1.56x speedup for sequential field access; 1092 tests pass; Phase 8 complete |
 | 48 | 2026-05-14 | n/a | Phase 9.1 cell barcode preservation module | src/singlecell/cb_preservation.{h,cpp}: SingleCellTags struct (CB/CR/CY/UB/UR/UY/RG/BC/QT tags); TagType enum and TagTypeToString/StringToTagType conversions; TagValue for string/int values; ExtractTagsFromAux/FromPairs/FromReadName extraction; FormatTagsAsAux/AsPairs output; ValidateBarcode/ValidateUmi validation; CellBarcodeWhitelist with Hamming-distance correction (LoadFromFile, FindNearest); BarcodeExtractionConfig for platform presets (10x, Parse, Kinnex); 37 new tests; 1129 tests pass; Phase 9 started |
+| 49 | 2026-05-14 | n/a | Phase 9.2 per-cell paralog matrix + cb_preservation refactor | split cb_preservation.cpp (499 LOC) → 3 files: cb_preservation.cpp (166 LOC), cb_preservation_extract.cpp (216 LOC), cb_preservation_whitelist.cpp (128 LOC) + cb_preservation_internal.h (21 LOC); per_cell_paralog.{h,cpp} + per_cell_paralog_io.cpp: CellParalogMatrix class (AddRecord/AddRecords/Finalize/GetEntries/GetDenseMatrix); CellParalogEntry/CellParalogStats/CellParalogConfig structs; aggregation methods (Mean/Max/Sum/Weighted); filtering (min_probability, min_reads_per_cell, min_reads_per_paralog); row normalization; CSV/TSV/dense CSV export; CSV import; CellParalogMatrixBuilder; 26 new tests; 1155 tests pass; monolith count 1→0 |
 
 ---
 

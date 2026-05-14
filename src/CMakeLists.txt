@@ -190,6 +190,10 @@ target_link_libraries(llmap_validation PUBLIC llmap_core llmap_classical llmap_i
 # Single-cell module — cell barcode and UMI preservation
 add_library(llmap_singlecell STATIC
     singlecell/cb_preservation.cpp
+    singlecell/cb_preservation_extract.cpp
+    singlecell/cb_preservation_whitelist.cpp
+    singlecell/per_cell_paralog.cpp
+    singlecell/per_cell_paralog_io.cpp
 )
 
 target_include_directories(llmap_singlecell PUBLIC
