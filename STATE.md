@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 54 |
-| Total iterations | 54 |
+| Last successful iteration | 55 |
+| Total iterations | 55 |
 
 ---
 
@@ -74,7 +74,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 8.4: Memory-mapped I/O for large references (1028 tests pass)
   - [x] Phase 8.5: Thread pool for parallel batch processing (1062 tests pass)
   - [x] Phase 8.6: Cache-friendly data layouts (1092 tests pass)
-- [ ] **Phase 9: Single-Cell + Paralog Production**
+- [x] **Phase 9: Single-Cell + Paralog Production** ✓
   - [x] Phase 9.1: Cell barcode preservation module (1129 tests pass)
   - [x] Phase 9.2: Per-cell paralog matrix + cb_preservation refactor (1155 tests pass)
   - [x] Phase 9.3: `llmap sc-paralog-matrix` CLI command (1166 tests pass)
@@ -82,29 +82,29 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 9.5: Inter-paralog disambiguation pipeline (1200 tests pass)
   - [x] Phase 9.6: Single-cell paralog quantification reporting (1236 tests pass)
   - [x] Phase 9.7: `llmap sc-qc-report` CLI command (1249 tests pass)
+  - [x] Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete (1249 tests pass)
 
 ---
 
 ## Current task
 
 ```
-phase: 9
-task: single_cell_paralog_production
-substep: 8/N — Phase 9 completion and wrap-up
-last_action: Phase 9.7 — `llmap sc-qc-report` CLI command
-  - cmd_sc_qc_report.cpp: Full QC report CLI with --qc-json, --qc-tsv, --filtered-matrix outputs
-  - Configurable thresholds: --min-assignment-rate, --min-confidence, --min-reads-per-cell, --max-entropy, --min-detection-rate
-  - Cell barcode extraction via --cb-tag, --cb-pattern, --cb-file
-  - QC-filtered matrix export with GetCellsPassingQc + FilterMatrixByQc
-  - Wired in llmap_main.cpp and commands.h
-  - 13 new CLI tests for sc-qc-report (help, args, JSON/TSV/filtered output, thresholds, regex barcode)
-  - Fixed test fixture race condition with unique per-test directories
+phase: 10
+task: production_readiness
+substep: 1/N — Phase 10 initialization
+last_action: Phase 9.8 — cmd_sc_qc_report refactor + Phase 9 complete
+  - Split cmd_sc_qc_report.cpp (427 LOC) → 3 files:
+    - cmd_sc_qc_report.cpp (279 LOC): main orchestration
+    - cmd_sc_qc_report_args.cpp (142 LOC): argument parsing, barcode extraction
+    - cmd_sc_qc_report_internal.h (45 LOC): shared types
+  - Monolith count 1→0
+  - Phase 9 complete with all single-cell features
   - 1249 tests pass
-next_action: Phase 9.8 — Final single-cell documentation and integration tests
-  - Review Phase 9 for completion
-  - Integration tests for full single-cell workflow
-  - Documentation updates
-acceptance: Phase 9 complete with all single-cell features functional
+next_action: Phase 10.1 — Production-readiness preparation
+  - Review LLmap_SPEC.md for remaining production requirements
+  - Identify gaps: error handling, logging, config files, documentation
+  - Plan Phase 10 substeps
+acceptance: Phase 10 plan established
 ```
 
 ---
@@ -164,8 +164,9 @@ acceptance: Phase 9 complete with all single-cell features functional
 51. ~~Phase 9.5: Inter-paralog disambiguation pipeline~~ ✅ done
 52. ~~Phase 9.6: Single-cell paralog quantification reporting~~ ✅ done
 53. ~~Phase 9.7: `llmap sc-qc-report` CLI~~ ✅ done
-54. Phase 9.8: Final single-cell documentation + integration ← NEXT
-55. ... (continues per LLmap_SPEC.md)
+54. ~~Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete~~ ✅ done
+55. Phase 10.1: Production-readiness preparation ← NEXT
+56. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -243,6 +244,7 @@ acceptance: Phase 9 complete with all single-cell features functional
 | 52 | 2026-05-14 | n/a | Phase 9.5 PSV-align pipeline integration | cmd_align_psv.cpp wiring PsvAssigner into align pipeline; --psv-catalog/--psv-weight/--psv-min-posterior/--psv-only flags; LoadPsvCatalog with BED/VCF auto-detect; ApplyPsvAssignments batch disambiguation; verbose stats (reads_with_psvs, confident_calls); auto-enables paralog_tags in BAM output; 5 new CLI tests; 1200 tests pass; monolith count 0→0 |
 | 53 | 2026-05-14 | n/a | Phase 9.6 single-cell paralog QC reporting | sc_paralog_qc.h (CellQcMetrics, ParalogQcMetrics, GlobalQcSummary, ConfidenceDistribution, QcThresholds, QcReport); sc_paralog_qc.cpp (ComputeEntropy, ComputeDominance, ComputeConfidenceDistribution, ComputeCellQcMetrics, ComputeParalogQcMetrics, ComputeGlobalQcSummary, GetCellsPassingQc, FilterMatrixByQc, GenerateQcReport); sc_paralog_qc_report.cpp (JSON/TSV export); 36 new tests; 1236 tests pass; monolith count 0→0 |
 | 54 | 2026-05-14 | n/a | Phase 9.7 `llmap sc-qc-report` CLI | cmd_sc_qc_report.cpp wired in llmap_main.cpp + commands.h; --qc-json/--qc-tsv/--filtered-matrix outputs; --min-assignment-rate/--min-confidence/--min-reads-per-cell/--max-entropy/--min-detection-rate thresholds; --cb-tag/--cb-pattern/--cb-file barcode extraction; fixed test fixture race condition with unique per-test directories; 13 new CLI tests; 1249 tests pass; monolith count 0→0 |
+| 55 | 2026-05-14 | n/a | Phase 9.8 cmd_sc_qc_report refactor + Phase 9 COMPLETE | split cmd_sc_qc_report.cpp (427 LOC) → 3 files: cmd_sc_qc_report.cpp (279 LOC), cmd_sc_qc_report_args.cpp (142 LOC), cmd_sc_qc_report_internal.h (45 LOC); monolith count 1→0; 1249 tests pass; Phase 9 complete with all single-cell features |
 
 ---
 
