@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 59 |
-| Total iterations | 59 |
+| Last successful iteration | 60 |
+| Total iterations | 60 |
 
 ---
 
@@ -88,6 +88,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 10.2: Error handling framework (1336 tests pass)
   - [x] Phase 10.3: Configuration file support (1375 tests pass)
   - [x] Phase 10.4: Version string + --version CLI (1413 tests pass)
+  - [x] Phase 10.5: `llmap index` CLI command (1423 tests pass)
 
 ---
 
@@ -96,25 +97,24 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 10
 task: production_readiness
-substep: 5/6 — Version string + --version CLI implemented
-last_action: Phase 10.4 — Version string + --version CLI
-  - Added core/version.h.in CMake template with version constants
-  - Version info: kVersionMajor/Minor/Patch, kVersion, kGitCommit (8-char), kBuildDate (ISO8601)
-  - Build info: kBuildType, kCompilerId, kCompilerVersion, kFeatures string
-  - Feature flags: kHasCuda, kHasOnnxRuntime, kHasFaiss, kHasFaissGpu, kHasClaude
-  - CMake configure_file generates version.h at build time
-  - Added version_util.h with FormatVersion/FormatVersionShort/FormatVersionFull helpers
-  - Updated llmap_main.cpp: --version and -V flags show full build info
-  - Output format: version, commit, built date, build type, compiler, features
-  - Updated project VERSION to 0.1.0 in CMakeLists.txt
-  - Fixed flaky ProfilerTest.ManualTimerReset with relative timing check
-  - test_version.cpp: 38 new tests for constants, utils, CLI output
-  - 1413 total tests pass; monolith count: 0
-next_action: Phase 10.5 — `llmap index` CLI command stub
-  - Implement llmap index command
-  - Wire up reference index building
-  - Support --reference, --output, --kmer flags
-acceptance: llmap index --help shows usage
+substep: 6/6 — `llmap index` CLI command implemented
+last_action: Phase 10.5 — `llmap index` CLI command
+  - Added src/cli/cmd_index.cpp (197 LOC) for building minimizer index from FASTA
+  - Flags: -r/--reference (required), -o/--output (required), -k/--kmer [19],
+    -w/--window [19], --max-occ [500], -v/--verbose, -h/--help
+  - Validates k-mer size (5-31), window size (1-255), file existence
+  - Loads FASTA via io::FastaReader, builds MinimizerIndex via Builder pattern
+  - Reports: sequences count, total length, minimizers, build/save time, throughput
+  - Saves .llmi index file for use with `llmap align`
+  - Updated commands.h (run_index declaration), llmap_main.cpp (wiring)
+  - Updated src/CMakeLists.txt to compile cmd_index.cpp
+  - test_llmap_cli.cpp: 10 new tests replacing IndexNotImplemented stub
+  - 1423 total tests pass; monolith count: 0
+next_action: Phase 10.6 — Phase 10 finalization + V1.0 readiness check
+  - Documentation review (README, man pages if applicable)
+  - Final integration testing
+  - Release checklist
+acceptance: All Phase 10 features complete, 100% test pass rate
 ```
 
 ---
@@ -178,9 +178,9 @@ acceptance: llmap index --help shows usage
 55. ~~Phase 10.1: Structured logging framework~~ ✅ done
 56. ~~Phase 10.2: Error handling framework~~ ✅ done
 57. ~~Phase 10.3: Configuration file support~~ ✅ done
-58. Phase 10.4: Version string + --version CLI completeness ← NEXT
-59. Phase 10.5: `llmap index` CLI command stub
-60. Phase 10.6: Phase 10 finalization + V1.0 readiness check
+58. ~~Phase 10.4: Version string + --version CLI~~ ✅ done
+59. ~~Phase 10.5: `llmap index` CLI command~~ ✅ done
+60. Phase 10.6: Phase 10 finalization + V1.0 readiness check ← NEXT
 
 ---
 
@@ -262,6 +262,8 @@ acceptance: llmap index --help shows usage
 | 56 | 2026-05-14 | n/a | Phase 10.1 structured logging framework | core/logging.{h,cpp}: Logger singleton with thread-safe logging; LogLevel (Trace/Debug/Info/Warn/Error/Fatal/Off); LogFormat (Text/Json); LogRecord with timestamp, thread_id, source_location; configurable sinks; LLMAP_LOG_* macros; env config (LLMAP_LOG_LEVEL, LLMAP_LOG_FORMAT); test_logging.cpp (28 tests); 1277 tests pass; monolith count 0→0; Phase 10 started |
 | 57 | 2026-05-14 | n/a | Phase 10.2 error handling framework | core/error.{h,cpp}: Result<T,E> type for explicit error handling; ErrorCode enum with IO/Parse/Config/Validate/Resource/System/Algo/External categories; LLmapError class (code, message, context, source_location); category predicates; Result<void,E> specialization; monadic operations (map, and_then, or_else, inspect); LLMAP_TRY macro; ErrorList aggregator; factory functions (IoError, ParseError, ConfigError, ValidationError); MakeOk/MakeErr helpers; test_error.cpp (59 tests); 1336 tests pass; monolith count 0→0 |
 | 58 | 2026-05-14 | n/a | Phase 10.3 configuration file support | core/config.h + config.cpp + config_parse.cpp: LLmapConfig struct (AlignConfig, LlmConfig, SingleCellConfig, PsvConfig, LoggingConfig); ConfigParser class for TOML parsing; ConfigValue with type converters; config file search paths (./llmap.toml, ~/.config/llmap/config.toml, /etc/llmap/config.toml); LoadConfig/FindConfigFile APIs; ApplyEnvironmentOverrides/ApplyOverrides for CLI flags; ValidateConfig for validation; ConfigToToml for round-trip; test_config.cpp (39 tests); 1375 tests pass; monolith count 0→0 |
+| 59 | 2026-05-14 | n/a | Phase 10.4 version string + --version CLI | See prior log entry (iteration 59 fallback commit) |
+| 60 | 2026-05-14 | n/a | Phase 10.5 `llmap index` CLI command | cmd_index.cpp (197 LOC): builds MinimizerIndex from FASTA; flags -r/--reference, -o/--output, -k/--kmer [19], -w/--window [19], --max-occ [500], -v/--verbose; validates k-mer (5-31), window (1-255); loads FASTA via FastaReader, builds index via Builder pattern; saves .llmi file; reports sequences, length, minimizers, timing; updated commands.h, llmap_main.cpp, CMakeLists.txt; 10 new CLI tests (IndexHelp, IndexBasicRun, IndexCustomParams, etc.); 1423 tests pass; monolith count 0→0 |
 
 ---
 

@@ -190,14 +190,161 @@ TEST_F(LlmapCliTest, AllpairUnknownOption) {
                 result.output.find("unknown") != std::string::npos);
 }
 
-// ========== Other Subcommands (Not Yet Implemented) ==========
+// ========== Index Subcommand ==========
 
-TEST_F(LlmapCliTest, IndexNotImplemented) {
-    auto result = Exec(llmap_bin_ + " index");
+TEST_F(LlmapCliTest, IndexHelp) {
+    auto result = Exec(llmap_bin_ + " index --help");
 
-    // Should return non-zero with "not yet implemented" message
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Build a minimizer index") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--reference") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--output") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--kmer") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--window") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexHelpShort) {
+    auto result = Exec(llmap_bin_ + " index -h");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--reference") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexMissingReference) {
+    auto result = Exec(llmap_bin_ + " index -o /tmp/out.llmi");
+
     EXPECT_NE(result.exit_code, 0);
-    EXPECT_TRUE(result.output.find("not yet implemented") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--reference") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexMissingOutput) {
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+
+    auto result = Exec(llmap_bin_ + " index -r " + fasta_path.string());
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--output") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexFileNotFound) {
+    auto result = Exec(llmap_bin_ + " index -r /nonexistent/file.fa -o /tmp/out.llmi");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("not found") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexUnknownOption) {
+    auto result = Exec(llmap_bin_ + " index --unknown-option");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Unknown") != std::string::npos ||
+                result.output.find("unknown") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexBasicRun) {
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        // Long enough sequence for minimizer extraction (needs k+w bases)
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+        fasta << ">chr2\n";
+        fasta << "TGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCA";
+        fasta << "TGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCA\n";
+    }
+
+    auto output_path = test_dir_ / "ref.llmi";
+
+    auto result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                       " -o " + output_path.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("Index built successfully") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Sequences") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Minimizers") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(output_path));
+}
+
+TEST_F(LlmapCliTest, IndexCustomParams) {
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+
+    auto output_path = test_dir_ / "ref.llmi";
+
+    auto result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                       " -o " + output_path.string() +
+                       " -k 15 -w 10 --max-occ 200 -v");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("k-mer size:    15") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Window size:   10") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(output_path));
+}
+
+TEST_F(LlmapCliTest, IndexInvalidKmerSize) {
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+
+    auto output_path = test_dir_ / "ref.llmi";
+
+    auto result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                       " -o " + output_path.string() + " -k 50");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("k-mer size must be between") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexEmptyFasta) {
+    auto fasta_path = test_dir_ / "empty.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        // Empty file
+    }
+
+    auto output_path = test_dir_ / "empty.llmi";
+
+    auto result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                       " -o " + output_path.string());
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("no sequences") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, IndexVerboseStats) {
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+
+    auto output_path = test_dir_ / "ref.llmi";
+
+    auto result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                       " -o " + output_path.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Loading reference") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Building index") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Saving index") != std::string::npos);
 }
 
 // ========== Align Subcommand ==========
