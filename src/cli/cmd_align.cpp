@@ -40,6 +40,7 @@ AlignmentRecord ConvertAlignment(const classical::ClassicalAlignment& aln,
     hit.cigar = CigarString{CigarToString(aln.cigar)};
     hit.score = aln.score;
     hit.nm = static_cast<std::uint32_t>((1.0f - aln.identity) * aln.AlignedBases());
+    hit.is_reverse = !aln.is_forward;
 
     return make_mapped(aln.query_name, read_len, std::move(hit));
 }

@@ -52,6 +52,7 @@ struct AlignmentHit {
     CigarString cigar;
     std::int32_t score{0};
     std::uint32_t nm{0};
+    bool is_reverse{false};
     std::vector<PsvObservation> psv_calls;
 };
 
