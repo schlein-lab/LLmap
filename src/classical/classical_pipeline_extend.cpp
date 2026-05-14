@@ -125,8 +125,12 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
         int32_t ref_gap = static_cast<int32_t>(anchor.ref_pos) - static_cast<int32_t>(prev_ref);
 
         if (query_gap > 0 && ref_gap > 0) {
-            // Try WFA2 alignment for the gap between anchors
-            if (have_ref_seqs && query_gap >= 1 && ref_gap >= 1) {
+            // Small gaps (<50 bp): interpolate. Calling WFA2 for thousands of
+            // 1-bp gaps per read costs orders of magnitude more than it gains.
+            constexpr int32_t kWfaMinGap = 50;
+            bool use_wfa = have_ref_seqs &&
+                           (query_gap >= kWfaMinGap || ref_gap >= kWfaMinGap);
+            if (use_wfa) {
                 auto gap_result = AlignGap(
                     query_seq, chain.ref_id,
                     prev_query, anchor.query_pos,
