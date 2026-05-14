@@ -1035,4 +1035,93 @@ TEST_F(LlmapCliTest, ScQcReportShowsInHelpMenu) {
     EXPECT_TRUE(result.output.find("sc-qc-report") != std::string::npos);
 }
 
+// ============== Check Command Tests ==============
+
+TEST_F(LlmapCliTest, CheckHelpFlag) {
+    auto result = Exec(llmap_bin_ + " check --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("V1.0 readiness check") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--verbose") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--json") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--category") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckBasicRun) {
+    auto result = Exec(llmap_bin_ + " check");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("LLmap V1.0 Readiness Check") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Result: READY") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckVerboseOutput) {
+    auto result = Exec(llmap_bin_ + " check -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("[+] AlignmentRecord") != std::string::npos);
+    EXPECT_TRUE(result.output.find("[+] BucketPyramid") != std::string::npos);
+    EXPECT_TRUE(result.output.find("[+] WaveState") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckJsonOutput) {
+    auto result = Exec(llmap_bin_ + " check -j");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("\"all_passed\": true") != std::string::npos);
+    EXPECT_TRUE(result.output.find("\"categories\":") != std::string::npos);
+    EXPECT_TRUE(result.output.find("\"checks\":") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckCategoryCoreOnly) {
+    auto result = Exec(llmap_bin_ + " check -c Core -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("[Core]") != std::string::npos);
+    EXPECT_TRUE(result.output.find("AlignmentRecord") != std::string::npos);
+    EXPECT_FALSE(result.output.find("[Foundation]") != std::string::npos);
+    EXPECT_FALSE(result.output.find("[Agent]") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckCategoryProductionOnly) {
+    auto result = Exec(llmap_bin_ + " check -c Production -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("[Production]") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Logging") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Config") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckInvalidCategory) {
+    auto result = Exec(llmap_bin_ + " check -c InvalidCategory");
+
+    EXPECT_EQ(result.exit_code, 1);
+    EXPECT_TRUE(result.output.find("Unknown category") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckShowsInMainHelp) {
+    auto result = Exec(llmap_bin_ + " --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("check") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckReportsAllCategories) {
+    auto result = Exec(llmap_bin_ + " check");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("[Core]") != std::string::npos);
+    EXPECT_TRUE(result.output.find("[Foundation]") != std::string::npos);
+    EXPECT_TRUE(result.output.find("[Classical]") != std::string::npos);
+    EXPECT_TRUE(result.output.find("[Production]") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, CheckJsonCategories) {
+    auto result = Exec(llmap_bin_ + " check -j");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("\"name\": \"Core\"") != std::string::npos);
+    EXPECT_TRUE(result.output.find("\"name\": \"Production\"") != std::string::npos);
+}
+
 }  // namespace

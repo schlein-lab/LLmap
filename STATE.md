@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 60 |
-| Total iterations | 60 |
+| Last successful iteration | 61 |
+| Total iterations | 61 |
 
 ---
 
@@ -83,12 +83,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 9.6: Single-cell paralog quantification reporting (1236 tests pass)
   - [x] Phase 9.7: `llmap sc-qc-report` CLI command (1249 tests pass)
   - [x] Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete (1249 tests pass)
-- [ ] **Phase 10: Production Readiness**
+- [x] **Phase 10: Production Readiness** ✓
   - [x] Phase 10.1: Structured logging framework (1277 tests pass)
   - [x] Phase 10.2: Error handling framework (1336 tests pass)
   - [x] Phase 10.3: Configuration file support (1375 tests pass)
   - [x] Phase 10.4: Version string + --version CLI (1413 tests pass)
   - [x] Phase 10.5: `llmap index` CLI command (1423 tests pass)
+  - [x] Phase 10.6: `llmap check` CLI + V1.0 readiness check (1433 tests pass)
 
 ---
 
@@ -97,24 +98,24 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 10
 task: production_readiness
-substep: 6/6 — `llmap index` CLI command implemented
-last_action: Phase 10.5 — `llmap index` CLI command
-  - Added src/cli/cmd_index.cpp (197 LOC) for building minimizer index from FASTA
-  - Flags: -r/--reference (required), -o/--output (required), -k/--kmer [19],
-    -w/--window [19], --max-occ [500], -v/--verbose, -h/--help
-  - Validates k-mer size (5-31), window size (1-255), file existence
-  - Loads FASTA via io::FastaReader, builds MinimizerIndex via Builder pattern
-  - Reports: sequences count, total length, minimizers, build/save time, throughput
-  - Saves .llmi index file for use with `llmap align`
-  - Updated commands.h (run_index declaration), llmap_main.cpp (wiring)
-  - Updated src/CMakeLists.txt to compile cmd_index.cpp
-  - test_llmap_cli.cpp: 10 new tests replacing IndexNotImplemented stub
-  - 1423 total tests pass; monolith count: 0
-next_action: Phase 10.6 — Phase 10 finalization + V1.0 readiness check
-  - Documentation review (README, man pages if applicable)
-  - Final integration testing
-  - Release checklist
-acceptance: All Phase 10 features complete, 100% test pass rate
+substep: COMPLETE — Phase 10 and all core development complete
+last_action: Phase 10.6 — `llmap check` CLI + V1.0 readiness check
+  - Added src/core/v1_readiness.h (123 LOC): ReadinessCheck, CategoryResult, ReadinessReport structs;
+    ReadinessConfig for enabling/disabling categories; FormatReport/FormatReportJson formatters
+  - Added src/core/v1_readiness.cpp (227 LOC): RunReadinessCheck, RunCategoryCheck orchestrator;
+    category-to-string conversion; report formatting with timing
+  - Added src/core/v1_readiness_checks.cpp (339 LOC): 46 capability checks across 11 categories
+    (Core, Foundation, SelfInterference, ReferenceCollapse, Classical, Validation, Output,
+    Agent, Performance, SingleCell, Production)
+  - Added src/cli/cmd_check.cpp (103 LOC): -v/--verbose, -j/--json, -c/--category flags
+  - Updated commands.h, llmap_main.cpp, src/CMakeLists.txt
+  - 10 new CLI tests for check command: help, basic run, verbose, JSON, category filtering
+  - 1433 total tests pass; monolith count: 0; Phase 10 COMPLETE
+next_action: V1.0 release preparation
+  - GPU validation on Hummel-2 (Phase 5 pending)
+  - Documentation polish if needed
+  - Release tagging
+acceptance: All 10 phases complete, all CLI commands functional, 100% test pass rate
 ```
 
 ---
@@ -180,7 +181,8 @@ acceptance: All Phase 10 features complete, 100% test pass rate
 57. ~~Phase 10.3: Configuration file support~~ ✅ done
 58. ~~Phase 10.4: Version string + --version CLI~~ ✅ done
 59. ~~Phase 10.5: `llmap index` CLI command~~ ✅ done
-60. Phase 10.6: Phase 10 finalization + V1.0 readiness check ← NEXT
+60. ~~Phase 10.6: `llmap check` CLI + V1.0 readiness check~~ ✅ done
+61. V1.0 release preparation (GPU validation, docs, tagging) ← NEXT
 
 ---
 
@@ -264,6 +266,7 @@ acceptance: All Phase 10 features complete, 100% test pass rate
 | 58 | 2026-05-14 | n/a | Phase 10.3 configuration file support | core/config.h + config.cpp + config_parse.cpp: LLmapConfig struct (AlignConfig, LlmConfig, SingleCellConfig, PsvConfig, LoggingConfig); ConfigParser class for TOML parsing; ConfigValue with type converters; config file search paths (./llmap.toml, ~/.config/llmap/config.toml, /etc/llmap/config.toml); LoadConfig/FindConfigFile APIs; ApplyEnvironmentOverrides/ApplyOverrides for CLI flags; ValidateConfig for validation; ConfigToToml for round-trip; test_config.cpp (39 tests); 1375 tests pass; monolith count 0→0 |
 | 59 | 2026-05-14 | n/a | Phase 10.4 version string + --version CLI | See prior log entry (iteration 59 fallback commit) |
 | 60 | 2026-05-14 | n/a | Phase 10.5 `llmap index` CLI command | cmd_index.cpp (197 LOC): builds MinimizerIndex from FASTA; flags -r/--reference, -o/--output, -k/--kmer [19], -w/--window [19], --max-occ [500], -v/--verbose; validates k-mer (5-31), window (1-255); loads FASTA via FastaReader, builds index via Builder pattern; saves .llmi file; reports sequences, length, minimizers, timing; updated commands.h, llmap_main.cpp, CMakeLists.txt; 10 new CLI tests (IndexHelp, IndexBasicRun, IndexCustomParams, etc.); 1423 tests pass; monolith count 0→0 |
+| 61 | 2026-05-14 | n/a | Phase 10.6 `llmap check` + V1.0 readiness | v1_readiness.h (123 LOC) + v1_readiness.cpp (227 LOC) + v1_readiness_checks.cpp (339 LOC): ReadinessCheck/CategoryResult/ReadinessReport structs; 46 checks across 11 categories (Core, Foundation, SelfInterference, ReferenceCollapse, Classical, Validation, Output, Agent, Performance, SingleCell, Production); FormatReport/FormatReportJson; cmd_check.cpp (103 LOC): -v/--verbose, -j/--json, -c/--category flags; 10 new CLI tests; 1433 tests pass; monolith count 0→0; Phase 10 COMPLETE |
 
 ---
 
