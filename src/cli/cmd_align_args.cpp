@@ -2,10 +2,64 @@
 
 #include "cli/cmd_align_internal.h"
 
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 #include <string>
 
 namespace llmap::cli::align_internal {
+
+Preset ParsePreset(std::string_view name) {
+    if (name == "map-hifi" || name == "hifi") return Preset::MapHifi;
+    if (name == "map-ont" || name == "ont") return Preset::MapOnt;
+    if (name == "map-pb" || name == "pb") return Preset::MapPb;
+    if (name == "sr") return Preset::Sr;
+    return Preset::None;
+}
+
+const char* PresetName(Preset preset) {
+    switch (preset) {
+        case Preset::MapHifi: return "map-hifi";
+        case Preset::MapOnt:  return "map-ont";
+        case Preset::MapPb:   return "map-pb";
+        case Preset::Sr:      return "sr";
+        case Preset::None:    return "none";
+    }
+    return "none";
+}
+
+void ApplyPreset(Preset preset, AlignArgs& args) {
+    switch (preset) {
+        case Preset::MapHifi:
+            // PacBio HiFi: high accuracy (>Q20), similar to minimap2 -x map-hifi
+            args.kmer_size = 19;
+            args.window_size = 19;
+            args.min_identity = 0.90f;   // HiFi reads are >99% accurate
+            args.min_chain = 40;          // Higher threshold for confident chains
+            break;
+
+        case Preset::MapOnt:
+        case Preset::MapPb:
+            // ONT/legacy PacBio: higher error rate (~5-15%)
+            args.kmer_size = 15;
+            args.window_size = 10;
+            args.min_identity = 0.70f;   // Relaxed for error-prone reads
+            args.min_chain = 20;          // Lower threshold for longer reads
+            break;
+
+        case Preset::Sr:
+            // Short reads (Illumina): very high accuracy, short length
+            args.kmer_size = 21;
+            args.window_size = 11;
+            args.min_identity = 0.95f;   // Illumina reads are >99.9% accurate
+            args.min_chain = 50;          // Require strong chains for short reads
+            break;
+
+        case Preset::None:
+            // Keep defaults
+            break;
+    }
+}
 
 void PrintAlignUsage() {
     std::puts(
@@ -15,8 +69,15 @@ void PrintAlignUsage() {
         "\n"
         "Required:\n"
         "  -r, --reads FILE        Input reads (FASTQ)\n"
-        "  -x, --reference FILE    Reference genome (FASTA)\n"
+        "  --reference FILE        Reference genome (FASTA)\n"
         "  -o, --output FILE       Output alignment file (SAM/BAM)\n"
+        "\n"
+        "Presets (recommended for best results):\n"
+        "  -x PRESET               Read type preset:\n"
+        "                            map-hifi: PacBio HiFi (k=19, w=19, identity=0.90)\n"
+        "                            map-ont:  Oxford Nanopore (k=15, w=10, identity=0.70)\n"
+        "                            map-pb:   Legacy PacBio CLR (same as map-ont)\n"
+        "                            sr:       Short reads/Illumina (k=21, w=11, identity=0.95)\n"
         "\n"
         "Index caching:\n"
         "  -i, --index FILE        Use pre-built .llmi index (from `llmap index`)\n"
@@ -27,7 +88,7 @@ void PrintAlignUsage() {
         "  --sam                   Output SAM format (default)\n"
         "  --parquet FILE          Also output probabilistic Parquet\n"
         "\n"
-        "Alignment parameters:\n"
+        "Alignment parameters (override preset values):\n"
         "  -k, --kmer INT          Minimizer k-mer size [15] (ignored if --index)\n"
         "  -w, --window INT        Minimizer window [10] (ignored if --index)\n"
         "  --min-chain INT         Minimum chain score [30]\n"
@@ -53,16 +114,20 @@ void PrintAlignUsage() {
         "  -v, --verbose           Verbose output\n"
         "  -h, --help              Show this help\n"
         "\n"
-        "Example:\n"
-        "  llmap align -r reads.fastq -x ref.fasta -o out.sam\n"
-        "  llmap align -r reads.fastq -x ref.fasta -o out.bam --bam --parquet out.parquet\n"
-        "  llmap align -r reads.fastq -x ref.fasta -o out.sam -i ref.llmi\n"
-        "  llmap align -r reads.fastq -x ref.fasta -o out.sam --psv-catalog psv.bed\n"
-        "  llmap align -r reads.fastq -x ref.fasta -o out.sam --llm\n"
+        "Examples:\n"
+        "  llmap align -x map-hifi -r reads.fastq --reference ref.fasta -o out.sam\n"
+        "  llmap align -x map-ont -r reads.fastq --reference ref.fasta -o out.bam --bam\n"
+        "  llmap align -r reads.fastq --reference ref.fasta -o out.sam  # default params\n"
+        "  llmap align -r reads.fastq --reference ref.fasta -o out.sam -i ref.llmi\n"
+        "  llmap align -r reads.fastq --reference ref.fasta -o out.sam --psv-catalog psv.bed\n"
     );
 }
 
 bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
+    // Track which args were explicitly set (for preset override detection)
+    bool explicit_kmer = false, explicit_window = false;
+    bool explicit_identity = false, explicit_chain = false;
+
     for (int i = 0; i < argc; ++i) {
         std::string arg = argv[i];
 
@@ -71,8 +136,15 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             return true;
         } else if ((arg == "-r" || arg == "--reads") && i + 1 < argc) {
             args.reads = argv[++i];
-        } else if ((arg == "-x" || arg == "--reference") && i + 1 < argc) {
+        } else if (arg == "--reference" && i + 1 < argc) {
             args.reference = argv[++i];
+        } else if (arg == "-x" && i + 1 < argc) {
+            args.preset = ParsePreset(argv[++i]);
+            if (args.preset == Preset::None) {
+                std::fprintf(stderr, "Unknown preset: %s\n", argv[i]);
+                std::fprintf(stderr, "Valid presets: map-hifi, map-ont, map-pb, sr\n");
+                return false;
+            }
         } else if ((arg == "-o" || arg == "--output") && i + 1 < argc) {
             args.output = argv[++i];
         } else if ((arg == "-i" || arg == "--index") && i + 1 < argc) {
@@ -87,12 +159,16 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             args.use_bam = false;
         } else if ((arg == "-k" || arg == "--kmer") && i + 1 < argc) {
             args.kmer_size = std::stoi(argv[++i]);
+            explicit_kmer = true;
         } else if ((arg == "-w" || arg == "--window") && i + 1 < argc) {
             args.window_size = std::stoi(argv[++i]);
+            explicit_window = true;
         } else if (arg == "--min-chain" && i + 1 < argc) {
             args.min_chain = std::stoi(argv[++i]);
+            explicit_chain = true;
         } else if (arg == "--min-identity" && i + 1 < argc) {
             args.min_identity = std::stof(argv[++i]);
+            explicit_identity = true;
         } else if ((arg == "-t" || arg == "--threads") && i + 1 < argc) {
             args.threads = std::stoi(argv[++i]);
         } else if (arg == "--max-chains" && i + 1 < argc) {
@@ -120,6 +196,23 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             return false;
         }
     }
+
+    // Apply preset defaults, then restore explicit overrides
+    if (args.preset != Preset::None) {
+        int saved_kmer = args.kmer_size;
+        int saved_window = args.window_size;
+        int saved_chain = args.min_chain;
+        float saved_identity = args.min_identity;
+
+        ApplyPreset(args.preset, args);
+
+        // Explicit CLI args override preset values
+        if (explicit_kmer)     args.kmer_size = saved_kmer;
+        if (explicit_window)   args.window_size = saved_window;
+        if (explicit_chain)    args.min_chain = saved_chain;
+        if (explicit_identity) args.min_identity = saved_identity;
+    }
+
     return true;
 }
 

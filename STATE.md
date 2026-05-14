@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 90 |
-| Total iterations | 90 |
+| Last successful iteration | 91 |
+| Total iterations | 91 |
 
 ---
 
@@ -112,6 +112,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase B.3: Index caching in CLI (1476 tests pass)
 - [ ] **Phase C: Polish + Precision** ★
   - [x] Phase C.1: Identity filter improvements (1483 tests pass)
+  - [x] Phase C.2: `-x` presets for read types (1490 tests pass)
 
 ---
 
@@ -119,27 +120,29 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: C
-task: C.2_presets
-substep: Implement -x presets (map-hifi, map-ont) for read type optimization
+task: C.3_mapq
+substep: Implement proper MAPQ calculation based on alignment score
 inputs:
-  - src/cli/cmd_align_internal.h (AlignArgs)
-  - src/cli/cmd_align_args.cpp (argument parsing)
-  - docs/IMPROVEMENTS.md (P2: presets recommendation)
+  - src/classical/classical_pipeline.cpp (ExtendChain)
+  - src/classical/classical_pipeline.h (ClassicalAlignment.mapq)
+  - docs/IMPROVEMENTS.md (P2: MAPQ recommendation)
 expected_files_changed:
-  - src/cli/cmd_align_args.cpp (add -x preset flag)
-  - src/cli/cmd_align_internal.h (preset enum)
-  - tests/unit/test_llmap_cli.cpp (preset tests)
+  - src/classical/classical_pipeline.cpp (add MAPQ calculation in ExtendChain)
+  - tests/unit/test_classical_pipeline.cpp (MAPQ tests)
 acceptance:
-  - -x map-hifi preset optimizes for PacBio HiFi reads
-  - -x map-ont preset optimizes for Oxford Nanopore reads
+  - MAPQ calculated from alignment score and secondary alignments
+  - MAPQ=60 for unique, high-score alignments
+  - MAPQ=0 for multi-mapping or low-confidence alignments
   - All tests pass
   - Monolith count stays at 0
 notes: |
-  Phase C.1 complete: Identity filter improvements.
-  - Changed default min_identity from 0.70 to 0.80 for better precision
-  - Added filtered_by_identity and filtered_by_length stats tracking
-  - Added CLI --min-identity flag documentation update
-  - 7 new tests for identity filter verification (1483 tests pass)
+  Phase C.2 complete: -x presets implementation.
+  - Added Preset enum (MapHifi, MapOnt, MapPb, Sr)
+  - map-hifi: k=19, w=19, identity=0.90, min_chain=40
+  - map-ont/map-pb: k=15, w=10, identity=0.70, min_chain=20
+  - sr: k=21, w=11, identity=0.95, min_chain=50
+  - Explicit CLI args override preset values
+  - 7 new tests for preset verification (1490 tests pass)
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -227,8 +230,10 @@ hard_rule_precheck:
 76. ~~Phase B.2: Zero-allocation chaining (ChainScratch)~~ ✅ done
 77. ~~Phase B.3: Index caching in CLI~~ ✅ done
 78. ~~Phase C.1: Identity filter for precision~~ ✅ done
-79. Phase C.2: `-x` presets (map-hifi, map-ont)
-80. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
+79. ~~Phase C.2: `-x` presets (map-hifi, map-ont)~~ ✅ done
+80. Phase C.3: Proper MAPQ calculation
+81. Phase C.4: `--classical-only` mode
+82. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
 
 ---
 
@@ -342,6 +347,7 @@ hard_rule_precheck:
 | 88 | 2026-05-14 | n/a | Phase B.2: zero-allocation chaining | classical_pipeline.cpp: added thread_local ChainScratch; AlignRead() now uses ExtractChainsFromAnchorsWithScratch() for zero-allocation hot path; scratch buffers grow as needed but never shrink, avoiding repeated heap allocations; test_classical_pipeline.cpp: 5 new tests (ZeroAllocChainingProducesCorrectResults, ZeroAllocChainingConsistentAcrossMultipleReads, ZeroAllocChainingParallelConsistency, ZeroAllocChainingRepeatedSingleRead, ZeroAllocChainingVaryingSizes); 1471 tests pass; monolith count 0 |
 | 89 | 2026-05-14 | n/a | Phase B.3: index caching in CLI | cmd_align_internal.h: added index field to AlignArgs; cmd_align_args.cpp: added -i/--index flag parsing, updated help text with "Index caching" section; cmd_align.cpp: load pre-built index via MinimizerIndex::Load() when --index provided, use index config (k,w) from loaded index; test_llmap_cli.cpp: 5 new tests (AlignHelpShowsIndexFlag, AlignIndexFileNotFound, AlignWithPrebuiltIndex, AlignIndexShortFlag, AlignIndexVerboseShowsParams); 1476 tests pass; monolith count 0; Phase B COMPLETE |
 | 90 | 2026-05-14 | n/a | Phase C.1: identity filter improvements | classical_pipeline.h: min_identity default 0.70→0.80 for precision; added filtered_by_identity/filtered_by_length to ReadAlignmentResult + ClassicalPipelineStats; classical_pipeline.cpp: filter tracking in AlignRead() + stats aggregation in AlignReads/AlignReadsParallel; cmd_align_internal.h: min_identity default 0.80; cmd_align_args.cpp: help text [0.80]; test_classical_pipeline.cpp: 7 new tests (DefaultMinIdentityIs080, IdentityFilterTracksFilteredAlignments, IdentityFilterStrictThresholdFiltersMore, IdentityFilterStatsAggregatedInBatch, IdentityFilterStatsAggregatedInParallel, HighIdentityExactMatchPassesFilter, PerReadFilterStatsCorrect); 1483 tests pass; monolith count 0 |
+| 91 | 2026-05-14 | n/a | Phase C.2: -x presets | cmd_align_internal.h: Preset enum (MapHifi/MapOnt/MapPb/Sr), ApplyPreset function; cmd_align_args.cpp: -x flag parsing with preset application, explicit CLI args override preset values; presets: map-hifi (k=19, w=19, identity=0.90, chain=40), map-ont/map-pb (k=15, w=10, identity=0.70, chain=20), sr (k=21, w=11, identity=0.95, chain=50); help text with preset documentation; test_llmap_cli.cpp: 7 new tests (AlignHelpShowsPresets, AlignPresetInvalid, AlignPresetMapHifi, AlignPresetMapOnt, AlignPresetSr, AlignPresetOverrideKmer, AlignPresetHifiShortName); 1490 tests pass; monolith count 0 |
 
 ---
 

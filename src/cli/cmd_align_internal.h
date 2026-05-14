@@ -14,12 +14,31 @@
 
 namespace llmap::cli::align_internal {
 
+// Read type presets for optimized alignment parameters
+enum class Preset {
+    None,      // No preset, use defaults
+    MapHifi,   // PacBio HiFi: high accuracy, k=19, w=19, tight thresholds
+    MapOnt,    // Oxford Nanopore: higher error, k=15, w=10, relaxed identity
+    MapPb,     // Legacy PacBio CLR: high error, same as map-ont
+    Sr         // Short reads (Illumina): k=21, w=11, high accuracy
+};
+
+// Convert preset string to enum
+Preset ParsePreset(std::string_view name);
+
+// Get human-readable preset name
+const char* PresetName(Preset preset);
+
+// Apply preset defaults to AlignArgs (call after parsing, before alignment)
+void ApplyPreset(Preset preset, struct AlignArgs& args);
+
 struct AlignArgs {
     std::string reads;
     std::string reference;
     std::string output;
     std::string parquet_output;
     std::string index;          // Pre-built .llmi index file (optional)
+    Preset preset = Preset::None;  // Read type preset (-x)
     bool use_bam = false;
     bool use_sam = true;
     int kmer_size = 15;
