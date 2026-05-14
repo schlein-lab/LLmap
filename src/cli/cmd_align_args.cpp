@@ -31,7 +31,7 @@ void PrintAlignUsage() {
         "  -k, --kmer INT          Minimizer k-mer size [15] (ignored if --index)\n"
         "  -w, --window INT        Minimizer window [10] (ignored if --index)\n"
         "  --min-chain INT         Minimum chain score [30]\n"
-        "  --min-identity FLOAT    Minimum alignment identity [0.70]\n"
+        "  --min-identity FLOAT    Minimum alignment identity [0.80]\n"
         "\n"
         "Performance:\n"
         "  -t, --threads INT       Number of threads [1]\n"

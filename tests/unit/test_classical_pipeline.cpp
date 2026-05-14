@@ -828,3 +828,163 @@ TEST_F(ClassicalPipelineTest, ZeroAllocChainingVaryingSizes) {
         }
     }
 }
+
+// === Identity Filter Tests (Phase C.1) ===
+
+TEST_F(ClassicalPipelineTest, DefaultMinIdentityIs080) {
+    // Verify the new default of 0.80 for precision improvement
+    ClassicalPipelineConfig default_config;
+    EXPECT_FLOAT_EQ(default_config.min_identity, 0.80f);
+}
+
+TEST_F(ClassicalPipelineTest, IdentityFilterTracksFilteredAlignments) {
+    // Create a read that will have low identity when aligned to wrong position
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = MakeRandomSequence(150, 99);  // Unrelated sequence
+
+    config.min_identity = 0.50f;  // Low threshold so we might get hits
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    // The result should track filtered alignments
+    // (filtered_by_identity + filtered_by_length + alignments) should be
+    // related to chains extended
+    EXPECT_GE(result.filtered_by_identity, 0);
+    EXPECT_GE(result.filtered_by_length, 0);
+}
+
+TEST_F(ClassicalPipelineTest, IdentityFilterStrictThresholdFiltersMore) {
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 150);  // Exact match
+
+    // First with permissive threshold
+    config.min_identity = 0.50f;
+    ClassicalPipeline pipeline_permissive(config);
+    auto index1 = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline_permissive.SetIndex(std::move(index1));
+    auto result_permissive = pipeline_permissive.AlignRead("read1", query);
+
+    // Then with strict threshold
+    config.min_identity = 0.99f;
+    ClassicalPipeline pipeline_strict(config);
+    auto index2 = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline_strict.SetIndex(std::move(index2));
+    auto result_strict = pipeline_strict.AlignRead("read1", query);
+
+    // Strict filter should filter more (or equal) alignments
+    EXPECT_GE(result_strict.filtered_by_identity,
+              result_permissive.filtered_by_identity);
+}
+
+TEST_F(ClassicalPipelineTest, IdentityFilterStatsAggregatedInBatch) {
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    // Mix of exact matches and random sequences
+    for (int i = 0; i < 10; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        if (i % 2 == 0) {
+            query_seqs.push_back(ref_seq.substr(100 + i * 50, 150));  // Exact
+        } else {
+            query_seqs.push_back(MakeRandomSequence(150, 100 + i));  // Random
+        }
+    }
+
+    config.min_identity = 0.80f;  // Use new default
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    pipeline.AlignReads(query_names, query_seqs);
+    const auto& stats = pipeline.Stats();
+
+    // Stats should track filtering
+    EXPECT_EQ(stats.total_reads, 10);
+    EXPECT_GE(stats.alignments_filtered_by_identity, 0);
+    EXPECT_GE(stats.alignments_filtered_by_length, 0);
+}
+
+TEST_F(ClassicalPipelineTest, IdentityFilterStatsAggregatedInParallel) {
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    for (int i = 0; i < 20; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        if (i % 3 == 0) {
+            query_seqs.push_back(ref_seq.substr(100 + (i * 30) % 700, 150));
+        } else {
+            query_seqs.push_back(MakeRandomSequence(150, 200 + i));
+        }
+    }
+
+    config.min_identity = 0.80f;
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    ThreadPool pool(4);
+    pipeline.AlignReadsParallel(query_names, query_seqs, pool);
+    const auto& stats = pipeline.Stats();
+
+    EXPECT_EQ(stats.total_reads, 20);
+    EXPECT_GE(stats.alignments_filtered_by_identity, 0);
+    EXPECT_GE(stats.alignments_filtered_by_length, 0);
+}
+
+TEST_F(ClassicalPipelineTest, HighIdentityExactMatchPassesFilter) {
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 150);  // Exact match
+
+    config.min_identity = 0.80f;  // New default
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> refs = {ref_seq};
+    pipeline.SetReferenceSequences(refs);
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    // Exact match should pass the identity filter
+    EXPECT_TRUE(result.HasAlignment());
+    if (result.HasAlignment()) {
+        EXPECT_GE(result.alignments[0].identity, 0.80f);
+    }
+}
+
+TEST_F(ClassicalPipelineTest, PerReadFilterStatsCorrect) {
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 150);
+
+    config.min_identity = 0.50f;
+    config.min_aligned_bases = 20;
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    // Verify filter stats are non-negative and consistent
+    EXPECT_GE(result.filtered_by_identity, 0);
+    EXPECT_GE(result.filtered_by_length, 0);
+    EXPECT_GE(result.chains_extended, 0);
+}

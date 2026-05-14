@@ -42,7 +42,7 @@ struct ClassicalPipelineConfig {
     WFA2Config extension_config;
 
     // Filtering
-    float min_identity = 0.70f;        // Minimum alignment identity
+    float min_identity = 0.80f;        // Minimum alignment identity (for precision)
     int32_t min_aligned_bases = 50;    // Minimum aligned bases
     uint32_t max_alignments = 5;       // Max alignments to report per read
 
@@ -90,6 +90,8 @@ struct ReadAlignmentResult {
     size_t num_hits = 0;              // Minimizer hits found
     size_t num_chains = 0;            // Chains extracted
     size_t chains_extended = 0;       // Chains with successful extension
+    size_t filtered_by_identity = 0;  // Chains rejected by identity filter
+    size_t filtered_by_length = 0;    // Chains rejected by min_aligned_bases
     float seeding_time_us = 0.0f;
     float chaining_time_us = 0.0f;
     float extension_time_us = 0.0f;
@@ -107,6 +109,10 @@ struct ClassicalPipelineStats {
     size_t total_hits = 0;
     size_t total_chains = 0;
     size_t total_extensions = 0;
+
+    // Identity filtering stats
+    size_t alignments_filtered_by_identity = 0;  // Count of alignments rejected
+    size_t alignments_filtered_by_length = 0;    // Count below min_aligned_bases
 
     float avg_identity = 0.0f;
     float total_time_ms = 0.0f;

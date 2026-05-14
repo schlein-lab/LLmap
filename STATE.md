@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 89 |
-| Total iterations | 89 |
+| Last successful iteration | 90 |
+| Total iterations | 90 |
 
 ---
 
@@ -110,6 +110,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase B.1: Parallelize AlignReads() with ThreadPool (1466 tests pass)
   - [x] Phase B.2: Zero-allocation chaining with ChainScratch (1471 tests pass)
   - [x] Phase B.3: Index caching in CLI (1476 tests pass)
+- [ ] **Phase C: Polish + Precision** ★
+  - [x] Phase C.1: Identity filter improvements (1483 tests pass)
 
 ---
 
@@ -117,24 +119,27 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: C
-task: C.1_identity_filter
-substep: Add minimum identity filter to improve precision
+task: C.2_presets
+substep: Implement -x presets (map-hifi, map-ont) for read type optimization
 inputs:
-  - src/classical/classical_pipeline.h (filter config)
-  - docs/IMPROVEMENTS.md (P1: precision gap issue)
+  - src/cli/cmd_align_internal.h (AlignArgs)
+  - src/cli/cmd_align_args.cpp (argument parsing)
+  - docs/IMPROVEMENTS.md (P2: presets recommendation)
 expected_files_changed:
-  - src/classical/classical_pipeline.cpp (add identity filter)
-  - tests/unit/test_classical_pipeline.cpp (identity filter tests)
+  - src/cli/cmd_align_args.cpp (add -x preset flag)
+  - src/cli/cmd_align_internal.h (preset enum)
+  - tests/unit/test_llmap_cli.cpp (preset tests)
 acceptance:
-  - Alignments below min_identity are filtered out
+  - -x map-hifi preset optimizes for PacBio HiFi reads
+  - -x map-ont preset optimizes for Oxford Nanopore reads
   - All tests pass
   - Monolith count stays at 0
 notes: |
-  Phase B complete: All performance improvements done.
-  - B.1: Parallelize AlignReads() with ThreadPool
-  - B.2: Zero-allocation chaining with ChainScratch
-  - B.3: Index caching via --index flag (1476 tests pass)
-  Phase C focuses on polish/precision improvements.
+  Phase C.1 complete: Identity filter improvements.
+  - Changed default min_identity from 0.70 to 0.80 for better precision
+  - Added filtered_by_identity and filtered_by_length stats tracking
+  - Added CLI --min-identity flag documentation update
+  - 7 new tests for identity filter verification (1483 tests pass)
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -221,8 +226,9 @@ hard_rule_precheck:
 75. ~~Phase B.1: Parallelize AlignReads() with ThreadPool~~ ✅ done
 76. ~~Phase B.2: Zero-allocation chaining (ChainScratch)~~ ✅ done
 77. ~~Phase B.3: Index caching in CLI~~ ✅ done
-78. Phase C.1: Identity filter for precision
-79. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
+78. ~~Phase C.1: Identity filter for precision~~ ✅ done
+79. Phase C.2: `-x` presets (map-hifi, map-ont)
+80. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
 
 ---
 
@@ -335,6 +341,7 @@ hard_rule_precheck:
 | 87 | 2026-05-14 | n/a | Phase B.1: parallel alignment | classical_pipeline.cpp: added AlignReadsParallel() method using ThreadPool; thread-safe stats aggregation via atomics (total_hits, total_chains, reads_aligned, identity_sum_scaled); classical_pipeline.h: added num_threads config, forward decl for ThreadPool, AlignReadsParallel() API; test_classical_pipeline.cpp: 7 new tests (ParallelAlignBatchMultipleReads, ParallelAndSequentialProduceSameResults, ParallelStatsAggregatedCorrectly, ParallelEmptyBatch, ParallelSingleRead, ParallelLargeBatch, ParallelIdentityStatsAccurate); 1466 tests pass; monolith count 0 |
 | 88 | 2026-05-14 | n/a | Phase B.2: zero-allocation chaining | classical_pipeline.cpp: added thread_local ChainScratch; AlignRead() now uses ExtractChainsFromAnchorsWithScratch() for zero-allocation hot path; scratch buffers grow as needed but never shrink, avoiding repeated heap allocations; test_classical_pipeline.cpp: 5 new tests (ZeroAllocChainingProducesCorrectResults, ZeroAllocChainingConsistentAcrossMultipleReads, ZeroAllocChainingParallelConsistency, ZeroAllocChainingRepeatedSingleRead, ZeroAllocChainingVaryingSizes); 1471 tests pass; monolith count 0 |
 | 89 | 2026-05-14 | n/a | Phase B.3: index caching in CLI | cmd_align_internal.h: added index field to AlignArgs; cmd_align_args.cpp: added -i/--index flag parsing, updated help text with "Index caching" section; cmd_align.cpp: load pre-built index via MinimizerIndex::Load() when --index provided, use index config (k,w) from loaded index; test_llmap_cli.cpp: 5 new tests (AlignHelpShowsIndexFlag, AlignIndexFileNotFound, AlignWithPrebuiltIndex, AlignIndexShortFlag, AlignIndexVerboseShowsParams); 1476 tests pass; monolith count 0; Phase B COMPLETE |
+| 90 | 2026-05-14 | n/a | Phase C.1: identity filter improvements | classical_pipeline.h: min_identity default 0.70→0.80 for precision; added filtered_by_identity/filtered_by_length to ReadAlignmentResult + ClassicalPipelineStats; classical_pipeline.cpp: filter tracking in AlignRead() + stats aggregation in AlignReads/AlignReadsParallel; cmd_align_internal.h: min_identity default 0.80; cmd_align_args.cpp: help text [0.80]; test_classical_pipeline.cpp: 7 new tests (DefaultMinIdentityIs080, IdentityFilterTracksFilteredAlignments, IdentityFilterStrictThresholdFiltersMore, IdentityFilterStatsAggregatedInBatch, IdentityFilterStatsAggregatedInParallel, HighIdentityExactMatchPassesFilter, PerReadFilterStatsCorrect); 1483 tests pass; monolith count 0 |
 
 ---
 

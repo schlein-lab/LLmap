@@ -166,9 +166,19 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
             alignment->mapq = 0;  // Secondary
         }
 
-        // Filter by identity
-        if (alignment->identity >= config_.min_identity &&
-            alignment->AlignedBases() >= static_cast<uint32_t>(config_.min_aligned_bases)) {
+        // Filter by identity and length
+        bool passes_identity = alignment->identity >= config_.min_identity;
+        bool passes_length = alignment->AlignedBases() >=
+                            static_cast<uint32_t>(config_.min_aligned_bases);
+
+        if (!passes_identity) {
+            ++result.filtered_by_identity;
+        }
+        if (!passes_length) {
+            ++result.filtered_by_length;
+        }
+
+        if (passes_identity && passes_length) {
             result.alignments.push_back(std::move(*alignment));
             ++result.chains_extended;
 
@@ -202,6 +212,8 @@ std::vector<ReadAlignmentResult> ClassicalPipeline::AlignReads(
         stats_.total_hits += result.num_hits;
         stats_.total_chains += result.num_chains;
         stats_.total_extensions += result.chains_extended;
+        stats_.alignments_filtered_by_identity += result.filtered_by_identity;
+        stats_.alignments_filtered_by_length += result.filtered_by_length;
         stats_.seeding_time_ms += result.seeding_time_us / 1000.0f;
         stats_.chaining_time_ms += result.chaining_time_us / 1000.0f;
         stats_.extension_time_ms += result.extension_time_us / 1000.0f;
@@ -239,6 +251,8 @@ std::vector<ReadAlignmentResult> ClassicalPipeline::AlignReadsParallel(
     std::atomic<size_t> total_hits{0};
     std::atomic<size_t> total_chains{0};
     std::atomic<size_t> total_extensions{0};
+    std::atomic<size_t> filtered_by_identity{0};
+    std::atomic<size_t> filtered_by_length{0};
     std::atomic<size_t> reads_aligned{0};
     std::atomic<size_t> reads_unmapped{0};
     std::atomic<uint64_t> seeding_time_us{0};
@@ -252,6 +266,10 @@ std::vector<ReadAlignmentResult> ClassicalPipeline::AlignReadsParallel(
         total_hits.fetch_add(result.num_hits, std::memory_order_relaxed);
         total_chains.fetch_add(result.num_chains, std::memory_order_relaxed);
         total_extensions.fetch_add(result.chains_extended, std::memory_order_relaxed);
+        filtered_by_identity.fetch_add(
+            result.filtered_by_identity, std::memory_order_relaxed);
+        filtered_by_length.fetch_add(
+            result.filtered_by_length, std::memory_order_relaxed);
         seeding_time_us.fetch_add(
             static_cast<uint64_t>(result.seeding_time_us), std::memory_order_relaxed);
         chaining_time_us.fetch_add(
@@ -275,6 +293,8 @@ std::vector<ReadAlignmentResult> ClassicalPipeline::AlignReadsParallel(
     stats_.total_hits = total_hits.load();
     stats_.total_chains = total_chains.load();
     stats_.total_extensions = total_extensions.load();
+    stats_.alignments_filtered_by_identity = filtered_by_identity.load();
+    stats_.alignments_filtered_by_length = filtered_by_length.load();
     stats_.reads_aligned = reads_aligned.load();
     stats_.reads_unmapped = reads_unmapped.load();
     stats_.seeding_time_ms = static_cast<float>(seeding_time_us.load()) / 1000.0f;

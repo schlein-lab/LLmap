@@ -25,7 +25,7 @@ struct AlignArgs {
     int kmer_size = 15;
     int window_size = 10;
     int min_chain = 30;
-    float min_identity = 0.70f;
+    float min_identity = 0.80f;
     int threads = 1;
     int max_chains = 10;
     bool verbose = false;
