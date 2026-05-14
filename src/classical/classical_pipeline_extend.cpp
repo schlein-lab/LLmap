@@ -4,6 +4,25 @@
 
 namespace llmap::classical {
 
+namespace {
+
+std::string ReverseComplement(std::string_view seq) {
+    std::string rc;
+    rc.reserve(seq.size());
+    for (auto it = seq.rbegin(); it != seq.rend(); ++it) {
+        switch (*it) {
+            case 'A': case 'a': rc.push_back('T'); break;
+            case 'T': case 't': rc.push_back('A'); break;
+            case 'C': case 'c': rc.push_back('G'); break;
+            case 'G': case 'g': rc.push_back('C'); break;
+            default:            rc.push_back('N'); break;
+        }
+    }
+    return rc;
+}
+
+}  // namespace
+
 std::optional<WFA2Result> ClassicalPipeline::AlignGap(
     std::string_view query_seq,
     uint32_t ref_id,
@@ -31,9 +50,9 @@ std::optional<WFA2Result> ClassicalPipeline::AlignGap(
 }
 
 std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
-    std::string_view query_seq,
+    std::string_view query_seq_in,
     const Chain& chain,
-    const std::vector<Anchor>& anchors) const {
+    const std::vector<Anchor>& anchors_in) const {
 
     if (chain.anchors.empty()) {
         return std::nullopt;
@@ -43,6 +62,32 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     aln.score = chain.score;
 
     uint8_t k = config_.minimizer_config.k;
+
+    // Reverse-strand chains: align the reverse-complement of the read against
+    // the forward-strand reference. Query positions for reverse-strand
+    // minimizers refer to forward-strand coordinates, so flip them once here.
+    std::string rc_query_storage;
+    std::vector<Anchor> flipped_anchors_storage;
+    std::string_view query_seq = query_seq_in;
+    const std::vector<Anchor>* anchors_ptr = &anchors_in;
+
+    if (!chain.is_forward) {
+        rc_query_storage = ReverseComplement(query_seq_in);
+        query_seq = rc_query_storage;
+        flipped_anchors_storage.reserve(anchors_in.size());
+        const uint32_t qlen = static_cast<uint32_t>(query_seq_in.size());
+        for (const auto& a : anchors_in) {
+            Anchor flipped = a;
+            // Minimizer at forward-strand position p maps to position qlen-p-k
+            // in the reverse-complemented read.
+            flipped.query_pos = (a.query_pos + k <= qlen)
+                ? qlen - a.query_pos - k
+                : 0;
+            flipped_anchors_storage.push_back(flipped);
+        }
+        anchors_ptr = &flipped_anchors_storage;
+    }
+    const std::vector<Anchor>& anchors = *anchors_ptr;
     size_t matches = 0;
     size_t mismatches = 0;
     size_t insertions = 0;
