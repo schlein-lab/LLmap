@@ -44,6 +44,17 @@ target_link_libraries(test_igh_locus_generator
 )
 gtest_discover_tests(test_igh_locus_generator)
 
+add_executable(test_benchmark_truth
+    unit/test_benchmark_truth.cpp
+)
+target_link_libraries(test_benchmark_truth
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_benchmark_truth)
+
 add_executable(test_foundation_embedder
     unit/test_foundation_embedder.cpp
 )

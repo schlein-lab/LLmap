@@ -14,6 +14,7 @@ add_library(llmap_core STATIC
     core/v1_readiness_checks.cpp
     synthetic/igh_locus_generator_core.cpp
     synthetic/igh_locus_generator_presets.cpp
+    synthetic/benchmark_truth.cpp
 )
 
 target_include_directories(llmap_core PUBLIC
