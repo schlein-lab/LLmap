@@ -58,12 +58,15 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     const auto& last_anchor = anchors[chain.anchors.back()];
 
     // === LEFT EXTENSION ===
-    // Extend alignment from query start (0) to first anchor position
+    // Extend alignment from query start (0) to first anchor position.
+    // Soft-clip directly if the unaligned span is large (extension cost is
+    // O(span²) and the gain is negligible past the first ~200 bp).
+    constexpr uint32_t kMaxExtensionSpan = 200;
     uint32_t left_query_bases = first_anchor.query_pos;
     uint32_t left_ref_bases = 0;
     uint32_t actual_ref_start = chain.ref_start;
 
-    if (have_ref_seqs && left_query_bases > 0) {
+    if (have_ref_seqs && left_query_bases > 0 && left_query_bases <= kMaxExtensionSpan) {
         // Calculate how far we can extend left in reference
         left_ref_bases = std::min(left_query_bases + 50, first_anchor.ref_pos);
         uint32_t ref_ext_start = first_anchor.ref_pos - left_ref_bases;
@@ -204,7 +207,7 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     uint32_t right_query_bases = query_len - last_anchor_end_query;
     uint32_t actual_ref_end = chain.ref_end;
 
-    if (have_ref_seqs && right_query_bases > 0) {
+    if (have_ref_seqs && right_query_bases > 0 && right_query_bases <= kMaxExtensionSpan) {
         // Calculate how far we can extend right in reference
         uint32_t right_ref_bases = std::min(right_query_bases + 50, ref_len - last_anchor_end_ref);
 
