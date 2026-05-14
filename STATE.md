@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 47 |
-| Total iterations | 47 |
+| Last successful iteration | 48 |
+| Total iterations | 48 |
 
 ---
 
@@ -74,7 +74,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 8.4: Memory-mapped I/O for large references (1028 tests pass)
   - [x] Phase 8.5: Thread pool for parallel batch processing (1062 tests pass)
   - [x] Phase 8.6: Cache-friendly data layouts (1092 tests pass)
-- [ ] Phase 9: Single-Cell + Paralog Production
+- [ ] **Phase 9: Single-Cell + Paralog Production**
+  - [x] Phase 9.1: Cell barcode preservation module (1129 tests pass)
 
 ---
 
@@ -83,12 +84,13 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 9
 task: single_cell_paralog_production
-substep: 1/N — Begin Phase 9 planning
-last_action: Phase 8.6 — Cache-friendly data layouts + Phase 8 COMPLETE: cache_layout.h with MinimizerSoA, AnchorSoA, DPStateSoA for AoS→SoA conversions; prefetch utilities (PrefetchForRead/Write/Range, PrefetchTemporal/NonTemporal); cache-line alignment helpers; TiledProcessor for cache-oblivious 2D DP; 30 new tests (1.56x speedup measured for sequential field access); 1092 tests pass
-next_action: Phase 9.1 — Begin single-cell and paralog production modules
-  - Review LLmap_SPEC.md for Phase 9 requirements
-  - Plan UMI deduplication, cell barcode handling, copy number tracking
-acceptance: Phase 9 started with initial module structure
+substep: 2/N — Per-cell paralog matrix
+last_action: Phase 9.1 — Cell barcode preservation module: src/singlecell/cb_preservation.{h,cpp} with SingleCellTags struct (CB/CR/CY/UB/UR/UY/RG/BC/QT tags); TagType enum and conversions; TagValue for string/int; extraction from SAM aux strings, tag pairs, read names (10x-style); FormatTagsAsAux/AsPairs for output; barcode/UMI validation; CellBarcodeWhitelist with Hamming-distance correction (LoadFromFile, FindNearest); BarcodeExtractionConfig for platform presets (10x, Parse, Kinnex); 37 new tests; 1129 tests pass
+next_action: Phase 9.2 — Per-cell paralog matrix output
+  - Implement per_cell_paralog.{h,cpp}
+  - Cell × paralog probability matrix
+  - AnnData .h5ad export (or simple CSV/TSV for V1.0)
+acceptance: Per-cell paralog matrix with export functionality
 ```
 
 ---
@@ -141,8 +143,9 @@ acceptance: Phase 9 started with initial module structure
 44. ~~Phase 8.4: Memory-mapped I/O for large references~~ ✅ done
 45. ~~Phase 8.5: Thread pool for parallel batch processing~~ ✅ done
 46. ~~Phase 8.6: Cache-friendly data layouts + finalize Phase 8~~ ✅ done (Phase 8 COMPLETE)
-47. Phase 9.1: Single-cell + paralog production — BEGIN ← NEXT
-48. ... (continues per LLmap_SPEC.md)
+47. ~~Phase 9.1: Cell barcode preservation module~~ ✅ done
+48. Phase 9.2: Per-cell paralog matrix output ← NEXT
+49. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -213,6 +216,7 @@ acceptance: Phase 9 started with initial module structure
 | 45 | 2026-05-14 | n/a | Phase 8.4 memory-mapped FASTA reader | mmap_fasta.h + split to mmap_fasta.cpp (191 LOC) + mmap_fasta_seq.cpp (174 LOC) + mmap_fasta_internal.h (MmapFastaReader with mmap-based file mapping, lazy index building, GetSequence/GetSequenceData/GetSubsequence for zero-copy and copy access, memory advice hints AdviseSequential/AdviseRandom/AdviseWillNeed/AdviseDontNeed, MmapStats for resident page tracking, IsFastaFile utility); test_mmap_fasta.cpp (30 tests); 1028 tests pass; monolith count 0→0 |
 | 46 | 2026-05-14 | n/a | Phase 8.5 thread pool for parallel batch processing | thread_pool.h (313 LOC) + thread_pool.cpp (102 LOC): ThreadPool class with work-stealing fixed-size pool, Submit/Execute/WaitAll APIs, ThreadPoolStats (tasks_submitted/completed/stolen/wait_ns); ParallelFor with auto-chunking; ParallelMap for input→output transforms; BatchProcessor<In,Out> with progress callbacks; test_thread_pool.cpp (34 tests); 1062 tests pass; monolith count 0→0 |
 | 47 | 2026-05-14 | n/a | Phase 8.6 cache-friendly data layouts + Phase 8 COMPLETE | cache_layout.h (header-only): MinimizerSoA (hash/pos/strand arrays, cache-aligned), AnchorSoA (ref_id/ref_pos/query_pos/strand arrays, SortPermutation), DPStateSoA (score/predecessor arrays); prefetch utilities (PrefetchForRead/Write/Temporal/NonTemporal/Range); cache-line alignment helpers (AllocateAligned/FreeAligned/IsCacheAligned); TiledProcessor<TileSize> for cache-oblivious 2D DP (Process/ProcessDiagonal); test_cache_layout.cpp (30 tests); measured 1.56x speedup for sequential field access; 1092 tests pass; Phase 8 complete |
+| 48 | 2026-05-14 | n/a | Phase 9.1 cell barcode preservation module | src/singlecell/cb_preservation.{h,cpp}: SingleCellTags struct (CB/CR/CY/UB/UR/UY/RG/BC/QT tags); TagType enum and TagTypeToString/StringToTagType conversions; TagValue for string/int values; ExtractTagsFromAux/FromPairs/FromReadName extraction; FormatTagsAsAux/AsPairs output; ValidateBarcode/ValidateUmi validation; CellBarcodeWhitelist with Hamming-distance correction (LoadFromFile, FindNearest); BarcodeExtractionConfig for platform presets (10x, Parse, Kinnex); 37 new tests; 1129 tests pass; Phase 9 started |
 
 ---
 

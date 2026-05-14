@@ -512,6 +512,19 @@ target_link_libraries(test_pipeline_agent
 )
 gtest_discover_tests(test_pipeline_agent)
 
+# ========== Single-cell Module Tests ==========
+
+add_executable(test_cb_preservation
+    unit/test_cb_preservation.cpp
+)
+target_link_libraries(test_cb_preservation
+    PRIVATE
+    llmap_singlecell
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_cb_preservation)
+
 # ========== Integration Tests ==========
 # These test end-to-end workflows across multiple modules
 
