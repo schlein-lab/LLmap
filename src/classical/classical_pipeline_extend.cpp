@@ -40,22 +40,83 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     }
 
     ClassicalAlignment aln;
-    aln.ref_start = chain.ref_start;
-    aln.ref_end = chain.ref_end;
-    aln.query_start = chain.query_start;
-    aln.query_end = chain.query_end;
     aln.score = chain.score;
 
     uint8_t k = config_.minimizer_config.k;
-    uint32_t prev_query = chain.query_start;
-    uint32_t prev_ref = chain.ref_start;
     size_t matches = 0;
     size_t mismatches = 0;
     size_t insertions = 0;
     size_t deletions = 0;
 
     bool have_ref_seqs = !ref_seqs_.empty() && chain.ref_id < ref_seqs_.size();
+    const auto& ref_seq = have_ref_seqs ? ref_seqs_[chain.ref_id] : std::string{};
+    uint32_t ref_len = have_ref_seqs ? static_cast<uint32_t>(ref_seq.size()) : 0;
+    uint32_t query_len = static_cast<uint32_t>(query_seq.size());
 
+    // Get first and last anchor positions for end extension
+    const auto& first_anchor = anchors[chain.anchors.front()];
+    const auto& last_anchor = anchors[chain.anchors.back()];
+
+    // === LEFT EXTENSION ===
+    // Extend alignment from query start (0) to first anchor position
+    uint32_t left_query_bases = first_anchor.query_pos;
+    uint32_t left_ref_bases = 0;
+    uint32_t actual_ref_start = chain.ref_start;
+
+    if (have_ref_seqs && left_query_bases > 0) {
+        // Calculate how far we can extend left in reference
+        left_ref_bases = std::min(left_query_bases + 50, first_anchor.ref_pos);
+        uint32_t ref_ext_start = first_anchor.ref_pos - left_ref_bases;
+
+        if (left_ref_bases > 0 && left_query_bases > 0) {
+            auto left_result = aligner_.ExtendLeft(
+                query_seq.substr(0, first_anchor.query_pos),
+                std::string_view(ref_seq).substr(ref_ext_start, left_ref_bases),
+                static_cast<int32_t>(first_anchor.query_pos),
+                static_cast<int32_t>(left_ref_bases));
+
+            if (left_result) {
+                // Add left extension CIGAR (soft-clip unaligned, then extension)
+                int32_t aligned_query = left_result->query_end - left_result->query_start;
+                int32_t query_softclip = static_cast<int32_t>(first_anchor.query_pos) - aligned_query;
+
+                if (query_softclip > 0) {
+                    aln.cigar.push_back({CigarOp::SoftClip, static_cast<uint32_t>(query_softclip)});
+                }
+
+                for (const auto& elem : left_result->cigar) {
+                    aln.cigar.push_back(elem);
+                }
+
+                matches += left_result->num_matches;
+                mismatches += left_result->num_mismatches;
+                insertions += left_result->num_insertions;
+                deletions += left_result->num_deletions;
+
+                // Update ref_start based on extension
+                actual_ref_start = ref_ext_start + static_cast<uint32_t>(left_result->ref_start);
+            } else {
+                // Extension failed - soft clip the left portion
+                if (left_query_bases > 0) {
+                    aln.cigar.push_back({CigarOp::SoftClip, left_query_bases});
+                }
+            }
+        } else if (left_query_bases > 0) {
+            aln.cigar.push_back({CigarOp::SoftClip, left_query_bases});
+        }
+    } else if (left_query_bases > 0) {
+        // No reference sequences - soft clip left portion
+        aln.cigar.push_back({CigarOp::SoftClip, left_query_bases});
+    }
+
+    // Set alignment start positions
+    aln.ref_start = actual_ref_start;
+    aln.query_start = 0;  // Now we cover from query start
+
+    uint32_t prev_query = first_anchor.query_pos;
+    uint32_t prev_ref = first_anchor.ref_pos;
+
+    // === ANCHOR-TO-ANCHOR ALIGNMENT ===
     for (uint32_t anchor_idx : chain.anchors) {
         if (anchor_idx >= anchors.size()) continue;
         const auto& anchor = anchors[anchor_idx];
@@ -130,34 +191,67 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
         prev_ref = anchor.ref_pos + k;
     }
 
-    // Handle trailing gap after last anchor
-    if (prev_query < chain.query_end) {
-        uint32_t trail_q = chain.query_end - prev_query;
-        uint32_t trail_r = (chain.ref_end > prev_ref) ? chain.ref_end - prev_ref : 0;
+    // Handle trailing gap after last anchor (within chain span)
+    uint32_t last_anchor_end_query = last_anchor.query_pos + k;
+    uint32_t last_anchor_end_ref = last_anchor.ref_pos + k;
 
-        if (have_ref_seqs && trail_q > 0 && trail_r > 0) {
-            auto gap_result = AlignGap(
-                query_seq, chain.ref_id,
-                prev_query, chain.query_end,
-                prev_ref, chain.ref_end);
+    // === RIGHT EXTENSION ===
+    // Extend alignment from last anchor to query end
+    uint32_t right_query_bases = query_len - last_anchor_end_query;
+    uint32_t actual_ref_end = chain.ref_end;
 
-            if (gap_result) {
-                for (const auto& elem : gap_result->cigar) {
+    if (have_ref_seqs && right_query_bases > 0) {
+        // Calculate how far we can extend right in reference
+        uint32_t right_ref_bases = std::min(right_query_bases + 50, ref_len - last_anchor_end_ref);
+
+        if (right_ref_bases > 0) {
+            auto right_result = aligner_.ExtendRight(
+                query_seq.substr(last_anchor_end_query),
+                std::string_view(ref_seq).substr(last_anchor_end_ref, right_ref_bases),
+                0,  // Start from beginning of substring
+                0);
+
+            if (right_result) {
+                // Add right extension CIGAR
+                for (const auto& elem : right_result->cigar) {
                     aln.cigar.push_back(elem);
                 }
-                matches += gap_result->num_matches;
-                mismatches += gap_result->num_mismatches;
-                insertions += gap_result->num_insertions;
-                deletions += gap_result->num_deletions;
+
+                matches += right_result->num_matches;
+                mismatches += right_result->num_mismatches;
+                insertions += right_result->num_insertions;
+                deletions += right_result->num_deletions;
+
+                // Calculate how much of query was aligned
+                int32_t aligned_query = right_result->query_end - right_result->query_start;
+                int32_t query_softclip = static_cast<int32_t>(right_query_bases) - aligned_query;
+
+                if (query_softclip > 0) {
+                    aln.cigar.push_back({CigarOp::SoftClip, static_cast<uint32_t>(query_softclip)});
+                }
+
+                // Update ref_end based on extension
+                actual_ref_end = last_anchor_end_ref + static_cast<uint32_t>(right_result->ref_end);
             } else {
-                aln.cigar.push_back({CigarOp::Match, trail_q});
-                matches += trail_q;
+                // Extension failed - soft clip the right portion
+                if (right_query_bases > 0) {
+                    aln.cigar.push_back({CigarOp::SoftClip, right_query_bases});
+                }
+                actual_ref_end = last_anchor_end_ref;
             }
-        } else if (trail_q > 0) {
-            aln.cigar.push_back({CigarOp::Match, trail_q});
-            matches += trail_q;
+        } else if (right_query_bases > 0) {
+            aln.cigar.push_back({CigarOp::SoftClip, right_query_bases});
+            actual_ref_end = last_anchor_end_ref;
         }
+    } else if (right_query_bases > 0) {
+        // No reference sequences - soft clip right portion
+        aln.cigar.push_back({CigarOp::SoftClip, right_query_bases});
+        actual_ref_end = last_anchor_end_ref;
     }
+
+    // Set alignment end positions
+    aln.ref_end = actual_ref_end;
+    aln.query_end = query_len;  // Now we cover to query end
 
     // Merge adjacent CIGAR operations
     std::vector<CigarElement> merged;

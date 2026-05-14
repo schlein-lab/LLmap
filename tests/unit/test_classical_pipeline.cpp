@@ -397,3 +397,124 @@ TEST_F(ClassicalPipelineTest, MinIdentityFilterApplied) {
         EXPECT_GE(aln.identity, config.min_identity);
     }
 }
+
+// === Chain End Extension Tests (Phase A.3) ===
+
+TEST_F(ClassicalPipelineTest, EndExtensionCoversFullQuery) {
+    // Query is an exact substring from ref, but anchors don't cover edges
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(50, 200);  // Exact match at offset 50
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    // Set reference sequences for WFA2 extension
+    std::vector<std::string> refs = {ref_seq};
+    pipeline.SetReferenceSequences(refs);
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    ASSERT_TRUE(result.HasAlignment());
+    const auto& aln = result.alignments[0];
+
+    // With end extension, query_start should be 0 and query_end should be query length
+    EXPECT_EQ(aln.query_start, 0);
+    EXPECT_EQ(aln.query_end, static_cast<int32_t>(query.size()));
+}
+
+TEST_F(ClassicalPipelineTest, EndExtensionWithRefSeqsProducesAccurateCigar) {
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    // Take substring that starts a bit into the sequence
+    std::string query = ref_seq.substr(100, 150);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    // Set reference sequences for WFA2 extension
+    std::vector<std::string> refs = {ref_seq};
+    pipeline.SetReferenceSequences(refs);
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    ASSERT_TRUE(result.HasAlignment());
+    const auto& aln = result.alignments[0];
+
+    // Alignment should have good identity for exact match
+    EXPECT_GT(aln.identity, 0.8f);
+
+    // CIGAR should not be empty
+    EXPECT_FALSE(aln.cigar.empty());
+}
+
+TEST_F(ClassicalPipelineTest, EndExtensionSetsQueryStartToZero) {
+    // Verify that query_start is always 0 after end extension
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 130);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> refs = {ref_seq};
+    pipeline.SetReferenceSequences(refs);
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    if (result.HasAlignment()) {
+        const auto& aln = result.alignments[0];
+        // With end extension, query_start should always be 0
+        EXPECT_EQ(aln.query_start, 0);
+    }
+}
+
+TEST_F(ClassicalPipelineTest, EndExtensionSetsQueryEndToQueryLength) {
+    // Verify that query_end equals query length after end extension
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 130);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> refs = {ref_seq};
+    pipeline.SetReferenceSequences(refs);
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    if (result.HasAlignment()) {
+        const auto& aln = result.alignments[0];
+        // With end extension, query_end should equal query length
+        EXPECT_EQ(aln.query_end, static_cast<int32_t>(query.size()));
+    }
+}
+
+TEST_F(ClassicalPipelineTest, EndExtensionWithoutRefSeqsSoftClips) {
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 150);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    // Do NOT set reference sequences - should fall back to soft clipping
+    auto result = pipeline.AlignRead("read1", query);
+
+    ASSERT_TRUE(result.HasAlignment());
+    const auto& aln = result.alignments[0];
+
+    // Should still cover full query (with soft clips at edges if anchors don't cover)
+    EXPECT_EQ(aln.query_start, 0);
+    EXPECT_EQ(aln.query_end, static_cast<int32_t>(query.size()));
+}
