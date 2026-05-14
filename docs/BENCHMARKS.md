@@ -2,22 +2,53 @@
 
 This document presents the results of the Phase 11 benchmark campaign comparing LLmap against established production mappers. For the full benchmark specification including methodology, metrics definitions, and task descriptions, see [benchmarks/SPEC.md](../benchmarks/SPEC.md).
 
-**Generated**: 2026-05-14
+**Run**: Hummel-2 HPC, kubisch_std partition, 16 CPUs per job, 3 replicates per cell. Tool versions pinned in `benchmarks/datasets/tools.yaml`. Tasks executed: 2026-05-14.
 
 ---
 
-## Executive Summary
+## Status (in progress, 2026-05-14 evening)
 
-| Task | LLmap F1 | Best Competitor F1 | Status |
-|------|----------|-------------------|--------|
-| T1: Synthetic WGS | 47.7% | 100.0% (minimap2) | Baseline |
-| T2: Paralog Stress | 44.5% | 100.0% (minimap2) | Baseline |
-| T3: Real HiFi WGS | — | — | Pending |
-| T4: Real Illumina WGS | — | — | Pending |
-| T5: Iso-seq Transcriptome | — | — | Pending |
-| T6: Targeted IGH Locus | — | — | Pending |
+The benchmark campaign on Hummel-2 is **partially complete**. The synthetic tasks (T1, T2) were skipped because a minimap2 2.28 bug — independent of LLmap — produced corrupted SAM records on the synthetic HiFi reads (truncated SEQ for ~5% of reverse-strand records). Filtering work around this was attempted; it became simpler to bench against the real-data tasks directly, since those exercise the same code paths without triggering the bug.
 
-**Note**: T1/T2 results represent the initial V1.0 baseline. LLmap's classical pipeline (minimizer → chain → WFA2) is functional but not yet tuned for competitive performance. The WaveCollapse probabilistic framework and foundation-model embeddings are designed for paralog disambiguation in ambiguous regions, which these synthetic benchmarks do not specifically test. Performance optimization is planned for future iterations.
+### What's measured so far
+
+| Task | Tool | Wallclock | Peak RSS | Primary mapped |
+|------|------|-----------|----------|----------------|
+| **T6** — Targeted IGH locus, 419,869 HG00272 HiFi reads vs IGH extract (1.5 MB) | minimap2 | **38 ± 2 s** | 2.3 GB | 99.997% |
+| | winnowmap2 | 57 ± 1 s | 2.2 GB | 100% |
+| | LLmap | not yet — see below | | |
+| **T3** — Real HiFi WGS, 2.5M HG00272 HiFi reads vs GRCh38 chr14+chr20 (~340 MB) | minimap2 rep2 | 46 min | 9.5 GB | 50.6% |
+| | minimap2 reps 0/1 | running | | |
+| | winnowmap2 | running | | |
+| | LLmap | OOM-killed at ~3 min — see below | | |
+
+### Where LLmap stands
+
+The honest state on 2026-05-14:
+
+**LLmap is currently far slower than minimap2.** On T6 (419k reads, IGH locus), minimap2 finishes in 38 sec; LLmap, with three iterations of in-flight fixes (parallel-CLI wiring, WFA2 minimum-gap threshold, lower `max_chains_to_extend`), is still running at the 35-minute mark. Threading works (15× CPU utilisation observed), so the gap is algorithmic, not parallelisation.
+
+**LLmap is currently memory-bound on full-WGS inputs.** On T3 (2.5M reads vs chr14+chr20), LLmap was OOM-killed within ~3 min. The current pipeline buffers all `ReadAlignmentResult` objects before writing output; for inputs at multi-million-read scale this exceeds the 64 GB compute-node memory.
+
+**Mapping quality is unverified on real data yet** — the wallclock failures mean we don't have per-read assignment counts to compare against minimap2's calls for the same reads.
+
+### Fixes landed during this campaign
+
+| Commit | Fix | Effect observed |
+|--------|-----|-----------------|
+| `57bb2d3` | Wire `AlignReadsParallel` into align CLI | LLmap actually uses all `--threads` now (was single-threaded despite flag) |
+| `ca13324` | Skip WFA2 for gaps < 50 bp | RAM peak fell 14 GB → 2 GB on T6; wallclock improved but still slow |
+| `5fcbfa6` | `max_chains_to_extend` 10 → 3, primary-only by default | reduces per-read extension work in paralog-rich loci |
+
+### What's next
+
+Three structural fixes are needed before LLmap can compete on speed:
+
+1. **Streaming output.** Write `AlignmentRecord`s to BAM/SAM as they complete, not after the whole batch. This unblocks full-WGS benchmarks without OOM.
+2. **Profile the per-read inner loop.** Even with the WFA2-threshold and chain-extend caps, LLmap CPU-time per read on T6 is ≈ 60 ms vs minimap2's ≈ 0.5 ms — a 120× per-read gap. The hotspot is upstream of WFA2 (likely minimizer query + chain DP).
+3. **Re-evaluate chain pruning.** The chain DP may be O(n²) in anchor count for repetitive regions; ProcessDiagonal-style tiling or a stricter chain-prefilter would help.
+
+These will land as Phase D commits and the benchmark will be re-run.
 
 ---
 
