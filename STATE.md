@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 78 |
-| Total iterations | 78 |
+| Last successful iteration | 79 |
+| Total iterations | 79 |
 
 ---
 
@@ -97,7 +97,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 11.4: Per-tool runner shake-down (smoke tests for each runner) (1454 tests pass)
   - [x] Phase 11.5: Metrics collector unit tests (1454 C++ tests + 31 Python tests pass)
   - [x] Phase 11.6: SLURM submission orchestrator end-to-end test (1454 C++ + 61 Python tests pass)
-  - [ ] Phase 11.7: Report generator (per-task README + cross-tool tables + plots)
+  - [x] Phase 11.7: Report generator (per-task README + cross-tool tables + plots) (1454 C++ + 93 Python tests pass)
   - [ ] Phase 11.8: Run T1, T2 (synthetic, local CPU) and aggregate
   - [ ] Phase 11.9: SLURM submission for T3–T6 (Hummel, user submits)
   - [ ] Phase 11.10: Populate docs/BENCHMARKS.md with results
@@ -109,19 +109,21 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 11
-task: 11.7_report_generator
-substep: Report generator (per-task README + cross-tool tables + plots)
+task: 11.8_run_synthetic_benchmarks
+substep: Run T1, T2 (synthetic, local CPU) and aggregate
 inputs:
   - benchmarks/orchestrate.py (orchestrator)
-  - benchmarks/metrics/ (compute.py, concordance.py)
-  - benchmarks/reports/ (output from benchmark runs)
+  - benchmarks/report.py (report generator)
+  - benchmarks/runners/run_*.sh (tool runner scripts)
+  - build/llmap (LLmap binary)
 expected_files_changed:
-  - benchmarks/report.py (new, report generator)
-  - benchmarks/test_report.py (new, report tests)
+  - benchmarks/reports/T1/*/rep*/ (benchmark run outputs)
+  - benchmarks/reports/T2/*/rep*/ (benchmark run outputs)
+  - benchmarks/reports/T1/README.md (generated report)
+  - benchmarks/reports/T2/README.md (generated report)
 acceptance:
-  - report.py generates per-task README.md summaries
-  - cross-tool comparison tables (TSV/Markdown)
-  - plot generation stubs (or matplotlib plots)
+  - T1, T2 synthetic benchmarks run locally
+  - Results aggregated and reports generated
   - monolith count remains 0
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
@@ -198,9 +200,8 @@ hard_rule_precheck:
 64. ~~Phase 11.4: Per-tool runner shake-down (smoke tests)~~ ✅ done
 65. ~~Phase 11.5: Metrics collector unit tests~~ ✅ done
 66. ~~Phase 11.6: SLURM submission orchestrator~~ ✅ done
-67. Phase 11.7: Report generator ← NEXT
-67. Phase 11.7: Report generator (per-task README + plots)
-68. Phase 11.8: Run T1, T2 locally + aggregate
+67. ~~Phase 11.7: Report generator (per-task README + plots)~~ ✅ done
+68. Phase 11.8: Run T1, T2 locally + aggregate ← NEXT
 69. Phase 11.9: SLURM submission for T3–T6 (manual on Hummel)
 70. Phase 11.10: Populate docs/BENCHMARKS.md
 71. Phase 11.11: Identify regressions → LLmap improvement list
@@ -306,6 +307,7 @@ hard_rule_precheck:
 | 76 | 2026-05-14 | n/a | Phase 11.4: per-tool smoke tests | benchmarks/datasets/smoke/{smoke_ref.fa, smoke_reads.fq} mini dataset (10 reads, 500bp ref); benchmarks/runners/smoke_test.sh runner script; --verbose/--json/--tools flags; tests minimap2 + llmap locally; skips missing tools gracefully; validates SAM output with samtools; 1454 tests pass; monolith count 0 |
 | 77 | 2026-05-14 | n/a | Phase 11.5: metrics unit tests | test_compute.py (12 tests): mapping summary, MAPQ histogram, ground truth evaluation; test_concordance.py (19 tests): pairwise BAM concordance classification; run_tests.sh runner script; creates mini BAM files via pysam for testing; 1454 C++ + 31 Python tests pass; monolith count 0 |
 | 78 | 2026-05-14 | n/a | Phase 11.6: SLURM orchestrator | orchestrate.py: Python orchestrator for benchmark matrix with dry-run mode, auto-detection (sbatch vs local), task/tool filtering, replicate management, SLURM sbatch script generation, GPU allocation for LLmap real-data tasks, job dependency chaining for metrics aggregation; test_orchestrate.py (30 tests): matrix expansion, cell filtering, script generation, completion detection, dry-run mode; 1454 C++ + 61 Python tests pass; monolith count 0 |
+| 79 | 2026-05-14 | n/a | Phase 11.7: Report generator | report.py: benchmark report generator with per-task README.md, cross-tool comparison tables (TSV/Markdown), matplotlib plot generation (mapping_rate.png, f1_score.png, wallclock.png); RunResult/ToolSummary/TaskReport dataclasses; aggregate_tool for replicate statistics; format_number/format_pct helpers; test_report.py (32 tests): format helpers, JSON loading, run/task loading, aggregation, README/TSV/MD generation, integration; 1454 C++ + 93 Python tests pass; monolith count 0 |
 
 ---
 
