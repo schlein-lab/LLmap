@@ -10,6 +10,8 @@ add_library(llmap_core STATIC
     core/error.cpp
     core/config.cpp
     core/config_parse.cpp
+    core/v1_readiness.cpp
+    core/v1_readiness_checks.cpp
     synthetic/igh_locus_generator_core.cpp
     synthetic/igh_locus_generator_presets.cpp
 )
@@ -258,5 +260,6 @@ add_executable(llmap
     cli/cmd_sc_paralog_matrix.cpp
     cli/cmd_sc_qc_report.cpp
     cli/cmd_sc_qc_report_args.cpp
+    cli/cmd_check.cpp
 )
 target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv)
