@@ -22,9 +22,9 @@ struct ChainConfig {
     uint32_t max_gap_query = 5000;    // Max gap in query coordinates
     uint32_t min_chain_anchors = 3;   // Min anchors to form valid chain
 
-    // Score filtering
-    float min_score_fraction = 0.9f;  // Keep chains ≥ this × best_score
-    int32_t min_chain_score = 20;     // Absolute minimum chain score
+    // Score filtering (tuned for improved mapping rate per Phase A.1)
+    float min_score_fraction = 0.5f;  // Keep chains ≥ this × best_score
+    int32_t min_chain_score = 10;     // Absolute minimum chain score
 
     // DP optimization
     uint32_t max_skip = 25;           // Max predecessors to skip in DP
