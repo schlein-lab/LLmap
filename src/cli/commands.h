@@ -10,5 +10,6 @@ int run_allpair(int argc, char** argv);
 int run_generate_synth(int argc, char** argv);
 int run_validate_real(int argc, char** argv);
 int run_align(int argc, char** argv);
+int run_sc_paralog_matrix(int argc, char** argv);
 
 }  // namespace llmap::cli

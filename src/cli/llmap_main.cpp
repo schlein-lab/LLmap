@@ -78,6 +78,10 @@ int main(int argc, char** argv) {
         return llmap::cli::run_align(argc - 2, argv + 2);
     }
 
+    if (std::strcmp(argv[1], "sc-paralog-matrix") == 0) {
+        return llmap::cli::run_sc_paralog_matrix(argc - 2, argv + 2);
+    }
+
     std::fprintf(stderr,
         "llmap: command '%s' not yet implemented.\n"
         "Use 'llmap --help' for available commands.\n",
