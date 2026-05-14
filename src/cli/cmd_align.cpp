@@ -12,6 +12,7 @@
 
 #include "classical/classical_pipeline.h"
 #include "core/alignment_record.h"
+#include "core/thread_pool.h"
 #include "io/fasta_reader.h"
 #include "io/fastq_reader.h"
 #include "output/bam_writer.h"
@@ -221,7 +222,13 @@ int run_align(int argc, char** argv) {
     }
 
     auto align_start = std::chrono::steady_clock::now();
-    auto results = pipeline.AlignReads(read_names, read_seqs);
+    std::vector<llmap::classical::ReadAlignmentResult> results;
+    if (args.threads > 1) {
+        llmap::core::ThreadPool pool(static_cast<size_t>(args.threads));
+        results = pipeline.AlignReadsParallel(read_names, read_seqs, pool);
+    } else {
+        results = pipeline.AlignReads(read_names, read_seqs);
+    }
     auto align_end = std::chrono::steady_clock::now();
 
     float align_time_ms = std::chrono::duration<float, std::milli>(
