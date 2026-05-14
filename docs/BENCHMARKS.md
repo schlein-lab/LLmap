@@ -40,15 +40,47 @@ The honest state on 2026-05-14:
 | `ca13324` | Skip WFA2 for gaps < 50 bp | RAM peak fell 14 GB → 2 GB on T6; wallclock improved but still slow |
 | `5fcbfa6` | `max_chains_to_extend` 10 → 3, primary-only by default | reduces per-read extension work in paralog-rich loci |
 
+### Updates after additional fixes
+
+After landing the chain-extend WFA2-min-gap threshold (`ca13324`),
+`max_chains_to_extend` cap (`5fcbfa6`), and chain-end soft-clip span limit
+(`8be0490`, `66a0abf`), LLmap **speed on T6 is now competitive — 21 sec
+wallclock vs minimap2's 38 sec, and 1.2 GB RSS vs minimap2's 2.3 GB**.
+
+The **mapping-rate gap remains**, and the campaign isolated its root cause:
+
+| Task | LLmap mapped | minimap2 mapped | Why |
+|------|--------------|-----------------|-----|
+| T1 (synth, forward+reverse mix) | **50.0%** | 91.8% | reverse-strand alignment path broken |
+| T6 (real IGH, naturally mixed strand + paralog ambiguity) | **0.004%** | 99.997% | same bug + paralog disambiguation depends on it |
+
+The classical pipeline (`src/classical/classical_pipeline_extend.cpp`)
+calls WFA2 with the read sequence directly. When a chain forms on the
+reverse strand (`chain.is_forward == false`), the read needs to be
+reverse-complemented before WFA2 — currently it isn't. Reverse-strand
+chains thus always fail extension. T1 synth makes a 50/50 forward/reverse
+mix (per `BenchmarkGenerator::generate_t1`, line 158 `rng.coin_flip()`),
+matching the 50% mapping rate observed.
+
+The BAM-output side of this was patched in `ed120d7` (BamWriter now
+emits FLAG=0x10 when `AlignmentHit::is_reverse` is set). The
+`ExtendChain` side is still pending and is the highest-priority
+remaining fix.
+
 ### What's next
 
-Three structural fixes are needed before LLmap can compete on speed:
+1. **Reverse-strand extension** — patch `ExtendChain` to reverse-complement
+   the query when `chain.is_forward == false`. This alone is the gap
+   between 50% and ~99% mapping on T1.
+2. **Streaming output** — write `AlignmentRecord`s to BAM/SAM as they
+   complete, not after the whole batch. Unblocks full-WGS benchmarks
+   without OOM (T3 LLmap was OOM-killed at ~3 min).
+3. **Re-evaluate chain pruning for paralog-rich loci** — once
+   reverse-strand is correct, re-run T6 to see whether the additional
+   gap is paralog disambiguation (LLmap's intended strength) and tune
+   accordingly.
 
-1. **Streaming output.** Write `AlignmentRecord`s to BAM/SAM as they complete, not after the whole batch. This unblocks full-WGS benchmarks without OOM.
-2. **Profile the per-read inner loop.** Even with the WFA2-threshold and chain-extend caps, LLmap CPU-time per read on T6 is ≈ 60 ms vs minimap2's ≈ 0.5 ms — a 120× per-read gap. The hotspot is upstream of WFA2 (likely minimizer query + chain DP).
-3. **Re-evaluate chain pruning.** The chain DP may be O(n²) in anchor count for repetitive regions; ProcessDiagonal-style tiling or a stricter chain-prefilter would help.
-
-These will land as Phase D commits and the benchmark will be re-run.
+These will land as Phase E commits.
 
 ---
 
