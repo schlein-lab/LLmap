@@ -9,6 +9,8 @@
 
 #include "classical/classical_pipeline.h"
 #include "claude_agent/pipeline_agent.h"
+#include "core/alignment_record.h"
+#include "psv/psv_catalog.h"
 
 namespace llmap::cli::align_internal {
 
@@ -32,6 +34,12 @@ struct AlignArgs {
     std::string llm_api_key;
     float llm_threshold = 0.50f;
     std::string llm_work_dir;
+
+    // PSV-based paralog disambiguation
+    std::string psv_catalog;       // Path to PSV catalog (BED/VCF)
+    float psv_weight = 0.5f;       // Weight for PSV vs probabilistic assignment
+    float psv_min_posterior = 0.9f; // Min posterior for confident call
+    bool psv_only = false;          // Use only PSV (skip prob assignment)
 };
 
 void PrintAlignUsage();
@@ -48,5 +56,15 @@ void RunLlmDiagnostics(
     const std::vector<classical::ReadAlignmentResult>& results,
     std::size_t n_mapped, std::size_t n_unmapped,
     float avg_identity);
+
+// PSV integration
+std::optional<psv::PsvCatalog> LoadPsvCatalog(const AlignArgs& args);
+
+void ApplyPsvAssignments(
+    const psv::PsvCatalog& catalog,
+    const AlignArgs& args,
+    std::vector<AlignmentRecord>& records,
+    const std::vector<std::string>& read_sequences,
+    bool verbose);
 
 }  // namespace llmap::cli::align_internal

@@ -33,6 +33,12 @@ void PrintAlignUsage() {
         "  -t, --threads INT       Number of threads [1]\n"
         "  --max-chains INT        Max chains to extend per read [10]\n"
         "\n"
+        "PSV-based paralog disambiguation:\n"
+        "  --psv-catalog FILE      PSV catalog (BED/VCF) for paralog assignment\n"
+        "  --psv-weight FLOAT      Weight for PSV vs probabilistic assignment [0.50]\n"
+        "  --psv-min-posterior F   Min posterior for confident paralog call [0.90]\n"
+        "  --psv-only              Use only PSV-based assignment (skip probabilistic)\n"
+        "\n"
         "LLM-assisted diagnostics:\n"
         "  --llm                   Enable Claude LLM for alignment diagnostics\n"
         "  --llm-api-key KEY       Anthropic API key (or set ANTHROPIC_API_KEY)\n"
@@ -46,6 +52,7 @@ void PrintAlignUsage() {
         "Example:\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.sam\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.bam --bam --parquet out.parquet\n"
+        "  llmap align -r reads.fastq -x ref.fasta -o out.sam --psv-catalog psv.bed\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.sam --llm\n"
     );
 }
@@ -93,6 +100,14 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             args.llm_threshold = std::stof(argv[++i]);
         } else if (arg == "--llm-work-dir" && i + 1 < argc) {
             args.llm_work_dir = argv[++i];
+        } else if (arg == "--psv-catalog" && i + 1 < argc) {
+            args.psv_catalog = argv[++i];
+        } else if (arg == "--psv-weight" && i + 1 < argc) {
+            args.psv_weight = std::stof(argv[++i]);
+        } else if (arg == "--psv-min-posterior" && i + 1 < argc) {
+            args.psv_min_posterior = std::stof(argv[++i]);
+        } else if (arg == "--psv-only") {
+            args.psv_only = true;
         } else if (arg[0] == '-') {
             std::fprintf(stderr, "Unknown option: %s\n", arg.c_str());
             return false;

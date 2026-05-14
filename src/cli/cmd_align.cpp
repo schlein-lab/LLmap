@@ -16,6 +16,7 @@
 #include "io/fastq_reader.h"
 #include "output/bam_writer.h"
 #include "output/parquet_writer.h"
+#include "psv/psv_catalog.h"
 
 namespace llmap::cli {
 
@@ -87,6 +88,21 @@ int run_align(int argc, char** argv) {
     }
 
     auto start_time = std::chrono::steady_clock::now();
+
+    // Load PSV catalog if specified
+    std::optional<psv::PsvCatalog> psv_catalog;
+    if (!args.psv_catalog.empty()) {
+        if (args.verbose) {
+            std::fprintf(stderr, "Loading PSV catalog: %s\n", args.psv_catalog.c_str());
+        }
+        psv_catalog = LoadPsvCatalog(args);
+        if (!psv_catalog) {
+            return 1;
+        }
+        if (args.verbose) {
+            std::fprintf(stderr, "Loaded %zu PSV sites\n", psv_catalog->Size());
+        }
+    }
 
     if (args.verbose) {
         std::fprintf(stderr, "Loading reference: %s\n", args.reference.c_str());
@@ -210,6 +226,14 @@ int run_align(int argc, char** argv) {
         }
     }
 
+    // Apply PSV-based paralog disambiguation if catalog provided
+    if (psv_catalog) {
+        if (args.verbose) {
+            std::fprintf(stderr, "Applying PSV-based paralog disambiguation...\n");
+        }
+        ApplyPsvAssignments(*psv_catalog, args, records, read_seqs, args.verbose);
+    }
+
     if (args.verbose) {
         std::fprintf(stderr, "Writing output: %s\n", args.output.c_str());
     }
@@ -224,7 +248,7 @@ int run_align(int argc, char** argv) {
     bam_cfg.format = args.use_bam ? output::BamOutputFormat::BAM
                                    : output::BamOutputFormat::SAM;
     bam_cfg.include_wavecollapse_tags = false;
-    bam_cfg.include_paralog_tags = false;
+    bam_cfg.include_paralog_tags = psv_catalog.has_value();
 
     auto bam_writer = output::BamWriter::Create(args.output, ref_info, bam_cfg);
     if (!bam_writer) {
