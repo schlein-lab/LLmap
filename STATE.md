@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 88 |
-| Total iterations | 88 |
+| Last successful iteration | 89 |
+| Total iterations | 89 |
 
 ---
 
@@ -106,35 +106,35 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase A.1: Adjust chain thresholds (min_chain_score=10, min_score_fraction=0.5) (1454 tests pass)
   - [x] Phase A.2: Wire WFA2 extension into ExtendChain() (1454 tests pass)
   - [x] Phase A.3: Add left/right extension for chain ends (1459 tests pass)
-- [ ] **Phase B: Performance Improvements** ★
+- [x] **Phase B: Performance Improvements** ✓
   - [x] Phase B.1: Parallelize AlignReads() with ThreadPool (1466 tests pass)
   - [x] Phase B.2: Zero-allocation chaining with ChainScratch (1471 tests pass)
+  - [x] Phase B.3: Index caching in CLI (1476 tests pass)
 
 ---
 
 ## Current task
 
 ```
-phase: B
-task: B.3_index_caching
-substep: Implement index caching in align CLI for reuse across runs
+phase: C
+task: C.1_identity_filter
+substep: Add minimum identity filter to improve precision
 inputs:
-  - src/cli/cmd_align.cpp (align command)
-  - src/classical/minimizer_index.h (MinimizerIndex save/load)
+  - src/classical/classical_pipeline.h (filter config)
+  - docs/IMPROVEMENTS.md (P1: precision gap issue)
 expected_files_changed:
-  - src/cli/cmd_align.cpp (add --index flag for pre-built index)
-  - src/cli/cmd_index.cpp (verify index format compatibility)
+  - src/classical/classical_pipeline.cpp (add identity filter)
+  - tests/unit/test_classical_pipeline.cpp (identity filter tests)
 acceptance:
-  - `llmap align --index ref.llmi` uses pre-built index
-  - Index cache speeds up repeated alignment runs
+  - Alignments below min_identity are filtered out
   - All tests pass
   - Monolith count stays at 0
 notes: |
-  Phase B.2 complete: Wired zero-allocation chaining into classical pipeline.
-  AlignRead() now uses thread-local ChainScratch via ExtractChainsFromAnchorsWithScratch().
-  Scratch buffers grow as needed but never shrink, eliminating repeated heap allocations.
-  5 new tests for zero-allocation chaining (consistency, parallel safety, varying sizes).
-  1471 tests pass.
+  Phase B complete: All performance improvements done.
+  - B.1: Parallelize AlignReads() with ThreadPool
+  - B.2: Zero-allocation chaining with ChainScratch
+  - B.3: Index caching via --index flag (1476 tests pass)
+  Phase C focuses on polish/precision improvements.
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -220,8 +220,9 @@ hard_rule_precheck:
 74. ~~Phase A.3: Add left/right extension for chain ends~~ ✅ done
 75. ~~Phase B.1: Parallelize AlignReads() with ThreadPool~~ ✅ done
 76. ~~Phase B.2: Zero-allocation chaining (ChainScratch)~~ ✅ done
-77. Phase B.3: Index caching in CLI
-78. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
+77. ~~Phase B.3: Index caching in CLI~~ ✅ done
+78. Phase C.1: Identity filter for precision
+79. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
 
 ---
 
@@ -333,6 +334,7 @@ hard_rule_precheck:
 | 86 | 2026-05-14 | n/a | Phase A.3: chain end extension | classical_pipeline_extend.cpp: ExtendChain() now extends leftward from first anchor to query[0] and rightward from last anchor to query_end using WFA2Aligner.ExtendLeft()/ExtendRight(); soft-clips unaligned portions; query_start=0, query_end=query_len; 5 new tests for end extension; 1459 tests pass; monolith count 0 |
 | 87 | 2026-05-14 | n/a | Phase B.1: parallel alignment | classical_pipeline.cpp: added AlignReadsParallel() method using ThreadPool; thread-safe stats aggregation via atomics (total_hits, total_chains, reads_aligned, identity_sum_scaled); classical_pipeline.h: added num_threads config, forward decl for ThreadPool, AlignReadsParallel() API; test_classical_pipeline.cpp: 7 new tests (ParallelAlignBatchMultipleReads, ParallelAndSequentialProduceSameResults, ParallelStatsAggregatedCorrectly, ParallelEmptyBatch, ParallelSingleRead, ParallelLargeBatch, ParallelIdentityStatsAccurate); 1466 tests pass; monolith count 0 |
 | 88 | 2026-05-14 | n/a | Phase B.2: zero-allocation chaining | classical_pipeline.cpp: added thread_local ChainScratch; AlignRead() now uses ExtractChainsFromAnchorsWithScratch() for zero-allocation hot path; scratch buffers grow as needed but never shrink, avoiding repeated heap allocations; test_classical_pipeline.cpp: 5 new tests (ZeroAllocChainingProducesCorrectResults, ZeroAllocChainingConsistentAcrossMultipleReads, ZeroAllocChainingParallelConsistency, ZeroAllocChainingRepeatedSingleRead, ZeroAllocChainingVaryingSizes); 1471 tests pass; monolith count 0 |
+| 89 | 2026-05-14 | n/a | Phase B.3: index caching in CLI | cmd_align_internal.h: added index field to AlignArgs; cmd_align_args.cpp: added -i/--index flag parsing, updated help text with "Index caching" section; cmd_align.cpp: load pre-built index via MinimizerIndex::Load() when --index provided, use index config (k,w) from loaded index; test_llmap_cli.cpp: 5 new tests (AlignHelpShowsIndexFlag, AlignIndexFileNotFound, AlignWithPrebuiltIndex, AlignIndexShortFlag, AlignIndexVerboseShowsParams); 1476 tests pass; monolith count 0; Phase B COMPLETE |
 
 ---
 

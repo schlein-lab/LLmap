@@ -480,6 +480,121 @@ TEST_F(LlmapCliTest, AlignLlmWorkDir) {
     EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
 }
 
+// ========== Align --index Flag (Index Caching) ==========
+
+TEST_F(LlmapCliTest, AlignHelpShowsIndexFlag) {
+    auto result = Exec(llmap_bin_ + " align --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--index") != std::string::npos);
+    EXPECT_TRUE(result.output.find(".llmi") != std::string::npos);
+    EXPECT_TRUE(result.output.find("pre-built") != std::string::npos ||
+                result.output.find("Index caching") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignIndexFileNotFound) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --index /nonexistent/index.llmi");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("not found") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignWithPrebuiltIndex) {
+    // Create test files
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto index_path = test_dir_ / "ref.llmi";
+    auto output = test_dir_ / "out.sam";
+
+    // First build the index using llmap index
+    auto index_result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                             " -o " + index_path.string() + " -k 15 -w 10");
+    EXPECT_EQ(index_result.exit_code, 0);
+    EXPECT_TRUE(std::filesystem::exists(index_path));
+
+    // Now use the pre-built index for alignment
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " -i " + index_path.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Loading pre-built index") != std::string::npos ||
+                result.output.find("Index loaded") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignIndexShortFlag) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto index_path = test_dir_ / "ref.llmi";
+    auto output = test_dir_ / "out.sam";
+
+    // Build index
+    auto index_result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                             " -o " + index_path.string() + " -k 15 -w 10");
+    EXPECT_EQ(index_result.exit_code, 0);
+
+    // Test -i short flag
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " -i " + index_path.string());
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignIndexVerboseShowsParams) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto index_path = test_dir_ / "ref.llmi";
+    auto output = test_dir_ / "out.sam";
+
+    // Build index with specific k and w
+    auto index_result = Exec(llmap_bin_ + " index -r " + fasta_path.string() +
+                             " -o " + index_path.string() + " -k 19 -w 10");
+    EXPECT_EQ(index_result.exit_code, 0);
+
+    // Align with verbose - should show loaded index params
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " -i " + index_path.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    // Should report the k and w from the loaded index
+    EXPECT_TRUE(result.output.find("k=19") != std::string::npos);
+    EXPECT_TRUE(result.output.find("w=10") != std::string::npos);
+}
+
 // ========== Regression: Banner Shows on Empty Args ==========
 
 TEST_F(LlmapCliTest, BannerShowsCorrectTagline) {
