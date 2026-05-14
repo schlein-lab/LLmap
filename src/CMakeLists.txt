@@ -250,6 +250,7 @@ add_executable(llmap
     cli/cmd_allpair.cpp
     cli/cmd_generate_synth.cpp
     cli/cmd_validate_real.cpp
+    cli/cmd_index.cpp
     cli/cmd_align.cpp
     cli/cmd_align_args.cpp
     cli/cmd_align_llm.cpp

@@ -92,6 +92,10 @@ int main(int argc, char** argv) {
         return llmap::cli::run_validate_real(argc - 2, argv + 2);
     }
 
+    if (std::strcmp(argv[1], "index") == 0) {
+        return llmap::cli::run_index(argc - 2, argv + 2);
+    }
+
     if (std::strcmp(argv[1], "align") == 0) {
         return llmap::cli::run_align(argc - 2, argv + 2);
     }
