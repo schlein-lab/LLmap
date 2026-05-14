@@ -459,6 +459,20 @@ target_link_libraries(test_config
 )
 gtest_discover_tests(test_config)
 
+# Version tests
+add_executable(test_version
+    unit/test_version.cpp
+)
+target_link_libraries(test_version
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+# Version CLI tests need the llmap binary to exist
+add_dependencies(test_version llmap)
+gtest_discover_tests(test_version)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput

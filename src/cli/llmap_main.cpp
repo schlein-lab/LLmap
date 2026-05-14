@@ -8,18 +8,35 @@
 #include <cstring>
 
 #include "cli/commands.h"
+#include "core/version.h"
 
 namespace {
 
-constexpr const char* kVersion = "0.1.0-phase6";
-
 void print_banner() {
-    std::puts(
-        "LLmap " "0.1.0-phase6" "\n"
+    std::printf(
+        "LLmap %.*s\n"
         "Lossless. LLM-augmented. Wave-particle.\n"
         "Where reads see each other first.\n"
-        "https://losslessmap.com\n"
+        "%.*s\n\n",
+        static_cast<int>(llmap::kVersion.size()), llmap::kVersion.data(),
+        static_cast<int>(llmap::kHomepageUrl.size()), llmap::kHomepageUrl.data()
     );
+}
+
+void print_version_full() {
+    std::printf("llmap %.*s\n",
+        static_cast<int>(llmap::kVersion.size()), llmap::kVersion.data());
+    std::printf("  commit:   %.*s\n",
+        static_cast<int>(llmap::kGitCommit.size()), llmap::kGitCommit.data());
+    std::printf("  built:    %.*s\n",
+        static_cast<int>(llmap::kBuildDate.size()), llmap::kBuildDate.data());
+    std::printf("  type:     %.*s\n",
+        static_cast<int>(llmap::kBuildType.size()), llmap::kBuildType.data());
+    std::printf("  compiler: %.*s %.*s\n",
+        static_cast<int>(llmap::kCompilerId.size()), llmap::kCompilerId.data(),
+        static_cast<int>(llmap::kCompilerVersion.size()), llmap::kCompilerVersion.data());
+    std::printf("  features: %.*s\n",
+        static_cast<int>(llmap::kFeatures.size()), llmap::kFeatures.data());
 }
 
 void print_usage() {
@@ -52,8 +69,8 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    if (std::strcmp(argv[1], "--version") == 0) {
-        std::printf("llmap %s\n", kVersion);
+    if (std::strcmp(argv[1], "--version") == 0 || std::strcmp(argv[1], "-V") == 0) {
+        print_version_full();
         return 0;
     }
 
