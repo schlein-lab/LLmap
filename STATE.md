@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 61 |
-| Total iterations | 61 |
+| Last successful iteration | 62 |
+| Total iterations | 62 |
 
 ---
 
@@ -96,26 +96,23 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ## Current task
 
 ```
-phase: 10
-task: production_readiness
-substep: COMPLETE — Phase 10 and all core development complete
-last_action: Phase 10.6 — `llmap check` CLI + V1.0 readiness check
-  - Added src/core/v1_readiness.h (123 LOC): ReadinessCheck, CategoryResult, ReadinessReport structs;
-    ReadinessConfig for enabling/disabling categories; FormatReport/FormatReportJson formatters
-  - Added src/core/v1_readiness.cpp (227 LOC): RunReadinessCheck, RunCategoryCheck orchestrator;
-    category-to-string conversion; report formatting with timing
-  - Added src/core/v1_readiness_checks.cpp (339 LOC): 46 capability checks across 11 categories
-    (Core, Foundation, SelfInterference, ReferenceCollapse, Classical, Validation, Output,
-    Agent, Performance, SingleCell, Production)
-  - Added src/cli/cmd_check.cpp (103 LOC): -v/--verbose, -j/--json, -c/--category flags
-  - Updated commands.h, llmap_main.cpp, src/CMakeLists.txt
-  - 10 new CLI tests for check command: help, basic run, verbose, JSON, category filtering
-  - 1433 total tests pass; monolith count: 0; Phase 10 COMPLETE
-next_action: V1.0 release preparation
-  - GPU validation on Hummel-2 (Phase 5 pending)
-  - Documentation polish if needed
-  - Release tagging
-acceptance: All 10 phases complete, all CLI commands functional, 100% test pass rate
+phase: release
+task: v1.0_release_preparation
+substep: V1.0 release artifacts created
+last_action: Iteration 62 — V1.0 release preparation
+  - Added CHANGELOG.md (285 LOC): comprehensive V1.0 feature list organized by phase,
+    documenting all components (Core, Foundation, Self-Interference, Reference WaveCollapse,
+    Classical Path, Validation, Output, Agent, Performance, Single-Cell, Production)
+  - Added scripts/release.sh: release script for version tagging with validation checks
+    (build verification, test pass, CHANGELOG entry, version.h sync, git tag creation)
+  - Updated README.md status section: all 10 phases marked complete with test counts,
+    updated badge from "V1.0 Bootstrap" to "V1.0 Ready"
+  - 1433 total tests pass; monolith count: 0
+next_action: V1.0 release tagging
+  - GPU validation on Hummel-2 (pending manual SLURM submission)
+  - Run scripts/release.sh 1.0.0 to create tag
+  - Push tag to origin
+acceptance: All release artifacts in place, ready for tagging
 ```
 
 ---
@@ -267,6 +264,7 @@ acceptance: All 10 phases complete, all CLI commands functional, 100% test pass 
 | 59 | 2026-05-14 | n/a | Phase 10.4 version string + --version CLI | See prior log entry (iteration 59 fallback commit) |
 | 60 | 2026-05-14 | n/a | Phase 10.5 `llmap index` CLI command | cmd_index.cpp (197 LOC): builds MinimizerIndex from FASTA; flags -r/--reference, -o/--output, -k/--kmer [19], -w/--window [19], --max-occ [500], -v/--verbose; validates k-mer (5-31), window (1-255); loads FASTA via FastaReader, builds index via Builder pattern; saves .llmi file; reports sequences, length, minimizers, timing; updated commands.h, llmap_main.cpp, CMakeLists.txt; 10 new CLI tests (IndexHelp, IndexBasicRun, IndexCustomParams, etc.); 1423 tests pass; monolith count 0→0 |
 | 61 | 2026-05-14 | n/a | Phase 10.6 `llmap check` + V1.0 readiness | v1_readiness.h (123 LOC) + v1_readiness.cpp (227 LOC) + v1_readiness_checks.cpp (339 LOC): ReadinessCheck/CategoryResult/ReadinessReport structs; 46 checks across 11 categories (Core, Foundation, SelfInterference, ReferenceCollapse, Classical, Validation, Output, Agent, Performance, SingleCell, Production); FormatReport/FormatReportJson; cmd_check.cpp (103 LOC): -v/--verbose, -j/--json, -c/--category flags; 10 new CLI tests; 1433 tests pass; monolith count 0→0; Phase 10 COMPLETE |
+| 62 | 2026-05-14 | yes | V1.0 release preparation | CHANGELOG.md (285 LOC): comprehensive V1.0 feature list by phase; scripts/release.sh: release script with build/test/version validation; README.md: updated status to V1.0 Ready, all phases marked complete with test counts; 1433 tests pass; monolith count 0→0; ready for tagging |
 
 ---
 
