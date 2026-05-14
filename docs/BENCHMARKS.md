@@ -79,18 +79,37 @@ remaining fix.
 
 ### What's next
 
-1. **Reverse-strand extension** — patch `ExtendChain` to reverse-complement
-   the query when `chain.is_forward == false`. This alone is the gap
-   between 50% and ~99% mapping on T1.
-2. **Streaming output** — write `AlignmentRecord`s to BAM/SAM as they
+1. ~~Reverse-strand extension~~ — done in `bbe1559`. T1 mapping went 50% → 100%.
+2. **T6 chain-position clustering bug.** After the rev-strand fix and
+   `max_occ` raise, T6 LLmap still maps only 1.7% of reads. Diagnostic:
+   all 6656 mapped reads cluster within a single 100 kb window of the
+   1.8 Mb IGH locus reference. minimap2 distributes mapped reads across
+   the entire locus (18 distinct 100 kb bins). This indicates a bug in
+   chain extraction or index access for paralog-rich loci — likely the
+   chain DP scoring favouring one specific region's chains. Next
+   investigation target.
+3. **Streaming output** — write `AlignmentRecord`s to BAM/SAM as they
    complete, not after the whole batch. Unblocks full-WGS benchmarks
    without OOM (T3 LLmap was OOM-killed at ~3 min).
-3. **Re-evaluate chain pruning for paralog-rich loci** — once
-   reverse-strand is correct, re-run T6 to see whether the additional
-   gap is paralog disambiguation (LLmap's intended strength) and tune
-   accordingly.
+4. **T2 / T5 not yet tested** — T2 (synth paralog stress) and T5
+   (iso-seq vs GENCODE) are dataset-ready on Hummel; pending the T6
+   clustering bug fix.
 
-These will land as Phase E commits.
+### Summary so far
+
+LLmap on T1 synthetic ground-truth WGS: **30000 / 30000 mapped (100.0%)**, beats minimap2's **27538 / 30000 (91.8%)** by 8.2 pp. Wallclock 78s vs 38s — extra time spent mapping the additional 8% of reads.
+
+LLmap on T6 targeted real IGH locus: speed already competitive (33s vs minimap2 38s, lower RSS). Mapping quality is still the open problem — the reverse-strand fix alone closed a 50% gap, the chain-clustering bug is the next major target.
+
+| Fix | Impact |
+|-----|--------|
+| `57bb2d3` parallel-CLI wiring | enabled 16-thread utilisation |
+| `ca13324` WFA2 min-gap 50 bp | RAM peak 14 GB → 2 GB on T6 |
+| `5fcbfa6` max_chains_to_extend 10→5 | per-read extension cost |
+| `8be0490` / `66a0abf` extension span 500 bp + identity 0.70 | balance recall vs speed |
+| `ed120d7` BamWriter FLAG 0x10 propagation | display correctness |
+| **`bbe1559` ExtendChain reverse-strand handling** | **T1 mapping 50% → 100%** |
+| `68f762a` minimizer max_occ 500 → 5000 | no observable effect on T6 |
 
 ---
 
