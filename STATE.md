@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 93 |
-| Total iterations | 93 |
+| Last successful iteration | 94 |
+| Total iterations | 94 |
 
 ---
 
@@ -115,6 +115,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase C.2: `-x` presets for read types (1490 tests pass)
   - [x] Phase C.3: MAPQ calculation (1504 tests pass)
   - [x] Phase C.4: `--classical-only` mode (1509 tests pass)
+- [x] **V1.0 Final** ✓
+  - [x] V1.0 final release preparation (1509 tests pass)
 
 ---
 
@@ -122,28 +124,23 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: V1.0_final
-task: V1.0_release_prep
-substep: Final V1.0 release preparation
+task: COMPLETE
+substep: Autonomous build complete
 inputs:
-  - All phases complete (A, B, C improvement cycles done)
+  - All phases complete (0-11, A, B, C)
   - 1509 tests passing
-expected_files_changed:
-  - docs/CHANGELOG.md (update with Phase C improvements)
-  - README.md (final polish)
-acceptance:
-  - All tests pass
-  - Monolith count stays at 0
   - Documentation up to date
+expected_files_changed: none
+acceptance:
+  - All tests pass ✓
+  - Monolith count stays at 0 ✓
+  - Documentation up to date ✓
 notes: |
-  Phase C.4 complete: --classical-only mode implementation.
-  - Added --classical-only flag to cmd_align_args.cpp
-  - Flag disables --llm when both specified (with verbose warning)
-  - Pure seed-chain-extend mode for reduced memory footprint
-  - 5 new tests (1509 tests pass)
-  - Phase C complete!
-hard_rule_precheck:
-  - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
-  - must be empty before commit; split as needed
+  V1.0 autonomous build complete!
+  - 94 iterations, 1509 tests
+  - All phases implemented and tested
+  - CHANGELOG.md + README.md updated with Phase 11, A, B, C
+  - Ready for manual GPU validation on Hummel-2 and release tagging
 ```
 
 ---
@@ -348,6 +345,7 @@ hard_rule_precheck:
 | 91 | 2026-05-14 | n/a | Phase C.2: -x presets | cmd_align_internal.h: Preset enum (MapHifi/MapOnt/MapPb/Sr), ApplyPreset function; cmd_align_args.cpp: -x flag parsing with preset application, explicit CLI args override preset values; presets: map-hifi (k=19, w=19, identity=0.90, chain=40), map-ont/map-pb (k=15, w=10, identity=0.70, chain=20), sr (k=21, w=11, identity=0.95, chain=50); help text with preset documentation; test_llmap_cli.cpp: 7 new tests (AlignHelpShowsPresets, AlignPresetInvalid, AlignPresetMapHifi, AlignPresetMapOnt, AlignPresetSr, AlignPresetOverrideKmer, AlignPresetHifiShortName); 1490 tests pass; monolith count 0 |
 | 92 | 2026-05-14 | n/a | Phase C.3: MAPQ calculation | classical_pipeline_internal.h: ComputeMapq() function for probability-based MAPQ calculation; uses score gap formula MAPQ = -10*log10(P_error) where P_error estimated from exp(-score_diff/scale); unique high-score/high-identity = MAPQ 60; multi-mapping with same score = MAPQ 0; identity < 0.5 = MAPQ 0; secondary alignments always MAPQ 0; classical_pipeline.cpp: updated AlignRead() to use ComputeMapq(); test_classical_pipeline.cpp: 14 new tests (10 unit tests for ComputeMapq + 4 integration tests); 1504 tests pass; monolith count 0 |
 | 93 | 2026-05-14 | n/a | Phase C.4: --classical-only mode | cmd_align_internal.h: added classical_only bool to AlignArgs; cmd_align_args.cpp: added --classical-only flag parsing + help text in "Pipeline mode" section; cmd_align.cpp: --classical-only disables --llm with verbose warning; pure seed-chain-extend mode for reduced memory footprint; test_llmap_cli.cpp: 5 new tests (AlignHelpShowsClassicalOnlyFlag, AlignClassicalOnlyBasicRun, AlignClassicalOnlyOverridesLlm, AlignClassicalOnlyWithPreset, AlignClassicalOnlyReducesMemory); 1509 tests pass; monolith count 0; Phase C COMPLETE |
+| 94 | 2026-05-14 | n/a | V1.0_final: documentation update | CHANGELOG.md: added Phase 11 (Comparative Benchmarks), Phase A (Critical Fixes), Phase B (Performance), Phase C (Polish + Precision); README.md: updated status table with all phases complete, 1509 tests; monolith count 0; V1.0 autonomous build COMPLETE |
 
 ---
 
