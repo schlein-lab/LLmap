@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 72 |
-| Total iterations | 72 |
+| Last successful iteration | 73 |
+| Total iterations | 73 |
 
 ---
 
@@ -90,26 +90,46 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 10.4: Version string + --version CLI (1413 tests pass)
   - [x] Phase 10.5: `llmap index` CLI command (1423 tests pass)
   - [x] Phase 10.6: `llmap check` CLI + V1.0 readiness check (1433 tests pass)
+- [ ] **Phase 11: Comparative Benchmark Campaign** ◀ ACTIVE
+  - [x] Phase 11.1: SPEC + matrix + runner template + dataset/tool registries
+  - [ ] Phase 11.2: Synthetic-truth dataset generator (extend `llmap generate-synth` with --task t1/t2 and ground-truth TSV emission)
+  - [ ] Phase 11.3: Tool installation manifest + version-verification gate
+  - [ ] Phase 11.4: Per-tool runner shake-down (small-input smoke tests for each runner)
+  - [ ] Phase 11.5: Metrics collector unit tests (compute.py, concordance.py on tiny BAMs)
+  - [ ] Phase 11.6: SLURM submission orchestrator end-to-end test
+  - [ ] Phase 11.7: Report generator (per-task README + cross-tool tables + plots)
+  - [ ] Phase 11.8: Run T1, T2 (synthetic, local CPU) and aggregate
+  - [ ] Phase 11.9: SLURM submission for T3–T6 (Hummel, user submits)
+  - [ ] Phase 11.10: Populate docs/BENCHMARKS.md with results
+  - [ ] Phase 11.11: Identify regressions → list LLmap improvement issues
 
 ---
 
 ## Current task
 
 ```
-phase: release
-task: v1.0_autonomous_build_complete
-substep: Autonomous development complete — awaiting manual release
-last_action: Iteration 64 — Final verification
-  - Verified build passes (cmake --build)
-  - Verified all 1433 tests pass (ctest)
-  - Verified monolith count: 0 (no files > 400 LOC)
-  - Verified llmap --version shows 1.0.0
-  - All 10 phases complete (Phases 0-10)
-next_action: MANUAL STEPS REQUIRED
-  - GPU validation on Hummel-2 (sbatch scripts/slurm_phase55_validation.sh)
-  - Run scripts/release.sh 1.0.0 to create tag
-  - Push tag: git push origin v1.0.0
-acceptance: Autonomous build complete. 1433 tests pass, V1.0.0 ready for release.
+phase: 11
+task: 11.2_synthetic_truth_generator
+substep: Extend `llmap generate-synth` (Phase 0.4 module) to support --task t1 and --task t2
+        plus ground-truth TSV emission compatible with benchmarks/metrics/compute.py.
+inputs:
+  - existing synth code: src/core/synthetic_data_generator.{h,cpp,_*}
+  - target spec:         benchmarks/SPEC.md §Datasets (synth_truth_wgs, synth_paralog_stress)
+  - target consumer:     benchmarks/metrics/compute.py --truth <TSV>
+expected_files_changed:
+  - src/cli/cmd_generate_synth*.cpp  (add --task argument)
+  - src/core/synthetic_data_generator_truth.{h,cpp}  (new, truth emission)
+  - tests/unit/test_synthetic_truth.cpp  (new tests)
+acceptance:
+  - `llmap generate-synth --task t1 --output /tmp/synth_t1/ --reads 10000`
+    produces reads.fastq + truth.tsv where every read_id maps to (chrom, pos)
+  - `llmap generate-synth --task t2 --paralog igh --output /tmp/synth_t2/`
+    produces reads.fastq + truth_paralog.tsv with per-read true paralog assignment
+  - all existing tests still green
+  - monolith count remains 0
+hard_rule_precheck:
+  - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
+  - must be empty before commit; split as needed
 ```
 
 ---
@@ -176,7 +196,18 @@ acceptance: Autonomous build complete. 1433 tests pass, V1.0.0 ready for release
 58. ~~Phase 10.4: Version string + --version CLI~~ ✅ done
 59. ~~Phase 10.5: `llmap index` CLI command~~ ✅ done
 60. ~~Phase 10.6: `llmap check` CLI + V1.0 readiness check~~ ✅ done
-61. V1.0 release preparation (GPU validation, docs, tagging) ← NEXT
+61. ~~Phase 11.1: SPEC + matrix + runner template + dataset/tool registries~~ ✅ done
+62. Phase 11.2: Synthetic-truth dataset generator ← NEXT
+63. Phase 11.3: Tool installation manifest + version verification
+64. Phase 11.4: Per-tool runner shake-down (small-input smoke)
+65. Phase 11.5: Metrics collector unit tests
+66. Phase 11.6: SLURM submission orchestrator end-to-end test
+67. Phase 11.7: Report generator (per-task README + plots)
+68. Phase 11.8: Run T1, T2 locally + aggregate
+69. Phase 11.9: SLURM submission for T3–T6 (manual on Hummel)
+70. Phase 11.10: Populate docs/BENCHMARKS.md
+71. Phase 11.11: Identify regressions → LLmap improvement list
+72. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
 
 ---
 
@@ -272,6 +303,7 @@ acceptance: Autonomous build complete. 1433 tests pass, V1.0.0 ready for release
 | 70 | 2026-05-14 | n/a | Verification pass | Confirmed: build passes, 1433 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual release |
 | 71 | 2026-05-14 | n/a | Verification pass | Confirmed: build passes, 1433 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual release |
 | 72 | 2026-05-14 | n/a | Verification pass | Confirmed: build passes, 1433 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual release |
+| 73 | 2026-05-14 | n/a | Phase 11 kickoff: SPEC + scaffolding | benchmarks/SPEC.md (Phase 11 comparative campaign vs minimap2/BWA-MEM2/Winnowmap2/STAR/Bowtie2 across 6 tasks); benchmarks/{runners,datasets,metrics,reports}/ scaffold; runner template + 6 per-tool wrappers + submit_all.sh + check_versions.sh + metrics/{compute,concordance}.py; tools.yaml + datasets.yaml pinned; README.md rewritten without LL=LLM wordplay and de-emphasizing Stage-1 Self-Interference; current_task advanced to Phase 11.2 (synthetic-truth generator) |
 
 ---
 

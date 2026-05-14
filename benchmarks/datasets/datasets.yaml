@@ -1,0 +1,65 @@
+# Pinned datasets for the Phase 11 comparative benchmark.
+# Path conventions: Hummel paths absolute, local-host paths relative to repo root.
+
+references:
+  grch38:
+    name: "GRCh38.p14"
+    fasta: "/beegfs/u/bbg6775/humangenetik/shared/references/GRCh38/GRCh38.p14.fa"
+    fai: "/beegfs/u/bbg6775/humangenetik/shared/references/GRCh38/GRCh38.p14.fa.fai"
+    expected_sha256: ""  # filled at first verify run
+
+  chm13:
+    name: "T2T CHM13 v2.0"
+    fasta: "/beegfs/u/bbg6775/humangenetik/shared/references/CHM13/chm13v2.0.fa"
+
+  igh_locus:
+    name: "GRCh38 chr14:105500000-107300000 IGH extract"
+    generated_by: "benchmarks/datasets/make_igh_locus.sh"
+    fasta: "benchmarks/datasets/cache/igh_locus.fa"
+    region: "chr14:105500000-107300000"
+
+  gencode_v46:
+    name: "GENCODE v46 transcripts"
+    fasta: "/beegfs/u/bbg6775/humangenetik/shared/references/gencode/v46/gencode.v46.transcripts.fa"
+    gff: "/beegfs/u/bbg6775/humangenetik/shared/references/gencode/v46/gencode.v46.annotation.gff3"
+
+reads:
+  hg002_hifi_chr14_chr20:
+    platform: "PacBio HiFi"
+    fastq: "/beegfs/u/bbg6775/humangenetik/shared/HG002/hifi/HG002.HiFi.chr14_chr20.fastq.gz"
+    parent_dataset: "HG002 GIAB v4.2.1 HiFi"
+    coverage_estimate: "30x"
+
+  hg002_illumina_chr14_chr20:
+    platform: "Illumina NovaSeq 2x150"
+    fastq_r1: "/beegfs/u/bbg6775/humangenetik/shared/HG002/illumina/HG002.NovaSeq.R1.chr14_chr20.fastq.gz"
+    fastq_r2: "/beegfs/u/bbg6775/humangenetik/shared/HG002/illumina/HG002.NovaSeq.R2.chr14_chr20.fastq.gz"
+    coverage_estimate: "30x"
+
+  hprc_isoseq_hg00290:
+    platform: "PacBio Iso-Seq (Kinnex)"
+    flnc_bam: "/beegfs/u/bbg6775/humangenetik/shared/transcriptome_longread/hprc_isoseq/HG00290/flnc.bam"
+    notes: "Lymph tissue, paralog-rich for IGH constant exons"
+
+synthetic:
+  synth_truth_wgs:
+    generated_by: "llmap generate-synth --task t1 --output benchmarks/datasets/cache/synth_t1/"
+    reads: 1000000
+    coverage: "30x equivalent"
+    ground_truth: "benchmarks/datasets/cache/synth_t1/truth.tsv"
+
+  synth_paralog_stress:
+    generated_by: "llmap generate-synth --task t2 --paralog igh,mhc,nphp1 --output benchmarks/datasets/cache/synth_t2/"
+    reads: 500000
+    loci:
+      - "IGHG1, IGHG2, IGHG3, IGHG4, IGHGP"
+      - "NPHP1, NPHP1B"
+      - "HLA-A, HLA-A-pseudogene"
+    ground_truth: "benchmarks/datasets/cache/synth_t2/truth_paralog.tsv"
+
+# Verification: each run script calls compute_sha256() on the actual file used
+# and writes the result into the per-run manifest.json. First call records the
+# expected hash; subsequent calls verify (and fail loudly on mismatch).
+verification:
+  fail_on_sha_mismatch: true
+  record_to_first_run: true

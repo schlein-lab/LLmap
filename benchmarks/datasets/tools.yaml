@@ -1,0 +1,56 @@
+# Pinned tool versions for the Phase 11 comparative benchmark.
+# Hummel module names (when available) are preferred; conda fallback for everything else.
+
+tools:
+  llmap:
+    version: "1.0.0"
+    binary: "${LLMAP_ROOT}/build/llmap"
+    sha256: ""  # filled at build time by runners/check_versions.sh
+
+  minimap2:
+    version: "2.28"
+    module: "minimap2/2.28"
+    conda: "bioconda::minimap2=2.28"
+
+  bwa_mem2:
+    version: "2.2.1"
+    module: "bwa-mem2/2.2.1"
+    conda: "bioconda::bwa-mem2=2.2.1"
+
+  winnowmap2:
+    version: "2.03"
+    module: "winnowmap/2.03"
+    conda: "bioconda::winnowmap=2.03"
+
+  star:
+    version: "2.7.11b"
+    module: "star/2.7.11b"
+    conda: "bioconda::star=2.7.11b"
+
+  bowtie2:
+    version: "2.5.4"
+    module: "bowtie2/2.5.4"
+    conda: "bioconda::bowtie2=2.5.4"
+
+  # support tools
+  samtools:
+    version: "1.21"
+    module: "samtools/1.21"
+    conda: "bioconda::samtools=1.21"
+
+  seqkit:
+    version: "2.8.2"
+    conda: "bioconda::seqkit=2.8.2"
+
+  htslib:
+    version: "1.21"
+    module: "htslib/1.21"
+
+# threads / memory pinning per benchmark run (all tools held equal)
+runtime:
+  threads: 16
+  memory_gb: 64
+  partition: "compute"
+  gpu_partition: "gpu_a100"
+  replicates: 3
+  seed_base: 42  # replicate i uses seed = seed_base + i

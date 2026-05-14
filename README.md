@@ -1,51 +1,33 @@
 # LLmap
 
-> **Where reads see each other first.**
-> Lossless because LLM. Wave-particle because physics. Lossless mapping because mathematics.
+A sequence mapper for long and short reads against any reference (genome, transcriptome, pangenome, custom). LLmap targets workflows where **paralogs, pseudogenes, and segmental duplications matter** — IGH, MHC, NPHP1, CLN3, 22q11.2 — while remaining drop-in compatible for routine WGS / RNA-seq.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Status: V1.0 Ready](https://img.shields.io/badge/Status-V1.0%20Ready-brightgreen.svg)](#status)
-[![Algorithm: WaveCollapse](https://img.shields.io/badge/Algorithm-WaveCollapse-purple.svg)](#the-algorithm-wavecollapse)
-[![AI: Claude](https://img.shields.io/badge/AI-Claude%20(Anthropic)-orange.svg)](#claude-as-a-tool-using-agent)
+[![Algorithm: WaveCollapse](https://img.shields.io/badge/Algorithm-WaveCollapse-purple.svg)](#algorithm)
 [![Domain](https://img.shields.io/badge/domain-losslessmap.com-green.svg)](https://losslessmap.com)
 
 ---
 
-## What is LLmap?
+## What LLmap does differently
 
-LLmap is a **quantum-inspired, AI-augmented sequence mapper** for long and short reads against any reference (genome, transcriptome, pangenome, custom). It is engineered to replace minimap2 in workflows where **paralogs, pseudogenes, and segmental duplications matter** — IGH, MHC, NPHP1, CLN3, 22q11.2 — while remaining **drop-in compatible** for routine WGS/RNA-seq use.
+Standard mappers (minimap2, Winnowmap2, BWA-MEM2, strobealign) share three structural failures for paralog-rich loci:
 
-The name carries two meanings, and we mean both:
+1. **They force a single primary alignment.** For IGH / MHC / SD-regions this means most reads end up at `MAPQ=0` or are assigned arbitrarily, discarding recoverable information.
+2. **No probabilistic output.** Uncertainty is collapsed at write-time; downstream tools cannot recover or propagate it.
+3. **No biology-aware priors.** Every reference position has equal a priori weight, ignoring known SD regions, recurrent-NAHR loci, and pseudogene families.
 
-| LL | Meaning | What it gives you |
-|---|---|---|
-| **L**ossless**L**map | No read is silently dropped. Every read produces a probabilistic record. | Mathematically guaranteed via WaveCollapse — the algorithm never forces a measurement it cannot justify. |
-| **LL**M-Map | Claude (Anthropic) is a first-class architectural component, not an afterthought. | Index-time biology priors, runtime self-healing CUDA codegen, sample-aware presets. |
+LLmap addresses all three at the algorithmic level. Concretely:
 
----
-
-## Why LLmap exists
-
-Standard mappers (minimap2, winnowmap2, BWA-MEM, strobealign) share three structural failures for paralog-rich loci:
-
-1. **They force a single primary alignment** — for IGH/MHC/SD-regions this means >99% of reads end up `MAPQ=0` or arbitrarily assigned, destroying recoverable information.
-2. **Reads do not inform each other** — collective signal that disambiguates paralogs is thrown away by per-read independent mapping.
-3. **No biology-aware priors** — every position in the reference has equal a priori weight, ignoring decades of accumulated knowledge about SD regions, recurrent-NAHR loci, and pseudogene families.
-
-LLmap fixes all three at the algorithmic level.
+- **Lossless output.** Every read produces a probabilistic record. A read whose origin cannot be uniquely determined is not silently dropped to `MAPQ=0` — it is reported as a probability distribution over candidate buckets. Downstream tools may collapse this to a single primary; LLmap itself never discards information.
+- **Iterative EM over a hierarchical bucket pyramid (WaveCollapse).** Read placement is updated by an EM iteration that combines sequence likelihood, coverage prior, foundation-model embedding similarity, and biology priors.
+- **Biology priors at the index level.** Reference annotation (SD regions, paralog families, recurrent NAHR loci) enters the score functional as `π_bio(b)` so the algorithm starts from the right prior rather than discovering known structure from scratch on every run.
 
 ---
 
-## The Algorithm: WaveCollapse
+## Algorithm
 
-A read is **not a point** to be located. It is a **probability wave** over a hierarchical bucket space. The wavefunction evolves under a Hamiltonian composed of:
-
-- Sequence likelihood `L(r|b)` — what minimap2 computes, but path-integrated over all alignment trajectories
-- Coverage prior `λ(b)` — the global signal that reads communicate to each other
-- AI prior `π_AI(b|r)` — semantic similarity from a frozen foundation model
-- Biology prior `π_bio(b)` — Claude-generated annotation of the reference (Index-Build agent)
-
-Update rule:
+A read is represented as a probability distribution `P(b|r)` over buckets `b` in a hierarchical pyramid `L0 → L1 → L2 → L3`. The EM update rule:
 
 ```
 P_{t+1}(b|r) = (1-γ) P_t(b|r) + γ · Z⁻¹ [
@@ -53,118 +35,98 @@ P_{t+1}(b|r) = (1-γ) P_t(b|r) + γ · Z⁻¹ [
 ]
 ```
 
-Reads **collapse** to a determined bucket only when `max_b P_t(b|r) > 0.99`. Non-converged reads stay probabilistic in the output. **No read is ever forced to a primary it cannot justify.**
+Terms:
 
-### Two-Stage Pipeline
+| Term | Meaning |
+|---|---|
+| `L(r|b)` | Sequence likelihood, path-integrated over alignment trajectories (Forward algorithm, not Viterbi) |
+| `λ_t(b)` | Coverage prior — global signal that lets reads inform each other |
+| `π_AI(b|r)` | Foundation-model embedding similarity |
+| `π_bio(b)` | Biology prior from Claude-generated reference annotation |
+| `K(b,b')` | Kernel over neighboring buckets at the same level |
+| `γ` | Platform-specific damping (HiFi ≪ ONT) |
+
+A read converges to a determined bucket when `max_b P_t(b|r) > 0.99`. Non-converged reads remain probabilistic in the output.
+
+The formal mapping to path-integral semantics, renormalization-group flow over the bucket pyramid, and platform-dependent decoherence is documented in [docs/PHYSICS.md](docs/PHYSICS.md). This framing is mathematically equivalent to a hierarchical EM; it is used here as an intuition pump for the algorithm structure.
+
+### Pipeline
 
 ```
 INPUT FASTQ
     │
     ▼
-[Foundation Embedder]  ◄── Caduceus-Ph distilled, GPU-batched at 10µs/read
+[Foundation Embedder]  (distilled Caduceus, GPU-batched at ~10µs/read)
     │
     ▼
-┌─ STAGE 1: SELF-INTERFERENCE ────────────────────────────────────┐
-│  Reads inform each other BEFORE projecting to the reference.    │
-│                                                                 │
-│  FAISS-GPU sparse k-NN  →  Leiden clusters  →  intra-cluster    │
-│  Self-WaveCollapse  →  ~1M coherent representatives from        │
-│  ~100M raw reads                                                │
-└─────────────────────────────────────────────────────────────────┘
+Reference WaveCollapse
+  Bucket pyramid L0 → L1 → L2 → L3
+  EM iteration with coverage coupling and biology priors
+  Collapse-dropout per level
+  WFA2 gap-affine extension on residual hard reads
     │
     ▼
-┌─ STAGE 2: REFERENCE WAVECOLLAPSE ───────────────────────────────┐
-│  Cluster reps (not raw reads) project onto reference.           │
-│                                                                 │
-│  Bucket pyramid L0 → L1 → L2 → L3                              │
-│  EM iteration with coverage coupling                            │
-│  Collapse-dropout per level                                     │
-│  WFA2 extension on residual hard reads                          │
-└─────────────────────────────────────────────────────────────────┘
-    │
-    ▼
-[Member Propagation]  ◄── cluster members inherit + cheap delta-correction
-    │
-    ▼
-DUAL OUTPUT
-    ├─→ BAM-Compat   (samtools/IGV/bcftools drop-in)
-    └─→ Probabilistic-Parquet  (full lossless: read × bucket × probability)
+Output
+  ├─→ BAM / SAM       (samtools / IGV / bcftools-compatible)
+  └─→ Parquet         (full lossless: read × bucket × probability)
 ```
 
----
-
-## Physics, not metaphor
-
-The wave-particle analogy is **mathematically isomorphic**, not branding:
-
-| Quantum mechanics | LLmap WaveCollapse |
-|---|---|
-| Wavefunction ψ(b) | Read probability vector P(b\|r) |
-| Hamiltonian | Score functional (Likelihood + Coverage + AI + Biology) |
-| Path integrals | Sum over alignment trajectories (Forward algorithm, not Viterbi) |
-| Decoherence-T2 | Platform-specific damping γ (HiFi ≪ ONT) |
-| Symmetry breaking | Coverage-coupling resolving sequence-identical paralogs |
-| Renormalization-group flow | Hierarchical bucket pyramid L0→L1→L2→L3 |
-| Entanglement | Read-cluster coupling (Stage 1 Self-Interference) |
-| Measurement/collapse | Convergence threshold τ = 0.99 |
-
-See [docs/PHYSICS.md](docs/PHYSICS.md) for the full mapping.
+For very large inputs (≥100M reads), an optional embedding-based pre-clustering pass deduplicates near-identical reads down to a smaller set of representatives that are then aligned, with members inheriting the rep alignment plus a delta-correction. This is a throughput optimization, not part of the core algorithm — enable with `--precluster`.
 
 ---
 
-## Claude as a Tool-Using Agent
+## Foundation models and Claude agent
 
-Claude does not act as a per-read voter (which would be prohibitively expensive). Claude is a **tool-using agent** with `Bash`, `Read/Write`, `WebFetch`, and `CUDA Codegen` access, invoked in **four deep sessions** per analysis:
+LLmap loads pre-trained foundation models (Caduceus, Evo, Nucleotide Transformer, DNABERT-2) as frozen feature extractors via ONNX Runtime. They contribute the `π_AI(b|r)` term — semantic similarity between read embedding and bucket centroid.
 
-| Session | Trigger | What Claude does | Cost / sample |
+Claude (Anthropic) is invoked as a tool-using agent — not as a per-read voter, which would be prohibitively expensive — at four predefined points:
+
+| Session | Trigger | Role | Default cost / sample |
 |---|---|---|---|
-| **A: Index-Build** | Once per reference | Runs `bedtools`, fetches UCSC SD tracks, writes custom Python preprocessors, generates `biology_prior.json` | $5 (amortized) |
-| **B: Sample-Init** | Before each run | Reads FASTQ metadata, runs `seqkit stats` + `fastqc`, picks preset + parameters | $1 |
-| **C: Diagnostic** | On EM stall | Dumps wave-state, investigates, **writes custom CUDA kernels** if needed, hot-loads via sandboxed compile | $5-15 (only if stalls) |
-| **D: Reporter** | Post-run | Generates markdown diagnostic report, updates memoization cache | $2 |
+| **A: Index-Build** | Once per reference | Generates `biology_prior.json` (SD regions, paralog families, recurrent NAHR loci) using `bedtools`, UCSC tracks, custom preprocessors | $5 (amortized) |
+| **B: Sample-Init** | Before each run | Reads FASTQ metadata, runs `seqkit stats` + `fastqc`, picks preset and parameters | $1 |
+| **C: Diagnostic** | On EM stall | Inspects wave state; optionally generates a CUDA kernel hot-loaded via sandboxed `nvcc` | $5–15 (only when stalls occur) |
+| **D: Reporter** | Post-run | Generates per-sample markdown diagnostic report, updates memoization cache | $2 |
 
-**Total default cost: ~$3 / sample, all async.** Claude never blocks the GPU pipeline — its output is **additive bias** injected when ready.
+Total typical per-sample cost: **~$3**, all asynchronous. Claude never blocks the alignment pipeline — its output is additive bias applied when ready. CUDA kernels generated by Session C are sandboxed (Bubblewrap network/PID/UTS/IPC isolation, static AST analysis, symbol allow-list) before being loaded.
 
-Modes: `--llm {off, index-only, sample-aware, self-healing, research}`. Default: `sample-aware`.
-
-> **LLmap is the first production bioinformatics tool that lets Claude generate CUDA kernels in the algorithmic hot-path.**
+Modes: `--llm {off, index-only, sample-aware, self-healing, research}`. Default: `sample-aware`. `--llm off` runs a deterministic CPU/GPU-only path with no external API dependencies.
 
 ---
 
-## Performance Targets
+## Performance targets
 
-| Metric | Target vs minimap2 |
+Targets relative to minimap2 on the same hardware. Empirical results are reported by the Phase 11 comparative benchmark campaign in [docs/BENCHMARKS.md](docs/BENCHMARKS.md).
+
+| Metric | Target |
 |---|---|
-| Wallclock (HiFi WGS, 30× coverage) | ≤ 0.55× (~45% speedup) |
-| Wallclock (iso-seq with contam) | ≤ 0.45× (~55% speedup) |
-| Peak RAM | ≤ 1.2× |
-| Read recall (uniquely-mappable) | ≥ 99.5% |
-| Paralog assignment accuracy | minimap2 + ≥ 10 percentage points |
-| Read recovery in SD regions | ≥ 2× more reads with usable alignment |
+| Wallclock (HiFi WGS, 30× coverage) | ≤ 0.55× minimap2 |
+| Wallclock (iso-seq with contam)    | ≤ 0.45× minimap2 |
+| Peak RAM                           | ≤ 1.2× minimap2 |
+| Read recall (uniquely-mappable)    | ≥ 99.5% (Phase 5 kill-switch) |
+| Paralog assignment accuracy        | minimap2 + ≥ 10 percentage points |
+| Read recovery in SD regions        | ≥ 2× usable alignments |
 
-Speedup comes from (multiplicative, not additive):
+Speedup sources:
 
-1. **Self-Interference pre-clustering** (~35% — Stage 1 reduces 100M reads to ~1M coherent reps)
-2. **Speculative prefetch + kernel fusion + mixed precision** (~20%)
-3. **Claude-generated biology priors** (~5-8% from better initial bucket layout)
-4. **Memoization across similar samples** (additive 50%+ on replicates/cohorts)
+1. Speculative prefetch, kernel fusion, mixed precision (~20%)
+2. Biology priors from Session A (~5–8% from better initial bucket layout)
+3. Memoization across replicates / cohorts (additive 50%+ on similar samples)
+4. Optional `--precluster` pre-deduplication on very large inputs (additional 30–50% when input has high redundancy, e.g. deep WGS)
 
 ---
 
 ## Quickstart
 
 ```bash
-# Install (target)
-brew install llmap
-
-# Build index — runs Claude Session A asynchronously in background
+# Build index — Session A runs asynchronously in the background
 llmap index \
   --fasta GRCh38.fa --gff gencode.v46.gff3 \
   --pangenome HPRC_r2_assemblies/*.fa \
   --llm sample-aware \
   -o GRCh38.llmap.idx
 
-# Map any data type, any reference
+# Map (any data type, any reference)
 llmap align \
   -i GRCh38.llmap.idx -r sample.fastq.gz \
   -x map-hifi --llm sample-aware \
@@ -174,37 +136,38 @@ llmap align \
 llmap-mm GRCh38.fa sample.fastq.gz -x map-hifi > sample.sam
 ```
 
+Presets (`-x`): `map-hifi`, `map-ont`, `sr` (short-read), `splice` (RNA), `asm` (assembly-to-ref).
+
 ---
 
-## What LLmap is NOT
+## Limitations
 
-We are honest about limitations:
-
-- **Sequence-identical exonic regions, per-read level**: per-read disambiguation remains impossible. LLmap returns `uninformative` explicitly. Coverage-based CNV inference (Stage 2 by-product) still recovers locus-level dup signal via summed depth.
-- **5'-UTR-truncated iso-seq with PSV in UTR**: cannot recover information that was not sequenced. Flagged explicitly, not silently dropped.
-- **Phasing generation**: LLmap *consumes* HP-tags from upstream phasers (e.g. [pseudocaller](https://github.com/schlein-lab/pseudocaller)). It does not generate phasing.
-- **Foundation model training**: we do not train Caduceus/Evo/Nucleotide-Transformer from scratch. We distill from pre-trained public weights and train only small task heads on our IGHG4 + HPRC corpus.
-- **Streaming alignment from sequencer**: V1.0 is batch-only.
+- **Sequence-identical exonic regions, per-read level.** Per-read disambiguation is impossible by information theory. LLmap returns `uninformative` explicitly. Coverage-based CNV inference (Stage 2 by-product) still recovers locus-level dup signal via summed depth.
+- **5'-UTR-truncated iso-seq with PSV in UTR.** Information that was not sequenced cannot be recovered. Flagged explicitly, not silently dropped.
+- **Phasing generation.** LLmap *consumes* HP-tags from upstream phasers (e.g. [pseudocaller](https://github.com/schlein-lab/pseudocaller)). It does not generate phasing.
+- **Foundation model training.** We do not train Caduceus / Evo / Nucleotide Transformer from scratch. We distill from pre-trained public weights and train only small task heads on the IGHG4 + HPRC corpus.
+- **Streaming alignment from sequencer.** V1.0 is batch-only.
 
 ---
 
 ## Status
 
-**V1.0 development complete.** All 10 phases implemented and tested. 1,433 unit tests passing. GPU validation pending on Hummel-2 HPC.
+V1.0 development complete. All 10 phases implemented and tested. 1,433 unit tests passing. GPU validation on Hummel-2 HPC pending. Phase 11 comparative benchmark campaign in progress.
 
 | Phase | Status | Tests |
 |---|---|---|
-| 0 — Foundations + Synthetic Data | ✅ complete | 56 |
-| 1 — Foundation Model Integration | ✅ complete | 110 |
-| 2 — Stage 1 Self-Interference | ✅ complete | 288 |
-| 3 — Stage 2 Reference WaveCollapse | ✅ complete | 493 |
-| 4 — Classical Path + WFA2 | ✅ complete | 610 |
-| **5 — KILL-SWITCH VALIDATION** ★ | ✅ complete (CPU) | 684 |
-| 6 — Dual Output (BAM + Parquet) | ✅ complete | 770 |
-| 7 — Claude Agent Integration | ✅ complete | 923 |
-| 8 — Performance Optimization | ✅ complete | 1,092 |
-| 9 — Single-Cell + Paralog Production | ✅ complete | 1,249 |
-| 10 — Production Readiness | ✅ complete | 1,433 |
+| 0 — Foundations + Synthetic Data       | complete | 56    |
+| 1 — Foundation Model Integration       | complete | 110   |
+| 2 — Pre-clustering pipeline (optional) | complete | 288   |
+| 3 — Reference WaveCollapse             | complete | 493   |
+| 4 — Classical Path + WFA2              | complete | 610   |
+| **5 — Kill-Switch Validation** ★        | complete (CPU) | 684   |
+| 6 — Dual Output (BAM + Parquet)        | complete | 770   |
+| 7 — Claude Agent Integration           | complete | 923   |
+| 8 — Performance Optimization           | complete | 1,092 |
+| 9 — Single-Cell + Paralog Production   | complete | 1,249 |
+| 10 — Production Readiness              | complete | 1,433 |
+| 11 — Comparative Benchmark Campaign    | in progress | — |
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and [STATE.md](STATE.md) for build history.
 
@@ -212,15 +175,14 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and [STATE.md](STATE.
 
 ## Citing LLmap
 
-Manuscript in preparation. For now, please cite as:
+Manuscript in preparation. For now:
 
 ```bibtex
 @software{llmap2026,
   author = {Schlein, Christian},
-  title  = {LLmap: Lossless, LLM-augmented, wave-particle sequence mapper},
+  title  = {LLmap: Lossless mapping with hierarchical EM for paralog-rich regions},
   year   = {2026},
-  url    = {https://github.com/schlein-lab/LLmap},
-  note   = {V1.0 autonomous build, May 2026}
+  url    = {https://github.com/schlein-lab/LLmap}
 }
 ```
 
@@ -234,28 +196,21 @@ MIT. See [LICENSE](LICENSE).
 
 ## Documentation
 
-- [LLmap_SPEC.md](LLmap_SPEC.md) — full V1.0 specification (700+ lines, agent-feedable)
-- [docs/PHYSICS.md](docs/PHYSICS.md) — formal math, path integrals, RG flow, symmetry breaking
-- [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md) — the LL double meaning, photon analogy, design ethos
-- [docs/CLAUDE_AGENT.md](docs/CLAUDE_AGENT.md) — how Claude is integrated as a tool-using agent
+- [LLmap_SPEC.md](LLmap_SPEC.md) — full V1.0 specification
+- [docs/PHYSICS.md](docs/PHYSICS.md) — formal math (path integrals, RG flow, symmetry breaking)
+- [docs/CLAUDE_AGENT.md](docs/CLAUDE_AGENT.md) — Claude agent integration
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — module-level architecture
 - [docs/DATA_MODEL.md](docs/DATA_MODEL.md) — AlignmentRecord, BucketPyramid, WaveState
-- [docs/BENCHMARKS.md](docs/BENCHMARKS.md) — vs minimap2 / winnowmap / strobealign
-- [docs/MODELS.md](docs/MODELS.md) — foundation-model catalog, distillation recipes
+- [docs/BENCHMARKS.md](docs/BENCHMARKS.md) — comparative benchmark results
+- [docs/MODELS.md](docs/MODELS.md) — foundation model catalog
 
 ---
 
 ## Acknowledgments
 
-LLmap stands on the shoulders of:
-
 - **minimap2** (Heng Li) — the reference we measure against, and learn from
 - **WFA2-lib** (Marco-Sola et al.) — gap-affine extension
-- **FAISS** (Meta) — GPU ANN
-- **Caduceus**, **Evo**, **Nucleotide Transformer**, **DNABERT-2** — public foundation models
+- **FAISS** (Meta) — GPU approximate nearest-neighbor
+- **Caduceus**, **Evo**, **Nucleotide Transformer**, **DNABERT-2** — pre-trained foundation models
 - **HPRC** consortium — pangenome data
-- **Anthropic Claude** — the first LLM to write production CUDA kernels in a bioinformatics tool
-
----
-
-*Reads as photons. Genome as crystal. Mapping as decoherence. Every read accounted for.*
+- **Anthropic Claude** — tool-using agent integration

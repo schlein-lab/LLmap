@@ -101,3 +101,15 @@ Thumbs.db
 .stuck_count
 .stuck_notified_*
 .deadline_notified
+
+# Benchmark heavy outputs — kept on Hummel BeeGFS, not in repo.
+# Summary JSONs and manifests remain tracked so the published table is auditable.
+benchmarks/datasets/cache/
+benchmarks/reports/*/*/rep*/alignments.bam
+benchmarks/reports/*/*/rep*/alignments.bam.bai
+benchmarks/reports/*/*/rep*/probabilities.parquet
+benchmarks/reports/*/*/rep*/stderr.log
+benchmarks/reports/*/*/rep*/slurm.out
+benchmarks/reports/*/*/rep*/slurm.err
+benchmarks/reports/*/*/rep*/submit.sbatch
+benchmarks/reports/*/*/rep*/star_tmp/
