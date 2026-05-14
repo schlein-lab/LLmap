@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 57 |
-| Total iterations | 57 |
+| Last successful iteration | 58 |
+| Total iterations | 58 |
 
 ---
 
@@ -86,6 +86,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase 10: Production Readiness**
   - [x] Phase 10.1: Structured logging framework (1277 tests pass)
   - [x] Phase 10.2: Error handling framework (1336 tests pass)
+  - [x] Phase 10.3: Configuration file support (1375 tests pass)
 
 ---
 
@@ -94,27 +95,26 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 10
 task: production_readiness
-substep: 3/6 — Error handling framework implemented
-last_action: Phase 10.2 — Error handling framework
-  - Added core/error.{h,cpp}: Result<T, E> type for explicit error handling
-  - ErrorCode enum with categorized error codes (IO, Parse, Config, Validate, Resource, System, Algo, External)
-  - LLmapError class with code, message, context, source location capture
-  - Error category predicates (IsIoError, IsParseError, etc.)
-  - Result<T, E> template with ok(), is_err(), value(), error(), value_or()
-  - Result<void, E> specialization for operations with no return value
-  - Monadic operations: map(), and_then(), or_else(), inspect(), inspect_err()
-  - LLMAP_TRY macro for early return on error
-  - ErrorList for aggregating multiple errors
-  - Factory functions: IoError, ParseError, ConfigError, ValidationError
-  - MakeOk/MakeErr helper functions
-  - 59 new tests; 1336 total tests pass
+substep: 4/6 — Configuration file support implemented
+last_action: Phase 10.3 — Configuration file support
+  - Added core/config.h: LLmapConfig struct with AlignConfig, LlmConfig, SingleCellConfig, PsvConfig, LoggingConfig sections
+  - ConfigValue struct with AsBool/AsInt/AsDouble/AsString converters
+  - ConfigParser class with TOML parsing (comments, sections, key-value pairs, quoted strings)
+  - config_parse.cpp: TOML parsing implementation (219 LOC)
+  - config.cpp: utilities, validation, serialization (201 LOC)
+  - Config file search paths: ./llmap.toml, ~/.config/llmap/config.toml, /etc/llmap/config.toml
+  - LoadConfig/LoadConfigFromFile/FindConfigFile APIs
+  - ApplyEnvironmentOverrides (LLMAP_REFERENCE, LLMAP_INDEX, ANTHROPIC_API_KEY, etc.)
+  - ApplyOverrides for CLI flag overrides via ConfigOverride struct
+  - ValidateConfig for validation rules (kmer_size range, identity range, etc.)
+  - ConfigToToml for serialization + round-trip test
+  - 39 new tests; 1375 total tests pass
   - Monolith count: 0
-next_action: Phase 10.3 — Configuration file support (TOML/YAML config)
-  - Add TOML config file parsing
-  - LLmapConfig struct for global settings
-  - Config file search (./llmap.toml, ~/.config/llmap/config.toml)
-  - CLI flag overrides
-acceptance: Config file support with tests
+next_action: Phase 10.4 — Version string + --version CLI completeness
+  - Add LLMAP_VERSION macro from CMake
+  - Implement --version flag
+  - Show build info (commit hash, build date, features)
+acceptance: Version output with build info
 ```
 
 ---
@@ -177,9 +177,8 @@ acceptance: Config file support with tests
 54. ~~Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete~~ ✅ done
 55. ~~Phase 10.1: Structured logging framework~~ ✅ done
 56. ~~Phase 10.2: Error handling framework~~ ✅ done
-57. Phase 10.3: Configuration file support ← NEXT
-57. Phase 10.3: Configuration file support (TOML/YAML config)
-58. Phase 10.4: Version string + --version CLI completeness
+57. ~~Phase 10.3: Configuration file support~~ ✅ done
+58. Phase 10.4: Version string + --version CLI completeness ← NEXT
 59. Phase 10.5: `llmap index` CLI command stub
 60. Phase 10.6: Phase 10 finalization + V1.0 readiness check
 
@@ -262,6 +261,7 @@ acceptance: Config file support with tests
 | 55 | 2026-05-14 | n/a | Phase 9.8 cmd_sc_qc_report refactor + Phase 9 COMPLETE | split cmd_sc_qc_report.cpp (427 LOC) → 3 files: cmd_sc_qc_report.cpp (279 LOC), cmd_sc_qc_report_args.cpp (142 LOC), cmd_sc_qc_report_internal.h (45 LOC); monolith count 1→0; 1249 tests pass; Phase 9 complete with all single-cell features |
 | 56 | 2026-05-14 | n/a | Phase 10.1 structured logging framework | core/logging.{h,cpp}: Logger singleton with thread-safe logging; LogLevel (Trace/Debug/Info/Warn/Error/Fatal/Off); LogFormat (Text/Json); LogRecord with timestamp, thread_id, source_location; configurable sinks; LLMAP_LOG_* macros; env config (LLMAP_LOG_LEVEL, LLMAP_LOG_FORMAT); test_logging.cpp (28 tests); 1277 tests pass; monolith count 0→0; Phase 10 started |
 | 57 | 2026-05-14 | n/a | Phase 10.2 error handling framework | core/error.{h,cpp}: Result<T,E> type for explicit error handling; ErrorCode enum with IO/Parse/Config/Validate/Resource/System/Algo/External categories; LLmapError class (code, message, context, source_location); category predicates; Result<void,E> specialization; monadic operations (map, and_then, or_else, inspect); LLMAP_TRY macro; ErrorList aggregator; factory functions (IoError, ParseError, ConfigError, ValidationError); MakeOk/MakeErr helpers; test_error.cpp (59 tests); 1336 tests pass; monolith count 0→0 |
+| 58 | 2026-05-14 | n/a | Phase 10.3 configuration file support | core/config.h + config.cpp + config_parse.cpp: LLmapConfig struct (AlignConfig, LlmConfig, SingleCellConfig, PsvConfig, LoggingConfig); ConfigParser class for TOML parsing; ConfigValue with type converters; config file search paths (./llmap.toml, ~/.config/llmap/config.toml, /etc/llmap/config.toml); LoadConfig/FindConfigFile APIs; ApplyEnvironmentOverrides/ApplyOverrides for CLI flags; ValidateConfig for validation; ConfigToToml for round-trip; test_config.cpp (39 tests); 1375 tests pass; monolith count 0→0 |
 
 ---
 

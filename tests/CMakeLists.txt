@@ -447,6 +447,18 @@ target_link_libraries(test_error
 )
 gtest_discover_tests(test_error)
 
+# Configuration tests
+add_executable(test_config
+    unit/test_config.cpp
+)
+target_link_libraries(test_config
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_config)
+
 # Embedder throughput benchmark (standalone, not using Google Benchmark)
 if(LLMAP_ENABLE_BENCH)
     add_executable(bench_embedder_throughput

@@ -8,6 +8,8 @@ add_library(llmap_core STATIC
     core/thread_pool.cpp
     core/logging.cpp
     core/error.cpp
+    core/config.cpp
+    core/config_parse.cpp
     synthetic/igh_locus_generator_core.cpp
     synthetic/igh_locus_generator_presets.cpp
 )
