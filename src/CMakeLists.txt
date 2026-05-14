@@ -163,6 +163,7 @@ add_library(llmap_classical STATIC
     classical/wfa2_aligner_core.cpp
     classical/wfa2_aligner_align.cpp
     classical/classical_pipeline.cpp
+    classical/classical_pipeline_extend.cpp
 )
 
 target_include_directories(llmap_classical PUBLIC
