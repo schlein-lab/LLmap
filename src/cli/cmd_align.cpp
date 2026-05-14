@@ -87,6 +87,11 @@ int run_align(int argc, char** argv) {
         return 1;
     }
 
+    if (!args.index.empty() && !std::filesystem::exists(args.index)) {
+        std::fprintf(stderr, "Error: index file not found: %s\n", args.index.c_str());
+        return 1;
+    }
+
     auto start_time = std::chrono::steady_clock::now();
 
     // Load PSV catalog if specified
@@ -129,23 +134,40 @@ int run_align(int argc, char** argv) {
         std::fprintf(stderr, "Loaded %zu reference sequences\n", ref_names.size());
     }
 
-    if (args.verbose) {
-        std::fprintf(stderr, "Building minimizer index (k=%d, w=%d)\n",
-                     args.kmer_size, args.window_size);
-    }
-
+    std::unique_ptr<classical::MinimizerIndex> index;
     classical::MinimizerConfig mini_cfg;
-    mini_cfg.k = args.kmer_size;
-    mini_cfg.w = args.window_size;
 
-    classical::MinimizerIndex::Builder idx_builder(mini_cfg);
-    for (std::size_t i = 0; i < ref_names.size(); ++i) {
-        idx_builder.AddSequence(ref_names[i], ref_seqs[i]);
-    }
-    auto index = idx_builder.Build();
+    if (!args.index.empty()) {
+        if (args.verbose) {
+            std::fprintf(stderr, "Loading pre-built index: %s\n", args.index.c_str());
+        }
+        index = classical::MinimizerIndex::Load(args.index);
+        if (!index) {
+            std::fprintf(stderr, "Error: failed to load index: %s\n", args.index.c_str());
+            return 1;
+        }
+        mini_cfg = index->GetConfig();
+        if (args.verbose) {
+            std::fprintf(stderr, "Index loaded: %zu minimizers (k=%d, w=%d)\n",
+                         index->Size(), mini_cfg.k, mini_cfg.w);
+        }
+    } else {
+        if (args.verbose) {
+            std::fprintf(stderr, "Building minimizer index (k=%d, w=%d)\n",
+                         args.kmer_size, args.window_size);
+        }
+        mini_cfg.k = args.kmer_size;
+        mini_cfg.w = args.window_size;
 
-    if (args.verbose) {
-        std::fprintf(stderr, "Index built: %zu minimizers\n", index->Size());
+        classical::MinimizerIndex::Builder idx_builder(mini_cfg);
+        for (std::size_t i = 0; i < ref_names.size(); ++i) {
+            idx_builder.AddSequence(ref_names[i], ref_seqs[i]);
+        }
+        index = idx_builder.Build();
+
+        if (args.verbose) {
+            std::fprintf(stderr, "Index built: %zu minimizers\n", index->Size());
+        }
     }
 
     classical::ClassicalPipelineConfig pipe_cfg;
