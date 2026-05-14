@@ -151,19 +151,24 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
         alignment->is_forward = chain.is_forward;
         alignment->is_primary = !found_primary;
 
-        // Compute MAPQ (simplified: based on score gap to secondary)
+        // Compute MAPQ using proper probability-based calculation
         if (!found_primary) {
             found_primary = true;
-            if (chain_result.chains.size() > 1 &&
-                chain_result.chains[1].score > 0) {
-                float score_ratio = static_cast<float>(chain_result.chains[1].score) /
-                                    static_cast<float>(chain.score);
-                alignment->mapq = static_cast<uint32_t>((1.0f - score_ratio) * 60);
-            } else {
-                alignment->mapq = 60;  // Unique mapping
-            }
+            // Count secondary chains (excluding primary)
+            uint32_t num_secondaries = chain_result.chains.size() > 1
+                ? static_cast<uint32_t>(chain_result.chains.size() - 1) : 0;
+            // Get secondary score (best non-primary chain)
+            int32_t secondary_score = (chain_result.chains.size() > 1)
+                ? chain_result.chains[1].score : 0;
+
+            alignment->mapq = ComputeMapq(
+                alignment->score,
+                secondary_score,
+                alignment->identity,
+                num_secondaries,
+                static_cast<uint32_t>(query_seq.size()));
         } else {
-            alignment->mapq = 0;  // Secondary
+            alignment->mapq = 0;  // Secondary alignments always have MAPQ=0
         }
 
         // Filter by identity and length

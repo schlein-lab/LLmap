@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 91 |
-| Total iterations | 91 |
+| Last successful iteration | 92 |
+| Total iterations | 92 |
 
 ---
 
@@ -113,6 +113,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase C: Polish + Precision** ★
   - [x] Phase C.1: Identity filter improvements (1483 tests pass)
   - [x] Phase C.2: `-x` presets for read types (1490 tests pass)
+  - [x] Phase C.3: MAPQ calculation (1504 tests pass)
 
 ---
 
@@ -120,29 +121,29 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: C
-task: C.3_mapq
-substep: Implement proper MAPQ calculation based on alignment score
+task: C.4_classical_only
+substep: Implement --classical-only mode to skip Wave structures
 inputs:
-  - src/classical/classical_pipeline.cpp (ExtendChain)
-  - src/classical/classical_pipeline.h (ClassicalAlignment.mapq)
-  - docs/IMPROVEMENTS.md (P2: MAPQ recommendation)
+  - docs/IMPROVEMENTS.md (Issue 5: Memory Overhead)
+  - src/cli/cmd_align.cpp
 expected_files_changed:
-  - src/classical/classical_pipeline.cpp (add MAPQ calculation in ExtendChain)
-  - tests/unit/test_classical_pipeline.cpp (MAPQ tests)
+  - src/cli/cmd_align_args.cpp (add --classical-only flag)
+  - src/cli/cmd_align.cpp (skip Wave init when flag set)
+  - tests/unit/test_llmap_cli.cpp (new flag tests)
 acceptance:
-  - MAPQ calculated from alignment score and secondary alignments
-  - MAPQ=60 for unique, high-score alignments
-  - MAPQ=0 for multi-mapping or low-confidence alignments
+  - --classical-only flag skips probabilistic framework init
+  - Reduces memory footprint for pure seed-chain-extend workloads
   - All tests pass
   - Monolith count stays at 0
 notes: |
-  Phase C.2 complete: -x presets implementation.
-  - Added Preset enum (MapHifi, MapOnt, MapPb, Sr)
-  - map-hifi: k=19, w=19, identity=0.90, min_chain=40
-  - map-ont/map-pb: k=15, w=10, identity=0.70, min_chain=20
-  - sr: k=21, w=11, identity=0.95, min_chain=50
-  - Explicit CLI args override preset values
-  - 7 new tests for preset verification (1490 tests pass)
+  Phase C.3 complete: MAPQ calculation implementation.
+  - Added ComputeMapq() function in classical_pipeline_internal.h
+  - Probability-based MAPQ using score gap: MAPQ = -10 * log10(P_error)
+  - Unique high-score alignments get MAPQ=60
+  - Multi-mapping with same score gets MAPQ=0
+  - Secondary alignments always MAPQ=0
+  - Identity < 0.5 gets MAPQ=0
+  - 14 new tests for MAPQ (1504 tests pass)
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -231,7 +232,7 @@ hard_rule_precheck:
 77. ~~Phase B.3: Index caching in CLI~~ ✅ done
 78. ~~Phase C.1: Identity filter for precision~~ ✅ done
 79. ~~Phase C.2: `-x` presets (map-hifi, map-ont)~~ ✅ done
-80. Phase C.3: Proper MAPQ calculation
+80. ~~Phase C.3: Proper MAPQ calculation~~ ✅ done
 81. Phase C.4: `--classical-only` mode
 82. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
 
@@ -348,6 +349,7 @@ hard_rule_precheck:
 | 89 | 2026-05-14 | n/a | Phase B.3: index caching in CLI | cmd_align_internal.h: added index field to AlignArgs; cmd_align_args.cpp: added -i/--index flag parsing, updated help text with "Index caching" section; cmd_align.cpp: load pre-built index via MinimizerIndex::Load() when --index provided, use index config (k,w) from loaded index; test_llmap_cli.cpp: 5 new tests (AlignHelpShowsIndexFlag, AlignIndexFileNotFound, AlignWithPrebuiltIndex, AlignIndexShortFlag, AlignIndexVerboseShowsParams); 1476 tests pass; monolith count 0; Phase B COMPLETE |
 | 90 | 2026-05-14 | n/a | Phase C.1: identity filter improvements | classical_pipeline.h: min_identity default 0.70→0.80 for precision; added filtered_by_identity/filtered_by_length to ReadAlignmentResult + ClassicalPipelineStats; classical_pipeline.cpp: filter tracking in AlignRead() + stats aggregation in AlignReads/AlignReadsParallel; cmd_align_internal.h: min_identity default 0.80; cmd_align_args.cpp: help text [0.80]; test_classical_pipeline.cpp: 7 new tests (DefaultMinIdentityIs080, IdentityFilterTracksFilteredAlignments, IdentityFilterStrictThresholdFiltersMore, IdentityFilterStatsAggregatedInBatch, IdentityFilterStatsAggregatedInParallel, HighIdentityExactMatchPassesFilter, PerReadFilterStatsCorrect); 1483 tests pass; monolith count 0 |
 | 91 | 2026-05-14 | n/a | Phase C.2: -x presets | cmd_align_internal.h: Preset enum (MapHifi/MapOnt/MapPb/Sr), ApplyPreset function; cmd_align_args.cpp: -x flag parsing with preset application, explicit CLI args override preset values; presets: map-hifi (k=19, w=19, identity=0.90, chain=40), map-ont/map-pb (k=15, w=10, identity=0.70, chain=20), sr (k=21, w=11, identity=0.95, chain=50); help text with preset documentation; test_llmap_cli.cpp: 7 new tests (AlignHelpShowsPresets, AlignPresetInvalid, AlignPresetMapHifi, AlignPresetMapOnt, AlignPresetSr, AlignPresetOverrideKmer, AlignPresetHifiShortName); 1490 tests pass; monolith count 0 |
+| 92 | 2026-05-14 | n/a | Phase C.3: MAPQ calculation | classical_pipeline_internal.h: ComputeMapq() function for probability-based MAPQ calculation; uses score gap formula MAPQ = -10*log10(P_error) where P_error estimated from exp(-score_diff/scale); unique high-score/high-identity = MAPQ 60; multi-mapping with same score = MAPQ 0; identity < 0.5 = MAPQ 0; secondary alignments always MAPQ 0; classical_pipeline.cpp: updated AlignRead() to use ComputeMapq(); test_classical_pipeline.cpp: 14 new tests (10 unit tests for ComputeMapq + 4 integration tests); 1504 tests pass; monolith count 0 |
 
 ---
 
