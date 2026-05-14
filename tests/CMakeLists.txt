@@ -551,6 +551,18 @@ target_link_libraries(test_per_cell_paralog
 )
 gtest_discover_tests(test_per_cell_paralog)
 
+add_executable(test_sc_paralog_qc
+    unit/test_sc_paralog_qc.cpp
+)
+target_link_libraries(test_sc_paralog_qc
+    PRIVATE
+    llmap_singlecell
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_sc_paralog_qc)
+
 # ========== Integration Tests ==========
 # These test end-to-end workflows across multiple modules
 
