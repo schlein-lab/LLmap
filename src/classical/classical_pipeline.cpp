@@ -10,6 +10,13 @@
 
 namespace llmap::classical {
 
+namespace {
+// Thread-local scratch buffers for zero-allocation chaining hot path.
+// Each thread gets its own ChainScratch that grows as needed but never shrinks,
+// avoiding repeated heap allocations when processing many reads.
+thread_local ChainScratch tl_chain_scratch;
+}  // namespace
+
 std::string ClassicalAlignment::CigarString() const {
     std::ostringstream oss;
     for (const auto& elem : cigar) {
@@ -93,20 +100,7 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
         return result;
     }
 
-    // Phase 2: Chaining
-    Timer chain_timer;
-    auto chain_result = ExtractChains(
-        std::span<const MinimizerHit>(hits),
-        static_cast<uint32_t>(query_seq.size()),
-        config_.chain_config);
-    result.chaining_time_us = chain_timer.ElapsedUs();
-    result.num_chains = chain_result.chains.size();
-
-    if (chain_result.chains.empty()) {
-        return result;
-    }
-
-    // Convert hits to anchors for extension
+    // Convert hits to anchors for chaining and extension
     std::vector<Anchor> anchors;
     anchors.reserve(hits.size());
     for (const auto& hit : hits) {
@@ -116,6 +110,20 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
             .query_pos = hit.query_pos,
             .same_strand = hit.same_strand
         });
+    }
+
+    // Phase 2: Chaining (zero-allocation using thread-local scratch)
+    Timer chain_timer;
+    auto chain_result = ExtractChainsFromAnchorsWithScratch(
+        std::span<const Anchor>(anchors),
+        static_cast<uint32_t>(query_seq.size()),
+        config_.chain_config,
+        tl_chain_scratch);
+    result.chaining_time_us = chain_timer.ElapsedUs();
+    result.num_chains = chain_result.chains.size();
+
+    if (chain_result.chains.empty()) {
+        return result;
     }
 
     // Phase 3: Extension (for top chains)
