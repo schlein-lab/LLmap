@@ -1,34 +1,12 @@
 // LLmap — ClassicalPipeline: seed-chain-extend orchestration.
 
 #include "classical/classical_pipeline.h"
+#include "classical/classical_pipeline_internal.h"
 
 #include <algorithm>
-#include <chrono>
 #include <sstream>
 
 namespace llmap::classical {
-
-namespace {
-
-// Helper to measure time
-class Timer {
-public:
-    Timer() : start_(std::chrono::steady_clock::now()) {}
-
-    float ElapsedUs() const {
-        auto now = std::chrono::steady_clock::now();
-        return std::chrono::duration<float, std::micro>(now - start_).count();
-    }
-
-    float ElapsedMs() const {
-        return ElapsedUs() / 1000.0f;
-    }
-
-private:
-    std::chrono::steady_clock::time_point start_;
-};
-
-}  // namespace
 
 std::string ClassicalAlignment::CigarString() const {
     std::ostringstream oss;
@@ -76,6 +54,16 @@ void ClassicalPipeline::SetIndex(std::unique_ptr<MinimizerIndex> index) {
 void ClassicalPipeline::SetIndex(const MinimizerIndex* index) {
     owned_index_.reset();
     index_ = index;
+}
+
+void ClassicalPipeline::SetReferenceSequences(std::span<const std::string> ref_seqs) {
+    owned_ref_seqs_.clear();
+    ref_seqs_ = ref_seqs;
+}
+
+void ClassicalPipeline::SetReferenceSequences(std::vector<std::string> ref_seqs) {
+    owned_ref_seqs_ = std::move(ref_seqs);
+    ref_seqs_ = owned_ref_seqs_;
 }
 
 bool ClassicalPipeline::HasIndex() const {
@@ -187,104 +175,6 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
     return result;
 }
 
-std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
-    std::string_view query_seq,
-    const Chain& chain,
-    const std::vector<Anchor>& anchors) const {
-
-    if (chain.anchors.empty()) {
-        return std::nullopt;
-    }
-
-    ClassicalAlignment aln;
-    aln.ref_start = chain.ref_start;
-    aln.ref_end = chain.ref_end;
-    aln.query_start = chain.query_start;
-    aln.query_end = chain.query_end;
-    aln.score = chain.score;
-
-    // Build a simple CIGAR from chain anchors
-    // For a proper implementation, we would do full WFA2 extension
-    // between anchors. For now, we approximate with M operations
-    // connecting the anchors.
-
-    uint32_t prev_query = chain.query_start;
-    uint32_t prev_ref = chain.ref_start;
-    size_t matches = 0;
-    size_t insertions = 0;
-    size_t deletions = 0;
-
-    for (uint32_t anchor_idx : chain.anchors) {
-        if (anchor_idx >= anchors.size()) continue;
-        const auto& anchor = anchors[anchor_idx];
-
-        // Gap between previous position and this anchor
-        int32_t query_gap = static_cast<int32_t>(anchor.query_pos) - static_cast<int32_t>(prev_query);
-        int32_t ref_gap = static_cast<int32_t>(anchor.ref_pos) - static_cast<int32_t>(prev_ref);
-
-        if (query_gap > 0 && ref_gap > 0) {
-            // Aligned segment
-            uint32_t aligned = static_cast<uint32_t>(std::min(query_gap, ref_gap));
-            if (aligned > 0) {
-                aln.cigar.push_back({CigarOp::Match, aligned});
-                matches += aligned;
-            }
-
-            // Handle gaps
-            if (query_gap > ref_gap) {
-                uint32_t ins = static_cast<uint32_t>(query_gap - ref_gap);
-                aln.cigar.push_back({CigarOp::Insertion, ins});
-                insertions += ins;
-            } else if (ref_gap > query_gap) {
-                uint32_t del = static_cast<uint32_t>(ref_gap - query_gap);
-                aln.cigar.push_back({CigarOp::Deletion, del});
-                deletions += del;
-            }
-        } else if (query_gap > 0) {
-            aln.cigar.push_back({CigarOp::Insertion, static_cast<uint32_t>(query_gap)});
-            insertions += query_gap;
-        } else if (ref_gap > 0) {
-            aln.cigar.push_back({CigarOp::Deletion, static_cast<uint32_t>(ref_gap)});
-            deletions += ref_gap;
-        }
-
-        // k-mer match
-        uint8_t k = config_.minimizer_config.k;
-        aln.cigar.push_back({CigarOp::Match, k});
-        matches += k;
-
-        prev_query = anchor.query_pos + k;
-        prev_ref = anchor.ref_pos + k;
-    }
-
-    // Handle trailing gap
-    if (prev_query < chain.query_end) {
-        uint32_t trail = chain.query_end - prev_query;
-        aln.cigar.push_back({CigarOp::Match, trail});
-        matches += trail;
-    }
-
-    // Merge adjacent CIGAR operations
-    std::vector<CigarElement> merged;
-    for (const auto& elem : aln.cigar) {
-        if (elem.length == 0) continue;
-        if (!merged.empty() && merged.back().op == elem.op) {
-            merged.back().length += elem.length;
-        } else {
-            merged.push_back(elem);
-        }
-    }
-    aln.cigar = std::move(merged);
-
-    // Statistics
-    size_t total_aligned = matches + insertions + deletions;
-    aln.identity = total_aligned > 0
-        ? static_cast<float>(matches) / static_cast<float>(total_aligned)
-        : 0.0f;
-
-    return aln;
-}
-
 std::vector<ReadAlignmentResult> ClassicalPipeline::AlignReads(
     std::span<const std::string> query_names,
     std::span<const std::string> query_seqs) const {
@@ -341,6 +231,7 @@ std::vector<ReadAlignmentResult> AlignWithClassicalPath(
     // Create pipeline and align
     ClassicalPipeline pipeline(config);
     pipeline.SetIndex(std::move(index));
+    pipeline.SetReferenceSequences(ref_seqs);  // Enable WFA2 extension
     return pipeline.AlignReads(query_names, query_seqs);
 }
 

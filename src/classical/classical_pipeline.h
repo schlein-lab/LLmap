@@ -125,6 +125,11 @@ public:
     void SetIndex(std::unique_ptr<MinimizerIndex> index);
     void SetIndex(const MinimizerIndex* index);  // Non-owning
 
+    // Set reference sequences for WFA2 extension (optional but recommended)
+    // Without this, ExtendChain uses interpolation instead of actual alignment
+    void SetReferenceSequences(std::span<const std::string> ref_seqs);
+    void SetReferenceSequences(std::vector<std::string> ref_seqs);  // Owning
+
     // Check if index is set
     bool HasIndex() const;
 
@@ -150,6 +155,9 @@ private:
     std::unique_ptr<MinimizerIndex> owned_index_;
     const MinimizerIndex* index_ = nullptr;
 
+    std::vector<std::string> owned_ref_seqs_;
+    std::span<const std::string> ref_seqs_;
+
     WFA2Aligner aligner_;
     mutable ClassicalPipelineStats stats_;
 
@@ -159,7 +167,14 @@ private:
         const Chain& chain,
         const std::vector<Anchor>& anchors) const;
 
-    std::vector<std::string> GetRefSequences() const;
+    // Align segment between two anchor positions using WFA2
+    std::optional<WFA2Result> AlignGap(
+        std::string_view query_seq,
+        uint32_t ref_id,
+        uint32_t query_start,
+        uint32_t query_end,
+        uint32_t ref_start,
+        uint32_t ref_end) const;
 };
 
 // Convenience: build index and align in one call
