@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 137 |
-| Total iterations | 137 |
+| Last successful iteration | 138 |
+| Total iterations | 138 |
 
 ---
 
@@ -389,6 +389,7 @@ notes: |
 | 135 | 2026-05-15 | n/a | Verification pass (iteration 135) | Confirmed: build passes, 1509 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 136 | 2026-05-15 | n/a | Verification pass (iteration 136) | Confirmed: build passes, 1509 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 137 | 2026-05-15 | n/a | Verification pass (iteration 137) | Confirmed: build passes, 1509 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
+| 138 | 2026-05-15 | n/a | Verification pass (iteration 138) | Found regression: min_identity default was 0.70 instead of 0.80; fixed classical_pipeline.h to match Phase C.1 design; 1509 tests pass; monolith count 0 |
 
 ---
 
