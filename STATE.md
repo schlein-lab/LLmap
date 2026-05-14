@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 55 |
-| Total iterations | 55 |
+| Last successful iteration | 56 |
+| Total iterations | 56 |
 
 ---
 
@@ -83,6 +83,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 9.6: Single-cell paralog quantification reporting (1236 tests pass)
   - [x] Phase 9.7: `llmap sc-qc-report` CLI command (1249 tests pass)
   - [x] Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete (1249 tests pass)
+- [ ] **Phase 10: Production Readiness**
+  - [x] Phase 10.1: Structured logging framework (1277 tests pass)
 
 ---
 
@@ -91,20 +93,23 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 10
 task: production_readiness
-substep: 1/N — Phase 10 initialization
-last_action: Phase 9.8 — cmd_sc_qc_report refactor + Phase 9 complete
-  - Split cmd_sc_qc_report.cpp (427 LOC) → 3 files:
-    - cmd_sc_qc_report.cpp (279 LOC): main orchestration
-    - cmd_sc_qc_report_args.cpp (142 LOC): argument parsing, barcode extraction
-    - cmd_sc_qc_report_internal.h (45 LOC): shared types
-  - Monolith count 1→0
-  - Phase 9 complete with all single-cell features
-  - 1249 tests pass
-next_action: Phase 10.1 — Production-readiness preparation
-  - Review LLmap_SPEC.md for remaining production requirements
-  - Identify gaps: error handling, logging, config files, documentation
-  - Plan Phase 10 substeps
-acceptance: Phase 10 plan established
+substep: 2/6 — Structured logging implemented
+last_action: Phase 10.1 — Structured logging framework
+  - Added core/logging.{h,cpp}: thread-safe, zero-allocation hot path logger
+  - LogLevel enum (Trace/Debug/Info/Warn/Error/Fatal/Off)
+  - LogFormat enum (Text/Json) for structured output
+  - LogRecord struct with timestamp, thread_id, source_location
+  - Logger singleton with configurable sinks, file output
+  - LLMAP_LOG_* macros for convenience
+  - Environment variable config (LLMAP_LOG_LEVEL, LLMAP_LOG_FORMAT)
+  - 28 new tests; 1277 total tests pass
+  - Monolith count: 0
+next_action: Phase 10.2 — Error handling framework
+  - Add Result<T, E> type for explicit error handling
+  - Define LLmapError hierarchy (IoError, ParseError, ConfigError, etc.)
+  - Replace throw statements in hot paths with Result returns
+  - Add error context propagation
+acceptance: Result type + error hierarchy implemented with tests
 ```
 
 ---
@@ -165,8 +170,12 @@ acceptance: Phase 10 plan established
 52. ~~Phase 9.6: Single-cell paralog quantification reporting~~ ✅ done
 53. ~~Phase 9.7: `llmap sc-qc-report` CLI~~ ✅ done
 54. ~~Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete~~ ✅ done
-55. Phase 10.1: Production-readiness preparation ← NEXT
-56. ... (continues per LLmap_SPEC.md)
+55. ~~Phase 10.1: Structured logging framework~~ ✅ done
+56. Phase 10.2: Error handling framework ← NEXT
+57. Phase 10.3: Configuration file support (TOML/YAML config)
+58. Phase 10.4: Version string + --version CLI completeness
+59. Phase 10.5: `llmap index` CLI command stub
+60. Phase 10.6: Phase 10 finalization + V1.0 readiness check
 
 ---
 
@@ -245,6 +254,7 @@ acceptance: Phase 10 plan established
 | 53 | 2026-05-14 | n/a | Phase 9.6 single-cell paralog QC reporting | sc_paralog_qc.h (CellQcMetrics, ParalogQcMetrics, GlobalQcSummary, ConfidenceDistribution, QcThresholds, QcReport); sc_paralog_qc.cpp (ComputeEntropy, ComputeDominance, ComputeConfidenceDistribution, ComputeCellQcMetrics, ComputeParalogQcMetrics, ComputeGlobalQcSummary, GetCellsPassingQc, FilterMatrixByQc, GenerateQcReport); sc_paralog_qc_report.cpp (JSON/TSV export); 36 new tests; 1236 tests pass; monolith count 0→0 |
 | 54 | 2026-05-14 | n/a | Phase 9.7 `llmap sc-qc-report` CLI | cmd_sc_qc_report.cpp wired in llmap_main.cpp + commands.h; --qc-json/--qc-tsv/--filtered-matrix outputs; --min-assignment-rate/--min-confidence/--min-reads-per-cell/--max-entropy/--min-detection-rate thresholds; --cb-tag/--cb-pattern/--cb-file barcode extraction; fixed test fixture race condition with unique per-test directories; 13 new CLI tests; 1249 tests pass; monolith count 0→0 |
 | 55 | 2026-05-14 | n/a | Phase 9.8 cmd_sc_qc_report refactor + Phase 9 COMPLETE | split cmd_sc_qc_report.cpp (427 LOC) → 3 files: cmd_sc_qc_report.cpp (279 LOC), cmd_sc_qc_report_args.cpp (142 LOC), cmd_sc_qc_report_internal.h (45 LOC); monolith count 1→0; 1249 tests pass; Phase 9 complete with all single-cell features |
+| 56 | 2026-05-14 | n/a | Phase 10.1 structured logging framework | core/logging.{h,cpp}: Logger singleton with thread-safe logging; LogLevel (Trace/Debug/Info/Warn/Error/Fatal/Off); LogFormat (Text/Json); LogRecord with timestamp, thread_id, source_location; configurable sinks; LLMAP_LOG_* macros; env config (LLMAP_LOG_LEVEL, LLMAP_LOG_FORMAT); test_logging.cpp (28 tests); 1277 tests pass; monolith count 0→0; Phase 10 started |
 
 ---
 
