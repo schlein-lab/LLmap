@@ -60,8 +60,8 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     // === LEFT EXTENSION ===
     // Extend alignment from query start (0) to first anchor position.
     // Soft-clip directly if the unaligned span is large (extension cost is
-    // O(span²) and the gain is negligible past the first ~200 bp).
-    constexpr uint32_t kMaxExtensionSpan = 200;
+    // O(span²) and the gain is negligible past the first ~500 bp).
+    constexpr uint32_t kMaxExtensionSpan = 500;
     uint32_t left_query_bases = first_anchor.query_pos;
     uint32_t left_ref_bases = 0;
     uint32_t actual_ref_start = chain.ref_start;

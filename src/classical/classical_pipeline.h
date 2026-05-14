@@ -42,13 +42,13 @@ struct ClassicalPipelineConfig {
     WFA2Config extension_config;
 
     // Filtering
-    float min_identity = 0.80f;        // Minimum alignment identity (for precision)
+    float min_identity = 0.70f;        // Minimum alignment identity (lowered from 0.80 — too strict for soft-clipped HiFi)
     int32_t min_aligned_bases = 50;    // Minimum aligned bases
-    uint32_t max_alignments = 2;       // Max alignments to report per read
+    uint32_t max_alignments = 5;       // Max alignments to report per read
 
     // Performance
-    uint32_t max_chains_to_extend = 3;    // Max chains to try extending (was 10 — caused 10x slowdown on repetitive loci)
-    bool report_secondary = false;         // Default: primary only (faster, matches minimap2 default)
+    uint32_t max_chains_to_extend = 5;    // Reverted partway from 3 → 5 (was 10 originally)
+    bool report_secondary = false;         // Primary only by default (matches minimap2)
 
     // Parallelization
     uint32_t num_threads = 0;              // 0 = use hardware_concurrency
