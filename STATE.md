@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 58 |
-| Total iterations | 58 |
+| Last successful iteration | 59 |
+| Total iterations | 59 |
 
 ---
 
@@ -87,6 +87,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 10.1: Structured logging framework (1277 tests pass)
   - [x] Phase 10.2: Error handling framework (1336 tests pass)
   - [x] Phase 10.3: Configuration file support (1375 tests pass)
+  - [x] Phase 10.4: Version string + --version CLI (1413 tests pass)
 
 ---
 
@@ -95,26 +96,25 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 10
 task: production_readiness
-substep: 4/6 — Configuration file support implemented
-last_action: Phase 10.3 — Configuration file support
-  - Added core/config.h: LLmapConfig struct with AlignConfig, LlmConfig, SingleCellConfig, PsvConfig, LoggingConfig sections
-  - ConfigValue struct with AsBool/AsInt/AsDouble/AsString converters
-  - ConfigParser class with TOML parsing (comments, sections, key-value pairs, quoted strings)
-  - config_parse.cpp: TOML parsing implementation (219 LOC)
-  - config.cpp: utilities, validation, serialization (201 LOC)
-  - Config file search paths: ./llmap.toml, ~/.config/llmap/config.toml, /etc/llmap/config.toml
-  - LoadConfig/LoadConfigFromFile/FindConfigFile APIs
-  - ApplyEnvironmentOverrides (LLMAP_REFERENCE, LLMAP_INDEX, ANTHROPIC_API_KEY, etc.)
-  - ApplyOverrides for CLI flag overrides via ConfigOverride struct
-  - ValidateConfig for validation rules (kmer_size range, identity range, etc.)
-  - ConfigToToml for serialization + round-trip test
-  - 39 new tests; 1375 total tests pass
-  - Monolith count: 0
-next_action: Phase 10.4 — Version string + --version CLI completeness
-  - Add LLMAP_VERSION macro from CMake
-  - Implement --version flag
-  - Show build info (commit hash, build date, features)
-acceptance: Version output with build info
+substep: 5/6 — Version string + --version CLI implemented
+last_action: Phase 10.4 — Version string + --version CLI
+  - Added core/version.h.in CMake template with version constants
+  - Version info: kVersionMajor/Minor/Patch, kVersion, kGitCommit (8-char), kBuildDate (ISO8601)
+  - Build info: kBuildType, kCompilerId, kCompilerVersion, kFeatures string
+  - Feature flags: kHasCuda, kHasOnnxRuntime, kHasFaiss, kHasFaissGpu, kHasClaude
+  - CMake configure_file generates version.h at build time
+  - Added version_util.h with FormatVersion/FormatVersionShort/FormatVersionFull helpers
+  - Updated llmap_main.cpp: --version and -V flags show full build info
+  - Output format: version, commit, built date, build type, compiler, features
+  - Updated project VERSION to 0.1.0 in CMakeLists.txt
+  - Fixed flaky ProfilerTest.ManualTimerReset with relative timing check
+  - test_version.cpp: 38 new tests for constants, utils, CLI output
+  - 1413 total tests pass; monolith count: 0
+next_action: Phase 10.5 — `llmap index` CLI command stub
+  - Implement llmap index command
+  - Wire up reference index building
+  - Support --reference, --output, --kmer flags
+acceptance: llmap index --help shows usage
 ```
 
 ---

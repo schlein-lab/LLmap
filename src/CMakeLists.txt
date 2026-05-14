@@ -16,6 +16,7 @@ add_library(llmap_core STATIC
 
 target_include_directories(llmap_core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_BINARY_DIR}/generated
 )
 
 target_compile_features(llmap_core PUBLIC cxx_std_23)

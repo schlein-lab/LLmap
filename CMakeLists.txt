@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 
 project(LLmap
-    VERSION 0.0.1
+    VERSION 0.1.0
     DESCRIPTION "Lossless. LLM-Augmented. Wave-Particle. Sequence mapper."
     HOMEPAGE_URL "https://losslessmap.com"
     LANGUAGES CXX
@@ -166,6 +166,91 @@ else()
     set(LLMAP_FAISS_AVAILABLE OFF)
     set(LLMAP_FAISS_GPU_AVAILABLE OFF)
 endif()
+
+# Version info generation — get git commit and build date
+find_package(Git QUIET)
+if(Git_FOUND)
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --short=8 HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE LLMAP_GIT_COMMIT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_QUIET
+    )
+    if(NOT LLMAP_GIT_COMMIT)
+        set(LLMAP_GIT_COMMIT "unknown")
+    endif()
+else()
+    set(LLMAP_GIT_COMMIT "unknown")
+endif()
+
+string(TIMESTAMP LLMAP_BUILD_DATE "%Y-%m-%dT%H:%M:%SZ" UTC)
+
+# Feature flags as 0/1 for constexpr bool
+if(LLMAP_ENABLE_CUDA AND CMAKE_CUDA_COMPILER)
+    set(LLMAP_HAS_CUDA_01 1)
+else()
+    set(LLMAP_HAS_CUDA_01 0)
+endif()
+
+if(LLMAP_ONNXRUNTIME_AVAILABLE)
+    set(LLMAP_HAS_ONNXRUNTIME_01 1)
+else()
+    set(LLMAP_HAS_ONNXRUNTIME_01 0)
+endif()
+
+if(LLMAP_FAISS_AVAILABLE)
+    set(LLMAP_HAS_FAISS_01 1)
+else()
+    set(LLMAP_HAS_FAISS_01 0)
+endif()
+
+if(LLMAP_FAISS_GPU_AVAILABLE)
+    set(LLMAP_HAS_FAISS_GPU_01 1)
+else()
+    set(LLMAP_HAS_FAISS_GPU_01 0)
+endif()
+
+if(LLMAP_ENABLE_CLAUDE)
+    set(LLMAP_HAS_CLAUDE_01 1)
+else()
+    set(LLMAP_HAS_CLAUDE_01 0)
+endif()
+
+# Build feature string
+set(LLMAP_FEATURES "")
+if(LLMAP_HAS_CUDA_01)
+    string(APPEND LLMAP_FEATURES "+cuda ")
+else()
+    string(APPEND LLMAP_FEATURES "-cuda ")
+endif()
+if(LLMAP_HAS_ONNXRUNTIME_01)
+    string(APPEND LLMAP_FEATURES "+onnx ")
+else()
+    string(APPEND LLMAP_FEATURES "-onnx ")
+endif()
+if(LLMAP_HAS_FAISS_01)
+    string(APPEND LLMAP_FEATURES "+faiss ")
+else()
+    string(APPEND LLMAP_FEATURES "-faiss ")
+endif()
+if(LLMAP_HAS_FAISS_GPU_01)
+    string(APPEND LLMAP_FEATURES "+faiss-gpu ")
+else()
+    string(APPEND LLMAP_FEATURES "-faiss-gpu ")
+endif()
+if(LLMAP_HAS_CLAUDE_01)
+    string(APPEND LLMAP_FEATURES "+claude")
+else()
+    string(APPEND LLMAP_FEATURES "-claude")
+endif()
+
+# Generate version.h from template
+configure_file(
+    ${CMAKE_SOURCE_DIR}/src/core/version.h.in
+    ${CMAKE_BINARY_DIR}/generated/core/version.h
+    @ONLY
+)
 
 # Subdirectories
 add_subdirectory(src)
