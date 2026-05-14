@@ -60,6 +60,9 @@ struct AlignArgs {
     float psv_weight = 0.5f;       // Weight for PSV vs probabilistic assignment
     float psv_min_posterior = 0.9f; // Min posterior for confident call
     bool psv_only = false;          // Use only PSV (skip prob assignment)
+
+    // Classical-only mode (skip probabilistic framework)
+    bool classical_only = false;   // Pure seed-chain-extend, no Wave structures
 };
 
 void PrintAlignUsage();

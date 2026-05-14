@@ -726,6 +726,103 @@ TEST_F(LlmapCliTest, AlignPresetHifiShortName) {
     EXPECT_TRUE(result.output.find("k=19") != std::string::npos);
 }
 
+// ========== Align --classical-only Mode ==========
+
+TEST_F(LlmapCliTest, AlignHelpShowsClassicalOnlyFlag) {
+    auto result = Exec(llmap_bin_ + " align --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--classical-only") != std::string::npos);
+    EXPECT_TRUE(result.output.find("seed-chain-extend") != std::string::npos ||
+                result.output.find("probabilistic") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignClassicalOnlyBasicRun) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align --classical-only -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(output));
+}
+
+TEST_F(LlmapCliTest, AlignClassicalOnlyOverridesLlm) {
+    // --classical-only should disable --llm even if both are specified
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    // Unset env var to ensure no key is found
+    unsetenv("ANTHROPIC_API_KEY");
+
+    auto result = Exec(llmap_bin_ + " align --classical-only --llm -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    // Should see a note about --llm being ignored
+    EXPECT_TRUE(result.output.find("ignored") != std::string::npos ||
+                result.output.find("classical-only") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignClassicalOnlyWithPreset) {
+    // --classical-only should work in combination with -x presets
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align --classical-only -x map-hifi -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    // Should use HiFi preset k=19
+    EXPECT_TRUE(result.output.find("k=19") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignClassicalOnlyReducesMemory) {
+    // Running with --classical-only should complete successfully
+    // (memory reduction is a behavioral guarantee, not easily testable in unit tests)
+    auto fastq = CreateTestFastq("test.fastq", 50);  // More reads
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align --classical-only -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -t 2");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
 // ========== Regression: Banner Shows on Empty Args ==========
 
 TEST_F(LlmapCliTest, BannerShowsCorrectTagline) {
