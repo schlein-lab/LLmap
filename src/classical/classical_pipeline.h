@@ -42,7 +42,7 @@ struct ClassicalPipelineConfig {
     WFA2Config extension_config;
 
     // Filtering
-    float min_identity = 0.70f;        // Minimum alignment identity (lowered from 0.80 — too strict for soft-clipped HiFi)
+    float min_identity = 0.80f;        // Minimum alignment identity (Phase C.1 precision improvement)
     int32_t min_aligned_bases = 50;    // Minimum aligned bases
     uint32_t max_alignments = 5;       // Max alignments to report per read
 
