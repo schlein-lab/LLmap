@@ -187,6 +187,18 @@ target_include_directories(llmap_validation PUBLIC
 target_compile_features(llmap_validation PUBLIC cxx_std_23)
 target_link_libraries(llmap_validation PUBLIC llmap_core llmap_classical llmap_io)
 
+# Single-cell module — cell barcode and UMI preservation
+add_library(llmap_singlecell STATIC
+    singlecell/cb_preservation.cpp
+)
+
+target_include_directories(llmap_singlecell PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_singlecell PUBLIC cxx_std_23)
+target_link_libraries(llmap_singlecell PUBLIC llmap_core)
+
 # Claude agent module — LLM integration for adaptive alignment
 add_library(llmap_claude_agent STATIC
     claude_agent/agent_types.cpp
