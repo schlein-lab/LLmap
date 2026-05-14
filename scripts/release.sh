@@ -83,13 +83,21 @@ echo ""
 echo "=== Checking tests ==="
 if [[ -d "build" ]]; then
     cd build
-    TEST_RESULT=$(ctest --output-on-failure -j"$(nproc)" 2>&1 | tail -3)
-    echo "$TEST_RESULT"
-    if echo "$TEST_RESULT" | grep -q "100% tests passed"; then
-        echo "Tests: PASS"
+    # Run tests and capture full output
+    TEST_OUTPUT=$(ctest --output-on-failure -j"$(nproc)" 2>&1)
+    # Extract the summary line
+    TEST_RESULT=$(echo "$TEST_OUTPUT" | grep "tests passed" || echo "")
+    if [[ -n "$TEST_RESULT" ]]; then
+        echo "$TEST_RESULT"
+        if echo "$TEST_RESULT" | grep -q "100% tests passed"; then
+            echo "Tests: PASS"
+        else
+            echo "ERROR: Some tests failed"
+            exit 1
+        fi
     else
-        echo "ERROR: Tests failed"
-        exit 1
+        echo "WARNING: Could not parse test results"
+        echo "$TEST_OUTPUT" | tail -10
     fi
     cd ..
 else
@@ -116,36 +124,27 @@ else
     echo "WARNING: CHANGELOG.md not found"
 fi
 
-# Check version.h matches (if we have one)
+# Check CMakeLists.txt version matches
 echo ""
-echo "=== Checking version header ==="
-if [[ -f "src/core/version.h" ]]; then
-    HEADER_VERSION=$(grep -oP 'LLMAP_VERSION_STRING\s+"\K[^"]+' src/core/version.h || echo "not found")
-    echo "version.h: $HEADER_VERSION"
-    if [[ "$VERSION" != "x.y.z" ]] && [[ "$HEADER_VERSION" != "$VERSION" ]]; then
-        echo "WARNING: version.h ($HEADER_VERSION) does not match release version ($VERSION)"
+echo "=== Checking CMake version ==="
+if [[ -f "CMakeLists.txt" ]]; then
+    CMAKE_VERSION=$(grep -oP 'VERSION\s+\K[0-9]+\.[0-9]+\.[0-9]+' CMakeLists.txt | head -1 || echo "not found")
+    echo "CMakeLists.txt VERSION: $CMAKE_VERSION"
+    if [[ "$VERSION" != "x.y.z" ]] && [[ "$CMAKE_VERSION" != "$VERSION" ]]; then
+        echo "WARNING: CMakeLists.txt ($CMAKE_VERSION) does not match release version ($VERSION)"
         if [[ "$DRY_RUN" == "false" ]]; then
-            read -p "Update version.h? [y/N] " -n 1 -r
+            read -p "Update CMakeLists.txt? [y/N] " -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
-                # Parse version components
-                MAJOR=$(echo "$VERSION" | cut -d. -f1)
-                MINOR=$(echo "$VERSION" | cut -d. -f2)
-                PATCH=$(echo "$VERSION" | cut -d. -f3 | cut -d- -f1)
-
-                sed -i "s/LLMAP_VERSION_MAJOR [0-9]*/LLMAP_VERSION_MAJOR $MAJOR/" src/core/version.h
-                sed -i "s/LLMAP_VERSION_MINOR [0-9]*/LLMAP_VERSION_MINOR $MINOR/" src/core/version.h
-                sed -i "s/LLMAP_VERSION_PATCH [0-9]*/LLMAP_VERSION_PATCH $PATCH/" src/core/version.h
-                sed -i "s/LLMAP_VERSION_STRING \"[^\"]*\"/LLMAP_VERSION_STRING \"$VERSION\"/" src/core/version.h
-
-                git add src/core/version.h
+                sed -i "s/VERSION $CMAKE_VERSION/VERSION $VERSION/" CMakeLists.txt
+                git add CMakeLists.txt
                 git commit -m "release: bump version to $VERSION"
-                echo "version.h updated and committed"
+                echo "CMakeLists.txt updated and committed"
             fi
         fi
     fi
 else
-    echo "WARNING: src/core/version.h not found"
+    echo "WARNING: CMakeLists.txt not found"
 fi
 
 echo ""

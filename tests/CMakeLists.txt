@@ -207,6 +207,7 @@ add_executable(test_llmap_cli
 )
 target_link_libraries(test_llmap_cli
     PRIVATE
+    llmap_core
     GTest::gtest
     GTest::gtest_main
 )

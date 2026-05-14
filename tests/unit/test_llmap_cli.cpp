@@ -12,6 +12,8 @@
 #include <memory>
 #include <string>
 
+#include "core/version.h"
+
 namespace {
 
 // Path to the llmap binary
@@ -100,7 +102,7 @@ TEST_F(LlmapCliTest, Version) {
 
     EXPECT_EQ(result.exit_code, 0);
     EXPECT_TRUE(result.output.find("llmap") != std::string::npos);
-    EXPECT_TRUE(result.output.find("0.1.0") != std::string::npos);
+    EXPECT_TRUE(result.output.find(llmap::kVersion) != std::string::npos);
 }
 
 TEST_F(LlmapCliTest, Help) {
