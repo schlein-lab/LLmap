@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 85 |
-| Total iterations | 85 |
+| Last successful iteration | 86 |
+| Total iterations | 86 |
 
 ---
 
@@ -105,37 +105,32 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase A: Critical Fixes** ★
   - [x] Phase A.1: Adjust chain thresholds (min_chain_score=10, min_score_fraction=0.5) (1454 tests pass)
   - [x] Phase A.2: Wire WFA2 extension into ExtendChain() (1454 tests pass)
-  - [ ] Phase A.3: Add left/right extension for chain ends
+  - [x] Phase A.3: Add left/right extension for chain ends (1459 tests pass)
 
 ---
 
 ## Current task
 
 ```
-phase: A
-task: A.3_chain_end_extension
-substep: Add left/right extension for chain ends to improve recall
+phase: B
+task: B.1_parallel_align
+substep: Parallelize AlignReads() with ThreadPool for improved throughput
 inputs:
-  - src/classical/classical_pipeline.cpp (ExtendChain function)
-  - src/classical/classical_pipeline_extend.cpp (AlignGap, ExtendChain)
-  - src/classical/wfa2_aligner.h (ExtendLeft, ExtendRight methods)
+  - src/classical/classical_pipeline.cpp (AlignReads function)
+  - src/core/thread_pool.h (ThreadPool, ParallelFor)
 expected_files_changed:
-  - src/classical/classical_pipeline_extend.cpp (add left/right extension at chain ends)
+  - src/classical/classical_pipeline.cpp (use ThreadPool for batch alignment)
 acceptance:
-  - ExtendChain() extends alignment leftward from first anchor to query_start
-  - ExtendChain() extends alignment rightward from last anchor to query_end
-  - Uses WFA2Aligner.ExtendLeft() and ExtendRight() for end extension
-  - All 1454 tests pass
+  - AlignReads() uses ThreadPool to align reads in parallel
+  - Thread-local scratch buffers to avoid contention
+  - All tests pass
   - Monolith count stays at 0
 notes: |
-  Phase A.2 complete: WFA2 aligner wired into ExtendChain() to compute
-  base-accurate CIGAR strings between anchors. SetReferenceSequences() API
-  added to ClassicalPipeline. Split classical_pipeline.cpp into
-  classical_pipeline.cpp (238 LOC) + classical_pipeline_extend.cpp (183 LOC).
-
-  Phase A.3 focuses on extending alignments past the first/last anchor
-  to capture the full read. Currently we start at the first anchor and
-  end at the last anchor, losing bases at both ends.
+  Phase A.3 complete: Left/right extension added to ExtendChain() to capture
+  full query sequence. Uses WFA2Aligner.ExtendLeft() and ExtendRight() for
+  semi-global alignment at chain ends. Soft-clips unaligned portions when
+  extension fails or reference sequences unavailable. query_start now always 0,
+  query_end now always equals query_len. 5 new tests added for end extension.
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -218,7 +213,7 @@ hard_rule_precheck:
 71. ~~Phase 11.11: Identify regressions → LLmap improvement list~~ ✅ done
 72. ~~Phase A.1: Chain threshold tuning (min_chain_score=10, min_score_fraction=0.5)~~ ✅ done
 73. ~~Phase A.2: Wire WFA2 extension into ExtendChain()~~ ✅ done
-74. Phase A.3: Add left/right extension for chain ends
+74. ~~Phase A.3: Add left/right extension for chain ends~~ ✅ done
 75. Phase B.1: Parallelize AlignReads() with ThreadPool
 76. Phase B.2: Zero-allocation chaining (ChainScratch)
 77. Phase B.3: Index caching in CLI
@@ -331,6 +326,7 @@ hard_rule_precheck:
 | 83 | 2026-05-14 | n/a | Phase 11.11: improvement analysis | Created docs/IMPROVEMENTS.md with prioritized improvement targets; identified 5 issues: (1) low mapping rate (P0: chain thresholds too aggressive), (2) low recall (P0: WFA2 extension not wired), (3) slow wallclock (P1: no parallelization), (4) precision gap (P1: no identity filter), (5) memory overhead (P3: lazy allocation); 3-phase improvement plan: Phase A (critical), Phase B (performance), Phase C (polish); 1454 tests pass; monolith count 0; Phase 11 COMPLETE |
 | 84 | 2026-05-14 | n/a | Phase A.1: chain threshold tuning | chain.h: min_chain_score 20→10, min_score_fraction 0.9→0.5; Phase A (Critical Fixes) started; expected improvement in mapping rate from 46% to 80-90%; 1454 tests pass; monolith count 0 |
 | 85 | 2026-05-14 | n/a | Phase A.2: WFA2 extension wiring | classical_pipeline.h: SetReferenceSequences() API; classical_pipeline_extend.cpp: AlignGap() + ExtendChain() calls WFA2Aligner.Align() between anchors for base-accurate CIGAR; split classical_pipeline.cpp (436→238 LOC) + classical_pipeline_extend.cpp (183 LOC); cmd_align.cpp wires ref_seqs to pipeline; 1454 tests pass; monolith count 0 |
+| 86 | 2026-05-14 | n/a | Phase A.3: chain end extension | classical_pipeline_extend.cpp: ExtendChain() now extends leftward from first anchor to query[0] and rightward from last anchor to query_end using WFA2Aligner.ExtendLeft()/ExtendRight(); soft-clips unaligned portions; query_start=0, query_end=query_len; 5 new tests for end extension; 1459 tests pass; monolith count 0 |
 
 ---
 
