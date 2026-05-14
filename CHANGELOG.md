@@ -123,9 +123,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `llmap index` CLI command for building minimizer indices
 - `llmap check` CLI for V1.0 readiness validation (46 checks, 11 categories)
 
+#### Comparative Benchmark Campaign (Phase 11)
+- Benchmark specification vs minimap2/BWA-MEM2/Winnowmap2/STAR/Bowtie2
+- Synthetic-truth dataset generator for T1 (WGS) and T2 (paralog stress) tasks
+- Tool installation manifest with version verification gate
+- Per-tool runners with smoke test framework
+- Metrics collector: mapping rate, MAPQ histogram, ground truth evaluation
+- Concordance analysis: pairwise BAM comparison
+- SLURM orchestrator with dry-run mode, task/tool filtering, replicate management
+- Report generator: per-task README, cross-tool tables, matplotlib plots
+- T1/T2 benchmark results documented in `docs/BENCHMARKS.md`
+- SLURM submission scripts for T3-T6 (real reference tasks)
+
+#### Critical Fixes (Phase A)
+- Chain threshold tuning: `min_chain_score` 20→10, `min_score_fraction` 0.9→0.5
+- WFA2 extension wiring: `AlignGap()` + `ExtendChain()` for base-accurate CIGAR
+- Chain end extension: leftward/rightward extension using WFA2Aligner
+
+#### Performance Improvements (Phase B)
+- Parallel alignment: `AlignReadsParallel()` using ThreadPool
+- Zero-allocation chaining: thread-local `ChainScratch` buffers
+- Index caching: `-i/--index` flag for pre-built index loading
+
+#### Polish + Precision (Phase C)
+- Identity filter: default 0.70→0.80 for improved precision
+- Filtered alignment tracking (`filtered_by_identity`, `filtered_by_length` stats)
+- `-x` presets: `map-hifi` (k=19, w=19, identity=0.90, chain=40), `map-ont`/`map-pb` (k=15, w=10, identity=0.70, chain=20), `sr` (k=21, w=11, identity=0.95, chain=50)
+- Probability-based MAPQ calculation using score gap formula
+- `--classical-only` mode for pure seed-chain-extend without foundation models
+
 ### Architecture
 
-- **1,433 unit tests** with 100% pass rate
+- **1,509 unit tests** with 100% pass rate
 - **Modular design**: no source file exceeds 400 LOC
 - **Clear dependency graph**: core -> classical -> ai -> reference_collapse -> output -> cli
 - **PIMPL pattern** for third-party includes (ONNX Runtime, FAISS)

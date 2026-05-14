@@ -152,7 +152,7 @@ Presets (`-x`): `map-hifi`, `map-ont`, `sr` (short-read), `splice` (RNA), `asm` 
 
 ## Status
 
-V1.0 development complete. All 10 phases implemented and tested. 1,433 unit tests passing. GPU validation on Hummel-2 HPC pending. Phase 11 comparative benchmark campaign in progress.
+V1.0 development complete. All phases implemented and tested. **1,509 unit tests passing.** GPU validation on Hummel-2 HPC pending manual submission.
 
 | Phase | Status | Tests |
 |---|---|---|
@@ -167,7 +167,10 @@ V1.0 development complete. All 10 phases implemented and tested. 1,433 unit test
 | 8 — Performance Optimization           | complete | 1,092 |
 | 9 — Single-Cell + Paralog Production   | complete | 1,249 |
 | 10 — Production Readiness              | complete | 1,433 |
-| 11 — Comparative Benchmark Campaign    | in progress | — |
+| 11 — Comparative Benchmark Campaign    | complete | 1,454 |
+| A — Critical Fixes (chain thresholds, WFA2 wiring) | complete | 1,459 |
+| B — Performance (parallel align, index caching)    | complete | 1,476 |
+| C — Polish (identity filter, presets, MAPQ)        | complete | 1,509 |
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and [STATE.md](STATE.md) for build history.
 
