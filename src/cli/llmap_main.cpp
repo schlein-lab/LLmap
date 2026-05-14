@@ -35,6 +35,7 @@ void print_usage() {
         "  cnv-from-coverage CNV inference from probabilistic coverage (Phase 6)\n"
         "  assign-paralog    PSV-based paralog assignment (Phase 9)\n"
         "  sc-paralog-matrix Single-cell cell × paralog AnnData (Phase 9)\n"
+        "  sc-qc-report      Single-cell QC report with filtering (Phase 9)\n"
         "  bench             Cross-tool benchmark vs minimap2 etc. (Phase 8)\n"
         "  validate          Synthetic + real-data validation harness (Phase 5)\n"
         "  --version         Show version\n"
@@ -80,6 +81,10 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "sc-paralog-matrix") == 0) {
         return llmap::cli::run_sc_paralog_matrix(argc - 2, argv + 2);
+    }
+
+    if (std::strcmp(argv[1], "sc-qc-report") == 0) {
+        return llmap::cli::run_sc_qc_report(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,

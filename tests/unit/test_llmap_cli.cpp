@@ -63,7 +63,11 @@ class LlmapCliTest : public ::testing::Test {
 protected:
     void SetUp() override {
         llmap_bin_ = GetLlmapBinary();
-        test_dir_ = std::filesystem::temp_directory_path() / "llmap_cli_test";
+        // Unique directory per test to avoid parallel test conflicts
+        auto test_info = ::testing::UnitTest::GetInstance()->current_test_info();
+        std::string test_name = std::string(test_info->test_suite_name()) +
+                                "_" + test_info->name();
+        test_dir_ = std::filesystem::temp_directory_path() / ("llmap_cli_" + test_name);
         std::filesystem::create_directories(test_dir_);
     }
 
@@ -650,6 +654,238 @@ TEST_F(LlmapCliTest, AlignPsvOnly) {
 
     EXPECT_EQ(result.exit_code, 0);
     EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
+// ========== sc-qc-report Subcommand ==========
+
+TEST_F(LlmapCliTest, ScQcReportHelp) {
+    auto result = Exec(llmap_bin_ + " sc-qc-report --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("QC") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--parquet") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--qc-json") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--qc-tsv") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--filtered-matrix") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--min-assignment-rate") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--min-confidence") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--min-reads-per-cell") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScQcReportHelpShort) {
+    auto result = Exec(llmap_bin_ + " sc-qc-report -h");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--parquet") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScQcReportMissingParquet) {
+    auto result = Exec(llmap_bin_ + " sc-qc-report --qc-json /tmp/report.json");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--parquet") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScQcReportMissingOutput) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:AAAA_read1,paralog1,0.8,1.0,0,1,true\n";
+    }
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string());
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("output") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScQcReportFileNotFound) {
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet /nonexistent/file.csv --qc-json /tmp/report.json");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("not found") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScQcReportBasicJsonOutput) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,paralog1,0.8,0.9,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,paralog1,0.7,0.85,0,1,true\n";
+        csv << "CB:Z:CELL1_read3,paralog2,0.9,0.95,0,1,true\n";
+        csv << "CB:Z:CELL2_read4,paralog1,0.6,0.8,0,1,true\n";
+        csv << "CB:Z:CELL2_read5,paralog2,0.5,0.7,0,1,true\n";
+    }
+
+    auto json_path = test_dir_ / "report.json";
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string() +
+                       " --qc-json " + json_path.string() + " --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("complete") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Cells passing QC") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(json_path));
+
+    // Verify JSON contains expected fields
+    std::ifstream in(json_path);
+    std::string json_content((std::istreambuf_iterator<char>(in)),
+                              std::istreambuf_iterator<char>());
+    EXPECT_TRUE(json_content.find("global") != std::string::npos);
+    EXPECT_TRUE(json_content.find("cells") != std::string::npos);
+    EXPECT_TRUE(json_content.find("paralogs") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScQcReportTsvOutput) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,paralog1,0.8,0.9,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,paralog2,0.7,0.85,0,1,true\n";
+        csv << "CB:Z:CELL2_read3,paralog1,0.6,0.8,0,1,true\n";
+    }
+
+    auto tsv_dir = test_dir_ / "qc_report";
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string() +
+                       " --qc-tsv " + tsv_dir.string() + " --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("complete") != std::string::npos);
+
+    // Check TSV files exist
+    EXPECT_TRUE(std::filesystem::exists(tsv_dir / "cells_qc.tsv"));
+    EXPECT_TRUE(std::filesystem::exists(tsv_dir / "paralogs_qc.tsv"));
+    EXPECT_TRUE(std::filesystem::exists(tsv_dir / "summary_qc.tsv"));
+}
+
+TEST_F(LlmapCliTest, ScQcReportFilteredMatrix) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        // CELL1: 3 reads, high confidence - should pass QC
+        csv << "CB:Z:CELL1_read1,paralog1,0.9,0.95,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,paralog1,0.85,0.9,0,1,true\n";
+        csv << "CB:Z:CELL1_read3,paralog2,0.8,0.88,0,1,true\n";
+        // CELL2: only 1 read - may fail min reads threshold
+        csv << "CB:Z:CELL2_read4,paralog1,0.5,0.6,0,1,true\n";
+    }
+
+    auto filtered_path = test_dir_ / "filtered.csv";
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string() +
+                       " --filtered-matrix " + filtered_path.string() +
+                       " --min-reads-per-cell 2 --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("complete") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Cells passing QC") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(filtered_path));
+}
+
+TEST_F(LlmapCliTest, ScQcReportCustomThresholds) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,paralog1,0.9,0.95,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,paralog2,0.8,0.9,0,1,true\n";
+    }
+
+    auto json_path = test_dir_ / "report.json";
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string() +
+                       " --qc-json " + json_path.string() +
+                       " --min-assignment-rate 0.5 --min-confidence 0.8 "
+                       "--min-reads-per-cell 1 --max-entropy 2.0 --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("complete") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(json_path));
+}
+
+TEST_F(LlmapCliTest, ScQcReportSampleId) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,paralog1,0.8,0.9,0,1,true\n";
+    }
+
+    auto json_path = test_dir_ / "report.json";
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string() +
+                       " --qc-json " + json_path.string() +
+                       " --sample-id test_sample_001 --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(std::filesystem::exists(json_path));
+
+    // Verify sample_id in JSON
+    std::ifstream in(json_path);
+    std::string json_content((std::istreambuf_iterator<char>(in)),
+                              std::istreambuf_iterator<char>());
+    EXPECT_TRUE(json_content.find("test_sample_001") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScQcReportMultipleOutputs) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,paralog1,0.9,0.95,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,paralog2,0.8,0.9,0,1,true\n";
+        csv << "CB:Z:CELL2_read3,paralog1,0.7,0.85,0,1,true\n";
+    }
+
+    auto json_path = test_dir_ / "report.json";
+    auto tsv_dir = test_dir_ / "qc_tsv";
+    auto filtered_path = test_dir_ / "filtered.csv";
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string() +
+                       " --qc-json " + json_path.string() +
+                       " --qc-tsv " + tsv_dir.string() +
+                       " --filtered-matrix " + filtered_path.string() +
+                       " --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(std::filesystem::exists(json_path));
+    EXPECT_TRUE(std::filesystem::exists(tsv_dir / "cells_qc.tsv"));
+    EXPECT_TRUE(std::filesystem::exists(filtered_path));
+}
+
+TEST_F(LlmapCliTest, ScQcReportWithRegexBarcode) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "AAGGCCTT_read1,paralog1,0.8,0.9,0,1,true\n";
+        csv << "AAGGCCTT_read2,paralog2,0.7,0.85,0,1,true\n";
+        csv << "TTCCAAGG_read3,paralog1,0.9,0.95,0,1,true\n";
+    }
+
+    auto json_path = test_dir_ / "report.json";
+
+    auto result = Exec(llmap_bin_ + " sc-qc-report --parquet " + csv_path.string() +
+                       " --qc-json " + json_path.string() +
+                       " --cb-pattern '([ACGT]{8})_' --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("complete") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(json_path));
+}
+
+TEST_F(LlmapCliTest, ScQcReportShowsInHelpMenu) {
+    auto result = Exec(llmap_bin_ + " --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("sc-qc-report") != std::string::npos);
 }
 
 }  // namespace
