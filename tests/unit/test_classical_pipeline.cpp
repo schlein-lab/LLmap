@@ -4,8 +4,10 @@
 #include <set>
 
 #include "classical/classical_pipeline.h"
+#include "core/thread_pool.h"
 
 using namespace llmap::classical;
+using namespace llmap::core;
 
 class ClassicalPipelineTest : public ::testing::Test {
 protected:
@@ -517,4 +519,182 @@ TEST_F(ClassicalPipelineTest, EndExtensionWithoutRefSeqsSoftClips) {
     // Should still cover full query (with soft clips at edges if anchors don't cover)
     EXPECT_EQ(aln.query_start, 0);
     EXPECT_EQ(aln.query_end, static_cast<int32_t>(query.size()));
+}
+
+// === Parallel Alignment Tests (Phase B.1) ===
+
+TEST_F(ClassicalPipelineTest, ParallelAlignBatchMultipleReads) {
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+
+    std::vector<std::string> query_names = {"read1", "read2", "read3"};
+    std::vector<std::string> query_seqs = {
+        ref_seq.substr(100, 150),
+        ref_seq.substr(300, 150),
+        ref_seq.substr(500, 150)
+    };
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    ThreadPool pool(4);
+    auto results = pipeline.AlignReadsParallel(query_names, query_seqs, pool);
+
+    EXPECT_EQ(results.size(), 3);
+    for (size_t i = 0; i < results.size(); ++i) {
+        EXPECT_EQ(results[i].query_name, query_names[i]);
+    }
+}
+
+TEST_F(ClassicalPipelineTest, ParallelAndSequentialProduceSameResults) {
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    for (int i = 0; i < 20; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        query_seqs.push_back(ref_seq.substr(50 * i % 800, 150));
+    }
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    auto seq_results = pipeline.AlignReads(query_names, query_seqs);
+
+    ThreadPool pool(4);
+    auto par_results = pipeline.AlignReadsParallel(query_names, query_seqs, pool);
+
+    ASSERT_EQ(seq_results.size(), par_results.size());
+    for (size_t i = 0; i < seq_results.size(); ++i) {
+        EXPECT_EQ(seq_results[i].query_name, par_results[i].query_name);
+        EXPECT_EQ(seq_results[i].HasAlignment(), par_results[i].HasAlignment());
+        if (seq_results[i].HasAlignment() && par_results[i].HasAlignment()) {
+            EXPECT_EQ(seq_results[i].alignments[0].ref_start,
+                      par_results[i].alignments[0].ref_start);
+        }
+    }
+}
+
+TEST_F(ClassicalPipelineTest, ParallelStatsAggregatedCorrectly) {
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    for (int i = 0; i < 10; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        query_seqs.push_back(ref_seq.substr(50 * i % 800, 150));
+    }
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    ThreadPool pool(4);
+    pipeline.AlignReadsParallel(query_names, query_seqs, pool);
+    const auto& stats = pipeline.Stats();
+
+    EXPECT_EQ(stats.total_reads, 10);
+    EXPECT_EQ(stats.reads_aligned + stats.reads_unmapped, stats.total_reads);
+    EXPECT_GT(stats.total_time_ms, 0.0f);
+}
+
+TEST_F(ClassicalPipelineTest, ParallelEmptyBatch) {
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", MakeRandomSequence(500))
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> empty_names;
+    std::vector<std::string> empty_seqs;
+
+    ThreadPool pool(2);
+    auto results = pipeline.AlignReadsParallel(empty_names, empty_seqs, pool);
+
+    EXPECT_TRUE(results.empty());
+}
+
+TEST_F(ClassicalPipelineTest, ParallelSingleRead) {
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 150);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> names = {"read1"};
+    std::vector<std::string> seqs = {query};
+
+    ThreadPool pool(4);
+    auto results = pipeline.AlignReadsParallel(names, seqs, pool);
+
+    ASSERT_EQ(results.size(), 1);
+    EXPECT_TRUE(results[0].HasAlignment());
+}
+
+TEST_F(ClassicalPipelineTest, ParallelLargeBatch) {
+    std::string ref_seq = MakeRandomSequence(2000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    for (int i = 0; i < 100; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        query_seqs.push_back(ref_seq.substr((50 * i) % 1800, 150));
+    }
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    ThreadPool pool(4);
+    auto results = pipeline.AlignReadsParallel(query_names, query_seqs, pool);
+
+    EXPECT_EQ(results.size(), 100);
+
+    size_t aligned_count = 0;
+    for (const auto& r : results) {
+        if (r.HasAlignment()) ++aligned_count;
+    }
+    EXPECT_GT(aligned_count, 50);  // Most should align
+}
+
+TEST_F(ClassicalPipelineTest, ParallelIdentityStatsAccurate) {
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    // All exact matches - should have very high identity
+    for (int i = 0; i < 10; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        query_seqs.push_back(ref_seq.substr(100 + i * 50, 150));
+    }
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> refs = {ref_seq};
+    pipeline.SetReferenceSequences(refs);
+
+    ThreadPool pool(4);
+    pipeline.AlignReadsParallel(query_names, query_seqs, pool);
+    const auto& stats = pipeline.Stats();
+
+    // With exact matches, average identity should be reasonable
+    if (stats.reads_aligned > 0) {
+        EXPECT_GT(stats.avg_identity, 0.7f);
+    }
 }

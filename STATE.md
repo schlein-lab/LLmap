@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 86 |
-| Total iterations | 86 |
+| Last successful iteration | 87 |
+| Total iterations | 87 |
 
 ---
 
@@ -102,10 +102,12 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 11.9: SLURM submission for T3–T6 (scripts + docs ready for user submission)
   - [x] Phase 11.10: Populate docs/BENCHMARKS.md with results (1454 tests pass)
   - [x] Phase 11.11: Identify regressions → list LLmap improvement issues (1454 tests pass)
-- [ ] **Phase A: Critical Fixes** ★
+- [x] **Phase A: Critical Fixes** ✓
   - [x] Phase A.1: Adjust chain thresholds (min_chain_score=10, min_score_fraction=0.5) (1454 tests pass)
   - [x] Phase A.2: Wire WFA2 extension into ExtendChain() (1454 tests pass)
   - [x] Phase A.3: Add left/right extension for chain ends (1459 tests pass)
+- [ ] **Phase B: Performance Improvements** ★
+  - [x] Phase B.1: Parallelize AlignReads() with ThreadPool (1466 tests pass)
 
 ---
 
@@ -113,24 +115,23 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: B
-task: B.1_parallel_align
-substep: Parallelize AlignReads() with ThreadPool for improved throughput
+task: B.2_zero_alloc_chaining
+substep: Implement zero-allocation chaining with ChainScratch for hot path
 inputs:
-  - src/classical/classical_pipeline.cpp (AlignReads function)
-  - src/core/thread_pool.h (ThreadPool, ParallelFor)
+  - src/classical/chain.h (ExtractChains, ChainConfig)
+  - src/core/arena.h (Arena, ScratchBuffer, ChainScratch)
 expected_files_changed:
-  - src/classical/classical_pipeline.cpp (use ThreadPool for batch alignment)
+  - src/classical/chain.cpp (add ExtractChainsZeroAlloc using ChainScratch)
+  - src/classical/classical_pipeline.cpp (use scratch-based chaining)
 acceptance:
-  - AlignReads() uses ThreadPool to align reads in parallel
-  - Thread-local scratch buffers to avoid contention
+  - Hot path chaining uses pre-allocated ChainScratch
+  - Benchmark shows reduced allocation overhead
   - All tests pass
   - Monolith count stays at 0
 notes: |
-  Phase A.3 complete: Left/right extension added to ExtendChain() to capture
-  full query sequence. Uses WFA2Aligner.ExtendLeft() and ExtendRight() for
-  semi-global alignment at chain ends. Soft-clips unaligned portions when
-  extension fails or reference sequences unavailable. query_start now always 0,
-  query_end now always equals query_len. 5 new tests added for end extension.
+  Phase B.1 complete: Added AlignReadsParallel() method using ThreadPool.
+  Thread-safe stats aggregation via atomics. ParallelFor handles chunking
+  automatically. 7 new tests for parallel alignment. 1466 tests pass.
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -214,7 +215,7 @@ hard_rule_precheck:
 72. ~~Phase A.1: Chain threshold tuning (min_chain_score=10, min_score_fraction=0.5)~~ ✅ done
 73. ~~Phase A.2: Wire WFA2 extension into ExtendChain()~~ ✅ done
 74. ~~Phase A.3: Add left/right extension for chain ends~~ ✅ done
-75. Phase B.1: Parallelize AlignReads() with ThreadPool
+75. ~~Phase B.1: Parallelize AlignReads() with ThreadPool~~ ✅ done
 76. Phase B.2: Zero-allocation chaining (ChainScratch)
 77. Phase B.3: Index caching in CLI
 78. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
@@ -327,6 +328,7 @@ hard_rule_precheck:
 | 84 | 2026-05-14 | n/a | Phase A.1: chain threshold tuning | chain.h: min_chain_score 20→10, min_score_fraction 0.9→0.5; Phase A (Critical Fixes) started; expected improvement in mapping rate from 46% to 80-90%; 1454 tests pass; monolith count 0 |
 | 85 | 2026-05-14 | n/a | Phase A.2: WFA2 extension wiring | classical_pipeline.h: SetReferenceSequences() API; classical_pipeline_extend.cpp: AlignGap() + ExtendChain() calls WFA2Aligner.Align() between anchors for base-accurate CIGAR; split classical_pipeline.cpp (436→238 LOC) + classical_pipeline_extend.cpp (183 LOC); cmd_align.cpp wires ref_seqs to pipeline; 1454 tests pass; monolith count 0 |
 | 86 | 2026-05-14 | n/a | Phase A.3: chain end extension | classical_pipeline_extend.cpp: ExtendChain() now extends leftward from first anchor to query[0] and rightward from last anchor to query_end using WFA2Aligner.ExtendLeft()/ExtendRight(); soft-clips unaligned portions; query_start=0, query_end=query_len; 5 new tests for end extension; 1459 tests pass; monolith count 0 |
+| 87 | 2026-05-14 | n/a | Phase B.1: parallel alignment | classical_pipeline.cpp: added AlignReadsParallel() method using ThreadPool; thread-safe stats aggregation via atomics (total_hits, total_chains, reads_aligned, identity_sum_scaled); classical_pipeline.h: added num_threads config, forward decl for ThreadPool, AlignReadsParallel() API; test_classical_pipeline.cpp: 7 new tests (ParallelAlignBatchMultipleReads, ParallelAndSequentialProduceSameResults, ParallelStatsAggregatedCorrectly, ParallelEmptyBatch, ParallelSingleRead, ParallelLargeBatch, ParallelIdentityStatsAccurate); 1466 tests pass; monolith count 0 |
 
 ---
 

@@ -24,6 +24,10 @@
 #include "classical/minimizer_index.h"
 #include "classical/wfa2_aligner.h"
 
+namespace llmap::core {
+class ThreadPool;  // Forward declaration
+}
+
 namespace llmap::classical {
 
 // Configuration for the classical pipeline
@@ -45,6 +49,9 @@ struct ClassicalPipelineConfig {
     // Performance
     uint32_t max_chains_to_extend = 10;   // Max chains to try extending
     bool report_secondary = true;          // Include secondary alignments
+
+    // Parallelization
+    uint32_t num_threads = 0;              // 0 = use hardware_concurrency
 };
 
 // A single alignment from the classical pipeline
@@ -138,10 +145,16 @@ public:
         std::string_view query_name,
         std::string_view query_seq) const;
 
-    // Align multiple reads
+    // Align multiple reads (sequential)
     std::vector<ReadAlignmentResult> AlignReads(
         std::span<const std::string> query_names,
         std::span<const std::string> query_seqs) const;
+
+    // Align multiple reads (parallel using thread pool)
+    std::vector<ReadAlignmentResult> AlignReadsParallel(
+        std::span<const std::string> query_names,
+        std::span<const std::string> query_seqs,
+        core::ThreadPool& pool) const;
 
     // Get statistics from last batch
     const ClassicalPipelineStats& Stats() const { return stats_; }
