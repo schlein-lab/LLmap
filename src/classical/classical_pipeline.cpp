@@ -2,8 +2,10 @@
 
 #include "classical/classical_pipeline.h"
 #include "classical/classical_pipeline_internal.h"
+#include "core/thread_pool.h"
 
 #include <algorithm>
+#include <atomic>
 #include <sstream>
 
 namespace llmap::classical {
@@ -208,6 +210,72 @@ std::vector<ReadAlignmentResult> ClassicalPipeline::AlignReads(
 
     if (stats_.reads_aligned > 0) {
         stats_.avg_identity /= static_cast<float>(stats_.reads_aligned);
+    }
+    stats_.total_time_ms = total_timer.ElapsedMs();
+
+    return results;
+}
+
+std::vector<ReadAlignmentResult> ClassicalPipeline::AlignReadsParallel(
+    std::span<const std::string> query_names,
+    std::span<const std::string> query_seqs,
+    core::ThreadPool& pool) const {
+
+    Timer total_timer;
+    stats_ = {};
+    stats_.total_reads = query_names.size();
+
+    std::vector<ReadAlignmentResult> results(query_names.size());
+
+    // Thread-safe counters for stats aggregation
+    std::atomic<size_t> total_hits{0};
+    std::atomic<size_t> total_chains{0};
+    std::atomic<size_t> total_extensions{0};
+    std::atomic<size_t> reads_aligned{0};
+    std::atomic<size_t> reads_unmapped{0};
+    std::atomic<uint64_t> seeding_time_us{0};
+    std::atomic<uint64_t> chaining_time_us{0};
+    std::atomic<uint64_t> extension_time_us{0};
+    std::atomic<uint64_t> identity_sum_scaled{0};  // Scaled by 1e6 for precision
+
+    core::ParallelFor(pool, query_names.size(), [&](size_t i) {
+        auto result = AlignRead(query_names[i], query_seqs[i]);
+
+        total_hits.fetch_add(result.num_hits, std::memory_order_relaxed);
+        total_chains.fetch_add(result.num_chains, std::memory_order_relaxed);
+        total_extensions.fetch_add(result.chains_extended, std::memory_order_relaxed);
+        seeding_time_us.fetch_add(
+            static_cast<uint64_t>(result.seeding_time_us), std::memory_order_relaxed);
+        chaining_time_us.fetch_add(
+            static_cast<uint64_t>(result.chaining_time_us), std::memory_order_relaxed);
+        extension_time_us.fetch_add(
+            static_cast<uint64_t>(result.extension_time_us), std::memory_order_relaxed);
+
+        if (result.HasAlignment()) {
+            reads_aligned.fetch_add(1, std::memory_order_relaxed);
+            identity_sum_scaled.fetch_add(
+                static_cast<uint64_t>(result.alignments[0].identity * 1e6),
+                std::memory_order_relaxed);
+        } else {
+            reads_unmapped.fetch_add(1, std::memory_order_relaxed);
+        }
+
+        results[i] = std::move(result);
+    });
+
+    // Aggregate stats
+    stats_.total_hits = total_hits.load();
+    stats_.total_chains = total_chains.load();
+    stats_.total_extensions = total_extensions.load();
+    stats_.reads_aligned = reads_aligned.load();
+    stats_.reads_unmapped = reads_unmapped.load();
+    stats_.seeding_time_ms = static_cast<float>(seeding_time_us.load()) / 1000.0f;
+    stats_.chaining_time_ms = static_cast<float>(chaining_time_us.load()) / 1000.0f;
+    stats_.extension_time_ms = static_cast<float>(extension_time_us.load()) / 1000.0f;
+
+    if (stats_.reads_aligned > 0) {
+        stats_.avg_identity = static_cast<float>(identity_sum_scaled.load()) /
+                             (static_cast<float>(stats_.reads_aligned) * 1e6f);
     }
     stats_.total_time_ms = total_timer.ElapsedMs();
 
