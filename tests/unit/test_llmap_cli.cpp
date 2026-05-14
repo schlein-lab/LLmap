@@ -535,4 +535,121 @@ TEST_F(LlmapCliTest, ScParalogMatrixMinReadsFilter) {
     EXPECT_TRUE(result.output.find("Unique cells") != std::string::npos);
 }
 
+// ========== Align --psv-catalog Flag ==========
+
+TEST_F(LlmapCliTest, AlignHelpShowsPsvCatalogFlag) {
+    auto result = Exec(llmap_bin_ + " align --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--psv-catalog") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--psv-weight") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--psv-min-posterior") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--psv-only") != std::string::npos);
+    EXPECT_TRUE(result.output.find("paralog") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPsvCatalogFileNotFound) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --psv-catalog /nonexistent/catalog.bed");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("not found") != std::string::npos ||
+                result.output.find("PSV catalog") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPsvCatalogBasicRun) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+
+    auto psv_path = test_dir_ / "catalog.bed";
+    {
+        std::ofstream psv(psv_path);
+        psv << "chr1\t10\tA\tparalog1:A,paralog2:G\t0.8\n";
+        psv << "chr1\t20\tC\tparalog1:C,paralog2:T\t0.7\n";
+    }
+
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --psv-catalog " + psv_path.string() +
+                       " -v");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    EXPECT_TRUE(result.output.find("PSV") != std::string::npos ||
+                result.output.find("catalog") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPsvWeight) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+
+    auto psv_path = test_dir_ / "catalog.bed";
+    {
+        std::ofstream psv(psv_path);
+        psv << "chr1\t10\tA\tparalog1:A,paralog2:G\t0.8\n";
+    }
+
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --psv-catalog " + psv_path.string() +
+                       " --psv-weight 0.8 --psv-min-posterior 0.95 -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPsvOnly) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+
+    auto psv_path = test_dir_ / "catalog.bed";
+    {
+        std::ofstream psv(psv_path);
+        psv << "chr1\t10\tA\tparalog1:A,paralog2:G\t0.8\n";
+    }
+
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
+                       " -x " + fasta_path.string() +
+                       " -o " + output.string() +
+                       " --psv-catalog " + psv_path.string() +
+                       " --psv-only -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+}
+
 }  // namespace
