@@ -233,5 +233,6 @@ add_executable(llmap
     cli/cmd_align.cpp
     cli/cmd_align_args.cpp
     cli/cmd_align_llm.cpp
+    cli/cmd_sc_paralog_matrix.cpp
 )
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell)

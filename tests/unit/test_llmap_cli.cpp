@@ -338,4 +338,201 @@ TEST_F(LlmapCliTest, BannerShowsCorrectTagline) {
                 result.output.find("wave") != std::string::npos);
 }
 
+// ========== sc-paralog-matrix Subcommand ==========
+
+TEST_F(LlmapCliTest, ScParalogMatrixHelp) {
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("cell") != std::string::npos);
+    EXPECT_TRUE(result.output.find("paralog") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--parquet") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--output") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--cb-tag") != std::string::npos);
+    EXPECT_TRUE(result.output.find("--cb-pattern") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixHelpShort) {
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix -h");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--parquet") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixMissingParquet) {
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --output /tmp/out.csv");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--parquet") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixMissingOutput) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:AAAA_read1,paralog1,0.8,1.0,0,1,true\n";
+    }
+
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string());
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("--output") != std::string::npos ||
+                result.output.find("required") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixFileNotFound) {
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet /nonexistent/file.csv --output /tmp/out.csv");
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("not found") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixBasicRun) {
+    // Create test CSV with probability entries
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:AAAA_read1,paralog1,0.8,1.0,0,1,true\n";
+        csv << "CB:Z:AAAA_read2,paralog1,0.7,1.0,0,1,true\n";
+        csv << "CB:Z:AAAA_read3,paralog2,0.9,1.0,0,1,true\n";
+        csv << "CB:Z:BBBB_read4,paralog1,0.6,1.0,0,1,true\n";
+        csv << "CB:Z:BBBB_read5,paralog2,0.5,1.0,0,1,true\n";
+    }
+
+    auto output_path = test_dir_ / "matrix.csv";
+
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                       " --output " + output_path.string() + " --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("complete") != std::string::npos);
+    EXPECT_TRUE(result.output.find("Unique cells") != std::string::npos);
+
+    // Check output file exists
+    EXPECT_TRUE(std::filesystem::exists(output_path));
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixWithRegex) {
+    // Create test CSV with barcode in read name using pattern
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "AAGGCCTT_read1,paralog1,0.8,1.0,0,1,true\n";
+        csv << "AAGGCCTT_read2,paralog2,0.7,1.0,0,1,true\n";
+        csv << "TTCCAAGG_read3,paralog1,0.9,1.0,0,1,true\n";
+    }
+
+    auto output_path = test_dir_ / "matrix.csv";
+
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                       " --output " + output_path.string() +
+                       " --cb-pattern '([ACGT]{8})_' --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(result.output.find("complete") != std::string::npos);
+    EXPECT_TRUE(std::filesystem::exists(output_path));
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixDenseOutput) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,PARA1,0.8,1.0,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,PARA2,0.6,1.0,0,1,true\n";
+        csv << "CB:Z:CELL2_read3,PARA1,0.9,1.0,0,1,true\n";
+    }
+
+    auto output_path = test_dir_ / "matrix_dense.csv";
+
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                       " --output " + output_path.string() + " --dense --verbose");
+
+    EXPECT_EQ(result.exit_code, 0) << "Output: " << result.output;
+    EXPECT_TRUE(std::filesystem::exists(output_path));
+
+    // Read and verify dense format (first row is header)
+    std::ifstream in(output_path);
+    std::string line;
+    EXPECT_TRUE(std::getline(in, line));  // Header
+    EXPECT_TRUE(line.find("PARA1") != std::string::npos ||
+                line.find("PARA2") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixAggregationModes) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,PARA1,0.8,1.0,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,PARA1,0.4,1.0,0,1,true\n";  // Same cell+paralog
+    }
+
+    auto output_path = test_dir_ / "matrix.csv";
+
+    // Test mean aggregation
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                       " --output " + output_path.string() +
+                       " --aggregation mean --verbose");
+    EXPECT_EQ(result.exit_code, 0);
+
+    // Test max aggregation
+    result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                  " --output " + output_path.string() +
+                  " --aggregation max --verbose");
+    EXPECT_EQ(result.exit_code, 0);
+
+    // Test sum aggregation
+    result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                  " --output " + output_path.string() +
+                  " --aggregation sum --verbose");
+    EXPECT_EQ(result.exit_code, 0);
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixNormalize) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,PARA1,0.5,1.0,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,PARA2,0.5,1.0,0,1,true\n";
+    }
+
+    auto output_path = test_dir_ / "matrix.csv";
+
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                       " --output " + output_path.string() +
+                       " --normalize --verbose");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(std::filesystem::exists(output_path));
+}
+
+TEST_F(LlmapCliTest, ScParalogMatrixMinReadsFilter) {
+    auto csv_path = test_dir_ / "probs.csv";
+    {
+        std::ofstream csv(csv_path);
+        csv << "read_id,bucket_id,probability,confidence,level,iteration,is_collapsed\n";
+        csv << "CB:Z:CELL1_read1,PARA1,0.8,1.0,0,1,true\n";
+        csv << "CB:Z:CELL1_read2,PARA1,0.7,1.0,0,1,true\n";
+        csv << "CB:Z:CELL1_read3,PARA1,0.9,1.0,0,1,true\n";
+        csv << "CB:Z:CELL2_read4,PARA2,0.5,1.0,0,1,true\n";  // Only 1 read
+    }
+
+    auto output_path = test_dir_ / "matrix.csv";
+
+    // Filter requiring min 2 reads per cell
+    auto result = Exec(llmap_bin_ + " sc-paralog-matrix --parquet " + csv_path.string() +
+                       " --output " + output_path.string() +
+                       " --min-reads 2 --verbose");
+
+    EXPECT_EQ(result.exit_code, 0);
+    // CELL2 should be filtered out (only 1 read)
+    EXPECT_TRUE(result.output.find("Unique cells") != std::string::npos);
+}
+
 }  // namespace
