@@ -363,7 +363,7 @@ TEST_F(LlmapCliTest, AlignHelp) {
 }
 
 TEST_F(LlmapCliTest, AlignMissingReads) {
-    auto result = Exec(llmap_bin_ + " align -x /tmp/ref.fa -o /tmp/out.sam");
+    auto result = Exec(llmap_bin_ + " align --reference /tmp/ref.fa -o /tmp/out.sam");
 
     EXPECT_NE(result.exit_code, 0);
     EXPECT_TRUE(result.output.find("--reads") != std::string::npos ||
@@ -381,7 +381,7 @@ TEST_F(LlmapCliTest, AlignMissingReference) {
 
 TEST_F(LlmapCliTest, AlignMissingOutput) {
     auto fastq = CreateTestFastq("test.fastq");
-    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() + " -x /tmp/ref.fa");
+    auto result = Exec(llmap_bin_ + " align -r " + fastq.string() + " --reference /tmp/ref.fa");
 
     EXPECT_NE(result.exit_code, 0);
     EXPECT_TRUE(result.output.find("--output") != std::string::npos ||
@@ -389,7 +389,7 @@ TEST_F(LlmapCliTest, AlignMissingOutput) {
 }
 
 TEST_F(LlmapCliTest, AlignFileNotFound) {
-    auto result = Exec(llmap_bin_ + " align -r /nonexistent/reads.fastq -x /tmp/ref.fa -o /tmp/out.sam");
+    auto result = Exec(llmap_bin_ + " align -r /nonexistent/reads.fastq --reference /tmp/ref.fa -o /tmp/out.sam");
 
     EXPECT_NE(result.exit_code, 0);
     EXPECT_TRUE(result.output.find("not found") != std::string::npos);
@@ -423,7 +423,7 @@ TEST_F(LlmapCliTest, AlignLlmFlagNoApiKey) {
     unsetenv("ANTHROPIC_API_KEY");
 
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --llm -v");
 
@@ -445,7 +445,7 @@ TEST_F(LlmapCliTest, AlignLlmThreshold) {
 
     // Very high threshold (0.99) - diagnostics should trigger for almost any run
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --llm --llm-threshold 0.99 -v");
 
@@ -471,7 +471,7 @@ TEST_F(LlmapCliTest, AlignLlmWorkDir) {
 
     // With --llm-work-dir, should create directory
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --llm --llm-work-dir " + llm_dir.string() +
                        " --llm-threshold 0.99 -v");
@@ -503,7 +503,7 @@ TEST_F(LlmapCliTest, AlignIndexFileNotFound) {
     auto output = test_dir_ / "out.sam";
 
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --index /nonexistent/index.llmi");
 
@@ -531,7 +531,7 @@ TEST_F(LlmapCliTest, AlignWithPrebuiltIndex) {
 
     // Now use the pre-built index for alignment
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " -i " + index_path.string() + " -v");
 
@@ -559,7 +559,7 @@ TEST_F(LlmapCliTest, AlignIndexShortFlag) {
 
     // Test -i short flag
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " -i " + index_path.string());
 
@@ -585,7 +585,7 @@ TEST_F(LlmapCliTest, AlignIndexVerboseShowsParams) {
 
     // Align with verbose - should show loaded index params
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " -i " + index_path.string() + " -v");
 
@@ -593,6 +593,137 @@ TEST_F(LlmapCliTest, AlignIndexVerboseShowsParams) {
     // Should report the k and w from the loaded index
     EXPECT_TRUE(result.output.find("k=19") != std::string::npos);
     EXPECT_TRUE(result.output.find("w=10") != std::string::npos);
+}
+
+// ========== Align -x Presets ==========
+
+TEST_F(LlmapCliTest, AlignHelpShowsPresets) {
+    auto result = Exec(llmap_bin_ + " align --help");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("-x PRESET") != std::string::npos);
+    EXPECT_TRUE(result.output.find("map-hifi") != std::string::npos);
+    EXPECT_TRUE(result.output.find("map-ont") != std::string::npos);
+    EXPECT_TRUE(result.output.find("HiFi") != std::string::npos ||
+                result.output.find("PacBio") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPresetInvalid) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -x bogus-preset -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string());
+
+    EXPECT_NE(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Unknown preset") != std::string::npos ||
+                result.output.find("bogus-preset") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPresetMapHifi) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -x map-hifi -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    // HiFi preset uses k=19, w=19
+    EXPECT_TRUE(result.output.find("k=19") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPresetMapOnt) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -x map-ont -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    // ONT preset uses k=15, w=10
+    EXPECT_TRUE(result.output.find("k=15") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPresetSr) {
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -x sr -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("Alignment complete") != std::string::npos);
+    // SR preset uses k=21, w=11
+    EXPECT_TRUE(result.output.find("k=21") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPresetOverrideKmer) {
+    // Explicit -k should override preset
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    // map-hifi default is k=19, but we override to k=15
+    auto result = Exec(llmap_bin_ + " align -x map-hifi -k 15 -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("k=15") != std::string::npos);
+}
+
+TEST_F(LlmapCliTest, AlignPresetHifiShortName) {
+    // Test "hifi" shorthand works as well as "map-hifi"
+    auto fastq = CreateTestFastq("test.fastq");
+    auto fasta_path = test_dir_ / "ref.fa";
+    {
+        std::ofstream fasta(fasta_path);
+        fasta << ">chr1\n";
+        fasta << "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT\n";
+    }
+    auto output = test_dir_ / "out.sam";
+
+    auto result = Exec(llmap_bin_ + " align -x hifi -r " + fastq.string() +
+                       " --reference " + fasta_path.string() +
+                       " -o " + output.string() + " -v");
+
+    EXPECT_EQ(result.exit_code, 0);
+    EXPECT_TRUE(result.output.find("k=19") != std::string::npos);
 }
 
 // ========== Regression: Banner Shows on Empty Args ==========
@@ -827,7 +958,7 @@ TEST_F(LlmapCliTest, AlignPsvCatalogFileNotFound) {
     auto output = test_dir_ / "out.sam";
 
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --psv-catalog /nonexistent/catalog.bed");
 
@@ -855,7 +986,7 @@ TEST_F(LlmapCliTest, AlignPsvCatalogBasicRun) {
     auto output = test_dir_ / "out.sam";
 
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --psv-catalog " + psv_path.string() +
                        " -v");
@@ -884,7 +1015,7 @@ TEST_F(LlmapCliTest, AlignPsvWeight) {
     auto output = test_dir_ / "out.sam";
 
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --psv-catalog " + psv_path.string() +
                        " --psv-weight 0.8 --psv-min-posterior 0.95 -v");
@@ -911,7 +1042,7 @@ TEST_F(LlmapCliTest, AlignPsvOnly) {
     auto output = test_dir_ / "out.sam";
 
     auto result = Exec(llmap_bin_ + " align -r " + fastq.string() +
-                       " -x " + fasta_path.string() +
+                       " --reference " + fasta_path.string() +
                        " -o " + output.string() +
                        " --psv-catalog " + psv_path.string() +
                        " --psv-only -v");
