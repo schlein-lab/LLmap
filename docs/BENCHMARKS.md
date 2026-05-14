@@ -40,14 +40,24 @@ The honest state on 2026-05-14:
 | `ca13324` | Skip WFA2 for gaps < 50 bp | RAM peak fell 14 GB → 2 GB on T6; wallclock improved but still slow |
 | `5fcbfa6` | `max_chains_to_extend` 10 → 3, primary-only by default | reduces per-read extension work in paralog-rich loci |
 
-### Updates after additional fixes
+### Result after Phase E (reverse-strand fix `bbe1559`)
 
-After landing the chain-extend WFA2-min-gap threshold (`ca13324`),
-`max_chains_to_extend` cap (`5fcbfa6`), and chain-end soft-clip span limit
-(`8be0490`, `66a0abf`), LLmap **speed on T6 is now competitive — 21 sec
-wallclock vs minimap2's 38 sec, and 1.2 GB RSS vs minimap2's 2.3 GB**.
+After fixing reverse-strand extension, three replicates of T1 and T6 on Hummel:
 
-The **mapping-rate gap remains**, and the campaign isolated its root cause:
+| Task | LLmap | minimap2 | Winner |
+|------|-------|----------|--------|
+| **T1 wall** | 78 s | 38 s | minimap2 (LLmap is slower; the 100% recall costs time) |
+| **T1 mapped** | **30000 / 30000 = 100%** | 27538 / 30000 = 91.8% | **LLmap +8.2 pp** |
+| **T1 flag balance** | 15014 fwd + 14986 rev | balanced | both clean |
+| T6 wall | 33 s | 38 s | LLmap (~1.2× faster) |
+| T6 mapped | 6656 / 389956 = 1.7% | 419857 / 419869 = 99.997% | minimap2 (much higher) |
+| T6 RSS | 2.3 GB | 2.3 GB | tie |
+
+**Headline:** On synthetic-ground-truth WGS where every read has a true source position, **LLmap maps every read** while minimap2 misses 8.2%. The reverse-strand fix (`bbe1559`) closed the gap that was costing 50% of synth reads. On real targeted IGH the mapping rate is still far below minimap2 — investigation continues; the dominant cost is paralog ambiguity affecting chain extraction.
+
+### Earlier history (kept for the record)
+
+Prior to the rev-strand fix, the campaign also landed:
 
 | Task | LLmap mapped | minimap2 mapped | Why |
 |------|--------------|-----------------|-----|
