@@ -19,6 +19,7 @@ struct AlignArgs {
     std::string reference;
     std::string output;
     std::string parquet_output;
+    std::string index;          // Pre-built .llmi index file (optional)
     bool use_bam = false;
     bool use_sam = true;
     int kmer_size = 15;

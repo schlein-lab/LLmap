@@ -18,14 +18,18 @@ void PrintAlignUsage() {
         "  -x, --reference FILE    Reference genome (FASTA)\n"
         "  -o, --output FILE       Output alignment file (SAM/BAM)\n"
         "\n"
+        "Index caching:\n"
+        "  -i, --index FILE        Use pre-built .llmi index (from `llmap index`)\n"
+        "                          When provided, skips index building for faster startup\n"
+        "\n"
         "Output format:\n"
         "  --bam                   Output BAM format (requires htslib)\n"
         "  --sam                   Output SAM format (default)\n"
         "  --parquet FILE          Also output probabilistic Parquet\n"
         "\n"
         "Alignment parameters:\n"
-        "  -k, --kmer INT          Minimizer k-mer size [15]\n"
-        "  -w, --window INT        Minimizer window [10]\n"
+        "  -k, --kmer INT          Minimizer k-mer size [15] (ignored if --index)\n"
+        "  -w, --window INT        Minimizer window [10] (ignored if --index)\n"
         "  --min-chain INT         Minimum chain score [30]\n"
         "  --min-identity FLOAT    Minimum alignment identity [0.70]\n"
         "\n"
@@ -52,6 +56,7 @@ void PrintAlignUsage() {
         "Example:\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.sam\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.bam --bam --parquet out.parquet\n"
+        "  llmap align -r reads.fastq -x ref.fasta -o out.sam -i ref.llmi\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.sam --psv-catalog psv.bed\n"
         "  llmap align -r reads.fastq -x ref.fasta -o out.sam --llm\n"
     );
@@ -70,6 +75,8 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             args.reference = argv[++i];
         } else if ((arg == "-o" || arg == "--output") && i + 1 < argc) {
             args.output = argv[++i];
+        } else if ((arg == "-i" || arg == "--index") && i + 1 < argc) {
+            args.index = argv[++i];
         } else if (arg == "--parquet" && i + 1 < argc) {
             args.parquet_output = argv[++i];
         } else if (arg == "--bam") {
