@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 52 |
-| Total iterations | 52 |
+| Last successful iteration | 53 |
+| Total iterations | 53 |
 
 ---
 
@@ -80,6 +80,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 9.3: `llmap sc-paralog-matrix` CLI command (1166 tests pass)
   - [x] Phase 9.4: PSV-based paralog assignment (1195 tests pass)
   - [x] Phase 9.5: Inter-paralog disambiguation pipeline (1200 tests pass)
+  - [x] Phase 9.6: Single-cell paralog quantification reporting (1236 tests pass)
 
 ---
 
@@ -88,21 +89,19 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 9
 task: single_cell_paralog_production
-substep: 6/N — Single-cell paralog quantification reporting
-last_action: Phase 9.5 — Inter-paralog disambiguation pipeline
-  - cmd_align_psv.cpp wiring PsvAssigner into align pipeline
-  - --psv-catalog, --psv-weight, --psv-min-posterior, --psv-only flags
-  - LoadPsvCatalog with BED/VCF auto-detection
-  - ApplyPsvAssignments for batch paralog disambiguation
-  - Verbose PSV assignment stats (reads_with_psvs, confident_calls, avg_psvs_per_read)
-  - BamWriterConfig automatically enables paralog_tags when PSV catalog provided
-  - 5 new CLI tests (AlignHelpShowsPsvCatalogFlag, AlignPsvCatalogFileNotFound, AlignPsvCatalogBasicRun, AlignPsvWeight, AlignPsvOnly)
-  - 1200 tests pass
-next_action: Phase 9.6 — Single-cell paralog quantification reporting
-  - Aggregated paralog expression per cell
-  - Statistical summaries (entropy, confidence distributions)
-  - QC metrics for single-cell paralog calling
-acceptance: Cell-level paralog expression summary + QC metrics
+substep: 7/N — Single-cell QC-aware matrix export CLI
+last_action: Phase 9.6 — Single-cell paralog quantification reporting
+  - sc_paralog_qc.h: CellQcMetrics, ParalogQcMetrics, GlobalQcSummary, QcThresholds, QcReport types
+  - sc_paralog_qc.cpp: ComputeEntropy, ComputeDominance, ComputeConfidenceDistribution, ComputeCellQcMetrics, ComputeParalogQcMetrics, ComputeGlobalQcSummary, GetCellsPassingQc, FilterMatrixByQc, GenerateQcReport
+  - sc_paralog_qc_report.cpp: ExportQcReportJson, ExportCellQcTsv, ExportParalogQcTsv, ExportSummaryTsv, ExportQcReportTsv
+  - 36 new tests for QC metrics (entropy, dominance, confidence distribution, cell/paralog metrics, global summary, report generation, export)
+  - 1236 tests pass
+next_action: Phase 9.7 — Single-cell QC-aware matrix export CLI
+  - `llmap sc-qc-report` CLI command
+  - --qc-json and --qc-tsv output flags
+  - --min-assignment-rate, --min-confidence, --min-reads-per-cell thresholds
+  - QC-filtered cell × paralog matrix export
+acceptance: Full QC report CLI with configurable thresholds
 ```
 
 ---
@@ -160,8 +159,9 @@ acceptance: Cell-level paralog expression summary + QC metrics
 49. ~~Phase 9.3: `llmap sc-paralog-matrix` CLI~~ ✅ done
 50. ~~Phase 9.4: PSV-based paralog assignment~~ ✅ done
 51. ~~Phase 9.5: Inter-paralog disambiguation pipeline~~ ✅ done
-52. Phase 9.6: Single-cell paralog quantification reporting ← NEXT
-53. ... (continues per LLmap_SPEC.md)
+52. ~~Phase 9.6: Single-cell paralog quantification reporting~~ ✅ done
+53. Phase 9.7: Single-cell QC-aware matrix export CLI ← NEXT
+54. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -237,6 +237,7 @@ acceptance: Cell-level paralog expression summary + QC metrics
 | 50 | 2026-05-14 | n/a | Phase 9.3 `llmap sc-paralog-matrix` CLI | cmd_sc_paralog_matrix.cpp (302 LOC): reads parquet/CSV probability entries; extracts cell barcodes via --cb-tag/--cb-pattern/--cb-file; builds CellParalogMatrix; outputs sparse CSV/TSV/dense CSV/h5ad; --min-prob/--min-reads/--aggregation/--normalize flags; wired in llmap_main.cpp + commands.h; linked llmap_singlecell; 11 new CLI tests; 1166 tests pass; monolith count 0→0 |
 | 51 | 2026-05-14 | n/a | Phase 9.4 PSV-based paralog assignment | src/psv module: psv_types.h (PsvSite/PsvObservation/ParalogLikelihood/PsvAssignmentResult/PsvAssignmentConfig/PsvStats); psv_catalog.{h,cpp} (PsvCatalog with position index/region queries/BED+VCF I/O; PsvCatalogBuilder; ComputeInformativeness); psv_assigner.{h,cpp} (PsvAssigner with Bayesian log-likelihood, posterior normalization, entropy computation; ExtractObservations from CIGAR; UpdateRecord; ResultToParalogCall; MergeAssignments); llmap_psv library linked to llmap_singlecell; 29 new tests; 1195 tests pass; monolith count 0→0 |
 | 52 | 2026-05-14 | n/a | Phase 9.5 PSV-align pipeline integration | cmd_align_psv.cpp wiring PsvAssigner into align pipeline; --psv-catalog/--psv-weight/--psv-min-posterior/--psv-only flags; LoadPsvCatalog with BED/VCF auto-detect; ApplyPsvAssignments batch disambiguation; verbose stats (reads_with_psvs, confident_calls); auto-enables paralog_tags in BAM output; 5 new CLI tests; 1200 tests pass; monolith count 0→0 |
+| 53 | 2026-05-14 | n/a | Phase 9.6 single-cell paralog QC reporting | sc_paralog_qc.h (CellQcMetrics, ParalogQcMetrics, GlobalQcSummary, ConfidenceDistribution, QcThresholds, QcReport); sc_paralog_qc.cpp (ComputeEntropy, ComputeDominance, ComputeConfidenceDistribution, ComputeCellQcMetrics, ComputeParalogQcMetrics, ComputeGlobalQcSummary, GetCellsPassingQc, FilterMatrixByQc, GenerateQcReport); sc_paralog_qc_report.cpp (JSON/TSV export); 36 new tests; 1236 tests pass; monolith count 0→0 |
 
 ---
 

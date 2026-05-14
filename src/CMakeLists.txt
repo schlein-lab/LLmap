@@ -207,6 +207,8 @@ add_library(llmap_singlecell STATIC
     singlecell/cb_preservation_whitelist.cpp
     singlecell/per_cell_paralog.cpp
     singlecell/per_cell_paralog_io.cpp
+    singlecell/sc_paralog_qc.cpp
+    singlecell/sc_paralog_qc_report.cpp
 )
 
 target_include_directories(llmap_singlecell PUBLIC
