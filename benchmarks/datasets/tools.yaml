@@ -4,7 +4,7 @@
 tools:
   llmap:
     version: "1.0.0"
-    binary: "${LLMAP_ROOT}/build/llmap"
+    binary: "${LLMAP_ROOT}/build/src/llmap"
     sha256: ""  # filled at build time by runners/check_versions.sh
 
   minimap2:

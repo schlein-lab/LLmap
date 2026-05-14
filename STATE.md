@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 74 |
-| Total iterations | 74 |
+| Last successful iteration | 75 |
+| Total iterations | 75 |
 
 ---
 
@@ -93,7 +93,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 - [ ] **Phase 11: Comparative Benchmark Campaign** ◀ ACTIVE
   - [x] Phase 11.1: SPEC + matrix + runner template + dataset/tool registries
   - [x] Phase 11.2: Synthetic-truth dataset generator (1454 tests pass)
-  - [ ] Phase 11.3: Tool installation manifest + version-verification gate
+  - [x] Phase 11.3: Tool installation manifest + version-verification gate (1454 tests pass)
   - [ ] Phase 11.4: Per-tool runner shake-down (small-input smoke tests for each runner)
   - [ ] Phase 11.5: Metrics collector unit tests (compute.py, concordance.py on tiny BAMs)
   - [ ] Phase 11.6: SLURM submission orchestrator end-to-end test
@@ -109,19 +109,18 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 11
-task: 11.3_tool_manifest
-substep: Create tool installation manifest + version-verification gate for benchmark runners.
+task: 11.4_per_tool_smoke
+substep: Per-tool runner shake-down — small-input smoke tests for each runner script.
 inputs:
-  - benchmarks/datasets/tools.yaml (existing tool version pins)
-  - benchmarks/runners/check_versions.sh (existing stub)
+  - benchmarks/runners/run_*.sh (existing runner scripts)
+  - benchmarks/runners/_template.sh (template script)
 expected_files_changed:
-  - benchmarks/runners/check_versions.sh (implement version verification)
-  - benchmarks/runners/install_tools.sh (new, conda/module install script)
-  - benchmarks/runners/INSTALL.md (new, instructions for setting up benchmark environment)
+  - benchmarks/runners/smoke_test.sh (new, runs each tool on tiny input)
+  - benchmarks/datasets/smoke/ (new, tiny test inputs: 10 reads, mini reference)
 acceptance:
-  - `./check_versions.sh` exits 0 when all tools match pinned versions
-  - `./check_versions.sh` exits non-zero and reports mismatches otherwise
-  - INSTALL.md documents how to install each tool
+  - smoke_test.sh runs each tool on 10-read FASTQ against mini-ref
+  - each tool produces valid output (non-empty SAM/BAM)
+  - exit 0 if all tools pass, exit 1 if any fail
   - monolith count remains 0
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
@@ -194,9 +193,8 @@ hard_rule_precheck:
 60. ~~Phase 10.6: `llmap check` CLI + V1.0 readiness check~~ ✅ done
 61. ~~Phase 11.1: SPEC + matrix + runner template + dataset/tool registries~~ ✅ done
 62. ~~Phase 11.2: Synthetic-truth dataset generator~~ ✅ done
-63. Phase 11.3: Tool installation manifest + version verification ← NEXT
-63. Phase 11.3: Tool installation manifest + version verification
-64. Phase 11.4: Per-tool runner shake-down (small-input smoke)
+63. ~~Phase 11.3: Tool installation manifest + version verification~~ ✅ done
+64. Phase 11.4: Per-tool runner shake-down (small-input smoke) ← NEXT
 65. Phase 11.5: Metrics collector unit tests
 66. Phase 11.6: SLURM submission orchestrator end-to-end test
 67. Phase 11.7: Report generator (per-task README + plots)
@@ -302,6 +300,7 @@ hard_rule_precheck:
 | 72 | 2026-05-14 | n/a | Verification pass | Confirmed: build passes, 1433 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual release |
 | 73 | 2026-05-14 | n/a | Phase 11 kickoff: SPEC + scaffolding | benchmarks/SPEC.md (Phase 11 comparative campaign vs minimap2/BWA-MEM2/Winnowmap2/STAR/Bowtie2 across 6 tasks); benchmarks/{runners,datasets,metrics,reports}/ scaffold; runner template + 6 per-tool wrappers + submit_all.sh + check_versions.sh + metrics/{compute,concordance}.py; tools.yaml + datasets.yaml pinned; README.md rewritten without LL=LLM wordplay and de-emphasizing Stage-1 Self-Interference; current_task advanced to Phase 11.2 (synthetic-truth generator) |
 | 74 | 2026-05-14 | n/a | Phase 11.2: synthetic-truth generator | benchmark_truth.{h,cpp} for T1/T2 benchmark dataset generation; cmd_generate_synth.cpp extended with --task t1/t2 flags; T1: WGS-style positional truth (read_id<TAB>chrom<TAB>pos); T2: paralog stress with truth_paralog.tsv (read_id<TAB>paralog<TAB>chrom<TAB>pos); paralog_presets (igh_constant, nphp1, mhc_class1); 21 new tests in test_benchmark_truth.cpp; 1454 tests pass; monolith count 0 |
+| 75 | 2026-05-14 | n/a | Phase 11.3: tool manifest + version gate | check_versions.sh enhanced with pass/fail verification (exit 0 on match, exit 1 on mismatch); JSON output with tool status, SHA256, binary path; install_tools.sh for conda/module installation; INSTALL.md documentation; tools.yaml binary path fixed; 1454 tests pass; monolith count 0 |
 
 ---
 
