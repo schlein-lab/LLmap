@@ -327,7 +327,14 @@ int run_align(int argc, char** argv) {
         std::printf("  Parquet:        %s\n", args.parquet_output.c_str());
     }
 
-    if (args.enable_llm && mapping_rate < args.llm_threshold) {
+    // --classical-only overrides --llm (skip probabilistic framework)
+    bool llm_enabled = args.enable_llm && !args.classical_only;
+
+    if (args.enable_llm && args.classical_only && args.verbose) {
+        std::fprintf(stderr, "Note: --llm ignored due to --classical-only mode\n");
+    }
+
+    if (llm_enabled && mapping_rate < args.llm_threshold) {
         if (args.verbose) {
             std::fprintf(stderr, "\nMapping rate %.1f%% below threshold %.1f%%, "
                          "running LLM diagnostics...\n",
@@ -339,7 +346,7 @@ int run_align(int argc, char** argv) {
             float avg_identity = pipeline.Stats().avg_identity;
             RunLlmDiagnostics(*agent, args, results, n_mapped, n_unmapped, avg_identity);
         }
-    } else if (args.enable_llm && args.verbose) {
+    } else if (llm_enabled && args.verbose) {
         std::fprintf(stderr, "Mapping rate %.1f%% meets threshold, "
                      "skipping LLM diagnostics\n", 100.0f * mapping_rate);
     }

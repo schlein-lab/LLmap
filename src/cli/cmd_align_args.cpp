@@ -110,6 +110,10 @@ void PrintAlignUsage() {
         "  --llm-threshold FLOAT   Mapping rate threshold to trigger diagnostics [0.50]\n"
         "  --llm-work-dir DIR      Working directory for LLM artifacts\n"
         "\n"
+        "Pipeline mode:\n"
+        "  --classical-only        Pure seed-chain-extend mode (no probabilistic framework)\n"
+        "                          Reduces memory footprint; disables --llm if set\n"
+        "\n"
         "Other:\n"
         "  -v, --verbose           Verbose output\n"
         "  -h, --help              Show this help\n"
@@ -191,6 +195,8 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             args.psv_min_posterior = std::stof(argv[++i]);
         } else if (arg == "--psv-only") {
             args.psv_only = true;
+        } else if (arg == "--classical-only") {
+            args.classical_only = true;
         } else if (arg[0] == '-') {
             std::fprintf(stderr, "Unknown option: %s\n", arg.c_str());
             return false;
