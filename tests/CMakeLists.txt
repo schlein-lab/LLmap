@@ -512,6 +512,20 @@ target_link_libraries(test_pipeline_agent
 )
 gtest_discover_tests(test_pipeline_agent)
 
+# ========== PSV Module Tests ==========
+
+add_executable(test_psv
+    unit/test_psv.cpp
+)
+target_link_libraries(test_psv
+    PRIVATE
+    llmap_psv
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_psv)
+
 # ========== Single-cell Module Tests ==========
 
 add_executable(test_cb_preservation

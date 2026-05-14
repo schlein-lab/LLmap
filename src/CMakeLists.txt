@@ -187,6 +187,19 @@ target_include_directories(llmap_validation PUBLIC
 target_compile_features(llmap_validation PUBLIC cxx_std_23)
 target_link_libraries(llmap_validation PUBLIC llmap_core llmap_classical llmap_io)
 
+# PSV module — Paralog-Specific Variant detection and scoring
+add_library(llmap_psv STATIC
+    psv/psv_catalog.cpp
+    psv/psv_assigner.cpp
+)
+
+target_include_directories(llmap_psv PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_psv PUBLIC cxx_std_23)
+target_link_libraries(llmap_psv PUBLIC llmap_core)
+
 # Single-cell module — cell barcode and UMI preservation
 add_library(llmap_singlecell STATIC
     singlecell/cb_preservation.cpp
@@ -201,7 +214,7 @@ target_include_directories(llmap_singlecell PUBLIC
 )
 
 target_compile_features(llmap_singlecell PUBLIC cxx_std_23)
-target_link_libraries(llmap_singlecell PUBLIC llmap_core)
+target_link_libraries(llmap_singlecell PUBLIC llmap_core llmap_psv)
 
 # Claude agent module — LLM integration for adaptive alignment
 add_library(llmap_claude_agent STATIC

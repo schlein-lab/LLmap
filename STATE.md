@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 50 |
-| Total iterations | 50 |
+| Last successful iteration | 51 |
+| Total iterations | 51 |
 
 ---
 
@@ -78,6 +78,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 9.1: Cell barcode preservation module (1129 tests pass)
   - [x] Phase 9.2: Per-cell paralog matrix + cb_preservation refactor (1155 tests pass)
   - [x] Phase 9.3: `llmap sc-paralog-matrix` CLI command (1166 tests pass)
+  - [x] Phase 9.4: PSV-based paralog assignment (1195 tests pass)
 
 ---
 
@@ -86,12 +87,22 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 9
 task: single_cell_paralog_production
-substep: 4/N — PSV-based paralog assignment
-last_action: Phase 9.3 — `llmap sc-paralog-matrix` CLI command: cmd_sc_paralog_matrix.cpp (302 LOC); reads parquet/CSV probability entries; extracts cell barcodes via --cb-tag/--cb-pattern/--cb-file; builds CellParalogMatrix; outputs sparse CSV/TSV/dense CSV/h5ad; --min-prob/--min-reads/--aggregation/--normalize flags; wired in llmap_main.cpp; 11 new CLI tests; 1166 tests pass
-next_action: Phase 9.4 — PSV-based paralog assignment
-  - Implement PSV (Paralog-Specific Variant) detection and scoring
-  - Use discriminating variants to refine paralog probabilities
-acceptance: psv_assigner.{h,cpp} with PSV detection + scoring
+substep: 5/N — Inter-paralog disambiguation pipeline
+last_action: Phase 9.4 — PSV-based paralog assignment
+  - Created src/psv/ module with psv_types.h, psv_catalog.{h,cpp}, psv_assigner.{h,cpp}
+  - PsvSite/PsvObservation/ParalogLikelihood/PsvAssignmentResult types
+  - PsvCatalog with position-based lookup, region queries, BED/VCF I/O
+  - PsvCatalogBuilder for generating catalogs from paralog sequences
+  - PsvAssigner with Bayesian likelihood computation, posterior normalization
+  - ExtractObservations from CIGAR-based alignments
+  - MergeAssignments for combining PSV with probabilistic assignments
+  - llmap_psv library linked to llmap_singlecell
+  - 29 new tests; 1195 tests pass
+next_action: Phase 9.5 — Inter-paralog disambiguation pipeline
+  - Wire PSV assigner into alignment pipeline
+  - Add --psv-catalog flag to `llmap align`
+  - Test PSV-enhanced paralog resolution
+acceptance: PSV integration in align pipeline
 ```
 
 ---
@@ -147,8 +158,9 @@ acceptance: psv_assigner.{h,cpp} with PSV detection + scoring
 47. ~~Phase 9.1: Cell barcode preservation module~~ ✅ done
 48. ~~Phase 9.2: Per-cell paralog matrix + cb_preservation refactor~~ ✅ done
 49. ~~Phase 9.3: `llmap sc-paralog-matrix` CLI~~ ✅ done
-50. Phase 9.4: PSV-based paralog assignment ← NEXT
-50. ... (continues per LLmap_SPEC.md)
+50. ~~Phase 9.4: PSV-based paralog assignment~~ ✅ done
+51. Phase 9.5: Inter-paralog disambiguation pipeline ← NEXT
+52. ... (continues per LLmap_SPEC.md)
 
 ---
 
@@ -222,6 +234,7 @@ acceptance: psv_assigner.{h,cpp} with PSV detection + scoring
 | 48 | 2026-05-14 | n/a | Phase 9.1 cell barcode preservation module | src/singlecell/cb_preservation.{h,cpp}: SingleCellTags struct (CB/CR/CY/UB/UR/UY/RG/BC/QT tags); TagType enum and TagTypeToString/StringToTagType conversions; TagValue for string/int values; ExtractTagsFromAux/FromPairs/FromReadName extraction; FormatTagsAsAux/AsPairs output; ValidateBarcode/ValidateUmi validation; CellBarcodeWhitelist with Hamming-distance correction (LoadFromFile, FindNearest); BarcodeExtractionConfig for platform presets (10x, Parse, Kinnex); 37 new tests; 1129 tests pass; Phase 9 started |
 | 49 | 2026-05-14 | n/a | Phase 9.2 per-cell paralog matrix + cb_preservation refactor | split cb_preservation.cpp (499 LOC) → 3 files: cb_preservation.cpp (166 LOC), cb_preservation_extract.cpp (216 LOC), cb_preservation_whitelist.cpp (128 LOC) + cb_preservation_internal.h (21 LOC); per_cell_paralog.{h,cpp} + per_cell_paralog_io.cpp: CellParalogMatrix class (AddRecord/AddRecords/Finalize/GetEntries/GetDenseMatrix); CellParalogEntry/CellParalogStats/CellParalogConfig structs; aggregation methods (Mean/Max/Sum/Weighted); filtering (min_probability, min_reads_per_cell, min_reads_per_paralog); row normalization; CSV/TSV/dense CSV export; CSV import; CellParalogMatrixBuilder; 26 new tests; 1155 tests pass; monolith count 1→0 |
 | 50 | 2026-05-14 | n/a | Phase 9.3 `llmap sc-paralog-matrix` CLI | cmd_sc_paralog_matrix.cpp (302 LOC): reads parquet/CSV probability entries; extracts cell barcodes via --cb-tag/--cb-pattern/--cb-file; builds CellParalogMatrix; outputs sparse CSV/TSV/dense CSV/h5ad; --min-prob/--min-reads/--aggregation/--normalize flags; wired in llmap_main.cpp + commands.h; linked llmap_singlecell; 11 new CLI tests; 1166 tests pass; monolith count 0→0 |
+| 51 | 2026-05-14 | n/a | Phase 9.4 PSV-based paralog assignment | src/psv module: psv_types.h (PsvSite/PsvObservation/ParalogLikelihood/PsvAssignmentResult/PsvAssignmentConfig/PsvStats); psv_catalog.{h,cpp} (PsvCatalog with position index/region queries/BED+VCF I/O; PsvCatalogBuilder; ComputeInformativeness); psv_assigner.{h,cpp} (PsvAssigner with Bayesian log-likelihood, posterior normalization, entropy computation; ExtractObservations from CIGAR; UpdateRecord; ResultToParalogCall; MergeAssignments); llmap_psv library linked to llmap_singlecell; 29 new tests; 1195 tests pass; monolith count 0→0 |
 
 ---
 
