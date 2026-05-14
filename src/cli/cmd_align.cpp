@@ -160,6 +160,7 @@ int run_align(int argc, char** argv) {
 
     classical::ClassicalPipeline pipeline(pipe_cfg);
     pipeline.SetIndex(std::move(index));
+    pipeline.SetReferenceSequences(ref_seqs);
 
     if (args.verbose) {
         std::fprintf(stderr, "Loading reads: %s\n", args.reads.c_str());

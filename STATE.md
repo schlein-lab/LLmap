@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 84 |
-| Total iterations | 84 |
+| Last successful iteration | 85 |
+| Total iterations | 85 |
 
 ---
 
@@ -104,7 +104,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 11.11: Identify regressions → list LLmap improvement issues (1454 tests pass)
 - [ ] **Phase A: Critical Fixes** ★
   - [x] Phase A.1: Adjust chain thresholds (min_chain_score=10, min_score_fraction=0.5) (1454 tests pass)
-  - [ ] Phase A.2: Wire WFA2 extension into ExtendChain()
+  - [x] Phase A.2: Wire WFA2 extension into ExtendChain() (1454 tests pass)
   - [ ] Phase A.3: Add left/right extension for chain ends
 
 ---
@@ -113,25 +113,29 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: A
-task: A.2_wfa2_extension
-substep: Wire WFA2 extension into ExtendChain() for base-accurate CIGAR
+task: A.3_chain_end_extension
+substep: Add left/right extension for chain ends to improve recall
 inputs:
   - src/classical/classical_pipeline.cpp (ExtendChain function)
-  - src/classical/wfa2_aligner.h (Wfa2Aligner class)
+  - src/classical/classical_pipeline_extend.cpp (AlignGap, ExtendChain)
+  - src/classical/wfa2_aligner.h (ExtendLeft, ExtendRight methods)
 expected_files_changed:
-  - src/classical/classical_pipeline.cpp (replace interpolation with WFA2 calls)
+  - src/classical/classical_pipeline_extend.cpp (add left/right extension at chain ends)
 acceptance:
-  - ExtendChain() calls Wfa2Aligner.Align() between adjacent anchors
-  - CIGAR strings computed from actual alignment, not interpolated
+  - ExtendChain() extends alignment leftward from first anchor to query_start
+  - ExtendChain() extends alignment rightward from last anchor to query_end
+  - Uses WFA2Aligner.ExtendLeft() and ExtendRight() for end extension
   - All 1454 tests pass
   - Monolith count stays at 0
 notes: |
-  Phase A.1 complete: chain thresholds relaxed from min_chain_score=20 to 10,
-  min_score_fraction=0.9 to 0.5. This should significantly improve mapping rate.
+  Phase A.2 complete: WFA2 aligner wired into ExtendChain() to compute
+  base-accurate CIGAR strings between anchors. SetReferenceSequences() API
+  added to ClassicalPipeline. Split classical_pipeline.cpp into
+  classical_pipeline.cpp (238 LOC) + classical_pipeline_extend.cpp (183 LOC).
 
-  Phase A.2 focuses on wiring the WFA2 aligner into ExtendChain() to compute
-  base-accurate CIGAR strings. Current code interpolates between anchors which
-  causes position errors and low recall.
+  Phase A.3 focuses on extending alignments past the first/last anchor
+  to capture the full read. Currently we start at the first anchor and
+  end at the last anchor, losing bases at both ends.
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -213,7 +217,7 @@ hard_rule_precheck:
 70. ~~Phase 11.10: Populate docs/BENCHMARKS.md~~ ✅ done
 71. ~~Phase 11.11: Identify regressions → LLmap improvement list~~ ✅ done
 72. ~~Phase A.1: Chain threshold tuning (min_chain_score=10, min_score_fraction=0.5)~~ ✅ done
-73. Phase A.2: Wire WFA2 extension into ExtendChain()
+73. ~~Phase A.2: Wire WFA2 extension into ExtendChain()~~ ✅ done
 74. Phase A.3: Add left/right extension for chain ends
 75. Phase B.1: Parallelize AlignReads() with ThreadPool
 76. Phase B.2: Zero-allocation chaining (ChainScratch)
@@ -326,6 +330,7 @@ hard_rule_precheck:
 | 82 | 2026-05-14 | n/a | Phase 11.10: docs/BENCHMARKS.md | Created docs/BENCHMARKS.md with T1/T2 benchmark results; executive summary table; detailed per-task metrics (mapping rate, recall, precision, F1, wallclock, RSS); T3-T6 placeholders pending Hummel submission; methodology section with metrics definitions; reproducibility instructions; known limitations analysis; 1454 tests pass; monolith count 0 |
 | 83 | 2026-05-14 | n/a | Phase 11.11: improvement analysis | Created docs/IMPROVEMENTS.md with prioritized improvement targets; identified 5 issues: (1) low mapping rate (P0: chain thresholds too aggressive), (2) low recall (P0: WFA2 extension not wired), (3) slow wallclock (P1: no parallelization), (4) precision gap (P1: no identity filter), (5) memory overhead (P3: lazy allocation); 3-phase improvement plan: Phase A (critical), Phase B (performance), Phase C (polish); 1454 tests pass; monolith count 0; Phase 11 COMPLETE |
 | 84 | 2026-05-14 | n/a | Phase A.1: chain threshold tuning | chain.h: min_chain_score 20→10, min_score_fraction 0.9→0.5; Phase A (Critical Fixes) started; expected improvement in mapping rate from 46% to 80-90%; 1454 tests pass; monolith count 0 |
+| 85 | 2026-05-14 | n/a | Phase A.2: WFA2 extension wiring | classical_pipeline.h: SetReferenceSequences() API; classical_pipeline_extend.cpp: AlignGap() + ExtendChain() calls WFA2Aligner.Align() between anchors for base-accurate CIGAR; split classical_pipeline.cpp (436→238 LOC) + classical_pipeline_extend.cpp (183 LOC); cmd_align.cpp wires ref_seqs to pipeline; 1454 tests pass; monolith count 0 |
 
 ---
 
