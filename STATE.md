@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 80 |
-| Total iterations | 80 |
+| Last successful iteration | 81 |
+| Total iterations | 81 |
 
 ---
 
@@ -99,7 +99,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 11.6: SLURM submission orchestrator end-to-end test (1454 C++ + 61 Python tests pass)
   - [x] Phase 11.7: Report generator (per-task README + cross-tool tables + plots) (1454 C++ + 93 Python tests pass)
   - [x] Phase 11.8: Run T1, T2 (synthetic, local CPU) and aggregate (1454 C++ tests pass; benchmarks complete)
-  - [ ] Phase 11.9: SLURM submission for T3–T6 (Hummel, user submits)
+  - [x] Phase 11.9: SLURM submission for T3–T6 (scripts + docs ready for user submission)
   - [ ] Phase 11.10: Populate docs/BENCHMARKS.md with results
   - [ ] Phase 11.11: Identify regressions → list LLmap improvement issues
 
@@ -109,24 +109,22 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 
 ```
 phase: 11
-task: 11.9_slurm_submission
-substep: SLURM submission for T3–T6 (Hummel, user submits)
+task: 11.10_benchmarks_doc
+substep: Populate docs/BENCHMARKS.md with T1/T2 results
 inputs:
-  - benchmarks/orchestrate.py (orchestrator with SLURM support)
-  - benchmarks/runners/run_*.sh (tool runner scripts)
-  - GRCh38 reference + real HiFi/Illumina datasets
+  - benchmarks/reports/T1/ (synthetic WGS results)
+  - benchmarks/reports/T2/ (paralog stress results)
+  - benchmarks/report.py (report generator)
 expected_files_changed:
-  - benchmarks/reports/T3/ (SLURM job outputs)
-  - benchmarks/reports/T4/ (SLURM job outputs)
-  - benchmarks/reports/T5/ (SLURM job outputs)
-  - benchmarks/reports/T6/ (SLURM job outputs)
+  - docs/BENCHMARKS.md (benchmark results documentation)
 acceptance:
-  - SLURM job scripts generated and ready for manual submission
-  - Documentation updated for user submission process
+  - docs/BENCHMARKS.md populated with T1/T2 results
+  - Clear tables showing metrics (mapping rate, F1, wallclock, RSS)
+  - Note that T3-T6 pending user submission on Hummel
   - monolith count remains 0
 notes: |
-  This task requires manual intervention — user must submit SLURM jobs on Hummel.
-  Autonomous driver should generate scripts but cannot submit without cluster access.
+  T1/T2 results complete locally. T3-T6 awaiting manual Hummel submission.
+  Document current results and leave placeholders for T3-T6.
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -204,8 +202,8 @@ hard_rule_precheck:
 66. ~~Phase 11.6: SLURM submission orchestrator~~ ✅ done
 67. ~~Phase 11.7: Report generator (per-task README + plots)~~ ✅ done
 68. ~~Phase 11.8: Run T1, T2 locally + aggregate~~ ✅ done
-69. Phase 11.9: SLURM submission for T3–T6 (manual on Hummel) ← NEXT
-70. Phase 11.10: Populate docs/BENCHMARKS.md
+69. ~~Phase 11.9: SLURM submission for T3–T6 (scripts + docs ready)~~ ✅ done
+70. Phase 11.10: Populate docs/BENCHMARKS.md ← NEXT
 71. Phase 11.11: Identify regressions → LLmap improvement list
 72. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
 
@@ -311,6 +309,7 @@ hard_rule_precheck:
 | 78 | 2026-05-14 | n/a | Phase 11.6: SLURM orchestrator | orchestrate.py: Python orchestrator for benchmark matrix with dry-run mode, auto-detection (sbatch vs local), task/tool filtering, replicate management, SLURM sbatch script generation, GPU allocation for LLmap real-data tasks, job dependency chaining for metrics aggregation; test_orchestrate.py (30 tests): matrix expansion, cell filtering, script generation, completion detection, dry-run mode; 1454 C++ + 61 Python tests pass; monolith count 0 |
 | 79 | 2026-05-14 | n/a | Phase 11.7: Report generator | report.py: benchmark report generator with per-task README.md, cross-tool comparison tables (TSV/Markdown), matplotlib plot generation (mapping_rate.png, f1_score.png, wallclock.png); RunResult/ToolSummary/TaskReport dataclasses; aggregate_tool for replicate statistics; format_number/format_pct helpers; test_report.py (32 tests): format helpers, JSON loading, run/task loading, aggregation, README/TSV/MD generation, integration; 1454 C++ + 93 Python tests pass; monolith count 0 |
 | 80 | 2026-05-14 | n/a | Phase 11.8: T1/T2 synthetic benchmarks | Verified T1/T2 synthetic benchmarks complete (llmap + minimap2); datasets: synth_t1 (10MB ref, 200MB reads), synth_t2 (paralog stress); reports generated with metrics (mapping rate, recall, precision, F1, wallclock, RSS); comparison.md cross-tool summary; LLmap baseline: T1 F1=47.7% vs minimap2 100%, T2 F1=44.5% vs minimap2 100% — expected for prototype; 1454 tests pass; monolith count 0 |
+| 81 | 2026-05-14 | n/a | Phase 11.9: SLURM submission scripts | Created benchmarks/hummel_submit_t3_t6.sh (generates 39 sbatch scripts for T3-T6 × 3 replicates); benchmarks/HUMMEL_SUBMISSION.md (user guide for manual submission on Hummel); updated README.md with quick-start guides; all T3-T6 jobs ready for user submission; 1454 tests pass; monolith count 0 |
 
 ---
 

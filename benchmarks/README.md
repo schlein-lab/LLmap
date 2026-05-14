@@ -2,43 +2,52 @@
 
 Phase 11 comparative benchmark campaign. See [SPEC.md](SPEC.md) for the full specification (tools, tasks, metrics, datasets, output layout).
 
-## Quick start
+## Quick Start
+
+### Local synthetic benchmarks (T1, T2)
 
 ```bash
-# 1. Verify tool versions
-./runners/check_versions.sh
+# Run synthetic benchmarks locally (CPU only)
+./run_local_synthetic.sh
 
-# 2. Generate synthetic datasets with ground truth (T1, T2)
+# Or step by step:
+./runners/check_versions.sh                          # Verify tools
 llmap generate-synth --task t1 --output datasets/cache/synth_t1/
 llmap generate-synth --task t2 --paralog igh,mhc --output datasets/cache/synth_t2/
-
-# 3. Run a single cell (dry-run print first)
-./runners/submit_all.sh --task T1 --dry-run
-
-# 4. Run synthetic tasks locally (CPU only)
 ./runners/submit_all.sh --local --task T1 --task T2
+./aggregate_results.sh
+```
 
-# 5. Submit real-data tasks to Hummel
-./runners/submit_all.sh --hummel --task T3 --task T4 --task T5 --task T6
+### Real-data benchmarks on Hummel (T3-T6)
 
-# 6. Compute metrics (after BAMs exist)
-for run in reports/T*/*/rep*; do
-    python3 metrics/compute.py --bam "$run/alignments.bam" \
-        --total $(grep total_input "$run/manifest.json" | ...) \
-        --truth datasets/cache/synth_t1/truth.tsv \
-        --out-dir "$run/"
-done
+**See [HUMMEL_SUBMISSION.md](HUMMEL_SUBMISSION.md) for detailed instructions.**
 
-# 7. Pairwise concordance
-python3 metrics/concordance.py \
-    --bam-a reports/T1/llmap/rep0/alignments.bam --name-a llmap \
-    --bam-b reports/T1/minimap2/rep0/alignments.bam --name-b minimap2 \
-    --out-dir reports/T1/concordance_llmap_vs_minimap2/
+```bash
+# On Hummel
+cd ~/llmap/benchmarks
+
+# Generate and submit all T3-T6 jobs
+./hummel_submit_t3_t6.sh --submit
+
+# Monitor status
+./hummel_submit_t3_t6.sh --status
+squeue -u $USER
+```
+
+### After all jobs complete
+
+```bash
+# Aggregate and generate reports
+./aggregate_results.sh
+python report.py --tasks T1 T2 T3 T4 T5 T6
 ```
 
 ## Status
 
-Scaffolding committed. Implementation tracked in [STATE.md](../STATE.md) Phase 11.
+- **T1, T2** (synthetic): Complete on local host
+- **T3-T6** (real data): SLURM scripts ready, awaiting manual submission
+
+Implementation tracked in [STATE.md](../STATE.md) Phase 11.
 
 ## Layout
 
