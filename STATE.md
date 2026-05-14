@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 82 |
-| Total iterations | 82 |
+| Last successful iteration | 83 |
+| Total iterations | 83 |
 
 ---
 
@@ -90,7 +90,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 10.4: Version string + --version CLI (1413 tests pass)
   - [x] Phase 10.5: `llmap index` CLI command (1423 tests pass)
   - [x] Phase 10.6: `llmap check` CLI + V1.0 readiness check (1433 tests pass)
-- [ ] **Phase 11: Comparative Benchmark Campaign** ◀ ACTIVE
+- [x] **Phase 11: Comparative Benchmark Campaign** ✓
   - [x] Phase 11.1: SPEC + matrix + runner template + dataset/tool registries
   - [x] Phase 11.2: Synthetic-truth dataset generator (1454 tests pass)
   - [x] Phase 11.3: Tool installation manifest + version-verification gate (1454 tests pass)
@@ -101,31 +101,35 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 11.8: Run T1, T2 (synthetic, local CPU) and aggregate (1454 C++ tests pass; benchmarks complete)
   - [x] Phase 11.9: SLURM submission for T3–T6 (scripts + docs ready for user submission)
   - [x] Phase 11.10: Populate docs/BENCHMARKS.md with results (1454 tests pass)
-  - [ ] Phase 11.11: Identify regressions → list LLmap improvement issues
+  - [x] Phase 11.11: Identify regressions → list LLmap improvement issues (1454 tests pass)
 
 ---
 
 ## Current task
 
 ```
-phase: 11
-task: 11.11_identify_regressions
-substep: Analyze T1/T2 results and create GitHub issues for LLmap improvements
+phase: 12
+task: 12.0_post_benchmark_improvements
+substep: Phase 11 complete; awaiting user direction for next phase
 inputs:
-  - docs/BENCHMARKS.md (benchmark results documentation)
-  - benchmarks/reports/T1/README.md
-  - benchmarks/reports/T2/README.md
-expected_files_changed:
-  - docs/IMPROVEMENTS.md (list of identified issues and improvement targets)
+  - docs/IMPROVEMENTS.md (prioritized improvement list)
+expected_files_changed: (depends on user direction)
 acceptance:
-  - Clear list of performance gaps vs competitors
-  - Prioritized improvement targets with rationale
-  - Specific technical recommendations for each gap
-  - monolith count remains 0
+  - Phase 11 complete with benchmark results documented
+  - Improvement roadmap established in docs/IMPROVEMENTS.md
+  - 1454 tests pass, monolith count 0
 notes: |
-  T1/T2 show significant gaps: LLmap F1 ~45% vs minimap2 100%.
-  Key areas: mapping rate (46% vs 92%), wallclock (3.5x slower), precision/recall.
-  Analyze root causes and prioritize fixes for future iterations.
+  Phase 11 complete. T1/T2 benchmarks run, results documented in docs/BENCHMARKS.md.
+  Performance gaps identified: mapping rate (46% vs 92%), recall (38% vs 100%),
+  wallclock (3.5x slower). Root causes documented in docs/IMPROVEMENTS.md:
+  - Chain score thresholds too aggressive
+  - WFA2 extension not wired (CIGAR interpolation only)
+  - Sequential processing (no parallelization)
+
+  Recommended next phases:
+  - Phase A: Critical fixes (chain thresholds + WFA2 extension)
+  - Phase B: Performance (parallelization + zero-alloc)
+  - Phase C: Polish (CLI flags, presets, MAPQ)
 hard_rule_precheck:
   - run: find src -name '*.cpp' -exec wc -l {} \; | awk '$1 > 400' | sort -rn
   - must be empty before commit; split as needed
@@ -204,9 +208,10 @@ hard_rule_precheck:
 67. ~~Phase 11.7: Report generator (per-task README + plots)~~ ✅ done
 68. ~~Phase 11.8: Run T1, T2 locally + aggregate~~ ✅ done
 69. ~~Phase 11.9: SLURM submission for T3–T6 (scripts + docs ready)~~ ✅ done
-70. Phase 11.10: Populate docs/BENCHMARKS.md ← NEXT
-71. Phase 11.11: Identify regressions → LLmap improvement list
-72. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
+70. ~~Phase 11.10: Populate docs/BENCHMARKS.md~~ ✅ done
+71. ~~Phase 11.11: Identify regressions → LLmap improvement list~~ ✅ done
+72. Phase 12: Post-benchmark improvements (see docs/IMPROVEMENTS.md) — awaiting user direction
+73. V1.0 release preparation (GPU validation, docs, tagging) — parallel track
 
 ---
 
@@ -312,6 +317,7 @@ hard_rule_precheck:
 | 80 | 2026-05-14 | n/a | Phase 11.8: T1/T2 synthetic benchmarks | Verified T1/T2 synthetic benchmarks complete (llmap + minimap2); datasets: synth_t1 (10MB ref, 200MB reads), synth_t2 (paralog stress); reports generated with metrics (mapping rate, recall, precision, F1, wallclock, RSS); comparison.md cross-tool summary; LLmap baseline: T1 F1=47.7% vs minimap2 100%, T2 F1=44.5% vs minimap2 100% — expected for prototype; 1454 tests pass; monolith count 0 |
 | 81 | 2026-05-14 | n/a | Phase 11.9: SLURM submission scripts | Created benchmarks/hummel_submit_t3_t6.sh (generates 39 sbatch scripts for T3-T6 × 3 replicates); benchmarks/HUMMEL_SUBMISSION.md (user guide for manual submission on Hummel); updated README.md with quick-start guides; all T3-T6 jobs ready for user submission; 1454 tests pass; monolith count 0 |
 | 82 | 2026-05-14 | n/a | Phase 11.10: docs/BENCHMARKS.md | Created docs/BENCHMARKS.md with T1/T2 benchmark results; executive summary table; detailed per-task metrics (mapping rate, recall, precision, F1, wallclock, RSS); T3-T6 placeholders pending Hummel submission; methodology section with metrics definitions; reproducibility instructions; known limitations analysis; 1454 tests pass; monolith count 0 |
+| 83 | 2026-05-14 | n/a | Phase 11.11: improvement analysis | Created docs/IMPROVEMENTS.md with prioritized improvement targets; identified 5 issues: (1) low mapping rate (P0: chain thresholds too aggressive), (2) low recall (P0: WFA2 extension not wired), (3) slow wallclock (P1: no parallelization), (4) precision gap (P1: no identity filter), (5) memory overhead (P3: lazy allocation); 3-phase improvement plan: Phase A (critical), Phase B (performance), Phase C (polish); 1454 tests pass; monolith count 0; Phase 11 COMPLETE |
 
 ---
 
