@@ -1,0 +1,5 @@
+task	tool	replicates	mapping_rate_mean	mapping_rate_std	recall_mean	recall_std	precision_mean	precision_std	f1_mean	f1_std	wallclock_mean	wallclock_std	peak_rss_mb_mean	peak_rss_mb_std
+T1	llmap	1	0.4619	0.0000	0.3869	0.0000	0.6227	0.0000	0.4772	0.0000	31.86	0.00	305.2	0.0
+T1	minimap2	1	0.9178	0.0000	1.0000	0.0000	1.0000	0.0000	1.0000	0.0000	9.06	0.00	252.1	0.0
+T2	llmap	1	0.4504	0.0000	0.3596	0.0000	0.5848	0.0000	0.4454	0.0000	16.19	0.00	68.8	0.0
+T2	minimap2	1	0.9194	0.0000	1.0000	0.0000	1.0000	0.0000	1.0000	0.0000	5.63	0.00	105.7	0.0

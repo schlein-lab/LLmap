@@ -1,0 +1,9 @@
+{
+  "total_input_reads": 5433,
+  "primary_mapped": 2447,
+  "secondary_count": 0,
+  "supplementary_count": 0,
+  "unmapped": 2548,
+  "mapping_rate": 0.4503957297993742,
+  "drop_rate": 0.5496042702006259
+}

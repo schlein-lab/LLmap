@@ -1,0 +1,23 @@
+{
+  "tool": "minimap2",
+  "tool_version": "2.26-r1175",
+  "task": "T2",
+  "replicate": 0,
+  "seed": 42,
+  "threads": 4,
+  "preset": "map-hifi",
+  "host": "vm-science",
+  "timestamp": "2026-05-14T10:35:25+0200",
+  "command": "minimap2 -t 4 -ax map-hifi /home/christian/llmap-local/benchmarks/datasets/cache/synth_t2/reference.fa /home/christian/llmap-local/benchmarks/datasets/cache/synth_t2/reads.fastq",
+  "inputs": {
+    "ref": {
+      "path": "/home/christian/llmap-local/benchmarks/datasets/cache/synth_t2/reference.fa",
+      "sha256": "c4f02438d6d04d0fd47f8f2b8607b2c550cfe8788e1d95f172f5f4e330f6ec61"
+    },
+    "reads_r1": {
+      "path": "/home/christian/llmap-local/benchmarks/datasets/cache/synth_t2/reads.fastq",
+      "sha256": "9ef81d325254711c31d593628eb0452ce1ce5e2ebe8589a1492e0450c8dfe895"
+    },
+    "reads_r2": null
+  }
+}

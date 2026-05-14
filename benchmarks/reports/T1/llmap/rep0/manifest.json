@@ -1,0 +1,23 @@
+{
+  "tool": "llmap",
+  "tool_version": "llmap 1.0.0   commit:   46670607   built:    2026-05-14T07:06:34Z",
+  "task": "T1",
+  "replicate": 0,
+  "seed": 42,
+  "threads": 4,
+  "preset": "map-hifi",
+  "host": "vm-science",
+  "timestamp": "2026-05-14T10:41:27+0200",
+  "command": "/home/christian/llmap-local/build/src/llmap align -x /home/christian/llmap-local/benchmarks/datasets/cache/synth_t1/reference.fa -r /home/christian/llmap-local/benchmarks/datasets/cache/synth_t1/reads.fastq -o /home/christian/llmap-local/benchmarks/reports/T1/llmap/rep0/alignments_raw.sam --threads 4 --sam --parquet /home/christian/llmap-local/benchmarks/reports/T1/llmap/rep0/probabilities.parquet 1>&2 && cat /home/christian/llmap-local/benchmarks/reports/T1/llmap/rep0/alignments_raw.sam && rm -f /home/christian/llmap-local/benchmarks/reports/T1/llmap/rep0/alignments_raw.sam",
+  "inputs": {
+    "ref": {
+      "path": "/home/christian/llmap-local/benchmarks/datasets/cache/synth_t1/reference.fa",
+      "sha256": "f24ef589346b3ebee0807872eab017f136c7a3d537a11b6c615554fd2beeae07"
+    },
+    "reads_r1": {
+      "path": "/home/christian/llmap-local/benchmarks/datasets/cache/synth_t1/reads.fastq",
+      "sha256": "8ca2589c5306307480caa6ae75c9ee9222c5cb04eded88df85034b5d395390b5"
+    },
+    "reads_r2": null
+  }
+}
