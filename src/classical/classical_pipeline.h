@@ -44,11 +44,11 @@ struct ClassicalPipelineConfig {
     // Filtering
     float min_identity = 0.80f;        // Minimum alignment identity (for precision)
     int32_t min_aligned_bases = 50;    // Minimum aligned bases
-    uint32_t max_alignments = 5;       // Max alignments to report per read
+    uint32_t max_alignments = 2;       // Max alignments to report per read
 
     // Performance
-    uint32_t max_chains_to_extend = 10;   // Max chains to try extending
-    bool report_secondary = true;          // Include secondary alignments
+    uint32_t max_chains_to_extend = 3;    // Max chains to try extending (was 10 — caused 10x slowdown on repetitive loci)
+    bool report_secondary = false;         // Default: primary only (faster, matches minimap2 default)
 
     // Parallelization
     uint32_t num_threads = 0;              // 0 = use hardware_concurrency
