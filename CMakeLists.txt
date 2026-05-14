@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 
 project(LLmap
-    VERSION 0.1.0
+    VERSION 1.0.0
     DESCRIPTION "Lossless. LLM-Augmented. Wave-Particle. Sequence mapper."
     HOMEPAGE_URL "https://losslessmap.com"
     LANGUAGES CXX
