@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 56 |
-| Total iterations | 56 |
+| Last successful iteration | 57 |
+| Total iterations | 57 |
 
 ---
 
@@ -85,6 +85,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete (1249 tests pass)
 - [ ] **Phase 10: Production Readiness**
   - [x] Phase 10.1: Structured logging framework (1277 tests pass)
+  - [x] Phase 10.2: Error handling framework (1336 tests pass)
 
 ---
 
@@ -93,23 +94,27 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 ```
 phase: 10
 task: production_readiness
-substep: 2/6 — Structured logging implemented
-last_action: Phase 10.1 — Structured logging framework
-  - Added core/logging.{h,cpp}: thread-safe, zero-allocation hot path logger
-  - LogLevel enum (Trace/Debug/Info/Warn/Error/Fatal/Off)
-  - LogFormat enum (Text/Json) for structured output
-  - LogRecord struct with timestamp, thread_id, source_location
-  - Logger singleton with configurable sinks, file output
-  - LLMAP_LOG_* macros for convenience
-  - Environment variable config (LLMAP_LOG_LEVEL, LLMAP_LOG_FORMAT)
-  - 28 new tests; 1277 total tests pass
+substep: 3/6 — Error handling framework implemented
+last_action: Phase 10.2 — Error handling framework
+  - Added core/error.{h,cpp}: Result<T, E> type for explicit error handling
+  - ErrorCode enum with categorized error codes (IO, Parse, Config, Validate, Resource, System, Algo, External)
+  - LLmapError class with code, message, context, source location capture
+  - Error category predicates (IsIoError, IsParseError, etc.)
+  - Result<T, E> template with ok(), is_err(), value(), error(), value_or()
+  - Result<void, E> specialization for operations with no return value
+  - Monadic operations: map(), and_then(), or_else(), inspect(), inspect_err()
+  - LLMAP_TRY macro for early return on error
+  - ErrorList for aggregating multiple errors
+  - Factory functions: IoError, ParseError, ConfigError, ValidationError
+  - MakeOk/MakeErr helper functions
+  - 59 new tests; 1336 total tests pass
   - Monolith count: 0
-next_action: Phase 10.2 — Error handling framework
-  - Add Result<T, E> type for explicit error handling
-  - Define LLmapError hierarchy (IoError, ParseError, ConfigError, etc.)
-  - Replace throw statements in hot paths with Result returns
-  - Add error context propagation
-acceptance: Result type + error hierarchy implemented with tests
+next_action: Phase 10.3 — Configuration file support (TOML/YAML config)
+  - Add TOML config file parsing
+  - LLmapConfig struct for global settings
+  - Config file search (./llmap.toml, ~/.config/llmap/config.toml)
+  - CLI flag overrides
+acceptance: Config file support with tests
 ```
 
 ---
@@ -171,7 +176,8 @@ acceptance: Result type + error hierarchy implemented with tests
 53. ~~Phase 9.7: `llmap sc-qc-report` CLI~~ ✅ done
 54. ~~Phase 9.8: cmd_sc_qc_report refactor + Phase 9 complete~~ ✅ done
 55. ~~Phase 10.1: Structured logging framework~~ ✅ done
-56. Phase 10.2: Error handling framework ← NEXT
+56. ~~Phase 10.2: Error handling framework~~ ✅ done
+57. Phase 10.3: Configuration file support ← NEXT
 57. Phase 10.3: Configuration file support (TOML/YAML config)
 58. Phase 10.4: Version string + --version CLI completeness
 59. Phase 10.5: `llmap index` CLI command stub
@@ -255,6 +261,7 @@ acceptance: Result type + error hierarchy implemented with tests
 | 54 | 2026-05-14 | n/a | Phase 9.7 `llmap sc-qc-report` CLI | cmd_sc_qc_report.cpp wired in llmap_main.cpp + commands.h; --qc-json/--qc-tsv/--filtered-matrix outputs; --min-assignment-rate/--min-confidence/--min-reads-per-cell/--max-entropy/--min-detection-rate thresholds; --cb-tag/--cb-pattern/--cb-file barcode extraction; fixed test fixture race condition with unique per-test directories; 13 new CLI tests; 1249 tests pass; monolith count 0→0 |
 | 55 | 2026-05-14 | n/a | Phase 9.8 cmd_sc_qc_report refactor + Phase 9 COMPLETE | split cmd_sc_qc_report.cpp (427 LOC) → 3 files: cmd_sc_qc_report.cpp (279 LOC), cmd_sc_qc_report_args.cpp (142 LOC), cmd_sc_qc_report_internal.h (45 LOC); monolith count 1→0; 1249 tests pass; Phase 9 complete with all single-cell features |
 | 56 | 2026-05-14 | n/a | Phase 10.1 structured logging framework | core/logging.{h,cpp}: Logger singleton with thread-safe logging; LogLevel (Trace/Debug/Info/Warn/Error/Fatal/Off); LogFormat (Text/Json); LogRecord with timestamp, thread_id, source_location; configurable sinks; LLMAP_LOG_* macros; env config (LLMAP_LOG_LEVEL, LLMAP_LOG_FORMAT); test_logging.cpp (28 tests); 1277 tests pass; monolith count 0→0; Phase 10 started |
+| 57 | 2026-05-14 | n/a | Phase 10.2 error handling framework | core/error.{h,cpp}: Result<T,E> type for explicit error handling; ErrorCode enum with IO/Parse/Config/Validate/Resource/System/Algo/External categories; LLmapError class (code, message, context, source_location); category predicates; Result<void,E> specialization; monadic operations (map, and_then, or_else, inspect); LLMAP_TRY macro; ErrorList aggregator; factory functions (IoError, ParseError, ConfigError, ValidationError); MakeOk/MakeErr helpers; test_error.cpp (59 tests); 1336 tests pass; monolith count 0→0 |
 
 ---
 
