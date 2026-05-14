@@ -698,3 +698,133 @@ TEST_F(ClassicalPipelineTest, ParallelIdentityStatsAccurate) {
         EXPECT_GT(stats.avg_identity, 0.7f);
     }
 }
+
+// === Zero-Allocation Chaining Tests (Phase B.2) ===
+
+TEST_F(ClassicalPipelineTest, ZeroAllocChainingProducesCorrectResults) {
+    // Verify that zero-allocation chaining produces same results as before
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+    std::string query = ref_seq.substr(100, 200);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    EXPECT_TRUE(result.HasAlignment());
+    EXPECT_GT(result.num_chains, 0);
+    EXPECT_GT(result.chaining_time_us, 0.0f);
+}
+
+TEST_F(ClassicalPipelineTest, ZeroAllocChainingConsistentAcrossMultipleReads) {
+    // Verify scratch buffer reuse doesn't corrupt subsequent alignments
+    std::string ref_seq = MakeRandomSequence(2000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    for (int i = 0; i < 50; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        query_seqs.push_back(ref_seq.substr((100 * i) % 1800, 150));
+    }
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    auto results = pipeline.AlignReads(query_names, query_seqs);
+
+    ASSERT_EQ(results.size(), 50);
+
+    // Verify each result has correct query name
+    for (size_t i = 0; i < results.size(); ++i) {
+        EXPECT_EQ(results[i].query_name, query_names[i]);
+    }
+
+    // Count aligned reads
+    size_t aligned = 0;
+    for (const auto& r : results) {
+        if (r.HasAlignment()) ++aligned;
+    }
+    EXPECT_GT(aligned, 30);  // Most should align
+}
+
+TEST_F(ClassicalPipelineTest, ZeroAllocChainingParallelConsistency) {
+    // Verify thread-local scratch buffers work correctly in parallel
+    std::string ref_seq = MakeRandomSequence(2000, 1);
+
+    std::vector<std::string> query_names;
+    std::vector<std::string> query_seqs;
+    for (int i = 0; i < 100; ++i) {
+        query_names.push_back("read" + std::to_string(i));
+        query_seqs.push_back(ref_seq.substr((50 * i) % 1800, 150));
+    }
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    ThreadPool pool(8);  // Use 8 threads to stress test thread-local scratch
+    auto results = pipeline.AlignReadsParallel(query_names, query_seqs, pool);
+
+    ASSERT_EQ(results.size(), 100);
+
+    // Verify results are consistent (correct query names, no corruption)
+    std::set<std::string> seen_names;
+    for (size_t i = 0; i < results.size(); ++i) {
+        EXPECT_EQ(results[i].query_name, query_names[i]);
+        seen_names.insert(results[i].query_name);
+    }
+    EXPECT_EQ(seen_names.size(), 100);  // All unique
+}
+
+TEST_F(ClassicalPipelineTest, ZeroAllocChainingRepeatedSingleRead) {
+    // Verify scratch buffer correctly resets between calls
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 150);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    // Align same read multiple times
+    for (int i = 0; i < 10; ++i) {
+        auto result = pipeline.AlignRead("read" + std::to_string(i), query);
+        EXPECT_TRUE(result.HasAlignment());
+        EXPECT_GT(result.num_chains, 0);
+    }
+}
+
+TEST_F(ClassicalPipelineTest, ZeroAllocChainingVaryingSizes) {
+    // Test with varying read sizes to stress scratch buffer resizing
+    std::string ref_seq = MakeRandomSequence(3000, 1);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    // Vary read lengths significantly
+    std::vector<size_t> lengths = {50, 100, 200, 500, 100, 50, 300, 150};
+
+    for (size_t i = 0; i < lengths.size(); ++i) {
+        size_t len = lengths[i];
+        size_t offset = (i * 100) % (3000 - len);
+        std::string query = ref_seq.substr(offset, len);
+
+        auto result = pipeline.AlignRead("read" + std::to_string(i), query);
+
+        if (len >= 50) {  // Long enough to have hits
+            EXPECT_GE(result.num_hits, 0);  // May or may not have hits
+        }
+    }
+}

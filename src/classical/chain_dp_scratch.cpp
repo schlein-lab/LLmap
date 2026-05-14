@@ -114,7 +114,10 @@ ChainResult ExtractChainsFromAnchorsWithScratch(
 
     scratch.dp_score.resize(n);
     scratch.dp_pred.resize(n);
-    scratch.used.resize_zero(n);
+    scratch.used.resize(n);
+    // Must explicitly clear all used flags since resize() doesn't initialize
+    // and resize_zero() only zeros NEW elements, not reused ones
+    std::fill(scratch.used.begin(), scratch.used.end(), false);
 
     scratch.keyed_indices.clear();
     scratch.keyed_indices.reserve(n);
