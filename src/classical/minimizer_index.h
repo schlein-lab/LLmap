@@ -27,7 +27,10 @@ struct MinimizerConfig {
     uint64_t seed = 0x517cc1b727220a95ULL;
 
     // Index construction
-    size_t max_occ = 500;  // Skip minimizers occurring > max_occ times
+    size_t max_occ = 5000;  // Skip minimizers occurring > max_occ times.
+                            // Raised from 500: paralog-rich loci (IGH, MHC)
+                            // have minimizers with much higher occurrences;
+                            // 500 was filtering them all out (T6 mapped <2%).
 
     // Memory settings
     size_t bucket_bits = 14;  // Hash table size = 2^bucket_bits
