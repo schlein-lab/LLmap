@@ -4,6 +4,7 @@
 #include <set>
 
 #include "classical/classical_pipeline.h"
+#include "classical/classical_pipeline_internal.h"
 #include "core/thread_pool.h"
 
 using namespace llmap::classical;
@@ -987,4 +988,234 @@ TEST_F(ClassicalPipelineTest, PerReadFilterStatsCorrect) {
     EXPECT_GE(result.filtered_by_identity, 0);
     EXPECT_GE(result.filtered_by_length, 0);
     EXPECT_GE(result.chains_extended, 0);
+}
+
+// === MAPQ Calculation Tests (Phase C.3) ===
+
+TEST(MapqCalculationTest, UniqueHighScoreHighIdentityGetsMapq60) {
+    // High score, high identity, no secondaries = maximum confidence
+    uint32_t mapq = ComputeMapq(
+        200,    // primary_score: good score
+        0,      // secondary_score: no secondary
+        0.95f,  // identity: high
+        0,      // num_secondaries: none
+        150);   // query_len
+
+    EXPECT_EQ(mapq, 60);
+}
+
+TEST(MapqCalculationTest, UniqueModerateScoreGetsHighMapq) {
+    // Moderate score, decent identity, no secondaries
+    uint32_t mapq = ComputeMapq(
+        100,    // primary_score
+        0,      // secondary_score
+        0.85f,  // identity
+        0,      // num_secondaries
+        150);   // query_len
+
+    EXPECT_GE(mapq, 40);
+    EXPECT_LE(mapq, 60);
+}
+
+TEST(MapqCalculationTest, MultiMappingWithScoreGapGetsReducedMapq) {
+    // Primary better than secondary by a margin
+    uint32_t mapq = ComputeMapq(
+        200,    // primary_score
+        150,    // secondary_score: 50 point gap
+        0.90f,  // identity
+        1,      // num_secondaries
+        150);   // query_len
+
+    // Should have reduced MAPQ due to secondary
+    EXPECT_GT(mapq, 0);
+    EXPECT_LT(mapq, 60);
+}
+
+TEST(MapqCalculationTest, MultiMappingWithNoScoreGapGetsMapq0) {
+    // Primary and secondary have same score = ambiguous
+    uint32_t mapq = ComputeMapq(
+        200,    // primary_score
+        200,    // secondary_score: same score
+        0.90f,  // identity
+        1,      // num_secondaries
+        150);   // query_len
+
+    EXPECT_EQ(mapq, 0);
+}
+
+TEST(MapqCalculationTest, LowIdentityGetsMapq0) {
+    // Even unique alignment with low identity = uncertain
+    uint32_t mapq = ComputeMapq(
+        200,    // primary_score
+        0,      // secondary_score
+        0.40f,  // identity: very low
+        0,      // num_secondaries
+        150);   // query_len
+
+    EXPECT_EQ(mapq, 0);
+}
+
+TEST(MapqCalculationTest, ZeroScoreGetsMapq0) {
+    uint32_t mapq = ComputeMapq(
+        0,      // primary_score: zero
+        0,      // secondary_score
+        0.90f,  // identity
+        0,      // num_secondaries
+        150);   // query_len
+
+    EXPECT_EQ(mapq, 0);
+}
+
+TEST(MapqCalculationTest, NegativeScoreGetsMapq0) {
+    uint32_t mapq = ComputeMapq(
+        -50,    // primary_score: negative
+        0,      // secondary_score
+        0.90f,  // identity
+        0,      // num_secondaries
+        150);   // query_len
+
+    EXPECT_EQ(mapq, 0);
+}
+
+TEST(MapqCalculationTest, ManySecondariesReduceMapq) {
+    // Many secondaries should reduce confidence more
+    uint32_t mapq_one = ComputeMapq(
+        200, 100, 0.90f, 1, 150);
+
+    uint32_t mapq_many = ComputeMapq(
+        200, 100, 0.90f, 10, 150);
+
+    // More secondaries = lower MAPQ
+    EXPECT_LT(mapq_many, mapq_one);
+}
+
+TEST(MapqCalculationTest, LargeScoreGapGivesHighMapq) {
+    // Large gap between primary and secondary = confident
+    uint32_t mapq = ComputeMapq(
+        300,    // primary_score
+        50,     // secondary_score: large gap (250)
+        0.95f,  // identity
+        1,      // num_secondaries
+        150);   // query_len
+
+    // With score_diff=250, p_secondary=exp(-250/30)≈0.00024, mapq≈36
+    // Reasonably high for multi-mapping case - better than ambiguous
+    EXPECT_GE(mapq, 30);  // Should be meaningfully above zero
+    EXPECT_LE(mapq, 60);
+}
+
+TEST(MapqCalculationTest, MapqInValidRange) {
+    // Test various combinations stay in [0, 60]
+    for (int32_t score = 0; score <= 500; score += 50) {
+        for (int32_t sec_score = 0; sec_score <= score; sec_score += 25) {
+            for (float identity = 0.5f; identity <= 1.0f; identity += 0.1f) {
+                for (uint32_t num_sec = 0; num_sec <= 5; ++num_sec) {
+                    uint32_t mapq = ComputeMapq(
+                        score, sec_score, identity, num_sec, 150);
+                    EXPECT_GE(mapq, 0);
+                    EXPECT_LE(mapq, 60);
+                }
+            }
+        }
+    }
+}
+
+TEST_F(ClassicalPipelineTest, MapqUniqueAlignmentHighConfidence) {
+    // Test that unique alignment to exact match gets high MAPQ
+    std::string ref_seq = MakeRandomSequence(500, 1);
+    std::string query = ref_seq.substr(100, 180);  // Exact match
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> refs = {ref_seq};
+    pipeline.SetReferenceSequences(refs);
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    ASSERT_TRUE(result.HasAlignment());
+    const auto& aln = result.alignments[0];
+
+    // Unique exact match should have high MAPQ
+    EXPECT_GE(aln.mapq, 40);
+}
+
+TEST_F(ClassicalPipelineTest, MapqSecondaryAlwaysZero) {
+    // Secondary alignments should always have MAPQ=0
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+    // Duplicate region to create secondaries
+    std::string repeated = ref_seq;
+    repeated.replace(500, 200, ref_seq.substr(100, 200));
+    std::string query = ref_seq.substr(100, 150);
+
+    config.report_secondary = true;
+    config.max_alignments = 5;
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", repeated)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    // Check all secondary alignments have MAPQ=0
+    for (const auto& aln : result.alignments) {
+        if (!aln.is_primary) {
+            EXPECT_EQ(aln.mapq, 0);
+        }
+    }
+}
+
+TEST_F(ClassicalPipelineTest, MapqMultiMappingReducesConfidence) {
+    // When there are multiple good alignments, MAPQ should be lower
+    std::string ref_seq = MakeRandomSequence(1000, 1);
+    // Create exact duplicate to force multi-mapping
+    std::string ref_with_dup = ref_seq + ref_seq.substr(100, 200);
+    std::string query = ref_seq.substr(100, 150);
+
+    config.report_secondary = true;
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_with_dup)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    std::vector<std::string> refs = {ref_with_dup};
+    pipeline.SetReferenceSequences(refs);
+
+    auto result = pipeline.AlignRead("read1", query);
+
+    if (result.alignments.size() > 1) {
+        // Primary with secondaries should have reduced MAPQ
+        EXPECT_LT(result.alignments[0].mapq, 60);
+    }
+}
+
+TEST_F(ClassicalPipelineTest, MapqIsInValidRange) {
+    // Verify MAPQ is always in [0, 60] for various inputs
+    std::string ref_seq = MakeRandomSequence(500, 1);
+
+    ClassicalPipeline pipeline(config);
+    auto index = MinimizerIndex::Builder(config.minimizer_config)
+        .AddSequence("ref1", ref_seq)
+        .Build();
+    pipeline.SetIndex(std::move(index));
+
+    // Test with various query types
+    std::vector<std::string> queries = {
+        ref_seq.substr(100, 150),           // Exact match
+        MakeRandomSequence(150, 99),        // Unrelated
+        ref_seq.substr(0, 50),              // Short
+    };
+
+    for (const auto& query : queries) {
+        auto result = pipeline.AlignRead("read", query);
+        for (const auto& aln : result.alignments) {
+            EXPECT_GE(aln.mapq, 0);
+            EXPECT_LE(aln.mapq, 60);
+        }
+    }
 }
