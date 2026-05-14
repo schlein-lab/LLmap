@@ -243,9 +243,10 @@ bool BamWriter::Write(const AlignmentRecord& record,
         // CIGAR
         std::string cigar_str = hit.cigar.ops.empty() ? "*" : hit.cigar.ops;
 
-        // Primary alignment
+        // Primary alignment — flag 0x10 (16) if reverse strand
+        std::uint16_t flag = hit.is_reverse ? 0x10 : 0;
         impl_->file << record.read_id << "\t"
-                    << 0 << "\t"  // No flags for primary mapped
+                    << flag << "\t"
                     << rname << "\t"
                     << (hit.start + 1) << "\t"  // 1-based
                     << static_cast<int>(mapq) << "\t"
