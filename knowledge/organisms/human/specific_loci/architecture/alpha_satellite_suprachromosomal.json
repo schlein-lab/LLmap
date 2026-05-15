@@ -1,0 +1,27 @@
+{
+  "name": "alpha_satellite_suprachromosomal_families_I_to_V",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Architectural archetype: human alpha-satellite suprachromosomal families. Alpha-satellite monomers fall into five suprachromosomal families (SFs 1-5) based on monomer sequence type (J1, J2 for SF1; W1-W5 for SF2; M1, M2 for SF3; D1, D2 for SF4; R1, R2 for SF5). Active centromeric HORs typically belong to SF1-3, while flanking monomeric/diverged alpha-sat is enriched for SF4-5.",
+  "coordinates": {"grch38": {"chr": "architectural_archetype", "start": 0, "end": 0}},
+  "size_bp": 0,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "many",
+    "homology_percent": 85.0,
+    "internal_structure": "Five monomer-type families (SF1-SF5) defined by sequence (Alexandrov 1988); each chromosome's active centromere uses a specific HOR built from 1-2 SFs; pericentric arms contain older, more diverged SF4-5 monomers; layered organisation reflects sequential centromere evolution."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "sources": [
+    "PMID:3209091",
+    "doi:10.1126/science.abl4178"
+  ],
+  "confidence": 0.9
+}

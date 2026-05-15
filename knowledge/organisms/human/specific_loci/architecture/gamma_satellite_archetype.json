@@ -1,0 +1,27 @@
+{
+  "name": "gamma_satellite_architecture",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Architectural archetype: human gamma-satellite. ~220 bp GC-rich tandem repeat units found in pericentromeric regions of chromosomes 8 (especially), X, Y, and acrocentric short arms. Smaller arrays than alpha-satellite; identified in T2T-CHM13 with fully resolved arrays.",
+  "coordinates": {"grch38": {"chr": "architectural_archetype", "start": 0, "end": 0}},
+  "size_bp": 0,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "many",
+    "homology_percent": 95.0,
+    "internal_structure": "~220 bp GC-rich (~55-60% GC) tandem unit; arrays of 10s to 100s of kb in pericentric regions; most prominent on chr8, chrX, chrY; smaller arrays on acrocentric short arms."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abl4178"
+  ],
+  "confidence": 0.85
+}
