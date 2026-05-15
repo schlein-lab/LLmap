@@ -1,0 +1,29 @@
+{
+  "name": "18q21_2_TCF4_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18q21.2 SD modules flanking TCF4 (Pitt-Hopkins gene). Direct-orientation duplicons of small size mediate rare intragenic TCF4 microdeletions in Pitt-Hopkins-like patients.",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 55000000, "end": 56000000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Intronic SD blocks of ~10-30 kb at ~96% identity within TCF4 introns 2 and 4 mediating intragenic deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Pitt-Hopkins syndrome (TCF4)"
+  ],
+  "sources": [
+    "doi:10.1136/jmedgenet-2014-102346",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}
