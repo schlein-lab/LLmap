@@ -1,0 +1,29 @@
+{
+  "name": "palindrome_perfect_200bp",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "palindrome",
+  "description": "Perfect DNA palindrome of 200 bp (sequence equals its reverse complement). Cruciform-prone in vivo. Stresses strand-aware mapping: forward and reverse reads collapse onto identical k-mer sets.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_054",
+      "start": 0,
+      "end": 200
+    }
+  },
+  "size_bp": 200,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.75,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "cruciform_prone": true,
+    "strand_collapse": true
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

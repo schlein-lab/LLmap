@@ -1,0 +1,27 @@
+{
+  "name": "Or_cluster_chr2L_42B_Or42a_d",
+  "taxonomy_id": "paralog_family",
+  "description": "Drosophila chemoreceptor cluster: Or42a/b/c/d tandem cluster at the chr2L heterochromatin boundary. Drosophila uses three independent 7TM-like chemoreceptor families (Or, Gr, Ir), each with multiple tandem sub-clusters.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr2L",
+      "start": 23400000,
+      "end": 23513712
+    }
+  },
+  "size_bp": 113712,
+  "expected_copy_count": "2-6 paralogs per tandem cluster",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1016/S0092-8674(00)80582-6",
+    "doi:10.1016/j.cell.2008.12.001"
+  ],
+  "confidence": 0.85
+}

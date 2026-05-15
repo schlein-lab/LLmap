@@ -1,0 +1,43 @@
+{
+  "name": "cyp33D_chrV_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "cyp-33D subfamily trio on chromosome V near the cyp-33C cluster.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "V",
+      "start": 11250000,
+      "end": 11320000
+    }
+  },
+  "size_bp": 70000,
+  "expected_paralogs": [
+    {
+      "name": "cyp-33D1",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "cyp-33D2",
+      "approx_offset_in_locus": 15000
+    },
+    {
+      "name": "cyp-33D3",
+      "approx_offset_in_locus": 30000
+    }
+  ],
+  "expected_copy_count": "3 cyp-33D paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-9-185",
+    "WormBase WS285 cyp gene family",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.8
+}

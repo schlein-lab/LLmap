@@ -1,0 +1,29 @@
+{
+  "name": "WNV_envelope_e",
+  "taxonomy_id": "custom",
+  "description": "WNV E glycoprotein. Domain III neutralisation target.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_009942.1": {
+      "start": 974,
+      "end": 2476
+    }
+  },
+  "size_bp": 1503,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "West_Nile_disease"
+  ],
+  "sources": [
+    "NC_009942.1",
+    "doi:10.1016/j.chom.2008.10.007"
+  ],
+  "confidence": 0.96
+}

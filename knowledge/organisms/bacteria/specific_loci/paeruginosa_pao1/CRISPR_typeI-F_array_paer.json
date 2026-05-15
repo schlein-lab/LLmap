@@ -1,0 +1,27 @@
+{
+  "name": "paeruginosa_pao1_CRISPR_typeI-F_array_paer",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Type I-F CRISPR-Cas system in P. aeruginosa PAO1. ~32 bp repeats. Spacer content varies between PA isolates; used in PA strain typing.",
+  "coordinates": {
+    "GenBank_NC_002516.2": {
+      "chr": "NC_002516.2",
+      "start": 3925000,
+      "end": 3935000
+    }
+  },
+  "size_bp": 10000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1093/nar/gks216"
+  ],
+  "confidence": 0.9,
+  "crispr_type": "I-F"
+}

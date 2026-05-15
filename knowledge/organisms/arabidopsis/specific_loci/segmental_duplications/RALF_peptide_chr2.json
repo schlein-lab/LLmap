@@ -1,0 +1,27 @@
+{
+  "name": "RALF_peptide_chr2",
+  "taxonomy_id": "paralog_family",
+  "description": "RALF peptide family chr2 tandem.",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr2",
+      "start": 12100000,
+      "end": 12130000
+    }
+  },
+  "size_bp": 30000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-8-218"
+  ],
+  "confidence": 0.7,
+  "repeat_class": "CRP_tandem"
+}

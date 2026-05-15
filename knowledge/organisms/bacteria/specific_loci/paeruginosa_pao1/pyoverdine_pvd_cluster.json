@@ -1,0 +1,27 @@
+{
+  "name": "paeruginosa_pao1_pyoverdine_pvd_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Pyoverdine biosynthesis cluster (pvdA-pvdN, pvdSI, pvdRT) \u2014 ~80 kb NRPS-based siderophore cluster. NRPS modules contain repeating adenylation/condensation domains causing intra-cluster paralogy.",
+  "coordinates": {
+    "GenBank_NC_002516.2": {
+      "chr": "NC_002516.2",
+      "start": 2620000,
+      "end": 2700000
+    }
+  },
+  "size_bp": 80000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1146/annurev.micro.61.080706.093316"
+  ],
+  "confidence": 0.9,
+  "cluster_type": "NRPS"
+}

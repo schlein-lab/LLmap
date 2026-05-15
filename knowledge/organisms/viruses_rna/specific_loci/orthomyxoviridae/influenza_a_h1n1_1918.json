@@ -1,0 +1,30 @@
+{
+  "name": "Influenza_A/H1N1_1918_Spanish_flu",
+  "taxonomy_id": "paralog_family",
+  "description": "1918 pandemic strain. Reconstructed from autopsy material. Avian-origin reassortant per Taubenberger.",
+  "virus_type": "ssRNA(-)",
+  "segmented": true,
+  "coordinates": {
+    "multi_segment": {
+      "start": 1,
+      "end": 13588
+    }
+  },
+  "size_bp": 13588,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza"
+  ],
+  "sources": [
+    "WHO/CDC influenza surveillance",
+    "doi:10.1126/science.1176062"
+  ],
+  "confidence": 0.95
+}

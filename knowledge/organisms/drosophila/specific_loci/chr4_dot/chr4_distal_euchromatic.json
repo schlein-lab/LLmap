@@ -1,0 +1,26 @@
+{
+  "name": "chr4_distal_euchromatic",
+  "taxonomy_id": "unique_single_copy",
+  "description": "chr4 distal 'euchromatic' band (101F-102F cytologically). Despite being decorated by HP1 and HP2 like classical heterochromatin, contains ~80 expressed protein-coding genes (Eyeless, ci, etc.) in a domain heavily marked by H3K9me3. Recombination is essentially zero. Painting of fourth (POF) protein binds chr4-specifically and upregulates these genes.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr4",
+      "start": 350000,
+      "end": 1300000
+    }
+  },
+  "size_bp": 950000,
+  "expected_copy_count": "1 per haplotype",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.1,
+    "max_occ": 8000,
+    "report_multi_position": false
+  },
+  "sources": [
+    "doi:10.1038/nrg2008",
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1186/1471-2164-9-S1-S22"
+  ],
+  "confidence": 0.9
+}

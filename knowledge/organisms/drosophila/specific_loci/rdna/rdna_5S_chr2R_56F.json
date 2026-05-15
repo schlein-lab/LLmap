@@ -1,0 +1,26 @@
+{
+  "name": "rdna_5S_chr2R_56F",
+  "taxonomy_id": "tandem_repeat",
+  "description": "5S rDNA tandem array on chr2R at cytological band 56F. Approximately 150 tandem copies of the 380 bp 5S unit (120 bp gene + 260 bp spacer). Single cluster (unlike the X/Y-linked 45S NOR pair).",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr2R",
+      "start": 19700000,
+      "end": 19800000
+    }
+  },
+  "size_bp": 100000,
+  "expected_copy_count": "~150 tandem 5S rDNA units",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 30000,
+    "lambda_scale": 2.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:108664",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.8
+}

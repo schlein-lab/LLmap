@@ -1,0 +1,28 @@
+{
+  "name": "SARS-CoV-1_spike_rbd",
+  "taxonomy_id": "custom",
+  "description": "SARS-CoV-1 RBD (aa 306-527). ~73% aa identity to SARS-CoV-2 RBD.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004718.3": {
+      "start": 22310,
+      "end": 22977
+    }
+  },
+  "size_bp": 668,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 6000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SARS"
+  ],
+  "sources": [
+    "NC_004718.3"
+  ],
+  "confidence": 0.95
+}

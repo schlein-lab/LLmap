@@ -1,0 +1,27 @@
+{
+  "name": "RT1_class1_CNV_chr20",
+  "taxonomy_id": "paralog_family",
+  "description": "RT1 class I CNV on chr20. Number of classical Ia genes differs by 2-3\u00d7 across haplotypes (BN, DA, LEW). Recurrent CNV documented in rat strain comparisons; multi-copy mapping requires PSV awareness.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr20",
+      "start": 1500000,
+      "end": 2400000
+    }
+  },
+  "size_bp": 900000,
+  "expected_copy_count": "2-20 copies depending on strain/haplotype",
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "RGD CNV database",
+    "Ensembl rat"
+  ],
+  "confidence": 0.75
+}

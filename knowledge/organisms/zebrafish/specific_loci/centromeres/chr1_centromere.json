@@ -1,0 +1,28 @@
+{
+  "name": "chr1_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 1 centromere/pericentromere on the zebrafish GRCz11 reference. Zebrafish centromeres are built from the SAT-1 (~195 bp BRSATI) tandem repeat plus minor SAT-2 (~191 bp) and KS (KRT-like) repeats. Higher-order organisation is poorly resolved in GRCz11 (centromeric gaps remain in most chromosomes). Phillips & Reed 1996 cytogenetic data place the centromere here.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr1",
+      "start": 27500000,
+      "end": 28500000
+    }
+  },
+  "size_bp": 1000000,
+  "expected_copy_count": "thousands of 195 bp BRSATI monomers per centromere; total ~5-10 Mb across all 25 centromeres",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "PMID:8978791",
+    "doi:10.1186/1471-2164-8-105"
+  ],
+  "confidence": 0.55
+}

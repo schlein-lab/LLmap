@@ -1,0 +1,30 @@
+{
+  "name": "EBV_EBER1_EBER2_ncRNA",
+  "taxonomy_id": "custom",
+  "custom_subtype": "non_coding_rna",
+  "virus_type": "dsDNA",
+  "description": "EBV-encoded small RNAs EBER1 (167 nt) and EBER2 (172 nt): RNA polymerase III transcripts expressed at ~10^6 copies per latent cell; the most abundant viral RNAs in EBV latency and the canonical EBV-in-situ hybridization target. Form stable secondary structures resembling adenovirus VA RNAs; bind La autoantigen and L22 ribosomal protein. Both EBERs are essential for B-cell transformation efficiency. Sequence is highly conserved across EBV strains \u2014 EBER RT-qPCR is the workhorse for EBV viral load.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_007605.1": {
+      "chr": "NC_007605.1",
+      "start": 6700,
+      "end": 7150
+    }
+  },
+  "size_bp": 450,
+  "expected_copy_count": "1 per genome; ~10^6 mature transcript copies per latent cell",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 1.3,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "hairpin_structure": true
+  },
+  "sources": [
+    "doi:10.1038/313812a0",
+    "doi:10.1093/emboj/17.20.6075"
+  ],
+  "confidence": 0.94
+}

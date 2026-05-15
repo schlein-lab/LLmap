@@ -1,0 +1,27 @@
+{
+  "name": "kpneumo_hs11286_capsule_K_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "K-antigen capsular polysaccharide biosynthesis locus (cps/wzi-wzc-wzy-wzx). HS11286 is serotype K47 (KL47). The K-locus is the most variable region of the K. pneumoniae chromosome with >130 known serotypes \u2014 cross-strain reads are frequently multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_016845.1": {
+      "chr": "NC_016845.1",
+      "start": 2090000,
+      "end": 2125000
+    }
+  },
+  "size_bp": 35000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1099/mgen.0.000102"
+  ],
+  "confidence": 0.9,
+  "K_type": "KL47"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "stellate_cluster_chrX_12E",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Stellate gene cluster on X at 12E. Tandem array of ~30-150 nearly identical Stellate genes encoding a beta-subunit-of-CK2-like protein. Normally silenced by Su(Ste) piRNAs from chrY. In cry/cry+ males the silencing fails and Stellate crystals form. One of the cleanest examples of a piRNA-targeted satellite-protein-coding hybrid.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 14300000,
+      "end": 14700000
+    }
+  },
+  "size_bp": 400000,
+  "expected_copy_count": "~30-150 tandem Stellate copies (highly variable across strains)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 30000,
+    "lambda_scale": 2.0,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PMID:8348153",
+    "doi:10.1126/science.1129333"
+  ],
+  "confidence": 0.85
+}

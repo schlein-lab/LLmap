@@ -1,0 +1,28 @@
+{
+  "name": "sex_determining_region_chr4",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish segmental duplication / special region: putative sex-determining region near distal chr4q in wild-derived zebrafish (Wilson 2014); AB lab strain has lost the locus. These regions are undercollapsed in GRCz11 and frequently produce ambiguous read placements; reads here should always be reported multi-position.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr4",
+      "start": 70000000,
+      "end": 78093715
+    }
+  },
+  "size_bp": 8093715,
+  "expected_copy_count": "variable (population CNV)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1371/journal.pgen.1004174"
+  ],
+  "confidence": 0.65
+}

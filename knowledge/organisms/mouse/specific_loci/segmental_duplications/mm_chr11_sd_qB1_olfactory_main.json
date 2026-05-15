@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr11_sd_qB1_olfactory_main",
+  "taxonomy_id": "paralog_family",
+  "description": "Segmental duplication block on chr11 (qB1_olfactory_main). Mean identity 96.7% across 55 kb tiles. Olfr large cluster chr11.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr11",
+      "start": 49500000,
+      "end": 54500000
+    }
+  },
+  "size_bp": 5000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "segmental_duplication",
+    "BP_mediating_SDs": [
+      "chr11_qB1_olfactory_main_SD"
+    ],
+    "homology_percent": 96.7,
+    "sd_length_kb": 55,
+    "internal_structure": "Olfr large cluster chr11",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "UCSC genomicSuperDups mm39",
+    "She et al. 2008 (PMID:18421352)"
+  ]
+}

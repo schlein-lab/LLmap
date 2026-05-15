@@ -1,0 +1,29 @@
+{
+  "name": "mtb_h37rv_PE_PPE_PGRS_family_overview",
+  "taxonomy_id": "paralog_family",
+  "description": "PE/PPE/PGRS gene family \u2014 ~168 members (~10% of coding capacity) unique to Mycobacterium tuberculosis complex. PE family (~99 genes) and PPE family (~69 genes) named after their N-terminal Pro-Glu and Pro-Pro-Glu motifs. PE_PGRS subfamily (~65 genes) carries polymorphic GC-rich repetitive sequences as C-terminal extensions and is the dominant antigenic-variation reservoir. These genes are extraordinarily difficult to assemble and to map short reads to because of repetitive PGRS extensions and high paralog identity (>95% in many blocks). Require PSV disambiguation; many positions are reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_000962.3": {
+      "chr": "NC_000962.3",
+      "start": 0,
+      "end": 4411532
+    }
+  },
+  "size_bp": 4411532,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/31159",
+    "doi:10.1038/31159",
+    "doi:10.1038/35021000"
+  ],
+  "confidence": 0.9,
+  "expected_copy_count": "168 (99 PE + 69 PPE; 65 of PE are PE_PGRS)"
+}

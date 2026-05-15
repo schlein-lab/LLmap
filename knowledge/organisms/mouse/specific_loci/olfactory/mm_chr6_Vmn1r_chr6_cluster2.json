@@ -1,0 +1,44 @@
+{
+  "name": "mm_chr6_Vmn1r_chr6_cluster2",
+  "taxonomy_id": "paralog_family",
+  "description": "Vomeronasal receptor cluster: Vmn1r cluster chr6 secondary. ~40 Vmn paralogs.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr6",
+      "start": 56500000,
+      "end": 56800000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "vomeronasal_receptor_cluster",
+    "BP_mediating_SDs": [
+      "Vmn1r_chr6_cluster2_unit"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 20,
+    "internal_structure": "40 Vmn paralog genes",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "MGI",
+    "Yang 2005 (PMID:15772649)",
+    "Ibarra-Soria 2014"
+  ]
+}

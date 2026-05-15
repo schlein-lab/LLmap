@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr16_Igl_V1",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse Ig lambda: Igl Vlambda1. Small locus, ~5% of B-cell light chains.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr16",
+      "start": 19050000,
+      "end": 19054000
+    }
+  },
+  "size_bp": 4000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "ig_VDJ_cluster",
+    "BP_mediating_SDs": [
+      "Igl_V1"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 4,
+    "internal_structure": "Igl Vlambda1",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "IMGT mouse Igl",
+    "Sanchez 1990"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "rdna_5S_cluster_chr18",
+  "taxonomy_id": "tandem_repeat",
+  "description": "5S rDNA tandem array on chr18 in zebrafish. Repeat unit ~200 bp (120 bp gene + ~80 bp spacer); array length ~100-400 kb depending on individual.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr18",
+      "start": 17800000,
+      "end": 18100000
+    }
+  },
+  "size_bp": 300000,
+  "expected_copy_count": "300-1500 5S units",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 40000,
+    "lambda_scale": 2.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1093/molbev/msl137"
+  ],
+  "confidence": 0.7
+}

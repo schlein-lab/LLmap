@@ -1,0 +1,39 @@
+{
+  "name": "cyp13B_chrV_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "cyp-13B subfamily small cluster on chromosome V; two paralogs.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "V",
+      "start": 17000000,
+      "end": 17100000
+    }
+  },
+  "size_bp": 100000,
+  "expected_paralogs": [
+    {
+      "name": "cyp-13B1",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "cyp-13B2",
+      "approx_offset_in_locus": 15000
+    }
+  ],
+  "expected_copy_count": "2 cyp-13B paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-9-185",
+    "WormBase WS285 cyp gene family",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.8
+}

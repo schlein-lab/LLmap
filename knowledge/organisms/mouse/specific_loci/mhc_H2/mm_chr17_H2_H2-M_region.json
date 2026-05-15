@@ -1,0 +1,45 @@
+{
+  "name": "mm_chr17_H2_H2-M_region",
+  "taxonomy_id": "paralog_family",
+  "description": "H2 (mouse MHC) locus: H-2M class Ib (M1-M11) at distal MHC. mm39 chr17 paralog block with PSV-rich architecture.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr17",
+      "start": 36500000,
+      "end": 36650000
+    }
+  },
+  "size_bp": 150000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "mhc_paralog_block",
+    "BP_mediating_SDs": [
+      "H2_H2-M_region_SD"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 150,
+    "internal_structure": "H-2M class Ib (M1-M11) at distal MHC",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "IMGT mouse MHC",
+    "Ohta 1980",
+    "Yoshino 2014",
+    "Ensembl mm39"
+  ]
+}

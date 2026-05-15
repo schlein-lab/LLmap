@@ -1,0 +1,31 @@
+{
+  "name": "rdna_R1_R2_inserted_units",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "R1/R2 non-LTR retrotransposons specifically integrated into 28S rRNA sites in the X-NOR and Y-NOR rDNA arrays. R1 inserts at position 7008 of 28S, R2 at position 6049. 50-80% of rDNA units carry R1 or R2 insertions; these inserted units are not transcribed but provide diagnostic mapping anchors for rDNA copies.",
+  "coordinates": {
+    "BDGP6_46_X_NOR_R1_R2": {
+      "chr": "chrX",
+      "start": 22500000,
+      "end": 23000000
+    },
+    "BDGP6_46_Y_NOR_R1_R2": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 400000
+    }
+  },
+  "size_bp": 500000,
+  "expected_copy_count": "150-300 R1 copies, 100-200 R2 copies, all rDNA-embedded",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1146/annurev.genet.40.110405.090548"
+  ],
+  "confidence": 0.8
+}

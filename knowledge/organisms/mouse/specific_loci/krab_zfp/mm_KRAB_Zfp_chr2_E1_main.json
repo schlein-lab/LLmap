@@ -1,0 +1,44 @@
+{
+  "name": "mm_KRAB_Zfp_chr2_E1_main",
+  "taxonomy_id": "paralog_family",
+  "description": "KRAB-ZFP cluster: chr2qE1 main KRAB-Zfp cluster (~200 genes). Rapid-evolution paralog family; TRIM28-corepressed.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr2",
+      "start": 148500000,
+      "end": 152500000
+    }
+  },
+  "size_bp": 4000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "krab_zfp_cluster",
+    "BP_mediating_SDs": [
+      "KRAB_Zfp_chr2_E1_main_unit"
+    ],
+    "homology_percent": 95.5,
+    "sd_length_kb": 50,
+    "internal_structure": "KRAB-Zfp paralog tandem array",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Imbeault 2017 (PMID:28273063)",
+    "Kauzlaric 2017",
+    "MGI"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "nmeningitidis_mc58_ISNme2_copy1",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence ISNme2 copy 1 of 1 in this genome. 1200 bp Neisseria IS630-family element. IS elements are mobile and create paralog signal across distant genomic loci; reads from ISNme2 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_003112.2": {
+      "chr": "NC_003112.2",
+      "start": 1605000,
+      "end": 1606200,
+      "strand": "+"
+    }
+  },
+  "size_bp": 1200,
+  "expected_copy_count": "1 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

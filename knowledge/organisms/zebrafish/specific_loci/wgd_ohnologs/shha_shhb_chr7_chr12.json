@@ -1,0 +1,33 @@
+{
+  "name": "shha_shhb_chr7_chr12",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish TGD ohnolog pair: sonic hedgehog a (sonic-you)/shhb (tiggywinkle) ohnologs; floor plate and limb patterning. These developmental regulators are retained in pairs after the teleost-specific whole-genome duplication because their dosage and tissue-specific expression are under strong selection (Force-Lynch DDC model, Lynch-Conery escape from adaptive conflict). CDS identity 80-92%, UTR identity often <50%.",
+  "coordinates": {
+    "GRCz11_copy_1": {
+      "chr": "chr7",
+      "start": 16300000,
+      "end": 16330000
+    },
+    "GRCz11_copy_2": {
+      "chr": "chr12",
+      "start": 1800000,
+      "end": 1830000
+    }
+  },
+  "size_bp": 30000,
+  "expected_copy_count": "2 per haplotype (1 TGD ohnolog pair)",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1093/genetics/151.4.1531",
+    "doi:10.1126/science.282.5394.1711"
+  ],
+  "confidence": 0.9
+}

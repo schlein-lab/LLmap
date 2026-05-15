@@ -1,0 +1,36 @@
+{
+  "name": "chimpanzee_chr3_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Pan troglodytes chr3 centromere / pericentromere. Alpha-satellite higher-order repeat (HOR) array; 6-monomer HOR unit (~1026 bp). T2T-resolved alpha-sat array; flanked by ape-lineage DYZ_chimp_satellite satellite blocks. Centromere mapping is HOR-aware; LLmap should refuse to silently collapse cross-species divergence here.",
+  "coordinates": {
+    "panTro6": {
+      "chr": "chr3",
+      "start": 40260500,
+      "end": 42021000
+    },
+    "T2T_Pan": {
+      "chr": "chr3",
+      "start": 40307500,
+      "end": 42068000
+    }
+  },
+  "size_bp": 1760500,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers in 6-mer HOR units, tandemly arrayed over 1.8 Mb",
+  "hor_size_monomers": 6,
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,29 @@
+{
+  "name": "otr3L_outer_repeat",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Outer-repeat subdomain otr3L of S. pombe centromere 3 on chromosome III, left side. Tandem cassettes of dg (~4.6 kb) and dh (~1.8 kb) elements forming the Clr4-H3K9me-Swi6 pericentric heterochromatin. Cassette count is chromosome-dependent (highest on otr3). Reads multi-map across all six otr arms and to the cenH element in the mat locus.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "III",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 15000,
+  "expected_copy_count": "2-10 dg/dh cassettes per side",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:11498586"
+  ],
+  "confidence": 0.85
+}

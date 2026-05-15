@@ -1,0 +1,29 @@
+{
+  "name": "HCV_5utr_ires",
+  "taxonomy_id": "custom",
+  "description": "HCV 5' UTR with IRES (internal ribosome entry site). Four domains (I-IV). Domain II + IIIa-f bind 40S directly + eIF3. Highly conserved across genotypes.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 1,
+      "end": 341
+    }
+  },
+  "size_bp": 341,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "NC_004102.1",
+    "doi:10.1002/hep.27259"
+  ],
+  "confidence": 0.99
+}

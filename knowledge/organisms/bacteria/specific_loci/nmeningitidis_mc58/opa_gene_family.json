@@ -1,0 +1,27 @@
+{
+  "name": "nmeningitidis_mc58_opa_gene_family",
+  "taxonomy_id": "paralog_family",
+  "description": "Opa (opacity-associated) gene family \u2014 11 paralogous loci scattered across the N. meningitidis MC58 chromosome (Op-A through Op-K). Each contains pentanucleotide CTCTT repeats causing phase-variable expression. Inter-paralog identity ~85-95%. PSV disambiguation essential.",
+  "coordinates": {
+    "GenBank_NC_003112.2": {
+      "chr": "NC_003112.2",
+      "start": 0,
+      "end": 2272360
+    }
+  },
+  "size_bp": 2272360,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1128/IAI.66.3.939-947.1998"
+  ],
+  "confidence": 0.9,
+  "expected_copy_count": "11 in MC58 (Opa A-K)"
+}

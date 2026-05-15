@@ -1,0 +1,27 @@
+{
+  "name": "rat_satellite_II_370bp",
+  "taxonomy_id": "centromere_like",
+  "description": "370 bp tandem repeat satellite II family, associated with rat centromeric/pericentromeric heterochromatin. Tandemly arrayed; not uniquely positionable.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr_unplaced",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 0,
+  "expected_copy_count": "10^4-10^5 genome-wide",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1007/BF00329562",
+    "RGD"
+  ],
+  "confidence": 0.7
+}

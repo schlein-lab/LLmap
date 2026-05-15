@@ -1,0 +1,25 @@
+{
+  "name": "POF_binding_domain_chr4",
+  "taxonomy_id": "centromere_like",
+  "description": "Painting of fourth (POF) chromatin binding domain \u2014 covers the entire chr4 euchromatic arm. POF interacts with HP1a to produce a unique chromatin state combining heterochromatic histone marks (H3K9me3) with active transcription. The MSL-like system on chr4 (not classical X dosage compensation) upregulates many chr4 genes.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr4",
+      "start": 350000,
+      "end": 1348131
+    }
+  },
+  "size_bp": 998131,
+  "expected_copy_count": "1 chromatin domain per haplotype",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.1,
+    "max_occ": 8000,
+    "report_multi_position": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-9-S1-S22",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,29 @@
+{
+  "name": "HIV-1_M_subtype_B",
+  "taxonomy_id": "paralog_family",
+  "description": "Subtype B (M group). Dominant in Americas, W. Europe, Australia. Reference for most clinical assays.",
+  "virus_type": "ssRNA_RT",
+  "coordinates": {
+    "NC_001802.1": {
+      "start": 1,
+      "end": 9181
+    }
+  },
+  "size_bp": 9181,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HIV/AIDS"
+  ],
+  "sources": [
+    "Los Alamos HIV Sequence Database",
+    "doi:10.1126/science.288.5463.55"
+  ],
+  "confidence": 0.99
+}

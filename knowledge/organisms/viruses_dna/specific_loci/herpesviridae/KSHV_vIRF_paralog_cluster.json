@@ -1,0 +1,46 @@
+{
+  "name": "KSHV_vIRF_paralog_cluster",
+  "taxonomy_id": "paralog_family",
+  "virus_type": "dsDNA",
+  "description": "KSHV viral interferon regulatory factor cluster vIRF1-4 (K9, K10.5/K11, K10, K11) encoded as four host-IRF-mimicking paralogs at ~84-90 kb. Each vIRF antagonizes a different arm of innate antiviral signaling (vIRF1 blocks IRF3/CBP-p300; vIRF3 inhibits PKR; vIRF4 disrupts MDM2-p53). Cross-paralog nucleotide identity ~35-50% \u2014 moderate paralog disambiguation needed at conserved DBD regions.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_009333.1": {
+      "chr": "NC_009333.1",
+      "start": 84000,
+      "end": 92000
+    }
+  },
+  "size_bp": 8000,
+  "expected_paralogs": [
+    {
+      "name": "vIRF1_K9",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "vIRF4_K10",
+      "approx_offset_in_locus": 2500
+    },
+    {
+      "name": "vIRF3_K10.5_LANA2",
+      "approx_offset_in_locus": 5000
+    },
+    {
+      "name": "vIRF2_K11.1",
+      "approx_offset_in_locus": 7000
+    }
+  ],
+  "expected_copy_count": "4 paralogs per genome",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1128/JVI.74.7.3388-3398.2000",
+    "doi:10.1038/sj.onc.1206892"
+  ],
+  "confidence": 0.88
+}

@@ -1,0 +1,36 @@
+{
+  "name": "SARS-CoV-2_full_genome_Wuhan-Hu-1",
+  "taxonomy_id": "custom",
+  "description": "SARS-CoV-2 reference genome (Wuhan-Hu-1, NC_045512.2). 29903 nt single-stranded positive-sense RNA. Encodes ORF1ab (replicase polyprotein with -1 PRF), S (spike), ORF3a, E, M, ORF6, ORF7a/b, ORF8, N, ORF10. 5' cap + leader (1-265), 3' poly(A).",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 1,
+      "end": 29903
+    }
+  },
+  "size_bp": 29903,
+  "architecture": {
+    "type": "linear_monopartite",
+    "copy_number_in_population": "single_segment",
+    "homology_percent": 99.9,
+    "internal_structure": "5'UTR-ORF1a-ORF1b(-1PRF)-S-ORF3a-E-M-ORF6-ORF7ab-ORF8-N-ORF10-3'UTR"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3",
+    "doi:10.1126/science.abb2762"
+  ],
+  "confidence": 0.99
+}

@@ -1,0 +1,27 @@
+{
+  "name": "EC1_egg_cell_CRP_chr1",
+  "taxonomy_id": "paralog_family",
+  "description": "EC1 egg-cell secreted CRP tandem (Sprunck 2012).",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr1",
+      "start": 17400000,
+      "end": 17430000
+    }
+  },
+  "size_bp": 30000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-8-218"
+  ],
+  "confidence": 0.7,
+  "repeat_class": "CRP_tandem"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chrV_R_telomere",
+  "taxonomy_id": "terminal_repeat",
+  "description": "R-arm telomere of S. cerevisiae chromosome V. S. cerevisiae telomeres are tandem arrays of the degenerate TG(1-3) repeat (consensus TGTGGGTGTGGTG, average ~300 bp of array). Immediately interior lies the subtelomeric X element (core X plus optional X-combinatorial repeats) and, on some chromosome ends, 0-4 tandem copies of the Y' element (5.2 kb or 6.7 kb forms). sacCer3 represents most telomeres with ~300 bp of nominal TG(1-3) sequence at the very end.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "chrV",
+      "start": 575874,
+      "end": 576874
+    }
+  },
+  "size_bp": 1000,
+  "expected_copy_count": "~75-150 copies of degenerate TG(1-3) (~300 bp array) per chromosome end; length is telomerase-regulated and strain-dependent",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 40000,
+    "lambda_scale": 1.8,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "subtelomere_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:2046557",
+    "SGD telomere annotations"
+  ],
+  "confidence": 0.9
+}

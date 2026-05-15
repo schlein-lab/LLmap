@@ -1,0 +1,28 @@
+{
+  "name": "cnt2_central_core",
+  "taxonomy_id": "centromere_like",
+  "description": "Central core cnt2 of centromere 2. ~7 kb unique sequence; CENP-A^Cnp1 loading zone.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "II",
+      "start": 1614000,
+      "end": 1621000
+    }
+  },
+  "size_bp": 7000,
+  "expected_copy_count": "1 unique central core",
+  "mapping_hints": {
+    "expected_unique": true,
+    "max_occ": 10000,
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 1.0,
+    "report_multi_position": false,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223"
+  ],
+  "confidence": 0.95
+}

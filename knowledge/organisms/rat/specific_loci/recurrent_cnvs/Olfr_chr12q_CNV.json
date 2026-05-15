@@ -1,0 +1,27 @@
+{
+  "name": "Olfr_chr12q_CNV",
+  "taxonomy_id": "paralog_family",
+  "description": "Major chr12 OR cluster CNV \u2014 recurrent gain/loss between rat strains, ~120 OR genes. Recurrent CNV documented in rat strain comparisons; multi-copy mapping requires PSV awareness.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr12",
+      "start": 22000000,
+      "end": 26000000
+    }
+  },
+  "size_bp": 4000000,
+  "expected_copy_count": "2-20 copies depending on strain/haplotype",
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "RGD CNV database",
+    "Ensembl rat"
+  ],
+  "confidence": 0.75
+}

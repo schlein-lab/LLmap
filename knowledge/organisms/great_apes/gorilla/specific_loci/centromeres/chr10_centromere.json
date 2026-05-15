@@ -1,0 +1,31 @@
+{
+  "name": "gorilla_chr10_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Gorilla gorilla chr10 centromere / pericentromere. Alpha-satellite higher-order repeat (HOR) array; 10-monomer HOR unit (~1710 bp). T2T-resolved alpha-sat array; flanked by ape-lineage GORSAT satellite blocks. Centromere mapping is HOR-aware; LLmap should refuse to silently collapse cross-species divergence here.",
+  "coordinates": {
+    "T2T_Gor": {
+      "chr": "chr10",
+      "start": 43389134,
+      "end": 48278268
+    }
+  },
+  "size_bp": 4889134,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers in 10-mer HOR units, tandemly arrayed over 4.9 Mb",
+  "hor_size_monomers": 10,
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ],
+  "confidence": 0.7
+}

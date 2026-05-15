@@ -1,0 +1,27 @@
+{
+  "name": "sat_AATAT_chrY",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Drosophila simple satellite block: AATAT satellite block on chrY \u2014 major component of kl-1 intronic heterochromatin (loop A).. Drosophila satellites are chromosome-position-specific and used as cytogenetic markers (Lohe 1993). They form most of the ~30% of the genome that is heterochromatin.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 3667352
+    }
+  },
+  "size_bp": 3667352,
+  "expected_copy_count": "10^4-10^7 simple-repeat copies, chromosome-position-specific",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:8472699",
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1534/genetics.118.301631"
+  ],
+  "confidence": 0.75
+}

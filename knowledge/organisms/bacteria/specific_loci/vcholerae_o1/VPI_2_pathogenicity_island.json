@@ -1,0 +1,27 @@
+{
+  "name": "vcholerae_o1_VPI_2_pathogenicity_island",
+  "taxonomy_id": "custom",
+  "description": "VPI-2 \u2014 57 kb. Encodes neuraminidase nanH, sialic-acid utilisation cluster, and VC1786-ICE-related modules. Found in O1/O139 epidemic strains.",
+  "coordinates": {
+    "GenBank_NC_002505.1": {
+      "chr": "NC_002505.1",
+      "start": 1880000,
+      "end": 1937000
+    }
+  },
+  "size_bp": 57000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1128/IAI.71.10.5836-5848.2003"
+  ],
+  "confidence": 0.9,
+  "island_family": "VPI-2"
+}

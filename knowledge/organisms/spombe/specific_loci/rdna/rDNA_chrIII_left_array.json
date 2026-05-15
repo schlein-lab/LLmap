@@ -1,0 +1,30 @@
+{
+  "name": "rDNA_chrIII_left_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Left-end rDNA tandem array on S. pombe chromosome III. ~10.4 kb 35S rDNA unit (encoding 18S-5.8S-25S separated by ITS1/ITS2) tandemly arrayed across ~100 kb at the chromosome III left end, immediately interior to the telomere. Estimated ~100-150 copies total across both rDNA arrays; the array length is strain-dependent. ASM294v2 represents the array with a placeholder of nominal sequence; actual copy number requires long-read or CHEF-gel measurement.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "III",
+      "start": 0,
+      "end": 110000
+    }
+  },
+  "size_bp": 110000,
+  "expected_copy_count": "~50-75 copies of the 10.4 kb 35S unit in this array (~100-150 copies total across both chrIII arrays)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:11859360",
+    "PomBase rDNA annotation"
+  ],
+  "confidence": 0.85
+}

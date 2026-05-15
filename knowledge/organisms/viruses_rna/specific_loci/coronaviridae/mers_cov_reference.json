@@ -1,0 +1,29 @@
+{
+  "name": "MERS-CoV_reference",
+  "taxonomy_id": "custom",
+  "description": "MERS-CoV reference genome (EMC/2012, NC_019843.3). 30119 nt ssRNA(+). Receptor DPP4 (not ACE2). Zoonotic from dromedary camels.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_019843.3": {
+      "start": 1,
+      "end": 30119
+    }
+  },
+  "size_bp": 30119,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MERS"
+  ],
+  "sources": [
+    "NC_019843.3",
+    "doi:10.1056/NEJMoa1211721"
+  ],
+  "confidence": 0.99
+}

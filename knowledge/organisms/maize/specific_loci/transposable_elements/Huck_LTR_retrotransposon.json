@@ -1,0 +1,28 @@
+{
+  "name": "Huck_LTR_retrotransposon",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Huck Ty3/Gypsy LTR retrotransposon (Meyers 2001).",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr4",
+      "start": 120000000,
+      "end": 120100000
+    }
+  },
+  "size_bp": 100000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nrg2165",
+    "doi:10.1126/science.274.5288.765"
+  ],
+  "confidence": 0.75,
+  "repeat_class": "transposable_element"
+}

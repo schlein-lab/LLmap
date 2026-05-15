@@ -1,0 +1,30 @@
+{
+  "name": "KSHV_LANA_tandem_repeat",
+  "taxonomy_id": "tandem_repeat",
+  "virus_type": "dsDNA",
+  "description": "KSHV LANA (ORF73) central repeat region: a low-complexity internal domain of ~1.6 kb encoding tandem Glu/Gln/Asp/Pro-rich repeats and a long acidic stretch. Repeat unit lengths and copy numbers vary between KSHV strains and are a clonality / strain-typing marker. The LANA C-terminal DNA-binding domain (DBD) binds the LANA-binding sites (LBS1/LBS2) in the TR, tethering the episome to host chromatin; the central repeat is dispensable for tethering but modulates LANA's interaction with histones and the SUV39H1 complex. Short reads pile up massively over the repeat \u2014 long-read or assembly-based length estimation is required.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_009333.1": {
+      "chr": "NC_009333.1",
+      "start": 123000,
+      "end": 127000
+    }
+  },
+  "size_bp": 4000,
+  "expected_copy_count": "strain-variable; ~21-23 leucine-zipper-like Q-rich repeats in BC-1 reference",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "low_complexity_aware": true,
+    "copy_count_aware": true
+  },
+  "sources": [
+    "doi:10.1126/science.284.5414.641",
+    "doi:10.1006/viro.2002.1739"
+  ],
+  "confidence": 0.92
+}

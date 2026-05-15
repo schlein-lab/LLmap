@@ -1,0 +1,33 @@
+{
+  "name": "sox2_sox3_chr5_chr14",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish TGD ohnolog pair: SOX2/SOX3 TGD ohnologs (sox2 on chr5, sox3 on chr14); neural progenitor markers. These developmental regulators are retained in pairs after the teleost-specific whole-genome duplication because their dosage and tissue-specific expression are under strong selection (Force-Lynch DDC model, Lynch-Conery escape from adaptive conflict). CDS identity 80-92%, UTR identity often <50%.",
+  "coordinates": {
+    "GRCz11_copy_1": {
+      "chr": "chr5",
+      "start": 12500000,
+      "end": 12530000
+    },
+    "GRCz11_copy_2": {
+      "chr": "chr14",
+      "start": 39400000,
+      "end": 39430000
+    }
+  },
+  "size_bp": 30000,
+  "expected_copy_count": "2 per haplotype (1 TGD ohnolog pair)",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1093/genetics/151.4.1531",
+    "doi:10.1126/science.282.5394.1711"
+  ],
+  "confidence": 0.9
+}

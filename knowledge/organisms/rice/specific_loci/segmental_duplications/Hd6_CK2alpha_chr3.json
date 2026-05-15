@@ -1,0 +1,28 @@
+{
+  "name": "Hd6_CK2alpha_chr3",
+  "taxonomy_id": "paralog_family",
+  "description": "Hd6 CK2 alpha-subunit photoperiod QTL (Takahashi 2001).",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr3",
+      "start": 7700000,
+      "end": 7710000
+    }
+  },
+  "size_bp": 10000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature01549",
+    "doi:10.1073/pnas.0709453105"
+  ],
+  "confidence": 0.85,
+  "repeat_class": "photoperiod_paralog"
+}

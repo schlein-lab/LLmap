@@ -1,0 +1,43 @@
+{
+  "name": "spneumo_tigr4_rrnA",
+  "taxonomy_id": "paralog_family",
+  "description": "rRNA operon copy rrnA (16S-23S-5S) \u2014 one of 4 near-identical rrn operons in this genome. Sequence identity between copies typically >99% across 16S/23S/5S, with diagnostic intergenic spacer (ITS) variability used for copy disambiguation.",
+  "coordinates": {
+    "GenBank_NC_003028.3": {
+      "chr": "NC_003028.3",
+      "start": 16800,
+      "end": 22200,
+      "strand": "+"
+    }
+  },
+  "size_bp": 5400,
+  "expected_paralogs": [
+    {
+      "name": "16S_rRNA",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "23S_rRNA",
+      "approx_offset_in_locus": 1700
+    },
+    {
+      "name": "5S_rRNA",
+      "approx_offset_in_locus": 4700
+    }
+  ],
+  "expected_copy_count": "4 per chromosome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "tandem_array_handling": false
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1126/science.1061217"
+  ],
+  "confidence": 0.92
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chrI_L_telomere",
+  "taxonomy_id": "terminal_repeat",
+  "description": "L-arm telomere of S. pombe chromosome I. S. pombe telomeres are tandem arrays of the degenerate hexanucleotide consensus TTAC(C/G)(0-1)(C/G)(1-8), specifically variants of TTACAG(GG)1-8 / TTACACGG, averaging ~300 bp of array per end. Immediately interior is the subtelomere with TAS1 repeats, rapidly-evolving SPAC paralog cassettes, and degenerate telomere-like sequences. ASM294v2 represents most telomeres with ~5 kb of nominal terminal sequence.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I",
+      "start": 0,
+      "end": 5000
+    }
+  },
+  "size_bp": 5000,
+  "expected_copy_count": "~50-100 copies of the degenerate TTAC(C/G)(0-1)(C/G)(1-8) repeat per chromosome end (~300 bp array); length is telomerase- and Taz1-regulated",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 40000,
+    "lambda_scale": 1.8,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "subtelomere_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:7889573",
+    "PomBase telomere annotation"
+  ],
+  "confidence": 0.85
+}

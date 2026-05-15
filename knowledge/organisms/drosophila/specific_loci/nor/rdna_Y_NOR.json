@@ -1,0 +1,26 @@
+{
+  "name": "rdna_Y_NOR",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Y-chromosome NOR \u2014 the second of the two rDNA loci in D. melanogaster. ~150-200 copies of the 45S unit on chrY. Together with the X-NOR (bobbed locus) supplies all rRNA. Y-NOR is more retrotransposon-degraded (R1/R2 insertions are denser in Y rDNA).",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 400000
+    }
+  },
+  "size_bp": 400000,
+  "expected_copy_count": "~150-200 tandem 45S rDNA units",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1534/genetics.118.301631",
+    "doi:10.1038/nrg2008"
+  ],
+  "confidence": 0.75
+}

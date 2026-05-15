@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr2_sd_qE5_subtelo",
+  "taxonomy_id": "paralog_family",
+  "description": "Segmental duplication block on chr2 (qE5_subtelo). Mean identity 91.8% across 14 kb tiles. subtelo SD.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr2",
+      "start": 178500000,
+      "end": 181400000
+    }
+  },
+  "size_bp": 2900000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "segmental_duplication",
+    "BP_mediating_SDs": [
+      "chr2_qE5_subtelo_SD"
+    ],
+    "homology_percent": 91.8,
+    "sd_length_kb": 14,
+    "internal_structure": "subtelo SD",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "UCSC genomicSuperDups mm39",
+    "She et al. 2008 (PMID:18421352)"
+  ]
+}

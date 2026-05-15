@@ -1,0 +1,31 @@
+{
+  "name": "Influenza_A_segment_NS",
+  "taxonomy_id": "custom",
+  "description": "NS segment: NS1 (IFN antagonist) + NEP/NS2 (alt-spliced). NS1 PDZ-binding motif marks virulence.",
+  "virus_type": "ssRNA(-)",
+  "segmented": true,
+  "coordinates": {
+    "NC_002020.1": {
+      "start": 1,
+      "end": 890
+    }
+  },
+  "size_bp": 890,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza"
+  ],
+  "sources": [
+    "NC_002020.1",
+    "WHO influenza nomenclature",
+    "doi:10.1016/S0140-6736(17)33293-2"
+  ],
+  "confidence": 0.97
+}

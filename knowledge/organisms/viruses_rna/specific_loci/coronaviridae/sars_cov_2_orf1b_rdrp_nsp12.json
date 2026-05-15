@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-2_orf1b_rdrp_nsp12",
+  "taxonomy_id": "custom",
+  "description": "ORF1b nsp12 region: RNA-dependent RNA polymerase (RdRp). Target of remdesivir, molnupiravir. Highly conserved; P323L (RdRp) emerged early B.1.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 13468,
+      "end": 16236
+    }
+  },
+  "size_bp": 2769,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3"
+  ],
+  "confidence": 0.98
+}

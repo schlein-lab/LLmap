@@ -1,0 +1,28 @@
+{
+  "name": "vcholerae_o1_SXT_ICE_reference",
+  "taxonomy_id": "custom",
+  "description": "SXT/R391 ICE family \u2014 ~100 kb integrative conjugative elements first described in V. cholerae O139 MO10 (1992 Indian outbreak). Carries sulfamethoxazole/trimethoprim/streptomycin resistance (sul2, dfrA1, strAB, floR). Reference card; not endogenous to N16961 but found in many post-1990 V. cholerae isolates.",
+  "coordinates": {
+    "GenBank_ICE_consensus": {
+      "chr": "ICE_consensus",
+      "start": 0,
+      "end": 1
+    }
+  },
+  "size_bp": 1,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 18000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "ICEberg2.0:doi:10.1093/nar/gky1123",
+    "doi:10.1128/JB.180.7.1764-1770.1998"
+  ],
+  "confidence": 0.85,
+  "ice_family": "SXT/R391",
+  "reference_card_only": true
+}

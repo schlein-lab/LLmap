@@ -1,0 +1,37 @@
+{
+  "name": "hsp70_87A_cluster_chr3R",
+  "taxonomy_id": "paralog_family",
+  "description": "Heat-shock protein 70 cluster at cytological band 87A on chr3R. Contains two tandem hsp70 paralogs (Hsp70Aa, Hsp70Ab) separated by a divergent intergenic spacer. Together with the 87C cluster (Hsp70Ba, Bb, Bbb, Bc) these encode the inducible Hsp70 proteins. ~95-99% nucleotide identity between paralogs \u2014 extremely difficult to resolve with short reads.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3R",
+      "start": 7267000,
+      "end": 7277000
+    }
+  },
+  "size_bp": 10000,
+  "expected_paralogs": [
+    {
+      "name": "Hsp70Aa",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Hsp70Ab",
+      "approx_offset_in_locus": 5000
+    }
+  ],
+  "expected_copy_count": "2 tandem hsp70 paralogs at 87A; combined with 87C totals 5-6 hsp70 copies",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PMID:6088000",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,29 @@
+{
+  "name": "saureus_n315_SCCmec_type_III_reference",
+  "taxonomy_id": "custom",
+  "description": "Type III \u2014 heavily resistant HA-MRSA (~67 kb). ccr complex ccrAB3; mec complex mecA+pT181+Tn554. Reference card for SCCmec typing of S. aureus assemblies.",
+  "coordinates": {
+    "GenBank_SCCmec_consensus": {
+      "chr": "SCCmec_consensus",
+      "start": 0,
+      "end": 1
+    }
+  },
+  "size_bp": 1,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1128/AAC.00579-09"
+  ],
+  "confidence": 0.85,
+  "sccmec_type": "III",
+  "ccr_type": "ccrAB3",
+  "mec_complex": "mecA+pT181+Tn554",
+  "reference_card_only": true
+}

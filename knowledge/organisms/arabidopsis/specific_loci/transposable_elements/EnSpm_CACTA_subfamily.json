@@ -1,0 +1,27 @@
+{
+  "name": "EnSpm_CACTA_subfamily",
+  "taxonomy_id": "tandem_repeat",
+  "description": "EnSpm/CACTA DNA transposon subfamily.",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr4",
+      "start": 4000000,
+      "end": 4500000
+    }
+  },
+  "size_bp": 500000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nrg2165"
+  ],
+  "confidence": 0.7,
+  "repeat_class": "transposable_element"
+}

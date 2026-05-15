@@ -1,0 +1,37 @@
+{
+  "name": "SARS-CoV-2_Alpha_B.1.1.7",
+  "taxonomy_id": "paralog_family",
+  "description": "Alpha (UK, late 2020). Spike \u039469-70, \u0394144, N501Y, A570D, D614G, P681H, T716I, S982A, D1118H. Dropouts in S-gene PCR.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 1,
+      "end": 29903
+    }
+  },
+  "size_bp": 29903,
+  "expected_paralogs": [],
+  "lineage_defining_mutations": [
+    "N501Y",
+    "P681H",
+    "\u039469-70",
+    "\u0394144"
+  ],
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NextStrain Nextclade",
+    "Pango lineage designation",
+    "doi:10.1038/s41564-020-0770-5"
+  ],
+  "confidence": 0.95
+}

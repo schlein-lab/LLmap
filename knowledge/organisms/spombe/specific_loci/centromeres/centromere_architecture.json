@@ -1,0 +1,33 @@
+{
+  "name": "centromere_architecture",
+  "taxonomy_id": "centromere_like",
+  "description": "Architecture record for S. pombe centromeres. Each of cen1/cen2/cen3 follows the same three-domain pattern: cnt (central core, unique, CENP-A^Cnp1-loaded) flanked by imr (innermost repeats with tRNA boundary clusters) flanked by otr (outer dg/dh tandem cassettes silenced by Clr4/Swi6-HP1). Centromere size ranges 35-110 kb, almost entirely driven by otr expansion (cen3 > cen2 > cen1). dg and dh repeats are shared across all three centromeres, so reads to otr cannot be assigned to a specific chromosome without PSVs.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I,II,III",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 70000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "near_constant",
+    "homology_percent": 88.0,
+    "internal_structure": "cnt (unique) - imr (tRNA-bounded) - otr (dg/dh tandem cassettes); cen1 ~35 kb / cen2 ~65 kb / cen3 ~110 kb"
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223",
+    "PMID:8462105"
+  ],
+  "confidence": 0.95
+}

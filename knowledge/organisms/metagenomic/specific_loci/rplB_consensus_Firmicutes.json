@@ -1,0 +1,33 @@
+{
+  "name": "rplB_consensus_Firmicutes",
+  "taxonomy_id": "ribosomal_protein",
+  "marker": "rplB",
+  "region_role": "variable_core",
+  "description": "Conserved single-copy gene rplB consensus for Firmicutes. 50S ribosomal protein L2 (~830 bp); single-copy phylogenetic anchor (PhyEco / CheckM). Used in PhyEco / CheckM-style genome-completeness panels and as 16S-orthogonal phylogenetic marker. Allow moderate-to-high mismatch within the group.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_127",
+      "start": 0,
+      "end": 700
+    }
+  },
+  "size_bp": 700,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.25,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "marker": "rplB",
+    "lineage": "Firmicutes"
+  },
+  "sources": [
+    "UniRef90 cluster consensus",
+    "doi:10.1101/gr.186072.114",
+    "doi:10.1128/AEM.01177-06",
+    "GTDB R220 protein markers"
+  ],
+  "confidence": 0.9
+}

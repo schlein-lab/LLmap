@@ -1,0 +1,27 @@
+{
+  "name": "ecoli_k12_mg1655_CRISPR_typeI-E_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Type I-E CRISPR-Cas array (cas3-cse1-cse2-cas7-cas5e-cas6e + repeat-spacer array) in MG1655. ~29 bp repeats; spacer count varies between K-12 derivatives. Repeat tract requires lambda_scale boost.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 2872081,
+      "end": 2877014
+    }
+  },
+  "size_bp": 4933,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1126/science.1138140"
+  ],
+  "confidence": 0.9,
+  "crispr_type": "I-E"
+}

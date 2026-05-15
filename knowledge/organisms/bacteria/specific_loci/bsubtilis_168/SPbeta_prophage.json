@@ -1,0 +1,27 @@
+{
+  "name": "bsubtilis_168_SPbeta_prophage",
+  "taxonomy_id": "custom",
+  "description": "SP-beta prophage \u2014 134 kb large prophage on the B. subtilis 168 chromosome. Functional temperate phage; excisable. Carries sublancin biosynthesis genes (skf/sun operon).",
+  "coordinates": {
+    "GenBank_NC_000964.3": {
+      "chr": "NC_000964.3",
+      "start": 2150700,
+      "end": 2284500
+    }
+  },
+  "size_bp": 133800,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PHASTER:doi:10.1093/nar/gkw387",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "SP-beta"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "chr7L_knob_180bp",
+  "taxonomy_id": "centromere_like",
+  "description": "Long-arm chr7 knob, 180-bp satellite tandem.",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr7",
+      "start": 158000000,
+      "end": 160000000
+    }
+  },
+  "size_bp": 2000000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 250000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1093/genetics/149.4.2025",
+    "doi:10.1016/j.cell.2018.10.034"
+  ],
+  "confidence": 0.8,
+  "satellite_unit_bp": 180,
+  "expected_copy_count": "thousands of satellite monomers"
+}

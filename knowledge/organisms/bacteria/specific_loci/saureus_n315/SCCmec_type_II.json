@@ -1,0 +1,28 @@
+{
+  "name": "saureus_n315_SCCmec_type_II",
+  "taxonomy_id": "custom",
+  "description": "Staphylococcal Cassette Chromosome mec (SCCmec) type II in N315. ~52 kb element integrated at the orfX 3' end via ccr recombinases; carries mecA and Tn554 (ermA macrolide resistance). Type II is one of 14 currently recognised SCCmec types.",
+  "coordinates": {
+    "GenBank_NC_002745.2": {
+      "chr": "NC_002745.2",
+      "start": 36140,
+      "end": 88100
+    }
+  },
+  "size_bp": 51960,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1128/AAC.00579-09",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "sccmec_type": "II",
+  "ccr_type": "ccrAB2"
+}

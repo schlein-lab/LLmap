@@ -1,0 +1,27 @@
+{
+  "name": "paeruginosa_pao1_T6SS_HSI_I_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Type VI Secretion System cluster H1-T6SS (HSI-I); ~25 kb. PAO1 has three T6SS clusters (HSI-I, HSI-II, HSI-III) with paralogous Hcp/VgrG/TssB-M components.",
+  "coordinates": {
+    "GenBank_NC_002516.2": {
+      "chr": "NC_002516.2",
+      "start": 70000,
+      "end": 95000
+    }
+  },
+  "size_bp": 25000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 18000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1126/science.1128393"
+  ],
+  "confidence": 0.9,
+  "system": "T6SS_HSI-I"
+}

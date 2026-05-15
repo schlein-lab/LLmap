@@ -1,0 +1,29 @@
+{
+  "name": "Lassa_virus_S_segment_reference",
+  "taxonomy_id": "custom",
+  "description": "Lassa virus S segment (NC_004296.1). ~3402 nt. Ambisense: NP + GPC in opposite orientation, separated by intergenic hairpin. GPC cleaved by SKI-1/S1P to GP1 (receptor binding, \u03b1-dystroglycan) + GP2 (fusion).",
+  "virus_type": "ssRNA(-)_ambisense",
+  "segmented": true,
+  "coordinates": {
+    "NC_004296.1": {
+      "start": 1,
+      "end": 3402
+    }
+  },
+  "size_bp": 3402,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 6000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "NC_004296.1"
+  ],
+  "confidence": 0.97
+}

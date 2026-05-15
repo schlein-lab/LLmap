@@ -1,0 +1,29 @@
+{
+  "name": "spneumo_tigr4_IS1167_copy1",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS1167 copy 1 of 4 in this genome. 1360 bp IS5-family element abundant in S. pneumoniae and related streptococci. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS1167 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_003028.3": {
+      "chr": "NC_003028.3",
+      "start": 67000,
+      "end": 68360,
+      "strand": "+"
+    }
+  },
+  "size_bp": 1360,
+  "expected_copy_count": "4 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

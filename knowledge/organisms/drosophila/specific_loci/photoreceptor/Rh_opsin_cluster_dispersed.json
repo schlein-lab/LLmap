@@ -1,0 +1,78 @@
+{
+  "name": "Rh_opsin_cluster_dispersed",
+  "taxonomy_id": "paralog_family",
+  "description": "Drosophila rhodopsin opsin paralog set: Rh1 (ninaE, chr3R 92B), Rh2 (chr3R 91D), Rh3 (chr3R 92B near Rh1), Rh4 (chr3R 73D), Rh5 (chr2L 35C), Rh6 (chr3R 91D). Six 7TM opsin paralogs with 35-70% protein identity. Cell-type-specific expression across R1-R6/R7/R8 photoreceptors. Each individual gene is unique but as a paralog family they share conserved TM helices.",
+  "coordinates": {
+    "BDGP6_46_Rh1_ninaE": {
+      "chr": "chr3R",
+      "start": 16330000,
+      "end": 16350000
+    },
+    "BDGP6_46_Rh2": {
+      "chr": "chr3R",
+      "start": 14850000,
+      "end": 14870000
+    },
+    "BDGP6_46_Rh3": {
+      "chr": "chr3R",
+      "start": 16580000,
+      "end": 16600000
+    },
+    "BDGP6_46_Rh4": {
+      "chr": "chr3R",
+      "start": 3650000,
+      "end": 3670000
+    },
+    "BDGP6_46_Rh5": {
+      "chr": "chr2L",
+      "start": 14400000,
+      "end": 14420000
+    },
+    "BDGP6_46_Rh6": {
+      "chr": "chr3R",
+      "start": 14800000,
+      "end": 14820000
+    }
+  },
+  "size_bp": 20000,
+  "expected_paralogs": [
+    {
+      "name": "Rh1_ninaE",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Rh2",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Rh3",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Rh4",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Rh5",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Rh6",
+      "approx_offset_in_locus": 0
+    }
+  ],
+  "expected_copy_count": "6 paralogs across the genome (one per ancestral opsin)",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1242/dev.124.7.1665",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.9
+}

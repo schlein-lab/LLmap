@@ -1,0 +1,30 @@
+{
+  "name": "chrIII_R_subtelomere",
+  "taxonomy_id": "paralog_family",
+  "description": "R-arm subtelomeric block of C. elegans chromosome III, immediately interior to the TTAGGC telomere array. Contains strain-variable repetitive elements (TASR/HRMR-like minisatellites), CeRep59 family copies, non-LTR retrotransposon (Tc/mariner, RTE) insertions and rapidly evolving gene-poor sequence. Subtelomeres are enriched for paralogous gene-family ends (chemoreceptors, srh/sra/srg) and are mapping-difficult on short reads.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "III",
+      "start": 13723801,
+      "end": 13773801
+    }
+  },
+  "size_bp": 50000,
+  "expected_copy_count": "strain-variable; multiple shared subtelomeric repeats across the 12 chromosome ends",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "subtelomere_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.282.5396.2012",
+    "PMID:1944263",
+    "WormBase WS285"
+  ],
+  "confidence": 0.75
+}

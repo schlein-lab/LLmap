@@ -1,0 +1,33 @@
+{
+  "name": "holocentromere_architecture",
+  "taxonomy_id": "centromere_like",
+  "description": "Architecture record for the C. elegans holocentromere. Holocentric chromosomes lack a localised centromere; instead the CENP-A homolog HCP-3 is deposited at ~700 small discrete sites along the length of each chromosome. The targeting determinant is chromatin-state (transcription anti-correlation, H3K9me-poor euchromatin) rather than a satellite consensus. Repeat content at these sites is not elevated above genomic background, so read mapping does not require special multi-mapping flags. Holocentromere awareness only matters for downstream chromatin / centromere-specific analyses (CenH3 ChIP-seq, kinetochore protein localisation).",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "I,II,III,IV,V,X",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 100286607,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "near_constant",
+    "homology_percent": 0.0,
+    "internal_structure": "~700 HCP-3 sites per chromosome, median 1.5 kb wide, irregularly spaced; no defining satellite repeat"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 10000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false,
+    "holocentromere_handling": true
+  },
+  "sources": [
+    "PMID:14534250",
+    "doi:10.1101/gr.227116.117"
+  ],
+  "confidence": 0.85
+}

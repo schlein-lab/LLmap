@@ -1,0 +1,33 @@
+{
+  "name": "Yprime_element_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Y' (Y-prime) subtelomeric element in S. cerevisiae. Two size classes: Y' long (~6.7 kb) and Y' short (~5.2 kb). 0-4 tandem copies present at a subset of telomere ends (chromosome- and strain-dependent), always between the X element and the telomere. Each Y' encodes a putative helicase. Paralog identity between Y' copies on different telomeres is 95-99%; copies act as templates for telomerase-independent telomere maintenance in survivor cells (Type-I survivors amplify Y' arrays).",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "subset_of_telomeres",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 6700,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Y' long (6.7 kb) or Y' short (5.2 kb); 0-4 tandem copies between X element and telomere; encodes helicase"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:2046557",
+    "PMID:8413253"
+  ],
+  "confidence": 0.85
+}

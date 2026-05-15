@@ -1,0 +1,28 @@
+{
+  "name": "Lassa_lineage_6_Lineage_VI_Hylomyscus_pamfi_host",
+  "taxonomy_id": "paralog_family",
+  "description": "Lassa virus phylogenetic lineage 6: Lineage VI Hylomyscus pamfi host. ~20-30% divergence between lineages. Reservoir Mastomys natalensis (plus M. erythroleucus, Hylomyscus pamfi for some).",
+  "virus_type": "ssRNA(-)_ambisense",
+  "coordinates": {
+    "NC_004296.1": {
+      "start": 1,
+      "end": 3402
+    }
+  },
+  "size_bp": 3402,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "doi:10.1016/j.cell.2015.07.020"
+  ],
+  "confidence": 0.92
+}

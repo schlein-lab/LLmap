@@ -1,0 +1,29 @@
+{
+  "name": "Ebola_gp_editing_site",
+  "taxonomy_id": "custom",
+  "description": "GP gene-editing site: poly-A stretch (7\u00d7A). Stuttering during transcription inserts extra A residue ~20% of time, shifting frame to produce GP1,2 (full glycoprotein) instead of default sGP. Key regulatory mechanism \u2014 virulence determinant.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002549.1": {
+      "start": 6918,
+      "end": 6925
+    }
+  },
+  "size_bp": 8,
+  "mapping_hints": {
+    "lambda_scale": 0.7,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 2000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ebola_virus_disease"
+  ],
+  "sources": [
+    "NC_002549.1",
+    "doi:10.1126/science.1259657"
+  ],
+  "confidence": 0.99
+}

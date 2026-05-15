@@ -1,0 +1,29 @@
+{
+  "name": "chr2_SD_pair_012",
+  "taxonomy_id": "segmental_duplication",
+  "description": "Anonymous intra-chromosomal segmental duplication pair on chr2 (B73 RefGen v5); >90% identity duplicated block, candidate NAHR substrate (Schnable 2009; NAM pan-genome).",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr2",
+      "start": 90500000,
+      "end": 90600000
+    }
+  },
+  "size_bp": 100000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.1178534",
+    "doi:10.1126/science.abg5289"
+  ],
+  "confidence": 0.6,
+  "homology_percent_estimate": 93.0,
+  "sd_length_kb": 100
+}

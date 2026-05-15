@@ -1,0 +1,35 @@
+{
+  "name": "HCV_reference_genotype_1a_H77",
+  "taxonomy_id": "custom",
+  "description": "HCV reference (genotype 1a H77, NC_004102.1). 9646 nt ssRNA(+). Single ORF flanked by IRES-driven 5'UTR and structured 3'UTR. Polyprotein cleaved to C, E1, E2, p7, NS2, NS3, NS4A/B, NS5A/B.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 1,
+      "end": 9646
+    }
+  },
+  "size_bp": 9646,
+  "architecture": {
+    "type": "linear_monopartite",
+    "copy_number_in_population": "single_segment",
+    "homology_percent": 70.0,
+    "internal_structure": "5'UTR(IRES)-C-E1-E2(HVR1/HVR2)-p7-NS2-NS3-NS4A-NS4B-NS5A-NS5B-3'UTR"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "NC_004102.1",
+    "doi:10.1126/science.2523562"
+  ],
+  "confidence": 0.99
+}

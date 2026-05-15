@@ -1,0 +1,30 @@
+{
+  "name": "Dengue_DENV-4_reference",
+  "taxonomy_id": "custom",
+  "description": "DENV-4 reference.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_002640.1": {
+      "start": 1,
+      "end": 10649
+    }
+  },
+  "size_bp": 10649,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Dengue_fever",
+    "Dengue_hemorrhagic_fever"
+  ],
+  "sources": [
+    "NC_002640.1",
+    "doi:10.1126/science.1153018"
+  ],
+  "confidence": 0.99
+}

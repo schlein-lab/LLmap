@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr16_Igl_overview",
+  "taxonomy_id": "locus_summary",
+  "description": "Mouse Igl locus overview chr16qA1. Full V(D)J + constant region + regulatory elements summary.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr16",
+      "start": 19000000,
+      "end": 19400000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "ig_locus_summary",
+    "BP_mediating_SDs": [
+      "Igl_locus"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 200,
+    "internal_structure": "V-cluster + D-cluster (Igh only) + J + C + enhancers",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "IMGT mouse Ig",
+    "Yoshino 2014"
+  ]
+}
