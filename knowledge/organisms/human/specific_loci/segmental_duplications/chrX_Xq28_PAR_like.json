@@ -1,0 +1,33 @@
+{
+  "name": "chrX_Xq28_X_transposed_region_XTR",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq28 distal X-transposed region (XTR), a ~3.5 Mb block duplicated from chrX to chrYp11.2 in the human-chimp lineage ~5 Mya. The XTR is one of the largest interchromosomal SDs in the genome and is the major source of X-Y gene conversion. PAR-like in identity (>98%) but not recombining in male meiosis.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 89200000, "end": 92800000}},
+  "size_bp": 3600000,
+  "architecture": {
+    "type": "interchromosomal_X_Y_block",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 98.0,
+    "internal_structure": "~3.5 Mb X-to-Y transposed block including PCDH11X/Y, TGIF2LX/Y; mostly heterochromatinized on Y; ongoing X-Y gene conversion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "human lineage-specific language hemisphere asymmetry (PCDH11X/Y)",
+    "X-Y gene-conversion artefacts in variant callers"
+  ],
+  "cross_references": [
+    "../y_chromosome/"
+  ],
+  "sources": [
+    "doi:10.1038/nature01722",
+    "doi:10.1038/nature01266"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,30 @@
+{
+  "name": "chr1_1q21_3_olfactory_receptor",
+  "taxonomy_id": "paralog_family",
+  "description": "1q21.3 sub-cluster of olfactory-receptor genes adjacent to the LCE (late-cornified-envelope) gene cluster that hosts the LCE3B-LCE3C deletion associated with psoriasis susceptibility.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 152400000, "end": 153000000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Tandem array of LCE1-LCE6 cornified-envelope genes at 70-95% identity; ~32 kb LCE3B-LCE3C deletion polymorphism present in ~60% of Europeans; adjacent OR sub-cluster."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Psoriasis susceptibility (LCE3B-LCE3C deletion)"
+  ],
+  "sources": [
+    "doi:10.1038/ng.313",
+    "doi:10.1126/science.1072047",
+    "PMID:19169253"
+  ],
+  "confidence": 0.75
+}

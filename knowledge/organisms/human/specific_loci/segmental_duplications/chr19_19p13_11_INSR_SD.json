@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19p13_11_INSR_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.2 SD region containing INSR (insulin receptor) and ARID3A. Short intra-chromosomal SD blocks of 10-30 kb at 93-97% identity flank INSR and contribute to GRCh38 mapping ambiguity around the gene boundaries.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 7100000, "end": 7400000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 94.0,
+    "internal_structure": "Short 5-30 kb intra-chromosomal SDs at 93-97% identity flanking INSR exonic regions; partial inter-chromosomal SD to IGF1R region on chr15."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Donohue syndrome (INSR loss-of-function)",
+    "Rabson-Mendenhall syndrome",
+    "Insulin resistance type A"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.6
+}

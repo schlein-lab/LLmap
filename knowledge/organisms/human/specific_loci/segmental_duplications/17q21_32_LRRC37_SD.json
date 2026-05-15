@@ -1,0 +1,31 @@
+{
+  "name": "17q21_32_LRRC37_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17q21.31-q21.32 LRRC37 SD family — multi-copy LRRC37 paralogs (LRRC37A, A2, A3, B, B2) distributed within and flanking the 17q21.31 inversion polymorphism. Acts as the LCR substrate for the recurrent Koolen-de Vries microdeletion and the H1/H2 inversion.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 46100000, "end": 46900000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.5,
+    "internal_structure": "LRRC37 SD copies of ~50-100 kb at >98% identity in direct orientation on the H1 background, partially inverted on H2; LRRC37A2 is on the inverted segment. NPEPPS, ARL17A/B, and MAPT pseudogenes are part of the duplicon."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Koolen-de Vries syndrome (17q21.31 microdeletion)",
+    "MAPT H1/H2 haplotype-associated neurodegeneration"
+  ],
+  "sources": [
+    "doi:10.1038/ng1772",
+    "doi:10.1038/ng1607",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19q13_2_PSG_xref",
+  "taxonomy_id": "paralog_family",
+  "description": "Cross-reference stub: pregnancy-specific glycoprotein (PSG) tandem cluster at 19q13.2 (~11 PSG paralogs PSG1-PSG11) — overlaps with the CEACAM array described in chr19_19q13_41_CEACAM_SIGLEC_cluster.json. Provided as a separate locus pointer because PSG genes are clinically relevant during pregnancy and behave as their own dosage unit.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 42600000, "end": 43300000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "~11 PSG paralog genes plus pseudogenes in tandem at 90-98% identity over ~700 kb; intra-cluster SDs of 30-80 kb; common gene-content variation in human populations."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Pregnancy complications (PSG variation)",
+    "Pre-eclampsia susceptibility"
+  ],
+  "sources": [
+    "doi:10.1186/1471-2148-9-114",
+    "doi:10.1126/science.1072047",
+    "PMID:19467224"
+  ],
+  "confidence": 0.85,
+  "see_also": "chr19_19q13_41_CEACAM_SIGLEC_cluster.json"
+}

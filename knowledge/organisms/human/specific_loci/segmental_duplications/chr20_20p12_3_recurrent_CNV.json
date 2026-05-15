@@ -1,0 +1,32 @@
+{
+  "name": "chr20_20p12_3_recurrent_CNV",
+  "taxonomy_id": "paralog_family",
+  "description": "20p12.3 recurrent microdeletion / microduplication interval centred on JAG1-PLCB1 region. Mediated by flanking direct SDs at ~96-98% identity; rare ~2-4 Mb dosage CNVs reported in ID/dysmorphism cohorts and partially overlapping the Alagille syndrome locus.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 9500000, "end": 13000000}},
+  "size_bp": 3500000,
+  "architecture": {
+    "type": "direct",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Direct SD blocks of 50-150 kb at 96-98% identity flanking a ~2-4 Mb interval that contains JAG1 and PLCB1; recurrent NAHR-driven CNV breakpoints reported."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Alagille syndrome (JAG1)",
+    "20p12.3 microdeletion (intellectual disability / heart defects)",
+    "20p12.3 microduplication"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1136/jmedgenet-2011-100089",
+    "PMID:21984749"
+  ],
+  "confidence": 0.8
+}

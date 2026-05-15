@@ -1,0 +1,35 @@
+{
+  "name": "chrY_Yq12_heterochromatin_DYZ1_DYZ2",
+  "taxonomy_id": "paralog_family",
+  "description": "Yq12 heterochromatic block, ~30-40 Mb of tandem satellite DNA (DYZ1: ~3000 copies of 3.4 kb pentanucleotide; DYZ2: 2440 copies of 2.4 kb AT-rich repeat). Highly variable in size between males (Y chromosome heteromorphism, q12 polymorphism). Almost no genes; entirely SD/satellite architecture. Telomeric end at PAR2.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 26600000, "end": 56870000}},
+  "size_bp": 30300000,
+  "architecture": {
+    "type": "tandem_satellite_heterochromatin",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "DYZ1 pentanucleotide tandem array, DYZ2 alpha-like array, DYZ17, DYZ18 intermixed; massive structural heteromorphism between males."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.1,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Y heteromorphism (normal variant)",
+    "rare Yq12 deletions extending into AZFc"
+  ],
+  "cross_references": [
+    "../y_chromosome/",
+    "../centromeres/"
+  ],
+  "sources": [
+    "doi:10.1038/s41586-023-06457-y",
+    "doi:10.1038/nature01722",
+    "PMID:37612486"
+  ],
+  "confidence": 0.9
+}

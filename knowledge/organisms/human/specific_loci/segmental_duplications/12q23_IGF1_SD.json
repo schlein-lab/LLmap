@@ -1,0 +1,29 @@
+{
+  "name": "12q23_IGF1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12q23.2 segmental duplication interval flanking IGF1 and the surrounding insulin-like growth factor regulatory region. Contains short SDs and processed-pseudogene-derived paralogs of IGF1 distributed across the genome.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 101300000, "end": 102600000}},
+  "size_bp": 1300000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 92.0,
+    "internal_structure": "Short SDs of 5-20 kb at 90-94% identity; processed-pseudogene-derived IGF1 paralogs; family-internal SDs to IGF2 (11p15.5)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Laron syndrome (IGF1 deficiency)",
+    "short stature"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

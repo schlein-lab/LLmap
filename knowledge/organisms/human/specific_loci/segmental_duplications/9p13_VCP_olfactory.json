@@ -1,0 +1,29 @@
+{
+  "name": "9p13_olfactory_receptor_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "9p13.3 olfactory receptor (OR) gene cluster, one of multiple OR clusters scattered genome-wide. Highly paralogous (>85% intra-cluster identity), variable copy number between haplotypes. Forms one substrate of the OR family that drives CNV at multiple chromosomes (8p23.1, 11q11, 14q11, etc.).",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 35000000, "end": 36500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 88.0,
+    "internal_structure": "~10-20 OR genes in tandem at 9p13.3 (OR2S, OR13, OR1J families); pseudogene-rich; serves as PSV-rich paralog family across genome."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Olfactory phenotypic variation"
+  ],
+  "sources": [
+    "doi:10.1101/gr.114.6.1180",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

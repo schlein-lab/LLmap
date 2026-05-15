@@ -1,0 +1,33 @@
+{
+  "name": "chrX_Xq11_pericentric_SD_blocks",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq11 pericentromeric region with a mosaic of 30-300 kb SD blocks shared between Xp and Xq pericentromeres and with autosomal pericentromeric regions (chr3, chr16). Low gene density, dominated by pseudogenes; typical 'pericentromeric seeding' architecture.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 61700000, "end": 67500000}},
+  "size_bp": 5800000,
+  "architecture": {
+    "type": "pericentromeric_SD_mosaic",
+    "copy_number_in_population": "variable",
+    "homology_percent": 97.0,
+    "internal_structure": "Mosaic SD blocks ('seeds') from euchromatic donors; AR-flanking duplicons at proximal end."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "complex pericentromeric rearrangements",
+    "X-autosome translocations"
+  ],
+  "cross_references": [
+    "../centromeres/"
+  ],
+  "sources": [
+    "doi:10.1038/nature03440",
+    "doi:10.1101/gr.2900204"
+  ],
+  "confidence": 0.8
+}

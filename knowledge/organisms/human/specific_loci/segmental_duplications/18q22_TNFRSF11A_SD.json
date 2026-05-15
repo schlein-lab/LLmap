@@ -1,0 +1,30 @@
+{
+  "name": "18q22_TNFRSF11A_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18q22.1 SD modules flanking TNFRSF11A (RANK). Direct-orientation duplicons mediate rare microduplications associated with familial expansile osteolysis.",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 62000000, "end": 62400000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Two small SD modules of ~10-20 kb at ~97% identity flanking TNFRSF11A; NAHR drives rare intragenic tandem duplications inserting into TNFRSF11A exon 1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Familial expansile osteolysis (TNFRSF11A duplication)",
+    "Paget disease of bone, juvenile form"
+  ],
+  "sources": [
+    "doi:10.1038/ng871",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

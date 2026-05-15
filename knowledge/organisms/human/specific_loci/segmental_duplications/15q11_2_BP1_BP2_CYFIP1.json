@@ -1,0 +1,36 @@
+{
+  "name": "15q11_2_BP1_BP2_microdeletion",
+  "taxonomy_id": "paralog_family",
+  "description": "15q11.2 BP1-BP2 recurrent microdeletion / microduplication (~500 kb), flanked by BP1 and BP2 SD blocks (HERC2P paralog cassettes) of the larger PWS/AS region. Lower penetrance susceptibility CNV for ID, epilepsy, schizophrenia, autism. The Burnside-Butler region. Critical genes: TUBGCP5, CYFIP1, NIPA1, NIPA2.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 22600000, "end": 23200000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["BP1_15q11.2_HERC2P", "BP2_15q11.2_HERC2P"],
+    "homology_percent": 99.0,
+    "internal_structure": "BP1 and BP2 are 200-400 kb SD clusters with HERC2P/GOLGA8 paralog cassettes at >99% identity (continuous with the PWS/AS region distally); unique core contains TUBGCP5, CYFIP1 (FMR1 interactor), NIPA1, NIPA2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "15q11.2 BP1-BP2 microdeletion (Burnside-Butler) - susceptibility ID/autism",
+    "15q11.2 microduplication (susceptibility)",
+    "schizophrenia susceptibility",
+    "epilepsy"
+  ],
+  "penetrance": "low",
+  "sources": [
+    "doi:10.1056/NEJMoa0805384",
+    "doi:10.1136/jmedgenet-2013-101582",
+    "doi:10.1038/mp.2013.183",
+    "ClinGen Dosage Sensitivity 15q11.2 BP1-BP2 (HI=2)"
+  ],
+  "confidence": 0.9
+}

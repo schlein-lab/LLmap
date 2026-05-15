@@ -1,0 +1,30 @@
+{
+  "name": "chr19_19q13_33_TGFB1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.2-q13.33 SD field including TGFB1, BCL3 and the CD22/RELB neighbourhood. Embedded between the 19q13.31 ZNF mega-cluster and the 19q13.33 ZNF tail; short flanking SDs at 90-96% identity contribute to mapping ambiguity around clinically important immune genes.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 41300000, "end": 41700000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 93.0,
+    "internal_structure": "Short 5-30 kb intra-chromosomal SDs at 90-96% identity flanking TGFB1, BCL3, RELB; partial inter-chromosomal duplicons to TGFB family loci on chr1 and chr14."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Camurati-Engelmann disease (TGFB1)",
+    "Hereditary haemorrhagic telangiectasia susceptibility (TGFB1 modifier)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.6
+}

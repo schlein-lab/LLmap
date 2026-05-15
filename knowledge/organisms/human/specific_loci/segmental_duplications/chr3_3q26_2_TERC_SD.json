@@ -1,0 +1,30 @@
+{
+  "name": "chr3_3q26_2_TERC_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "3q26.2 region around TERC (telomerase RNA component) and the PIK3CA neighbourhood. Site of recurrent 3q26 amplifications in squamous cell carcinomas, frequently spanning TERC and SOX2; the breakpoints associate with low-copy repeats.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 169200000, "end": 170800000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "somatic_amplified",
+    "homology_percent": 93.0,
+    "internal_structure": "Small flanking SDs of 10-40 kb at ~93% identity; canonical 3q26 amplicon includes TERC, SOX2, PIK3CA, MECOM."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Squamous cell carcinoma 3q26 amplification (lung, cervix, oesophagus)"
+  ],
+  "sources": [
+    "doi:10.1038/nature09064",
+    "doi:10.1038/sj.onc.1207752",
+    "PMID:20668451"
+  ],
+  "confidence": 0.7
+}

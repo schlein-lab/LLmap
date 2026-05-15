@@ -1,0 +1,29 @@
+{
+  "name": "17p11_2_FLCN_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Internal SMS-REP-derived SD around FLCN (Birt-Hogg-Dube gene). FLCN lies within an SD-rich subregion of 17p11.2; intragenic deletions arising from NAHR between FLCN duplicons are recurrent in BHD.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 17100000, "end": 17300000}},
+  "size_bp": 200000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Two intragenic SD blocks of ~10-20 kb at >98% identity within and 5' of FLCN; mediate recurrent ~30-50 kb intragenic deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Birt-Hogg-Dube syndrome (FLCN)"
+  ],
+  "sources": [
+    "doi:10.1186/1755-8794-1-23",
+    "doi:10.1016/j.ajhg.2007.12.009"
+  ],
+  "confidence": 0.75
+}

@@ -1,0 +1,29 @@
+{
+  "name": "9q21_11_FXN_Friedreich_locus",
+  "taxonomy_id": "tandem_repeat",
+  "description": "9q21.11 FXN (frataxin) intron 1 GAA-trinucleotide repeat expansion locus. Normal allele 5-33 repeats, premutation 34-65, full disease >100-1700. Most common autosomal recessive ataxia in Europe (Friedreich ataxia).",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 71650000, "end": 71657000}},
+  "size_bp": 7000,
+  "architecture": {
+    "type": "intronic_trinucleotide_repeat",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 100.0,
+    "internal_structure": "GAA tandem repeat in FXN intron 1; expansion causes heterochromatinization and reduced FXN expression."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 10000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Friedreich ataxia"
+  ],
+  "sources": [
+    "doi:10.1126/science.271.5254.1423",
+    "doi:10.1056/NEJM199610173351601"
+  ],
+  "confidence": 0.95
+}

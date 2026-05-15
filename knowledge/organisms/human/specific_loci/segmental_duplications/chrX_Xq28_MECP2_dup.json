@@ -1,0 +1,34 @@
+{
+  "name": "chrX_Xq28_MECP2_duplication_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq28 recurrent ~0.5 Mb duplication encompassing MECP2 and flanking SDs (~5 kb at 99% identity), the most common dosage-sensitive locus on chrX. MECP2 duplication syndrome is one of the most frequent recurrent X-linked CNV disorders (1:150 X-linked ID males). BPs cluster in low-copy repeats just telomeric to int22h-3 (cross-ref Xq28_recurrent.json).",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 153300000, "end": 153900000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_flanking_SDs",
+    "copy_number_in_population": "recurrent_CNV_hotspot",
+    "homology_percent": 99.0,
+    "internal_structure": "Direct ~5-10 kb SDs flanking MECP2; non-recurrent BPs in surrounding LCRs also common."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MECP2 duplication syndrome (X-linked severe ID, infections, autism)",
+    "Rett syndrome (MECP2 point mutations - inverse phenotype)"
+  ],
+  "cross_references": [
+    "Xq28_recurrent.json"
+  ],
+  "sources": [
+    "doi:10.1086/426462",
+    "doi:10.1093/hmg/ddl039",
+    "PMID:16080115"
+  ],
+  "confidence": 0.95
+}

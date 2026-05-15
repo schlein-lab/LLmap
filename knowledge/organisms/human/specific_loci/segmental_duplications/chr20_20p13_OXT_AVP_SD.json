@@ -1,0 +1,31 @@
+{
+  "name": "chr20_20p13_OXT_AVP_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20p13 SD region containing the tail-to-tail OXT/AVP gene pair (oxytocin and arginine-vasopressin neuropeptides), which arose by inverted duplication of an ancestral neurophysin gene. The two genes lie ~12 kb apart in opposite orientation and form a classical intra-locus paralog.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 3050000, "end": 3120000}},
+  "size_bp": 70000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "stable",
+    "homology_percent": 80.0,
+    "internal_structure": "Two ~2 kb paralog genes (OXT 5'->3' and AVP 3'<-5') in tail-to-tail inverted orientation ~12 kb apart; ~80% nucleotide identity in coding regions and neurophysin domain; short flanking SDs <10 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Central diabetes insipidus (AVP)",
+    "Behavioural / social phenotypes (OXT pathway variation)"
+  ],
+  "sources": [
+    "doi:10.1038/308457a0",
+    "doi:10.1126/science.1072047",
+    "PMID:6713960"
+  ],
+  "confidence": 0.85
+}

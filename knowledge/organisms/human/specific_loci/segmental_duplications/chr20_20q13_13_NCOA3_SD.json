@@ -1,0 +1,31 @@
+{
+  "name": "chr20_20q13_13_NCOA3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20q13.12 SD region containing NCOA3 (AIB1/SRC-3 nuclear-receptor coactivator), SULF2 and PROCR. A classical 20q13 amplicon target in breast / ovarian cancer; flanked by ~30-80 kb SDs that contribute to amplification breakpoints.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 47400000, "end": 47900000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "direct",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Direct SDs of 30-80 kb at 95-98% identity flanking NCOA3, SULF2; somatic copy-number gain in 5-10% of breast cancers; recurrent breakpoint hotspots in the flanking SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Breast cancer (NCOA3 amplification)",
+    "Ovarian / endometrial cancer"
+  ],
+  "sources": [
+    "doi:10.1126/science.277.5328.965",
+    "doi:10.1126/science.1072047",
+    "PMID:9252329"
+  ],
+  "confidence": 0.75
+}

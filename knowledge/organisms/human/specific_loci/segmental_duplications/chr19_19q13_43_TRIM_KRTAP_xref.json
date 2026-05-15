@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19q13_43_TRIM_KRTAP_xref",
+  "taxonomy_id": "paralog_family",
+  "description": "Terminal 19q13.43 keratin-associated protein (KRTAP) tandem cluster — ~30 KRTAP paralog genes (KRTAP4 subfamily) at 70-95% identity over ~400 kb. Encodes the cysteine/glycine-rich hair-shaft matrix proteins; one of the most variable tandem clusters in the human genome by population CN.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 55700000, "end": 56200000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 90.0,
+    "internal_structure": "~30 KRTAP4 / KRTAP5 paralog genes in tandem at 70-95% identity over ~500 kb; very short intronless coding units of 250-500 bp; abundant inter-copy SDs of 5-30 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hair shape and texture variation",
+    "Monilethrix-like phenotypes"
+  ],
+  "sources": [
+    "doi:10.1186/1471-2164-15-779",
+    "doi:10.1126/science.1072047",
+    "PMID:25208851"
+  ],
+  "confidence": 0.85
+}

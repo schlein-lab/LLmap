@@ -1,0 +1,34 @@
+{
+  "name": "chrY_Yp11_2_X_transposed_region",
+  "taxonomy_id": "paralog_family",
+  "description": "Yp11.2 hosts the X-transposed region (XTR) on Y: ~3.4 Mb block transposed from Xq21 to Y after the human-chimp split (~5 Mya). Includes PCDH11Y and TGIF2LY, X-Y paralogs that have undergone partial gene loss on Y. >98% identity to chrX donor; major source of X-Y mapping confusion.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 3100000, "end": 6450000}},
+  "size_bp": 3350000,
+  "architecture": {
+    "type": "interchromosomal_X_Y_block",
+    "copy_number_in_population": "1_in_males",
+    "homology_percent": 98.5,
+    "internal_structure": "Single-copy on Y, mirrors Xq21 XTR; PCDH11Y, TGIF2LY; gene degradation in pseudogene fragments."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "X-Y misalignment artefacts in variant callers",
+    "PCDH11X/Y hemispheric asymmetry hypothesis"
+  ],
+  "cross_references": [
+    "chrX_Xq28_PAR_like.json",
+    "../y_chromosome/"
+  ],
+  "sources": [
+    "doi:10.1038/nature01722",
+    "PMID:12815422"
+  ],
+  "confidence": 0.85
+}

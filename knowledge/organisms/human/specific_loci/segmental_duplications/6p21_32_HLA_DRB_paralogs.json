@@ -1,0 +1,34 @@
+{
+  "name": "6p21_32_HLA_DRB_paralog_array",
+  "taxonomy_id": "paralog_family",
+  "description": "6p21.32 HLA-DRB sub-region — the most copy-number-variable paralog array within the MHC. Haplotype-dependent presence of DRB1, DRB3, DRB4, DRB5 plus pseudogenes DRB2/DRB6/DRB7/DRB8/DRB9. DRB paralog identity 90-99%. Read mapping at exon 2 (peptide-binding groove) is critically PSV-dependent. Cross-reference: detailed annotation in specific_loci/mhc/.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 32400000, "end": 32700000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Haplotype-dependent DRB array: DR1/10/14/15/16 carry DRB1 only; DR3/11/12/13/14 carry DRB1+DRB3; DR4/7/9 carry DRB1+DRB4; DR15/16 carry DRB1+DRB5; plus pseudogenes; DRB exon-2 paralog identity 90-99%.",
+    "see_also": "specific_loci/mhc/"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "see /mhc submodule",
+    "type 1 diabetes (HLA-DR3/DR4)",
+    "multiple sclerosis (HLA-DRB1*15:01)",
+    "rheumatoid arthritis (HLA-DRB1 shared epitope)"
+  ],
+  "sources": [
+    "doi:10.1038/nature01000",
+    "doi:10.1038/nature06250",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.95
+}

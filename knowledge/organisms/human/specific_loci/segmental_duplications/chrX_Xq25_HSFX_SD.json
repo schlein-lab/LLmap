@@ -1,0 +1,30 @@
+{
+  "name": "chrX_Xq25_27_HSFX_SPANX_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq25-q28 cancer/testis antigen cluster harboring SPANX, GAGE, CSAG, MAGE-A and HSFX paralog families. Multiple tandem duplications of 5-50 kb at >95% identity; copy-number variable between males (SPANX gene family 1-5 copies). Cross-mapping with autosomal MAGE paralogs.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 140000000, "end": 152000000}},
+  "size_bp": 12000000,
+  "architecture": {
+    "type": "tandem_paralog_arrays",
+    "copy_number_in_population": "highly_variable_male",
+    "homology_percent": 97.0,
+    "internal_structure": "SPANX (5 copies), GAGE (8-11 copies), CSAG, MAGE-A, HSFX tandem clusters; reproductive expression."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "male infertility (SPANX dosage)",
+    "cancer/testis antigen expression in tumors"
+  ],
+  "sources": [
+    "doi:10.1186/1471-2164-8-242",
+    "PMID:17672904"
+  ],
+  "confidence": 0.8
+}

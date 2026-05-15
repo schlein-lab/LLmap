@@ -1,0 +1,33 @@
+{
+  "name": "chr20_20q13_33_KCNQ2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20q13.33 subtelomeric SD region around KCNQ2 (voltage-gated potassium channel) and adjacent CHRNA4. Flanked by short SDs of ~10-30 kb and embedded in the 20q subtelomeric SD field; rare recurrent 20q13.33 microdeletions remove KCNQ2 and CHRNA4 together.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 63300000, "end": 63700000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Short 10-30 kb intra-chromosomal SDs at 93-97% identity flanking KCNQ2, CHRNA4, EEF1A2; subtelomeric duplicons shared with other chromosome ends; rare ~400 kb-1 Mb microdeletions reported."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Benign familial neonatal seizures 1 (KCNQ2)",
+    "Early infantile epileptic encephalopathy 7 (KCNQ2)",
+    "Nocturnal frontal lobe epilepsy 1 (CHRNA4)",
+    "20q13.33 contiguous microdeletion"
+  ],
+  "sources": [
+    "doi:10.1038/ng0198-25",
+    "doi:10.1126/science.1072047",
+    "PMID:9425895"
+  ],
+  "confidence": 0.85
+}

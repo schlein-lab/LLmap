@@ -1,0 +1,30 @@
+{
+  "name": "chr20_20q13_2_PTPN1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20q13.13 SD region containing PTPN1 (PTP1B, insulin-signaling phosphatase) and PARD6B. Flanked by intermediate-size SD blocks of ~30-60 kb at 95-98% identity that contribute to occasional 20q13 amplicons in cancer.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 49100000, "end": 49600000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "direct",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Direct SDs of 30-60 kb at 95-98% identity flanking PTPN1; embedded in the 20q amplicon-prone region; somatic gain reported in breast / colorectal cancers."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Type 2 diabetes susceptibility (PTPN1)",
+    "Cancer (somatic 20q13 amplification)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.65
+}

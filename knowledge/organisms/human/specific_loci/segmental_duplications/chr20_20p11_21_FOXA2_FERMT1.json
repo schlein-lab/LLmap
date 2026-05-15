@@ -1,0 +1,30 @@
+{
+  "name": "chr20_20p11_21_FOXA2_FERMT1",
+  "taxonomy_id": "paralog_family",
+  "description": "20p11.21 SD belt containing FERMT1 (Kindler syndrome gene), BMP2K, and BTBD3 paralog blocks. Continuous with the 20p11 pericentric SD field and forms part of the proximal 20p SD-dense belt.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 24800000, "end": 25500000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Direct and inverted SDs of 20-80 kb at 93-98% identity flanking FERMT1, BMP2K; embedded in proximal-20p SD-enriched belt; site of occasional NAHR events."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Kindler syndrome (FERMT1)",
+    "Rare 20p11.21 microdeletions"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.65
+}

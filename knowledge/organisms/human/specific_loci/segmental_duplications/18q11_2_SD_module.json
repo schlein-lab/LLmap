@@ -1,0 +1,30 @@
+{
+  "name": "18q11_2_SD_module",
+  "taxonomy_id": "paralog_family",
+  "description": "18q11.2 SD modules near GATA6 and ROCK1P1. Two direct-orientation SD blocks flanking GATA6 mediate rare ~3 Mb 18q11.2 microdeletions linked to congenital heart defects.",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 19500000, "end": 22500000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Flanking SD blocks of ~50-100 kb at ~97% identity; share GREB1L and ROCK1P1 paralog content with chr17 paralogs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "18q11.2 microdeletion syndrome (CHD, ID)",
+    "GATA6-related pancreatic agenesis"
+  ],
+  "sources": [
+    "doi:10.1038/ng.534",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

@@ -1,0 +1,36 @@
+{
+  "name": "14q12_FOXG1_duplication",
+  "taxonomy_id": "paralog_family",
+  "description": "14q12 microduplication / microdeletion encompassing FOXG1. Deletions and intragenic LoF cause the congenital variant of Rett syndrome (FOXG1 syndrome); duplications cause infantile spasms / West syndrome and severe ID. Breakpoints typically non-recurrent but a subset is mediated by flanking SD blocks at 14q12.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 28000000, "end": 30500000}},
+  "size_bp": 2500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_14q12_proximal", "SD_14q12_distal"],
+    "homology_percent": 95.0,
+    "internal_structure": "Flanking SD blocks of ~10-50 kb mediate a fraction of recurrent breakpoints; unique core contains FOXG1 (primary dosage gene), NOVA1, PRKD1. Most cases involve focal FOXG1 CNV or intragenic mutation."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "FOXG1 syndrome (congenital Rett variant, deletion/LoF)",
+    "14q12 duplication syndrome (infantile spasms, West syndrome)",
+    "severe intellectual disability",
+    "epileptic encephalopathy"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1086/521089",
+    "doi:10.1038/ejhg.2010.131",
+    "doi:10.1212/WNL.0b013e3182194c98",
+    "ClinGen Dosage Sensitivity FOXG1 (HI=3, TS=3)"
+  ],
+  "confidence": 0.9
+}

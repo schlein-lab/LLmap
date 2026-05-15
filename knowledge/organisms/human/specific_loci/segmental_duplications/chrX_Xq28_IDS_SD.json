@@ -1,0 +1,34 @@
+{
+  "name": "chrX_Xq28_IDS_pseudogene_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq28 IDS (iduronate-2-sulfatase) locus with the IDS2 pseudogene ~20 kb telomeric in inverted orientation at >88% identity. NAHR between IDS and IDS2 causes the recurrent IDS inversion responsible for ~13% of severe Hunter syndrome (MPS II) cases. Adjacent to MECP2 and int22h regions.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 149440000, "end": 149520000}},
+  "size_bp": 80000,
+  "architecture": {
+    "type": "inverted_pseudogene_pair",
+    "copy_number_in_population": "stable_hemizygous_male",
+    "homology_percent": 88.0,
+    "internal_structure": "Functional IDS gene + IDS2 pseudogene in inverted orientation; NAHR creates IDS-disrupting inversion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hunter syndrome (MPS II, IDS deficiency)",
+    "IDS recurrent inversion (~13% of severe MPS II)"
+  ],
+  "cross_references": [
+    "Xq28_recurrent.json",
+    "chrX_Xq28_MECP2_dup.json"
+  ],
+  "sources": [
+    "doi:10.1038/ng0794-204",
+    "PMID:7951231"
+  ],
+  "confidence": 0.9
+}

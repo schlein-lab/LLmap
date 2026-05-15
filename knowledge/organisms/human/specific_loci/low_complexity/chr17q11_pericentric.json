@@ -1,0 +1,31 @@
+{
+  "name": "chr17q11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 17 q-arm pericentric flank (17q11.1-17q11.2), the q-side sub-centromeric LCR shoreline. Distally adjoins the NF1-REP SD block (17q11.2 NF1 microdeletion). Alpha-satellite (D17Z1), pericentromeric SDs and HSat patches. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 26616164, "end": 29200000}, "chm13": {"chr": "chr17", "start": 26900000, "end": 29500000}},
+  "size_bp": 2583836,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D17Z1", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [2000, 4000],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + HSat patches + pericentromeric SD shoreline; distally adjacent to NF1-REP SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "NF1 microdeletion (17q11.2)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003"
+  ],
+  "confidence": 0.85
+}

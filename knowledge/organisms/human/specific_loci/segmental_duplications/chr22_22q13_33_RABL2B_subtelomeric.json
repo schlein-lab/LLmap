@@ -1,0 +1,34 @@
+{
+  "name": "chr22_22q13_33_RABL2B_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "22q13.33 subtelomeric region with RABL2B/MAPK8IP2/ARSA/SHANK3-distal SDs. RABL2B is paralog of RABL2A on 2q14; their ~5 kb subtelomeric duplicon is shared with many other subtelomeres (chr1q, 9p, 10q, 22q). Cross-reference with the Phelan-McDermid 22q13 file for SHANK3 BPs.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 50500000, "end": 50818468}},
+  "size_bp": 320000,
+  "architecture": {
+    "type": "subtelomeric_interchromosomal_SDs",
+    "copy_number_in_population": "variable",
+    "homology_percent": 98.0,
+    "internal_structure": "Subtelomeric SD blocks shared with multiple chromosome ends; near-telomere TTAGGG arrays."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q13 terminal deletion (cross-ref Phelan-McDermid)",
+    "subtelomeric rearrangements in ID/DD cohorts"
+  ],
+  "cross_references": [
+    "22q13_Phelan_McDermid.json",
+    "../telomeres/"
+  ],
+  "sources": [
+    "doi:10.1038/nature01266",
+    "doi:10.1086/302727"
+  ],
+  "confidence": 0.8
+}

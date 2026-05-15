@@ -1,0 +1,36 @@
+{
+  "name": "Xq28_MECP2_duplication_syndrome",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq28 MECP2 duplication syndrome — recurrent ~0.3-2.3 Mb duplications of distal Xq28 encompassing MECP2 and frequently IRAK1, L1CAM. Mediated by NAHR or FoSTeS between K1-K2 SD blocks and other Xq28 inverted/direct duplicons. Distinct from the int22h/F8 inversion locus (more centromeric). X-linked: severe progressive neurological phenotype in males, mild/variable in females.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 153300000, "end": 154700000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_Xq28_K1", "SD_Xq28_K2", "SD_Xq28_telomeric_palindrome"],
+    "homology_percent": 99.0,
+    "internal_structure": "Multiple Xq28 SD blocks (K1, K2 cassettes) of ~30-100 kb at >99% identity; high palindrome density in distal Xq28; unique core contains MECP2 (primary dosage gene; gain causes severe X-linked ID), IRAK1, L1CAM, AVPR2, FLNA, GDI1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MECP2 duplication syndrome (severe X-linked ID in males)",
+    "Rett syndrome (loss-of-function reciprocal)",
+    "recurrent infections (IRAK1 dosage)",
+    "X-linked intellectual disability"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1086/444549",
+    "doi:10.1086/302807",
+    "doi:10.1056/NEJMra1206215",
+    "ClinGen Dosage Sensitivity MECP2 (HI=3, TS=3)"
+  ],
+  "confidence": 0.95
+}

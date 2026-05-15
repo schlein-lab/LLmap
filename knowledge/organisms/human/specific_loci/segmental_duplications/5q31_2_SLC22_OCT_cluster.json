@@ -1,0 +1,31 @@
+{
+  "name": "5q31_1_SLC22A4_SLC22A5_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "5q31.1 SLC22 organic-cation-transporter (OCT) cluster. SLC22A4 (OCTN1), SLC22A5 (OCTN2) and IRF1 sit in a tandem ~250 kb block with short intragenic SDs. The OCT paralog family is dispersed across chromosomes (SLC22A1/2/3 on 6q25, SLC22A6/8/11 on 11q12, OCTN-family at 5q31). Association with Crohn disease risk haplotype 'IBD5'.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 132300000, "end": 132700000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 88.0,
+    "internal_structure": "Tandem pair SLC22A4-SLC22A5 plus IRF1, P4HA2, PDLIM4; short intragenic SDs ~5 kb; cross-chromosome paralog tracts (5q31 <-> 6q25 SLC22A1/2/3; 11q12 SLC22A6/8/11) at 50-70% protein identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Crohn disease (IBD5 risk haplotype)",
+    "primary carnitine deficiency (SLC22A5)",
+    "rheumatoid arthritis association"
+  ],
+  "sources": [
+    "doi:10.1038/ng1339",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,30 @@
+{
+  "name": "15q21_3_TPM1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Tropomyosin TPM1 at 15q22.2 sits in a cluster with neighbouring paralog footprints; the wider 15q21.3-q22.2 region contains intra-chromosomal SDs (5-30 kb at 93-97% identity) flanking SMAD3, SMAD6, and TPM1, contributing to rare intragenic events in Loeys-Dietz-spectrum probands.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 63000000, "end": 67500000}},
+  "size_bp": 4500000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "5-30 kb SD pairs at 93-97% identity flanking SMAD3 and TPM1; SMAD6 paralog footprint shared with chr6 SMAD-family loci."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Loeys-Dietz syndrome (SMAD3)",
+    "hypertrophic cardiomyopathy (TPM1)"
+  ],
+  "sources": [
+    "doi:10.1038/ng.744",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.75
+}

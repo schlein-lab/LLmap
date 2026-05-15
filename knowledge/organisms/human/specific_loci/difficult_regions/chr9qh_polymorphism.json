@@ -1,0 +1,34 @@
+{
+  "name": "chr9qh_size_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "9qh+ / 9qh- size polymorphism: the largest classical autosomal heterochromatin block (9q12), predominantly HSat3, varies dramatically between individuals (5-35 Mb). Detected in routine karyotype as an enlarged 9q12 band (qh+). Mostly benign; weak association with reproductive failure. GRCh38 represents only ~2 Mb of this block; T2T-CHM13 resolves the full ~33 Mb in the reference individual.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 43000000, "end": 65500000}, "chm13": {"chr": "chr9", "start": 42200000, "end": 76000000}},
+  "size_bp": 22500000,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["HSat3_1", "HSat3_2", "HSat3_3", "HSat2"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [5000, 35000],
+    "homology_percent": 95.0,
+    "internal_structure": "Tandem arrays of HSat3 sub-families (ATTCC pentamer derivatives) with HSat2 patches; the largest classical heterochromatin block in the genome on any autosome."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.1,
+    "max_occ": 5000000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "9qh+ associated with reproductive failure (weak / debated)",
+    "ICF syndrome instability"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abl4178",
+    "PMID:225837",
+    "doi:10.1007/BF00271272"
+  ],
+  "confidence": 0.9
+}

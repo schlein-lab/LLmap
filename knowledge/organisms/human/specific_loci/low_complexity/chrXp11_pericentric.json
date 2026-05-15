@@ -1,0 +1,32 @@
+{
+  "name": "chrXp11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome X p-arm pericentric flank (Xp11.1-Xp11.21), the immediate sub-centromeric LCR shoreline on the p-side of the chrX centromere. Alpha-satellite (DXZ1), pericentromeric SDs and HSat patches. Distally adjoins the OPHN1 / WAS-locus region. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 56100000, "end": 58605499}, "chm13": {"chr": "chrX", "start": 56500000, "end": 59000000}},
+  "size_bp": 2505499,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_DXZ1", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 3500],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR (DXZ1) + HSat patches + pericentromeric SD shoreline; pseudoautosomal nature absent — strictly X-specific HOR."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Xp11 ICF-like instability (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/nature03440",
+    "doi:10.1101/gr.1531003"
+  ],
+  "confidence": 0.85
+}

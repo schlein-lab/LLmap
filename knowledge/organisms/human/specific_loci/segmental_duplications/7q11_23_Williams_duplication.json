@@ -1,0 +1,36 @@
+{
+  "name": "7q11_23_Williams_Beuren_duplication",
+  "taxonomy_id": "paralog_family",
+  "description": "7q11.23 duplication syndrome (Som-Williams syndrome) — reciprocal microduplication of the Williams-Beuren critical region (~1.5 Mb). Mediated by NAHR between the same direct-orientation Williams-Beuren-LCRs (centromeric, medial, telomeric) of >97% identity that cause the canonical deletion. Phenotype: expressive language delay, autism, anxiety, attention disorders, cardiac defects (TGA, aortic dilatation).",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 73200000, "end": 74700000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["WBS_LCR_centromeric", "WBS_LCR_medial", "WBS_LCR_telomeric"],
+    "homology_percent": 98.0,
+    "internal_structure": "Three Williams-Beuren LCR blocks of ~300-400 kb at >98% identity (GTF2IP1/POM121/NSUN5 paralog cassettes); unique core contains ELN, GTF2I, GTF2IRD1, LIMK1, CLIP2, BAZ1B, BCL7B, STX1A. Same architecture as the deletion locus."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "7q11.23 duplication syndrome (Som-Williams)",
+    "expressive language delay",
+    "autism spectrum",
+    "thoracic aortic aneurysm (reciprocal ELN gain)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1056/NEJMoa051962",
+    "doi:10.1086/421474",
+    "doi:10.1038/ejhg.2011.69",
+    "ClinGen Dosage Sensitivity 7q11.23 (TS=3)"
+  ],
+  "confidence": 0.95
+}

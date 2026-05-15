@@ -1,0 +1,30 @@
+{
+  "name": "18q23_ZADH2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18q23 subtelomeric SD cluster around ZADH2, TSHZ1, and CTDP1. Direct-orientation SD blocks contribute to terminal 18q deletion syndrome breakpoints (de Grouchy syndrome).",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 77000000, "end": 80370000}},
+  "size_bp": 3370000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD modules of ~10-50 kb at ~94-97% identity around ZADH2, TSHZ1, CTDP1, NFATC1; partial paralog content shared with other subtelomeres."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "18q deletion syndrome (de Grouchy)",
+    "CCFDN syndrome (CTDP1)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1002/ajmg.a.30257"
+  ],
+  "confidence": 0.65
+}

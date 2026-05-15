@@ -1,0 +1,32 @@
+{
+  "name": "chrX_Xp21_DMD_intragenic_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xp21.2 region containing DMD (dystrophin), the largest human gene (~2.4 Mb). DMD carries multiple intronic SDs and LINE-rich segments that drive recurrent intragenic deletions/duplications (the molecular basis of Duchenne and Becker muscular dystrophy in ~70% of cases). Hot deletion BPs are in introns 44-55 and 2-20.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 31100000, "end": 33500000}},
+  "size_bp": 2400000,
+  "architecture": {
+    "type": "intragene_dispersed_SD",
+    "copy_number_in_population": "stable_diploid_hemi_male",
+    "homology_percent": 94.0,
+    "internal_structure": "Intronic SDs and LINE-rich segments scattered through DMD introns; recurrent NAHR / non-homologous BPs cluster in two hotspots (exons 2-20 and 44-55)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Duchenne muscular dystrophy (DMD large deletions/duplications)",
+    "Becker muscular dystrophy (in-frame DMD CNV)",
+    "X-linked dilated cardiomyopathy"
+  ],
+  "sources": [
+    "doi:10.1086/302150",
+    "doi:10.1002/humu.20049",
+    "PMID:14635117"
+  ],
+  "confidence": 0.85
+}

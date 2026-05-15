@@ -1,0 +1,36 @@
+{
+  "name": "11q24_Jacobsen_syndrome",
+  "taxonomy_id": "paralog_family",
+  "description": "Jacobsen syndrome (11q23-q25 terminal deletion). Variable-size terminal deletions (7-20 Mb) often with breakpoints in the FRA11B folate-sensitive fragile site (CCG)n repeat at FRA11B/CBL2 proximal to the syndrome region. Phenotype: thrombocytopenia (Paris-Trousseau, FLI1 LoF), ID, cardiac defects, characteristic facies. Subtelomeric 11qter SD blocks mediate a subset of breakpoints.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 117000000, "end": 135086622}},
+  "size_bp": 18000000,
+  "architecture": {
+    "type": "tandem_repeat",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["FRA11B_CGG_expansion", "SD_11qter_subtelomeric"],
+    "homology_percent": 96.0,
+    "internal_structure": "FRA11B (CBL2/CCG-repeat fragile site at 11q23.3) is the major recurrent breakpoint; distal SD cluster at 11qter mediates additional events. Critical dosage-sensitive genes: FLI1 (thrombocytopenia), ETS1 (cardiac), RICS, NRGN, BARX2, KCNJ1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Jacobsen syndrome (11q deletion)",
+    "Paris-Trousseau thrombocytopenia",
+    "congenital heart disease (ETS1)",
+    "trigonocephaly"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1086/302923",
+    "doi:10.1086/422103",
+    "doi:10.1186/1750-1172-4-9",
+    "ClinGen Dosage Sensitivity FLI1 (HI=3)"
+  ],
+  "confidence": 0.9
+}

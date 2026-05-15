@@ -1,0 +1,35 @@
+{
+  "name": "16p11_2_distal_220kb_SH2B1",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.2 distal recurrent ~220 kb microdeletion / microduplication (BP2-BP3), flanked by SD blocks distal to the canonical proximal 600 kb (BP4-BP5) 16p11.2 region. Strongly associated with severe early-onset obesity (SH2B1 dosage); also developmental delay and behavioural phenotype. The proximal 16p11.2 file covers BP4-BP5; this entry is the distinct BP2-BP3 distal locus.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 28700000, "end": 28950000}},
+  "size_bp": 220000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["BP2_16p11.2_distal", "BP3_16p11.2_distal"],
+    "homology_percent": 99.0,
+    "internal_structure": "Two flanking SD blocks of ~50-100 kb at >99% identity (BOLA2/SULT1A paralog cassettes shared with proximal 16p11.2); unique core contains SH2B1 (primary obesity gene), ATXN2L, TUFM, ATP2A1, RABEP2, CD19, NFATC2IP, SPNS1, LAT, NUPR1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 distal deletion (severe early-onset obesity, ID)",
+    "16p11.2 distal duplication (underweight, schizophrenia risk)",
+    "developmental delay"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1038/nature08727",
+    "doi:10.1038/ng.2304",
+    "doi:10.1038/nature19075",
+    "ClinGen Dosage Sensitivity SH2B1 (HI=3)"
+  ],
+  "confidence": 0.95
+}

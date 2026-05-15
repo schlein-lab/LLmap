@@ -1,0 +1,30 @@
+{
+  "name": "18q21_SMAD7_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18q21.1 SD blocks flanking SMAD7. Direct-orientation duplicons mediate rare ~700 kb 18q21 microdeletions and shape recombination rates around the SMAD7 locus (colorectal cancer GWAS signal).",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 46300000, "end": 47100000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Flanking SD blocks of ~20-40 kb at ~96% identity; share KRT-paralog content."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Colorectal cancer susceptibility (SMAD7 region GWAS)",
+    "18q21 microdeletion (rare)"
+  ],
+  "sources": [
+    "doi:10.1038/ng.111",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

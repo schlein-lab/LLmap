@@ -1,0 +1,31 @@
+{
+  "name": "15q25_PTPN9_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "15q25 region encompassing PTPN9, ADAMTSL3, CHRNA3/CHRNA5/CHRNB4 nicotinic-receptor cluster, and IREB2. Intra-chromosomal SDs (5-30 kb at 93-97% identity) flank the CHRNA cluster and PTPN9, contributing to rare ~0.5-2 Mb microdeletions. CHRNA5 GWAS signal for nicotine dependence and lung cancer is located here.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 78700000, "end": 80700000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "5-30 kb SD pairs at 93-97% identity flanking PTPN9 and the CHRNA cluster; Alu-rich intervening segments."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "nicotine dependence (CHRNA5)",
+    "lung cancer susceptibility",
+    "rare 15q25 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1038/nature06846",
+    "doi:10.1038/ng.109"
+  ],
+  "confidence": 0.75
+}

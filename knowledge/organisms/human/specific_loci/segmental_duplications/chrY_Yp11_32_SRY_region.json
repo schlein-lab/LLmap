@@ -1,0 +1,35 @@
+{
+  "name": "chrY_Yp11_32_SRY_region",
+  "taxonomy_id": "paralog_family",
+  "description": "Yp11.2 male-specific region immediately distal to PAR1 boundary, containing SRY (sex-determining region Y) and TSPY1 tandem array. The PAR1/MSY boundary sits at chrY:2.78 Mb (GRCh38). SRY translocation onto chrX via aberrant XY recombination explains the majority of XX male syndrome.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 2781480, "end": 6500000}},
+  "size_bp": 3700000,
+  "architecture": {
+    "type": "male_specific_with_tandem_array",
+    "copy_number_in_population": "1_in_males",
+    "homology_percent": 95.0,
+    "internal_structure": "SRY (single copy), TSPY1 tandem array (~30-60 copies of 20.4 kb at >99% identity), RBMY paralog fragments."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Swyer syndrome (XY gonadal dysgenesis, SRY loss-of-function)",
+    "XX male syndrome (SRY translocated to X)",
+    "TSPY1 dosage and testis development"
+  ],
+  "cross_references": [
+    "../y_chromosome/chrY_PAR1.json"
+  ],
+  "sources": [
+    "doi:10.1038/nature01722",
+    "doi:10.1038/346240a0",
+    "PMID:1695712"
+  ],
+  "confidence": 0.95
+}

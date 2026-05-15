@@ -1,0 +1,32 @@
+{
+  "name": "chrX_Xq13_XIC_XIST_TSIX_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq13.2 X-inactivation centre (XIC) hosting XIST/TSIX non-coding RNAs. Carries short tandem SDs (DXZ4 macrosatellite at ~115 Mb is functionally linked but physically separate) and intergenic SDs around RLIM/JPX/FTX. The XIC is the master regulator of mammalian dosage compensation.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 73700000, "end": 74100000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "functional_locus_with_short_SDs",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 95.0,
+    "internal_structure": "XIST (17 kb ncRNA) + antisense TSIX; FTX, JPX regulatory ncRNAs; short interspersed SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 10000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "skewed X-inactivation phenotypes",
+    "XIST mutation X-linked disorders",
+    "Klinefelter syndrome XIC effects"
+  ],
+  "sources": [
+    "doi:10.1038/nature05705",
+    "doi:10.1038/349038a0",
+    "PMID:1985468"
+  ],
+  "confidence": 0.85
+}

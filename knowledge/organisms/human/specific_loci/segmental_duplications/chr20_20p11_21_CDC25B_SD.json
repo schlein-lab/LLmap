@@ -1,0 +1,31 @@
+{
+  "name": "chr20_20p11_21_CDC25B_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20p11.21 SD field containing CDC25B (cell cycle phosphatase), AP5S1 and CST3 paralogs. The region sits within the broader 20p pericentric SD enrichment and contributes to occasional 20p11.21 recurrent CNVs flanked by ~50-100 kb SDs.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 23200000, "end": 24000000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "direct",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Two ~50-100 kb direct SD blocks at ~96-98% identity flanking CDC25B, GZF1, NAPB; embedded in the 20p pericentric SD-enriched belt."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "20p11.21 microdeletion / microduplication (rare)",
+    "Cell-cycle dysregulation in cancer"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075",
+    "PMID:18617664"
+  ],
+  "confidence": 0.65
+}

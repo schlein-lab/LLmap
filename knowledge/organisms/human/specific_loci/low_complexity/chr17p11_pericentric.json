@@ -1,0 +1,33 @@
+{
+  "name": "chr17p11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 17 p-arm pericentric flank (17p11.1-17p11.2), the immediate sub-centromeric LCR shoreline on the p-side of the chr17 centromere. Distally adjoins the SMS-REPs (Smith-Magenis/Potocki-Lupski 17p11.2). Alpha-satellite (D17Z1/D17Z1-B), pericentromeric SDs and HSat patches. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 20800000, "end": 22813679}, "chm13": {"chr": "chr17", "start": 21100000, "end": 23100000}},
+  "size_bp": 2013679,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D17Z1", "alpha_sat_D17Z1B", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 3500],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR (dual D17Z1/D17Z1-B, hottest-studied epiallele system in humans) + HSat patches + pericentromeric SD shoreline; distally adjoins SMS-REP LCR system."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Smith-Magenis syndrome (17p11.2 deletion)",
+    "Potocki-Lupski syndrome (17p11.2 duplication)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003",
+    "doi:10.1016/j.ajhg.2007.05.005"
+  ],
+  "confidence": 0.85
+}

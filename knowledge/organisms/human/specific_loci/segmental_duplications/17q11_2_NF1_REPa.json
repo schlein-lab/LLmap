@@ -1,0 +1,29 @@
+{
+  "name": "17q11_2_NF1_REPa_SUZ12P",
+  "taxonomy_id": "paralog_family",
+  "description": "NF1-REPa proximal SD block — SUZ12/SUZ12P1 paralog plus LRRC37B2 duplicon at >98% identity. Forms the proximal boundary of the type-1 NF1 microdeletion. Sub-locus of 17q11_2_NF1.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 29100000, "end": 29200000}},
+  "size_bp": 100000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "fixed_paralog",
+    "homology_percent": 98.5,
+    "internal_structure": "NF1-REPa ~100 kb at >98% identity to NF1-REPc; core SUZ12P1 pseudogene flanked by LRRC37B paralog."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "NF1 type-1 microdeletion (proximal breakpoint)"
+  ],
+  "sources": [
+    "doi:10.1086/377116",
+    "doi:10.1086/422223"
+  ],
+  "confidence": 0.85
+}

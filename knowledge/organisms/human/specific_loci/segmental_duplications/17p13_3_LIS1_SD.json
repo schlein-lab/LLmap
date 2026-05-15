@@ -1,0 +1,32 @@
+{
+  "name": "17p13_3_LIS1_PAFAH1B1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17p13.3 SD blocks flanking PAFAH1B1 (LIS1) and YWHAE. Direct-orientation duplicons mediate the Miller-Dieker syndrome contiguous deletion and recurrent 17p13.3 microduplications.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 1100000, "end": 2700000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Subtelomeric SD modules of 30-100 kb at ~97% identity; PAFAH1B1 (LIS1) sits between two SD blocks; YWHAE proximal; CRK and HIC1 also in interval."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Miller-Dieker lissencephaly syndrome",
+    "isolated lissencephaly (PAFAH1B1 deletion)",
+    "17p13.3 microduplication"
+  ],
+  "sources": [
+    "doi:10.1086/378817",
+    "doi:10.1086/322752",
+    "doi:10.1038/ejhg.2009.155"
+  ],
+  "confidence": 0.85
+}

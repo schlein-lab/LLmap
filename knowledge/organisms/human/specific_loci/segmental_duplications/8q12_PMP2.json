@@ -1,0 +1,28 @@
+{
+  "name": "8q12_2_PMP2_TOX_region",
+  "taxonomy_id": "paralog_family",
+  "description": "8q12.2 region with modest SDs flanking PMP2 (peripheral myelin protein 2) and TOX. Rare CNVs reported. PMP2 paralogs (PMP22 on 17p12, MPZ on 1q23) require cross-chromosome PSV awareness.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 58000000, "end": 60000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 92.0,
+    "internal_structure": "Sparse small SDs in PMP2/TOX vicinity; primary mapping concern is cross-chromosome PMP family PSVs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 6000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "PMP2-related Charcot-Marie-Tooth (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.35
+}

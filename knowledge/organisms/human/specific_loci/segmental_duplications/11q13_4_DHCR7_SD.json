@@ -1,0 +1,28 @@
+{
+  "name": "11q13_4_DHCR7_NADSYN1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "11q13.4 segmental duplication interval flanking DHCR7 (7-dehydrocholesterol reductase) and NADSYN1. Short SDs of 5-15 kb mediate small recurrent CNVs and host the Smith-Lemli-Opitz-syndrome causal gene.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 71400000, "end": 72200000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 92.0,
+    "internal_structure": "Short SDs of 5-15 kb at 90-94% identity; processed-pseudogene-derived DHCR7 paralog fragments scattered."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Smith-Lemli-Opitz syndrome (DHCR7)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

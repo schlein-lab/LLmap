@@ -1,0 +1,36 @@
+{
+  "name": "8p23_1_inv_dup_del_REPP_REPD",
+  "taxonomy_id": "paralog_family",
+  "description": "8p23.1 inversion polymorphism (~4-5 Mb, frequency ~26% Europeans), and the recurrent inv-dup-del(8p) rearrangement. Mediated by inverted SD blocks REPP (proximal) and REPD (distal) at >99% identity containing olfactory receptor (OR) clusters and defensin (DEFB) paralogs. NAHR generates 8p23.1 microdeletion / microduplication; complex U-type exchange generates the inv-dup-del(8p) chromosome.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 7000000, "end": 12500000}},
+  "size_bp": 5500000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["REPP_8p23.1_proximal_OR_DEFB", "REPD_8p23.1_distal_OR_DEFB"],
+    "homology_percent": 99.5,
+    "internal_structure": "Two large inverted SD blocks of ~3.5-4 Mb (REPP, REPD) containing OR cluster + DEFB cluster paralogs at >99% identity; unique core contains GATA4, NEIL2, SOX7, MSRA, MTMR9. The H1 (standard) and H2 (inverted) haplotypes determine recombination outcomes."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "8p23.1 deletion syndrome (cardiac defects, ID)",
+    "8p23.1 duplication syndrome (cardiac, ID)",
+    "inv-dup-del(8p) (severe ID, agenesis of corpus callosum)",
+    "congenital diaphragmatic hernia (GATA4)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1038/ng0297-154",
+    "doi:10.1086/427266",
+    "doi:10.1038/ng.612",
+    "ClinGen Dosage Sensitivity 8p23.1 region"
+  ],
+  "confidence": 0.95
+}
