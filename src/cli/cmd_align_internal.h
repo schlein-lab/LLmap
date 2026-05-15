@@ -10,6 +10,10 @@
 #include "classical/classical_pipeline.h"
 #include "claude_agent/pipeline_agent.h"
 #include "core/alignment_record.h"
+#include "core/thread_pool.h"
+#include "io/fastq_reader.h"
+#include "output/bam_writer.h"
+#include "output/parquet_writer.h"
 #include "psv/psv_catalog.h"
 
 namespace llmap::cli::align_internal {
@@ -107,5 +111,33 @@ void PrintAlignmentSummary(
 
 bool ShouldRunLlmDiagnostics(const AlignArgs& args, float mapping_rate);
 bool IsLlmEnabledButSkipped(const AlignArgs& args, float mapping_rate);
+
+// Batch processing result (cmd_align_run.cpp)
+struct BatchAlignResult {
+    classical::ClassicalPipelineStats agg_stats;
+    std::size_t total_reads = 0;
+    std::size_t n_mapped = 0;
+    std::size_t n_unmapped = 0;
+    double identity_sum_weighted = 0.0;
+    bool error = false;
+};
+
+// Convert classical alignment to AlignmentRecord
+AlignmentRecord ConvertClassicalAlignment(
+    const classical::ClassicalAlignment& aln,
+    std::uint32_t read_len);
+
+// Run alignment batches, streaming through the pipeline
+BatchAlignResult RunAlignmentBatches(
+    classical::ClassicalPipeline& pipeline,
+    io::FastqReader& read_reader,
+    output::BamWriter& bam_writer,
+    output::ParquetWriter* parquet_writer,
+    core::ThreadPool* thread_pool,
+    const std::optional<psv::PsvCatalog>& psv_catalog,
+    const AlignArgs& args);
+
+// Finalize aggregated stats (compute avg_identity)
+void FinalizeAlignStats(BatchAlignResult& result);
 
 }  // namespace llmap::cli::align_internal
