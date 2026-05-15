@@ -36,6 +36,14 @@ bool MatchOne(const WindowFeatures& f, const FeaturePredicate& p) {
             return fv >= p.bound_lo && fv <= p.bound_hi;
         case FeaturePredicate::Op::MultiplicityMin:
             return f.kmer_multiplicity_p95 >= static_cast<uint32_t>(p.int_bound);
+        case FeaturePredicate::Op::ConsensusIn:
+            if (f.consensus_match.empty()) return false;
+            for (const auto& v : p.str_values) {
+                if (f.consensus_match == v) return true;
+            }
+            return false;
+        case FeaturePredicate::Op::AlwaysFalse:
+            return false;
     }
     return false;
 }
@@ -111,7 +119,20 @@ std::optional<FeaturePredicate> DecodeOnePredicateA(const Json& node) {
         }
         return p;
     }
-    return std::nullopt;
+    if (op == "in" && val_n && val_n->type == Json::Type::Array) {
+        p.op = FeaturePredicate::Op::ConsensusIn;
+        for (const auto& v : val_n->arr_v) {
+            if (v.type == Json::Type::String) p.str_values.push_back(v.str_v);
+        }
+        return p;
+    }
+    if (op == "is_null") {
+        p.op = FeaturePredicate::Op::EQ;
+        p.bound_lo = -1.0f;
+        return p;
+    }
+    p.op = FeaturePredicate::Op::AlwaysFalse;
+    return p;
 }
 
 }  // namespace
