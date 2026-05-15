@@ -5,12 +5,12 @@
 // knowledge/variants/PRIOR_FORMAT.md.
 //
 // Usage:
-//   llmap variant-ingest --source dbsnp \
-//                        --vcf input.vcf.gz \
-//                        --output dbsnp.priors \
-//                        [--bucket-bp 100] \
-//                        [--min-af 0.0] \
-//                        [--kind snv|sv|mixed] \
+//   llmap variant-ingest --source dbsnp
+//                        --vcf input.vcf.gz
+//                        --output dbsnp.priors
+//                        [--bucket-bp 100]
+//                        [--min-af 0.0]
+//                        [--kind snv|sv|mixed]
 //                        [--liftover-chain chain.gz]
 //
 // Not wired into llmap_main.cpp yet — this is a scaffold for the upcoming
@@ -24,6 +24,7 @@
 //   - liftover support via UCSC chain file
 //   - multi-source merge (called by `variant-merge` later)
 
+#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <string>

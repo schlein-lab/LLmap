@@ -1,0 +1,30 @@
+{
+  "name": "ZNF_cluster_19q13_4",
+  "taxonomy_id": "paralog_family",
+  "description": "Krüppel-associated box (KRAB) zinc-finger gene cluster on chromosome 19q13.31-q13.43, containing >200 ZNF genes (the largest ZNF gene cluster in the human genome). Many ZNFs share near-identical KRAB domains and modular C2H2 zinc-finger arrays, generating high paralog-level homology that breaks unique mapping.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 51500000, "end": 58617616}},
+  "size_bp": 7100000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Dense clustering of KRAB-ZNF genes; tandemly arranged ZNF families share ~80-95% identity over coding regions; rapidly evolving family with primate-specific expansions; embedded in SD-rich chromosomal region."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Transposable element silencing variability (KZFP function)"
+  ],
+  "sources": [
+    "doi:10.1038/nature04338",
+    "doi:10.1101/gr.6395807",
+    "doi:10.1101/gr.227793.117"
+  ],
+  "confidence": 0.9
+}

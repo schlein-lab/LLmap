@@ -1,0 +1,31 @@
+{
+  "name": "MUC_cluster_11p15",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Mucin gene cluster on chromosome 11p15.5, containing MUC2, MUC5AC, MUC5B, MUC6. Each MUC gene contains large central VNTR exons of 60-87 bp tandem repeats coding for the mucin protein backbone. The VNTR exons range from 5 to >50 kb and are highly polymorphic between individuals.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 1000000, "end": 1300000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "MUC2, MUC5AC, MUC5B, MUC6 in tandem on 11p15.5; each gene contains large VNTR exon of 60-87 bp repeats coding for PTS-rich mucin backbone; VNTR length highly variable, polymorphic between alleles, frequent length variants in disease."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cystic fibrosis modifier (MUC5B)",
+    "Idiopathic pulmonary fibrosis (MUC5B promoter variant)",
+    "Asthma severity (MUC5AC)"
+  ],
+  "sources": [
+    "doi:10.1146/annurev-physiol-012110-142345",
+    "doi:10.1056/NEJMoa1013660"
+  ],
+  "confidence": 0.85
+}

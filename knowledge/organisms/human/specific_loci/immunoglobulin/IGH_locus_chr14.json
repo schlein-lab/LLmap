@@ -3,10 +3,10 @@
   "taxonomy_id": "paralog_family",
   "description": "Immunoglobulin heavy chain locus on chr14q32.33, ~1.25 Mb spanning V-D-J-C clusters in proximal-to-distal order on the minus strand: ~50 functional VH genes (and ~80 pseudogenes), 23 DH segments, 6 JH segments, then the constant region with IGHM, IGHD, IGHG3, IGHG1, IGHA1, IGHGP (pseudogene), IGHG2, IGHG4, IGHE, IGHA2. The four IGHG paralogs share 90-95% intra-cluster identity and require paralog-specific variants (PSVs) for copy assignment. CHM13 carries a duplicated IGHG4 paralog absent from the GRCh38 primary haplotype. Somatic VDJ recombination and class-switch recombination produce structural heterogeneity even within a single B cell.",
   "coordinates": {
-    "grch38": {"chr": "chr14", "start": 105500000, "end": 107300000},
-    "chm13":  {"chr": "chr14", "start": 99670000, "end": 101470000}
+    "grch38": {"chr": "chr14", "start": 105583700, "end": 106879800},
+    "chm13":  {"chr": "chr14", "start": 99670000, "end": 100966100}
   },
-  "size_bp": 1800000,
+  "size_bp": 1296100,
   "expected_paralogs": [
     {"name": "VH_cluster", "approx_offset_in_locus": 0},
     {"name": "DH_cluster", "approx_offset_in_locus": 1050000},
