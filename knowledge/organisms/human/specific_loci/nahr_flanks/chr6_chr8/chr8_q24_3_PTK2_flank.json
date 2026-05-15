@@ -1,0 +1,43 @@
+{
+  "name": "chr8_q24_3_PTK2_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "PTK2 at 8q24.3 with SD flanks; amplified in cancer.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr8",
+      "start": 141700000,
+      "end": 141900000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_PTK2_prox",
+      "SD_PTK2_dist"
+    ],
+    "homology_percent": 95.5,
+    "sd_length_kb": 22,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PTK2 (FAK) kinase flanked by SDs",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 9,
+    "dbvar_count": 35,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "PTK2_amp_cancer"
+  },
+  "confidence": 0.85,
+  "sources": []
+}

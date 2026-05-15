@@ -1,0 +1,46 @@
+{
+  "name": "chr17_p13_3_MDLS_BP_distal",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal SD flank pairing with proximal LCR17p13.3 for some MDLS deletions.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 4400000,
+      "end": 4550000
+    }
+  },
+  "size_bp": 150000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR17p13.3"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Paired distal SD",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Miller-Dieker lissencephaly syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "PMID:19305408"
+  ]
+}

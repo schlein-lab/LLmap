@@ -1,0 +1,45 @@
+{
+  "name": "chr14_q32_33_J_segment_cluster_SD",
+  "description": "IGH J-region cluster of 6 JH segments (JH1-JH6) plus pseudogenes; JH3-JH4 SD substrate for short-range NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 106320000,
+      "end": 106325000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "JH3",
+      "JH4"
+    ],
+    "homology_percent": 90.0,
+    "sd_length_kb": 1,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "6 J segments + 3 JH pseudogenes",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "confidence": 0.85,
+  "sources": [
+    "IMGT"
+  ],
+  "taxonomy_id": "paralog_family",
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 5000
+}

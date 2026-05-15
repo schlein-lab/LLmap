@@ -1,0 +1,48 @@
+{
+  "name": "chr16_overall_SD_density",
+  "taxonomy_id": "chromosome_summary",
+  "description": "chr16 \u2014 second-densest SD chromosome (~9.6% SD content), dominated by LCR16a + BOLA2 + CHRFAM-paralog duplicon families. Architectural substrate for 16p11.2 autism CNV, 16p13.11 epilepsy CNV, 16p12.2 'second-hit' CNV.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 1,
+      "end": 90338345
+    }
+  },
+  "size_bp": 90338344,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog",
+      "BOLA2_duplicon"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "16p arm SD-dense; 16p13.11 + 16p11.2 hotspots",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "multiple recurrent CNV syndromes"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:11237011 Bailey 2001",
+    "PMID:25409090"
+  ]
+}

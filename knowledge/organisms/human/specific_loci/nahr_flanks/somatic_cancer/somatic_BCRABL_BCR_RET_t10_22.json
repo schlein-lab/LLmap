@@ -1,0 +1,49 @@
+{
+  "name": "somatic_BCRABL_BCR_RET_t10_22",
+  "taxonomy_id": "paralog_family",
+  "description": "Rare BCR-RET in leukemia; SD-rich 22q11.2 region flanks BCR; multiple breakpoint clusters",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr10",
+      "start": 43077000,
+      "end": 43130000
+    }
+  },
+  "size_bp": 53000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "BCR_intronic_SD_22q11",
+      "partner_locus_SD"
+    ],
+    "homology_percent": 93,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "BCR \u21c4 partner; NHEJ at DSB",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "atypical_leukemia"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "COSMIC v100",
+    "Mitelman DB",
+    "Score 2006 doi:10.1038/nrc1845"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "name": "NAHR_01180_chr16_28M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr16:28471892-29476490 (1.00 Mb interior) flanked by paralogous 23.6 kb LCRs at 98.07% identity, propensity X=4.29.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 28449046,
+      "end": 29500800
+    }
+  },
+  "size_bp": 1051754,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr16:28449046-28471892",
+      "chr16:29476490-29500800"
+    ],
+    "homology_percent": 98.07,
+    "sd_length_kb": 23.58,
+    "interior_bp": 1004598,
+    "propensity_X": 4.288,
+    "internal_structure": "ALDOA, ASPHD1, ATP2A1, ATXN2L, BOLA2, BOLA2-SMG1P6, BOLA2B, C16orf54, C16orf92, CD19, CDIPT, CORO1A, DOC2A, EIF3C, ENSG00000280893, ENSG00000281348, ENSG00000285043, GDPD3, HIRIP3, INO80E",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0000403:Recurrent otitis media",
+    "HP:0001522:Death in infancy",
+    "HP:0002411:Myokymia",
+    "HP:0002415:Leukodystrophy",
+    "HP:0002435:Meningocele",
+    "HP:0007359:Focal-onset seizure",
+    "HP:0010301:Spinal dysraphism",
+    "HP:0011675:Arrhythmia",
+    "HP:0011800:Midface retrusion",
+    "HP:0012508:Metamorphopsia",
+    "HP:0410300:Complete or near-complete absence of specific antibody response to un"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 52,
+    "n_total_features": 100,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

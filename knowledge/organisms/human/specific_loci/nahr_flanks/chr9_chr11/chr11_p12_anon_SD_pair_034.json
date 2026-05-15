@@ -1,0 +1,47 @@
+{
+  "name": "chr11_p12_anon_SD_pair_034",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD pair on chr11p12 flanking a ~279 kb interval; evolutionary architecture, paralog identity ~98.97%.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 40830520,
+      "end": 41110508
+    }
+  },
+  "size_bp": 279988,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr11_p12_SD_a",
+      "chr11_p12_SD_b"
+    ],
+    "homology_percent": 98.97,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 0,
+    "clingen_dosage_call": "no_evidence",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.71,
+  "sources": [
+    "Bailey2002",
+    "SD-DB-Eichler",
+    "gnomAD-SVv4"
+  ]
+}

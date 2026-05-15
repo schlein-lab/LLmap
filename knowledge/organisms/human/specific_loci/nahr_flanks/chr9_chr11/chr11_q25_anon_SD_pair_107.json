@@ -1,0 +1,47 @@
+{
+  "name": "chr11_q25_anon_SD_pair_107",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD pair on chr11q25 flanking a ~882 kb interval; inversion architecture, paralog identity ~96.56%.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 133865602,
+      "end": 134748243
+    }
+  },
+  "size_bp": 882641,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "chr11_q25_SD_a",
+      "chr11_q25_SD_b"
+    ],
+    "homology_percent": 96.56,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.25,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 45000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 12,
+    "dbvar_count": 1,
+    "clingen_dosage_call": "no_evidence",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.56,
+  "sources": [
+    "Bailey2002",
+    "SD-DB-Eichler",
+    "gnomAD-SVv4"
+  ]
+}

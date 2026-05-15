@@ -1,0 +1,47 @@
+{
+  "name": "chr19_19q13_42_KIR_LRC_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "KIR locus proximal flank within Leukocyte Receptor Complex (LRC). 5' framework KIR3DL3 anchor and centromeric LRC SD bridge.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 54700000,
+      "end": 54810000
+    }
+  },
+  "size_bp": 110000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 14,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "KIR3DL3 and 5' LRC flanking SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 9,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "Norman 2007",
+    "IPD-KIR",
+    "Bailey/Eichler SD-DB"
+  ]
+}

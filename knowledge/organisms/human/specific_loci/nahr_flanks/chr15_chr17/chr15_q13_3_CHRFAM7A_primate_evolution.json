@@ -1,0 +1,44 @@
+{
+  "name": "chr15_q13_3_CHRFAM7A_primate_evolution",
+  "taxonomy_id": "paralog_family",
+  "description": "CHRFAM7A fusion gene \u2014 primate-specific (great ape lineage) chimeric duplicon. Forms the architectural basis for 15q13.3 BP4-BP6 recurrent CNV. Not present in Old World monkeys.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 30350000,
+      "end": 30450000
+    }
+  },
+  "size_bp": 100000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "CHRFAM7A_paralog"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Primate-specific CHRNA7-FAM7A fusion",
+    "copy_number_in_population": "fixed_primate_specific"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:11410337 Riley 2002"
+  ]
+}

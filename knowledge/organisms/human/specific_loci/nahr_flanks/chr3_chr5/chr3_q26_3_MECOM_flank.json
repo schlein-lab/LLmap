@@ -1,0 +1,49 @@
+{
+  "name": "chr3_q26_3_MECOM_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "NAHR-prone SD-flanked interval at chr3:168500000-170000000 (SD_3q26_MECOM_prox / SD_3q26_MECOM_dist).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr3",
+      "start": 168500000,
+      "end": 170000000
+    }
+  },
+  "size_bp": 1500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_3q26_MECOM_prox",
+      "SD_3q26_MECOM_dist"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "not_characterized",
+    "internal_structure": "MECOM (EVI1), MYNN region; rearrangement hotspot in AML",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MECOM-rearranged AML",
+    "thrombocytopenia syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "NA",
+    "tumor_recurrence": "AML inv(3)(q21q26) recurrent"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "PMID:24316979",
+    "PMID:30683707"
+  ]
+}

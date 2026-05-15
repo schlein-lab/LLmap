@@ -1,0 +1,49 @@
+{
+  "name": "chr15_q13_3_CHRFAM7A_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "CHRFAM7A fusion gene \u2014 primate-specific chimera of CHRNA7 exons 5-10 and FAM7A duplicon. Highly polymorphic CN, mediates NAHR with parental CHRNA7 driving 15q13.3 recurrent CNVs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 30350000,
+      "end": 30450000
+    }
+  },
+  "size_bp": 100000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "CHRFAM7A_paralog",
+      "CHRNA7_locus"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "CHRNA7 exons 5-10 fused to FAM7A duplicon; 2-bp deletion polymorphism in exon 6",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "schizophrenia risk modifier",
+    "Alzheimer susceptibility (debated)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:11410337 Riley 2002",
+    "PMID:18545709"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "chr16_p_tile_007Mb_anon_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous tiled intra-chromosomal SD on chr16 at ~7 Mb. LCR16a / NPIP duplicon contamination plausible.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 7400000,
+      "end": 7480000
+    }
+  },
+  "size_bp": 80000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "intra_chr16_SD"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 40,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Generic chr16 tiled SD",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.55,
+  "sources": [
+    "Bailey SD-DB",
+    "PMID:11731217"
+  ]
+}

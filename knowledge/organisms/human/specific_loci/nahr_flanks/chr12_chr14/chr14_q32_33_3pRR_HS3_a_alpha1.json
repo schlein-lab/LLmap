@@ -1,0 +1,49 @@
+{
+  "name": "chr14_q32_33_3pRR_HS3_a_alpha1",
+  "description": "HS3a downstream IGHA1 within 3'RR1.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 105818000,
+      "end": 105820000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HS3_a_alpha1_proximal",
+      "HS3_a_alpha1_distal"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 2,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "3'RR enhancer element with VNTR",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "IgA deficiency haplotypes",
+    "celiac risk haplotypes"
+  ],
+  "confidence": 0.8,
+  "sources": [
+    "Frezza 2004 J Immunol",
+    "Pinaud 2011 Adv Immunol"
+  ],
+  "taxonomy_id": "paralog_family",
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 2000
+}

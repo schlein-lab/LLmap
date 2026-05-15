@@ -1,0 +1,49 @@
+{
+  "name": "chr1_q21_1_TAR_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal-of-BP1 SD pair (BP1\u2013BP2) flanking the recurrent TAR (thrombocytopenia-absent radius) microdeletion of ~200 kb including RBM8A.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 145400000,
+      "end": 145800000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "TAR_BP1_LCR",
+      "TAR_BP2_LCR"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "RBM8A, PIAS3 partial; recurrent ~200 kb NAHR-mediated del; compound-het with non-coding hypomorph causes TAR.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "TAR syndrome (Thrombocytopenia-Absent Radius)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "HI=3 (TAR region 1q21.1)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "doi:10.1038/ng.2002",
+    "PMID:22366784",
+    "doi:10.1056/NEJMoa1207013"
+  ]
+}

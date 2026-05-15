@@ -1,0 +1,61 @@
+{
+  "name": "NAHR_00956_chr15_82M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr15:82532834-85229367 (2.70 Mb interior) flanked by paralogous 24.1 kb LCRs at 97.51% identity, propensity X=4.27.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 82508551,
+      "end": 85253286
+    }
+  },
+  "size_bp": 2744735,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr15:82508551-82532834",
+      "chr15:85229367-85253286"
+    ],
+    "homology_percent": 97.51,
+    "sd_length_kb": 24.1,
+    "interior_bp": 2696533,
+    "propensity_X": 4.273,
+    "internal_structure": "ADAMTSL3, ALPK3, AP3B2, BNC1, BTBD1, C15orf40, CPEB1, ENSG00000260836, FSD2, GOLGA6L4, HDGFL3, HOMER2, NMB, PDE8A, RAMAC, RPS17, SEC11A, SH3GL3, SLC28A1, TM6SF1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0000006:Autosomal dominant inheritance",
+    "HP:0000007:Autosomal recessive inheritance",
+    "HP:0000504:Abnormality of vision",
+    "HP:0001251:Ataxia",
+    "HP:0001657:Prolonged QT interval",
+    "HP:0002817:Abnormality of the upper limb",
+    "HP:0008684:Aplasia/hypoplasia of the uterus",
+    "HP:0011800:Midface retrusion"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 24,
+    "n_total_features": 66,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

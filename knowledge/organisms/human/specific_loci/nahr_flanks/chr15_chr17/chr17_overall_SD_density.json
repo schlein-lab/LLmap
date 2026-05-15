@@ -1,0 +1,52 @@
+{
+  "name": "chr17_overall_SD_density",
+  "taxonomy_id": "chromosome_summary",
+  "description": "chr17 \u2014 densest SD chromosome in the human genome (8.5% SD vs 5.2% genome-wide; Stankiewicz & Lupski 2002). Hub of recurrent NAHR syndromes: CMT1A/HNPP, SMS/PTLS, NF1-microdel, 17q12-RCAD, Koolen-deVries, Miller-Dieker. Architecture rationale for prioritized PSV-disambiguation in any 17p NGS/long-read pipeline.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 1,
+      "end": 83257441
+    }
+  },
+  "size_bp": 83257440,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "CMT1A-REP",
+      "SMS-REP",
+      "NF1-REP",
+      "LCR17q12",
+      "LCR17q21.31",
+      "LCR17p13.3"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Whole-chromosome SD enrichment; 17p arm especially affected",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "multiple recurrent CNV syndromes"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:12107281 Stankiewicz Lupski 2002",
+    "PMID:11237011 Bailey 2001"
+  ]
+}

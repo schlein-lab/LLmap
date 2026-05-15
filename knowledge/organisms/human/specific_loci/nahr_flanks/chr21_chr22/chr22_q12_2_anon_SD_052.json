@@ -1,0 +1,49 @@
+{
+  "name": "chr22_q12_2_anon_SD_052",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous segmental duplication on chr22q12.2 (Bailey/Eichler SD-DB).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 28205000,
+      "end": 28255000
+    }
+  },
+  "size_bp": 50000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr22_q12.2_SD52"
+    ],
+    "homology_percent": 95.5,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "anonymous SD block",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.55,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016"
+  ]
+}

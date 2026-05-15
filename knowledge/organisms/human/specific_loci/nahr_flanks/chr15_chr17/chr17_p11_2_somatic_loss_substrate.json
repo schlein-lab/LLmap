@@ -1,0 +1,46 @@
+{
+  "name": "chr17_p11_2_somatic_loss_substrate",
+  "taxonomy_id": "paralog_family",
+  "description": "17p11.2 SD-flanked region also serves as somatic mitotic NAHR substrate; recurrent loss-of-heterozygosity in glioma, MDS, T-ALL via SMS-REP-mediated mitotic recombination.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 16500000,
+      "end": 20300000
+    }
+  },
+  "size_bp": 3800000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SMS-REP_proximal",
+      "SMS-REP_distal"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 250,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SMS-REPs mediate mitotic NAHR in tumor LOH",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent 17p LOH in glioma, MDS, T-ALL"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "PMID:17033964 Steinmann 2007",
+    "PMID:23690397"
+  ]
+}

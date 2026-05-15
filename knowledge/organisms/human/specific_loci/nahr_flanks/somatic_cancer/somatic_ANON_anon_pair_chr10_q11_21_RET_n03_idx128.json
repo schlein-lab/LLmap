@@ -1,0 +1,46 @@
+{
+  "name": "somatic_ANON_anon_pair_chr10_q11_21_RET_n03_idx128",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous cancer-prone SD-pair flank at chr10q11.21.RET; PCAWG-informed somatic CN-change hotspot without named driver fusion",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr10",
+      "start": 43100000,
+      "end": 43400000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "anon_pair_chr10_q11_21_RET_n03_idx128_SD_prox",
+      "anon_pair_chr10_q11_21_RET_n03_idx128_SD_dist"
+    ],
+    "homology_percent": 91,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "anon SD-flanked interval in chr10q11_21_RET",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "pan_cancer_recurrent_SV_hotspot"
+  },
+  "confidence": 0.4,
+  "sources": [
+    "Bailey 2002 doi:10.1126/science.1072047",
+    "PCAWG 2020 doi:10.1038/s41586-020-1969-6"
+  ]
+}

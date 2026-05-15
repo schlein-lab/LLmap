@@ -1,0 +1,49 @@
+{
+  "name": "somatic_SOLID_Sarcoma_TFEB_MALAT1_t6_11",
+  "taxonomy_id": "paralog_family",
+  "description": "MALAT1-TFEB renal cell carcinoma t(6;11); SD/Alu-mediated breakpoints; reciprocal or unbalanced translocation",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 65500000,
+      "end": 65580000
+    }
+  },
+  "size_bp": 80000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "Sarcoma_TFEB_MALAT1_t6_11_SD_5p",
+      "Sarcoma_TFEB_MALAT1_t6_11_SD_3p"
+    ],
+    "homology_percent": 93,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "MALAT1-TFEB renal cell carcinoma t(6;11)",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "TFEB_translocation_RCC"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "rare_RCC"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Mitelman DB",
+    "COSMIC v100",
+    "TCGA pan-cancer"
+  ]
+}

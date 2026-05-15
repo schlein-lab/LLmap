@@ -1,0 +1,49 @@
+{
+  "name": "chr15_overall_SD_density",
+  "taxonomy_id": "chromosome_summary",
+  "description": "chr15 \u2014 third-densest SD chromosome (~7.5% SD content), HERC2/GOLGA8/CHRFAM7A duplicon families drive PWS/AS, 15q13.3, 15q24, 15q11.2 BP1-BP2 recurrent CNVs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 1,
+      "end": 101991189
+    }
+  },
+  "size_bp": 101991188,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "HERC2_paralog_block",
+      "GOLGA8_duplicon_cluster",
+      "CHRFAM7A_paralog"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "15q11-q13 SD-pile + 15q24 LCR15q24A-D",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "multiple recurrent CNV syndromes"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:11331952",
+    "PMID:11237011"
+  ]
+}

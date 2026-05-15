@@ -1,0 +1,49 @@
+{
+  "name": "chr22_q12_2_NF2_intragenic_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Intragenic SD within NF2 mediating exon-level rearrangements",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 29650000,
+      "end": 29680000
+    }
+  },
+  "size_bp": 30000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NF2_intragenic_SD"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Intragenic SD within NF2 mediating exon-level rearrangements",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "NF2 (neurofibromatosis 2)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "HI=3",
+    "tumor_recurrence": "recurrent in schwannoma/meningioma"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Bailey & Eichler SD-DB",
+    "Rouleau et al. 1993 (NF2 cloning)",
+    "ClinGen Dosage Sensitivity (NF2 HI=3)",
+    "gnomAD-SV v4"
+  ]
+}

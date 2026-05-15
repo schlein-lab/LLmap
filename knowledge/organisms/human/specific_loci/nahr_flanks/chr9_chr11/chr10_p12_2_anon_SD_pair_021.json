@@ -1,0 +1,47 @@
+{
+  "name": "chr10_p12_2_anon_SD_pair_021",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD pair on chr10p12.2 flanking a ~1432 kb interval; recurrent del dup architecture, paralog identity ~99.26%.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr10",
+      "start": 22376096,
+      "end": 23808395
+    }
+  },
+  "size_bp": 1432299,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr10_p12_2_SD_a",
+      "chr10_p12_2_SD_b"
+    ],
+    "homology_percent": 99.26,
+    "sd_length_kb": 60,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.42,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "no_evidence",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.73,
+  "sources": [
+    "Bailey2002",
+    "SD-DB-Eichler",
+    "gnomAD-SVv4"
+  ]
+}

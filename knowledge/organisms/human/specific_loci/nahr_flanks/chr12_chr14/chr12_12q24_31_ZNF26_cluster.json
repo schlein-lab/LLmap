@@ -1,0 +1,47 @@
+{
+  "name": "chr12_12q24_31_ZNF26_cluster",
+  "description": "12q24.33 ZNF gene cluster \u2014 paralogous zinc-finger gene SDs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 132500000,
+      "end": 133500000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "12q24_31_ZNF26_cluster_prox",
+      "12q24_31_ZNF26_cluster_dist"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "see description",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 3,
+    "dbvar_count": 25,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Eichler SD-DB",
+    "ClinGen",
+    "Sharp 2005"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 1000000
+}

@@ -1,0 +1,49 @@
+{
+  "name": "chr14_q32_33_VH1_18_VH1_2_paralog",
+  "description": "IGH V-segment paralog pair IGHV1-18 vs IGHV1-2 \u2014 95.0% identity within the VH gene-family cluster; substrate for germline V-region NAHR contributing to V-segment CNV haplotypes (Watson 2013).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 105853000,
+      "end": 106452000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "IGHV1-18",
+      "IGHV1-2"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 3,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "V segment leader + V exon ~300 bp",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "VH antibody-repertoire haplotype variation"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 3,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "IMGT GENE-DB",
+    "Watson 2013 AJHG",
+    "Matsuda 1998"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 599000
+}

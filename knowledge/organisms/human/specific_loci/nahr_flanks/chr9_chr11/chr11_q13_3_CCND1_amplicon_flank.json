@@ -1,0 +1,51 @@
+{
+  "name": "chr11_q13_3_CCND1_amplicon_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "CCND1 amplicon at 11q13.3; flanked by SDs; recurrent somatic amplification in mantle-cell lymphoma, HNSCC, breast.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 69200000,
+      "end": 69700000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_CCND1_5p",
+      "SD_CCND1_3p"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "CCND1, ORAOV1, FGF3, FGF4",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "Mantle cell lymphoma CCND1 fusion",
+      "omim": "168461"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 2,
+    "dbvar_count": 14,
+    "clingen_dosage_call": "little_evidence",
+    "tumor_recurrence": "MCL, HNSCC, breast"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Schraders2008",
+    "COSMIC"
+  ]
+}

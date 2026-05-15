@@ -1,0 +1,48 @@
+{
+  "name": "chr17_p12_CMT1A_REP_mariner_hotspot",
+  "taxonomy_id": "paralog_family",
+  "description": "Mariner-like transposon (MITE) element embedded within CMT1A-REP; archetypal NAHR sub-resolution recombination hotspot, ~70% of CMT1A breakpoints cluster within this 557-bp element.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 14700000,
+      "end": 14750000
+    }
+  },
+  "size_bp": 50000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "CMT1A-REP_proximal",
+      "CMT1A-REP_distal"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 0.557,
+    "microhomology_bp_at_breakpoint": "557 bp mariner",
+    "internal_structure": "557-bp mariner MITE element; recombination hotspot",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CMT1A breakpoint hotspot"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:8076979 Reiter 1996",
+    "PMID:11992257"
+  ]
+}

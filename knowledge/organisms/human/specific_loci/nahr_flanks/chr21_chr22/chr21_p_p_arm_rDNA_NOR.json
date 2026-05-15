@@ -1,0 +1,50 @@
+{
+  "name": "chr21_p_p_arm_rDNA_NOR",
+  "taxonomy_id": "paralog_family",
+  "description": "Nucleolar organizer region (rDNA arrays) on 21p. Largely unassembled in GRCh38; T2T-CHM13 reveals tandem 45S rDNA repeats.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr21",
+      "start": 1,
+      "end": 100000
+    }
+  },
+  "size_bp": 99999,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "p_arm_rDNA_NOR"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 99,
+    "microhomology_bp_at_breakpoint": "n/a (heterochromatic/tandem)",
+    "internal_structure": "Nucleolar organizer region (rDNA arrays) on 21p. Largely unassembled in GRCh38; T2T-CHM13 reveals tandem 45S rDNA repeats.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Robertsonian translocations rob(13;21), rob(14;21), rob(15;21), rob(21;21), rob(21;22) -> familial Down syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "Floutsakou et al. 2013 (acrocentric short-arm assembly)",
+    "van Sluis et al. 2019/2020 (NOR/PJ regions)",
+    "T2T-CHM13 acrocentric assembly (Nurk et al. 2022)",
+    "Guarracino et al. 2023 (Nature; acrocentric recombination)",
+    "Bailey & Eichler SD-DB"
+  ]
+}

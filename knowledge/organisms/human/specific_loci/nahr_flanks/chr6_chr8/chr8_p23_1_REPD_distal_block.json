@@ -1,0 +1,43 @@
+{
+  "name": "chr8_p23_1_REPD_distal_block",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal REPD copy of 8p23.1 inversion-mediating SD; OR-rich + DEFB cluster paralog.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr8",
+      "start": 7000000,
+      "end": 7600000
+    }
+  },
+  "size_bp": 600000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_REPD_A",
+      "SD_REPD_B"
+    ],
+    "homology_percent": 99.4,
+    "sd_length_kb": 550,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Distal REPD block: olfactory receptor 8p OR cluster + DEFB104/105/106/107 paralogs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 980,
+    "dbvar_count": 720,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": []
+}

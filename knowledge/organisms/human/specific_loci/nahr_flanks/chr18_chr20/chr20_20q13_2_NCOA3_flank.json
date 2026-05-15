@@ -1,0 +1,48 @@
+{
+  "name": "chr20_20q13_2_NCOA3_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "NCOA3 amplicon region SDs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr20",
+      "start": 47600000,
+      "end": 48000000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NCOA3, SULF2",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.35,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 55000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Breast cancer NCOA3 amp"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 42,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "BRCA_NCOA3_amp"
+  },
+  "confidence": 0.7,
+  "sources": [
+    "COSMIC",
+    "Bailey/Eichler SD-DB"
+  ]
+}

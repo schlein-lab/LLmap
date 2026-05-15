@@ -1,0 +1,46 @@
+{
+  "name": "chr19_19q13_43_TRIM_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "TRIM gene cluster at 19q13.43; rapid-evolution paralog block with 90-95% identity.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 56900000,
+      "end": 57500000
+    }
+  },
+  "size_bp": 600000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 40,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "TRIM28-like, ZNF cluster intermingled",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.45,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 8,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.6,
+  "sources": [
+    "Eichler 2007",
+    "Bailey/Eichler SD-DB"
+  ]
+}

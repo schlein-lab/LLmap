@@ -1,0 +1,58 @@
+{
+  "name": "NAHR_00848_chr15_30M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr15:30119484-30377806 (0.26 Mb interior) flanked by paralogous 41.5 kb LCRs at 98.93% identity, propensity X=4.57.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 30077907,
+      "end": 30419281
+    }
+  },
+  "size_bp": 341374,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr15:30077907-30119484",
+      "chr15:30377806-30419281"
+    ],
+    "homology_percent": 98.93,
+    "sd_length_kb": 41.53,
+    "interior_bp": 258322,
+    "propensity_X": 4.569,
+    "internal_structure": "ARHGAP11B, CHRNA7, ENSG00000284906, FAN1, KLF13, MTMR10, OTUD7A, TRPM1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0000512:Abnormal electroretinogram",
+    "HP:0001999:Abnormal facial shape",
+    "HP:0003076:Glycosuria",
+    "HP:0003623:Neonatal onset",
+    "HP:0030680:Abnormal cardiovascular system morphology"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 8,
+    "n_total_features": 16,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

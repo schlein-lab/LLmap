@@ -1,0 +1,51 @@
+{
+  "name": "chr13_13q14_2_RB1_region",
+  "description": "13q14.2 RB1 \u2014 recurrent germline microdeletions cause retinoblastoma; large 13q14 deletion syndrome includes RB1 + flanking genes (MED4, LPAR6).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr13",
+      "start": 47900000,
+      "end": 49100000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "13q14_2_RB1_region_prox",
+      "13q14_2_RB1_region_dist"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "see description",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "retinoblastoma",
+    "13q14 deletion syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 3,
+    "dbvar_count": 25,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "ClinGen",
+    "Mitter 2011",
+    "ClinGen",
+    "Sharp 2005"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 1200000
+}

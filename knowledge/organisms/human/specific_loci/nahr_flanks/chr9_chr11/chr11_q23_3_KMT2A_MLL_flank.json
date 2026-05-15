@@ -1,0 +1,51 @@
+{
+  "name": "chr11_q23_3_KMT2A_MLL_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "KMT2A (MLL) at 11q23.3 with flanking partial duplicons; partial tandem duplications in AML; t(11q23) translocation hot-spot.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 118430000,
+      "end": 118500000
+    }
+  },
+  "size_bp": 70000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_KMT2A_5p",
+      "SD_KMT2A_3p"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 9,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "KMT2A",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "KMT2A-rearranged AML/ALL",
+      "omim": "159555"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 0,
+    "dbvar_count": 21,
+    "clingen_dosage_call": "little_evidence",
+    "tumor_recurrence": "AML, infant ALL"
+  },
+  "confidence": 0.88,
+  "sources": [
+    "Meyer2018",
+    "COSMIC"
+  ]
+}

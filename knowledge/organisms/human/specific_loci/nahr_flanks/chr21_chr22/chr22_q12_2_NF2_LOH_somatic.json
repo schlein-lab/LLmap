@@ -1,0 +1,51 @@
+{
+  "name": "chr22_q12_2_NF2_LOH_somatic",
+  "taxonomy_id": "paralog_family",
+  "description": "NF2 22q12.2 recurrent somatic LOH via mitotic NAHR -> schwannoma/meningioma.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 29200000,
+      "end": 30200000
+    }
+  },
+  "size_bp": 1000000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NF2_LOH_somatic"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 1000,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NF2 22q12.2 recurrent somatic LOH via mitotic NAHR -> schwannoma/meningioma.",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "NF2 schwannoma/meningioma"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent in NF2 tumors"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016"
+  ]
+}

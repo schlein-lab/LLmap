@@ -1,0 +1,50 @@
+{
+  "name": "chr22_q11_BCR_pseudogene_block",
+  "taxonomy_id": "paralog_family",
+  "description": "BCR + BCR pseudogenes (BCRL2/3/4) involved in CML t(9;22)",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 23200000,
+      "end": 23800000
+    }
+  },
+  "size_bp": 600000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "BCR_pseudogene_block"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 600,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "BCR + BCR pseudogenes (BCRL2/3/4) involved in CML t(9;22)",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Edelmann et al. 1999 (LCR22 map)",
+    "Pavlicek et al. 2005",
+    "Demaerel et al. 2019 AJHG (LCR22 nomenclature update)",
+    "McDonald-McGinn et al. 2015 (22q11.2DS Nat Rev Dis Primers)",
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4"
+  ]
+}

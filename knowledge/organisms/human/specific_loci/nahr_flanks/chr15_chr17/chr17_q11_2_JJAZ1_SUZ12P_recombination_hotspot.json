@@ -1,0 +1,47 @@
+{
+  "name": "chr17_q11_2_JJAZ1_SUZ12P_recombination_hotspot",
+  "taxonomy_id": "paralog_family",
+  "description": "JJAZ1 (SUZ12P) paralog within NF1-REPa serves as somatic-mitotic NAHR recombination hotspot in NF1 patients (mosaic NF1 microdeletions).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 31750000,
+      "end": 31800000
+    }
+  },
+  "size_bp": 50000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NF1-REPa",
+      "NF1-REPc"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SUZ12P paralog substrate for somatic NAHR",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "mosaic NF1 microdeletion"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:17033964 Steinmann 2007"
+  ]
+}

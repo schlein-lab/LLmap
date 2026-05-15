@@ -1,0 +1,47 @@
+{
+  "name": "chr17_q23_1_BP_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal SD flank of the 17q23.1-q23.2 recurrent ~2.2 Mb microdeletion/duplication (TBX2, TBX4).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 60200000,
+      "end": 60400000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR17q23"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LCR17q23 proximal block",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "17q23.1-q23.2 microdeletion (heart defects, limb anomalies, ID)",
+    "17q23 microduplication"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:20425818 Ballif 2010 17q23"
+  ]
+}

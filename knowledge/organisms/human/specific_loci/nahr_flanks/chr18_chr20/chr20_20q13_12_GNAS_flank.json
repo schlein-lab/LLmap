@@ -1,0 +1,52 @@
+{
+  "name": "chr20_20q13_12_GNAS_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "GNAS (pseudohypoparathyroidism, McCune-Albright) flanking SDs. Recurrent imprinting-domain rearrangements.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr20",
+      "start": 58800000,
+      "end": 59200000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 25,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "GNAS, GNAS-AS1, STX16",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.35,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 55000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Pseudohypoparathyroidism Ib (STX16)",
+    "PHP-Ia (GNAS)",
+    "McCune-Albright (somatic GNAS)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 14,
+    "dbvar_count": 87,
+    "clingen_dosage_call": "haploinsufficient_GNAS_complex",
+    "tumor_recurrence": "MAS_somatic_GNAS_R201"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Carvalho/Lupski 2016",
+    "ClinGen",
+    "COSMIC",
+    "Bailey/Eichler SD-DB"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "chr7_p11_2_EGFR_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "EGFR at 7p11.2 has SD-flanked exons that mediate the recurrent EGFRvIII exon 2-7 deletion in glioma and amplifications in lung cancer.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr7",
+      "start": 55000000,
+      "end": 55300000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_EGFR_prox",
+      "SD_EGFR_dist"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 22,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "EGFR locus flanked by SDs \u2014 somatic NAHR in glioblastoma (EGFRvIII)",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 28,
+    "dbvar_count": 145,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "glioblastoma_EGFRvIII"
+  },
+  "confidence": 0.92,
+  "sources": []
+}

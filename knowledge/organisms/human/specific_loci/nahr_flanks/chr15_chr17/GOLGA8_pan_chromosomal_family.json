@@ -1,0 +1,45 @@
+{
+  "name": "GOLGA8_pan_chromosomal_family",
+  "taxonomy_id": "paralog_family",
+  "description": "GOLGA8 duplicon family \u2014 dispersed across chr15q11-13 + chr5p13 + chrXq pericentromere; primary 15q11-13 NAHR substrate.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 22000000,
+      "end": 33000000
+    }
+  },
+  "size_bp": 11000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "GOLGA8_duplicon_cluster"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 40,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "GOLGA8 family (~50 copies on chr15)",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:11331952",
+    "PMID:23290073"
+  ]
+}

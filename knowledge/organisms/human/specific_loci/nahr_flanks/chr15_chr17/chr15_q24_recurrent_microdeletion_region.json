@@ -1,0 +1,51 @@
+{
+  "name": "chr15_q24_recurrent_microdeletion_region",
+  "taxonomy_id": "paralog_family",
+  "description": "15q24 recurrent microdeletion region \u2014 flanked by LCR15q24 A-D. Variable 1.7-6 Mb deletion causing ID, growth retardation, dysmorphic features.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 74500000,
+      "end": 76500000
+    }
+  },
+  "size_bp": 2000000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR15q24A",
+      "LCR15q24B",
+      "LCR15q24C",
+      "LCR15q24D"
+    ],
+    "homology_percent": 98.7,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "2 Mb critical region containing SEMA7A, CYP1A1/A2, ULK3",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "15q24 microdeletion syndrome",
+    "15q24 microduplication syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:17668381",
+    "PMID:18412115"
+  ]
+}

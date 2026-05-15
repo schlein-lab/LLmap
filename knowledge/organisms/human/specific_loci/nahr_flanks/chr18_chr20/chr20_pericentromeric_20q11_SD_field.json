@@ -1,0 +1,51 @@
+{
+  "name": "chr20_pericentromeric_20q11_SD_field",
+  "taxonomy_id": "paralog_family",
+  "description": "20q11.1 pericentromeric SD field. Hotspot for somatic 20q11.21 amplification in hESC/iPSC cultures (BCL2L1) and for germline 20q11.21 microdeletion syndrome.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr20",
+      "start": 28500000,
+      "end": 31200000
+    }
+  },
+  "size_bp": 2700000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 280,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "BCL2L1 region anchored, NPIPB family duplicons",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "20q11.2 microdeletion",
+    "hESC/iPSC 20q11.21 BCL2L1 amplification"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 41,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "iPSC_20q11.21_gain_recurrent"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Amps 2011",
+    "ClinGen",
+    "Eichler 2007",
+    "Bailey/Eichler SD-DB"
+  ]
+}

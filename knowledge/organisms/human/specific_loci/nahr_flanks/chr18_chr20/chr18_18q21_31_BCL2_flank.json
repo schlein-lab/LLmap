@@ -1,0 +1,51 @@
+{
+  "name": "chr18_18q21_31_BCL2_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "BCL2 region SDs; major t(14;18) translocation partner in follicular lymphoma. Recurrent NAHR-mediated focal duplications also reported.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr18",
+      "start": 63100000,
+      "end": 63600000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "BCL2 mbr / mcr breakpoint clusters",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Follicular lymphoma t(14;18)(q32;q21)",
+    "DLBCL"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 5,
+    "dbvar_count": 39,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "FL_t(14;18)_canonical"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "COSMIC",
+    "Tsujimoto 1984",
+    "Carvalho/Lupski 2016",
+    "Bailey/Eichler SD-DB"
+  ]
+}

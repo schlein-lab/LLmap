@@ -1,0 +1,47 @@
+{
+  "name": "chr13_p_pericen_SD_pair_007",
+  "description": "chr13 acrocentric short-arm/pericentromeric SD block #7 \u2014 rDNA + alpha-satellite, shared with chr14/15/21/22; Robertsonian translocation substrate.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr13",
+      "start": 4300000,
+      "end": 4350000
+    }
+  },
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "13p_alpha_sat",
+      "14p_15p_21p_22p_alpha_sat"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "rDNA + alpha-satellite + pericentromeric SD",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocation rob(13;14), rob(13;15), rob(13;21), rob(13;22)"
+  ],
+  "confidence": 0.7,
+  "sources": [
+    "Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 50000
+}

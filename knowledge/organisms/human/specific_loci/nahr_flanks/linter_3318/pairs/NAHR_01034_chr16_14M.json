@@ -1,0 +1,57 @@
+{
+  "name": "NAHR_01034_chr16_14M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr16:14728657-15101574 (0.37 Mb interior) flanked by paralogous 15.9 kb LCRs at 98.54% identity, propensity X=4.14.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 14713017,
+      "end": 15117686
+    }
+  },
+  "size_bp": 404669,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr16:14713017-14728657",
+      "chr16:15101574-15117686"
+    ],
+    "homology_percent": 98.54,
+    "sd_length_kb": 15.88,
+    "interior_bp": 372917,
+    "propensity_X": 4.14,
+    "internal_structure": "ABCC1, ABCC6, BMERB1, CEP20, ENSG00000261130, MARF1, MPV17L, MYH11, NDE1, NPIPA5, NTAN1, PDXDC1, RRN3",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0001321:Cerebellar hypoplasia",
+    "HP:0001723:Restrictive cardiomyopathy",
+    "HP:0002586:Peritonitis",
+    "HP:0011390:Abnormal inner ear morphology"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 13,
+    "n_total_features": 28,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

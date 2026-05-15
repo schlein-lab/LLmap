@@ -1,0 +1,49 @@
+{
+  "name": "chr17_p12_CMT1A_REP_distal",
+  "taxonomy_id": "paralog_family",
+  "description": "CMT1A-REP distal \u2014 distal 24 kb LCR directly oriented with CMT1A-REP proximal. Together they define the ~1.4 Mb CMT1A/HNPP recurrent rearrangement substrate.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 15500000,
+      "end": 15650000
+    }
+  },
+  "size_bp": 150000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "CMT1A-REP_proximal",
+      "CMT1A-REP_distal"
+    ],
+    "homology_percent": 98.7,
+    "sd_length_kb": 24,
+    "microhomology_bp_at_breakpoint": "557-bp mariner hotspot",
+    "internal_structure": "Paired distal 24-kb LCR with mariner element",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CMT1A",
+    "HNPP"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "dosage-sensitive",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.98,
+  "sources": [
+    "PMID:1916809",
+    "PMID:8076979"
+  ]
+}

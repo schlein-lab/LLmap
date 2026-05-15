@@ -1,0 +1,49 @@
+{
+  "name": "chr20_20q13_2_ZNF217_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "ZNF217 amplicon flanking SDs; recurrent oncogenic amplification in breast and ovarian carcinoma.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr20",
+      "start": 53000000,
+      "end": 53500000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 14,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ZNF217, SUMO1P1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Breast cancer 20q13.2 amp",
+    "Ovarian cancer 20q13.2 amp"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 92,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "BRCA_20q13.2_ZNF217_amp"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "COSMIC",
+    "Bailey/Eichler SD-DB"
+  ]
+}

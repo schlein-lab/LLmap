@@ -1,0 +1,48 @@
+{
+  "name": "chr1_p13_2_NBPF_cassette_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal NBPF/Olduvai cassette block on 1p13.2; high-identity intrachromosomal duplicons.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 112400000,
+      "end": 112900000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "NBPF_DUF1220_proximal",
+      "NBPF_DUF1220_distal"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 80,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "Olduvai (DUF1220) domain cassettes within NBPF gene family.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "NBPF copy number polymorphism (cognition GWAS)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not classified",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "doi:10.1126/science.1213600",
+    "PMID:25753763"
+  ]
+}

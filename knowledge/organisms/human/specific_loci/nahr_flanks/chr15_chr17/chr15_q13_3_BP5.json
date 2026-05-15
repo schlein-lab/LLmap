@@ -1,0 +1,52 @@
+{
+  "name": "chr15_q13_3_BP5",
+  "taxonomy_id": "paralog_family",
+  "description": "BP5 cluster \u2014 distal anchor of the BP4-BP5 15q13.3 microdeletion containing CHRNA7. Dense HERC2/GOLGA8/CHRFAM7A paralog block in inverted orientation vs BP4.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 32400000,
+      "end": 32650000
+    }
+  },
+  "size_bp": 250000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "HERC2_paralog_block",
+      "GOLGA8_duplicon_cluster",
+      "CHRFAM7A_paralog"
+    ],
+    "homology_percent": 99.2,
+    "sd_length_kb": 350,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "HERC2/GOLGA8 cores + CHRFAM7A; inverted orientation drives recurrent NAHR",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "15q13.3 recurrent deletion",
+    "15q13.3 microduplication",
+    "epilepsy, intellectual disability, schizophrenia risk"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:18545709",
+    "PMID:18617569 Helbig 2009",
+    "PMID:24569609 ClinGen 15q13.3"
+  ]
+}

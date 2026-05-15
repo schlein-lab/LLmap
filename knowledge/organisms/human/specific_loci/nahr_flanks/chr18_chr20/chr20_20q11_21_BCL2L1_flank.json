@@ -1,0 +1,49 @@
+{
+  "name": "chr20_20q11_21_BCL2L1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "BCL2L1 flanking SDs; recurrent focal gain hotspot in hESC/iPSC cultures and in selected solid tumors.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr20",
+      "start": 30200000,
+      "end": 30700000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 14,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "BCL2L1, TPX2",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "hESC/iPSC 20q11.21 BCL2L1 gain"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 38,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "iPSC_20q11.21_BCL2L1_recurrent"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Amps 2011",
+    "COSMIC",
+    "Bailey/Eichler SD-DB"
+  ]
+}

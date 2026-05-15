@@ -1,0 +1,49 @@
+{
+  "name": "chr17_q21_31_KdVS_BP_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal SD flank of the recurrent 17q21.31 Koolen-de Vries microdeletion (KANSL1 haploinsufficiency). H2-specific direct-orientation NAHR substrate.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 45550000,
+      "end": 45750000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR17q21.31_A",
+      "LCR17q21.31_D"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LCR17q21.31_A on H2 background, in direct orientation with LCR_D",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Koolen-de Vries syndrome",
+    "17q21.31 microduplication"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.97,
+  "sources": [
+    "PMID:16906162 Koolen 2006",
+    "PMID:22641211"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "NAHR_01169_chr16_28M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr16:28342885-29366484 (1.02 Mb interior) flanked by paralogous 15.3 kb LCRs at 98.37% identity, propensity X=4.12.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 28327647,
+      "end": 29381763
+    }
+  },
+  "size_bp": 1054116,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr16:28327647-28342885",
+      "chr16:29366484-29381763"
+    ],
+    "homology_percent": 98.37,
+    "sd_length_kb": 15.26,
+    "interior_bp": 1023599,
+    "propensity_X": 4.115,
+    "internal_structure": "APOBR, ATP2A1, ATXN2L, BOLA2, BOLA2-SMG1P6, CD19, CLN3, EIF3C, ENSG00000261832, IL27, LAT, NFATC2IP, NPIPB11, NPIPB7, NPIPB8, NPIPB9, NUPR1, RABEP2, SGF29, SH2B1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0000403:Recurrent otitis media",
+    "HP:0000709:Psychosis",
+    "HP:0001522:Death in infancy",
+    "HP:0002411:Myokymia",
+    "HP:0002415:Leukodystrophy",
+    "HP:0011800:Midface retrusion"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 26,
+    "n_total_features": 61,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "chr21_q22_3_ERG_TMPRSS2_fusion",
+  "taxonomy_id": "paralog_family",
+  "description": "ERG (21q22.3) involved in TMPRSS2-ERG fusion in prostate cancer.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr21",
+      "start": 38400000,
+      "end": 38800000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "ERG_TMPRSS2_fusion"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 400,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ERG (21q22.3) involved in TMPRSS2-ERG fusion in prostate cancer.",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Prostate cancer (TMPRSS2-ERG)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent in prostate cancer"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016"
+  ]
+}

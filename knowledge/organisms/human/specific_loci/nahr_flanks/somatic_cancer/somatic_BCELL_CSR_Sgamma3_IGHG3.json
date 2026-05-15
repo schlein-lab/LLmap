@@ -1,0 +1,50 @@
+{
+  "name": "somatic_BCELL_CSR_Sgamma3_IGHG3",
+  "taxonomy_id": "paralog_family",
+  "description": "S\u03b33 switch region upstream of IGHG3 C\u03b33 exons; recombines with S\u03bc to produce IgG3 class switch; tandem motif GGGGT/GAGCT-rich; AID/UNG/MSH2-mediated DSB substrate",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 105770000,
+      "end": 105774000
+    }
+  },
+  "size_bp": 4000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SSgamma3_tandem_5prime",
+      "SSgamma3_tandem_3prime"
+    ],
+    "homology_percent": 95,
+    "sd_length_kb": 4,
+    "microhomology_bp_at_breakpoint": "0-7",
+    "internal_structure": "tandem-repeat switch region 5' of IGHG3; AID hotspots WRC/WGCW",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "B_cell_lymphoma_CSR_aberrant_translocation",
+    "plasma_cell_myeloma"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent_CSR_substrate"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "IMGT",
+    "Stavnezer 2014 doi:10.1146/annurev-immunol-032712-100110",
+    "Chaudhuri 2007"
+  ]
+}

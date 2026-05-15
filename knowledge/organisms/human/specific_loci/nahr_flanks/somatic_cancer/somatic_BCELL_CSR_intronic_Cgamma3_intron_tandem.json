@@ -1,0 +1,48 @@
+{
+  "name": "somatic_BCELL_CSR_intronic_Cgamma3_intron_tandem",
+  "taxonomy_id": "paralog_family",
+  "description": "intronic tandem in IGHG3 hinge-flanking region; secondary AID hotspot for intra-constant-gene microdeletion",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 105767000,
+      "end": 105768000
+    }
+  },
+  "size_bp": 1000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "Cgamma3_intron_tandem_5p",
+      "Cgamma3_intron_tandem_3p"
+    ],
+    "homology_percent": 92,
+    "sd_length_kb": 1,
+    "microhomology_bp_at_breakpoint": "0-5",
+    "internal_structure": "intronic tandem repeat, partial CSR substrate",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "multiple_myeloma_intra_C_deletion"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "rare"
+  },
+  "confidence": 0.5,
+  "sources": [
+    "IMGT",
+    "Pan 2018 doi:10.1038/s41598-018-23800-w"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "chr7_q11_23_LCR_A_block_centromeric",
+  "taxonomy_id": "paralog_family",
+  "description": "Centromeric block-A copy of WBS-LCR tripartite cluster; direct orientation alignment with medial and telomeric blocks mediates intra-chromosomal NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr7",
+      "start": 72380000,
+      "end": 72780000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_LCRA_cen",
+      "SD_LCRA_med"
+    ],
+    "homology_percent": 99.6,
+    "sd_length_kb": 320,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Centromeric LCR-A block of WBS interval: GTF2IP, NCF1B, POM121C paralogs",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 240,
+    "dbvar_count": 380,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": []
+}

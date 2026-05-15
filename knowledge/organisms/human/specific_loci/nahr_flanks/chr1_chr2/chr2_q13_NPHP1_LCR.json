@@ -1,0 +1,50 @@
+{
+  "name": "chr2_q13_NPHP1_LCR",
+  "taxonomy_id": "paralog_family",
+  "description": "Direct-orientation SD pair flanking NPHP1 (~290 kb identical direct repeats >99%); recurrent NPHP1 deletion causes juvenile nephronophthisis (NPH1, Joubert syndrome variant).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr2",
+      "start": 110100000,
+      "end": 110800000
+    }
+  },
+  "size_bp": 700000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NPHP1_proximal_LCR",
+      "NPHP1_distal_LCR"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 290,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "NPHP1, MALL; ~290 kb intervening unique core.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Nephronophthisis-1 (NPHP1 deletion)",
+    "Joubert syndrome 4 (variant)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "HI=3 (NPHP1)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "doi:10.1038/ng0297-149",
+    "doi:10.1086/302924",
+    "PMID:9326940"
+  ]
+}

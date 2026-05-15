@@ -1,0 +1,43 @@
+{
+  "name": "chr8_q24_13_MYC_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "MYC at 8q24.21 has SD-flanked amplicon; high-level amplifications and double-minute formation in carcinomas, MYC/IGH translocations (Burkitt).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr8",
+      "start": 127500000,
+      "end": 128500000
+    }
+  },
+  "size_bp": 1000000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_MYC_prox",
+      "SD_MYC_dist"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "MYC oncogene flanking SDs; somatic amplification in many cancers",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 32,
+    "dbvar_count": 245,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "MYC_amplification_pan_cancer"
+  },
+  "confidence": 0.92,
+  "sources": []
+}

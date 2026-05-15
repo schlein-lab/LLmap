@@ -1,0 +1,46 @@
+{
+  "name": "chr20_20p12_1_anon_SD_pair_014",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD-flanked NAHR substrate at chr20:20p12.1 (~435 kb between paralog anchors).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr20",
+      "start": 15665413,
+      "end": 16101309
+    }
+  },
+  "size_bp": 435896,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 93.7,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized paralog pair",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.38,
+    "anchor_weight_scale": 0.47,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.5,
+  "sources": [
+    "Bailey/Eichler SD-DB",
+    "gnomAD-SV v4.1"
+  ]
+}

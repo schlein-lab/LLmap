@@ -1,0 +1,49 @@
+{
+  "name": "chr15_p_acrocentric_robertsonian_substrate",
+  "taxonomy_id": "paralog_family",
+  "description": "Acrocentric short arm of chr15 mediates Robertsonian translocations rob(13;15), rob(14;15), rob(15;21), rob(15;22) via centromeric satellite NAHR. Most common Robertsonian in humans involves chr15.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 1,
+      "end": 17500000
+    }
+  },
+  "size_bp": 17499999,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "acrocentric_SD",
+      "satellite_alpha_SF1"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Acrocentric satellite + rDNA + NBPF SD substrate",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Robertsonian translocation",
+    "Prader-Willi/Angelman via UPD15"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:35357919 T2T-CHM13",
+    "PMID:35357913"
+  ]
+}

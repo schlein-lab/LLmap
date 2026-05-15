@@ -1,0 +1,51 @@
+{
+  "name": "chr15_q11_2_PWS_AS_BP1",
+  "taxonomy_id": "paralog_family",
+  "description": "BP1 segmental duplication cluster proximal to the Prader-Willi/Angelman imprinted domain. HERC2-related duplicons plus NIPA1/NIPA2/CYFIP1/TUBGCP5 segment. Mediates Type-I (BP1-BP3) deletions and BP1-BP2 microdeletion syndrome.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 22650000,
+      "end": 22950000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HERC2_paralog_block",
+      "GOLGA8_duplicon_cluster"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 250,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "HERC2 paralog cores + GOLGA8 duplicon repeats, ~300 kb cluster",
+    "copy_number_in_population": "fixed_with_polymorphic_variants"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Prader-Willi syndrome (Type I deletion)",
+    "Angelman syndrome (Type I deletion)",
+    "15q11.2 BP1-BP2 microdeletion syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient (BP1-BP2 sufficient)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:11331952 Pujana 2001 15q11-13 SDs",
+    "PMID:12107281 Stankiewicz Lupski 2002",
+    "PMID:17236191 ClinGen 15q11.2"
+  ]
+}

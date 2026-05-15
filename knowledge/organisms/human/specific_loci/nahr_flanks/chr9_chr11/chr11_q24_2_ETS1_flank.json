@@ -1,0 +1,51 @@
+{
+  "name": "chr11_q24_2_ETS1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "ETS1 11q24.2 with low-copy SD flanks; recurrent terminal 11q deletions (Jacobsen) partial mediator.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 128300000,
+      "end": 128700000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_ETS1_5p",
+      "SD_ETS1_3p"
+    ],
+    "homology_percent": 93.5,
+    "sd_length_kb": 4,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ETS1, FLI1",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "Jacobsen syndrome (11q-)",
+      "omim": "147791"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 1,
+    "dbvar_count": 22,
+    "clingen_dosage_call": "sufficient_evidence_HI",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Penny1995",
+    "ClinGen"
+  ]
+}

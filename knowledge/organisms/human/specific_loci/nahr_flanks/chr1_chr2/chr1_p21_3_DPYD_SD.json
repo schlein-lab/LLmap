@@ -1,0 +1,48 @@
+{
+  "name": "chr1_p21_3_DPYD_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "DPYD-region SD-flanked recurrent ~1 Mb microdeletion, intellectual disability phenotype.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 97600000,
+      "end": 98700000
+    }
+  },
+  "size_bp": 1100000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr1_p21_3_DPYD_SD_proximal_SD",
+      "chr1_p21_3_DPYD_SD_distal_SD"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 35,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "generic SD pair flanking unique core",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1p21.3 microdeletion syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "HI=3 (1p21.3)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "doi:10.1136/jmg.2010.084319",
+    "PMID:21068104"
+  ]
+}

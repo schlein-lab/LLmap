@@ -1,0 +1,51 @@
+{
+  "name": "chr11_p13_WT1_PAX6_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "11p13 WAGR region with PAX6/WT1 and flanking SDs; recurrent WAGR contiguous deletion syndrome.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 32000000,
+      "end": 32700000
+    }
+  },
+  "size_bp": 700000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_WAGR_prox",
+      "SD_WAGR_dist"
+    ],
+    "homology_percent": 94.5,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "WT1, PAX6, BDNF",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "WAGR syndrome",
+      "omim": "194072"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 0,
+    "dbvar_count": 33,
+    "clingen_dosage_call": "sufficient_evidence_HI",
+    "tumor_recurrence": "Wilms"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "Fischbach2005",
+    "ClinGen"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "chr19_19q13_12_PSG_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Pregnancy-specific glycoprotein (PSG) gene cluster.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 42500000,
+      "end": 43200000
+    }
+  },
+  "size_bp": 700000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PSG1-PSG9 tandem array (10 paralogs at >95% identity)",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.45,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 18,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "Bailey/Eichler SD-DB",
+    "Bailey/Eichler SD-DB"
+  ]
+}

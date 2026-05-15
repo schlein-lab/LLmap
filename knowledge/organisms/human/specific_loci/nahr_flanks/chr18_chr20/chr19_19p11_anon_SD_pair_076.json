@@ -1,0 +1,46 @@
+{
+  "name": "chr19_19p11_anon_SD_pair_076",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD-flanked NAHR substrate at chr19:19p11 (~130 kb between paralog anchors).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 25470561,
+      "end": 25600650
+    }
+  },
+  "size_bp": 130089,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 98.7,
+    "sd_length_kb": 120,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "rapid-evolution duplicon module",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.54,
+    "anchor_weight_scale": 0.33,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.5,
+  "sources": [
+    "Bailey/Eichler SD-DB",
+    "gnomAD-SV v4.1"
+  ]
+}

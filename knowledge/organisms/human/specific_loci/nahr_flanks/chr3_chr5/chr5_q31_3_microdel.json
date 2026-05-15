@@ -1,0 +1,47 @@
+{
+  "name": "chr5_q31_3_microdel",
+  "taxonomy_id": "paralog_family",
+  "description": "NAHR-prone SD-flanked interval at chr5:138500000-141000000 (SD_5q31.3_prox / SD_5q31.3_dist).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr5",
+      "start": 138500000,
+      "end": 141000000
+    }
+  },
+  "size_bp": 2500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_5q31.3_prox",
+      "SD_5q31.3_dist"
+    ],
+    "homology_percent": 94.5,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "not_characterized",
+    "internal_structure": "NRG2, PCDHB cluster; 5q31.3 microdeletion syndrome",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "5q31.3 microdeletion syndrome OMIM:617193"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 28,
+    "clingen_dosage_call": "HI=3",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "PMID:24791904"
+  ]
+}

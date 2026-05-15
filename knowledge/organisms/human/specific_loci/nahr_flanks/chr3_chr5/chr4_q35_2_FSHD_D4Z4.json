@@ -1,0 +1,50 @@
+{
+  "name": "chr4_q35_2_FSHD_D4Z4",
+  "taxonomy_id": "paralog_family",
+  "description": "NAHR-prone SD-flanked interval at chr4:190000000-190100000 (D4Z4_repeat_array_prox / D4Z4_repeat_array_dist).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr4",
+      "start": 190000000,
+      "end": 190100000
+    }
+  },
+  "size_bp": 100000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "D4Z4_repeat_array_prox",
+      "D4Z4_repeat_array_dist"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 3.3,
+    "microhomology_bp_at_breakpoint": "not_characterized",
+    "internal_structure": "D4Z4 macrosatellite (3.3 kb repeats), contraction <11 units causes FSHD1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "FSHD1 OMIM:158900",
+    "FSHD2 OMIM:158901"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "NA",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:1351391",
+    "PMID:20724583",
+    "doi:10.1126/science.1189044"
+  ]
+}

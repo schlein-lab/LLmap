@@ -1,0 +1,49 @@
+{
+  "name": "chr14_q21_22_OTX2_region",
+  "description": "14q22.3 OTX2 region \u2014 recurrent microdeletion causing microphthalmia/anophthalmia spectrum.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 56000000,
+      "end": 58000000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "OTX2_prox_SD",
+      "OTX2_dist_SD"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "OTX2",
+    "copy_number_in_population": "fixed"
+  },
+  "related_diseases": [
+    "microphthalmia syndromic type 5",
+    "combined pituitary hormone deficiency"
+  ],
+  "confidence": 0.85,
+  "sources": [
+    "ClinGen",
+    "Ragge 2005"
+  ],
+  "taxonomy_id": "paralog_family",
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "size_bp": 2000000
+}

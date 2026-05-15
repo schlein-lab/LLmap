@@ -1,0 +1,50 @@
+{
+  "name": "chr12_12p13_33_WNT5B_ETV6_region",
+  "description": "12p13.33 ETV6/WNT5B region; recurrent ETV6-RUNX1 t(12;21) translocation hotspot, B-ALL driver.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 11400000,
+      "end": 12400000
+    }
+  },
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "12p13_33_WNT5B_ETV6_region_prox",
+      "12p13_33_WNT5B_ETV6_region_dist"
+    ],
+    "homology_percent": 90.0,
+    "sd_length_kb": 5,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "see description",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "B-ALL with ETV6-RUNX1"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 3,
+    "dbvar_count": 25,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "COSMIC",
+    "Wiemels 1999",
+    "ClinGen",
+    "Sharp 2005"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 1000000
+}

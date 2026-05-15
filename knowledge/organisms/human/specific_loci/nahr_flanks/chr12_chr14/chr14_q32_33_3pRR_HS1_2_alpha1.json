@@ -1,0 +1,49 @@
+{
+  "name": "chr14_q32_33_3pRR_HS1_2_alpha1",
+  "description": "Hypersensitive site 1.2 downstream of IGHA1 \u2014 3' regulatory CNV with VNTR repeat polymorphism.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 105820000,
+      "end": 105822000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HS1_2_alpha1_proximal",
+      "HS1_2_alpha1_distal"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 2,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "3'RR enhancer element with VNTR",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "IgA deficiency haplotypes",
+    "celiac risk haplotypes"
+  ],
+  "confidence": 0.8,
+  "sources": [
+    "Frezza 2004 J Immunol",
+    "Pinaud 2011 Adv Immunol"
+  ],
+  "taxonomy_id": "paralog_family",
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 2000
+}

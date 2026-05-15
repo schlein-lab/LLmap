@@ -1,0 +1,51 @@
+{
+  "name": "chr17_p11_2_SMS_REP_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "SMS-REP proximal \u2014 proximal ~250 kb low-copy repeat flanking the Smith-Magenis syndrome / Potocki-Lupski syndrome critical region. NAHR with SMS-REP distal causes the recurrent 3.7 Mb SMS deletion and reciprocal PTLS duplication.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 16500000,
+      "end": 16700000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SMS-REP_proximal",
+      "SMS-REP_distal",
+      "SMS-REP_middle"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 250,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Large ~250 kb LCR with KER1/KER2/SMS-REP genes; >98% identity to distal/middle",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Smith-Magenis syndrome (SMS, del)",
+    "Potocki-Lupski syndrome (PTLS, dup)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "dosage-sensitive (RAI1)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.97,
+  "sources": [
+    "PMID:9012406 Chen 1997 SMS-REPs",
+    "PMID:14628290 Park 2002",
+    "PMID:17357072 Stankiewicz 2003"
+  ]
+}

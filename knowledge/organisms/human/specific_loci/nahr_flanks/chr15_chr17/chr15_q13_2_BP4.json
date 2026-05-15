@@ -1,0 +1,49 @@
+{
+  "name": "chr15_q13_2_BP4",
+  "taxonomy_id": "paralog_family",
+  "description": "BP4 cluster distal to the PWS/AS critical region; flanks the 15q13.3 CHRNA7 recurrent deletion region (BP4-BP5). Composed of HERC2/GOLGA8 paralogs plus CHRFAM7A-related modules.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 30300000,
+      "end": 30550000
+    }
+  },
+  "size_bp": 250000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HERC2_paralog_block",
+      "GOLGA8_duplicon_cluster",
+      "CHRFAM7A_paralog"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 350,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "HERC2/GOLGA8 modules + CHRFAM7A fusion-gene flank",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "15q13.3 recurrent deletion (BP4-BP5)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:18545709 Sharp 2008 CHRNA7",
+    "PMID:18408264"
+  ]
+}

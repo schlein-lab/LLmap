@@ -1,0 +1,49 @@
+{
+  "name": "chr16_p13_11_BP3",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal BP cluster of 16p13.11 recurrent microdeletion. Pairs with BP1/BP2 via directly-oriented LCR16a duplicons.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 16500000,
+      "end": 16700000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog",
+      "LCR16p13.11_distal"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 300,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LCR16a + flanking SDs; ~250-300 kb at high identity",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p13.11 microdeletion",
+    "16p13.11 microduplication"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:17357066",
+    "PMID:19359208"
+  ]
+}

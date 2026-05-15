@@ -1,0 +1,54 @@
+{
+  "name": "chr22_q11_1_CES_critical_region",
+  "taxonomy_id": "paralog_family",
+  "description": "Cat-eye syndrome (CES) critical region. Inv-dup(22)(q11) supernumerary marker chromosome formed via NAHR within proximal LCR22 substrates.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 16500000,
+      "end": 18900000
+    }
+  },
+  "size_bp": 2400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "CES-LCR (proximal LCR22)"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "CECR1, ATP6V1E1, BCL2L13, IL17RA region",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.32,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cat-eye syndrome (CES, OMIM 115470)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "TS=3",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Edelmann et al. 1999 (LCR22 map)",
+    "Pavlicek et al. 2005",
+    "Demaerel et al. 2019 AJHG (LCR22 nomenclature update)",
+    "McDonald-McGinn et al. 2015 (22q11.2DS Nat Rev Dis Primers)",
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "McTaggart 1998",
+    "Mears 1994"
+  ]
+}

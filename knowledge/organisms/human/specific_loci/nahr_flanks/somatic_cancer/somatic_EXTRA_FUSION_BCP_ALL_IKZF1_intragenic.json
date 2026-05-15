@@ -1,0 +1,49 @@
+{
+  "name": "somatic_EXTRA_FUSION_BCP_ALL_IKZF1_intragenic",
+  "taxonomy_id": "paralog_family",
+  "description": "IKZF1 intragenic deletions via SD-mediated NAHR; somatic; SD/Alu flanked",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr7",
+      "start": 50300000,
+      "end": 50480000
+    }
+  },
+  "size_bp": 180000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "BCP_ALL_IKZF1_intragenic_SD_5p",
+      "BCP_ALL_IKZF1_intragenic_SD_3p"
+    ],
+    "homology_percent": 93,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "IKZF1 intragenic deletions via SD-mediated NAHR",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "BCP_ALL_Ph_like"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "very_recurrent"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Mitelman DB",
+    "COSMIC v100",
+    "TCGA"
+  ]
+}

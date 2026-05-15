@@ -1,0 +1,48 @@
+{
+  "name": "chr16_p11_2_BP4_SULT1A_module",
+  "taxonomy_id": "paralog_family",
+  "description": "SULT1A paralog at BP4 within the 16p11.2 BP4-BP5 autism CNV region.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 29530000,
+      "end": 29570000
+    }
+  },
+  "size_bp": 40000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog",
+      "BOLA2_duplicon"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SULT1A paralog at BP4",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 recurrent del/dup"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:25409090 Nuttle 2016",
+    "PMID:18184952"
+  ]
+}

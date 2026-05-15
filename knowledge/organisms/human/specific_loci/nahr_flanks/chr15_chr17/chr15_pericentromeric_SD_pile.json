@@ -1,0 +1,45 @@
+{
+  "name": "chr15_pericentromeric_SD_pile",
+  "taxonomy_id": "paralog_family",
+  "description": "15q11.1-q11.2 pericentromeric SD pile-up proximal to BP1. Mosaic duplicons from chr2/9/16/22 pericentromeres + intra-15 paralogs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 17000000,
+      "end": 22500000
+    }
+  },
+  "size_bp": 5500000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "pericentromeric_mosaic"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Pericentromeric mosaic SDs; assembly-uncertain region",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "PMID:11331952",
+    "PMID:12466850 She 2004"
+  ]
+}

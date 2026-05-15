@@ -1,0 +1,48 @@
+{
+  "name": "chr1_p12_SRGAP2_paralogs",
+  "taxonomy_id": "paralog_family",
+  "description": "Pericentromeric 1p12 SRGAP2 paralog cluster (SRGAP2B/C/D); >99% identity hominid-specific duplications and recurrent inter-paralog NAHR substrate.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 120800000,
+      "end": 121500000
+    }
+  },
+  "size_bp": 700000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "SRGAP2A_locus",
+      "SRGAP2C_locus"
+    ],
+    "homology_percent": 99.4,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "SRGAP2 ancestral + SRGAP2B/C/D paralogs created by ~2.4 Mya duplications.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1q21.1 / 1p12 SRGAP2 dosage; cortical neuron development"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not classified",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "doi:10.1016/j.cell.2012.03.033",
+    "PMID:22559943"
+  ]
+}

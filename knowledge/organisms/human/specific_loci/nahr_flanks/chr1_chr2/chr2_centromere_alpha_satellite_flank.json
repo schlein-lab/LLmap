@@ -1,0 +1,45 @@
+{
+  "name": "chr2_centromere_alpha_satellite_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "2 centromere alpha-satellite + monomeric flanks; defines pericentromeric SD belt boundary.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr2",
+      "start": 92000000,
+      "end": 95000000
+    }
+  },
+  "size_bp": 3000000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "chr2_centromere_alpha_satellite_flank_proximal_SD",
+      "chr2_centromere_alpha_satellite_flank_distal_SD"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 500,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "generic SD pair flanking unique core",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not classified",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "doi:10.1126/science.abj6987"
+  ]
+}

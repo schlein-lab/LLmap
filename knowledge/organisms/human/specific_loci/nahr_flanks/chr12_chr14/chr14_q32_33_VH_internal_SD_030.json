@@ -1,0 +1,45 @@
+{
+  "name": "chr14_q32_33_VH_internal_SD_030",
+  "description": "Anonymous V-region internal segmental-duplication block #30 within IGH VH cluster, 1-5 kb at 92-99% identity. Used as low-priority anchor down-weight target.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 106760000,
+      "end": 106763000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "VH_SD_30_A",
+      "VH_SD_30_B"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 3,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "VH-family internal duplicated unit",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "confidence": 0.55,
+  "sources": [
+    "Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 3000
+}

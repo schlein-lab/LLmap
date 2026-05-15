@@ -1,0 +1,56 @@
+{
+  "name": "chr11_p15_5_IGF2_H19_imprint_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "11p15.5 IGF2/H19 imprinted domain with flanking SDs; ICR1 region; deletions/dups cause BWS / SRS.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 1900000,
+      "end": 2200000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_IGF2_5p",
+      "SD_H19_3p"
+    ],
+    "homology_percent": 95.5,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "H19, IGF2, IGF2-AS",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "Beckwith-Wiedemann syndrome",
+      "omim": "130650"
+    },
+    {
+      "name": "Silver-Russell syndrome",
+      "omim": "180860"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 2,
+    "dbvar_count": 41,
+    "clingen_dosage_call": "sufficient_evidence",
+    "tumor_recurrence": "Wilms"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "Begemann2018",
+    "Eggermann2010",
+    "ClinGen"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "chr12_anon_SD_pair_046",
+  "description": "Anonymous chr12 segmental-duplication block #46, generic NAHR-prone interval. Used for anchor down-weighting.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 102200000,
+      "end": 102230000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr12_anon_SD_46_A",
+      "chr12_anon_SD_46_B"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "generic SD pair",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "confidence": 0.5,
+  "sources": [
+    "Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 30000
+}

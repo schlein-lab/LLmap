@@ -1,0 +1,52 @@
+{
+  "name": "chr19_19p13_11_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.11 pericentromeric SD super-block \u2014 the densest SD region of the human genome by Mb. Recurrent 19p13.11 microdeletion / microduplication syndrome maps here.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 19200000,
+      "end": 22500000
+    }
+  },
+  "size_bp": 3300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 350,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "EPOR, ZNF430-family rapid-evolution duplicons, GDF1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "19p13.11 microdeletion syndrome",
+    "19p13.11 microduplication syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 58,
+    "dbvar_count": 142,
+    "clingen_dosage_call": "uncertain_19p13.11",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Eichler 2007",
+    "Sharp 2005",
+    "ClinGen",
+    "Coe 2014",
+    "Bailey/Eichler SD-DB"
+  ]
+}

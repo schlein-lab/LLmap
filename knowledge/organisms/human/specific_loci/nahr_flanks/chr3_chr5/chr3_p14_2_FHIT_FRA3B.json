@@ -1,0 +1,48 @@
+{
+  "name": "chr3_p14_2_FHIT_FRA3B",
+  "taxonomy_id": "paralog_family",
+  "description": "NAHR-prone SD-flanked interval at chr3:60000000-61500000 (SD_3p14_FHIT_prox / SD_3p14_FHIT_dist).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr3",
+      "start": 60000000,
+      "end": 61500000
+    }
+  },
+  "size_bp": 1500000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_3p14_FHIT_prox",
+      "SD_3p14_FHIT_dist"
+    ],
+    "homology_percent": 93.5,
+    "sd_length_kb": 6,
+    "microhomology_bp_at_breakpoint": "not_characterized",
+    "internal_structure": "FRA3B common fragile site spanning FHIT gene; rec del in many tumors",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "multiple tumor types FHIT loss"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "NA",
+    "tumor_recurrence": "lung, esophageal, cervical carcinoma frequent"
+  },
+  "confidence": 0.7,
+  "sources": [
+    "PMID:8616803",
+    "PMID:18230947"
+  ]
+}

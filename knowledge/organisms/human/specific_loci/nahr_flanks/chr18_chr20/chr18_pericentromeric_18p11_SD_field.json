@@ -1,0 +1,48 @@
+{
+  "name": "chr18_pericentromeric_18p11_SD_field",
+  "taxonomy_id": "paralog_family",
+  "description": "Pericentromeric 18p SD-rich block (>500 kb cumulative SD content; identity 95-99%). Hosts many short duplicons feeding NAHR exchanges with chr15, chr16, and chr20 pericentromeres.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr18",
+      "start": 14000000,
+      "end": 15400000
+    }
+  },
+  "size_bp": 1400000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ANKRD20A duplicons, NF1-like pseudogenes, ZNF rapid-evolution cluster",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.55,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 41,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.6,
+  "sources": [
+    "Eichler 2007",
+    "Bailey/Eichler SD-DB",
+    "Sharp 2005",
+    "Bailey/Eichler SD-DB"
+  ]
+}

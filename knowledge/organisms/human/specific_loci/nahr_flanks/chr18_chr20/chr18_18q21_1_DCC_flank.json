@@ -1,0 +1,51 @@
+{
+  "name": "chr18_18q21_1_DCC_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "DCC (Deleted in Colorectal Cancer) flanking SDs ~10-15 kb at 95% identity. Hosts NAHR-driven germline deletions associated with mirror movements / corpus callosum agenesis as well as colorectal-tumor focal deletions.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr18",
+      "start": 50500000,
+      "end": 51100000
+    }
+  },
+  "size_bp": 600000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 13,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "DCC long 1.2 Mb gene with internal SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.35,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Mirror movements 1 (DCC)",
+    "Colorectal cancer 18q LOH"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 22,
+    "dbvar_count": 64,
+    "clingen_dosage_call": "haploinsufficient_DCC",
+    "tumor_recurrence": "CRC_18q_LOH_recurrent"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Carvalho/Lupski 2016",
+    "COSMIC",
+    "ClinGen",
+    "Bailey/Eichler SD-DB"
+  ]
+}
