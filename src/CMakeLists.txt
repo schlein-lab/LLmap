@@ -171,7 +171,7 @@ target_include_directories(llmap_classical PUBLIC
 )
 
 target_compile_features(llmap_classical PUBLIC cxx_std_23)
-target_link_libraries(llmap_classical PUBLIC llmap_core)
+target_link_libraries(llmap_classical PUBLIC llmap_core llmap_annot)
 
 # Link WFA2-lib if available
 if(LLMAP_WFA2_AVAILABLE)
@@ -179,6 +179,22 @@ if(LLMAP_WFA2_AVAILABLE)
     target_link_libraries(llmap_classical PUBLIC ${WFA2_LIBRARY})
     target_include_directories(llmap_classical PUBLIC ${WFA2_INCLUDE_DIR})
 endif()
+
+# Annot module — region annotations + classifier + interval tree
+add_library(llmap_annot STATIC
+    annot/annot_types.cpp
+    annot/feature_extractor.cpp
+    annot/interval_tree.cpp
+    annot/annotation_store.cpp
+    annot/classifier.cpp
+)
+
+target_include_directories(llmap_annot PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_annot PUBLIC cxx_std_23)
+target_link_libraries(llmap_annot PUBLIC llmap_core)
 
 # Validation module — kill-switch validation framework
 add_library(llmap_validation STATIC
@@ -264,5 +280,6 @@ add_executable(llmap
     cli/cmd_sc_qc_report.cpp
     cli/cmd_sc_qc_report_args.cpp
     cli/cmd_check.cpp
+    cli/cmd_annotate_ref.cpp
 )
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot)

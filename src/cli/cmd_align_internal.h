@@ -63,6 +63,11 @@ struct AlignArgs {
 
     // Classical-only mode (skip probabilistic framework)
     bool classical_only = false;   // Pure seed-chain-extend, no Wave structures
+
+    // Region-aware mapping. When set, load the .regann annotation file and
+    // pass it to the chain DP so per-anchor parameters can be overridden
+    // per region (paralog, low-complexity, centromere, ...).
+    std::string region_annot;
 };
 
 void PrintAlignUsage();

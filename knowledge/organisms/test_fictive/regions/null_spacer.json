@@ -1,0 +1,22 @@
+{
+  "name": "null_spacer",
+  "taxonomy_id": "low_complexity",
+  "description": "Invented homopolymer-ish AT-rich spacer regions sandwiched between coding cassettes in the (fictional) test_fictive genome. Very low Shannon entropy, no detectable tandem period above 4 bp, GC heavily biased low. Used as a low_complexity exemplar for the EXTENDING.md walkthrough.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [0.0, 1.3]},
+    "gc_content": {"range": [0.10, 0.30]},
+    "tandem_period": {"any_of": ["null", {"range": [2, 4]}]},
+    "kmer_multiplicity_p95": {"min": 10}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 5.0,
+    "lambda_scale": 2.0,
+    "report_multi_position": false,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "synthetic, no biological basis — see EXTENDING.md example."
+  ],
+  "confidence": 1.0
+}

@@ -1,0 +1,31 @@
+{
+  "module": "test_fictive",
+  "schema_version": "0.1.0",
+  "description": "Three trivial rules demonstrating the structure of classifier_rules.json. Evaluated in priority order, first match wins.",
+  "default_region": "klorf_coding",
+  "rules": [
+    {
+      "priority": 1,
+      "region": "zorg_repeat",
+      "predicate": {
+        "tandem_period": {"range": [87, 91]},
+        "kmer_multiplicity_p95": {"min": 100}
+      }
+    },
+    {
+      "priority": 2,
+      "region": "null_spacer",
+      "predicate": {
+        "shannon_5mer": {"range": [0.0, 1.3]},
+        "gc_content": {"range": [0.10, 0.30]}
+      }
+    },
+    {
+      "priority": 3,
+      "region": "klorf_coding",
+      "predicate": {
+        "orf_density": {"min": 0.65}
+      }
+    }
+  ]
+}

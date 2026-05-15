@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 
+#include "annot/annotation_store.h"
 #include "classical/classical_pipeline.h"
 #include "core/alignment_record.h"
 #include "core/thread_pool.h"
@@ -172,6 +173,28 @@ int run_align(int argc, char** argv) {
         }
     }
 
+    // Optional region annotation: when provided, the chain DP will weight
+    // anchors per region (paralog_family, low_complexity, etc.) and relax
+    // the gap_diff bound for tandem-repeat regions.
+    std::unique_ptr<annot::AnnotationStore> region_store;
+    if (!args.region_annot.empty()) {
+        if (args.verbose) {
+            std::fprintf(stderr, "Loading region annotation: %s\n",
+                         args.region_annot.c_str());
+        }
+        region_store = annot::AnnotationStore::Load(
+            args.region_annot, ref_names);
+        if (!region_store) {
+            std::fprintf(stderr,
+                "Warning: failed to load region annotation %s, "
+                "continuing without\n",
+                args.region_annot.c_str());
+        } else if (args.verbose) {
+            std::fprintf(stderr, "  %zu annotation intervals loaded\n",
+                         region_store->Size());
+        }
+    }
+
     classical::ClassicalPipelineConfig pipe_cfg;
     pipe_cfg.minimizer_config = mini_cfg;
     pipe_cfg.chain_config.min_chain_score = args.min_chain;
@@ -181,6 +204,9 @@ int run_align(int argc, char** argv) {
     pipe_cfg.extension_config.gap_extend = 2;
     pipe_cfg.min_identity = args.min_identity;
     pipe_cfg.max_chains_to_extend = args.max_chains;
+    if (region_store) {
+        pipe_cfg.chain_config.annot = &region_store->Index();
+    }
 
     classical::ClassicalPipeline pipeline(pipe_cfg);
     pipeline.SetIndex(std::move(index));

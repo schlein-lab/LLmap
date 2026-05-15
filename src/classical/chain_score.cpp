@@ -1,4 +1,5 @@
 #include "classical/chain.h"
+#include "annot/interval_tree.h"
 
 #include <algorithm>
 #include <cmath>
@@ -42,17 +43,32 @@ int32_t AnchorPairScore(
     // Gap difference = abs(ref_gap - query_gap)
     int64_t gap_diff = std::abs(ref_gap - query_gap);
 
-    // Reject pairs whose indel mass exceeds max_gap_diff. Without this, chains
-    // happily span across paralog boundaries (where ref/query gaps diverge by
-    // thousands of bp) with a zero net score, producing low-identity composite
-    // alignments. Real biological indels are small; cross-paralog jumps aren't.
-    if (gap_diff > static_cast<int64_t>(config.max_gap_diff)) {
+    // Region-aware lambda_scale relaxes / tightens the indel bound.
+    // A region flagged as low-complexity / tandem-repeat gets a larger
+    // permissible gap_diff (we expect actual indels there), a coding region
+    // gets a tighter bound.
+    float lambda_scale = 1.0f;
+    float anchor_weight_scale = 1.0f;
+    if (config.annot != nullptr) {
+        auto ap = config.annot->ParamsAt(b.ref_id, b.ref_pos);
+        if (ap.lambda_scale) lambda_scale = *ap.lambda_scale;
+        if (ap.anchor_weight_scale) anchor_weight_scale = *ap.anchor_weight_scale;
+    }
+    int64_t effective_gap_diff_bound =
+        static_cast<int64_t>(config.max_gap_diff *
+                             std::max(0.1f, lambda_scale));
+
+    // Reject pairs whose indel mass exceeds the (region-scaled) bound.
+    if (gap_diff > effective_gap_diff_bound) {
         return std::numeric_limits<int32_t>::min();
     }
 
     // Minimap2-style scoring: min(gap) bases are matches
     int64_t min_gap = std::min(ref_gap, query_gap);
-    int64_t score = min_gap * config.match_score - gap_diff * config.gap_penalty;
+    int64_t match_contribution =
+        static_cast<int64_t>(static_cast<double>(min_gap * config.match_score) *
+                             static_cast<double>(anchor_weight_scale));
+    int64_t score = match_contribution - gap_diff * config.gap_penalty;
 
     return static_cast<int32_t>(std::clamp(
         score,

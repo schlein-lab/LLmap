@@ -102,6 +102,8 @@ void PrintAlignUsage() {
         "  -w, --window INT        Minimizer window [10] (ignored if --index)\n"
         "  --min-chain INT         Minimum chain score [30]\n"
         "  --min-identity FLOAT    Minimum alignment identity [0.80]\n"
+        "  --region-annot FILE     Region annotation file (.regann) for\n"
+        "                          per-region scoring [optional]\n"
         "\n"
         "Performance:\n"
         "  -t, --threads INT       Number of threads [1]\n"
@@ -182,6 +184,8 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
         } else if (arg == "--min-identity" && i + 1 < argc) {
             args.min_identity = std::stof(argv[++i]);
             explicit_identity = true;
+        } else if (arg == "--region-annot" && i + 1 < argc) {
+            args.region_annot = argv[++i];
         } else if ((arg == "-t" || arg == "--threads") && i + 1 < argc) {
             args.threads = std::stoi(argv[++i]);
         } else if (arg == "--max-chains" && i + 1 < argc) {
