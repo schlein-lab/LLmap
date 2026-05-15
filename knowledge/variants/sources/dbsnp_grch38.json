@@ -1,0 +1,17 @@
+{
+  "id": "dbsnp",
+  "display_name": "dbSNP build 156",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "snv",
+  "version": "156",
+  "url": "https://ftp.ncbi.nlm.nih.gov/snp/latest_release/VCF/GCF_000001405.40.gz",
+  "format": "VCF.gz",
+  "license": "Public domain (NCBI)",
+  "doi": ["10.1093/nar/29.1.308"],
+  "expected_count": 1000000000,
+  "size_on_disk_gb": 12.0,
+  "ingest_command": "bcftools view --no-version dbsnp_b156.vcf.gz | bcftools annotate -x 'INFO/^FREQ,INFO/COMMON' | llmap variant-ingest --source dbsnp --bucket-bp 100 --min-af 0.0 --output dbsnp.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Largest catalog; ingest with --min-af 0.001 to drop singletons unless you really need them. Common-only subset is ~10x smaller."
+}

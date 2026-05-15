@@ -1,0 +1,17 @@
+{
+  "id": "dgv",
+  "display_name": "Database of Genomic Variants (DGV) gold standard",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "sv",
+  "version": "2020-02-25",
+  "url": "http://dgv.tcag.ca/dgv/docs/GRCh38_hg38_variants_2020-02-25.txt",
+  "format": "TSV",
+  "license": "Open (TCAG terms)",
+  "doi": ["10.1093/nar/gkt958"],
+  "expected_count": 500000,
+  "size_on_disk_gb": 0.05,
+  "ingest_command": "awk -F'\\t' 'NR>1 {print $2\"\\t\"$3\"\\t\"$4\"\\t\"$6\"\\tNA\"}' GRCh38_hg38_variants_2020-02-25.txt | llmap variant-ingest --source dgv --kind sv --no-af --bucket-bp 100 --output dgv.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Presence-only catalog (no allele frequencies). Useful for confirming a candidate SV is known, contributes to n_sv_overlapping but leaves sv_max_af=0."
+}

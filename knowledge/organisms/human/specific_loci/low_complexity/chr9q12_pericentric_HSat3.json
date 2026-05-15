@@ -1,0 +1,31 @@
+{
+  "name": "chr9q12_pericentric_HSat3",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 9 q-arm pericentric heterochromatin block (9q12), the largest classical heterochromatin block on any autosome, predominantly HSat3 (ATTCC pentamer arrays) with some HSat2. Highly polymorphic in size (qh+ / qh- variants). Largely unassembled in GRCh38; resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 43000000, "end": 65500000}},
+  "size_bp": 22000000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Long tandem HSat3 arrays (ATTCC-based) with embedded HSat2 patches; population-level size polymorphism (qh+/qh-); pseudoautosomal pairing irregularities reported."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "ICF syndrome (pericentric instability of 1, 9, 16)",
+    "Reproductive failure with qh+ variants (debated)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abl4178",
+    "PMID:225837"
+  ],
+  "confidence": 0.9
+}

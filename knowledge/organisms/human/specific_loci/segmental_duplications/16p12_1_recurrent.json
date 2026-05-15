@@ -1,0 +1,31 @@
+{
+  "name": "16p12_1_recurrent_CNV",
+  "taxonomy_id": "paralog_family",
+  "description": "16p12.1 recurrent ~520 kb microdeletion region, flanked by direct-orientation SD blocks. Acts as a susceptibility CNV for intellectual disability when combined with a second-hit CNV elsewhere (two-hit model, Girirajan 2010).",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 21900000, "end": 22500000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Flanking SD pair of ~50-100 kb at >98% identity; unique interval contains UQCRC2, OTOA, METTL9, EEF2K, POLR3E."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p12.1 microdeletion syndrome",
+    "intellectual disability (second-hit model)",
+    "developmental delay"
+  ],
+  "sources": [
+    "doi:10.1038/ng.534",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

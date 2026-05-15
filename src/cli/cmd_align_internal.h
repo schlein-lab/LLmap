@@ -59,6 +59,13 @@ struct AlignArgs {
     float llm_threshold = 0.50f;
     std::string llm_work_dir;
 
+    // Layer 3 active checkpoint consult mode: "off" | "auto" | "required".
+    // Independent from the legacy --llm diagnostic toggle above. The
+    // dispatcher fires inside chain-DP / extension at ambiguous chains,
+    // unknown regions, paralog disambiguation, SD expansion, novel insertion.
+    std::string llm_mode = "off";
+    std::string llm_cache_dir;     // optional override; default ~/.cache/llmap
+
     // PSV-based paralog disambiguation
     std::string psv_catalog;       // Path to PSV catalog (BED/VCF)
     float psv_weight = 0.5f;       // Weight for PSV vs probabilistic assignment

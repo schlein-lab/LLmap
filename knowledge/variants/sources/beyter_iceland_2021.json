@@ -1,0 +1,17 @@
+{
+  "id": "beyter_iceland_2021",
+  "display_name": "Beyter et al. 2021 Icelandic long-read SV catalog",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "sv",
+  "version": "2021-04",
+  "url": "https://www.decode.com/additional/SV-catalog/",
+  "format": "VCF.gz",
+  "license": "Open (research use; deCODE terms)",
+  "doi": ["10.1038/s41588-021-00865-4"],
+  "expected_count": 130000,
+  "size_on_disk_gb": 0.04,
+  "ingest_command": "bcftools view beyter_iceland.sv.vcf.gz | bcftools annotate -x '^INFO/SVTYPE,INFO/SVLEN,INFO/AF,INFO/END' | llmap variant-ingest --source beyter_iceland_2021 --kind sv --bucket-bp 100 --output beyter.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "3,622 Icelandic individuals, ONT long-read SVs with population AFs. Complements gnomAD SV in size range >5 kb where short-read calls are unreliable."
+}

@@ -1,0 +1,59 @@
+{
+  "organism": "mouse",
+  "assemblies": ["mm39", "mm10"],
+  "default_catalog_set": [
+    "mouse_genomes_project_v8",
+    "mgi_alleles"
+  ],
+  "extended_catalog_set": [
+    "mouse_genomes_project_v8",
+    "mgi_alleles",
+    "dgva_mouse",
+    "ensembl_mouse_variation"
+  ],
+  "catalog_specs": {
+    "mouse_genomes_project_v8": {
+      "display_name": "Mouse Genomes Project v8 SNV+SV",
+      "url": "https://www.sanger.ac.uk/data/mouse-genomes-project/",
+      "kind": "mixed",
+      "doi": ["10.1038/nature10413", "10.1093/nar/gkv934"],
+      "license": "Open (Sanger MGP terms)",
+      "notes": "Inbred-strain catalog covering ~50 lab strains; AF interpretation is strain-frequency not population-frequency."
+    },
+    "mgi_alleles": {
+      "display_name": "Mouse Genome Informatics curated alleles",
+      "url": "https://www.informatics.jax.org/downloads/reports/MGI_PhenoGenoMP.rpt",
+      "kind": "snv",
+      "doi": ["10.1093/nar/gky1056"],
+      "license": "Open (JAX MGI terms)",
+      "notes": "Curated allele-to-phenotype catalog. Use for clinical-significance-style tags rather than AF."
+    },
+    "dgva_mouse": {
+      "display_name": "DGVa mouse SV submissions",
+      "url": "https://www.ebi.ac.uk/dgva/data-search?organism=Mus+musculus",
+      "kind": "sv",
+      "doi": ["10.1093/nar/gks1213"],
+      "license": "Open (EBI terms)",
+      "notes": "Aggregated SV submissions; uneven coverage by chromosome."
+    },
+    "ensembl_mouse_variation": {
+      "display_name": "Ensembl mouse variation",
+      "url": "https://ftp.ensembl.org/pub/release-111/variation/vcf/mus_musculus/",
+      "kind": "snv",
+      "doi": ["10.1093/nar/gkad1010"],
+      "license": "Open (Ensembl terms)",
+      "notes": "Bulk SNV catalog updated per Ensembl release. Largest mouse SNV source for AF estimates."
+    }
+  },
+  "recommended_profiles": {
+    "minimal": {
+      "catalogs": ["mouse_genomes_project_v8"],
+      "approx_disk_gb": 1.5
+    },
+    "default": {
+      "catalogs": ["mouse_genomes_project_v8", "mgi_alleles"],
+      "approx_disk_gb": 1.7
+    }
+  },
+  "notes": "Mouse variant catalogs are smaller and less stratified than human. AFs reflect lab-strain populations, not natural ones — interpret accordingly."
+}

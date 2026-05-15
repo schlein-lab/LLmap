@@ -1,0 +1,30 @@
+{
+  "name": "10q11_22_recurrent_CNV",
+  "taxonomy_id": "paralog_family",
+  "description": "10q11.22 recurrent microdeletion/microduplication region flanked by paralogous SDs containing GPRIN2, NPY4R, PPYR1 and PTPN20 paralogs. Variable phenotype with developmental delay and dysmorphic features.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 46200000, "end": 51500000}},
+  "size_bp": 5300000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Pericentromeric SD-rich region with multiple flanking SD blocks; complex paralog families (NPY4R, GPRIN2, PTPN20, ANXA8L) recurrently expanded; rearrangement-prone."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "10q11.21q11.23 microdeletion syndrome",
+    "developmental delay"
+  ],
+  "sources": [
+    "doi:10.1002/ajmg.a.34176",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.75
+}

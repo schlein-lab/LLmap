@@ -1,0 +1,31 @@
+{
+  "name": "17q11_2_NF1_region",
+  "taxonomy_id": "paralog_family",
+  "description": "17q11.2 NF1 microdeletion region, flanked by NF1-REPa, NF1-REPb, NF1-REPc SD clusters. Type-1 deletions (~1.4 Mb) span between NF1-REPa and NF1-REPc and remove ~14 genes including NF1; mediated by SUZ12-derived SDs.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 29100000, "end": 30500000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "NF1-REPa, -REPb, -REPc SD clusters of ~50-100 kb at >98% identity; type-1 deletions are NAHR between REPa and REPc; SUZ12/SUZ12P paralogs are the duplicon core."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Neurofibromatosis type 1 (NF1) microdeletion syndrome",
+    "intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1086/377116",
+    "doi:10.1086/422223",
+    "doi:10.1038/sj.ejhg.5201874"
+  ],
+  "confidence": 0.9
+}

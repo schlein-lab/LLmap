@@ -1,0 +1,29 @@
+{
+  "name": "chr22p_acrocentric_short_arm",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 22 short arm (22p), an acrocentric short arm composed of alpha-satellite, beta-satellite, 45S rDNA NOR and gamma-satellite-like sequences. Mostly unassembled in GRCh38; resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 0, "end": 13500000}},
+  "size_bp": 13500000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Acrocentric short-arm architecture shared with chr13/14/15/21; alpha-sat -> beta-sat -> NOR -> stalk."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations involving chr22"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/990031"
+  ],
+  "confidence": 0.85
+}

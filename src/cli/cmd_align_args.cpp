@@ -120,6 +120,8 @@ void PrintAlignUsage() {
         "  --llm-api-key KEY       Anthropic API key (or set ANTHROPIC_API_KEY)\n"
         "  --llm-threshold FLOAT   Mapping rate threshold to trigger diagnostics [0.50]\n"
         "  --llm-work-dir DIR      Working directory for LLM artifacts\n"
+        "  --llm-mode MODE         Layer 3 active-consult mode: off|auto|required [off]\n"
+        "  --llm-cache-dir DIR     Checkpoint decision cache [~/.cache/llmap/checkpoints]\n"
         "\n"
         "Pipeline mode:\n"
         "  --classical-only        Pure seed-chain-extend mode (no probabilistic framework)\n"
@@ -200,6 +202,17 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             args.llm_threshold = std::stof(argv[++i]);
         } else if (arg == "--llm-work-dir" && i + 1 < argc) {
             args.llm_work_dir = argv[++i];
+        } else if (arg == "--llm-mode" && i + 1 < argc) {
+            std::string mode = argv[++i];
+            if (mode != "off" && mode != "auto" && mode != "required") {
+                std::fprintf(stderr,
+                    "Unknown --llm-mode: %s (expected off|auto|required)\n",
+                    mode.c_str());
+                return false;
+            }
+            args.llm_mode = mode;
+        } else if (arg == "--llm-cache-dir" && i + 1 < argc) {
+            args.llm_cache_dir = argv[++i];
         } else if (arg == "--psv-catalog" && i + 1 < argc) {
             args.psv_catalog = argv[++i];
         } else if (arg == "--psv-weight" && i + 1 < argc) {

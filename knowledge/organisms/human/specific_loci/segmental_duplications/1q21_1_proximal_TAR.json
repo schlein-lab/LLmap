@@ -1,0 +1,31 @@
+{
+  "name": "1q21_1_proximal_TAR_region",
+  "taxonomy_id": "paralog_family",
+  "description": "1q21.1 proximal segmental-duplication block (BP2-BP3) immediately distal to the centromere-proximal SDs of chromosome 1q. Deletion of this segment is associated with Thrombocytopenia-Absent-Radius (TAR) syndrome (RBM8A locus). The flanking SDs share high (>95%) identity and drive NAHR-mediated recurrent CNVs.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 145400000, "end": 146400000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Two SD clusters (BP2 and BP3) ~200-400 kb each, flanking a ~500 kb unique interval containing RBM8A, LIX1L, PIAS3 and HFE2; SDs contain GJA8, GPR89A/B and BCL9 paralogs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Thrombocytopenia-absent radius (TAR) syndrome",
+    "1q21.1 proximal microdeletion/microduplication"
+  ],
+  "sources": [
+    "doi:10.1038/ng.2007.62",
+    "doi:10.1038/ng.2012.49",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

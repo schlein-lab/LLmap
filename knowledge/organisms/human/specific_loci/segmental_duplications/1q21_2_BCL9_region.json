@@ -1,0 +1,29 @@
+{
+  "name": "1q21_2_intermediate_block",
+  "taxonomy_id": "paralog_family",
+  "description": "1q21.2 SD-rich block immediately distal to 1q21.1 proximal CNV region. Continues the 1q21 SD landscape with PDE4DIP, NOTCH2NLR, NBPF-paralog copies and contributes to atypical, larger 1q21 deletions/duplications spanning beyond the canonical BP3-BP4 boundaries.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 147900000, "end": 149500000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Continuation of 1q21 SD landscape; PDE4DIP, NBPF/NOTCH2NL paralogs in tandem clusters; high SD density (>50% of bases in SD)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Atypical 1q21 microdeletion / microduplication"
+  ],
+  "sources": [
+    "doi:10.1016/j.cell.2018.03.067",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

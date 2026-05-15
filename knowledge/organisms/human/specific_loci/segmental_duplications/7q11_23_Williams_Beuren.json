@@ -1,0 +1,33 @@
+{
+  "name": "7q11_23_Williams_Beuren_region",
+  "taxonomy_id": "paralog_family",
+  "description": "7q11.23 Williams-Beuren syndrome critical region, flanked by three SD blocks (centromeric, medial, telomeric) containing GTF2I/GTF2IRD/NCF1/POM121 paralogs. NAHR between directly oriented copies causes recurrent ~1.5-1.8 Mb deletions (Williams-Beuren syndrome) or duplications (7q11.23 duplication syndrome).",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 72700000, "end": 74900000}},
+  "size_bp": 2200000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Three SD blocks (centromeric, medial, telomeric) of ~300-400 kb each at >98% identity, flanking the ~1.55 Mb single-copy interval that contains ELN, LIMK1, GTF2IRD1, GTF2I."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Williams-Beuren syndrome",
+    "7q11.23 duplication syndrome",
+    "supravalvular aortic stenosis"
+  ],
+  "sources": [
+    "doi:10.1038/ng0996-11",
+    "doi:10.1086/302804",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nrg2593"
+  ],
+  "confidence": 0.95
+}

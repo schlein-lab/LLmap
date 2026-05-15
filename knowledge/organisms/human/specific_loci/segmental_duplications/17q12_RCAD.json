@@ -1,0 +1,32 @@
+{
+  "name": "17q12_RCAD_HNF1B",
+  "taxonomy_id": "paralog_family",
+  "description": "17q12 recurrent ~1.4 Mb microdeletion/microduplication region (RCAD syndrome: renal cysts and diabetes; HNF1B locus). Flanked by directly oriented SDs mediating NAHR.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 34800000, "end": 36300000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Flanking SD blocks of ~80-100 kb at >99% identity; unique core contains HNF1B, ACACA, LHX1, AATF, ZNHIT3."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Renal cysts and diabetes syndrome (RCAD, MODY5)",
+    "17q12 microdeletion syndrome",
+    "17q12 microduplication syndrome",
+    "autism"
+  ],
+  "sources": [
+    "doi:10.1086/491719",
+    "doi:10.1136/jmedgenet-2011-100166"
+  ],
+  "confidence": 0.9
+}
