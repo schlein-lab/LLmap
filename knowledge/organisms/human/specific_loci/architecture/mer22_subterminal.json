@@ -1,0 +1,27 @@
+{
+  "name": "mer22_subterminal_repeat_family",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Architectural archetype: MER22 subterminal repeat family. MER22 (medium reiteration frequency 22) is a ~600 bp dispersed repeat enriched in subtelomeric / subterminal regions of multiple human chromosomes, contributing to the mosaic subtelomeric architecture and to ambiguous mapping near chromosome ends.",
+  "coordinates": {"grch38": {"chr": "architectural_archetype", "start": 0, "end": 0}},
+  "size_bp": 0,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "many",
+    "homology_percent": 85.0,
+    "internal_structure": "~600 bp dispersed element; copies show 80-90% identity; enriched in the subterminal 5-50 kb of multiple chromosome ends; shared sub-telomeric blocks across chromosomes drive subtelomeric mismapping."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "sources": [
+    "doi:10.1101/gr.3284105",
+    "doi:10.1038/35057062"
+  ],
+  "confidence": 0.7
+}

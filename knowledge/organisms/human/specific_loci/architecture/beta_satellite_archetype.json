@@ -1,0 +1,27 @@
+{
+  "name": "beta_satellite_architecture",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Architectural archetype: human beta-satellite (Sau3A family). 68 bp GC-rich tandem repeat unit organised into long arrays on the acrocentric chromosome short arms (13p, 14p, 15p, 21p, 22p), pericentric to the 45S rDNA NOR. Also present at lower copy on chr1p centromere-flanking region and chrY pericentric region.",
+  "coordinates": {"grch38": {"chr": "architectural_archetype", "start": 0, "end": 0}},
+  "size_bp": 0,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "many",
+    "homology_percent": 95.0,
+    "internal_structure": "68 bp GC-rich (~65% GC) tandem unit; arrays of 100s of kb on each acrocentric short arm; flanks 45S NORs on proximal-and-distal sides; shared across the five acrocentrics with >95% sequence identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "sources": [
+    "PMID:225837",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,29 @@
+{
+  "name": "TAR1_telomere_associated_repeat_family",
+  "taxonomy_id": "terminal_repeat",
+  "description": "Architectural archetype: TAR1 (telomere-associated repeat 1) family. Degenerate, GC-rich, ~1-2 kb subterminal repeats lying immediately proximal to the canonical TTAGGG telomere array on most chromosome ends. Together with degenerate (TTAGGG)n stretches, TAR1 elements form the boundary between unique subtelomeric DNA and the true telomere.",
+  "coordinates": {"grch38": {"chr": "architectural_archetype", "start": 0, "end": 0}},
+  "size_bp": 0,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "many",
+    "homology_percent": 80.0,
+    "internal_structure": "~1-2 kb subterminal block; high GC content; shared across most chromosome ends; lies between the canonical (TTAGGG)n telomere and unique subtelomeric DNA; copies show 70-90% identity reflecting subtelomere-subtelomere exchange."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "ICF syndrome subtelomere abnormalities"
+  ],
+  "sources": [
+    "doi:10.1101/gr.3284105",
+    "PMID:3413074"
+  ],
+  "confidence": 0.75
+}

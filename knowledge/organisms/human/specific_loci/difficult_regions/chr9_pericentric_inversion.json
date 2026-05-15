@@ -1,0 +1,30 @@
+{
+  "name": "chr9_pericentric_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "Pericentric inversion polymorphism inv(9)(p11q13), one of the most common cytogenetic variants in humans (~1-3% of the population). Encompasses the chr9 centromere and the 9q12 HSat3 heterochromatin block. Mostly benign but complicates SV mapping near the chromosome 9 centromere.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 38000000, "end": 70000000}},
+  "size_bp": 32000000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentric inversion spanning the centromere and 9q12 heterochromatin (HSat3); breakpoints in alpha-satellite and pericentric satellite; population frequency 1-3%."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "inv(9)(p11q13) common cytogenetic variant (mostly benign)",
+    "Possible mild reproductive failure association (debated)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "PMID:25182931"
+  ],
+  "confidence": 0.8
+}

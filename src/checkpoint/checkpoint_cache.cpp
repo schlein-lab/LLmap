@@ -257,24 +257,27 @@ std::optional<AgentDecision> DeserializeDecision(const std::string& json) {
     if (auto v = FindRawField(json, "special_finding")) d.special_finding = *v;
 
     if (auto raw = FindRawField(json, "wave")) {
-        // Parse "[[pos,amp],[pos,amp],...]"
+        // Parse "[[pos,amp],[pos,amp],...]". Skip the outer '[' first so we
+        // descend into the inner pairs.
         const std::string& s = *raw;
         size_t i = 0;
+        while (i < s.size() && s[i] != '[') ++i;
+        if (i < s.size()) ++i;  // consume outer '['
         while (i < s.size()) {
             while (i < s.size() && s[i] != '[') ++i;
             if (i >= s.size()) break;
-            ++i;
+            ++i;  // consume inner '['
             char* end = nullptr;
             uint32_t pos = static_cast<uint32_t>(std::strtoul(s.c_str() + i, &end, 10));
             if (!end || end == s.c_str() + i) break;
             i = end - s.c_str();
-            while (i < s.size() && s[i] == ',') ++i;
+            while (i < s.size() && (s[i] == ',' || s[i] == ' ')) ++i;
             float amp = std::strtof(s.c_str() + i, &end);
             if (!end) break;
             i = end - s.c_str();
             while (i < s.size() && s[i] != ']') ++i;
             d.wave.emplace_back(pos, amp);
-            ++i;
+            ++i;  // consume inner ']'
         }
     }
     return d;

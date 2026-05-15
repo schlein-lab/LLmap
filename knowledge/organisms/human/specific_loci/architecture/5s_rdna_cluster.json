@@ -1,0 +1,27 @@
+{
+  "name": "5S_rDNA_cluster_chr1q42",
+  "taxonomy_id": "tandem_repeat",
+  "description": "5S rRNA gene cluster on chromosome 1q42.13. ~120 bp 5S coding unit organised in a tandem array of ~2.2 kb repeat units (~120 bp transcribed + ~2 kb spacer); typically 30-100 copies per haploid genome. Distinct from the 45S rDNA NORs on the acrocentric short arms.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 228700000, "end": 228900000}},
+  "size_bp": 200000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "5S rDNA unit ~2.2 kb (~120 bp coding + ~2 kb spacer) in tandem array; 30-100 copies haploid; near-identical (>99%) within the array."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "sources": [
+    "doi:10.1093/nar/gks1163",
+    "doi:10.1101/gr.072348.107"
+  ],
+  "confidence": 0.9
+}

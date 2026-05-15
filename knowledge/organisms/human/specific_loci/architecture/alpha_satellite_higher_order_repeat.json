@@ -1,0 +1,30 @@
+{
+  "name": "alpha_satellite_higher_order_repeat",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Architectural archetype: human alpha-satellite (AS, 'alphoid') DNA. The fundamental unit is a 171 bp AT-rich monomer (CENP-B-box-bearing in ~50% of monomers). Monomers are organised into chromosome-specific higher-order repeats (HORs) typically 2-34 monomers (~340-5800 bp) that themselves tandemly repeat across the active alpha-satellite (alphaSat-HOR) centromeric array. Flanking dimeric/monomeric alphaSat lacks HOR organisation.",
+  "coordinates": {"grch38": {"chr": "architectural_archetype", "start": 0, "end": 0}},
+  "size_bp": 0,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "many",
+    "homology_percent": 95.0,
+    "internal_structure": "171 bp AT-rich monomer (CENP-B box CTTCGTTGGAAACGGGA in B-monomers) -> chromosome-specific HOR (2-34 monomers, fixed monomer order) -> tandem HOR array (5-30 Mb per centromere). Active HOR sequence drift ~5% between flanking HORs and ~0.1% within an array. Boundary HORs less regular; flanking monomeric alpha-sat highly diverged (15-25% per monomer)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Centromere instability / neocentromere formation"
+  ],
+  "sources": [
+    "PMID:2581134",
+    "doi:10.1126/science.abl4178",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.95
+}

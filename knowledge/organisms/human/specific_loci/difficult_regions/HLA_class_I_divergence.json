@@ -1,0 +1,33 @@
+{
+  "name": "HLA_class_I_high_divergence",
+  "taxonomy_id": "paralog_family",
+  "description": "HLA class I core (HLA-A on chr6p22.1, HLA-B and HLA-C on chr6p21.33) — extremely polymorphic loci with >7000 alleles each (HLA-A, HLA-B). Reference-vs-sample divergence in HLA-A exon 2/3 alone routinely exceeds 5-7% SNP density, breaking standard identity thresholds. The MHC locus itself is in /mhc; this entry flags the high-divergence boundary problem for read mapping.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 29900000, "end": 31500000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "single",
+    "homology_percent": 92.0,
+    "internal_structure": "Three classical class I genes (A, B, C) plus non-classical (E, F, G, H, J, K, L); coding regions have peptide-binding-groove (exons 2-3) hypervariable patches with thousands of population alleles; reference-vs-sample divergence often >5%."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Transplant rejection",
+    "HLA-B*57:01 abacavir hypersensitivity",
+    "HLA-B*27 ankylosing spondylitis",
+    "Type 1 diabetes (HLA class II)"
+  ],
+  "sources": [
+    "doi:10.1038/44853",
+    "doi:10.1038/nrg1489",
+    "doi:10.1093/nar/gkz950"
+  ],
+  "confidence": 0.95
+}
