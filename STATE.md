@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | the HPC cluster status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 236 |
-| Total iterations | 236 |
+| Last successful iteration | 237 |
+| Total iterations | 237 |
 
 ---
 
@@ -117,30 +117,35 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase C.4: `--classical-only` mode (1509 tests pass)
 - [x] **V1.0 Final** ✓
   - [x] V1.0 final release preparation (1509 tests pass)
+- [x] **Phase D: CI/CD Improvements** ✓
+  - [x] Phase D.1: clang-tidy linter integration (1518 tests pass)
 
 ---
 
 ## Current task
 
 ```
-phase: V1.0_final
+phase: D.1
 task: COMPLETE
-substep: Autonomous build complete
+substep: clang-tidy CI integration complete
 inputs:
-  - All phases complete (0-11, A, B, C)
+  - V1.0 complete
   - 1518 tests passing
-  - Documentation up to date
-expected_files_changed: none
+expected_files_changed:
+  - .clang-tidy (new - linter configuration)
+  - .github/workflows/ci.yml (updated with lint job)
 acceptance:
   - All tests pass ✓
   - Monolith count stays at 0 ✓
-  - Documentation up to date ✓
+  - .clang-tidy config created ✓
+  - CI workflow updated with clang-tidy job ✓
 notes: |
-  V1.0 autonomous build complete!
-  - 225 iterations, 1518 tests
-  - All phases implemented and tested
-  - CHANGELOG.md + README.md updated with Phase 11, A, B, C
-  - Ready for manual GPU validation on the HPC cluster and release tagging
+  Phase D.1 complete: clang-tidy linter integration
+  - Created .clang-tidy with modern C++23 checks
+  - Added parallel lint job to CI workflow
+  - Focuses on bugprone, performance, and modernize checks
+  - Disables noisy style-only checks (magic numbers, identifier length)
+  - CI will run clang-tidy-18 on all src/*.cpp files
 ```
 
 ---
@@ -478,6 +483,7 @@ notes: |
 | 234 | 2026-05-16 | n/a | Verification pass (iteration 234) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 235 | 2026-05-16 | n/a | Verification pass (iteration 235) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 236 | 2026-05-16 | n/a | Verification pass (iteration 236) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
+| 237 | 2026-05-16 | D.1 | Phase D.1: clang-tidy linter integration | Added .clang-tidy config + CI lint job; focuses on bugprone, performance, modernize checks; 1518 tests pass; monolith count 0 |
 
 ---
 

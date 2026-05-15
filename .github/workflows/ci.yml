@@ -8,6 +8,39 @@ on:
   workflow_dispatch:
 
 jobs:
+  lint:
+    name: clang-tidy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build g++-13 clang-tidy-18
+
+      - name: Configure (for compile_commands.json)
+        run: |
+          cmake -S . -B build \
+            -GNinja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DLLMAP_ENABLE_CUDA=OFF \
+            -DLLMAP_USE_NATIVE_ARCH=OFF \
+            -DCMAKE_CXX_COMPILER=g++-13 \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+      - name: Run clang-tidy
+        run: |
+          find src -name '*.cpp' ! -path '*/third_party/*' \
+            | xargs -P$(nproc) -I{} clang-tidy-18 -p build {} \
+            2>&1 | tee clang-tidy.log
+          if grep -qE '^[^:]+:[0-9]+:[0-9]+: (warning|error):' clang-tidy.log; then
+            echo "::error::clang-tidy found issues"
+            exit 1
+          fi
+
   build-and-test:
     name: Build + ctest (Ubuntu, CUDA off)
     runs-on: ubuntu-24.04

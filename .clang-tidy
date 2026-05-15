@@ -1,0 +1,106 @@
+---
+# LLmap clang-tidy configuration
+# C++23 modern style - focus on correctness, not style nits
+
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  cppcoreguidelines-avoid-goto,
+  cppcoreguidelines-init-variables,
+  cppcoreguidelines-no-malloc,
+  cppcoreguidelines-prefer-member-initializer,
+  cppcoreguidelines-slicing,
+  misc-const-correctness,
+  misc-redundant-expression,
+  misc-throw-by-value-catch-by-reference,
+  misc-unconventional-assign-operator,
+  misc-unused-parameters,
+  modernize-avoid-bind,
+  modernize-deprecated-headers,
+  modernize-loop-convert,
+  modernize-make-shared,
+  modernize-make-unique,
+  modernize-pass-by-value,
+  modernize-raw-string-literal,
+  modernize-redundant-void-arg,
+  modernize-replace-auto-ptr,
+  modernize-return-braced-init-list,
+  modernize-shrink-to-fit,
+  modernize-use-auto,
+  modernize-use-bool-literals,
+  modernize-use-default-member-init,
+  modernize-use-emplace,
+  modernize-use-equals-default,
+  modernize-use-equals-delete,
+  modernize-use-nodiscard,
+  modernize-use-noexcept,
+  modernize-use-nullptr,
+  modernize-use-override,
+  modernize-use-using,
+  performance-*,
+  readability-avoid-const-params-in-decls,
+  readability-const-return-type,
+  readability-container-size-empty,
+  readability-delete-null-pointer,
+  readability-else-after-return,
+  readability-make-member-function-const,
+  readability-misleading-indentation,
+  readability-misplaced-array-index,
+  readability-non-const-parameter,
+  readability-redundant-control-flow,
+  readability-redundant-smartptr-get,
+  readability-redundant-string-cstr,
+  readability-redundant-string-init,
+  readability-simplify-boolean-expr,
+  readability-simplify-subscript-expr,
+  readability-static-accessed-through-instance,
+  readability-static-definition-in-anonymous-namespace,
+  readability-string-compare,
+  readability-uniqueptr-delete-release,
+
+# Disable noisy checks that conflict with project style
+  -bugprone-easily-swappable-parameters,
+  -bugprone-exception-escape,
+  -cert-err58-cpp,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -modernize-use-trailing-return-type,
+  -performance-avoid-endl,
+  -readability-braces-around-statements,
+  -readability-function-cognitive-complexity,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -readability-named-parameter,
+
+WarningsAsErrors: ''
+
+HeaderFilterRegex: 'src/.*\.h$'
+
+CheckOptions:
+  - key: bugprone-argument-comment.StrictMode
+    value: true
+  - key: bugprone-assert-side-effect.AssertMacros
+    value: assert,LLMAP_ASSERT
+  - key: cert-dcl16-c.NewSuffixes
+    value: 'L;LL;LU;LLU'
+  - key: misc-const-correctness.WarnPointersAsValues
+    value: false
+  - key: modernize-loop-convert.MaxCopySize
+    value: '16'
+  - key: modernize-loop-convert.MinConfidence
+    value: reasonable
+  - key: modernize-pass-by-value.IncludeStyle
+    value: google
+  - key: modernize-use-auto.MinTypeNameLength
+    value: '5'
+  - key: modernize-use-default-member-init.UseAssignment
+    value: true
+  - key: performance-for-range-copy.WarnOnAllAutoCopies
+    value: true
+  - key: performance-move-const-arg.CheckTriviallyCopyableMove
+    value: false
+  - key: performance-unnecessary-value-param.AllowedTypes
+    value: 'std::shared_ptr;std::unique_ptr'
+  - key: readability-simplify-boolean-expr.SimplifyDeMorgan
+    value: false
