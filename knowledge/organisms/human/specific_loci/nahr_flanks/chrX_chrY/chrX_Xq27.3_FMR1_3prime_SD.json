@@ -1,0 +1,43 @@
+{
+  "name": "chrX_FMR1_3prime_SD",
+  "description": "chrX Xq27.3 locus FMR1_3prime_SD SD/NAHR substrate. Mediator: FMR1_SD. Genes: FMR1 3'.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 147990000,
+      "end": 148010000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "FMR1_SD"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "FMR1 3'",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "FXS"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.82,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

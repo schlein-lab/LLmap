@@ -1,0 +1,48 @@
+{
+  "name": "chrY_AZFc_partial_gr_gr",
+  "description": "AZFc partial gr gr NAHR product mediated by g1/g2 or g2/g3 NAHR. Removes/alters: DAZ, BPY2, CDY1 partial.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 23400000,
+      "end": 25900000
+    }
+  },
+  "size_bp": 2500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "g1/g2",
+      "g2/g3 NAHR"
+    ],
+    "homology_percent": 99.9,
+    "sd_length_kb": 1600,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "AZF amplicon block",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 110000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "gr/gr deletion, risk factor (not deterministic) for oligozoospermia"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "AZFa/b/c each HI=3"
+  },
+  "confidence": 0.93,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Repping et al 2002 Am J Hum Genet 71:906",
+    "Repping et al 2003 Nat Genet 35:247",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map",
+    "Tuttelmann et al 2007 Reprod Biomed Online (AZF review)"
+  ],
+  "taxonomy_id": "paralog_family"
+}

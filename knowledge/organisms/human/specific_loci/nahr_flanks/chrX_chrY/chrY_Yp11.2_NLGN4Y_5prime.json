@@ -1,0 +1,41 @@
+{
+  "name": "chrY_NLGN4Y_5prime",
+  "description": "chrY Yp11.2 locus NLGN4Y_5prime SD/paralog. Mediator: NLGN4Y_NLGN4X_paralog. Genes: NLGN4Y 5'.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 14523000,
+      "end": 14530000
+    }
+  },
+  "size_bp": 7000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NLGN4Y_NLGN4X_paralog"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 7,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NLGN4Y 5'",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 110000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {},
+  "confidence": 0.8,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map"
+  ],
+  "taxonomy_id": "paralog_family"
+}

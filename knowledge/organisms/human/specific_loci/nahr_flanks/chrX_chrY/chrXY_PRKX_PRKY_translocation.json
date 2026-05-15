@@ -1,0 +1,49 @@
+{
+  "name": "chrXY_PRKX_PRKY_NAHR",
+  "description": "NAHR between PRKX (Xp22.33) and PRKY (Yp11.2) drives Xp;Yp interchange responsible for ~30% of 46,XX SRY+ males and 46,XY females (depending on direction). 93% homology over 17 kb.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 3540000,
+      "end": 3560000
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 7273000,
+      "end": 7290000
+    }
+  },
+  "size_bp": 17000,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "PRKX",
+      "PRKY"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 17,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PRKX/PRKY paralog",
+    "copy_number_in_population": "de novo Xp;Yp interchanges"
+  },
+  "related_diseases": [
+    "46,XX SRY+ male",
+    "46,XY female (SRY-)"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.95,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

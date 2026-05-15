@@ -1,0 +1,47 @@
+{
+  "name": "chrX_DMD_intron2_hotspot",
+  "description": "DMD intron 2 - rare proximal hotspot. Intron contains LINE/SINE/LTR-rich SDs and short direct repeats that promote recurrent intragenic NAHR. Ex45-55 BMD-Becker rearrangement hotspot region.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 33033000,
+      "end": 33043000
+    }
+  },
+  "size_bp": 10000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "DMD_intron2_repeat"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 5,
+    "microhomology_bp_at_breakpoint": "2-15 bp",
+    "internal_structure": "LINE/SINE-rich, also some intronic SDs",
+    "copy_number_in_population": "variable_CNV (DMD del/dup)"
+  },
+  "related_diseases": [
+    "Duchenne muscular dystrophy",
+    "Becker muscular dystrophy",
+    "X-linked DCM"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "DMD HI=3",
+    "gnomad_sv_count": ">200"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Friedman et al 1997 Genomics DMD NAHR",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

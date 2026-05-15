@@ -1,0 +1,47 @@
+{
+  "name": "chrXY_TBL1Y_TBL1X_paralog",
+  "description": "TBL1Y / TBL1X (Xp22.2) paralog pair, evolved from XAR (X-added region).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 7062000,
+      "end": 7080000
+    },
+    "grch38_chrX": {
+      "chr": "chrX",
+      "start": 9400000,
+      "end": 9500000
+    }
+  },
+  "size_bp": 18000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "TBL1Y",
+      "TBL1X"
+    ],
+    "homology_percent": 91.0,
+    "sd_length_kb": 18,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "TBL1 paralog",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "related_diseases": [
+    "TBL1X haploinsufficiency - central hypothyroidism, hearing loss"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.9,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

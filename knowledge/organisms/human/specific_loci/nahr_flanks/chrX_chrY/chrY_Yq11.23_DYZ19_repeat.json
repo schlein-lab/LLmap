@@ -1,0 +1,39 @@
+{
+  "name": "chrY_DYZ19_repeat",
+  "description": "DYZ19 125 kb tandem repeat in Yq11.23, between AZFc and heterochromatin. Can drive distal-Y NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 26800000,
+      "end": 26920000
+    }
+  },
+  "size_bp": 120000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "DYZ19"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 125,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "125 kb tandem repeat unit",
+    "copy_number_in_population": "variable"
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {},
+  "confidence": 0.82,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

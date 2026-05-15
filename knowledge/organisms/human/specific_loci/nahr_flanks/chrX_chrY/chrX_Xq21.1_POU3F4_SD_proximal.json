@@ -1,0 +1,45 @@
+{
+  "name": "chrX_POU3F4_SD_proximal",
+  "description": "Proximal SD ~7 kb flanking POU3F4 (DFNX2). Mediates recurrent ~150-900 kb deletions upstream of POU3F4 causing X-linked deafness DFN3.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 82700000,
+      "end": 82710000
+    }
+  },
+  "size_bp": 10000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "POU3F4_SD_proximal",
+      "POU3F4_SD_distal"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 7,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "~7 kb inverted SD pair",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "DFNX2 X-linked deafness with stapes fixation"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "POU3F4 HI=3"
+  },
+  "confidence": 0.88,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

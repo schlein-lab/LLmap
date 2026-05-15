@@ -1,0 +1,45 @@
+{
+  "name": "chrX_MECP2_dup_syndrome",
+  "description": "Recurrent ~400 kb-1 Mb Xq28 duplication encompassing MECP2 driven by K1/K2 NAHR. Severe intellectual disability + recurrent infections in males.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 153300000,
+      "end": 154145000
+    }
+  },
+  "size_bp": 845000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "K1",
+      "K2"
+    ],
+    "homology_percent": 99.7,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "MECP2, IRAK1, FLNA, GDI1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "MECP2 duplication syndrome"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "MECP2 TS=3"
+  },
+  "confidence": 0.95,
+  "sources": [
+    "Lugtenberg et al 2006 Eur J Hum Genet MECP2 dup",
+    "Van Esch et al 2005 Am J Hum Genet MECP2 dup"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

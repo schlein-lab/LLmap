@@ -1,0 +1,43 @@
+{
+  "name": "chrX_IKBKG_NEMO_SD",
+  "description": "chrX Xq28 locus IKBKG_NEMO_SD SD/NAHR substrate. Mediator: IKBKG_SD. Genes: IKBKG/NEMO, IKBKGP.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 154540000,
+      "end": 154560000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "IKBKG_SD"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 17,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "IKBKG/NEMO, IKBKGP",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Incontinentia pigmenti recurrent del"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.95,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

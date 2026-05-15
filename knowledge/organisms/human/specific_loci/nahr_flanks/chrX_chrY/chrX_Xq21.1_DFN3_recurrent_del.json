@@ -1,0 +1,44 @@
+{
+  "name": "chrX_DFN3_recurrent_del",
+  "description": "Recurrent Xq21.1 ~150-900 kb deletion upstream of POU3F4 mediated by inverted SD pair. Causes DFNX2 deafness with stapes fixation and perilymphatic gusher.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 82700000,
+      "end": 82880000
+    }
+  },
+  "size_bp": 180000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "POU3F4_SD_proximal",
+      "POU3F4_SD_distal"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 7,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "POU3F4 regulatory desert",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "DFNX2"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "HI=3"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

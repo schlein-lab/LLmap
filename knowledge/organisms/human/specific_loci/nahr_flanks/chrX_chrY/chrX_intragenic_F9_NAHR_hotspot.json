@@ -1,0 +1,44 @@
+{
+  "name": "chrX_intragenic_F9",
+  "description": "Intragenic NAHR/MMBIR-prone gene F9. Recurrent exon-level del/dup driven by intronic repeats. Hemophilia B.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 139530000,
+      "end": 139563000
+    }
+  },
+  "size_bp": 33000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "F9_intronic_repeats"
+    ],
+    "homology_percent": 90.0,
+    "sd_length_kb": 5,
+    "microhomology_bp_at_breakpoint": "2-15 bp",
+    "internal_structure": "F9 exons + introns",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Hemophilia B"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "F9 HI=3 (most)"
+  },
+  "confidence": 0.82,
+  "sources": [
+    "ClinGen dosage curation",
+    "gnomAD-SV v4.1"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

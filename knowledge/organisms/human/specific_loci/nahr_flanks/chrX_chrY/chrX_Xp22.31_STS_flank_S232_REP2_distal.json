@@ -1,0 +1,46 @@
+{
+  "name": "chrX_STS_flank_S232_REP2_distal",
+  "description": "VCX/CRI-S232 segmental duplication flanking the STS locus. REP2 / S232 distal flank. ~45 kb, >99% identity, mediates 1.6 Mb recurrent Xp22.31 deletion → X-linked ichthyosis.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 8135000,
+      "end": 8180000
+    }
+  },
+  "size_bp": 45000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "S232_REP1",
+      "S232_REP2"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "VCX paralog block",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "X-linked ichthyosis (STS deletion)",
+    "Xp22.31 dup syndrome"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "Xp22.31(STS) HI=3 / TS=2"
+  },
+  "confidence": 0.93,
+  "sources": [
+    "Bondeson et al 1995 Hum Mol Genet STS deletion",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

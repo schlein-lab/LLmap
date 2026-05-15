@@ -1,0 +1,43 @@
+{
+  "name": "chrX_GK_SD",
+  "description": "chrX Xp21.2 locus GK_SD SD/NAHR substrate. Mediator: GK_SD.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 30700000,
+      "end": 30720000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "GK_SD"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "GK",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "glycerol kinase deficiency, contiguous DMD/GK/NR0B1"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}

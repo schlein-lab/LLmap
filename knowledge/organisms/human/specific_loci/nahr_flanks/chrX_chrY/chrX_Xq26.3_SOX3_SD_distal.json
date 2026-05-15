@@ -1,0 +1,43 @@
+{
+  "name": "chrX_SOX3_SD_distal",
+  "description": "chrX Xq26.3 locus SOX3_SD_distal SD/NAHR substrate. Mediator: SOX3_SD. Genes: SOX3 3'.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 139600000,
+      "end": 139610000
+    }
+  },
+  "size_bp": 10000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SOX3_SD"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SOX3 3'",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "XX male sex reversal SOX3-mediated"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.78,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

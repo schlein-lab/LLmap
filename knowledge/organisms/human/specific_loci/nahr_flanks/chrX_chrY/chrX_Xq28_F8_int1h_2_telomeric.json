@@ -1,0 +1,45 @@
+{
+  "name": "chrX_F8_int1h_2_telomeric",
+  "description": "F8 intron-1 homology (int1h). Extragenic intron-1 repeat (inv). ~1 kb at 99% identity, inverted orientation, causes ~5% of severe hemophilia A inversions.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 154516000,
+      "end": 154517000
+    }
+  },
+  "size_bp": 1000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "int1h-1",
+      "int1h-2"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 1,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "int1h repeat unit",
+    "copy_number_in_population": "fixed 2 copies"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hemophilia A severe (F8 inv-1)"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "F8 HI=3"
+  },
+  "confidence": 0.95,
+  "sources": [
+    "Bagnall et al 2002 Blood F8 int1h inversion",
+    "Lupski 2009 Genome Med F8 inversion"
+  ],
+  "taxonomy_id": "paralog_family"
+}

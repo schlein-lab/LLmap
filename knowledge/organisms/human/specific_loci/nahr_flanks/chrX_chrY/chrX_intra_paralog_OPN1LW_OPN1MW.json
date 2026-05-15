@@ -1,0 +1,42 @@
+{
+  "name": "chrX_intra_paralog_OPN1LW_OPN1MW",
+  "description": "X-chromosomal intrachromosomal paralog cluster OPN1LW_OPN1MW. Genes: OPN1LW,OPN1MW. red-green color blindness recurrent del.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 153400000,
+      "end": 153500000
+    }
+  },
+  "size_bp": 100000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "OPN1LW_OPN1MW"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "OPN1LW,OPN1MW",
+    "copy_number_in_population": "variable_CNV (somatic in tumors)"
+  },
+  "related_diseases": [
+    "red-green color blindness recurrent del"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.82,
+  "sources": [
+    "Bailey & Eichler SD-DB",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

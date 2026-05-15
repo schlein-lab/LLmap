@@ -1,0 +1,42 @@
+{
+  "name": "chrY_TSPY_array_central",
+  "description": "TSPY tandem repeat array block. 20.4 kb monomer, 20-40 copies per Y. TSPY1 cluster central.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 9300000,
+      "end": 9590000
+    }
+  },
+  "size_bp": 290000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "TSPY_20.4kb_monomer"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "TSPY1 + intergenic spacer monomer, 20-40 tandem copies",
+    "copy_number_in_population": "highly variable (20-76 copies)"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "spermatogenic dosage effect (weak)"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.88,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family"
+}

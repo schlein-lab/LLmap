@@ -1,0 +1,44 @@
+{
+  "name": "chrY_IGC_P8_IGC_VCY",
+  "description": "Inter-arm gene conversion in Y palindrome P8. VCY IGC. Preserves arm identity at >99.9% via IGC despite male-only inheritance.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "see palindrome P8"
+    }
+  },
+  "size_bp": 0,
+  "nahr_class": "palindrome_NAHR",
+  "architecture": {
+    "type": "palindrome",
+    "BP_mediating_SDs": [
+      "P8"
+    ],
+    "homology_percent": 99.97,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "kb tracts",
+    "internal_structure": "intra-palindrome arm pair",
+    "copy_number_in_population": "diploid arms"
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "tumor_recurrence": "Y loss in CHIP"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

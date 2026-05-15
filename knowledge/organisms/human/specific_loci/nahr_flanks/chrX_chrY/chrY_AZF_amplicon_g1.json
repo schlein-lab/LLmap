@@ -1,0 +1,46 @@
+{
+  "name": "chrY_AZF_amplicon_g1",
+  "description": "AZFc green amplicon g1. ~99.9% identity to other amplicons of the same color class; substrate for AZFc NAHR rearrangements.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 21400000,
+      "end": 21590000
+    }
+  },
+  "size_bp": 190000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "g1"
+    ],
+    "homology_percent": 99.9,
+    "sd_length_kb": 190,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "AZFc amplicon g1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "AZFc partial/complete microdeletion",
+    "oligozoospermia"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "AZFc HI=3"
+  },
+  "confidence": 0.88,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Repping et al 2002 Am J Hum Genet 71:906",
+    "Repping et al 2003 Nat Genet 35:247"
+  ],
+  "taxonomy_id": "paralog_family"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "chrX_Xp22.31_recurrent_deletion",
+  "description": "Recurrent ~1.6 Mb Xp22.31 deletion mediated by S232/VCX SDs. Removes STS, VCX, PNPLA4, HDHD1, MIR4767. Causes X-linked ichthyosis in males.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 6445000,
+      "end": 8180000
+    }
+  },
+  "size_bp": 1735000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "S232_REP1",
+      "S232_REP2"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "STS, VCX3A, NLGN4X partial",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "X-linked ichthyosis",
+    "Xp22.31 dup (variable expressivity)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": ">100",
+    "clingen_dosage_call": "HI=3"
+  },
+  "confidence": 0.95,
+  "sources": [
+    "Bondeson et al 1995 Hum Mol Genet STS deletion",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "gnomAD-SV v4.1"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

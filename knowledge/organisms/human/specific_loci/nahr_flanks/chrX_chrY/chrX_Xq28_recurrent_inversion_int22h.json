@@ -1,0 +1,42 @@
+{
+  "name": "chrX_Xq28_int22h_inversion_polymorphism",
+  "description": "Submicroscopic Xq28 inversion polymorphism mediated by int22h-2/int22h-3 SDs. Reciprocal of F8 inv-22.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 154700000,
+      "end": 154910000
+    }
+  },
+  "size_bp": 210000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "int22h-2",
+      "int22h-3"
+    ],
+    "homology_percent": 99.9,
+    "sd_length_kb": 9.5,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "H2AFB1, TMLHE flanking",
+    "copy_number_in_population": "polymorphic"
+  },
+  "related_diseases": [
+    "F8 inv-22 predisposition"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.88,
+  "sources": [
+    "Lupski 2009 Genome Med F8 inversion"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

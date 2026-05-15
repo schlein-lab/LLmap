@@ -1,0 +1,52 @@
+{
+  "name": "chrY_P3_palindrome",
+  "description": "Y-chromosome palindrome P3. AZFb proximal, b3/b4 boundary. Arm length ~283 kb at 99.94% identity, spacer ~170 kb. Mediates intra-chromosomal NAHR and gene conversion.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 21855000,
+      "end": 22905000
+    }
+  },
+  "size_bp": 1050000,
+  "nahr_class": "palindrome_NAHR",
+  "architecture": {
+    "type": "palindrome",
+    "BP_mediating_SDs": [
+      "P3_proximal_arm",
+      "P3_distal_arm"
+    ],
+    "homology_percent": 99.94,
+    "sd_length_kb": 283,
+    "spacer_kb": 170,
+    "microhomology_bp_at_breakpoint": "varies (often >1 kb tracts in IGC)",
+    "internal_structure": "genes: BPY2, CDY",
+    "copy_number_in_population": "variable_CNV (deletions, duplications, inversions, isodicentrics)"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Spermatogenic failure / oligo-azoospermia",
+    "Y isodicentrics (idic(Y))",
+    "Turner mosaicism with Y material"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "Y loss in clonal hematopoiesis enriched in carriers"
+  },
+  "confidence": 0.92,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family"
+}

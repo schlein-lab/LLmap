@@ -1,0 +1,50 @@
+{
+  "name": "chrXY_SOX3_SRY_gametolog",
+  "description": "X/Y gametolog pair SOX3_SRY. Identity ~60.0%, length ~2 kb. Xq27.1 139_585_000-139_587_000 vs Yp11.2 2_786_000-2_790_000. Related to: SRY evolved from SOX3.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 0,
+      "end": 0,
+      "note": "Xq27.1 139_585_000-139_587_000"
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "Yp11.2 2_786_000-2_790_000"
+    }
+  },
+  "size_bp": 2000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SOX3",
+      "SRY"
+    ],
+    "homology_percent": 60.0,
+    "sd_length_kb": 2,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "gametolog pair SOX3_SRY",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SRY evolved from SOX3"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family"
+}

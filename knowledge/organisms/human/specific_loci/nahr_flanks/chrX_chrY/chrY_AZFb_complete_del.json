@@ -1,0 +1,47 @@
+{
+  "name": "chrY_AZFb_complete_del",
+  "description": "AZFb complete del NAHR product mediated by P5/proximal-P1 NAHR (palindrome arms). Removes/alters: RBMY1A1, HSFY, KDM5D, EIF1AY, CYorf15A/B.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 18400000,
+      "end": 25500000
+    }
+  },
+  "size_bp": 7100000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "P5/proximal-P1 NAHR (palindrome arms)"
+    ],
+    "homology_percent": 99.9,
+    "sd_length_kb": 6200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "AZF amplicon block",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 110000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Maturation arrest spermatogenesis"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "AZFa/b/c each HI=3"
+  },
+  "confidence": 0.93,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Repping et al 2002 Am J Hum Genet 71:906",
+    "Repping et al 2003 Nat Genet 35:247",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map",
+    "Tuttelmann et al 2007 Reprod Biomed Online (AZF review)"
+  ],
+  "taxonomy_id": "paralog_family"
+}

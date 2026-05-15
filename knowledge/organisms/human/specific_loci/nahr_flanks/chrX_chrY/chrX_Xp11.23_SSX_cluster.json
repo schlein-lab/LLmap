@@ -1,0 +1,43 @@
+{
+  "name": "chrX_SSX_cluster",
+  "description": "chrX Xp11.23 locus SSX_cluster SD/NAHR substrate. Mediator: SSX_paralogs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 48500000,
+      "end": 48700000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SSX_paralogs"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SSX1-9",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "synovial sarcoma SS18-SSX fusion partner"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}

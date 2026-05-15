@@ -1,0 +1,51 @@
+{
+  "name": "chrXY_PAR1",
+  "description": "Pseudoautosomal region 1, Xp22.33 / Yp11.32. 2.7 Mb of identity-by-recombination between X and Y. Obligate XY crossover.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 10001,
+      "end": 2781479
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 10001,
+      "end": 2781479
+    }
+  },
+  "size_bp": 2771478,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "PAR1"
+    ],
+    "homology_percent": 100.0,
+    "sd_length_kb": 2700,
+    "microhomology_bp_at_breakpoint": "n/a (recombination)",
+    "internal_structure": "SHOX, CSF2RA, IL3RA, ASMTL, ZBED1, GTPBP6, P2RY8, AKAP17A, DHRSX",
+    "copy_number_in_population": "diploid in both sexes"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SHOX haploinsufficiency (Leri-Weill, Langer mesomelic dysplasia)",
+    "ISTA short stature"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "SHOX HI=3"
+  },
+  "confidence": 0.97,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Mueller et al 2008 Genome Res Y architecture",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}

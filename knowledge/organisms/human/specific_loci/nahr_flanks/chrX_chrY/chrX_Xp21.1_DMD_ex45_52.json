@@ -1,0 +1,45 @@
+{
+  "name": "chrX_DMD_ex45_52",
+  "description": "Recurrent DMD intragenic deletion: ex45-52 del. NAHR/MMBIR via intronic repeats.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 31835000,
+      "end": 32039000
+    }
+  },
+  "size_bp": 204000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "DMD_intronic_repeat"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 5,
+    "microhomology_bp_at_breakpoint": "2-15 bp",
+    "internal_structure": "DMD exons",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Duchenne MD",
+    "Becker MD"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "DMD HI=3"
+  },
+  "confidence": 0.87,
+  "sources": [
+    "Friedman et al 1997 Genomics DMD NAHR",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

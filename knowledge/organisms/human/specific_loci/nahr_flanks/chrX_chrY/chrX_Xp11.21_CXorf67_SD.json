@@ -1,0 +1,43 @@
+{
+  "name": "chrX_CXorf67_SD",
+  "description": "chrX Xp11.21 locus CXorf67_SD SD/NAHR substrate. Mediator: CXorf67_SD.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 55400000,
+      "end": 55410000
+    }
+  },
+  "size_bp": 10000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "CXorf67_SD"
+    ],
+    "homology_percent": 91.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "EZHIP/CXorf67",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "DIPG-related"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.7,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}

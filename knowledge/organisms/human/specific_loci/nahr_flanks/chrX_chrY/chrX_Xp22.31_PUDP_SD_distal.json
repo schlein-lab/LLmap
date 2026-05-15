@@ -1,0 +1,41 @@
+{
+  "name": "chrX_PUDP_SD_distal",
+  "description": "chrX Xp22.31 locus PUDP_SD_distal SD/NAHR substrate. Mediator: PUDP_SD.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 7900000,
+      "end": 7960000
+    }
+  },
+  "size_bp": 60000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "PUDP_SD"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 60,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PUDP",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {},
+  "confidence": 0.7,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}

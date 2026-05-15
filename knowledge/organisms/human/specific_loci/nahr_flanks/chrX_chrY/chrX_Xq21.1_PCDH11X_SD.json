@@ -1,0 +1,43 @@
+{
+  "name": "chrX_PCDH11X_SD",
+  "description": "chrX Xq21.1 locus PCDH11X_SD SD/NAHR substrate. Mediator: PCDH11X_paralog. Genes: PCDH11X (paralog of PCDH11Y).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 92000000,
+      "end": 92400000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "PCDH11X_paralog"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 400,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PCDH11X (paralog of PCDH11Y)",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "language/laterality dosage"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

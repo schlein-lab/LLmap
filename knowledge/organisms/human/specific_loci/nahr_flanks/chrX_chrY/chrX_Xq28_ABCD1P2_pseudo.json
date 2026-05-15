@@ -1,0 +1,43 @@
+{
+  "name": "chrX_ABCD1P2_pseudo",
+  "description": "chrX Xq28 locus ABCD1P2_pseudo SD/NAHR substrate. Mediator: ABCD1P2. Genes: ABCD1P2 on Xp22.31.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 7700000,
+      "end": 7720000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "ABCD1P2"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ABCD1P2 on Xp22.31",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "X-ALD diagnostic confound"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

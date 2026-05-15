@@ -1,0 +1,47 @@
+{
+  "name": "chrXY_NLGN4Y_NLGN4X_paralog",
+  "description": "NLGN4Y / NLGN4X (Xp22.33) paralog. NLGN4X mutations cause autism / ID.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 14500000,
+      "end": 14530000
+    },
+    "grch38_chrX": {
+      "chr": "chrX",
+      "start": 5810000,
+      "end": 6000000
+    }
+  },
+  "size_bp": 30000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NLGN4Y",
+      "NLGN4X"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NLGN4 paralog",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "related_diseases": [
+    "NLGN4X autism / ID"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.9,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "chrX_FRAXA_FMR1_CGG",
+  "description": "CGG trinucleotide repeat at FMR1 5' UTR. Expansion >200 = fragile X syndrome. Not NAHR but locus context.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 147911500,
+      "end": 147911700
+    }
+  },
+  "size_bp": 200,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "FMR1_repeat"
+    ],
+    "homology_percent": 100.0,
+    "sd_length_kb": 1,
+    "microhomology_bp_at_breakpoint": "CGG slippage",
+    "internal_structure": "CGG repeat tract",
+    "copy_number_in_population": "highly variable repeat"
+  },
+  "related_diseases": [
+    "Fragile X syndrome"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "FMR1 HI=3"
+  },
+  "confidence": 0.95,
+  "sources": [
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

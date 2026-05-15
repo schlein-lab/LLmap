@@ -1,0 +1,43 @@
+{
+  "name": "chrX_Xp11.22_recurrent_dup_ID",
+  "description": "chrX Xp11.22 locus Xp11.22_recurrent_dup_ID SD/NAHR substrate. Mediator: HUWE1_KDM5C_LCR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 53300000,
+      "end": 53730000
+    }
+  },
+  "size_bp": 430000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HUWE1_KDM5C_LCR"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 40,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "HUWE1, KDM5C, IQSEC2",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Xp11.22 dup ID syndrome"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.9,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}

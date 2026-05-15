@@ -1,0 +1,41 @@
+{
+  "name": "chrY_ZFY_SD",
+  "description": "chrY Yp11.2 locus ZFY_SD SD/paralog. Mediator: ZFY_ZFX_paralog. Genes: ZFY.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 2900000,
+      "end": 2920000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "ZFY_ZFX_paralog"
+    ],
+    "homology_percent": 91.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ZFY",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 110000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {},
+  "confidence": 0.8,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map"
+  ],
+  "taxonomy_id": "paralog_family"
+}

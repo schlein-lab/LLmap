@@ -1,0 +1,39 @@
+{
+  "name": "chrY_DYZ1_block_1",
+  "description": "DYZ1 satellite repeat heterochromatic block on Yq12. Pentameric AATGG repeat array, megabase-scale, polymorphic length.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 28800000,
+      "end": 35000000
+    }
+  },
+  "size_bp": 6200000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "DYZ1"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 6200,
+    "microhomology_bp_at_breakpoint": "satellite",
+    "internal_structure": "AATGG pentamer satellite",
+    "copy_number_in_population": "highly variable (Yq12 length polymorphism)"
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {},
+  "confidence": 0.8,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

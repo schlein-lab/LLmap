@@ -1,0 +1,50 @@
+{
+  "name": "chrXY_TMSB4X_TMSB4Y_gametolog",
+  "description": "X/Y gametolog pair TMSB4X_TMSB4Y. Identity ~92.0%, length ~5 kb. Xp22.2 12_975_000-12_980_000 vs Yq11.221 14_000_000-14_010_000. Related to: thymosin beta-4.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 0,
+      "end": 0,
+      "note": "Xp22.2 12_975_000-12_980_000"
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "Yq11.221 14_000_000-14_010_000"
+    }
+  },
+  "size_bp": 5000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "TMSB4X",
+      "TMSB4Y"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 5,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "gametolog pair TMSB4X_TMSB4Y",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "thymosin beta-4"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family"
+}
