@@ -321,11 +321,27 @@ int run_align(int argc, char** argv) {
     float mapping_rate = static_cast<float>(n_mapped) /
         static_cast<float>(read_names.size());
 
+    const auto& pstats = pipeline.Stats();
     std::printf("Alignment complete:\n");
     std::printf("  Input reads:    %zu\n", read_names.size());
     std::printf("  Mapped:         %zu (%.1f%%)\n",
                 n_mapped, 100.0f * mapping_rate);
     std::printf("  Unmapped:       %zu\n", n_unmapped);
+    std::printf("  Pipeline drop breakdown:\n");
+    std::printf("    minimizer hits found: %zu (avg %.1f/read)\n",
+                pstats.total_hits,
+                static_cast<float>(pstats.total_hits) /
+                    std::max<size_t>(1, read_names.size()));
+    std::printf("    chains formed:        %zu (avg %.2f/read)\n",
+                pstats.total_chains,
+                static_cast<float>(pstats.total_chains) /
+                    std::max<size_t>(1, read_names.size()));
+    std::printf("    extensions accepted:  %zu\n", pstats.total_extensions);
+    std::printf("    rejected: identity:   %zu\n",
+                pstats.alignments_filtered_by_identity);
+    std::printf("    rejected: length:     %zu\n",
+                pstats.alignments_filtered_by_length);
+    std::printf("    avg identity:         %.3f\n", pstats.avg_identity);
     std::printf("  Align time:     %.2f s\n", align_time_ms / 1000.0f);
     std::printf("  Total time:     %.2f s\n", total_time_ms / 1000.0f);
     std::printf("  Throughput:     %.1f reads/s\n",
