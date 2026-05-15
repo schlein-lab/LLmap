@@ -12,20 +12,21 @@ After the identity-preset and chain-DP fixes (commits `dd1305d`, `1529c73`) and 
 
 | Task | Tool | Wallclock | Primary mapped | Mean identity | Notes |
 |------|------|-----------|----------------|---------------|-------|
-| **T1** synth HiFi 30k reads vs synth WGS ref | LLmap | 63 s | 30,000 / 30,000 = 100% | 0.992 | beats minimap2 on recall |
-| | minimap2 | 38 s | 27,538 / 30,000 = 91.8% | — | misses 8.2% of synth reads |
-| **T2** paralog-stress 99,999 reads | LLmap | 194 s | 99,999 / 99,999 = 100% | 0.989 | |
-| | minimap2 | 14 s | (re-running, runner SAM-fix applied) | | |
-| **T6** real HG00272 HiFi 420k vs IGH locus 1.8 Mb | LLmap | 17 s | 419,869 / 419,869 = 100% | 0.754 | matches minimap2 dominant peak 291,051 ≈ 291,308 |
-| | minimap2 | 14 s | 419,857 / 419,869 = 99.997% | 0.721 | |
-| | winnowmap2 | 65 s | 419,869 / 419,869 = 100% (1.18M total incl 506k supplementary) | — | confirms 100% as ground truth |
-| **T5** iso-seq | LLmap | running | | | |
-| | minimap2 | running | | | |
-| **T3** real HiFi WGS 2.5M vs chr14+chr20 | LLmap | running, 8 GB RAM stable | (was OOM before, now bounded by 50k-batch streaming) | | |
-| | minimap2 | 46 min (rep2) | 50.6% | | only minimap2 rep2 available |
-| **T4** Illumina WGS | not run | | | | dataset path not yet staged |
+| **T1** 30k synth HiFi vs synth WGS ref | LLmap | 63 s | 30,000 / 30,000 = 100% | 0.992 | clean output, no SAM bug |
+| | minimap2 | 38 s | 28,500 valid / 30,000 = 95% | — | ~5% records truncated by 2.28 bug |
+| | winnowmap2 | 27 s | 28,522 / 30,000 = 95% | — | same minimap2-derived bug |
+| **T2** 100k paralog-stress reads | LLmap | 194 s | 99,999 / 99,999 = 100% | 0.989 | |
+| | minimap2 | 20 s | 95,019 valid / 99,999 = 95% | — | truncated, awk-filtered |
+| | winnowmap2 | 27 s | 95,019 / 99,999 = 95% | — | truncated, awk-filtered |
+| **T6** 420k real HG00272 HiFi vs IGH 1.8 Mb | LLmap | 17 s | 419,869 / 419,869 = 100% | 0.754 | dominant peak 291,051 reads |
+| | minimap2 | 14 s | 419,857 / 419,869 = 99.997% | 0.721 | dominant peak 291,308 reads |
+| | winnowmap2 | 65 s | 419,869 / 419,869 = 100% | — | ground truth |
+| **T5** iso-seq | LLmap, minimap2 | running | | | |
+| **T3** 2.5M real HiFi WGS, 111 GB FASTQ | LLmap | running, 8 GB RAM stable | (was OOM before, now streamed in 50k batches) | | |
+| | minimap2 | 46 min (rep2) | 50.6% | | only minimap2 rep2 done |
+| **T4** Illumina WGS | not staged | | | | |
 
-The synthetic-task minimap2 2.28 SAM-truncation bug was worked around in `4f69acc` via `samtools view --input-fmt-option=ignore_truncation=1` before sort.
+Synthetic-task synth bug honest note: the minimap2 2.28 truncated-record bug was previously misreported as a "minimap2 misses 8.2% of T1 reads" finding. After the awk-based SAM repair in `019371f`, minimap2 maps essentially all retained records — but ~5% of its OUTPUT records are unrecoverably truncated, so the apparent gap was an output-format issue, not an algorithmic miss. LLmap is unaffected because it does not produce truncated records.
 
 ### What's measured so far
 
