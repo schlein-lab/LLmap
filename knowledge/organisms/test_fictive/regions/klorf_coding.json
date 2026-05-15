@@ -1,0 +1,23 @@
+{
+  "name": "klorf_coding",
+  "taxonomy_id": "coding",
+  "description": "Invented coding region from the (fictional) test_fictive genome. The fictive organism uses an 'alien' codon-usage profile that strongly prefers CGG (Arg), GGC (Gly), and TAT (Tyr) — chosen to be obviously distinct from any real organism so the orf_density extractor must consult the supplied codon table rather than its default. Used as a coding exemplar for the EXTENDING.md walkthrough.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.4, 4.4]},
+    "gc_content": {"range": [0.48, 0.62]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"max": 3},
+    "orf_density": {"min": 0.65}
+  },
+  "mapping_hints": {
+    "expected_unique": true,
+    "max_occ_multiplier": 1.0,
+    "lambda_scale": 1.0,
+    "report_multi_position": false,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "synthetic, no biological basis — see EXTENDING.md example."
+  ],
+  "confidence": 1.0
+}
