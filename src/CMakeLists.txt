@@ -259,6 +259,7 @@ add_executable(llmap
     cli/cmd_align_args.cpp
     cli/cmd_align_llm.cpp
     cli/cmd_align_psv.cpp
+    cli/cmd_align_report.cpp
     cli/cmd_sc_paralog_matrix.cpp
     cli/cmd_sc_qc_report.cpp
     cli/cmd_sc_qc_report_args.cpp

@@ -352,47 +352,14 @@ int run_align(int argc, char** argv) {
         ? static_cast<float>(n_mapped) / static_cast<float>(total_reads)
         : 0.0f;
 
-    std::printf("Alignment complete:\n");
-    std::printf("  Input reads:    %zu\n", total_reads);
-    std::printf("  Mapped:         %zu (%.1f%%)\n",
-                n_mapped, 100.0f * mapping_rate);
-    std::printf("  Unmapped:       %zu\n", n_unmapped);
-    std::printf("  Pipeline drop breakdown:\n");
-    std::printf("    minimizer hits found: %zu (avg %.1f/read)\n",
-                agg_stats.total_hits,
-                static_cast<float>(agg_stats.total_hits) /
-                    std::max<size_t>(1, total_reads));
-    std::printf("    chains formed:        %zu (avg %.2f/read)\n",
-                agg_stats.total_chains,
-                static_cast<float>(agg_stats.total_chains) /
-                    std::max<size_t>(1, total_reads));
-    std::printf("    extensions accepted:  %zu\n", agg_stats.total_extensions);
-    std::printf("    rejected: identity:   %zu\n",
-                agg_stats.alignments_filtered_by_identity);
-    std::printf("    rejected: length:     %zu\n",
-                agg_stats.alignments_filtered_by_length);
-    std::printf("    avg identity:         %.3f\n", agg_stats.avg_identity);
-    std::printf("  Phase breakdown (sum across threads):\n");
-    std::printf("    seeding:     %.2f s\n", agg_stats.seeding_time_ms / 1000.0f);
-    std::printf("    chaining:    %.2f s\n", agg_stats.chaining_time_ms / 1000.0f);
-    std::printf("    extension:   %.2f s\n", agg_stats.extension_time_ms / 1000.0f);
-    std::printf("  Align time:     %.2f s\n", align_time_ms / 1000.0f);
-    std::printf("  Total time:     %.2f s\n", total_time_ms / 1000.0f);
-    std::printf("  Throughput:     %.1f reads/s\n",
-                total_reads / (align_time_ms / 1000.0f));
-    std::printf("  Output:         %s\n", args.output.c_str());
-    if (!args.parquet_output.empty()) {
-        std::printf("  Parquet:        %s\n", args.parquet_output.c_str());
-    }
-
-    // --classical-only overrides --llm (skip probabilistic framework)
-    bool llm_enabled = args.enable_llm && !args.classical_only;
+    PrintAlignmentSummary(args, agg_stats, total_reads, n_mapped, n_unmapped,
+                          align_time_ms, total_time_ms);
 
     if (args.enable_llm && args.classical_only && args.verbose) {
         std::fprintf(stderr, "Note: --llm ignored due to --classical-only mode\n");
     }
 
-    if (llm_enabled && mapping_rate < args.llm_threshold) {
+    if (ShouldRunLlmDiagnostics(args, mapping_rate)) {
         if (args.verbose) {
             std::fprintf(stderr, "\nMapping rate %.1f%% below threshold %.1f%%, "
                          "running LLM diagnostics...\n",
@@ -401,15 +368,11 @@ int run_align(int argc, char** argv) {
 
         auto agent = CreatePipelineAgent(args, args.verbose);
         if (agent) {
-            float avg_identity = agg_stats.avg_identity;
-            // Streaming mode discards per-batch ReadAlignmentResults; LLM
-            // diagnostics only see aggregate counters. Re-running with a
-            // smaller subsample would be needed to inspect individual reads.
             std::vector<llmap::classical::ReadAlignmentResult> empty_results;
             RunLlmDiagnostics(*agent, args, empty_results,
-                              n_mapped, n_unmapped, avg_identity);
+                              n_mapped, n_unmapped, agg_stats.avg_identity);
         }
-    } else if (llm_enabled && args.verbose) {
+    } else if (IsLlmEnabledButSkipped(args, mapping_rate) && args.verbose) {
         std::fprintf(stderr, "Mapping rate %.1f%% meets threshold, "
                      "skipping LLM diagnostics\n", 100.0f * mapping_rate);
     }
