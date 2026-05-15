@@ -1,0 +1,32 @@
+# LLmap specific-loci priors v1 -- per-locus alternative depth refinement
+# See docs/REGION_PRIORS_MATH.md § 4 for derivation.
+# locus_name	chr	start	end	N_hat	H_bits	source
+IGH_locus_chr14	chr14	105500000	107300000	9	3.17	IMGT
+IGK_locus_chr2	chr2	88800000	90800000	1	0.00	IMGT
+IGL_locus_chr22	chr22	22000000	22950000	7	2.81	IMGT
+HLA_class_I_chr6	chr6	28500000	30000000	3	1.58	IPD-IMGT/HLA
+HLA_class_II_chr6	chr6	32500000	33500000	6	2.58	IPD-IMGT/HLA
+KIR_cluster_chr19	chr19	54700000	54900000	14	3.81	IPD-KIR
+beta_globin_chr11	chr11	5200000	5300000	5	2.32	OMIM
+alpha_globin_chr16	chr16	170000	220000	4	2.00	OMIM
+Hist1_cluster_chr6	chr6	26000000	28000000	50	5.64	UCSC
+ZNF_cluster_chr19q13_31	chr19	53000000	58600000	50	5.64	Lander2001
+PWS_BP1_BP3_chr15	chr15	22000000	28000000	5	2.32	dbVar_nsv
+LCR22_chr22q11_21	chr22	18900000	22000000	4	2.00	Saitta2004
+NOR_chr13p	chr13	0	16000000	80	6.32	T2T-CHM13
+NOR_chr14p	chr14	0	16000000	80	6.32	T2T-CHM13
+NOR_chr15p	chr15	0	17000000	80	6.32	T2T-CHM13
+NOR_chr21p	chr21	0	10800000	80	6.32	T2T-CHM13
+NOR_chr22p	chr22	0	10500000	80	6.32	T2T-CHM13
+chrY_P1_palindrome	chrY	25000000	28000000	2	1.00	Skaletsky2003
+chrY_P2_palindrome	chrY	24000000	25000000	2	1.00	Skaletsky2003
+chrY_P3_palindrome	chrY	22000000	23500000	2	1.00	Skaletsky2003
+chrY_P4_palindrome	chrY	20000000	21000000	2	1.00	Skaletsky2003
+chrY_P5_palindrome	chrY	17400000	18500000	2	1.00	Skaletsky2003
+chrY_P6_palindrome	chrY	15800000	16200000	2	1.00	Skaletsky2003
+chrY_P7_palindrome	chrY	14600000	15200000	2	1.00	Skaletsky2003
+chrY_P8_palindrome	chrY	13400000	14000000	2	1.00	Skaletsky2003
+NBPF_1q21_1	chr1	146000000	149000000	12	3.58	Sudmant2013
+defensin_chr8p23_1	chr8	7300000	7800000	7	2.81	Hardwick2011
+chr16p11_2_distal	chr16	28800000	29100000	5	2.32	Sudmant2013
+chr16p11_2_proximal	chr16	29600000	30200000	5	2.32	Sudmant2013
