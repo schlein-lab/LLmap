@@ -1,0 +1,33 @@
+{
+  "name": "chr19_19q13_31_ZNF_largest_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.31 — the LARGEST KRAB-ZNF cluster in the human genome (~40-50 paralogs over ~4 Mb), including ZNF420, ZNF285, ZNF180, ZNF227, ZNF229, ZNF230, ZNF234, ZNF235, ZNF233, ZNF155, ZNF112, ZNF566. Largest single paralog family in the human gene complement; major retrotransposon silencer.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 43500000, "end": 47500000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "~40-50 KRAB-ZNF paralog genes in tandem head-to-tail at 90-99% identity over ~4 Mb; conserved KRAB-A box and ZnF tandem arrays; abundant intra-cluster SDs of 20-100 kb; collapsed/misassembled in GRCh38 hotspots; species-specific expansion of the cluster."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Transposable element silencing variation",
+    "Rare 19q13.31 microdeletions",
+    "ZNF dosage-related developmental phenotypes"
+  ],
+  "sources": [
+    "doi:10.1101/gr.6557307",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature05295",
+    "PMID:17726096"
+  ],
+  "confidence": 0.95
+}

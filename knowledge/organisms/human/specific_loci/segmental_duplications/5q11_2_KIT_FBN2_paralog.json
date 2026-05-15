@@ -1,0 +1,31 @@
+{
+  "name": "5q11_2_KIT_FBN2_paralog",
+  "taxonomy_id": "paralog_family",
+  "description": "5q11.2 region containing the KIT receptor tyrosine kinase and FBN2 (fibrillin-2). KIT is paralogous to PDGFRA (4q12), CSF1R (5q32) and FLT3 (13q12) at the kinase-domain level; FBN2 shares >65% protein identity with FBN1 (15q21) and FBN3 (19p13). Short intragenic SDs in FBN2 produce paralog tracts complicating read mapping.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 55000000, "end": 60000000}},
+  "size_bp": 5000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 90.0,
+    "internal_structure": "Short intragenic SDs in FBN2 (cb-EGF tandem repeats) at >95% identity; KIT kinase domain shares 60-80% protein identity with PDGFRA, CSF1R, FLT3; no large local CNV."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "congenital contractural arachnodactyly (FBN2)",
+    "gastrointestinal stromal tumor (KIT gain-of-function)",
+    "mastocytosis (KIT D816V)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.65
+}

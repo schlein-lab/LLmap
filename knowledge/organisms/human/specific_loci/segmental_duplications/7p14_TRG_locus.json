@@ -1,0 +1,31 @@
+{
+  "name": "7p14_TRG_TCR_gamma_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "T-cell receptor gamma (TRG) locus at 7p14 spanning V-gamma, J-gamma, and C-gamma segments. The TRGV genes show paralogous duplication (TRGV2-8 family at ~85-95% identity) and undergo somatic V(D)J recombination producing extreme clonal diversity. Reference contains germline configuration; mapped reads from T-cell samples carry deletions/joins.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 38240000, "end": 38400000}},
+  "size_bp": 160000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "stable_germline_variable_somatic",
+    "homology_percent": 90.0,
+    "internal_structure": "14 TRGV segments (6 functional + pseudogenes), 5 TRGJ segments, 2 TRGC constant regions (TRGC1, TRGC2) in tandem; somatic V(D)J recombination creates deletions of intervening DNA."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "T-cell lymphoma clonality testing",
+    "gamma-delta T-cell receptor immunodeficiency"
+  ],
+  "sources": [
+    "doi:10.1016/0092-8674(85)90309-7",
+    "doi:10.4049/jimmunol.165.3.1306",
+    "doi:10.1146/annurev.immunol.24.021605.090547"
+  ],
+  "confidence": 0.9
+}

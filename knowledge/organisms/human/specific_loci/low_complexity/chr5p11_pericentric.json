@@ -1,0 +1,31 @@
+{
+  "name": "chr5p11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 5 p-arm pericentric flank (5p11-5p13), the immediate sub-centromeric LCR shoreline on the p-side of the chr5 centromere. Alpha-satellite (D5Z2), pericentromeric SDs and HSat patches. Distally adjoins the 5p13 SMN-region-flanking SDs. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 43800000, "end": 46485900}, "chm13": {"chr": "chr5", "start": 44000000, "end": 47000000}},
+  "size_bp": 2685900,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D5Z2", "HSat2", "HSat3", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 4000],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + HSat patches + Horvath/She pericentromeric SD shoreline."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Cri-du-chat (5p- syndrome, distal subtelomeric)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003"
+  ],
+  "confidence": 0.8
+}

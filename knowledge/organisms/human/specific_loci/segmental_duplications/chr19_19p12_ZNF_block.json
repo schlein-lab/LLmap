@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19p12_ZNF_block",
+  "taxonomy_id": "paralog_family",
+  "description": "19p12 proximal ZNF cluster (small cluster, ~10-15 KRAB-ZNF paralogs) immediately telomeric to the 19 centromere. Includes ZNF676, ZNF66, ZNF492, ZNF676 paralogs and the pericentric SD-rich field that contributes to chr19 pericentric inversion polymorphism.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 20000000, "end": 24000000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Tandem KRAB-ZNF paralog blocks of 10-30 kb at 95-99% identity interspersed with pericentric SDs; abundant intra- and inter-chromosomal SDs in proximal 19p; partially collapsed in GRCh38."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "pericentric inv(19) polymorphism",
+    "rare 19p12 microdeletions"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075",
+    "doi:10.1101/gr.6557307"
+  ],
+  "confidence": 0.75
+}

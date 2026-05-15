@@ -1,0 +1,30 @@
+{
+  "name": "10p12_NEBL_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10p12.31 segmental duplication block over NEBL (nebulette) and flanking MLLT10 / SKIDA1. Contains intrachromosomal duplicons that share homology with the nebulin/nebulette gene family on chr2 (NEB) and chr8.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 21000000, "end": 21800000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 93.0,
+    "internal_structure": "Repetitive nebulin-repeat coding modules; short SDs of 5-25 kb to NEB on chr2; flanking SDs predispose to MLLT10 translocations in T-ALL."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MLLT10/AF10 rearrangements in T-ALL",
+    "dilated cardiomyopathy (NEBL)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:14595432"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,31 @@
+{
+  "name": "13q12_11_CRYL1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "13q12.11 pericentromeric segmental-duplication block immediately distal to the chr13 centromere, harbouring the CRYL1, GJB2/GJB6 connexin-cluster proximal flank, and STARD13 region. Contains pericentromeric-transition SDs (PTSDs) that are mosaic with chr21q11-q12 and contributed to the lineage-specific seeding of new gene families in great-ape pericentromeres.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 19000000, "end": 21300000}},
+  "size_bp": 2300000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Mosaic 5-100 kb SD modules at 92-99% identity shared with chr21 pericentromere and chr2 pericentromere; punctuated by transposon-rich unique segments."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "DFNB1 connexin-26 deafness (GJB2 distal)",
+    "pericentric inversions"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature04727",
+    "doi:10.1101/gr.5042206"
+  ],
+  "confidence": 0.8
+}

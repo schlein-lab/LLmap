@@ -1,0 +1,30 @@
+{
+  "name": "11q12_SAA_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "11q12.2 serum amyloid A (SAA1, SAA2, SAA3P, SAA4) tandem gene cluster. Four highly homologous paralogs in ~150 kb arose by recent duplication; gene conversion between SAA1 and SAA2 generates the SAA1 alpha/beta/gamma allotype polymorphism implicated in AA-amyloidosis risk.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 18260000, "end": 18430000}},
+  "size_bp": 170000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 96.0,
+    "internal_structure": "Four SAA paralogs in ~150 kb at 90-98% identity (SAA1/SAA2 ~96%); gene-conversion hotspots between SAA1 and SAA2; flanking SDs of 5-15 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "AA amyloidosis",
+    "acute-phase inflammation"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:8024811"
+  ],
+  "confidence": 0.8
+}

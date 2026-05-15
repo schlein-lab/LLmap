@@ -1,0 +1,30 @@
+{
+  "name": "12p13_CD9_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12p13.3 segmental duplication interval flanking CD9, TNFRSF1A and ETV6. Short SDs of 5-20 kb predispose to the recurrent ETV6/RUNX1 t(12;21) translocation in childhood B-ALL.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 6100000, "end": 6800000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 93.0,
+    "internal_structure": "Small intrachromosomal SDs of 5-20 kb at ~93% identity; ETV6 breakpoint cluster region with Alu-mediated translocation hotspot to RUNX1 on chr21."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "ETV6/RUNX1 (TEL/AML1) t(12;21) B-ALL",
+    "TNF receptor-associated periodic syndrome (TRAPS)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:18923524"
+  ],
+  "confidence": 0.7
+}

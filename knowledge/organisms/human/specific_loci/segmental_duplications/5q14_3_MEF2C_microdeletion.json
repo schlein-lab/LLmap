@@ -1,0 +1,31 @@
+{
+  "name": "5q14_3_intragenic_SDs",
+  "taxonomy_id": "paralog_family",
+  "description": "5q14.3 region containing MEF2C and short flanking SDs. Recurrent 5q14.3 microdeletions cause a severe intellectual disability and epilepsy phenotype with MEF2C as the dosage-critical gene. The flanking SDs are short (~10-30 kb) and at ~95% identity; not all 5q14.3 deletions are SD-mediated (many non-recurrent breakpoints).",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 88000000, "end": 89500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Short flanking SDs of ~10-30 kb at ~95% identity; unique core contains MEF2C, RASA1, CCNH; deletion-prone but not strictly recurrent; LINE-1-rich flanks.",
+    "MEF2C_dosage_sensitive": true
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "5q14.3 microdeletion syndrome",
+    "MEF2C haploinsufficiency"
+  ],
+  "sources": [
+    "doi:10.1038/ejhg.2010.107",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

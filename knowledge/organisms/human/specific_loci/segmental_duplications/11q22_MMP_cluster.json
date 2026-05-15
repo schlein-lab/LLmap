@@ -1,0 +1,30 @@
+{
+  "name": "11q22_MMP_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "11q22.2 matrix metalloproteinase gene cluster (MMP1, MMP3, MMP7, MMP8, MMP10, MMP12, MMP13, MMP20, MMP27). Eight tandemly arrayed paralogs in ~500 kb at 40-90% identity; site of common copy-number polymorphism and somatic amplification in tumours.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 102500000, "end": 103200000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 75.0,
+    "internal_structure": "Nine MMP paralogs in tandem; coding homology 40-90%; intergenic SDs of 3-20 kb; MMP1-promoter -1607 indel widely studied as disease modifier."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "amelogenesis imperfecta (MMP20)",
+    "tumour invasion / metastasis modifier"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:11932681"
+  ],
+  "confidence": 0.75
+}

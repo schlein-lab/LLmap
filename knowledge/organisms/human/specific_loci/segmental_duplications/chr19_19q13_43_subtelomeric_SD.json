@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19q13_43_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.43 most-distal subtelomeric SD field (last ~500 kb of chromosome 19q). Contains TRIM28-adjacent ZNF paralogs (ZNF274, ZNF548, ZIM2/3, PEG3 imprinted region) and shared subtelomeric duplicons with multiple other subtelomeres; very SD-dense terminal cap.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 58000000, "end": 58617616}},
+  "size_bp": 617616,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Mosaic 5-50 kb subtelomeric duplicons at 95-99% identity shared with subtelomeres of multiple other chromosomes; terminal ZIM2/PEG3 imprinted cluster; characteristic terminal SD enrichment of chr19."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Imprinting disorders involving PEG3 / ZIM2",
+    "Subtelomeric 19q13.43 deletions / translocations"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.8
+}

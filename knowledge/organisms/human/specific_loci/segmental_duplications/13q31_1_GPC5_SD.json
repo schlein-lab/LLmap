@@ -1,0 +1,30 @@
+{
+  "name": "13q31_1_GPC5_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "13q31.3 GPC5/GPC6 glypican cluster flanked by intronic-and-intergenic SDs of 5-30 kb at 93-98% identity. Recurrent ~1-3 Mb microdeletions and microduplications encompassing GPC5 have been reported in nephrotic syndrome susceptibility and intellectual-disability cohorts. GPC5 is also the locus of childhood-onset SSNS GWAS signal.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 91000000, "end": 95000000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Intronic SD pairs of 5-30 kb at ~96% identity flanking GPC5 and within the GPC5-GPC6 intergenic region; sparse but conserved."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "steroid-sensitive nephrotic syndrome",
+    "13q31 microdeletion/duplication"
+  ],
+  "sources": [
+    "doi:10.1038/ng.842",
+    "doi:10.1038/ejhg.2012.115"
+  ],
+  "confidence": 0.75
+}

@@ -2,6 +2,8 @@
 
 #include "classical/classical_pipeline.h"
 #include "classical/classical_pipeline_internal.h"
+#include "checkpoint/checkpoint_dispatcher.h"
+#include "checkpoint/checkpoint_types.h"
 #include "core/thread_pool.h"
 
 #include <algorithm>
@@ -124,6 +126,55 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
 
     if (chain_result.chains.empty()) {
         return result;
+    }
+
+    // Layer 3: Active LLM checkpoint -- AmbiguousChain.
+    // When the top-two chain scores are within 5 %, consult the dispatcher
+    // (if one is configured) and let its wave decision re-rank the chains.
+    if (config_.checkpoint_dispatcher && chain_result.chains.size() >= 2) {
+        auto* dispatcher = static_cast<checkpoint::CheckpointDispatcher*>(
+            config_.checkpoint_dispatcher);
+        const auto& c0 = chain_result.chains[0];
+        const auto& c1 = chain_result.chains[1];
+        float gap = (c0.score > 0)
+            ? static_cast<float>(c0.score - c1.score) / c0.score
+            : 1.0f;
+        if (gap < 0.05f) {
+            checkpoint::CheckpointContext ctx;
+            ctx.read_id = std::string(query_name);
+            ctx.ref_id = c0.ref_id;
+            for (size_t i = 0;
+                 i < std::min<size_t>(5, chain_result.chains.size());
+                 ++i) {
+                const auto& c = chain_result.chains[i];
+                ctx.candidate_positions.push_back({c.ref_start, c.score});
+            }
+            const auto& seqs_for_name = index_->GetSequences();
+            if (c0.ref_id < seqs_for_name.size()) {
+                ctx.region_name = seqs_for_name[c0.ref_id].name;
+            }
+            auto decision = dispatcher->Consult(
+                checkpoint::CheckpointType::AmbiguousChain, ctx);
+            if (decision.consulted && !decision.wave.empty()) {
+                // Use the wave amplitudes to re-rank: highest amplitude
+                // candidate is moved to the front of chain_result.chains.
+                uint32_t best_pos = decision.wave.front().first;
+                float best_amp = decision.wave.front().second;
+                for (const auto& w : decision.wave) {
+                    if (w.second > best_amp) {
+                        best_pos = w.first;
+                        best_amp = w.second;
+                    }
+                }
+                for (size_t i = 0; i < chain_result.chains.size(); ++i) {
+                    if (chain_result.chains[i].ref_start == best_pos) {
+                        if (i > 0) std::swap(chain_result.chains[0],
+                                             chain_result.chains[i]);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     // Phase 3: Extension (for top chains)

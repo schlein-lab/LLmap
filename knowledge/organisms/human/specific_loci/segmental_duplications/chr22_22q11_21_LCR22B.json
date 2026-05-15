@@ -1,0 +1,34 @@
+{
+  "name": "chr22_22q11_21_LCR22B_breakpoint_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "LCR22-B, a ~150 kb SD block at chr22:20.0-20.15 Mb (GRCh38). The proximal A-B 'nested' deletion (~1.5 Mb) and atypical A-B duplications use LCR22-B as their distal breakpoint. Contains GGT/BCRL/USP18 paralogs at >99% identity with LCR22-A/C/D modules.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 20000000, "end": 20150000}},
+  "size_bp": 150000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "structurally_polymorphic",
+    "homology_percent": 99.2,
+    "internal_structure": "Shorter LCR22 module with GGT-paralog core; high identity with LCR22-A modules drives A-B NAHR."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q11.2 nested A-B deletion",
+    "atypical 22q11.2 duplication"
+  ],
+  "cross_references": [
+    "22q11_21_DiGeorge.json",
+    "chr22_22q11_21_LCR22A.json"
+  ],
+  "sources": [
+    "doi:10.1038/nrg2593",
+    "doi:10.1086/302727"
+  ],
+  "confidence": 0.9
+}

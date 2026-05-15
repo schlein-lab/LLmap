@@ -1,0 +1,31 @@
+{
+  "name": "7q34_TRB_TCR_beta_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "T-cell receptor beta (TRB) locus at 7q34. Contains ~65 TRBV segments (extensive paralogy, ~70-95% identity), two D-J-C cassettes (TRBD1-TRBJ1-TRBC1, TRBD2-TRBJ2-TRBC2). Somatic V(D)J recombination creates clone-specific deletions. Pseudogenes and orphons within the V cluster create the largest paralog family on chr7.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 142200000, "end": 142810000}},
+  "size_bp": 610000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "stable_germline_variable_somatic",
+    "homology_percent": 85.0,
+    "internal_structure": "~65 TRBV segments in tandem, two duplicated D-J-C cassettes (TRBC1, TRBC2 at >97% identity), TRBV-orphon paralogs distributed across genome (9p21, 7p14); largest contributor to TCR repertoire."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "T-cell acute lymphoblastic leukaemia (TRB translocations)",
+    "T-cell clonality testing for lymphoma diagnosis"
+  ],
+  "sources": [
+    "doi:10.1006/jmbi.2000.4007",
+    "doi:10.1146/annurev.immunol.24.021605.090547",
+    "doi:10.1038/nri2904"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,30 @@
+{
+  "name": "9p13_PAX5_region_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "9p13.2 region containing PAX5, FANCG, ALDH1B1 and a cluster of intermediate SDs. PAX5 is recurrent translocation/deletion partner in B-cell ALL; flanking SDs occasionally mediate intragenic rearrangements.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 36800000, "end": 38000000}},
+  "size_bp": 1200000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Small SDs flanking PAX5 and within FANCG vicinity; rare intragenic and gene-fusion rearrangements in B-cell ALL."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "B-cell ALL (PAX5 translocations/deletions)",
+    "Fanconi anaemia group G (FANCG)"
+  ],
+  "sources": [
+    "doi:10.1038/nature05690",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

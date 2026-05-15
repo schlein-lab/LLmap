@@ -1,0 +1,29 @@
+{
+  "name": "16p11_2_TBC1D10B_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.2 internal SD cluster around TBC1D10B/CORO1A. Lies between BP4 and BP5 of the proximal 16p11.2 recurrent CNV; contributes to atypical/nested 16p11.2 deletion breakpoints.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 30000000, "end": 30150000}},
+  "size_bp": 150000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Two ~30 kb SD modules at >98% identity within the BP4-BP5 core; share KIF22/SPN paralog content."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 atypical nested deletion"
+  ],
+  "sources": [
+    "doi:10.1038/nature19075",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

@@ -1,0 +1,31 @@
+{
+  "name": "chr2_2p11_2_IGK_VDJ_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "2p11.2 immunoglobulin kappa (IGK) light-chain locus and pericentric SD belt. Contains tandem V-kappa gene segments, dispersed orphons and large SD modules shared with other pericentric regions. Somatic V(D)J recombination contracts the locus per B-cell.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 88500000, "end": 90500000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "germline_haplotype_variable",
+    "homology_percent": 95.0,
+    "internal_structure": "76 IGKV genes/pseudogenes in tandem at 80-99% identity, 5 IGKJ, single IGKC; flanking SDs and ANKRD20-family duplicons in the pericentric belt."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Immune-repertoire variation",
+    "B-cell lymphoma translocations"
+  ],
+  "sources": [
+    "doi:10.1146/annurev.immunol.24.021605.090535",
+    "doi:10.1126/science.1072047",
+    "PMID:16551259"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,32 @@
+{
+  "name": "4q21_q22_segmental_duplications",
+  "taxonomy_id": "paralog_family",
+  "description": "4q21-q22 interstitial SD cluster harbouring HERC3/HERC5/HERC6 (HECT/RLD E3 ligase paralogs), PYURF and ABCG2-flanking duplicons. NAHR between these SDs underlies the rare 4q21 microdeletion syndrome (Bonnet 2010) and recurrent 4q22 deletions reported in intellectual disability cohorts.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 81000000, "end": 92500000}},
+  "size_bp": 11500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Two flanking SD blocks (~100-300 kb) at 95-97% identity containing HERC paralogs; unique core contains PRKG2, RASGEF1B, SEC31A; 4q22 sub-block contains FAM13A and ABCG2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "4q21 microdeletion syndrome",
+    "intellectual disability",
+    "growth retardation"
+  ],
+  "sources": [
+    "doi:10.1136/jmg.2009.071068",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.75
+}

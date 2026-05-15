@@ -1,0 +1,32 @@
+{
+  "name": "6q25_ARID1B_SF3B5_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "6q25.3 region containing ARID1B (BAF chromatin-remodelling subunit). ARID1B is paralogous to ARID1A (1p36) at >50% protein identity. Recurrent 6q25.3 microdeletions cause Coffin-Siris syndrome-like phenotypes with ARID1B haploinsufficiency. Short flanking SDs and Alu-rich flanks contribute to non-recurrent breakpoint heterogeneity.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 156500000, "end": 158300000}},
+  "size_bp": 1800000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Short flanking SDs of ~10-30 kb; ARID1B AT-rich-interaction domain shares 60-70% protein identity with ARID1A (1p36); SF3B5 paralog tracts on chr19; Alu-rich introns mediate exonic deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Coffin-Siris syndrome 1 (ARID1B LOF)",
+    "6q25 microdeletion intellectual disability",
+    "non-syndromic intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1038/ng.2217",
+    "doi:10.1038/ng.2219",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

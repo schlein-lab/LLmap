@@ -1,0 +1,31 @@
+{
+  "name": "7q22_SHFM1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "7q21.3-q22.1 region containing the SHFM1 (split-hand/foot malformation type 1) critical interval with DLX5/DLX6 and DYNC1I1 limb enhancer. Flanked by SDs that mediate recurrent ~880 kb deletions disrupting long-range enhancers without affecting DLX5/6 coding sequence.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 96400000, "end": 97500000}},
+  "size_bp": 1100000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Two ~30-50 kb SD blocks flanking DYNC1I1 exon 15/17 limb enhancers and DLX5/DLX6 cluster; NAHR substrate for SHFM1 deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Split-hand/foot malformation type 1 (SHFM1)",
+    "Ectrodactyly with hearing loss"
+  ],
+  "sources": [
+    "doi:10.1086/507198",
+    "doi:10.1093/hmg/ddg093",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

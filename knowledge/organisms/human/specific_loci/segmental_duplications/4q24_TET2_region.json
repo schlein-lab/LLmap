@@ -1,0 +1,31 @@
+{
+  "name": "4q24_TET2_flanking_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "4q24 region containing TET2 (DNA hydroxymethylase). Short flanking SDs and TET-family paralog homology (TET1 on 10q21, TET3 on 2p13) create mapping ambiguity at the DSBH/CD catalytic core. Recurrent somatic TET2 loss-of-function in myeloid malignancies and clonal hematopoiesis (CHIP).",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 105000000, "end": 106500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 88.0,
+    "internal_structure": "Short flanking SDs (~10-20 kb each); TET2 catalytic DSBH domain shares 50-65% protein identity with TET1 and TET3 on other chromosomes; no large local CNV in healthy population."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.05,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "myelodysplastic syndrome (TET2 LOF)",
+    "clonal hematopoiesis of indeterminate potential",
+    "AML"
+  ],
+  "sources": [
+    "doi:10.1056/NEJMoa0810069",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

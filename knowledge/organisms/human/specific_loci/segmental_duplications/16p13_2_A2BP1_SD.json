@@ -1,0 +1,31 @@
+{
+  "name": "16p13_2_RBFOX1_A2BP1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16p13.2 SD blocks within and flanking RBFOX1 (A2BP1). Large intronic SDs at ~95% identity mediate rare ~1-2 Mb deletions affecting RBFOX1 in neurodevelopmental disorders.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 6000000, "end": 7700000}},
+  "size_bp": 1700000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Multiple intragenic SD blocks within the >1.7 Mb RBFOX1 gene; mosaic LCR16a-derived duplicons; some recurrent breakpoints in intron 4 and intron 7 of RBFOX1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "RBFOX1-associated epilepsy",
+    "autism spectrum disorder",
+    "intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1136/jmedgenet-2013-101658",
+    "doi:10.1038/ng.534"
+  ],
+  "confidence": 0.7
+}

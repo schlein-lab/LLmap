@@ -1,0 +1,32 @@
+{
+  "name": "4q13_2_UGT2B_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "4q13.2 UDP-glucuronosyltransferase 2B (UGT2B) cluster — eight closely linked paralogs (UGT2B4, UGT2B7, UGT2B10, UGT2B11, UGT2B15, UGT2B17, UGT2B28, UGT2A1/2A2) arising from tandem segmental duplications. UGT2B17 is one of the most variable CNVs in humans (common whole-gene deletion in East Asians; population MAF ~0.7 for deletion). Drug-metabolism phenotype consequences.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 69400000, "end": 70800000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Tandem array of eight UGT2B paralogs at 90-97% identity, each ~30-40 kb; UGT2B17 whole-gene deletion is a common ~150 kb CNV; UGT2A1/2A2 (5' end) form an additional paralog pair."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "altered androgen / xenobiotic metabolism",
+    "osteoporosis association (UGT2B17 deletion)",
+    "prostate cancer risk association"
+  ],
+  "sources": [
+    "doi:10.1086/518257",
+    "doi:10.1038/nature06258",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.9
+}

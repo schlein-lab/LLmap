@@ -1,0 +1,32 @@
+{
+  "name": "chr2q11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 2 q-arm pericentric flank (2q11.1-2q11.2), the q-side sub-centromeric LCR shoreline. Carries the cryptic chimpanzee ancestral telomere-fusion remnant (2q13-2q14 interstitial telomere) distally. Alpha-satellite, pericentromeric SDs, scattered HSat2. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 94090557, "end": 97400000}, "chm13": {"chr": "chr2", "start": 95000000, "end": 98500000}},
+  "size_bp": 3309443,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D2Z", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [2000, 4500],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + pericentromeric SD shoreline; ancient ape-fusion q-side; ~1.5 Mb distal lies the 2q13 interstitial-telomere fusion scar."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "2q11.2 microdeletion (variable phenotype)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003",
+    "doi:10.1073/pnas.062708199"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chr1_1q42_GPR50_ARID2_LCR",
+  "taxonomy_id": "paralog_family",
+  "description": "1q42 SD module around GPR50, COG2 and AKT3-distal sequence; harbours low-copy repeats that mediate occasional 1q42 microdeletion/microduplication events overlapping the DISC1 region.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 232000000, "end": 233500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Two SD blocks of 20-50 kb at ~94% identity flanking a unique interval containing GPR50, DISC1-distal, COG2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1q42 microdeletion / DISC1 disruption phenotypes"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1093/hmg/ddl213"
+  ],
+  "confidence": 0.6
+}

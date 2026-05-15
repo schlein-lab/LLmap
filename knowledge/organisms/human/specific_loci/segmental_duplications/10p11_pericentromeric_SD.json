@@ -1,0 +1,30 @@
+{
+  "name": "10p11_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10p11.2-p11.1 pericentromeric segmental duplication pile-up immediately p-arm of the chr10 centromere. Mosaic of duplicons shared with other pericentromeres (chr2, chr5, chr9, chr22) and large intrachromosomal SDs paired with the 10q11.21-q11.22 pericentromeric block.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 36000000, "end": 39200000}},
+  "size_bp": 3200000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Pericentromeric SD modules of 10-200 kb at 95-99% identity; shared duplicons with multiple acrocentric/pericentromeric regions; assembly-uncertain."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "pericentromeric assembly gaps",
+    "Robertsonian-like translocation substrates"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:17357071"
+  ],
+  "confidence": 0.7
+}

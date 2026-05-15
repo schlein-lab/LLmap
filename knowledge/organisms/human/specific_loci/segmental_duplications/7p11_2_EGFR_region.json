@@ -1,0 +1,32 @@
+{
+  "name": "7p11_2_EGFR_region",
+  "taxonomy_id": "paralog_family",
+  "description": "7p11.2 region around EGFR (Epidermal Growth Factor Receptor). Hosts intra-EGFR partial duplications (EGFRvIII / vII variants in glioblastoma) and is a recurrent focal amplification target in cancer (extrachromosomal DNA/ecDNA amplicons). Reference is single-copy but tumor samples carry massive copy-number gains.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 54900000, "end": 56300000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "focal_amplification_target",
+    "copy_number_in_population": "stable_germline_amplified_somatic",
+    "homology_percent": 99.0,
+    "internal_structure": "EGFR (188 kb) flanked by small SDs; in cancer, ecDNA amplicons of 0.5-2 Mb encompass EGFR with copy numbers up to >100; intragenic exon 2-7 deletion creates EGFRvIII oncoprotein."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Glioblastoma (EGFR amplification, EGFRvIII)",
+    "Non-small-cell lung cancer (EGFR mutations)",
+    "EGFR-amplified colorectal cancer"
+  ],
+  "sources": [
+    "doi:10.1038/nature21356",
+    "doi:10.1038/s41586-019-1763-5",
+    "doi:10.1056/NEJMoa040938"
+  ],
+  "confidence": 0.85
+}

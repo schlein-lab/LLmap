@@ -1,0 +1,34 @@
+{
+  "name": "5q13_2_SMN1_SMN2_SMA_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "5q13.2 spinal muscular atrophy (SMA) locus. A ~500 kb inverted segmental duplication contains the SMN1 (telomeric) and SMN2 (centromeric) paralogs at >99.9% identity, plus paralog copies of NAIP, GTF2H2/GTF2H2C, and SERF1A/SERF1B. SMN1 vs SMN2 differ by a single base (c.840 C>T in exon 7) that disrupts splicing. Homozygous SMN1 loss causes SMA; SMN2 copy number modifies severity. The locus is the textbook paralog-mapping challenge.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 70200000, "end": 70950000}},
+  "size_bp": 750000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.9,
+    "internal_structure": "Inverted duplication of two ~500 kb half-blocks; SMN1/SMN2 differ by 5 paralog-specific variants (c.840 C>T being functional); NAIP / GTF2H2 / SERF1 paralog pairs flank. Population SMN2 copy number 0-4 (mean ~2).",
+    "psv_count": 5
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "spinal muscular atrophy (SMA)",
+    "SMA modifier (SMN2 copy number)"
+  ],
+  "sources": [
+    "doi:10.1016/0092-8674(95)90460-3",
+    "doi:10.1038/ng854",
+    "doi:10.1086/302808",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nrg2593"
+  ],
+  "confidence": 0.98
+}

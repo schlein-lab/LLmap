@@ -1,0 +1,34 @@
+{
+  "name": "15q11_q13_HERC2_paralog_family",
+  "taxonomy_id": "paralog_family",
+  "description": "HERC2/HERC2P paralog family at 15q11-q13 forms the SD backbone of all four 15q11-q13 breakpoints (BP1, BP2, BP3, and downstream BP4/BP5 at 15q13.3). HERC2P pseudogenes (HERC2P2, HERC2P3, HERC2P7, HERC2P9, HERC2P10) recur at >99% identity within the BPs and on chr16p11.2, contributing to inter-locus NAHR. Functional HERC2 sits between BP3 and the imprinted core.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 22600000, "end": 28800000}},
+  "size_bp": 6200000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.2,
+    "internal_structure": "HERC2P2-HERC2P3-HERC2P7-HERC2P9-HERC2P10 plus functional HERC2 form a fan of >99% identical 100-300 kb duplicons across BP1-BP3; smaller HERC2P modules also reside in BP4-BP5 (CHRNA7 region)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Prader-Willi syndrome",
+    "Angelman syndrome",
+    "Dup15q syndrome",
+    "15q13.3 microdeletion"
+  ],
+  "cross_reference": "/segmental_duplications/15q11_q13_PWS_AS.json",
+  "sources": [
+    "doi:10.1038/ejhg.2008.232",
+    "doi:10.1086/302808",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.9
+}

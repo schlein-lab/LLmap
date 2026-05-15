@@ -1,0 +1,30 @@
+{
+  "name": "chr2_2q14_ancestral_fusion_site",
+  "taxonomy_id": "terminal_repeat",
+  "description": "Fossil head-to-head telomere fusion site at 2q14.1 marking the evolutionary fusion of ancestral ape chromosomes 2A and 2B that produced the human chromosome 2. The site retains degenerate (TTAGGG)n hexamer arrays back-to-back and is flanked by short SDs.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 113500000, "end": 113800000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "fossil_telomere",
+    "copy_number_in_population": "fixed_human_specific",
+    "homology_percent": 90.0,
+    "internal_structure": "Inverted (TTAGGG)n degenerate hexamer arrays at the fusion midpoint, flanked by ~150 kb of fossil-subtelomeric SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Evolutionary fusion site (no direct disease)"
+  ],
+  "sources": [
+    "doi:10.1073/pnas.88.20.9051",
+    "doi:10.1101/gr.2949305",
+    "PMID:1924369"
+  ],
+  "confidence": 0.85
+}

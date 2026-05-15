@@ -1,0 +1,36 @@
+{
+  "name": "14p_acrocentric_shore",
+  "taxonomy_id": "paralog_family",
+  "description": "Chr14 acrocentric p-arm distal to the centromere and proximal to the NOR. Composed of inter-acrocentric SD modules (DJ/PJ duplicons), beta-satellite tandem arrays, and HSat3 blocks recurring at >95% identity on all five acrocentric short arms (13p, 14p, 15p, 21p, 22p). T2T-CHM13 resolves the architecture; GRCh38 leaves it as a gap interval. NOR proper is documented in /ribosomal/chr14_NOR.json.",
+  "coordinates": {
+    "grch38": {"chr": "chr14", "start": 0, "end": 16000000},
+    "chm13": {"chr": "chr14", "start": 0, "end": 16000000}
+  },
+  "size_bp": 16000000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "DJ and PJ acrocentric duplicons (1-100 kb modules at 95-99% identity) interleaved with HSat3, beta-satellite, gamma-satellite, and rDNA tail; recombination across acrocentrics produces Robertsonian translocations."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "cross_acrocentric_paralog": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations rob(13;14), rob(14;21)",
+    "uniparental disomy 14"
+  ],
+  "cross_reference": "/ribosomal/chr14_NOR.json",
+  "sources": [
+    "doi:10.1038/s41586-023-05976-y",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.5042206"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chr3_3q11_2_HSPA8_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "3q11.2 pericentric segmental-duplication block with HSPA8, EPHB1 and ARHGEF26 in/near LCR pairs. Contributes to rare submicroscopic 3q11 rearrangements; HSPA8 paralogs (HSP70 family) are dispersed across multiple chromosomes.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 95000000, "end": 96500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Flanking SDs of 20-60 kb at ~94% identity; HSP70-family paralog signal disperses to chr5q31, chr6p21 etc."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Rare 3q11.2 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature11082"
+  ],
+  "confidence": 0.6
+}

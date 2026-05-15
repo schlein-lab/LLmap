@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19p13_2_NOTCH3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.12 SD field surrounding NOTCH3 (the CADASIL gene) plus EPS15L1 and ILVBL. Short flanking SDs of ~10-20 kb mediate occasional NAHR-driven CNVs and the locus sits on the chr19 SD background.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 15100000, "end": 15500000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 95.0,
+    "internal_structure": "Short 5-20 kb intra-chromosomal SDs at 93-98% identity flanking NOTCH3, EPS15L1; recombination hotspot within NOTCH3 itself."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CADASIL (NOTCH3)",
+    "Lateral meningocele syndrome (NOTCH3 GoF)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/383707a0",
+    "PMID:8878478"
+  ],
+  "confidence": 0.6
+}

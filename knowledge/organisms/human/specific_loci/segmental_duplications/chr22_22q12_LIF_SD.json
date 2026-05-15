@@ -1,0 +1,32 @@
+{
+  "name": "chr22_22q12_LIF_OSM_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "22q12.1-12.2 region containing the LIF/OSM cytokine cluster and CHEK2 SDs. Several intrachromosomal SDs at 30-100 kb / 96-99% identity flank CHEK2 and create a known mapping problem: CHEK2 itself has multiple paralogous fragments scattered across the genome (chr2, chr7, chr10, chr13, chr15, chr16, chrX, chrY) confounding short-read variant calling.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 28700000, "end": 29400000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "intrachromosomal_SD_plus_dispersed_paralogs",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 98.0,
+    "internal_structure": "CHEK2-flanking SDs at 22q12 plus dispersed CHEK2 pseudogenes elsewhere; LIF/OSM tandem paralogs at >97% identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CHEK2-related cancer predisposition (breast, prostate)",
+    "Li-Fraumeni-like syndrome",
+    "CHEK2 false-positive variant calls from pseudogene reads"
+  ],
+  "sources": [
+    "doi:10.1038/nature01266",
+    "doi:10.1086/342727",
+    "PMID:18176524"
+  ],
+  "confidence": 0.85
+}

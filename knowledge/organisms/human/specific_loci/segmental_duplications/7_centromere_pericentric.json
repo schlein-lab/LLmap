@@ -1,0 +1,30 @@
+{
+  "name": "7_centromere_pericentric_SD",
+  "taxonomy_id": "centromere_like",
+  "description": "Chr7 pericentromeric region containing alpha-satellite higher-order repeat array (D7Z1/D7Z2) plus flanking pericentromeric SDs rich in NPIP/NBPF-like duplicons and POM121 paralogs. Highly variable between haplotypes; CHM13-T2T resolves the active alpha-satellite higher-order repeat that GRCh38 represents as a gap.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 58054000, "end": 62581000}},
+  "size_bp": 4527000,
+  "architecture": {
+    "type": "centromeric_alpha_satellite_plus_SD",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.5,
+    "internal_structure": "Alpha-satellite D7Z1 array (~3 Mb in CHM13) flanked by pericentromeric SD mosaic; GRCh38 contains placeholder N-gap, CHM13 has full assembly."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian-related aneuploidy susceptibility"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-022-05325-5",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,33 @@
+{
+  "name": "5q31_3_protocadherin_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "5q31.3 clustered protocadherin locus — PCDHA (15 paralogs), PCDHB (16 paralogs), PCDHG (22 paralogs). Each variable exon encodes a complete EC-domain ectodomain; tandemly duplicated at very high identity (~85-95%) with shared constant exons. Choice of expressed variable exon is stochastic and methylation-controlled; the locus is the largest mammalian SD-paralog gene-array outside the immunoglobulin loci.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 140700000, "end": 141500000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 90.0,
+    "internal_structure": "Three sub-clusters PCDHA (15 variable + 3 constant), PCDHB (16 single-exon), PCDHG (22 variable + 3 constant); each variable exon ~2.4 kb with promoter; paralog identity 85-95%; recent gene-conversion events ongoing.",
+    "paralog_count": 53
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "neurodevelopmental disorders (rare)",
+    "altered neuronal-identity coding (mouse models)"
+  ],
+  "sources": [
+    "doi:10.1016/S0092-8674(00)80789-8",
+    "doi:10.1126/science.1064535",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.9
+}

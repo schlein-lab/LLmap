@@ -1,0 +1,29 @@
+{
+  "name": "14q32_33_EIF5_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal 14q32.33 subtelomeric SD cluster covering EIF5, MARK3, BRF1, BTBD6, and the telomere-adjacent shore (~2 Mb). Carries SDs shared with other subtelomeres (2q, 12q, 22q) at 90-97% identity and mediates rare 14q-subtelomeric deletions. Some modules overlap distal IGH constant-region flank.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 106900000, "end": 107043718}},
+  "size_bp": 143718,
+  "architecture": {
+    "type": "subtelomeric_block",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Telomere-proximal SD modules of 5-50 kb at 90-97% identity shared with 2q, 12q, 22q subtelomeres; EIF5/MARK3 unique cores embedded."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "14q-subtelomeric deletion (rare ID/dysmorphism)"
+  ],
+  "sources": [
+    "doi:10.1086/513609",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.75
+}

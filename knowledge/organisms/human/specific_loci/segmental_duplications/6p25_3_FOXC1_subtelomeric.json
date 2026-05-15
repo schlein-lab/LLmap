@@ -1,0 +1,34 @@
+{
+  "name": "6p25_3_FOXC1_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "6p25.3 subtelomeric SD region containing FOXC1, FOXF2, FOXQ1 (forkhead-paralog cluster) and DUSP22. Recurrent 6p25.3 microdeletion / microduplication syndromes cause Axenfeld-Rieger anomaly type 3 (FOXC1 haploinsufficiency) and a distinct duplication phenotype. Flanking subtelomeric SDs at ~96% identity drive the rearrangement.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 250000, "end": 2200000}},
+  "size_bp": 1950000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Subtelomeric SD-rich block; FOXC1/FOXF2/FOXQ1 forkhead paralogs share 50-70% protein identity within the cluster and with FOXC2 (16q24); flanking duplicons of ~30-100 kb at 95-97% identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Axenfeld-Rieger anomaly type 3 (FOXC1)",
+    "6p25 deletion syndrome",
+    "6p25 microduplication syndrome",
+    "Dandy-Walker malformation"
+  ],
+  "sources": [
+    "doi:10.1086/302631",
+    "doi:10.1038/ng1591",
+    "doi:10.1126/science.1072047",
+    "doi:10.1136/jmg.2008.060848"
+  ],
+  "confidence": 0.85
+}

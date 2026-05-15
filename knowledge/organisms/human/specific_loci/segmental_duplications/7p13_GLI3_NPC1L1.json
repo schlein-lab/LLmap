@@ -1,0 +1,32 @@
+{
+  "name": "7p13_GLI3_NPC1L1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "7p13 region containing GLI3 (Greig cephalopolysyndactyly / Pallister-Hall) and NPC1L1 (intestinal cholesterol transporter, ezetimibe target) flanked by intermediate-sized SDs. The SDs at 7p13 mediate rare interstitial deletions encompassing GLI3 producing contiguous-gene syndromes.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 41700000, "end": 44600000}},
+  "size_bp": 2900000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Small SD clusters (~20-50 kb) flanking GLI3 and additional duplicons proximal to NPC1L1; NAHR substrate is intermediate-sized rather than canonical >100 kb SD."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Greig cephalopolysyndactyly syndrome",
+    "Pallister-Hall syndrome",
+    "7p13 contiguous-gene deletion"
+  ],
+  "sources": [
+    "doi:10.1038/ng0794-282",
+    "doi:10.1126/science.1093131",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

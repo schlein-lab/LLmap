@@ -1,0 +1,29 @@
+{
+  "name": "chr19_19q13_32_KIR_xref",
+  "taxonomy_id": "cross_reference",
+  "description": "Cross-reference stub for the killer-cell immunoglobulin-like receptor (KIR) gene cluster at 19q13.42 (sometimes cited as 19q13.32 in older literature). The full KIR locus description lives in ../kir/KIR_locus_chr19.json; this entry exists only so the SD inventory enumerates the locus.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 54700000, "end": 55400000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "See ../kir/KIR_locus_chr19.json — ~14 KIR paralog genes at 85-98% identity, A and B haplotypes, flanking SDs mediate frequent gene-content variation."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "See ../kir/KIR_locus_chr19.json"
+  ],
+  "sources": [
+    "../kir/KIR_locus_chr19.json"
+  ],
+  "confidence": 0.95,
+  "see_also": "../kir/KIR_locus_chr19.json"
+}
