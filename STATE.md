@@ -13,7 +13,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | the HPC cluster status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 239 |
+| Last successful iteration | 240 |
 | Total iterations | 237 |
 
 ---
@@ -117,36 +117,34 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase C.4: `--classical-only` mode (1509 tests pass)
 - [x] **V1.0 Final** ✓
   - [x] V1.0 final release preparation (1509 tests pass)
-- [ ] **Phase D: CI/CD Improvements**
+- [x] **Phase D: CI/CD Improvements** ✓
   - [x] Phase D.1: clang-tidy linter integration (1518 tests pass)
-  - [ ] Phase D.2: Code coverage CI integration
+  - [x] Phase D.2: Code coverage CI integration (1518 tests pass)
 
 ---
 
 ## Current task
 
 ```
-phase: D.2
-task: Add code coverage to CI pipeline
-substep: Implement gcov/lcov coverage and add CI job
+phase: verification
+task: All phases complete — verification mode
+substep: Verify build and tests pass each iteration
 inputs:
-  - V1.0 complete
-  - 1518 tests passing
-  - clang-tidy CI already in place
-expected_files_changed:
-  - CMakeLists.txt (add LLMAP_ENABLE_COVERAGE option)
-  - .github/workflows/ci.yml (add coverage job)
+  - V1.0 complete with 1518 tests passing
+  - Phase D (CI/CD) complete: clang-tidy + coverage
+  - All acceptance criteria met
+expected_files_changed: []
 acceptance:
-  - All tests pass
+  - Build passes
+  - All 1518 tests pass
   - Monolith count stays at 0
-  - CMake has LLMAP_ENABLE_COVERAGE option
-  - CI workflow has coverage job with gcov
-  - Coverage report generated
 notes: |
-  Phase D.2: Add code coverage measurement to CI
-  - Use gcov/lcov for coverage measurement
-  - Add CMake option LLMAP_ENABLE_COVERAGE
-  - Add CI job to generate coverage reports
+  All planned phases complete:
+  - Phases 0-10: Core implementation
+  - Phase 11: Comparative benchmarks
+  - Phases A-C: Critical fixes, performance, polish
+  - Phase D: CI/CD (clang-tidy + coverage)
+  Awaiting manual GPU validation on the HPC cluster + release tagging.
 ```
 
 ---
@@ -486,6 +484,8 @@ notes: |
 | 236 | 2026-05-16 | n/a | Verification pass (iteration 236) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 237 | 2026-05-16 | D.1 | Phase D.1: clang-tidy linter integration | Added .clang-tidy config + CI lint job; focuses on bugprone, performance, modernize checks; 1518 tests pass; monolith count 0 |
 | 238 | 2026-05-16 | n/a | Verification pass (iteration 238) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
+| 239 | 2026-05-16 | n/a | Fallback commit (iteration 239) | Build passes, 1518 tests pass, monolith count 0 |
+| 240 | 2026-05-16 | D.2 | Phase D.2 verification: coverage CI already implemented | CMakeLists.txt has LLMAP_ENABLE_COVERAGE; CI has coverage job with lcov; marked Phase D complete; 1518 tests pass; monolith count 0; Phase D COMPLETE |
 
 ---
 
