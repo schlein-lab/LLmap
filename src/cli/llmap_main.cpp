@@ -56,6 +56,7 @@ void print_usage() {
         "  bench             Cross-tool benchmark vs minimap2 etc. (Phase 8)\n"
         "  validate          Synthetic + real-data validation harness (Phase 5)\n"
         "  check             V1.0 readiness check (Phase 10)\n"
+        "  annotate-ref      Compute region annotations for a reference (Phase 12)\n"
         "  --version         Show version\n"
         "  --help            Show this message\n"
     );
@@ -111,6 +112,10 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "check") == 0) {
         return llmap::cli::run_check(argc, argv);
+    }
+
+    if (std::strcmp(argv[1], "annotate-ref") == 0) {
+        return llmap::cli::run_annotate_ref(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,

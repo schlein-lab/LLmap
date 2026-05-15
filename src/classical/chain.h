@@ -6,6 +6,10 @@
 #include <span>
 #include <vector>
 
+namespace llmap::annot {
+class AnnotationIndex;
+}  // namespace llmap::annot
+
 namespace llmap::classical {
 
 // Forward declarations
@@ -34,6 +38,11 @@ struct ChainConfig {
     // DP optimization
     uint32_t max_skip = 25;           // Max predecessors to skip in DP
     uint32_t bandwidth = 500;         // DP bandwidth for colinear extension
+
+    // Optional region-aware scoring. When non-null, AnchorPairScore weights
+    // anchor contributions by anchor_weight_scale from the annotation index,
+    // and gap_diff bounds may be relaxed by lambda_scale.
+    const annot::AnnotationIndex* annot = nullptr;
 };
 
 // An anchor for chaining (derived from MinimizerHit)
