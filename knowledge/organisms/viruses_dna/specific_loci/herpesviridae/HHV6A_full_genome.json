@@ -1,0 +1,55 @@
+{
+  "name": "HHV6A_full_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome",
+  "virus_type": "dsDNA",
+  "description": "Human herpesvirus 6A (HHV-6A) beta-herpesvirus: linear dsDNA ~159 kb with 8 kb direct repeats DRL and DRR flanking the ~143 kb unique long region. DR regions contain pac1/pac2 cleavage-packaging signals and the immediate-early genes U17/U18. HHV-6A and HHV-6B share ~90% nucleotide identity, are taxonomically distinct species, and exhibit different cell tropism (HHV-6A: CD4 T cells / CNS; HHV-6B: T cells, principal agent of exanthem subitum / roseola). Both can integrate into host chromosomes at telomeric (TTAGGG)n repeats, producing chromosomally integrated HHV-6 (ciHHV-6) in ~1% of the human population.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001664.4": {
+      "chr": "NC_001664.4",
+      "start": 1,
+      "end": 159321
+    }
+  },
+  "size_bp": 159321,
+  "expected_paralogs": [
+    {
+      "name": "DRL_direct_repeat_left",
+      "approx_offset_in_locus": 1
+    },
+    {
+      "name": "U_unique_long_region",
+      "approx_offset_in_locus": 8000
+    },
+    {
+      "name": "U94_REP",
+      "approx_offset_in_locus": 143000
+    },
+    {
+      "name": "DRR_direct_repeat_right",
+      "approx_offset_in_locus": 151000
+    },
+    {
+      "name": "telomeric_repeat_array_TRS",
+      "approx_offset_in_locus": 158000
+    }
+  ],
+  "expected_copy_count": "1 episomal/integrated copy per cell; integration via telomere TTAGGG",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "host_integration_aware": true,
+    "telomeric_integration_aware": true,
+    "species_disambig_hhv6a_vs_6b": true
+  },
+  "sources": [
+    "doi:10.1099/0022-1317-76-1-91",
+    "doi:10.1099/0022-1317-79-3-455",
+    "doi:10.1073/pnas.1115861109"
+  ],
+  "confidence": 0.93
+}

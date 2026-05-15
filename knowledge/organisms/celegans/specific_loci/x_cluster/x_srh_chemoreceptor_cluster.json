@@ -1,0 +1,25 @@
+{
+  "name": "X_srh_chemoreceptor_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "X-linked srh (serpentine receptor, class H) chemoreceptor cluster on the C. elegans X chromosome. C. elegans encodes ~1300 chemoreceptor GPCRs in expanded srh/srz/srw/sra/srg superfamilies; the X chromosome harbours a large tandem block of srh paralogs in the central X arm. Paralogs share 70-95% nucleotide identity across 7TM coding sequence; recent duplicates require PSV-based disambiguation.",
+  "coordinates": {
+    "WBcel235": {"chr": "X", "start": 5500000, "end": 7500000}
+  },
+  "size_bp": 2000000,
+  "expected_copy_count": "100-150 srh paralogs in this X cluster",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:9851916",
+    "doi:10.1186/gb-2005-6-10-r86",
+    "WormBase WS285 chemoreceptor families"
+  ],
+  "confidence": 0.7
+}

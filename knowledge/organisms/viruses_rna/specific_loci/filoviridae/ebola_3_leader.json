@@ -1,0 +1,29 @@
+{
+  "name": "Ebola_3_leader",
+  "taxonomy_id": "custom",
+  "description": "Ebola 3' leader. Promoter for replication; bipartite element. Required for RdRp recognition.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002549.1": {
+      "start": 1,
+      "end": 469
+    }
+  },
+  "size_bp": 469,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ebola_virus_disease"
+  ],
+  "sources": [
+    "NC_002549.1",
+    "doi:10.1126/science.1259657"
+  ],
+  "confidence": 0.97
+}

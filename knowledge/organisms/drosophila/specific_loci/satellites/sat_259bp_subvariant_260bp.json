@@ -1,0 +1,26 @@
+{
+  "name": "sat_259bp_subvariant_260bp",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Drosophila simple satellite block: 260-bp sub-variant of the 1.688 satellite family \u2014 X pericentric, the most divergent member. The 1.688 g/cc satellite family is a heterogeneous cluster of 260-359 bp AT-rich repeats. Sub-variants share 60-80% identity and historically formed multiple cytogenetic bands within X heterochromatin.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 21500000,
+      "end": 21600000
+    }
+  },
+  "size_bp": 100000,
+  "expected_copy_count": "10^3-10^5 repeat copies",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 50000,
+    "lambda_scale": 2.8,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:8472699",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.7
+}

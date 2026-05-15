@@ -1,0 +1,32 @@
+{
+  "name": "vit_chrX_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Vitellogenin yolk-protein gene cluster on C. elegans chromosome X. Encodes vit-1, vit-2, vit-3, vit-4, vit-5 (yp170 class). The five paralogs are tandemly arrayed and share 60-95% nucleotide identity; vit-3, vit-4, vit-5 form a near-identical sub-block at >95% identity (recent triplication). All five are transcribed in the adult hermaphrodite intestine and dumped into oocytes via receptor-mediated endocytosis. Standard model paralog cluster for read-mapping disambiguation in C. elegans.",
+  "coordinates": {
+    "WBcel235": {"chr": "X", "start": 11250000, "end": 11400000}
+  },
+  "size_bp": 150000,
+  "expected_paralogs": [
+    {"name": "vit-5", "approx_offset_in_locus": 0},
+    {"name": "vit-4", "approx_offset_in_locus": 15000},
+    {"name": "vit-3", "approx_offset_in_locus": 30000},
+    {"name": "vit-1", "approx_offset_in_locus": 70000},
+    {"name": "vit-2", "approx_offset_in_locus": 100000}
+  ],
+  "expected_copy_count": "5 paralogs (vit-1 through vit-5) in this X cluster",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:3905822",
+    "doi:10.1016/0022-2836(85)90405-5",
+    "WormBase WS285 vit gene family"
+  ],
+  "confidence": 0.9
+}

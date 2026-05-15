@@ -1,0 +1,30 @@
+{
+  "name": "mat_silent_island_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Architecture of the S. pombe silent mating-type island. mat2-P and mat3-M storage cassettes sit ~15 kb apart in a ~20 kb Clr4-Swi6-silenced heterochromatic island flanked by IR-L and IR-R inverted repeats. The cenH element between mat2 and mat3 carries dg/dh-like sequence homologous to centromeric otr and seeds RNAi-dependent silencing. mat1, mat2-P and mat3-M share H1/H2/H3 homology boxes outside the cell-type-specific 'Y' coding sequence; reads covering only H1/H2/H3 multi-map to all three cassettes.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "II",
+      "start": 2128000,
+      "end": 2147000
+    }
+  },
+  "size_bp": 19000,
+  "expected_copy_count": "3 cassettes total (mat1 active + mat2-P + mat3-M silent), all on chrII",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:2667790",
+    "PMID:11459813",
+    "PomBase mat region annotation"
+  ],
+  "confidence": 0.95
+}

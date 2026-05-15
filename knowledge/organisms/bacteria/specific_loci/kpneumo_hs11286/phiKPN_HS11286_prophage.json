@@ -1,0 +1,27 @@
+{
+  "name": "kpneumo_hs11286_phiKPN_HS11286_prophage",
+  "taxonomy_id": "custom",
+  "description": "~45 kb prophage island in HS11286 chromosome; lambda-like siphovirus.",
+  "coordinates": {
+    "GenBank_NC_016845.1": {
+      "chr": "NC_016845.1",
+      "start": 1180000,
+      "end": 1225000
+    }
+  },
+  "size_bp": 45000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PHASTER:doi:10.1093/nar/gkw387",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "lambdoid_siphovirus"
+}

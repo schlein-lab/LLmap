@@ -1,0 +1,36 @@
+{
+  "name": "orangutan_chr4_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Pongo abelii chr4 centromere / pericentromere. Alpha-satellite higher-order repeat (HOR) array; 6-monomer HOR unit (~1026 bp). T2T-resolved alpha-sat array; flanked by ape-lineage PongoSAT satellite blocks. Centromere mapping is HOR-aware; LLmap should refuse to silently collapse cross-species divergence here.",
+  "coordinates": {
+    "Susie_PA": {
+      "chr": "chr4",
+      "start": 44451650,
+      "end": 46403300
+    },
+    "T2T_Pongo": {
+      "chr": "chr4",
+      "start": 44498650,
+      "end": 46450300
+    }
+  },
+  "size_bp": 1951650,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers in 6-mer HOR units, tandemly arrayed over 2.0 Mb",
+  "hor_size_monomers": 6,
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ],
+  "confidence": 0.7
+}

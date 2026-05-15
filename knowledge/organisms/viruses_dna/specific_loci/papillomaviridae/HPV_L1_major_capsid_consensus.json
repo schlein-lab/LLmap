@@ -1,0 +1,34 @@
+{
+  "name": "HPV_L1_major_capsid_consensus",
+  "taxonomy_id": "paralog_family",
+  "virus_type": "dsDNA",
+  "description": "HPV L1 major capsid protein gene, conserved across all papillomavirus types (~30-50 kb genome footprint x ~200 types). The internal MY09/MY11 and GP5+/GP6+ amplicons used in clinical HPV genotyping target conserved L1 stretches. ~70-85% nt identity within alpha-papillomaviruses; PSV-disambig essential for typing mixed infections and for assigning short reads to a single HPV type when multiple types co-infect.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001526.4": {
+      "chr": "NC_001526.4",
+      "start": 5560,
+      "end": 7155
+    },
+    "NCBI_RefSeq_NC_001357.1": {
+      "chr": "NC_001357.1",
+      "start": 5622,
+      "end": 7136
+    }
+  },
+  "size_bp": 1596,
+  "expected_copy_count": "1 per type genome; cross-type homology forces ambiguous mapping for short reads",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "type_disambig_aware": true
+  },
+  "sources": [
+    "doi:10.1099/0022-1317-72-3-571",
+    "doi:10.1093/jnci/87.11.796"
+  ],
+  "confidence": 0.93
+}

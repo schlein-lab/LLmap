@@ -1,0 +1,24 @@
+{
+  "name": "vit-6_chrIV_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "vit-6 single-gene locus on C. elegans chromosome IV. vit-6 (yp115/yp88 class) is the sole non-chrX vitellogenin and is more divergent (~40% identity) from the chrX vit-1..vit-5 cluster. It is processed into two yolk polypeptides (yp115 and yp88). Multi-mapping with the chrX cluster is limited but possible in highly conserved domains.",
+  "coordinates": {
+    "WBcel235": {"chr": "IV", "start": 11800000, "end": 11820000}
+  },
+  "size_bp": 20000,
+  "expected_copy_count": "1 copy",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 15000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:3905822",
+    "WormBase WS285 vit-6"
+  ],
+  "confidence": 0.9
+}

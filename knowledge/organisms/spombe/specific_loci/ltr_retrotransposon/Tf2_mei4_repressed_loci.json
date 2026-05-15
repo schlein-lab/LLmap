@@ -1,0 +1,36 @@
+{
+  "name": "Tf2_mei4_repressed_loci",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Mei4-regulated Tf2 loci in S. pombe. Mei4 is the master transcription factor for middle-meiotic genes and also a Tf2 repressor. The ~13 full-length Tf2 elements plus ~10 solo-LTR-flanked Mei4-dependent meiotic genes form an overlapping regulatory network. This record marks the Tf2 elements that are derepressed in mei4-delta cells.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 4900,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "4900 bp dispersed unit; LTR 350 bp where applicable"
+  },
+  "expected_copy_count": "~13 Mei4-bound full-length Tf2 copies",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:7821730",
+    "PMID:28631714",
+    "PomBase Tf2 and wtf annotations"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chr04_left_telomere",
+  "taxonomy_id": "telomere",
+  "description": "chr04 left-arm telomere (IRGSP-1.0). Plant TTTAGGG tandem repeat; pseudomolecule ends still under-resolved for telomere length.",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr04",
+      "start": 1,
+      "end": 50000
+    }
+  },
+  "size_bp": 49999,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1186/1939-8433-6-4",
+    "doi:10.1038/nature03895"
+  ],
+  "confidence": 0.8,
+  "repeat_unit": "TTTAGGG"
+}

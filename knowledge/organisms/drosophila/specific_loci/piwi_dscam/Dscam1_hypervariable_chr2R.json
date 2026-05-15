@@ -1,0 +1,40 @@
+{
+  "name": "Dscam1_hypervariable_chr2R",
+  "taxonomy_id": "paralog_family",
+  "description": "Dscam1 (Down syndrome cell adhesion molecule 1) on chr2R \u2014 encodes >38,000 protein isoforms by mutually exclusive alternative splicing of 95 variable exons (12 exon-4s, 48 exon-6s, 33 exon-9s, 2 exon-17s). Variable exons are 80-95% identical to each other \u2014 locally a paralog cluster within a single gene. Critical for neuron self-recognition and immune diversity (functional analogue of vertebrate Ig repertoire).",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr2R",
+      "start": 24400000,
+      "end": 24500000
+    }
+  },
+  "size_bp": 100000,
+  "expected_paralogs": [
+    {
+      "name": "Dscam1_exon4_variants",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Dscam1_exon6_variants",
+      "approx_offset_in_locus": 30000
+    },
+    {
+      "name": "Dscam1_exon9_variants",
+      "approx_offset_in_locus": 60000
+    }
+  ],
+  "expected_copy_count": "1 gene locus, 95 alternative cassette exons within",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1016/S0092-8674(00)80878-8"
+  ],
+  "confidence": 0.95
+}

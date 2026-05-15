@@ -1,0 +1,30 @@
+{
+  "name": "rDNA_chrIII_right_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Right-end rDNA tandem array on S. pombe chromosome III. Symmetric counterpart of the left-end array; ~10.4 kb 35S units in tandem. Subject to recombination-mediated copy-number drift and to gene conversion that homogenises units within and between the two arrays.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "III",
+      "start": 2350000,
+      "end": 2452883
+    }
+  },
+  "size_bp": 102883,
+  "expected_copy_count": "~50-75 copies of the 10.4 kb 35S unit in this array (~100-150 copies total across both chrIII arrays)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:11859360",
+    "PomBase rDNA annotation"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Influenza_A_HA_H5",
+  "taxonomy_id": "paralog_family",
+  "description": "Influenza A HA subtype H5. HPAI, zoonotic (H5N1 since 1997; H5N6, H5N8, current H5N1 2.3.4.4b panzootic 2021-).",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002017.1": {
+      "start": 1,
+      "end": 1778
+    }
+  },
+  "size_bp": 1778,
+  "representative_strains": [
+    "A/Goose/Guangdong/1/1996 clade 2.3.4.4b"
+  ],
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza"
+  ],
+  "sources": [
+    "WHO/OIE/FAO H5N1 nomenclature",
+    "doi:10.1146/annurev-virology-100114-055029"
+  ],
+  "confidence": 0.95
+}

@@ -1,0 +1,29 @@
+{
+  "name": "spneumo_tigr4_IS1239_copy1",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS1239 copy 1 of 2 in this genome. 1400 bp IS3-family element; found in some pneumococcal lineages. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS1239 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_003028.3": {
+      "chr": "NC_003028.3",
+      "start": 320000,
+      "end": 321400,
+      "strand": "+"
+    }
+  },
+  "size_bp": 1400,
+  "expected_copy_count": "2 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

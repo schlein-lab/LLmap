@@ -1,0 +1,30 @@
+{
+  "name": "chrI_holocentromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Holocentric CenH3/HCP-3 distributed loading sites on C. elegans chromosome I. Unlike monocentric chromosomes, C. elegans assembles ~700 small CENP-A (HCP-3) domains along each chromosome (median CenH3 patch ~1.5 kb at ~10-50 kb spacing). HCP-3 nucleosomes are anti-correlated with germline transcription and enriched in chromosome arm domains. There is no monomeric satellite consensus for the holocentromere; each site is a non-tandem chromatin mark rather than a defined sequence repeat. Mapping is treated as standard euchromatin with awareness that broad CenH3 ChIP-seq peaks span the whole chromosome.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "I",
+      "start": 0,
+      "end": 15072434
+    }
+  },
+  "size_bp": 15072434,
+  "expected_copy_count": "~700 discrete HCP-3-loaded sites along the chromosome (sequence-non-specific)",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 10000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false,
+    "holocentromere_handling": true
+  },
+  "sources": [
+    "PMID:14534250",
+    "doi:10.1101/gr.227116.117",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.85
+}

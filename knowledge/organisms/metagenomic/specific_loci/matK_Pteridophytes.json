@@ -1,0 +1,31 @@
+{
+  "name": "matK_Pteridophytes",
+  "taxonomy_id": "matK_cp",
+  "marker": "matK",
+  "region_role": "variable_core",
+  "description": "Plastid matK (maturase K, ~1500 bp; barcode window ~800 bp) for plant group Pteridophytes. Ferns + lycophytes. Faster-evolving than rbcL, better species-level resolution. CBOL 2009 paired barcode with rbcL. Allow high mismatch.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_110",
+      "start": 0,
+      "end": 800
+    }
+  },
+  "size_bp": 800,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.35,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "marker": "matK",
+    "plant_group": "Pteridophytes"
+  },
+  "sources": [
+    "doi:10.1073/pnas.0905845106",
+    "BOLD Plants"
+  ],
+  "confidence": 0.9
+}

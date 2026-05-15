@@ -1,0 +1,32 @@
+{
+  "name": "ITS_primer_ITS2",
+  "taxonomy_id": "ITS_fungal",
+  "marker": "ITS",
+  "region_role": "conserved_primer",
+  "description": "Fungal ITS conserved anchor / primer 'ITS2' (length 20 bp). Consensus: GCTGCGTTCTTCATCGATGC. ITS1-ITS2 boundary reverse in 5.8S; White 1990. Conserved across Fungi at sub-1% mismatch; mapper should NOT tolerate high mismatch.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_083",
+      "start": 0,
+      "end": 20
+    }
+  },
+  "size_bp": 20,
+  "mapping_hints": {
+    "expected_unique": "conserved_consensus",
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "primer_seq": "GCTGCGTTCTTCATCGATGC"
+  },
+  "sources": [
+    "doi:10.1111/j.1365-294X.1993.tb00005.x",
+    "White 1990 PCR Protocols (ITS1, ITS2, ITS3, ITS4)",
+    "doi:10.1111/j.1755-0998.2009.02628.x",
+    "UNITE 9.0"
+  ],
+  "confidence": 0.95
+}

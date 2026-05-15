@@ -1,0 +1,33 @@
+{
+  "name": "rDNA_unit_architecture",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Architecture record for the S. pombe ~10.4 kb 35S rDNA unit. Each unit encodes the Pol I 35S pre-rRNA (18S-ITS1-5.8S-ITS2-25S) plus an NTS spacer with ARS-like origin activity. Unlike S. cerevisiae, the S. pombe 5S rRNA genes (~30 copies) are NOT embedded in the rDNA array but are scattered as solo Pol III units across the genome. Tandem unit identity within an array is >99%; arrays expand/contract via unequal sister-chromatid exchange.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "III",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 10400,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "35S Pol I unit (18S-ITS1-5.8S-ITS2-25S, ~7 kb) plus NTS spacer (~3.4 kb); no embedded 5S"
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:11859360"
+  ],
+  "confidence": 0.9
+}

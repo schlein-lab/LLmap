@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-2_spike_furin_cleavage_s1_s2",
+  "taxonomy_id": "custom",
+  "description": "Furin cleavage site PRRAR (aa 681-685) + S1/S2 boundary. P681H (Alpha/Omicron), P681R (Delta). Critical for cell entry. SARS-CoV-1 lacks this motif.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 23593,
+      "end": 23617
+    }
+  },
+  "size_bp": 25,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3"
+  ],
+  "confidence": 0.99
+}

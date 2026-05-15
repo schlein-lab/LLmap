@@ -1,0 +1,28 @@
+{
+  "name": "Lassa_s_intergenic_hairpin",
+  "taxonomy_id": "custom",
+  "description": "Lassa S segment intergenic hairpin.",
+  "virus_type": "ssRNA(-)_ambisense",
+  "coordinates": {
+    "NC_004296.1": {
+      "start": 1640,
+      "end": 1750
+    }
+  },
+  "size_bp": 111,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "NC_004296.1"
+  ],
+  "confidence": 0.92
+}

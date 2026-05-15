@@ -1,0 +1,27 @@
+{
+  "name": "Mst77Y_chrY",
+  "taxonomy_id": "paralog_family",
+  "description": "Drosophila Y-chromosome fertility factor: Mst77Y \u2014 Y-linked Mst77 paralog (autosomal Mst77F duplicated to Y); spermatid chromatin protein. Y-linked genes show retroposition signatures from autosomal ancestors; most cluster in the ~3.5 Mb assembled portion of chrY. Highly testis-restricted expression.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrY",
+      "start": 1400000,
+      "end": 1500000
+    }
+  },
+  "size_bp": 100000,
+  "expected_copy_count": "1 per Y haplotype",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature01032",
+    "doi:10.1534/genetics.118.301631"
+  ],
+  "confidence": 0.75
+}

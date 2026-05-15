@@ -1,0 +1,36 @@
+{
+  "name": "SARS-CoV-2_Omicron_BA.2",
+  "taxonomy_id": "paralog_family",
+  "description": "Omicron BA.2 (stealth). Lost \u039469-70; gained T19I, L24-, \u039425-27, V213G; shared core RBD changes. Outcompeted BA.1 globally Feb-Apr 2022.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 1,
+      "end": 29903
+    }
+  },
+  "size_bp": 29903,
+  "expected_paralogs": [],
+  "lineage_defining_mutations": [
+    "T19I",
+    "V213G",
+    "S371F"
+  ],
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NextStrain Nextclade",
+    "Pango lineage designation",
+    "doi:10.1038/s41564-020-0770-5"
+  ],
+  "confidence": 0.95
+}

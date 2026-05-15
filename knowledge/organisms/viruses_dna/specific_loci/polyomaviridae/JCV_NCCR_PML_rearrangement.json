@@ -1,0 +1,31 @@
+{
+  "name": "JCV_NCCR_PML_rearrangement",
+  "taxonomy_id": "custom",
+  "custom_subtype": "regulatory_rearrangement",
+  "virus_type": "dsDNA",
+  "description": "JC virus PML-type NCCR rearrangement: in PML brain tissue, the JCV NCCR exists as two tandemly-duplicated 98-bp blocks (Mad-1 prototype) with deletion of the archetype-specific sequences. The duplication enhances JCV early-gene expression and is required for productive infection of oligodendrocytes. Archetype JCV in urine carries a single 98-bp block plus the deleted-in-PML sequences and is poorly replicative in glia. Detection of rearranged NCCR in CSF or brain biopsy is highly specific for PML.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001699.1": {
+      "chr": "NC_001699.1",
+      "start": 4900,
+      "end": 5130
+    }
+  },
+  "size_bp": 230,
+  "expected_copy_count": "1 NCCR per genome in either archetype or PML-type configuration",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "rearrangement_aware": true,
+    "structural_variant_aware": true
+  },
+  "sources": [
+    "doi:10.1006/viro.2000.0594",
+    "doi:10.1099/vir.0.81399-0"
+  ],
+  "confidence": 0.91
+}

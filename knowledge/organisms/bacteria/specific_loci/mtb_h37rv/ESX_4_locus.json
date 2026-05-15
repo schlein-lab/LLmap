@@ -1,0 +1,27 @@
+{
+  "name": "mtb_h37rv_ESX_4_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "ESX-4 type VII secretion system. Ancestral T7SS; minimal. ESX systems share paralogous core components (eccB/eccC/eccD/mycP) with >70% identity; cross-locus mismapping is common.",
+  "coordinates": {
+    "GenBank_NC_000962.3": {
+      "chr": "NC_000962.3",
+      "start": 3450000,
+      "end": 3470000
+    }
+  },
+  "size_bp": 20000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/31159",
+    "doi:10.1038/nrmicro2939"
+  ],
+  "confidence": 0.9,
+  "system": "T7SS_paralog"
+}

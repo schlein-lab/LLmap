@@ -1,0 +1,86 @@
+{
+  "name": "AdV40_full_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome",
+  "virus_type": "dsDNA",
+  "description": "AdV40 (species F) complete linear dsDNA genome ~34214 bp with covalently bound terminal protein (TP, pTP-derived) at each 5' end and inverted terminal repeats (ITRs) at the ends. Tropism: enteric, paediatric gastroenteritis. Genome encodes E1A, E1B, E2A (DBP), E2B (pTP, AdPol), E3 (immune modulation), E4 (mRNA export), L1-L5 late mRNAs (capsid: hexon II, penton III, fiber IV) and VA RNAs (RNA-pol-III non-coding). Replication uses protein-priming by pTP-dCMP at the ITR origin; no host primer involved.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001454.1": {
+      "chr": "NC_001454.1",
+      "start": 1,
+      "end": 34214
+    }
+  },
+  "size_bp": 34214,
+  "circular": false,
+  "expected_paralogs": [
+    {
+      "name": "ITR_left",
+      "approx_offset_in_locus": 1
+    },
+    {
+      "name": "E1A",
+      "approx_offset_in_locus": 500
+    },
+    {
+      "name": "E1B",
+      "approx_offset_in_locus": 1700
+    },
+    {
+      "name": "pIX",
+      "approx_offset_in_locus": 3500
+    },
+    {
+      "name": "E2A_DBP",
+      "approx_offset_in_locus": 22000
+    },
+    {
+      "name": "E2B_pTP_Pol",
+      "approx_offset_in_locus": 14000
+    },
+    {
+      "name": "E3_immune_mod",
+      "approx_offset_in_locus": 27000
+    },
+    {
+      "name": "E4",
+      "approx_offset_in_locus": 32000
+    },
+    {
+      "name": "MLP_major_late_promoter",
+      "approx_offset_in_locus": 6000
+    },
+    {
+      "name": "L1_VA_RNAs",
+      "approx_offset_in_locus": 10500
+    },
+    {
+      "name": "hexon_L3_II",
+      "approx_offset_in_locus": 18000
+    },
+    {
+      "name": "fiber_L5_IV",
+      "approx_offset_in_locus": 31000
+    },
+    {
+      "name": "ITR_right",
+      "approx_offset_in_locus": 34114
+    }
+  ],
+  "expected_copy_count": "1 input genome per virion; 10^4-10^5 progeny genomes per productive cycle",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "itr_aware": true
+  },
+  "sources": [
+    "ICTV Adenoviridae 2022",
+    "NCBI Virus RefSeq NC_001454.1",
+    "doi:10.1099/vir.0.19497-0"
+  ],
+  "confidence": 0.93
+}

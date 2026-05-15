@@ -1,0 +1,48 @@
+{
+  "name": "orangutan_chrY_RBMY_amplicon",
+  "taxonomy_id": "amplicon_y",
+  "description": "Pongo abelii chrY RBMY amplicon (AZFb). AmpliconY copy structure differs strongly between great apes; orangutan estimated copies: 7. Substrate for intrachromosomal NAHR and rapid Y-lineage turnover (Hughes/Page 2010, T2T-ape 2024).",
+  "coordinates": {
+    "Susie_PA": {
+      "chr": "chrY",
+      "start": 20836769,
+      "end": 21336769
+    },
+    "T2T_Pongo": {
+      "chr": "chrY",
+      "start": 20883769,
+      "end": 21383769
+    }
+  },
+  "size_bp": 500000,
+  "estimated_copies": 7,
+  "architecture": {
+    "type": "tandem_amplicon",
+    "BP_mediating_SDs": [
+      "RBMY_proximal_arm",
+      "RBMY_distal_arm"
+    ],
+    "homology_percent": 99.7,
+    "copy_number_in_population": "variable_CNV",
+    "internal_structure": "Y ampliconic family RBMY; intra-Y NAHR via arm-to-arm gene-conversion; copy number under strong meiotic-drive-like turnover."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "ape Y spermatogenic phenotypes (analogous to human AZFa/b/c)"
+  ],
+  "confidence": 0.6,
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Tf2_full_length_element_architecture",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Architecture record for a full-length Tf2 element. Each ~4.9 kb element consists of 5' LTR (~350 bp) - 5' UTR with PBS - gag-pol polyprotein ORF (encoding capsid, protease, RT, integrase) - 3' UTR with PPT - 3' LTR (~350 bp). Two LTRs are >99% identical at the time of insertion (used for age estimation by LTR divergence). Full-length elements are the source of solo-LTR recombination products and provide the homology that drives Tf2 family expansion.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 4900,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "4900 bp dispersed unit; LTR 350 bp where applicable"
+  },
+  "expected_copy_count": "13 full-length Tf2 elements",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:7821730",
+    "PMID:28631714",
+    "PomBase Tf2 and wtf annotations"
+  ],
+  "confidence": 0.85
+}

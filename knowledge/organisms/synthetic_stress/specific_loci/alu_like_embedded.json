@@ -1,0 +1,29 @@
+{
+  "name": "alu_like_embedded",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "dispersed_repeat",
+  "description": "300 bp Alu-like dispersed repeat consensus embedded at 100 random positions across a 1 Mb unique scaffold. Models SINE/LINE dispersal. Stresses MEM filtering: every Alu position will tie.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_083",
+      "start": 0,
+      "end": 1000000
+    }
+  },
+  "size_bp": 1000000,
+  "mapping_hints": {
+    "expected_unique": "scaffold_only",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "dispersed_copies": 100,
+    "unit_length": 300
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

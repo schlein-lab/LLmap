@@ -1,0 +1,34 @@
+{
+  "name": "West_Nile_virus_reference",
+  "taxonomy_id": "custom",
+  "description": "West Nile virus reference (NC_009942.1, NY99). 11029 nt ssRNA(+) flavivirus. Lineages 1 (NY99, Europe, Africa, India) and 2 (sub-Saharan Africa, increasingly Europe). Vector: Culex mosquitoes. Bird amplification, mammal incidental.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_009942.1": {
+      "start": 1,
+      "end": 11029
+    }
+  },
+  "size_bp": 11029,
+  "lineages": [
+    "lineage_1a_NY99",
+    "lineage_2"
+  ],
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "West_Nile_fever",
+    "West_Nile_neuroinvasive_disease"
+  ],
+  "sources": [
+    "NC_009942.1",
+    "doi:10.1126/science.286.5448.2333"
+  ],
+  "confidence": 0.98
+}

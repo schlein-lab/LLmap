@@ -1,0 +1,51 @@
+{
+  "name": "cyp25A_chrIII_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "cyp-25A subfamily tandem cluster on chromosome III; five paralogs.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "III",
+      "start": 6000000,
+      "end": 6100000
+    }
+  },
+  "size_bp": 100000,
+  "expected_paralogs": [
+    {
+      "name": "cyp-25A1",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "cyp-25A2",
+      "approx_offset_in_locus": 15000
+    },
+    {
+      "name": "cyp-25A3",
+      "approx_offset_in_locus": 30000
+    },
+    {
+      "name": "cyp-25A4",
+      "approx_offset_in_locus": 45000
+    },
+    {
+      "name": "cyp-25A5",
+      "approx_offset_in_locus": 60000
+    }
+  ],
+  "expected_copy_count": "5 cyp-25A paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-9-185",
+    "WormBase WS285 cyp gene family",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.8
+}

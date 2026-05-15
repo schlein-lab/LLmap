@@ -1,0 +1,29 @@
+{
+  "name": "HPV16_E7_oncogene",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA",
+  "description": "HPV16 E7 oncoprotein-coding region. E7 binds RB1 (and p107/p130) via its LxCxE motif and triggers RB1 proteasomal degradation, releasing E2F transcription factors and forcing S-phase entry. Contains a CR1 region, an LxCxE pocket-binding motif (CR2), and a C-terminal CR3 zinc-finger domain. E7 from high-risk types binds RB with markedly higher affinity than from low-risk types. Together with E6, E7 is the minimal cassette retained on integration and is the principal driver of cervical carcinogenesis. PSV pattern within CR2/CR3 is the basis for type-specific PCR typing.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001526.4": {
+      "chr": "NC_001526.4",
+      "start": 562,
+      "end": 858
+    }
+  },
+  "size_bp": 297,
+  "expected_copy_count": "1 per episomal genome; multiple integrated copies in carcinoma",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "type_disambig_aware": true
+  },
+  "sources": [
+    "doi:10.1126/science.2537532",
+    "doi:10.1038/nrc798"
+  ],
+  "confidence": 0.93
+}

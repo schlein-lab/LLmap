@@ -1,0 +1,33 @@
+{
+  "name": "chr5q_olfactory_OR52",
+  "taxonomy_id": "paralog_family",
+  "description": "Rat OR subfamily OR52 on chr5q. Subset of ~150-gene chr5q olfactory mega-cluster. Members 70-90% identical; recent tandem duplicates >95%.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr5",
+      "start": 103000000,
+      "end": 103150000
+    }
+  },
+  "size_bp": 150000,
+  "expected_paralogs": [
+    {
+      "name": "OR52_member",
+      "approx_offset_in_locus": 0
+    }
+  ],
+  "expected_copy_count": "5-30 members per subfamily",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "RGD",
+    "doi:10.1186/1471-2148-9-196"
+  ],
+  "confidence": 0.7
+}

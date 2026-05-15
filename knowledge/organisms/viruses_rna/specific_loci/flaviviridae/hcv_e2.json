@@ -1,0 +1,29 @@
+{
+  "name": "HCV_e2",
+  "taxonomy_id": "custom",
+  "description": "E2 envelope glycoprotein. Contains HVR1 + HVR2.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 1491,
+      "end": 2579
+    }
+  },
+  "size_bp": 1089,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "NC_004102.1",
+    "doi:10.1002/hep.27259"
+  ],
+  "confidence": 0.93
+}

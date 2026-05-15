@@ -1,0 +1,25 @@
+{
+  "name": "MSP_chrIV_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Major Sperm Protein (MSP) tandem-duplicated cluster on C. elegans chromosome IV. MSP is a ~14 kDa amoeboid-locomotion cytoskeletal protein expressed exclusively in spermatocytes. The genome encodes 28-40 nearly identical msp paralogs (msp-3, msp-19, msp-31, msp-36, msp-38, msp-40, msp-45, msp-49, msp-50, msp-51, msp-53, msp-55, msp-56, msp-57, msp-59, msp-63, msp-64, msp-65, msp-66, msp-74, msp-76, msp-77, msp-78, msp-79, msp-81, msp-113, msp-142, msp-152) distributed primarily in a tandem block on chromosome IV around 7.1-7.6 Mb plus a secondary cluster on chrII. Paralogs share >95% nucleotide identity in the coding region; the most recent expansions are essentially indistinguishable at the read level.",
+  "coordinates": {
+    "WBcel235": {"chr": "IV", "start": 7100000, "end": 7600000}
+  },
+  "size_bp": 500000,
+  "expected_copy_count": "~28-40 msp paralogs total; >20 on chrIV in this cluster",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:9851916",
+    "doi:10.1126/science.282.5396.2012",
+    "WormBase WS285 msp gene family"
+  ],
+  "confidence": 0.85
+}

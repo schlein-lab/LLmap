@@ -1,0 +1,28 @@
+{
+  "name": "cenH_element_mat_locus",
+  "taxonomy_id": "tandem_repeat",
+  "description": "cenH element within the S. pombe silent mat locus on chromosome II. ~4.3 kb sequence between mat2-P and mat3-M that is homologous to the centromeric dg/dh repeats. cenH is the seed for RNAi-Clr4-dependent H3K9 methylation across the mat silent island; reads from cenH multi-map to all otr arms of cen1/cen2/cen3.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "II",
+      "start": 2134000,
+      "end": 2138300
+    }
+  },
+  "size_bp": 4300,
+  "expected_copy_count": "1 cenH copy in mat locus + homology to dg/dh in all three otrs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:11498586"
+  ],
+  "confidence": 0.9
+}

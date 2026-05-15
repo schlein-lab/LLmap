@@ -1,0 +1,32 @@
+{
+  "name": "cruciform_flanked_unique_core",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "palindrome",
+  "description": "Inverted-repeat 'arms' (2x 500 bp, perfect reverse complement) flanking a unique 1 kb core. Cruciform-prone secondary structure with a unique anchor inside. Stresses mapper to resolve the unique core under ambiguous palindromic flanks.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_057",
+      "start": 0,
+      "end": 2000
+    }
+  },
+  "size_bp": 2000,
+  "mapping_hints": {
+    "expected_unique": "core_only",
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "unique_core_offset": [
+      500,
+      1500
+    ],
+    "cruciform_prone": true
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

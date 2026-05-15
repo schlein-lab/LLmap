@@ -1,0 +1,26 @@
+{
+  "name": "h61_chr4_proximal",
+  "taxonomy_id": "centromere_like",
+  "description": "Drosophila pericentric heterochromatin sub-block: h61 \u2014 chr4 proximal heterochromatin. Catalogued from Hoskins 2015 heterochromatin sequence release. Mix of simple satellites, middle-repetitive sequences (Dm88, BoBo, Bari) and ~250 protein-coding genes embedded in the heterochromatin (the so-called 'heterochromatic genes').",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr4",
+      "start": 0,
+      "end": 200000
+    }
+  },
+  "size_bp": 200000,
+  "expected_copy_count": "satellite copies 10^3-10^5; protein-coding genes 0-20 per block",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 50000,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1534/genetics.118.301631"
+  ],
+  "confidence": 0.7
+}

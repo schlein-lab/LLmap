@@ -1,0 +1,28 @@
+{
+  "name": "Lassa_s_np",
+  "taxonomy_id": "custom",
+  "description": "Lassa NP nucleoprotein. IFN antagonist (3'-5' exonuclease activity).",
+  "virus_type": "ssRNA(-)_ambisense",
+  "coordinates": {
+    "NC_004296.1": {
+      "start": 1,
+      "end": 1707
+    }
+  },
+  "size_bp": 1707,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "NC_004296.1"
+  ],
+  "confidence": 0.96
+}

@@ -1,0 +1,29 @@
+{
+  "name": "cyp_family_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Architectural record for the C. elegans cytochrome P450 superfamily. 79-86 cyp paralogs spread across 16 families (cyp-13, cyp-14, cyp-23, cyp-25, cyp-29, cyp-31, cyp-32, cyp-33, cyp-34, cyp-35, cyp-36, cyp-37, cyp-42, cyp-43, cyp-44, cyp-49) with the largest tandem clusters in cyp-13A, cyp-33C, cyp-34A, cyp-35A on chrV, chrII, chrI. Paralog identities range 65-98%; closely related copies in the same subfamily are PSV-disambiguation candidates.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "I,II,III,IV,V,X",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 0,
+  "expected_copy_count": "~80 cyp paralogs genome-wide",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-9-185",
+    "WormBase WS285 cyp gene family",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.8
+}

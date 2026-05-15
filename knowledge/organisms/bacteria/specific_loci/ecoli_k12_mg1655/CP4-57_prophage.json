@@ -1,0 +1,27 @@
+{
+  "name": "ecoli_k12_mg1655_CP4-57_prophage",
+  "taxonomy_id": "custom",
+  "description": "CP4-57 cryptic prophage. P4-like; integrated near ssrA tmRNA gene. ~24 kb.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 2755050,
+      "end": 2778950
+    }
+  },
+  "size_bp": 23900,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "PHASTER:doi:10.1093/nar/gkw387"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "P4-like"
+}

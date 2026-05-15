@@ -1,0 +1,28 @@
+{
+  "name": "Tai_Forest_ebolavirus",
+  "taxonomy_id": "custom",
+  "description": "Ta\u00ef Forest ebolavirus. Single non-fatal human case 1994 (C\u00f4te d'Ivoire).",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_014372.1": {
+      "start": 1,
+      "end": 18935
+    }
+  },
+  "size_bp": 18935,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Filovirus_hemorrhagic_fever"
+  ],
+  "sources": [
+    "NC_014372.1"
+  ],
+  "confidence": 0.97
+}

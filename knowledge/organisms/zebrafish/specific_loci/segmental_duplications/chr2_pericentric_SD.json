@@ -1,0 +1,28 @@
+{
+  "name": "chr2_pericentric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish segmental duplication / special region: chr2 pericentric segmental duplication block, gene-poor, repeat-rich. These regions are undercollapsed in GRCz11 and frequently produce ambiguous read placements; reads here should always be reported multi-position.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr2",
+      "start": 24000000,
+      "end": 30000000
+    }
+  },
+  "size_bp": 6000000,
+  "expected_copy_count": "variable (population CNV)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1371/journal.pgen.1004174"
+  ],
+  "confidence": 0.65
+}

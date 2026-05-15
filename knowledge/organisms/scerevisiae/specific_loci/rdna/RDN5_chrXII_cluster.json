@@ -1,0 +1,29 @@
+{
+  "name": "RDN5_chrXII_cluster",
+  "taxonomy_id": "tandem_repeat",
+  "description": "5S ribosomal RNA gene copies embedded in the chrXII RDN1 array. Each ~9.1 kb 35S repeat unit contains one 5S (RDN5) gene transcribed divergently by Pol III in the NTS1/NTS2 region. Copy number tracks the 35S array (~100-200). Sequence-level paralogs to RDN5 exist as solo copies elsewhere but the chrXII array dominates expression.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "chrXII",
+      "start": 451575,
+      "end": 468931
+    }
+  },
+  "size_bp": 121,
+  "expected_copy_count": "~100-200 copies, one per 35S unit",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "SGD RDN5"
+  ],
+  "confidence": 0.9
+}

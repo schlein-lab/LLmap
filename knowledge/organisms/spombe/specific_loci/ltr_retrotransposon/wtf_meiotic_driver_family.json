@@ -1,0 +1,36 @@
+{
+  "name": "wtf_meiotic_driver_family",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "wtf meiotic driver gene family in S. pombe. ~25 wtf paralogs scattered across all three chromosomes encoding poison/antidote selfish elements that distort meiotic segregation in heterozygous diploids. Paralog identity 60-99%; recent wtf duplications are mapping-difficult on short reads. Not strictly LTR-class but a tandem-paralog family with similar mapping characteristics, included here as the second large dispersed paralog family in S. pombe.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 2000,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "2000 bp dispersed unit; LTR 0 bp where applicable"
+  },
+  "expected_copy_count": "~25 wtf paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:7821730",
+    "PMID:28631714",
+    "PomBase Tf2 and wtf annotations"
+  ],
+  "confidence": 0.85
+}

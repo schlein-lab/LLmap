@@ -1,0 +1,29 @@
+{
+  "name": "ecoli_k12_mg1655_IS1_copy5",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS1 copy 5 of 8 in this genome. 768 bp IS1 family; flanked by 9 bp inverted repeats; uses insAB' frameshift. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS1 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 564279,
+      "end": 565047,
+      "strand": "+"
+    }
+  },
+  "size_bp": 768,
+  "expected_copy_count": "8 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

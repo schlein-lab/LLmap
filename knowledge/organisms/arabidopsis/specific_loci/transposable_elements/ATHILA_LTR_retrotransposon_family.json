@@ -1,0 +1,27 @@
+{
+  "name": "ATHILA_LTR_retrotransposon_family",
+  "taxonomy_id": "tandem_repeat",
+  "description": "ATHILA Ty3/Gypsy LTR retrotransposon family \u2014 major component of arabidopsis pericentromeres (Wright 2003).",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr1",
+      "start": 14500000,
+      "end": 16000000
+    }
+  },
+  "size_bp": 1500000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nrg2165"
+  ],
+  "confidence": 0.7,
+  "repeat_class": "transposable_element"
+}

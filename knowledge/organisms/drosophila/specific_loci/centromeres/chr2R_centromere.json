@@ -1,0 +1,28 @@
+{
+  "name": "chr2R_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Drosophila melanogaster centromere/pericentric heterochromatin block: chr2R proximal heterochromatin h40-h46. Hosts Responder (Rsp) \u2014 target of segregation distorter SD \u2014 at h41, plus 42AB piRNA cluster nearby and dodeca satellite at h43.. Drosophila centromeres are built from heterogeneous islands of satellites (359-bp, dodeca, AAGAG, AATAT) interspersed with retrotransposon insertions; no canonical higher-order alpha-satellite-like structure. Most of the proximal heterochromatin is assembled only as 'Het' contigs in BDGP6.46, not anchored to the euchromatic arm assembly.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr2R",
+      "start": 0,
+      "end": 1500000
+    }
+  },
+  "size_bp": 1500000,
+  "expected_copy_count": "mostly satellite tandem repeats + dispersed TEs; centromere proper is ~420 kb of complex DNA (Sun et al. 2003)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 40000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1038/nature01001",
+    "doi:10.1101/cshperspect.a017780"
+  ],
+  "confidence": 0.7
+}

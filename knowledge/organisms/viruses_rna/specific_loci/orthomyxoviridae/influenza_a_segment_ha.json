@@ -1,0 +1,31 @@
+{
+  "name": "Influenza_A_segment_HA",
+  "taxonomy_id": "custom",
+  "description": "HA segment (haemagglutinin). 16+ subtypes (H1-H18). Cleavage site monobasic/polybasic determines tropism + virulence.",
+  "virus_type": "ssRNA(-)",
+  "segmented": true,
+  "coordinates": {
+    "NC_002017.1": {
+      "start": 1,
+      "end": 1778
+    }
+  },
+  "size_bp": 1778,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza"
+  ],
+  "sources": [
+    "NC_002017.1",
+    "WHO influenza nomenclature",
+    "doi:10.1016/S0140-6736(17)33293-2"
+  ],
+  "confidence": 0.99
+}

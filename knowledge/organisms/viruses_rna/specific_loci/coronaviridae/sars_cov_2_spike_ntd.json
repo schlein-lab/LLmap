@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-2_spike_ntd",
+  "taxonomy_id": "custom",
+  "description": "Spike N-terminal domain (NTD, aa 14-305). NTD supersite of antibody escape (\u039469-70, \u0394144, \u0394242-244, Y145H). Frequent recurrent deletions.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 21599,
+      "end": 22432
+    }
+  },
+  "size_bp": 834,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3"
+  ],
+  "confidence": 0.95
+}

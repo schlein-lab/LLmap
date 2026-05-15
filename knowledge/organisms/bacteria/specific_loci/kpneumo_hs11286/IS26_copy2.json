@@ -1,0 +1,29 @@
+{
+  "name": "kpneumo_hs11286_IS26_copy2",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS26 copy 2 of 4 in this genome. 820 bp IS6-family element; major driver of antibiotic-resistance plasmid rearrangements; tandem IS26 builds composite transposons. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS26 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_016845.1": {
+      "chr": "NC_016845.1",
+      "start": 4602000,
+      "end": 4602820,
+      "strand": "-"
+    }
+  },
+  "size_bp": 820,
+  "expected_copy_count": "4 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

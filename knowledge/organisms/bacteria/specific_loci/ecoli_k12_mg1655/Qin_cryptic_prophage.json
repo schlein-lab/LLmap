@@ -1,0 +1,27 @@
+{
+  "name": "ecoli_k12_mg1655_Qin_cryptic_prophage",
+  "taxonomy_id": "custom",
+  "description": "Qin (Kim) cryptic prophage; ~19 kb. Contains relBE-like and dicB cell-division inhibitor. Lambda-like architecture.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 1631628,
+      "end": 1650328
+    }
+  },
+  "size_bp": 18700,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "PHASTER:doi:10.1093/nar/gkw387"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "lambdoid"
+}

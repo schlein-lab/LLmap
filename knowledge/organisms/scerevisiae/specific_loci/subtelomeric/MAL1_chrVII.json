@@ -1,0 +1,29 @@
+{
+  "name": "MAL1_chrVII",
+  "taxonomy_id": "paralog_family",
+  "description": "MAL1 locus in chrVII subtelomere; encodes MalR transcription factor (MAL13), maltose permease (MAL11/AGT1), maltase (MAL12). MAL loci are tripartite (regulator + transporter + maltase); paralogs at >90% identity require PSVs.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "chrVII",
+      "start": 1080000,
+      "end": 1088000
+    }
+  },
+  "size_bp": 8000,
+  "expected_copy_count": "1 paralog within MAL family (5 paralogs, strain-variable)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:7905823",
+    "SGD MAL family"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,30 @@
+{
+  "name": "plant_primer_matK_1326R",
+  "taxonomy_id": "plant_barcode",
+  "marker": "matK",
+  "region_role": "conserved_primer",
+  "description": "Plant barcoding primer 'matK_1326R' (length 22 bp). Consensus: TCTAGCACACGAAAGTCGAAGT. matK reverse; Cuenoud 2002. Conserved across the targeted range; mapper should NOT tolerate high mismatch.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_116",
+      "start": 0,
+      "end": 22
+    }
+  },
+  "size_bp": 22,
+  "mapping_hints": {
+    "expected_unique": "conserved_consensus",
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "primer_seq": "TCTAGCACACGAAAGTCGAAGT"
+  },
+  "sources": [
+    "CBOL Plant Working Group 2009",
+    "doi:10.1093/nar/gkl938"
+  ],
+  "confidence": 0.95
+}

@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-2_orf1a",
+  "taxonomy_id": "custom",
+  "description": "ORF1a polyprotein (pp1a): nsp1-nsp11. Contains main protease (nsp5, Mpro/3CLpro) and PLpro (nsp3). Highly conserved.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 266,
+      "end": 13468
+    }
+  },
+  "size_bp": 13203,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3"
+  ],
+  "confidence": 0.98
+}

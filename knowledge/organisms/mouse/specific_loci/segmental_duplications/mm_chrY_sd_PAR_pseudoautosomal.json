@@ -1,0 +1,43 @@
+{
+  "name": "mm_chrY_sd_PAR_pseudoautosomal",
+  "taxonomy_id": "paralog_family",
+  "description": "Segmental duplication block on chrY (PAR_pseudoautosomal). Mean identity 99.9% across 60 kb tiles. PAR shared with chrX.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chrY",
+      "start": 89500000,
+      "end": 91400000
+    }
+  },
+  "size_bp": 1900000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "segmental_duplication",
+    "BP_mediating_SDs": [
+      "chrY_PAR_pseudoautosomal_SD"
+    ],
+    "homology_percent": 99.9,
+    "sd_length_kb": 60,
+    "internal_structure": "PAR shared with chrX",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "UCSC genomicSuperDups mm39",
+    "She et al. 2008 (PMID:18421352)"
+  ]
+}

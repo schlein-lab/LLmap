@@ -1,0 +1,29 @@
+{
+  "name": "igh_locus_chr12",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish IGH locus on chr12. Contains VH (~40 functional), DH, JH, then C\u03bc (IGHM), C\u03b4 (IGHD), C\u03b6 (IGHZ \u2014 teleost-specific isotype, dimeric). No IgG, IgA, IgE \u2014 these mammalian isotypes evolved after divergence.. Zebrafish Ig isotypes (IgM/IgD/IgZ) differ from mammalian. Intra-cluster paralog identity 70-95% in V segments; PSVs are essential for correct V-gene assignment.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr12",
+      "start": 26700000,
+      "end": 27500000
+    }
+  },
+  "size_bp": 800000,
+  "expected_copy_count": "1 locus, VDJ-rearranged per B cell; ~40-50 VH/VL gene segments",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1073/pnas.0509720102",
+    "doi:10.1146/annurev-immunol-031210-101331"
+  ],
+  "confidence": 0.85
+}

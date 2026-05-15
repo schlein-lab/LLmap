@@ -1,0 +1,31 @@
+{
+  "name": "Vaccinia_hairpin_termini",
+  "taxonomy_id": "custom",
+  "custom_subtype": "hairpin_terminus",
+  "virus_type": "dsDNA",
+  "description": "Vaccinia virus covalently-closed hairpin termini: ~104-nt AT-rich, incompletely-base-paired hairpin structures that seal each end of the linear dsDNA genome. Exists as two sequence isomers ('flip' and 'flop' / forms A and B) that differ by an inversion of a 60-bp tract \u2014 both isomers are present in equimolar amounts in virion DNA. During replication the hairpin is resolved at concatemeric junctions by the viral A22R holliday-junction resolvase. The hairpin is the substrate for telomere-like end maintenance and a major mapping challenge \u2014 short reads spanning the hairpin appear as palindromic 'self-mapping' artefacts; long-read mapping with explicit hairpin-aware extension is required.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_006998.1": {
+      "chr": "NC_006998.1",
+      "start": 1,
+      "end": 104
+    }
+  },
+  "size_bp": 104,
+  "expected_copy_count": "2 hairpins per linear genome (one at each terminus) in 1:1 flip:flop isomer ratio",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "hairpin_terminus_aware": true,
+    "isomer_aware": true
+  },
+  "sources": [
+    "doi:10.1016/0092-8674(82)90031-8",
+    "doi:10.1128/JVI.61.11.3499-3504.1987"
+  ],
+  "confidence": 0.9
+}

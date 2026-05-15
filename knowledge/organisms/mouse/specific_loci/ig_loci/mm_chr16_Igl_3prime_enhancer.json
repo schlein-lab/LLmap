@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr16_Igl_3prime_enhancer",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse Ig lambda: Igl 3' enhancer. Small locus, ~5% of B-cell light chains.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr16",
+      "start": 19340000,
+      "end": 19343000
+    }
+  },
+  "size_bp": 3000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "constant_region_gene",
+    "BP_mediating_SDs": [
+      "Igl_3prime_enhancer"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 3,
+    "internal_structure": "Igl 3' enhancer",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "IMGT mouse Igl",
+    "Sanchez 1990"
+  ]
+}

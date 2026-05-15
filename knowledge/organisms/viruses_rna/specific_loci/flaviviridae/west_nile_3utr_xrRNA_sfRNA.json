@@ -1,0 +1,29 @@
+{
+  "name": "WNV_3utr_xrRNA_sfRNA",
+  "taxonomy_id": "custom",
+  "description": "WNV 3' UTR \u2014 origin of the concept of flavivirus sfRNA (Pijlman 2008). xrRNA structures stall Xrn1; sfRNA inhibits IFN.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_009942.1": {
+      "start": 10589,
+      "end": 11029
+    }
+  },
+  "size_bp": 441,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "West_Nile_disease"
+  ],
+  "sources": [
+    "NC_009942.1",
+    "doi:10.1016/j.chom.2008.10.007"
+  ],
+  "confidence": 0.97
+}

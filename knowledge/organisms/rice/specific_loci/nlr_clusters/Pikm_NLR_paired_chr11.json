@@ -1,0 +1,27 @@
+{
+  "name": "Pikm_NLR_paired_chr11",
+  "taxonomy_id": "paralog_family",
+  "description": "Pikm head-to-head NLR pair Pikm-1/Pikm-2 (Ashikawa 2008).",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr11",
+      "start": 27500000,
+      "end": 27580000
+    }
+  },
+  "size_bp": 80000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1111/j.1364-3703.2009.00547.x"
+  ],
+  "confidence": 0.8,
+  "repeat_class": "NB-LRR"
+}

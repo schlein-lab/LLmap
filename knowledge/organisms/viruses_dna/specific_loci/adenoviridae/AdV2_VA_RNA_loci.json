@@ -1,0 +1,40 @@
+{
+  "name": "AdV2_VA_RNA_loci",
+  "taxonomy_id": "custom",
+  "custom_subtype": "non_coding_rna",
+  "virus_type": "dsDNA",
+  "description": "AdV2 virus-associated RNAs (VA RNAs): RNA polymerase III transcripts (~160 nt) in the L1 region. Species C (Ad2/Ad5) encode VA-I and VA-II; species F (Ad40/41) encode a single VA-I-like RNA. VA RNAs form stable hairpins that bind and inhibit PKR (eIF2\u03b1 kinase), preventing antiviral translation shutdown. EBV EBERs and KSHV PAN are functional analogues. VAs are the most abundant RNAs in late-stage adenovirus-infected cells (~10^8 per cell) and define the AdV ncRNA mapping fingerprint.",
+  "coordinates": {
+    "NCBI_RefSeq_AC_000007.1": {
+      "chr": "AC_000007.1",
+      "start": 10500,
+      "end": 11400
+    }
+  },
+  "size_bp": 900,
+  "expected_paralogs": [
+    {
+      "name": "VA_I",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "VA_II",
+      "approx_offset_in_locus": 700
+    }
+  ],
+  "expected_copy_count": "1-2 VA loci per genome depending on species",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.1,
+    "max_occ": 6000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "hairpin_structure": true
+  },
+  "sources": [
+    "doi:10.1101/cshperspect.a013300",
+    "doi:10.1038/nrm2538"
+  ],
+  "confidence": 0.92
+}

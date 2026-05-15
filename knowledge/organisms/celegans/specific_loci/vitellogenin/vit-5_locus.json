@@ -1,0 +1,28 @@
+{
+  "name": "vit-5_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "vit-5 paralog on chrX. Most-recently duplicated vitellogenin paralog; sister of vit-3 and vit-4.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "X",
+      "start": 11265000,
+      "end": 11271000
+    }
+  },
+  "size_bp": 6000,
+  "expected_copy_count": "1 per haploid genome (part of vit-1..vit-5 cluster)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:3905822",
+    "WormBase WS285"
+  ],
+  "confidence": 0.85
+}

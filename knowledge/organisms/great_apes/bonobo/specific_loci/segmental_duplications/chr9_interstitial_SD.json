@@ -1,0 +1,51 @@
+{
+  "name": "bonobo_chr9_interstitial_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Pan paniscus chr9 interstitial segmental-duplication block from Bailey-style great-ape SD-DB. Interstitial SD modules with 10-200 kb duplicons at 93-99% intra-genome identity; flanks of NAHR substrate documented in Marques-Bonet 2009 / Sudmant 2013.",
+  "coordinates": {
+    "T2T_Pan_paniscus": {
+      "chr": "chr9",
+      "start": 61812732,
+      "end": 62105464
+    }
+  },
+  "size_bp": 292732,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "chr9_interstitial_proximal",
+      "chr9_interstitial_distal"
+    ],
+    "homology_percent": 97.2,
+    "sd_length_kb": 292,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "Ape-lineage SD pile-up; intra-chr9 paralog pair plus shared duplicons with other pericentromeres (Marques-Bonet 2009).",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "bonobo-lineage CNV; structural variation substrate"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not applicable (non-human)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.65,
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Dengue_sfRNA_xrRNA1",
+  "taxonomy_id": "custom",
+  "description": "xrRNA1 pseudoknot \u2014 primary Xrn1 stall site; sfRNA1 production.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_001474.2": {
+      "start": 10271,
+      "end": 10374
+    }
+  },
+  "size_bp": 104,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Dengue_fever"
+  ],
+  "sources": [
+    "doi:10.1126/science.1250897",
+    "doi:10.1016/j.virol.2015.02.022"
+  ],
+  "confidence": 0.97
+}

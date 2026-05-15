@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-2_5utr_leader_trs_L",
+  "taxonomy_id": "custom",
+  "description": "5' UTR + leader sequence with TRS-L (transcription regulatory sequence, leader). Core motif ACGAAC at ~70 nt. Template for discontinuous transcription of sgRNAs. Highly conserved; SHAPE-validated stem-loops SL1-SL5.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 1,
+      "end": 265
+    }
+  },
+  "size_bp": 265,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3"
+  ],
+  "confidence": 0.98
+}

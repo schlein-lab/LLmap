@@ -1,0 +1,28 @@
+{
+  "name": "HBV_cccDNA_form",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome_intermediate",
+  "virus_type": "dsDNA-RT",
+  "description": "HBV covalently closed circular DNA (cccDNA) is the nuclear minichromosome form, ~3.2 kb fully double-stranded with both strands sealed by host DNA repair enzymes from incoming rcDNA. Persistence reservoir for chronic infection; ~5-50 cccDNA copies per infected hepatocyte. Wrapped with histones into a minichromosome and subject to epigenetic regulation (HBx-dependent acetylation). For mapping: read pairs spanning the rcDNA gap junction (between (+)-strand 5' end and (−)-strand 3' end) distinguish cccDNA from rcDNA — only cccDNA gives reads across this junction without a discontinuity.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_003977.2": {"chr": "NC_003977.2", "start": 1, "end": 3182}
+  },
+  "size_bp": 3182,
+  "circular": true,
+  "expected_copy_count": "5-50 cccDNA copies per chronically infected hepatocyte",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 1.3,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "circular_handling": true,
+    "gap_junction_aware": true
+  },
+  "sources": [
+    "doi:10.1038/nrgastro.2014.137",
+    "doi:10.1126/science.1226040"
+  ],
+  "confidence": 0.9
+}

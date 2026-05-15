@@ -1,0 +1,29 @@
+{
+  "name": "Ebola_gp_full",
+  "taxonomy_id": "custom",
+  "description": "GP gene. Encodes sGP (default), GP1,2 (after +1 RNA editing at A7-stretch), ssGP. Glycoprotein mediates entry via NPC1.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002549.1": {
+      "start": 5900,
+      "end": 8305
+    }
+  },
+  "size_bp": 2406,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ebola_virus_disease"
+  ],
+  "sources": [
+    "NC_002549.1",
+    "doi:10.1126/science.1259657"
+  ],
+  "confidence": 0.97
+}

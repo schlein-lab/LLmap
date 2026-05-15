@@ -1,0 +1,25 @@
+{
+  "name": "oskar_chr3R_55B",
+  "taxonomy_id": "unique_single_copy",
+  "description": "Drosophila polar granule / germline factor: oskar \u2014 posterior determinant, polar granule assembly nucleator. Single-copy in D. melanogaster, no within-genome paralogs \u2014 useful unique-mapping anchor for read-placement QC in testis/ovary samples.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3R",
+      "start": 5650000,
+      "end": 5680000
+    }
+  },
+  "size_bp": 30000,
+  "expected_copy_count": "1 per haplotype",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "max_occ": 5000,
+    "report_multi_position": false
+  },
+  "sources": [
+    "doi:10.1146/annurev.cellbio.13.1.365",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.95
+}

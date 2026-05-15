@@ -1,0 +1,31 @@
+{
+  "name": "HPV58_E6_oncogene",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA",
+  "description": "HPV58 E6 oncoprotein-coding region (high-risk HPV, alpha-9 species). E6 binds and targets p53 for ubiquitin-mediated degradation via the E6-AP (UBE3A) ligase, abolishing the G1 checkpoint after DNA damage. Contains two CxxC zinc-binding motifs. In integrated forms in cervical cancer the E6/E7 cassette is preserved while E1/E2 are often disrupted, removing E2-mediated repression of the early promoter and driving constitutive E6/E7 expression. Sequence ~50-60% identical between high-risk types \u2014 paralog-disambiguation required when typing from clinical mixed-type samples.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001443.1": {
+      "chr": "NC_001443.1",
+      "start": 102,
+      "end": 554
+    }
+  },
+  "size_bp": 453,
+  "expected_copy_count": "1 per episomal genome; multiple integrated copies in carcinoma",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "type_disambig_aware": true
+  },
+  "sources": [
+    "doi:10.1016/0092-8674(90)90409-8",
+    "doi:10.1126/science.2157286",
+    "ICTV Papillomaviridae 2022",
+    "NCBI Virus RefSeq NC_001443.1"
+  ],
+  "confidence": 0.93
+}

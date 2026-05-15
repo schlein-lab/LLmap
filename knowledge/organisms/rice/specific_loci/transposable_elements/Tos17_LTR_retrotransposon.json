@@ -1,0 +1,28 @@
+{
+  "name": "Tos17_LTR_retrotransposon",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Tos17 Ty1/copia LTR retrotransposon \u2014 activated by tissue culture (Hirochika 1996).",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr7",
+      "start": 15400000,
+      "end": 15460000
+    }
+  },
+  "size_bp": 60000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nrg2165",
+    "doi:10.1146/annurev.arplant.59.032607.092744"
+  ],
+  "confidence": 0.75,
+  "repeat_class": "transposable_element"
+}

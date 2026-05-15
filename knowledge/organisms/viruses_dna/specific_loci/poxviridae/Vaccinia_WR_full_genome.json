@@ -1,0 +1,67 @@
+{
+  "name": "Vaccinia_WR_full_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome",
+  "virus_type": "dsDNA",
+  "description": "Vaccinia virus (Western Reserve strain) complete linear dsDNA genome ~194 kb with covalently-closed hairpin termini and identical inverted terminal repeats (ITRs) of ~10 kb at each end. The genome encodes ~200 ORFs (the central region is highly conserved across all poxviruses and encodes core replication/transcription machinery; the terminal regions carry host-range, immune-evasion, and virulence factors). Replicates entirely in the cytoplasm using viral-encoded RNA polymerase, DNA polymerase, and capping enzymes \u2014 no nuclear involvement. The covalently-closed AT-rich hairpin termini (flip/flop A and B isomers) are the substrate for resolution during replication.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_006998.1": {
+      "chr": "NC_006998.1",
+      "start": 1,
+      "end": 194711
+    }
+  },
+  "size_bp": 194711,
+  "circular": false,
+  "expected_paralogs": [
+    {
+      "name": "ITR_left",
+      "approx_offset_in_locus": 1
+    },
+    {
+      "name": "terminal_hairpin_left",
+      "approx_offset_in_locus": 1
+    },
+    {
+      "name": "host_range_genes_left",
+      "approx_offset_in_locus": 10000
+    },
+    {
+      "name": "central_conserved_region",
+      "approx_offset_in_locus": 50000
+    },
+    {
+      "name": "RNA_pol_subunits",
+      "approx_offset_in_locus": 90000
+    },
+    {
+      "name": "DNA_pol_E9L",
+      "approx_offset_in_locus": 80000
+    },
+    {
+      "name": "ITR_right",
+      "approx_offset_in_locus": 184000
+    },
+    {
+      "name": "terminal_hairpin_right",
+      "approx_offset_in_locus": 194711
+    }
+  ],
+  "expected_copy_count": "1 input genome per virion; 10000+ progeny per infected cell",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "itr_aware": true,
+    "hairpin_terminus_aware": true
+  },
+  "sources": [
+    "doi:10.1016/0042-6822(91)90165-8",
+    "doi:10.1099/vir.0.19497-0",
+    "ICTV Poxviridae 2022"
+  ],
+  "confidence": 0.92
+}

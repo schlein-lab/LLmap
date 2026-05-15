@@ -1,0 +1,27 @@
+{
+  "name": "paeruginosa_pao1_Pf1_filamentous_prophage",
+  "taxonomy_id": "custom",
+  "description": "Pf1 filamentous prophage \u2014 12 kb single-stranded DNA inovirus integrated in PAO1. Contributes to biofilm formation; not lambda-like.",
+  "coordinates": {
+    "GenBank_NC_002516.2": {
+      "chr": "NC_002516.2",
+      "start": 770000,
+      "end": 782000
+    }
+  },
+  "size_bp": 12000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PHASTER:doi:10.1093/nar/gkw387",
+    "doi:10.1126/science.1170025"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "filamentous_inovirus"
+}

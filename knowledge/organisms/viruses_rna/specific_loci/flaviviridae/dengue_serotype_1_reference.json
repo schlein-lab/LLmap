@@ -1,0 +1,30 @@
+{
+  "name": "Dengue_DENV-1_reference",
+  "taxonomy_id": "custom",
+  "description": "DENV-1 reference. ssRNA(+) flavivirus. Genome organisation 5'UTR-C-prM-E-NS1-NS2A/B-NS3-NS4A/B-NS5-3'UTR. Mosquito-borne (Aedes).",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_001477.1": {
+      "start": 1,
+      "end": 10735
+    }
+  },
+  "size_bp": 10735,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Dengue_fever",
+    "Dengue_hemorrhagic_fever"
+  ],
+  "sources": [
+    "NC_001477.1",
+    "doi:10.1126/science.1153018"
+  ],
+  "confidence": 0.99
+}

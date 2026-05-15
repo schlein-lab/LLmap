@@ -1,0 +1,77 @@
+{
+  "name": "HHV6_telomere_integration",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_integration_locus",
+  "virus_type": "dsDNA",
+  "description": "Chromosomally integrated HHV-6 (ciHHV-6): germline-transmissible integration of HHV-6A or HHV-6B into the subtelomeric region of a host chromosome via homologous recombination between the viral DR telomeric repeats and host TTAGGG telomere. Carrier prevalence ~1% in northern European populations. Integration sites identified at chromosomes 9q, 10q, 11p, 17p, 18q, 19q, 22q (and others). Carriers have HHV-6 DNA at one TTAGGG-end of one chromosome and produce one extra integrated copy per nucleated cell, complicating viral-load PCR. Reactivation from integrated state has been documented and may have clinical consequences.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001664.4": {
+      "chr": "NC_001664.4",
+      "start": 158000,
+      "end": 159321
+    }
+  },
+  "size_bp": 1321,
+  "expected_copy_count": "1 integrated copy per cell in ciHHV-6 carriers; ~1% of population",
+  "expected_host_targets": [
+    {
+      "name": "telomere_9q",
+      "host_chr": "chr9",
+      "host_pos": 138394717,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "telomere_10q",
+      "host_chr": "chr10",
+      "host_pos": 133797422,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "telomere_11p",
+      "host_chr": "chr11",
+      "host_pos": 135086622,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "telomere_17p",
+      "host_chr": "chr17",
+      "host_pos": 1,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "telomere_18q",
+      "host_chr": "chr18",
+      "host_pos": 80373285,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "telomere_19q",
+      "host_chr": "chr19",
+      "host_pos": 58617616,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "telomere_22q",
+      "host_chr": "chr22",
+      "host_pos": 50818468,
+      "host_assembly": "GRCh38"
+    }
+  ],
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "host_integration_aware": true,
+    "telomeric_integration_aware": true,
+    "split_read_aware": true
+  },
+  "sources": [
+    "doi:10.1073/pnas.1115861109",
+    "doi:10.1128/JVI.04510-13",
+    "doi:10.1098/rstb.2017.0331"
+  ],
+  "confidence": 0.92
+}

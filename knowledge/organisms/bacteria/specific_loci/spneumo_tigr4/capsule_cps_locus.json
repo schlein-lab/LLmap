@@ -1,0 +1,27 @@
+{
+  "name": "spneumo_tigr4_capsule_cps_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "Capsular polysaccharide synthesis (cps) locus \u2014 TIGR4 is serotype 4. ~23 kb cluster between dexB and aliA. Highly polymorphic across pneumococcal serotypes (>100 known); cross-serotype reads should be flagged as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_003028.3": {
+      "chr": "NC_003028.3",
+      "start": 316200,
+      "end": 339400
+    }
+  },
+  "size_bp": 23200,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1371/journal.pgen.1000241"
+  ],
+  "confidence": 0.9,
+  "serotype": "4"
+}

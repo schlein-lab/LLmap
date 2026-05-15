@@ -1,0 +1,27 @@
+{
+  "name": "bsubtilis_168_skin_element",
+  "taxonomy_id": "custom",
+  "description": "skin (sigK intervening) element \u2014 48 kb prophage-like element interrupting sigK; excised during sporulation in the mother cell to restore sigK function. Defective lambdoid relic.",
+  "coordinates": {
+    "GenBank_NC_000964.3": {
+      "chr": "NC_000964.3",
+      "start": 2657200,
+      "end": 2705900
+    }
+  },
+  "size_bp": 48700,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1101/gad.4.4.525"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "defective_lambdoid"
+}

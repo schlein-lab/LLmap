@@ -1,0 +1,27 @@
+{
+  "name": "CCY_chrY",
+  "taxonomy_id": "paralog_family",
+  "description": "Drosophila Y-chromosome fertility/testis gene: CCY (CG12188-Y) Y-linked male fertility gene \u2014 retroposed autosomal ancestor. The D. melanogaster Y carries ~15-20 protein-coding genes total, mostly retroposed copies of autosomal ancestors that evolved testis-specific functions.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrY",
+      "start": 2400000,
+      "end": 2600000
+    }
+  },
+  "size_bp": 200000,
+  "expected_copy_count": "1 per Y haplotype",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature01032",
+    "doi:10.1534/genetics.118.301631"
+  ],
+  "confidence": 0.75
+}

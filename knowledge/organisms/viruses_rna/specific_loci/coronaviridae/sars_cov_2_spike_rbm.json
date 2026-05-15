@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-2_spike_rbm",
+  "taxonomy_id": "custom",
+  "description": "Receptor-binding motif (RBM, aa 437-508) inside RBD. Direct ACE2 contact residues. Q493R/K/E, S494P, G496S, N501Y cluster.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 22871,
+      "end": 23092
+    }
+  },
+  "size_bp": 222,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3"
+  ],
+  "confidence": 0.98
+}

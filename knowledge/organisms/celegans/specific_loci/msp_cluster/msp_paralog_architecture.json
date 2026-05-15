@@ -1,0 +1,28 @@
+{
+  "name": "MSP_paralog_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Architecture record for the C. elegans Major Sperm Protein gene family. Each msp gene is ~350 bp coding (single exon, ~125 aa product). Paralog evolution is dominated by recent tandem duplication followed by concerted evolution (gene conversion homogenises sequence). Read-level paralog assignment between near-identical copies requires PSVs in 3' UTR or flanking intergenic sequence.",
+  "coordinates": {
+    "WBcel235": {"chr": "II,IV", "start": 0, "end": 0}
+  },
+  "size_bp_per_unit": 350,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "near_constant",
+    "homology_percent": 97.0,
+    "internal_structure": "Single-exon ~350 bp msp ORFs separated by 500-3000 bp intergenic spacer; chrIV main block plus chrII secondary block; gene conversion maintains >95% identity"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:9851916",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.85
+}

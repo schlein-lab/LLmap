@@ -1,0 +1,38 @@
+{
+  "name": "16S_V6_Proteobacteria",
+  "taxonomy_id": "16S_rRNA",
+  "marker": "16S_rRNA",
+  "region_role": "variable_core",
+  "description": "16S rRNA hypervariable region V6 in phylum Proteobacteria. Approximately 57 bp on the E. coli numbering scheme (positions 986-1043). Gram-negative diverse; e.g. Enterobacter, Pseudomonas, Helicobacter. Species- to genus-level discriminating; real biological variation expected \u2014 allow high mismatch during mapping.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_014",
+      "start": 0,
+      "end": 57
+    }
+  },
+  "size_bp": 57,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "marker": "16S_rRNA",
+    "v_region": "V6",
+    "phylum": "Proteobacteria",
+    "ecoli_coord": [
+      986,
+      1043
+    ]
+  },
+  "sources": [
+    "SILVA 138.1 SSU Ref NR99",
+    "GTDB R220",
+    "GreenGenes2 2024.09",
+    "doi:10.1093/nar/gks1219"
+  ],
+  "confidence": 0.9
+}

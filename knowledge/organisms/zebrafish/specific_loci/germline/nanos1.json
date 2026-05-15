@@ -1,0 +1,27 @@
+{
+  "name": "nanos1",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish germline factor: nanos1 \u2014 CCHC zinc finger, primordial germ cell maintenance. Most vertebrate germline RNA-binding genes (vasa/ddx4, nanos, piwi family) lost one of their two TGD-ohnologs in teleosts under tight dosage selection \u2014 useful negative controls when scanning for retained-ohnolog patterns post-WGD.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr12",
+      "start": 8200000,
+      "end": 8220000
+    }
+  },
+  "size_bp": 20000,
+  "expected_copy_count": "1 per haplotype (one TGD ohnolog lost)",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "max_occ": 10000,
+    "report_multi_position": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1242/dev.124.13.2697",
+    "doi:10.1016/j.devcel.2007.03.002"
+  ],
+  "confidence": 0.85
+}

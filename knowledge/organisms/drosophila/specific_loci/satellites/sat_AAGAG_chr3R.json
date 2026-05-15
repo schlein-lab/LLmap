@@ -1,0 +1,27 @@
+{
+  "name": "sat_AAGAG_chr3R",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Drosophila simple satellite block: AAGAG satellite block on chr3R pericentric heterochromatin.. Drosophila satellites are chromosome-position-specific and used as cytogenetic markers (Lohe 1993). They form most of the ~30% of the genome that is heterochromatin.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3R",
+      "start": 0,
+      "end": 700000
+    }
+  },
+  "size_bp": 700000,
+  "expected_copy_count": "10^4-10^7 simple-repeat copies, chromosome-position-specific",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:8472699",
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1534/genetics.118.301631"
+  ],
+  "confidence": 0.75
+}

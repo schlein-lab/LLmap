@@ -1,0 +1,29 @@
+{
+  "name": "ecoli_k12_mg1655_IS2_copy6",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS2 copy 6 of 12 in this genome. 1331 bp IS3 family element; widespread in Enterobacteriaceae. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS2 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 2289453,
+      "end": 2290784,
+      "strand": "+"
+    }
+  },
+  "size_bp": 1331,
+  "expected_copy_count": "12 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

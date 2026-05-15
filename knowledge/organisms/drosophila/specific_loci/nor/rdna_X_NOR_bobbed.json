@@ -1,0 +1,27 @@
+{
+  "name": "rdna_X_NOR_bobbed",
+  "taxonomy_id": "tandem_repeat",
+  "description": "X-chromosome ribosomal DNA NOR at the bobbed (bb) locus, X pericentric heterochromatin. Contains ~200-250 tandem copies of the 11.5 kb 45S rDNA unit (18S-5.8S-2S-28S genes + IGS). Half the rDNA is on chrX, half on chrY. Reduction below ~50 copies causes the bobbed phenotype (short bristles, slow development). R1/R2 non-LTR retrotransposons insert specifically into the 28S gene.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 22500000,
+      "end": 23000000
+    }
+  },
+  "size_bp": 500000,
+  "expected_copy_count": "~200-250 tandem 11.5 kb 45S rDNA units (variable, bobbed mutants <50)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:8978791",
+    "doi:10.1038/nrg2008",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,31 @@
+{
+  "name": "AdV2_ITR_inverted_terminal_repeat",
+  "taxonomy_id": "custom",
+  "custom_subtype": "inverted_terminal_repeat",
+  "virus_type": "dsDNA",
+  "description": "AdV2 inverted terminal repeats (ITRs): ~103 bp identical sequences at both ends of the linear dsDNA genome in head-to-head orientation. Each ITR carries the origin of replication (within nt 1-51 of each end), the core origin (nt 1-18) bound by pTP and AdPol, and auxiliary regions binding NFI/CTF (nt ~19-40) and NFIII/Oct-1 (nt ~39-51). Species C ITRs (Ad2/5) are ~103 bp; species F ITRs (Ad40/41) are longer (~163/195 bp). Protein-primed replication initiates with pTP-dCTP covalent intermediate templated by the second G of the 3' GGGCG end. ITR sequence identity creates apparent dual mapping for any short read falling near either end \u2014 require_psv_disambig + itr_aware essential.",
+  "coordinates": {
+    "NCBI_RefSeq_AC_000007.1": {
+      "chr": "AC_000007.1",
+      "start": 1,
+      "end": 103
+    }
+  },
+  "size_bp": 103,
+  "expected_copy_count": "2 identical ITRs per genome (left and right ends)",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "itr_aware": true
+  },
+  "sources": [
+    "doi:10.1146/annurev.bi.55.070186.001215",
+    "doi:10.1128/JVI.69.10.6256-6261.1995",
+    "doi:10.1099/vir.0.19497-0"
+  ],
+  "confidence": 0.94
+}

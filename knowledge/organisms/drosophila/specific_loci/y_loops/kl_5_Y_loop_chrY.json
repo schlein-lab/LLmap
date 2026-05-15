@@ -1,0 +1,27 @@
+{
+  "name": "kl_5_Y_loop_chrY",
+  "taxonomy_id": "centromere_like",
+  "description": "Drosophila Y-chromosome lampbrush loop: kl-5 (DNAH/AXDND1 dynein). kl-5 male fertility factor \u2014 axonemal dynein; loop D; very large simple-repeat introns. Y-loops are transcribed in primary spermatocytes producing megabase-scale primary transcripts of which 99% is intronic satellite that is co-transcribed but never spliced into mRNA. Coordinates here cover the assembled euchromatic flanks; the loop interior itself is heterochromatin-only and largely absent from BDGP6.46.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrY",
+      "start": 3000000,
+      "end": 3400000
+    }
+  },
+  "size_bp": 400000,
+  "expected_copy_count": "1 per haplotype (Y carriers only); intronic satellite arrays repeat 10^4-10^5 times",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 50000,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1146/annurev-cellbio-100913-013027",
+    "doi:10.1534/genetics.118.301631",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.65
+}

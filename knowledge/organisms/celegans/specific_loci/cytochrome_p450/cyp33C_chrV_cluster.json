@@ -1,0 +1,75 @@
+{
+  "name": "cyp33C_chrV_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "cyp-33C subfamily tandem cluster on chromosome V; ~11 paralogs at 75-95% identity; metabolises fatty acids and xenobiotics.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "V",
+      "start": 11000000,
+      "end": 11200000
+    }
+  },
+  "size_bp": 200000,
+  "expected_paralogs": [
+    {
+      "name": "cyp-33C1",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "cyp-33C2",
+      "approx_offset_in_locus": 15000
+    },
+    {
+      "name": "cyp-33C3",
+      "approx_offset_in_locus": 30000
+    },
+    {
+      "name": "cyp-33C4",
+      "approx_offset_in_locus": 45000
+    },
+    {
+      "name": "cyp-33C5",
+      "approx_offset_in_locus": 60000
+    },
+    {
+      "name": "cyp-33C6",
+      "approx_offset_in_locus": 75000
+    },
+    {
+      "name": "cyp-33C7",
+      "approx_offset_in_locus": 90000
+    },
+    {
+      "name": "cyp-33C8",
+      "approx_offset_in_locus": 105000
+    },
+    {
+      "name": "cyp-33C9",
+      "approx_offset_in_locus": 120000
+    },
+    {
+      "name": "cyp-33C11",
+      "approx_offset_in_locus": 135000
+    },
+    {
+      "name": "cyp-33C12",
+      "approx_offset_in_locus": 150000
+    }
+  ],
+  "expected_copy_count": "~11 cyp-33C paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-9-185",
+    "WormBase WS285 cyp gene family",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.8
+}

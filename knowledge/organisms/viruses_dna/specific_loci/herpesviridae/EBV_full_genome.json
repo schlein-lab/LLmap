@@ -1,0 +1,87 @@
+{
+  "name": "EBV_full_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome",
+  "virus_type": "dsDNA",
+  "description": "Epstein-Barr virus (HHV-4) gamma-1-herpesvirus complete genome: linear dsDNA ~172 kb (B95-8 reference NC_007605.1 lacks a ~12 kb deletion present in wild-type strains; wild-type EBV is ~184 kb). Genome organization: 0.5 kb terminal repeats (TR) flanking the unique region, with internal repeats IR1/W (3.1 kb major internal repeat, 6-12 copies of the BamHI-W unit), IR2-IR4, and the EBNA-LP-coding repeats. Establishes lifelong latency in B cells with multiple latency programs (0/I/II/III) defined by which EBNAs and LMPs are expressed. Causally associated with Burkitt lymphoma, Hodgkin lymphoma, nasopharyngeal carcinoma, gastric carcinoma, and lymphoproliferative disorders in immunosuppressed hosts.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_007605.1": {
+      "chr": "NC_007605.1",
+      "start": 1,
+      "end": 171823
+    }
+  },
+  "size_bp": 171823,
+  "circular": false,
+  "expected_copy_count": "1-50 episomal copies per latent B cell; 1000s of linear genomes per lytic cell",
+  "expected_paralogs": [
+    {
+      "name": "TR_terminal_repeat_left",
+      "approx_offset_in_locus": 1
+    },
+    {
+      "name": "IR1_BamHI_W_repeat",
+      "approx_offset_in_locus": 12000
+    },
+    {
+      "name": "oriP",
+      "approx_offset_in_locus": 7300
+    },
+    {
+      "name": "EBNA-LP",
+      "approx_offset_in_locus": 14600
+    },
+    {
+      "name": "EBNA2",
+      "approx_offset_in_locus": 48400
+    },
+    {
+      "name": "EBNA3A",
+      "approx_offset_in_locus": 80000
+    },
+    {
+      "name": "EBNA3B",
+      "approx_offset_in_locus": 88000
+    },
+    {
+      "name": "EBNA3C",
+      "approx_offset_in_locus": 96000
+    },
+    {
+      "name": "EBNA1",
+      "approx_offset_in_locus": 107900
+    },
+    {
+      "name": "LMP1",
+      "approx_offset_in_locus": 169000
+    },
+    {
+      "name": "LMP2A_LMP2B",
+      "approx_offset_in_locus": 166400
+    },
+    {
+      "name": "EBERs",
+      "approx_offset_in_locus": 6700
+    },
+    {
+      "name": "TR_terminal_repeat_right",
+      "approx_offset_in_locus": 171000
+    }
+  ],
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "host_integration_aware": true,
+    "terminal_repeat_aware": true
+  },
+  "sources": [
+    "doi:10.1038/310207a0",
+    "doi:10.1098/rstb.2010.0322",
+    "ICTV Herpesviridae 2022"
+  ],
+  "confidence": 0.93
+}

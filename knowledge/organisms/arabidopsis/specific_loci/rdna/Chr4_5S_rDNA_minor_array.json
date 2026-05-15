@@ -1,0 +1,29 @@
+{
+  "name": "Chr4_5S_rDNA_minor_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Chr4 minor 5S rDNA tandem block (TAIR10) \u2014 smaller than chr5 array; documented in Cloix 2002.",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr4",
+      "start": 3950000,
+      "end": 4050000
+    }
+  },
+  "size_bp": 100000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1023/A:1014480029439"
+  ],
+  "confidence": 0.7,
+  "repeat_unit_bp": 500,
+  "expected_copy_count": "~50-300 units"
+}

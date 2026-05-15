@@ -1,0 +1,30 @@
+{
+  "name": "otr1_outer_repeats",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Outer repeats otr1L and otr1R of centromere 1. Tandem cassettes of dg (~4.6 kb) and dh (~1.8 kb) elements; ~5 cassette copies per side. Constitute the Clr4-H3K9me-Swi6 pericentric heterochromatin domain. RNAi-dependent silencing locus.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 30000,
+  "expected_copy_count": "2-10 dg/dh cassette copies per side (chromosome-dependent)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223",
+    "PMID:11498586"
+  ],
+  "confidence": 0.9
+}

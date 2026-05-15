@@ -1,0 +1,25 @@
+{
+  "name": "h2_X_pericentric",
+  "taxonomy_id": "centromere_like",
+  "description": "Drosophila pericentric heterochromatin sub-block: h2 \u2014 X pericentric, AAGAC enriched. Catalogued from Hoskins 2015 heterochromatin sequence release.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 22550000,
+      "end": 22700000
+    }
+  },
+  "size_bp": 150000,
+  "expected_copy_count": "satellite copies 10^3-10^5 per block",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 50000,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.7
+}

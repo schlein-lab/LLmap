@@ -1,0 +1,29 @@
+{
+  "name": "wtf7_chrI",
+  "taxonomy_id": "paralog_family",
+  "description": "wtf7 paralog of the S. pombe wtf meiotic-driver gene family, located on chromosome I. wtf paralogs encode coupled poison/antidote protein products that distort meiotic segregation in heterozygous crosses. Pairwise identity within the family ranges 60-99%; recent paralog pairs require PSV disambiguation.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I",
+      "start": 4500000,
+      "end": 4502000
+    }
+  },
+  "size_bp": 2000,
+  "expected_copy_count": "1 of ~25 wtf paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:28631714",
+    "PomBase wtf"
+  ],
+  "confidence": 0.75
+}

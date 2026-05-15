@@ -1,0 +1,28 @@
+{
+  "name": "Lassa_l_intergenic_hairpin",
+  "taxonomy_id": "custom",
+  "description": "Lassa L segment intergenic region \u2014 stable hairpin (transcription terminator for both L and Z mRNAs).",
+  "virus_type": "ssRNA(-)_ambisense",
+  "coordinates": {
+    "NC_004297.1": {
+      "start": 3340,
+      "end": 3450
+    }
+  },
+  "size_bp": 111,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "NC_004297.1"
+  ],
+  "confidence": 0.93
+}
