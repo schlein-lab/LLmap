@@ -69,10 +69,10 @@ echo "[$TOOL/$TASK/$REPLICATE] starting at $(date -Iseconds)" >&2
   2> "$OUTPUT_DIR/stderr.log"
 
 # Sort + index BAM. Tolerate truncated last record (minimap2 2.28 / winnowmap
-# 2.03 emit occasional truncated last lines on synth data; pre-filter with
-# samtools view before sort).
-samtools view -h --input-fmt-option=ignore_truncation=1 \
-    "$OUTPUT_DIR/alignments.sam" \
+# 2.03 emit occasional truncated last lines on synth data). Drop incomplete
+# SAM lines (need 11+ tab-separated fields outside the header) before sort;
+# older samtools builds reject the --input-fmt-option=ignore_truncation form.
+awk -F'\t' 'NF >= 11 || /^@/' "$OUTPUT_DIR/alignments.sam" \
   | samtools sort -@ "$THREADS" -o "$OUTPUT_DIR/alignments.bam" -
 samtools index "$OUTPUT_DIR/alignments.bam"
 rm -f "$OUTPUT_DIR/alignments.sam"
