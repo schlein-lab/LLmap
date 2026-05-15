@@ -4,233 +4,226 @@
     "tier": "tier1",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier1",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier10",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier10",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier2",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier2",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier5",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier5",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "arabidopsis",
-    "tier": "tier6",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "arabidopsis",
-    "tier": "tier6",
-    "region_class": "all",
-    "mapper": "llmap",
     "failure_mode": "missing_bam"
   },
   {
     "organism": "arabidopsis",
     "tier": "tier6",
     "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier1",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier1",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier10",
-    "region_class": "all",
     "mapper": "bwa-mem2",
     "failure_mode": "missing_bam"
   },
   {
-    "organism": "bacteria",
-    "tier": "tier10",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier2",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier2",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier5",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier5",
-    "region_class": "all",
-    "mapper": "llmap",
-    "failure_mode": "empty_sam"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier5",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier6",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "bacteria",
-    "tier": "tier6",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier1",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier1",
-    "region_class": "all",
-    "mapper": "llmap",
-    "failure_mode": "empty_sam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier1",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier10",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier10",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier2",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier2",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier5",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier5",
-    "region_class": "all",
-    "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
-    "tier": "tier6",
-    "region_class": "all",
-    "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "celegans",
+    "organism": "arabidopsis",
     "tier": "tier6",
     "region_class": "all",
     "mapper": "llmap",
     "failure_mode": "empty_sam"
   },
   {
+    "organism": "arabidopsis",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "empty_sam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "missing_bam"
+  },
+  {
     "organism": "celegans",
     "tier": "tier6",
     "region_class": "all",
@@ -277,11 +270,67 @@
     "tier": "tier5",
     "region_class": "all",
     "mapper": "llmap",
-    "failure_mode": "empty_sam"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "drosophila",
     "tier": "tier5",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
+    "region_class": "SD",
+    "mapper": "minimap2",
+    "failure_mode": "low_F1(0.197)"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
+    "region_class": "SV_DEL",
+    "mapper": "minimap2",
+    "failure_mode": "low_F1(0.208)"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
+    "region_class": "SV_DUP",
+    "mapper": "minimap2",
+    "failure_mode": "low_F1(0.207)"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
+    "region_class": "SV_INV",
+    "mapper": "minimap2",
+    "failure_mode": "low_F1(0.174)"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "minimap2",
+    "failure_mode": "low_F1(0.197)"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier6",
     "region_class": "all",
     "mapper": "winnowmap",
     "failure_mode": "missing_bam"

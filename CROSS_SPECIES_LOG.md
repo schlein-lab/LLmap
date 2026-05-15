@@ -85,3 +85,16 @@ LLmap matches minimap2 within Δ=0.001-0.002 where mapped.
 **LLmap empty-SAM on tier 5/6 some organisms** (arabidopsis t6, bacteria
 t5, celegans t1+t6) — Phase C debug agent dispatched + aggregator
 schema fix. Bench continues (currently at drosophila tier 2).
+
+## Iter 005 — 2026-05-15T23:42 CEST — Phase C scoreboard real, tuning dispatched
+
+Aggregator schema fixed → 234 records across 4 mappers, 7 organisms,
+22 cells. **LLmap = minimap2 ties at F1=1.000 on synthetic tiers**,
+slight regressions only on tier10 SV_INV (delta -0.004 to -0.009 = noise).
+
+**Real regression: legacy human T1/T2** with LLmap F1=0.477/0.445 vs
+minimap2 F1=1.000. This is the only genuine signal — likely real-data
+fixture probing IGH/paralog regions where LLmap's chain-DP picks
+wrong paralog. Phase C investigator agent dispatched.
+
+Bench at 21/~80 (organism × tier) cells, currently celegans tier 5.
