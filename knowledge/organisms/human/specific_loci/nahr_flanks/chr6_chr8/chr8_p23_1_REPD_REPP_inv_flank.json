@@ -1,0 +1,52 @@
+{
+  "name": "chr8_p23_1_REPD_REPP_inv_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "8p23.1 inversion polymorphism (~4-5 Mb) is mediated by two SD blocks REPD/REPP (~550 kb, 99.4% identity) containing olfactory receptor and DEFB beta-defensin gene clusters. ~26-54% of European chromosomes carry the inverted haplotype. Inversion-carrying parents have elevated risk of producing offspring with recurrent 8p23.1 deletions or duplications (PMP22 dosage-like rearrangements unrelated to CMT). Also drives DEFB4 copy-number variation 2-12.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr8",
+      "start": 8000000,
+      "end": 12000000
+    }
+  },
+  "size_bp": 4000000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_REPD_8p23_distal",
+      "SD_REPP_8p23_proximal"
+    ],
+    "homology_percent": 99.4,
+    "sd_length_kb": 550,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "OR/DEFB-cluster-rich blocks REPD (distal) and REPP (proximal) flank a ~4 Mb common inversion polymorphism. Core contains olfactory receptors, beta-defensin cluster, MTMR9, FAM167A.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "8p23.1 deletion syndrome",
+    "8p23.1 duplication syndrome",
+    "psoriasis_DEFB4_CN"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 2400,
+    "dbvar_count": 1850,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.98,
+  "sources": [
+    "Antonacci 2009 Nat Genet",
+    "Sugawara 2003",
+    "Hollox 2008 Nat Genet",
+    "Bondeson 2005"
+  ]
+}

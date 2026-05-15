@@ -1,0 +1,52 @@
+{
+  "name": "chr14_q32_33_IGHG2_IGHGP_paralog_pair",
+  "description": "IGHG2 vs IGHGP pseudogene \u2014 pseudogene anchored, lower identity than IGHG4-IGHGP.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 106104544,
+      "end": 106149839
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "IGHG2_CH_exons",
+      "IGHGP_CH_exons"
+    ],
+    "homology_percent": 89.4,
+    "sd_length_kb": 9,
+    "microhomology_bp_at_breakpoint": "2-15",
+    "internal_structure": "IGHG2 CH1-hinge-CH2-CH3 exons paralogous to IGHGP",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "IgG subclass deficiency",
+    "selective IgA deficiency",
+    "hyper-IgM-like phenotypes"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 5,
+    "dbvar_count": 20,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": "moderate"
+  },
+  "confidence": 0.95,
+  "sources": [
+    "IMGT",
+    "Pan 2001 Eur J Immunol",
+    "Lefranc 1991 Hum Genet",
+    "pseudocaller IGHG4-IGHGP PSV table"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 45295
+}

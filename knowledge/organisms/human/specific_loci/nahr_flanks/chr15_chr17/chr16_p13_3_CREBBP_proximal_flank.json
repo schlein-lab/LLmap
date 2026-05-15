@@ -1,0 +1,47 @@
+{
+  "name": "chr16_p13_3_CREBBP_proximal_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal SD flank of CREBBP (Rubinstein-Taybi syndrome). Some recurrent ~150-600 kb deletions are NAHR-mediated.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 3700000,
+      "end": 3850000
+    }
+  },
+  "size_bp": 150000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR16p13.3_RT"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 80,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Smaller SDs flanking CREBBP; minority of RT deletions NAHR-mediated",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Rubinstein-Taybi syndrome (subset)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "PMID:15706485 Petrij 1995",
+    "PMID:21618343"
+  ]
+}

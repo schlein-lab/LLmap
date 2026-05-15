@@ -1,0 +1,46 @@
+{
+  "name": "chr16_p11_1_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.1 pericentromeric SD pile-up \u2014 large heterochromatic region flanking chr16 centromere; very dense LCR16a + intra-16 duplicons.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 35000000,
+      "end": 46500000
+    }
+  },
+  "size_bp": 11500000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "pericentromeric_mosaic",
+      "LCR16a_paralog"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Pericentromeric mosaic SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "PMID:11731218",
+    "PMID:35357919"
+  ]
+}

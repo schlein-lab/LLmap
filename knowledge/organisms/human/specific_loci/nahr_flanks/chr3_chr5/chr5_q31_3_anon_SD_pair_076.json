@@ -1,0 +1,47 @@
+{
+  "name": "chr5_q31_3_anon_SD_pair_076",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD-pair flanking interval at chr5q31.3, derived from Bailey/Eichler segmental duplication catalogue; no named disease association yet.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr5",
+      "start": 140508333,
+      "end": 140958333
+    }
+  },
+  "size_bp": 450000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_5q31_3_prox_076",
+      "SD_5q31_3_dist_076"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "not_characterized",
+    "internal_structure": "anon SD-flanked interval within q31.3; predicted NAHR substrate from SD-DB",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 55000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "NA",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.4,
+  "sources": [
+    "Bailey 2002 Science 297:1003",
+    "doi:10.1126/science.1072047",
+    "Eichler SD-DB v2"
+  ]
+}

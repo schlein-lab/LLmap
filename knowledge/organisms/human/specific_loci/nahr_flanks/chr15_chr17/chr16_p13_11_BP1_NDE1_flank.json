@@ -1,0 +1,47 @@
+{
+  "name": "chr16_p13_11_BP1_NDE1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "NDE1-flanking SD at BP1 within 16p13.11 recurrent CNV region.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 14950000,
+      "end": 15030000
+    }
+  },
+  "size_bp": 80000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 80,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NDE1-flanking SD at BP1",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p13.11 microdeletion / duplication"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:17357066",
+    "PMID:19359208"
+  ]
+}

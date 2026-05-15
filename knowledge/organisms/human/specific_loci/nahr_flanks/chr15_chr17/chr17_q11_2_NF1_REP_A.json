@@ -1,0 +1,49 @@
+{
+  "name": "chr17_q11_2_NF1_REP_A",
+  "taxonomy_id": "paralog_family",
+  "description": "NF1-REPa \u2014 proximal LCR flanking NF1. Mediates the recurrent ~1.4 Mb type-1 NF1 microdeletion via NAHR with NF1-REPc.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 31700000,
+      "end": 31850000
+    }
+  },
+  "size_bp": 150000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NF1-REPa",
+      "NF1-REPc"
+    ],
+    "homology_percent": 97.8,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NF1 paralog cores + flanking SDs; ~150 kb at ~98% identity",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Neurofibromatosis type 1 microdeletion syndrome (type-1)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:10888601 Dorschner 2000",
+    "PMID:11992257 Inoue Lupski 2002",
+    "PMID:21354048 Pasmant 2010"
+  ]
+}

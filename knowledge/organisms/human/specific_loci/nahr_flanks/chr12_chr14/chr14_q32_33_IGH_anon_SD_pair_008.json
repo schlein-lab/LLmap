@@ -1,0 +1,45 @@
+{
+  "name": "chr14_q32_33_IGH_anon_SD_pair_008",
+  "description": "Anonymous IGH-locus segmental-duplication block #8 (constant + switch region neighborhood). Mapping anchor down-weight target.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 105840000,
+      "end": 105848000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "IGH_anon_SD_8_A",
+      "IGH_anon_SD_8_B"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "anonymous IGH-cluster duplicon",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "confidence": 0.55,
+  "sources": [
+    "Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 8000
+}

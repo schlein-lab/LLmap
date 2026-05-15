@@ -1,0 +1,47 @@
+{
+  "name": "chr9_p11_2_anon_SD_pair_038",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD pair on chr9p11.2 flanking a ~1473 kb interval; translocation architecture, paralog identity ~98.17%.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr9",
+      "start": 41346239,
+      "end": 42819246
+    }
+  },
+  "size_bp": 1473007,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr9_p11_2_SD_a",
+      "chr9_p11_2_SD_b"
+    ],
+    "homology_percent": 98.17,
+    "sd_length_kb": 18,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 45000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 8,
+    "dbvar_count": 5,
+    "clingen_dosage_call": "no_evidence",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.64,
+  "sources": [
+    "Bailey2002",
+    "SD-DB-Eichler",
+    "gnomAD-SVv4"
+  ]
+}

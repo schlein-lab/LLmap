@@ -1,0 +1,50 @@
+{
+  "name": "chr5_q35_3_Sotos_NSD1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "NAHR-prone SD-flanked interval at chr5:175650000-177750000 (SD_NSD1_prox_REP / SD_NSD1_dist_REP).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr5",
+      "start": 175650000,
+      "end": 177750000
+    }
+  },
+  "size_bp": 2100000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_NSD1_prox_REP",
+      "SD_NSD1_dist_REP"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 320,
+    "microhomology_bp_at_breakpoint": "not_characterized",
+    "internal_structure": "NSD1, FGFR4, RNF44; 2.1 Mb common Sotos deletion; >95% recurrent breakpoints in flanking SDs",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Sotos syndrome OMIM:117550",
+    "5q35 microduplication"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 10,
+    "dbvar_count": 160,
+    "clingen_dosage_call": "HI=3 TS=2",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.97,
+  "sources": [
+    "PMID:12471204",
+    "PMID:15942875",
+    "doi:10.1038/ng996"
+  ]
+}

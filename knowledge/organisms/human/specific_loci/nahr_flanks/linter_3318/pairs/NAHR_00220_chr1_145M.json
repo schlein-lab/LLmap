@@ -1,0 +1,56 @@
+{
+  "name": "NAHR_00220_chr1_145M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr1:145289446-146365241 (1.08 Mb interior) flanked by paralogous 6.5 kb LCRs at 98.91% identity, propensity X=3.77. Known syndrome: 1q21.1 TAR/microdel.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 145282944,
+      "end": 146371772
+    }
+  },
+  "size_bp": 1088828,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr1:145282944-145289446",
+      "chr1:146365241-146371772"
+    ],
+    "homology_percent": 98.91,
+    "sd_length_kb": 6.52,
+    "interior_bp": 1075795,
+    "propensity_X": 3.772,
+    "internal_structure": "ANKRD34A, ANKRD35, CD160, ENSG00000280778, ENSG00000289565, GPR89A, HJV, ITGA10, LIX1L, NBPF10, NBPF20, NUDT17, PDZK1, PEX11B, PIAS3, POLR3C, POLR3GL, RBM8A, RNF115, TXNIP",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0007413:Nevus flammeus of the forehead",
+    "HP:0011675:Arrhythmia",
+    "HP:0033044:Motor regression"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 20,
+    "n_total_features": 29,
+    "top_region_rank": 342,
+    "known_syndrome": "1q21.1 TAR/microdel",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

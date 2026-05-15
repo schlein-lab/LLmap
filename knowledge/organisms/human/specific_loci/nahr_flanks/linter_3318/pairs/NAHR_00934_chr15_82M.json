@@ -1,0 +1,57 @@
+{
+  "name": "NAHR_00934_chr15_82M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr15:82351763-84503844 (2.15 Mb interior) flanked by paralogous 15.2 kb LCRs at 96.85% identity, propensity X=4.05.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 82336694,
+      "end": 84519181
+    }
+  },
+  "size_bp": 2182487,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr15:82336694-82351763",
+      "chr15:84503844-84519181"
+    ],
+    "homology_percent": 96.85,
+    "sd_length_kb": 15.2,
+    "interior_bp": 2152081,
+    "propensity_X": 4.05,
+    "internal_structure": "ADAMTSL3, AP3B2, BNC1, BTBD1, C15orf40, CPEB1, ENSG00000260836, FSD2, GOLGA6L4, GOLGA6L9, HDGFL3, HOMER2, RAMAC, RPS17, SH3GL3, TM6SF1, WHAMM",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0000006:Autosomal dominant inheritance",
+    "HP:0000504:Abnormality of vision",
+    "HP:0002817:Abnormality of the upper limb",
+    "HP:0008684:Aplasia/hypoplasia of the uterus"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 17,
+    "n_total_features": 47,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

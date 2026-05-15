@@ -1,0 +1,51 @@
+{
+  "name": "chr10_q11_22_RET_NCOA4_somatic",
+  "taxonomy_id": "paralog_family",
+  "description": "RET/PTC3 fusion via NCOA4 in 10q11.22 inversion, mediated by intra-arm SDs/repetitive flanks; post-Chernobyl pediatric PTC.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr10",
+      "start": 43050000,
+      "end": 51580000
+    }
+  },
+  "size_bp": 8530000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_RET_5p",
+      "SD_NCOA4_3p"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "RET \u2026 NCOA4 (~8 Mb)",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "PTC3 / radiation-induced PTC",
+      "omim": "188550"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 0,
+    "dbvar_count": 8,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "PTC"
+  },
+  "confidence": 0.82,
+  "sources": [
+    "Nikiforov1997",
+    "Nikiforov2002"
+  ]
+}

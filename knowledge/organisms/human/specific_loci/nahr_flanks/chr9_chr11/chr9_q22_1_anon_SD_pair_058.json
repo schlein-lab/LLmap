@@ -1,0 +1,47 @@
+{
+  "name": "chr9_q22_1_anon_SD_pair_058",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD pair on chr9q22.1 flanking a ~839 kb interval; evolutionary architecture, paralog identity ~95.67%.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr9",
+      "start": 89665837,
+      "end": 90505400
+    }
+  },
+  "size_bp": 839563,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr9_q22_1_SD_a",
+      "chr9_q22_1_SD_b"
+    ],
+    "homology_percent": 95.67,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.35,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 45000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 4,
+    "dbvar_count": 14,
+    "clingen_dosage_call": "no_evidence",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.66,
+  "sources": [
+    "Bailey2002",
+    "SD-DB-Eichler",
+    "gnomAD-SVv4"
+  ]
+}

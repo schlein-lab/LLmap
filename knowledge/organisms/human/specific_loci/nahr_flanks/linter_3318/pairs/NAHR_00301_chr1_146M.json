@@ -1,0 +1,52 @@
+{
+  "name": "NAHR_00301_chr1_146M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr1:146084390-149055777 (2.97 Mb interior) flanked by paralogous 9.3 kb LCRs at 97.46% identity, propensity X=3.87. Known syndrome: 1q21.1 TAR/microdel.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 146074321,
+      "end": 149064295
+    }
+  },
+  "size_bp": 2989974,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr1:146074321-146084390",
+      "chr1:149055777-149064295"
+    ],
+    "homology_percent": 97.46,
+    "sd_length_kb": 9.29,
+    "interior_bp": 2971387,
+    "propensity_X": 3.867,
+    "internal_structure": "NBPF10, NBPF12, NOTCH2NLA, PPIAL4H",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 4,
+    "n_total_features": 11,
+    "top_region_rank": 516,
+    "known_syndrome": "1q21.1 TAR/microdel",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

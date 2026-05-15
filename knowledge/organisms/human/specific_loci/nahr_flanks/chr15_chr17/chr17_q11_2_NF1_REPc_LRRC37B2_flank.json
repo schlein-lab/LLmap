@@ -1,0 +1,49 @@
+{
+  "name": "chr17_q11_2_NF1_REPc_LRRC37B2_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "LRRC37B2 paralog in NF1-REPc. NF1 microdeletion fine architecture.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 32880000,
+      "end": 32940000
+    }
+  },
+  "size_bp": 60000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "NF1-REPa",
+      "NF1-REPb",
+      "NF1-REPc"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 60,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LRRC37B2 paralog in NF1-REPc",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "NF1 microdeletion syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:10888601",
+    "PMID:21354048"
+  ]
+}

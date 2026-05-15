@@ -1,0 +1,51 @@
+{
+  "name": "chr19_19p13_2_SMARCA4_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "SMARCA4 (BAF complex) flanking SDs; major SD-driven 19p13.2 hotspot in SCCOHT and rhabdoid tumors.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 10900000,
+      "end": 11200000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 14,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SMARCA4, LDLR-flank",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Coffin-Siris (SMARCA4)",
+    "SCCOHT (somatic SMARCA4)",
+    "AT/RT-like rhabdoid"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 11,
+    "dbvar_count": 87,
+    "clingen_dosage_call": "haploinsufficient_SMARCA4",
+    "tumor_recurrence": "SCCOHT_canonical_loss"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "COSMIC",
+    "ClinGen",
+    "Bailey/Eichler SD-DB"
+  ]
+}

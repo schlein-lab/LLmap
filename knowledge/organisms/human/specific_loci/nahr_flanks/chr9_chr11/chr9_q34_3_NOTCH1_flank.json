@@ -1,0 +1,55 @@
+{
+  "name": "chr9_q34_3_NOTCH1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "NOTCH1 subtelomeric 9q34.3 with flanking partial duplicons; recurrent intragenic dups in Adams-Oliver / T-ALL.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr9",
+      "start": 136490000,
+      "end": 136550000
+    }
+  },
+  "size_bp": 60000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_NOTCH1_5p",
+      "SD_NOTCH1_3p"
+    ],
+    "homology_percent": 94.5,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NOTCH1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "Adams-Oliver syndrome 5",
+      "omim": "616028"
+    },
+    {
+      "name": "T-cell ALL",
+      "omim": "613065"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 1,
+    "dbvar_count": 7,
+    "clingen_dosage_call": "little_evidence",
+    "tumor_recurrence": "T-ALL"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Stittrich2014",
+    "Weng2004"
+  ]
+}

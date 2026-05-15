@@ -1,0 +1,49 @@
+{
+  "name": "chr14_q11_2_TCR_inv14_q11q32",
+  "description": "Recurrent T-ALL inv(14)(q11q32) joining TCR-alpha/delta to IGH/TCL1A \u2014 paracentric inversion mediated by V(D)J machinery off-target plus SD homology between 14q11 and 14q32.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 21600000,
+      "end": 106900000
+    }
+  },
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "TCR_RSS",
+      "IGH_RSS"
+    ],
+    "homology_percent": 75.0,
+    "sd_length_kb": 1,
+    "microhomology_bp_at_breakpoint": "2-7",
+    "internal_structure": "huge paracentric inversion fusing TCL1A/TCRA",
+    "copy_number_in_population": "fixed"
+  },
+  "related_diseases": [
+    "T-prolymphocytic leukemia",
+    "T-ALL"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "high"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Mitelman DB",
+    "COSMIC"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "size_bp": 85300000
+}

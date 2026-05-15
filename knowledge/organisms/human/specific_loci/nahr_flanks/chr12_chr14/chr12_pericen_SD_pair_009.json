@@ -1,0 +1,45 @@
+{
+  "name": "chr12_pericen_SD_pair_009",
+  "description": "chr12 pericentromeric segmental-duplication block #9, alpha-satellite + monomeric SDs shared with other autosomes.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 35800000,
+      "end": 35900000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr12_cen_alpha",
+      "other_cen_alpha"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "alpha-satellite + pericentromeric SD",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "confidence": 0.55,
+  "sources": [
+    "Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "size_bp": 100000
+}

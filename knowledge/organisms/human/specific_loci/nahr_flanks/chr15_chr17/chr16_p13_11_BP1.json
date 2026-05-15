@@ -1,0 +1,50 @@
+{
+  "name": "chr16_p13_11_BP1",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal breakpoint cluster BP1 of the 16p13.11 recurrent microdeletion/duplication. Composed of LCR16a paralog and MYH11-flanking SDs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 14900000,
+      "end": 15100000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog",
+      "LCR16p13.11_proximal"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 300,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LCR16a duplicon core + flanking ~80-150 kb SDs at >98% identity",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p13.11 recurrent microdeletion syndrome (epilepsy, ID, schizophrenia risk)",
+    "16p13.11 microduplication"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:17357066 Sharp 2006",
+    "PMID:19359208 Hannes 2009",
+    "PMID:18617569"
+  ]
+}

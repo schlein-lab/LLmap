@@ -1,0 +1,53 @@
+{
+  "name": "chr22_q11_21_LCR22C_LCR22D",
+  "taxonomy_id": "paralog_family",
+  "description": "NAHR substrate pair LCR22C-LCR22D on 22q11.21. Mediates recurrent CNV (~756 kb interval) via direct-orientation SD pair. Architecture per Edelmann 1999 / Demaerel 2019.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 20708855,
+      "end": 21465662
+    }
+  },
+  "size_bp": 756807,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR22C",
+      "LCR22D"
+    ],
+    "homology_percent": 98.2,
+    "sd_length_kb": 385,
+    "microhomology_bp_at_breakpoint": "varies (typically 100-500 bp within shared LCR22 cores)",
+    "internal_structure": "LCR22 cores share modules: BCRL2/3/4, GGTLC, USP18/41-like pseudogenes, POM121-like, IGLV pseudogene cassettes; gene content of intervening region varies by pair",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.74,
+    "anchor_weight_scale": 0.316,
+    "max_occ": 98500,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q11.2 deletion syndrome (C-D ~700 kb distal nested)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "HI=3",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Edelmann et al. 1999 (LCR22 map)",
+    "Pavlicek et al. 2005",
+    "Demaerel et al. 2019 AJHG (LCR22 nomenclature update)",
+    "McDonald-McGinn et al. 2015 (22q11.2DS Nat Rev Dis Primers)",
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4"
+  ]
+}

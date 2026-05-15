@@ -1,0 +1,47 @@
+{
+  "name": "NPIP_duplicon_family_chr16",
+  "taxonomy_id": "paralog_family",
+  "description": "NPIP (Nuclear Pore complex Interacting Protein) duplicon family \u2014 chr16p-specific (~25 copies). Co-localized with LCR16a; component of every 16p NAHR substrate.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 14000000,
+      "end": 36000000
+    }
+  },
+  "size_bp": 22000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "NPIPB",
+      "NPIPA",
+      "NPIPL"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NPIP family on chr16p; ~25 copies",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:11731217",
+    "PMID:25409090"
+  ]
+}

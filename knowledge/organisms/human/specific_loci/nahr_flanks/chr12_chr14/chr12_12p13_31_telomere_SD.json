@@ -1,0 +1,49 @@
+{
+  "name": "chr12_12p13_31_telomere_SD",
+  "description": "12p13.31 subtelomeric SD block, mediates rare 12pter deletions.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 4000000,
+      "end": 5500000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "12p13_31_telomere_SD_prox",
+      "12p13_31_telomere_SD_dist"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "see description",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "12p13 deletion syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 3,
+    "dbvar_count": 25,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Sharp 2005",
+    "ClinGen",
+    "Sharp 2005"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 1500000
+}

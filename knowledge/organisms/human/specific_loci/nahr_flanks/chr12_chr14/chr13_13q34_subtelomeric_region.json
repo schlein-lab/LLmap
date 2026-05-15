@@ -1,0 +1,49 @@
+{
+  "name": "chr13_13q34_subtelomeric_region",
+  "description": "13q34 subtelomeric microdeletion \u2014 recurrent terminal deletion syndrome with cardiac/CNS features.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr13",
+      "start": 113800000,
+      "end": 114200000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "13q34_subtelomeric_region_prox",
+      "13q34_subtelomeric_region_dist"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 18,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "see description",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "13q34 deletion syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 3,
+    "dbvar_count": 25,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Walczak-Sztulpa 2008",
+    "ClinGen",
+    "Sharp 2005"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 400000
+}

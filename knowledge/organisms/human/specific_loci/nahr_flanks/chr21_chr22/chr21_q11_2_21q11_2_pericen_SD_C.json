@@ -1,0 +1,49 @@
+{
+  "name": "chr21_q11_2_21q11_2_pericen_SD_C",
+  "taxonomy_id": "paralog_family",
+  "description": "21q11.2 pericentromeric SD block C",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr21",
+      "start": 14900000,
+      "end": 15000000
+    }
+  },
+  "size_bp": 100000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "21q11_2_pericen_SD_C"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "21q11.2 pericentromeric SD block C",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.33,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.65,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016"
+  ]
+}

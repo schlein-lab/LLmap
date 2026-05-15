@@ -1,0 +1,45 @@
+{
+  "name": "chr2_p25_anon_SD_pair_001",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD-pair on chr2 band p25 from UCSC genomicSuperDup track; potential NAHR substrate without named recurrent CNV.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr2",
+      "start": 6000000,
+      "end": 6080000
+    }
+  },
+  "size_bp": 80000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr2_p25_anon_SD_pair_001_proximal",
+      "chr2_p25_anon_SD_pair_001_distal"
+    ],
+    "homology_percent": 95.5,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "Intrachromosomal SD pair, no known unique-core gene driver.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.25,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not classified",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.35,
+  "sources": [
+    "UCSC genomicSuperDup track"
+  ]
+}

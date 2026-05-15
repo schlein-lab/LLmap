@@ -1,0 +1,47 @@
+{
+  "name": "chr10_q21_1_anon_SD_pair_055",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD pair on chr10q21.1 flanking a ~1360 kb interval; somatic mitotic architecture, paralog identity ~96.03%.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr10",
+      "start": 55390148,
+      "end": 56750659
+    }
+  },
+  "size_bp": 1360511,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "chr10_q21_1_SD_a",
+      "chr10_q21_1_SD_b"
+    ],
+    "homology_percent": 96.03,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.26,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 45000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 12,
+    "dbvar_count": 2,
+    "clingen_dosage_call": "no_evidence",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.63,
+  "sources": [
+    "Bailey2002",
+    "SD-DB-Eichler",
+    "gnomAD-SVv4"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "chr7_p22_1_ACTB_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "7p22.1 ACTB-flanking SDs mediate occasional micro-CNVs in Baraitser-Winter.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr7",
+      "start": 5500000,
+      "end": 5700000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_ACTB_prox",
+      "SD_ACTB_dist"
+    ],
+    "homology_percent": 95.5,
+    "sd_length_kb": 25,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ACTB Baraitser-Winter syndrome region",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Baraitser-Winter syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 7,
+    "dbvar_count": 15,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": []
+}

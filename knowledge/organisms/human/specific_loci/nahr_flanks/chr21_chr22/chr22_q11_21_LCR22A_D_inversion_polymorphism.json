@@ -1,0 +1,54 @@
+{
+  "name": "chr22_q11_21_LCR22A_D_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "Common population inversion polymorphism between LCR22A and LCR22D (Tannour-Louet 2014). Predisposes carriers to DGS-causing NAHR events.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 18844632,
+      "end": 21465662
+    }
+  },
+  "size_bp": 2621030,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR22A",
+      "LCR22D"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 385,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "inverts DGS critical region",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "DGS predisposition allele"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Edelmann et al. 1999 (LCR22 map)",
+    "Pavlicek et al. 2005",
+    "Demaerel et al. 2019 AJHG (LCR22 nomenclature update)",
+    "McDonald-McGinn et al. 2015 (22q11.2DS Nat Rev Dis Primers)",
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Tannour-Louet et al. 2014"
+  ]
+}

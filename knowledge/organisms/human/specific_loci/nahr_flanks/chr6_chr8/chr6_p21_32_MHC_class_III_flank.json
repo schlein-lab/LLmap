@@ -1,0 +1,46 @@
+{
+  "name": "chr6_p21_32_MHC_class_III_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "MHC class III C4 module \u2014 direct tandem SDs flank C4A/C4B; recurrent NAHR drives 1-4 copies in population, linked to lupus and schizophrenia.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr6",
+      "start": 31900000,
+      "end": 32100000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_C4A_prox",
+      "SD_C4B_dist"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 25,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "C4A/C4B tandem duplication with HERV-K(C4) insertion variation",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "systemic lupus erythematosus",
+    "schizophrenia"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 8500,
+    "dbvar_count": 230,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": []
+}

@@ -1,0 +1,50 @@
+{
+  "name": "chr17_p12_CMT1A_REP_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "CMT1A-REP proximal \u2014 proximal 24 kb low-copy repeat flanking the PMP22 gene. Directly-oriented pair with CMT1A-REP distal mediates the 1.4 Mb recurrent CMT1A duplication (Charcot-Marie-Tooth 1A) and HNPP deletion (hereditary neuropathy with liability to pressure palsies). Recurrent breakpoint hotspot in a 557-bp 'mariner' element with strong sequence specificity.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 14100000,
+      "end": 14250000
+    }
+  },
+  "size_bp": 150000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "CMT1A-REP_proximal",
+      "CMT1A-REP_distal"
+    ],
+    "homology_percent": 98.7,
+    "sd_length_kb": 24,
+    "microhomology_bp_at_breakpoint": "557-bp mariner hotspot, ~92% identity core",
+    "internal_structure": "24-kb LCR with embedded 557-bp mariner transposon hotspot; ~98.7% identity over 24 kb",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Charcot-Marie-Tooth disease type 1A (CMT1A)",
+    "Hereditary neuropathy with liability to pressure palsies (HNPP)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "dosage-sensitive (PMP22 triplosensitive for CMT1A, haploinsufficient for HNPP)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.98,
+  "sources": [
+    "PMID:1916809 Lupski 1991 CMT1A",
+    "PMID:8076979 Reiter 1996 mariner",
+    "PMID:11992257 Inoue Lupski 2002"
+  ]
+}

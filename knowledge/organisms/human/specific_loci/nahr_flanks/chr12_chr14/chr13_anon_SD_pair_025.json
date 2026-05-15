@@ -1,0 +1,45 @@
+{
+  "name": "chr13_anon_SD_pair_025",
+  "description": "Anonymous chr13 segmental-duplication block #25, generic NAHR-prone interval.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr13",
+      "start": 61000000,
+      "end": 61025000
+    }
+  },
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr13_anon_SD_25_A",
+      "chr13_anon_SD_25_B"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 25,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "generic SD pair",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "confidence": 0.5,
+  "sources": [
+    "Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "size_bp": 25000
+}

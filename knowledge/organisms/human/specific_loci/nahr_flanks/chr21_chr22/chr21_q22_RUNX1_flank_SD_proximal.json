@@ -1,0 +1,49 @@
+{
+  "name": "chr21_q22_RUNX1_flank_SD_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "RUNX1 proximal SD (relevant in AML t(8;21))",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr21",
+      "start": 34700000,
+      "end": 34750000
+    }
+  },
+  "size_bp": 50000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "RUNX1_flank_SD_proximal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "RUNX1 proximal SD (relevant in AML t(8;21))",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Acute myeloid leukemia t(8;21)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "t(8;21) AML"
+  },
+  "confidence": 0.75,
+  "sources": [
+    "Korbel et al. 2009 (DSCR map)",
+    "Lyle et al. 2009 (partial trisomy 21)",
+    "Bailey & Eichler SD-DB",
+    "ClinGen Dosage Sensitivity Map"
+  ]
+}

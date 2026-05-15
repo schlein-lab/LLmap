@@ -1,0 +1,50 @@
+{
+  "name": "chr22_q11_2_IGLV_proximal_block",
+  "taxonomy_id": "paralog_family",
+  "description": "IGLV proximal V-cluster (22q11.22) \u2014 extensive paralogous V segments",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 22000000,
+      "end": 22200000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "IGLV_proximal_block"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "n/a (V(D)J recombination-mediated)",
+    "internal_structure": "IGLV proximal V-cluster (22q11.22) \u2014 extensive paralogous V segments",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.33,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "IGL translocations in B-cell lymphoma"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016",
+    "IMGT IGL reference"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "chr6_q16_1_SIM1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "6q16.1 SIM1 SD-flanked region; recurrent deletions cause Prader-Willi-like obesity.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr6",
+      "start": 100800000,
+      "end": 101000000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_SIM1_prox",
+      "SD_SIM1_dist"
+    ],
+    "homology_percent": 96.8,
+    "sd_length_kb": 28,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SIM1 obesity gene region",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Prader-Willi-like syndrome",
+    "early-onset obesity"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 18,
+    "dbvar_count": 78,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": []
+}

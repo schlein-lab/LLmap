@@ -1,0 +1,46 @@
+{
+  "name": "chr15_q25_2_BP_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal BP of the 15q25.2 recurrent microdeletion. Smaller SD block (~50-100 kb) flanking the AKAP13/KLHL25 segment.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 83100000,
+      "end": 83300000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR15q25"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 80,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Small intra-15 SD; lower identity than 15q11-13",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "15q25.2 microdeletion syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "PMID:21044689 Doelken 2010"
+  ]
+}

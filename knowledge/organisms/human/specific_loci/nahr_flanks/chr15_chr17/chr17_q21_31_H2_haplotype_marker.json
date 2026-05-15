@@ -1,0 +1,48 @@
+{
+  "name": "chr17_q21_31_H2_haplotype_marker",
+  "taxonomy_id": "paralog_family",
+  "description": "H2 haplotype \u2014 inverted 17q21.31 configuration. ~20% in Europeans, near-zero in Africans, under positive selection. Pre-requisite for Koolen-deVries microdeletion (direct-orientation LCRs only on H2).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 45500000,
+      "end": 46700000
+    }
+  },
+  "size_bp": 1200000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR17q21.31_A",
+      "LCR17q21.31_D"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Inverted H2 orientation creates direct-oriented LCRs that mediate recurrent KdV deletion",
+    "copy_number_in_population": "fixed_polymorphic_inversion"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Koolen-de Vries syndrome (carrier required)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:15732076",
+    "PMID:22641211"
+  ]
+}

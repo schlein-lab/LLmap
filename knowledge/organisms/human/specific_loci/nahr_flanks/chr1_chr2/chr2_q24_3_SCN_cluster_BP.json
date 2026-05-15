@@ -1,0 +1,48 @@
+{
+  "name": "chr2_q24_3_SCN_cluster_BP",
+  "taxonomy_id": "paralog_family",
+  "description": "SCN1A/SCN2A/SCN3A sodium-channel cluster on 2q24.3; tandem paralogs, rare focal NAHR-mediated SVs in epilepsy patients.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr2",
+      "start": 165800000,
+      "end": 167400000
+    }
+  },
+  "size_bp": 1600000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr2_q24_3_SCN_cluster_BP_proximal_SD",
+      "chr2_q24_3_SCN_cluster_BP_distal_SD"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "generic SD pair flanking unique core",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SCN1A/2A focal CNV (epileptic encephalopathy)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not classified",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "doi:10.1093/brain/awl318",
+    "PMID:17347258"
+  ]
+}

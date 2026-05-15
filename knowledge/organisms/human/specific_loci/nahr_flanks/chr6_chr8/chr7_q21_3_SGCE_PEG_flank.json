@@ -1,0 +1,45 @@
+{
+  "name": "chr7_q21_3_SGCE_PEG_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "7q21.3 SGCE/PEG10 imprinted cluster with SD flanks; SD-mediated deletions cause myoclonus-dystonia.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr7",
+      "start": 94300000,
+      "end": 94800000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_SGCE_prox",
+      "SD_SGCE_dist"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 32,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SGCE/PEG10 imprinted myoclonus-dystonia region",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "myoclonus-dystonia syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 14,
+    "dbvar_count": 65,
+    "clingen_dosage_call": "imprinted",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": []
+}

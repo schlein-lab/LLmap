@@ -1,0 +1,47 @@
+{
+  "name": "chr16_p12_2_BP_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal SD flank of the 16p12.2 recurrent ~520 kb microdeletion (UQCRC2 region) \u2014 'second hit' deletion enriched in NDD.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 21700000,
+      "end": 21900000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog",
+      "LCR16p12.2"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LCR16a + flanking SDs",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p12.2 recurrent microdeletion (developmental delay)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "susceptibility",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:20154674 Girirajan 2010 16p12.2"
+  ]
+}

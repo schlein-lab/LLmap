@@ -1,0 +1,44 @@
+{
+  "name": "chr17_q11_1_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17q11.1 pericentromeric SD \u2014 q-arm side of chr17 centromere.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 25000000,
+      "end": 25500000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "pericentromeric_mosaic"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Paralog block to p-arm pericentromeric SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "PMID:12466850"
+  ]
+}
