@@ -262,8 +262,12 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     uint32_t actual_ref_end = chain.ref_end;
 
     if (have_ref_seqs && right_query_bases > 0 && right_query_bases <= kMaxExtensionSpan) {
-        // Calculate how far we can extend right in reference
-        uint32_t right_ref_bases = std::min(right_query_bases + 50, ref_len - last_anchor_end_ref);
+        // Mirror of the left-extension fix: drop the +50 of downstream ref
+        // padding. The right path tracks query_softclip via aligned_query, so
+        // a trailing deletion is less load-bearing here than on the left —
+        // but the same dynamic causes off-by-up-to-50 ref_end inflation. Use
+        // exact query span; real indels are picked up by the inner WFA2 chain.
+        uint32_t right_ref_bases = std::min(right_query_bases, ref_len - last_anchor_end_ref);
 
         if (right_ref_bases > 0) {
             auto right_result = aligner_.ExtendRight(
