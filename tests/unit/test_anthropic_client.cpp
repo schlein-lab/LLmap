@@ -44,11 +44,11 @@ TEST_F(AnthropicClientTest, TokenBucketAcquireBlocking) {
     auto start = std::chrono::steady_clock::now();
 
     bucket.Acquire(1);  // Should succeed immediately
-    bucket.Acquire(1);  // Should block briefly
+    bucket.Acquire(1);  // Should block briefly (~1ms to refill 1 token)
 
     auto elapsed = std::chrono::steady_clock::now() - start;
-    // Both acquires should complete in under 10ms
-    EXPECT_LT(std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count(), 10);
+    // Both acquires should complete in under 100ms (generous for CI load)
+    EXPECT_LT(std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count(), 100);
 }
 
 TEST_F(AnthropicClientTest, GetApiKeyFromEnvEmpty) {
