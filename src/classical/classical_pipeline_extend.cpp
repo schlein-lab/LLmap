@@ -179,42 +179,6 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
             bool use_wfa = have_ref_seqs &&
                            (query_gap >= kWfaMinGap || ref_gap >= kWfaMinGap);
 
-            // Fast path: when query_gap == ref_gap (no net indel mass) AND
-            // the straight diagonal has high base agreement, skip WFA2 and
-            // emit one M op. If diagonal disagreement is high the gap likely
-            // contains balanced indels (1I + 1D within the same window) which
-            // WFA2 resolves with near-perfect identity and the fast path
-            // would mis-count as mismatches.
-            if (have_ref_seqs && query_gap == ref_gap &&
-                query_gap >= kWfaMinGap &&
-                chain.ref_id < ref_seqs_.size()) {
-                const auto& ref_seq = ref_seqs_[chain.ref_id];
-                if (static_cast<uint32_t>(anchor.ref_pos) <= ref_seq.size() &&
-                    static_cast<uint32_t>(anchor.query_pos) <= query_seq.size()) {
-                    auto qsub = query_seq.substr(prev_query, query_gap);
-                    auto rsub = std::string_view(ref_seq).substr(prev_ref, ref_gap);
-                    uint32_t m = 0;
-                    for (int32_t i = 0; i < query_gap; ++i) {
-                        if (qsub[i] == rsub[i]) ++m;
-                    }
-                    // 95% diagonal agreement: trust the straight match.
-                    // Below that, fall through to WFA2 -- HiFi reads have
-                    // ~0.5% per-base error so 95% is a generous floor.
-                    if (m * 100u >= static_cast<uint32_t>(query_gap) * 95u) {
-                        aln.cigar.push_back({CigarOp::Match,
-                                             static_cast<uint32_t>(query_gap)});
-                        matches += m;
-                        mismatches +=
-                            (static_cast<uint32_t>(query_gap) - m);
-                        aln.cigar.push_back({CigarOp::Match, k});
-                        matches += k;
-                        prev_query = anchor.query_pos + k;
-                        prev_ref = anchor.ref_pos + k;
-                        continue;
-                    }
-                }
-            }
-
             if (use_wfa) {
                 auto gap_result = AlignGap(
                     query_seq, chain.ref_id,
