@@ -196,79 +196,7 @@ int run_align(int argc, char** argv) {
         return 1;
     }
 
-    std::vector<std::string> read_names;
-    std::vector<std::string> read_seqs;
-    std::vector<std::uint32_t> read_lens;
-
-    while (read_reader->HasMore()) {
-        auto record = read_reader->Next();
-        if (record && record->IsValid()) {
-            read_names.push_back(record->id);
-            read_seqs.push_back(record->sequence);
-            read_lens.push_back(static_cast<std::uint32_t>(record->sequence.size()));
-        }
-    }
-
-    if (read_names.empty()) {
-        std::fprintf(stderr, "Error: no reads in input\n");
-        return 1;
-    }
-
-    if (args.verbose) {
-        std::fprintf(stderr, "Loaded %zu reads\n", read_names.size());
-    }
-
-    if (args.verbose) {
-        std::fprintf(stderr, "Aligning...\n");
-    }
-
-    auto align_start = std::chrono::steady_clock::now();
-    std::vector<llmap::classical::ReadAlignmentResult> results;
-    if (args.threads > 1) {
-        llmap::core::ThreadPool pool(static_cast<size_t>(args.threads));
-        results = pipeline.AlignReadsParallel(read_names, read_seqs, pool);
-    } else {
-        results = pipeline.AlignReads(read_names, read_seqs);
-    }
-    auto align_end = std::chrono::steady_clock::now();
-
-    float align_time_ms = std::chrono::duration<float, std::milli>(
-        align_end - align_start).count();
-
-    std::vector<AlignmentRecord> records;
-    records.reserve(results.size());
-
-    std::size_t n_mapped = 0;
-    std::size_t n_unmapped = 0;
-
-    for (std::size_t i = 0; i < results.size(); ++i) {
-        const auto& result = results[i];
-
-        if (result.HasAlignment()) {
-            const auto* primary = result.PrimaryAlignment();
-            if (primary) {
-                records.push_back(ConvertAlignment(*primary, read_lens[i]));
-                n_mapped++;
-            }
-        } else {
-            records.push_back(make_unmapped(
-                result.query_name, read_lens[i], RejectionReason::NoSeeds));
-            n_unmapped++;
-        }
-    }
-
-    // Apply PSV-based paralog disambiguation if catalog provided
-    if (psv_catalog) {
-        if (args.verbose) {
-            std::fprintf(stderr, "Applying PSV-based paralog disambiguation...\n");
-        }
-        ApplyPsvAssignments(*psv_catalog, args, records, read_seqs, args.verbose);
-    }
-
-    if (args.verbose) {
-        std::fprintf(stderr, "Writing output: %s\n", args.output.c_str());
-    }
-
+    // Open output writers up-front so we can stream batches through.
     std::vector<output::ReferenceSequence> ref_info;
     ref_info.reserve(ref_names.size());
     for (std::size_t i = 0; i < ref_names.size(); ++i) {
@@ -288,64 +216,166 @@ int run_align(int argc, char** argv) {
         return 1;
     }
 
-    if (!bam_writer->WriteBatch(records)) {
-        std::fprintf(stderr, "Error: failed to write alignments: %s\n",
-                     bam_writer->LastError().c_str());
-        return 1;
-    }
-
-    bam_writer->Close();
-
+    std::unique_ptr<output::ParquetWriter> parquet_writer;
     if (!args.parquet_output.empty()) {
-        if (args.verbose) {
-            std::fprintf(stderr, "Writing Parquet: %s\n", args.parquet_output.c_str());
-        }
-
         output::ParquetWriterConfig parquet_cfg;
         parquet_cfg.min_probability = 0.0f;
-
-        auto parquet_writer = output::ParquetWriter::Create(
+        parquet_writer = output::ParquetWriter::Create(
             args.parquet_output, parquet_cfg);
         if (!parquet_writer) {
             std::fprintf(stderr, "Warning: failed to create Parquet output\n");
-        } else {
-            parquet_writer->WriteBatch(records);
-            parquet_writer->Close();
         }
+    }
+
+    // Single thread pool reused across batches.
+    std::unique_ptr<llmap::core::ThreadPool> thread_pool;
+    if (args.threads > 1) {
+        thread_pool = std::make_unique<llmap::core::ThreadPool>(
+            static_cast<size_t>(args.threads));
+    }
+
+    // Stream reads in batches to bound RAM independent of input size.
+    // 50k * ~15 kb HiFi = ~750 MB peak; safe even for tens-of-millions-read WGS.
+    constexpr std::size_t kBatchSize = 50000;
+
+    classical::ClassicalPipelineStats agg_stats;
+    std::size_t total_reads = 0;
+    std::size_t n_mapped = 0;
+    std::size_t n_unmapped = 0;
+    double identity_sum_weighted = 0.0;  // \Sigma (batch_avg * batch_aligned)
+
+    auto align_start = std::chrono::steady_clock::now();
+
+    while (read_reader->HasMore()) {
+        std::vector<std::string> batch_names;
+        std::vector<std::string> batch_seqs;
+        std::vector<std::uint32_t> batch_lens;
+        batch_names.reserve(kBatchSize);
+        batch_seqs.reserve(kBatchSize);
+        batch_lens.reserve(kBatchSize);
+
+        while (batch_names.size() < kBatchSize && read_reader->HasMore()) {
+            auto record = read_reader->Next();
+            if (record && record->IsValid()) {
+                batch_names.push_back(record->id);
+                batch_seqs.push_back(record->sequence);
+                batch_lens.push_back(
+                    static_cast<std::uint32_t>(record->sequence.size()));
+            }
+        }
+        if (batch_names.empty()) break;
+
+        std::vector<llmap::classical::ReadAlignmentResult> results;
+        if (thread_pool) {
+            results = pipeline.AlignReadsParallel(
+                batch_names, batch_seqs, *thread_pool);
+        } else {
+            results = pipeline.AlignReads(batch_names, batch_seqs);
+        }
+
+        const auto& bs = pipeline.Stats();
+        agg_stats.total_hits += bs.total_hits;
+        agg_stats.total_chains += bs.total_chains;
+        agg_stats.total_extensions += bs.total_extensions;
+        agg_stats.alignments_filtered_by_identity +=
+            bs.alignments_filtered_by_identity;
+        agg_stats.alignments_filtered_by_length +=
+            bs.alignments_filtered_by_length;
+        agg_stats.seeding_time_ms += bs.seeding_time_ms;
+        agg_stats.chaining_time_ms += bs.chaining_time_ms;
+        agg_stats.extension_time_ms += bs.extension_time_ms;
+        agg_stats.reads_aligned += bs.reads_aligned;
+        agg_stats.reads_unmapped += bs.reads_unmapped;
+        identity_sum_weighted += static_cast<double>(bs.avg_identity) *
+                                 static_cast<double>(bs.reads_aligned);
+
+        std::vector<AlignmentRecord> records;
+        records.reserve(results.size());
+        for (std::size_t i = 0; i < results.size(); ++i) {
+            const auto& result = results[i];
+            if (result.HasAlignment()) {
+                const auto* primary = result.PrimaryAlignment();
+                if (primary) {
+                    records.push_back(ConvertAlignment(*primary, batch_lens[i]));
+                    ++n_mapped;
+                }
+            } else {
+                records.push_back(make_unmapped(
+                    result.query_name, batch_lens[i],
+                    RejectionReason::NoSeeds));
+                ++n_unmapped;
+            }
+        }
+
+        if (psv_catalog) {
+            ApplyPsvAssignments(
+                *psv_catalog, args, records, batch_seqs, args.verbose);
+        }
+
+        if (!bam_writer->WriteBatch(records)) {
+            std::fprintf(stderr, "Error: failed to write alignments: %s\n",
+                         bam_writer->LastError().c_str());
+            return 1;
+        }
+        if (parquet_writer) {
+            parquet_writer->WriteBatch(records);
+        }
+
+        total_reads += batch_names.size();
+        if (args.verbose) {
+            std::fprintf(stderr,
+                "  Processed %zu reads (mapped %zu / unmapped %zu)\n",
+                total_reads, n_mapped, n_unmapped);
+        }
+    }
+
+    auto align_end = std::chrono::steady_clock::now();
+    float align_time_ms = std::chrono::duration<float, std::milli>(
+        align_end - align_start).count();
+
+    bam_writer->Close();
+    if (parquet_writer) {
+        parquet_writer->Close();
+    }
+
+    if (agg_stats.reads_aligned > 0) {
+        agg_stats.avg_identity =
+            static_cast<float>(identity_sum_weighted /
+                               static_cast<double>(agg_stats.reads_aligned));
     }
 
     auto end_time = std::chrono::steady_clock::now();
     float total_time_ms = std::chrono::duration<float, std::milli>(
         end_time - start_time).count();
 
-    float mapping_rate = static_cast<float>(n_mapped) /
-        static_cast<float>(read_names.size());
+    float mapping_rate = total_reads > 0
+        ? static_cast<float>(n_mapped) / static_cast<float>(total_reads)
+        : 0.0f;
 
-    const auto& pstats = pipeline.Stats();
     std::printf("Alignment complete:\n");
-    std::printf("  Input reads:    %zu\n", read_names.size());
+    std::printf("  Input reads:    %zu\n", total_reads);
     std::printf("  Mapped:         %zu (%.1f%%)\n",
                 n_mapped, 100.0f * mapping_rate);
     std::printf("  Unmapped:       %zu\n", n_unmapped);
     std::printf("  Pipeline drop breakdown:\n");
     std::printf("    minimizer hits found: %zu (avg %.1f/read)\n",
-                pstats.total_hits,
-                static_cast<float>(pstats.total_hits) /
-                    std::max<size_t>(1, read_names.size()));
+                agg_stats.total_hits,
+                static_cast<float>(agg_stats.total_hits) /
+                    std::max<size_t>(1, total_reads));
     std::printf("    chains formed:        %zu (avg %.2f/read)\n",
-                pstats.total_chains,
-                static_cast<float>(pstats.total_chains) /
-                    std::max<size_t>(1, read_names.size()));
-    std::printf("    extensions accepted:  %zu\n", pstats.total_extensions);
+                agg_stats.total_chains,
+                static_cast<float>(agg_stats.total_chains) /
+                    std::max<size_t>(1, total_reads));
+    std::printf("    extensions accepted:  %zu\n", agg_stats.total_extensions);
     std::printf("    rejected: identity:   %zu\n",
-                pstats.alignments_filtered_by_identity);
+                agg_stats.alignments_filtered_by_identity);
     std::printf("    rejected: length:     %zu\n",
-                pstats.alignments_filtered_by_length);
-    std::printf("    avg identity:         %.3f\n", pstats.avg_identity);
+                agg_stats.alignments_filtered_by_length);
+    std::printf("    avg identity:         %.3f\n", agg_stats.avg_identity);
     std::printf("  Align time:     %.2f s\n", align_time_ms / 1000.0f);
     std::printf("  Total time:     %.2f s\n", total_time_ms / 1000.0f);
     std::printf("  Throughput:     %.1f reads/s\n",
-                read_names.size() / (align_time_ms / 1000.0f));
+                total_reads / (align_time_ms / 1000.0f));
     std::printf("  Output:         %s\n", args.output.c_str());
     if (!args.parquet_output.empty()) {
         std::printf("  Parquet:        %s\n", args.parquet_output.c_str());
@@ -367,8 +397,13 @@ int run_align(int argc, char** argv) {
 
         auto agent = CreatePipelineAgent(args, args.verbose);
         if (agent) {
-            float avg_identity = pipeline.Stats().avg_identity;
-            RunLlmDiagnostics(*agent, args, results, n_mapped, n_unmapped, avg_identity);
+            float avg_identity = agg_stats.avg_identity;
+            // Streaming mode discards per-batch ReadAlignmentResults; LLM
+            // diagnostics only see aggregate counters. Re-running with a
+            // smaller subsample would be needed to inspect individual reads.
+            std::vector<llmap::classical::ReadAlignmentResult> empty_results;
+            RunLlmDiagnostics(*agent, args, empty_results,
+                              n_mapped, n_unmapped, avg_identity);
         }
     } else if (llm_enabled && args.verbose) {
         std::fprintf(stderr, "Mapping rate %.1f%% meets threshold, "
