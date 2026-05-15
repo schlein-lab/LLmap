@@ -1,0 +1,25 @@
+# LLmap region priors v1 -- numerical per-category alternative depth
+# See docs/REGION_PRIORS_MATH.md for derivation and citations.
+# category	N_hat	H_bits	lambda_scale	max_occ	report_multi	example_loci
+unique_single_copy	1	0.00	1.0	50	0	majority_of_genome
+coding	1	0.00	1.0	50	0	average_ORF
+pseudogene	2	1.00	1.0	200	1	ψgenes_globin_cluster
+paralog_family	5	2.32	1.2	50000	1	IGH_KIR_OR_globin
+paralog_family_mhc	8	3.00	1.2	100000	1	HLA_class_I_II
+paralog_family_NBPF	12	3.58	1.3	200000	1	1q21.1
+low_complexity	200	7.64	2.0	5000	1	1q12_heterochromatin
+tandem_repeat_alpha_satellite	2000	10.97	3.0	1000000	1	centromere_HORs
+tandem_repeat_beta_satellite	1500	10.55	3.0	500000	1	acrocentric_p_arms
+tandem_repeat_gamma_satellite	800	9.64	2.5	200000	1	pericentric
+tandem_repeat_telomeric	50000	15.61	3.0	5000000	1	all_chr_ends
+centromere_like	5000	12.29	3.0	2000000	1	all_centromeres
+dispersed_repeat_alu	1100000	20.07	1.5	5000000	1	genome_wide
+dispersed_repeat_line1	500000	18.93	1.5	2000000	1	genome_wide
+dispersed_repeat_ltr	700000	19.42	1.5	3000000	1	HERV_K_H_W
+dispersed_repeat_sine_mir	600000	19.19	1.5	2500000	1	genome_wide
+nuclear_mtDNA_NUMT	30	4.91	1.2	50000	1	chr5_chr1_chr11
+nor_rDNA	400	8.64	2.5	200000	1	chr13_14_15_21_22
+Y_palindrome	2	1.00	1.1	50000	1	P1_P2_P3_P4_P5_P6_P7_P8
+PAR	2	1.00	1.0	1000	1	chrX_chrY_PAR1_PAR2
+subtelomeric	6	2.58	1.5	100000	1	subtelomeric_blocks
+acrocentric_short_arm	50000	15.61	3.0	5000000	1	chr13p_14p_15p_21p_22p
