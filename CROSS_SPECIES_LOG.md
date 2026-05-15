@@ -33,3 +33,21 @@ every 30min.
 (llmap vs minimap2 vs bwa-mem2 vs winnowmap) across these organisms.
 Per-organism synthetic read generation + ground-truth tracking +
 accuracy/recall reporting.
+
+## Iter 002 — 2026-05-15T22:05 CEST — Phase B landed, smoke test kicked
+
+Phase B scripts complete:
+- gen_synth_reads.py (registry-driven, 17 organisms, tiers 1-10)
+- build_fake_reference.py (stitches FASTA from specific_loci JSONs)
+- run_species_bench.sh (orchestrator, 4-mapper, /usr/bin/time wrapped)
+- run_all_species.sh (loop organisms × tiers 1,2,5,6,10)
+- analyze_bench.py (per-read precision/recall/F1 + region-class breakdown)
+- aggregate_scoreboard.py (idempotent scoreboard + failed_regions report)
+- per_region_breakdown.py (per-locus accuracy join)
+- check_mapper_availability.sh, timing_harness.sh
+
+Mapper availability on vm-science: **llmap OK + minimap2 OK**;
+bwa-mem2 + winnowmap UNAVAILABLE (skipped cleanly).
+
+Smoke test: synthetic_stress tier 1 with llmap+minimap2 running in
+background. If clean, dispatch Phase C agents on next wake.
