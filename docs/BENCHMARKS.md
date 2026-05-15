@@ -21,7 +21,8 @@ After the identity-preset and chain-DP fixes (commits `dd1305d`, `1529c73`) and 
 | **T6** 420k real HG00272 HiFi vs IGH 1.8 Mb | LLmap | 17 s | 419,869 / 419,869 = 100% | 0.754 | dominant peak 291,051 reads |
 | | minimap2 | 14 s | 419,857 / 419,869 = 99.997% | 0.721 | dominant peak 291,308 reads |
 | | winnowmap2 | 65 s | 419,869 / 419,869 = 100% | — | ground truth |
-| **T5** iso-seq | LLmap, minimap2 | running | | | |
+| **T5** iso-seq, 17.17M reads vs human transcriptome | LLmap | 25 min | 16,422,489 / 17,165,724 = 95.7% | 0.943 | streaming verified at 17M-read scale |
+| | minimap2 | 26 min | 15,970,754 / 17,165,724 = 93.04% primary | — | +37M secondary alignments emitted |
 | **T3** 2.5M real HiFi WGS, 111 GB FASTQ | LLmap | running, 8 GB RAM stable | (was OOM before, now streamed in 50k batches) | | |
 | | minimap2 | 46 min (rep2) | 50.6% | | only minimap2 rep2 done |
 | **T4** Illumina WGS | not staged | | | | |
