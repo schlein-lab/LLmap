@@ -62,6 +62,23 @@ if ! command -v samtools >/dev/null 2>&1; then
   exit 2
 fi
 
+# --- concurrency lock ---------------------------------------------------------
+# Prevent two concurrent invocations from writing the same per-tier outputs.
+# Without this, parallel runs (e.g. two `run_all_species.sh` started by mistake)
+# clobber each other's aln.sam and the OOM killer takes one out mid-write,
+# leaving 0-byte aln.sam + 0-byte .time files. Empirically this was the
+# root cause of "WARN: llmap produced empty SAM" on tier 5/6.
+LOCK_DIR="${BENCH_ROOT}/.locks"
+mkdir -p "$LOCK_DIR"
+LOCK_FILE="$LOCK_DIR/${ORGANISM}_tier${TIER}.lock"
+exec 9>"$LOCK_FILE"
+if ! flock -n 9; then
+  echo "ERROR: another run_species_bench.sh is already running for $ORGANISM tier=$TIER (lock $LOCK_FILE)" >&2
+  echo "       refusing to clobber its outputs; aborting." >&2
+  exit 4
+fi
+trap 'flock -u 9 2>/dev/null || true; rm -f "$LOCK_FILE" 2>/dev/null || true' EXIT
+
 # ---- mapper availability ----------------------------------------------------
 bash "$SCRIPT_DIR/check_mapper_availability.sh" --quiet >/dev/null
 
@@ -151,15 +168,23 @@ run_llmap() {
   $IS_LONG_READ || preset="sr"
   echo "[llmap] aligning preset=$preset -> $bam" >&2
   local t0; t0=$(date +%s.%N)
-  if ! /usr/bin/time -v -o "$out/.time" \
-       "$LLMAP_BIN" align -x "$preset" --reference "$REF" -r "$READS" \
-                          -o "$sam" --threads "$THREADS" --sam 2>"$out/stderr.log"; then
-    echo "WARN: llmap align failed (see $out/stderr.log)" >&2
+  local llmap_rc=0
+  /usr/bin/time -v -o "$out/.time" \
+     "$LLMAP_BIN" align -x "$preset" --reference "$REF" -r "$READS" \
+                        -o "$sam" --threads "$THREADS" --sam 2>"$out/stderr.log" \
+     || llmap_rc=$?
+  local t1; t1=$(date +%s.%N)
+  if [[ $llmap_rc -ne 0 ]]; then
+    echo "WARN: llmap align failed rc=$llmap_rc (see $out/stderr.log)" >&2
+    # Persist a structured marker so analyze_bench/aggregator can see this.
+    printf '{"mapper":"llmap","failure_mode":"align_rc_%s","tier_dir":"%s"}\n' \
+      "$llmap_rc" "$TIER_DIR" > "$out/failure.json"
     return 0
   fi
-  local t1; t1=$(date +%s.%N)
   if [[ ! -s "$sam" ]]; then
-    echo "WARN: llmap produced empty SAM" >&2
+    echo "WARN: llmap produced empty SAM (preset=$preset reads=$READS ref=$REF)" >&2
+    printf '{"mapper":"llmap","failure_mode":"empty_sam","preset":"%s","reads":"%s","ref":"%s"}\n' \
+      "$preset" "$READS" "$REF" > "$out/failure.json"
     return 0
   fi
   awk -F'\t' 'NF >= 11 || /^@/' "$sam" \
