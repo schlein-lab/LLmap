@@ -73,3 +73,48 @@ jobs:
         run: |
           ./build/src/llmap --version
           ./build/src/llmap --help
+
+  coverage:
+    name: Code coverage
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build g++-13 lcov
+
+      - name: Configure (coverage enabled)
+        run: |
+          cmake -S . -B build \
+            -GNinja \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DLLMAP_ENABLE_CUDA=OFF \
+            -DLLMAP_USE_NATIVE_ARCH=OFF \
+            -DLLMAP_ENABLE_COVERAGE=ON \
+            -DCMAKE_CXX_COMPILER=g++-13
+
+      - name: Build
+        run: cmake --build build -j$(nproc)
+
+      - name: Run tests (generate coverage data)
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Generate coverage report
+        run: |
+          lcov --capture --directory build --output-file coverage.info \
+            --rc lcov_branch_coverage=1 --ignore-errors mismatch
+          lcov --remove coverage.info '/usr/*' '*/third_party/*' '*/tests/*' \
+            '*/build/_deps/*' --output-file coverage.info \
+            --rc lcov_branch_coverage=1 --ignore-errors unused
+          lcov --list coverage.info
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.info
+          retention-days: 14

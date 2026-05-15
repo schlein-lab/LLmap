@@ -25,6 +25,7 @@ option(LLMAP_ENABLE_CLAUDE     "Build Claude-agent integration"           ON)
 option(LLMAP_ENABLE_TESTS      "Build unit and integration tests"         ON)
 option(LLMAP_ENABLE_BENCH      "Build benchmark harness"                  ON)
 option(LLMAP_USE_NATIVE_ARCH   "Compile with -march=native (faster, less portable)" ON)
+option(LLMAP_ENABLE_COVERAGE   "Build with gcov coverage instrumentation" OFF)
 
 # Warnings & sanitizers
 add_compile_options(
@@ -34,6 +35,13 @@ add_compile_options(
 
 if(LLMAP_USE_NATIVE_ARCH AND CMAKE_BUILD_TYPE STREQUAL "Release")
     add_compile_options(-march=native -mtune=native)
+endif()
+
+# Coverage instrumentation (gcov)
+if(LLMAP_ENABLE_COVERAGE)
+    message(STATUS "Code coverage enabled — adding gcov flags")
+    add_compile_options(--coverage -fprofile-arcs -ftest-coverage)
+    add_link_options(--coverage)
 endif()
 
 # CUDA — enable language if requested and available
@@ -280,4 +288,5 @@ message(STATUS "  Claude Agent    : ${LLMAP_ENABLE_CLAUDE}")
 message(STATUS "  Tests           : ${LLMAP_ENABLE_TESTS}")
 message(STATUS "  Benchmarks      : ${LLMAP_ENABLE_BENCH}")
 message(STATUS "  Native arch     : ${LLMAP_USE_NATIVE_ARCH}")
+message(STATUS "  Coverage        : ${LLMAP_ENABLE_COVERAGE}")
 message(STATUS "")

@@ -13,7 +13,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | the HPC cluster status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 238 |
+| Last successful iteration | 239 |
 | Total iterations | 237 |
 
 ---
@@ -117,35 +117,36 @@ This file is the source of truth for autonomous-driver continuation. The driver 
   - [x] Phase C.4: `--classical-only` mode (1509 tests pass)
 - [x] **V1.0 Final** ✓
   - [x] V1.0 final release preparation (1509 tests pass)
-- [x] **Phase D: CI/CD Improvements** ✓
+- [ ] **Phase D: CI/CD Improvements**
   - [x] Phase D.1: clang-tidy linter integration (1518 tests pass)
+  - [ ] Phase D.2: Code coverage CI integration
 
 ---
 
 ## Current task
 
 ```
-phase: D.1
-task: COMPLETE
-substep: clang-tidy CI integration complete
+phase: D.2
+task: Add code coverage to CI pipeline
+substep: Implement gcov/lcov coverage and add CI job
 inputs:
   - V1.0 complete
   - 1518 tests passing
+  - clang-tidy CI already in place
 expected_files_changed:
-  - .clang-tidy (new - linter configuration)
-  - .github/workflows/ci.yml (updated with lint job)
+  - CMakeLists.txt (add LLMAP_ENABLE_COVERAGE option)
+  - .github/workflows/ci.yml (add coverage job)
 acceptance:
-  - All tests pass ✓
-  - Monolith count stays at 0 ✓
-  - .clang-tidy config created ✓
-  - CI workflow updated with clang-tidy job ✓
+  - All tests pass
+  - Monolith count stays at 0
+  - CMake has LLMAP_ENABLE_COVERAGE option
+  - CI workflow has coverage job with gcov
+  - Coverage report generated
 notes: |
-  Phase D.1 complete: clang-tidy linter integration
-  - Created .clang-tidy with modern C++23 checks
-  - Added parallel lint job to CI workflow
-  - Focuses on bugprone, performance, and modernize checks
-  - Disables noisy style-only checks (magic numbers, identifier length)
-  - CI will run clang-tidy-18 on all src/*.cpp files
+  Phase D.2: Add code coverage measurement to CI
+  - Use gcov/lcov for coverage measurement
+  - Add CMake option LLMAP_ENABLE_COVERAGE
+  - Add CI job to generate coverage reports
 ```
 
 ---
