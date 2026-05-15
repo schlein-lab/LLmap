@@ -179,11 +179,12 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
             bool use_wfa = have_ref_seqs &&
                            (query_gap >= kWfaMinGap || ref_gap >= kWfaMinGap);
 
-            // Fast path: when query_gap == ref_gap (no indel mass) we can
-            // skip the full WFA2 DP and just walk the two substrings doing
-            // base-by-base comparison. WFA2 reaches the same conclusion but
-            // pays gap-affine setup cost. On HiFi extension this is the
-            // dominant case and was 95% of T1 wallclock.
+            // Fast path: when query_gap == ref_gap (no net indel mass) AND
+            // the straight diagonal has high base agreement, skip WFA2 and
+            // emit one M op. If diagonal disagreement is high the gap likely
+            // contains balanced indels (1I + 1D within the same window) which
+            // WFA2 resolves with near-perfect identity and the fast path
+            // would mis-count as mismatches.
             if (have_ref_seqs && query_gap == ref_gap &&
                 query_gap >= kWfaMinGap &&
                 chain.ref_id < ref_seqs_.size()) {
@@ -196,15 +197,21 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
                     for (int32_t i = 0; i < query_gap; ++i) {
                         if (qsub[i] == rsub[i]) ++m;
                     }
-                    aln.cigar.push_back({CigarOp::Match,
-                                         static_cast<uint32_t>(query_gap)});
-                    matches += m;
-                    mismatches += (static_cast<uint32_t>(query_gap) - m);
-                    aln.cigar.push_back({CigarOp::Match, k});
-                    matches += k;
-                    prev_query = anchor.query_pos + k;
-                    prev_ref = anchor.ref_pos + k;
-                    continue;
+                    // 95% diagonal agreement: trust the straight match.
+                    // Below that, fall through to WFA2 -- HiFi reads have
+                    // ~0.5% per-base error so 95% is a generous floor.
+                    if (m * 100u >= static_cast<uint32_t>(query_gap) * 95u) {
+                        aln.cigar.push_back({CigarOp::Match,
+                                             static_cast<uint32_t>(query_gap)});
+                        matches += m;
+                        mismatches +=
+                            (static_cast<uint32_t>(query_gap) - m);
+                        aln.cigar.push_back({CigarOp::Match, k});
+                        matches += k;
+                        prev_query = anchor.query_pos + k;
+                        prev_ref = anchor.ref_pos + k;
+                        continue;
+                    }
                 }
             }
 
