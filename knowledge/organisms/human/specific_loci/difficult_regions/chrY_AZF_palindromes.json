@@ -1,0 +1,32 @@
+{
+  "name": "chrY_AZF_palindromes_P1_P8",
+  "taxonomy_id": "paralog_family",
+  "description": "Y-chromosome male-specific region (MSY) ampliconic palindromes P1-P8 in Yq11.2 (AZFb/AZFc region). Eight massive palindromic repeats (50 kb to ~1.45 Mb arms) with arm-to-arm identity of 99.94-99.997% mediate NAHR causing recurrent AZF microdeletions (azoospermia/oligozoospermia). Among the most highly identical SDs in the genome.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 18500000, "end": 26100000}},
+  "size_bp": 7600000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.97,
+    "internal_structure": "Eight palindromes P1-P8 with arm lengths from 9 to 1450 kb; arm-to-arm identity 99.94-99.997% (Skaletsky 2003); contain testis-expressed gene families RBMY, DAZ, BPY2, PRY, CDY, TSPY; P5/proximal-P1 NAHR drives AZFb deletions, b1/b3 and b2/b4 drive AZFc."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "AZFa, AZFb, AZFc deletions (male infertility)",
+    "gr/gr partial AZFc deletion",
+    "Spermatogenic failure"
+  ],
+  "sources": [
+    "doi:10.1038/nature01722",
+    "doi:10.1126/science.1086132",
+    "doi:10.1038/ng757"
+  ],
+  "confidence": 0.95
+}

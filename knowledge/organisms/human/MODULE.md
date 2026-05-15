@@ -38,6 +38,7 @@ Together repetitive + paralogous + low-complexity regions account for ~50% of th
 
 - `classifier_rules.json` — priority-ordered decision rules mapping feature vectors to region names.
 - `codon_table.json` — standard human codon usage frequencies; consumed by the universal `orf_density` extractor.
+- `specific_loci/` — **Layer 2** per-locus database with concrete GRCh38 (and CHM13 where divergent) coordinates for 130 named loci: 24 centromeres, 43 telomeres (24 q-arms + 19 p-arms; acrocentric p-arms omitted), 3 immunoglobulin loci (IGH/IGK/IGL), 3 MHC sub-regions (class I/II/III), KIR cluster, 3 olfactory clusters, 5 acrocentric NORs (45S rDNA), Y-chromosome PAR1/PAR2/AZF, chrM, 24 segmental-duplication / recurrent-CNV regions, 12 low-complexity pericentric and acrocentric satellite blocks, and 8 additional difficult-region entries (NUMTs, palindromes, etc.). See `specific_loci/README.md` for the file format and source list.
 
 ## Notable omissions / candidates for future curation
 

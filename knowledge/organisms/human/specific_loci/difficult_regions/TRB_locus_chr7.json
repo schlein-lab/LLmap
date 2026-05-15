@@ -1,0 +1,30 @@
+{
+  "name": "TRB_locus_chr7q34",
+  "taxonomy_id": "paralog_family",
+  "description": "T-cell receptor beta (TRB) locus on chromosome 7q34. ~620 kb spanning ~64 V-beta gene segments, 2 D-J-C clusters (DJ1, DJ2). V(D)J recombination scrambles the locus per T-cell clone, so mapping a bulk T-cell sample sees a mixture of partially-deleted alleles.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 142000000, "end": 142800000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "single",
+    "homology_percent": 80.0,
+    "internal_structure": "5' V-beta cluster (~64 segments, many pseudogenes) -> two tandem D-J-C clusters (Db1-Jb1-Cb1 and Db2-Jb2-Cb2) -> 3' V-beta30 in inverted orientation. V(D)J recombination per clone."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "T-cell lymphomas with TRB translocations (e.g. t(7;9) NOTCH1)",
+    "Severe combined immunodeficiency (TRB-deficient)"
+  ],
+  "sources": [
+    "doi:10.1093/nar/gkh752",
+    "doi:10.1146/annurev.immunol.18.1.495"
+  ],
+  "confidence": 0.9
+}

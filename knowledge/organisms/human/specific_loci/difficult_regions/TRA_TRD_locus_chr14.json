@@ -1,0 +1,30 @@
+{
+  "name": "TRA_TRD_locus_chr14q11",
+  "taxonomy_id": "paralog_family",
+  "description": "T-cell receptor alpha (TRA) and delta (TRD) locus on chromosome 14q11.2. TRA spans ~1 Mb with ~50 functional V-alpha and ~60 J-alpha gene segments; TRD is nested within TRA between V-alpha and J-alpha clusters. V(D)J recombination scrambles the locus per T-cell clone, similar to IGH/IGK/IGL.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 21600000, "end": 22600000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "single",
+    "homology_percent": 80.0,
+    "internal_structure": "5' V-alpha cluster (~50 functional Vs) -> embedded TRD (Vd, Dd, Jd, Cd) -> J-alpha cluster (~60 Js) -> C-alpha. V(D)J recombination irreversibly deletes intervening DNA per T-cell clone."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "T-cell lymphomas / leukaemias (TRA/TRD translocations)",
+    "T-cell immunodeficiency"
+  ],
+  "sources": [
+    "doi:10.1093/nar/gkh752",
+    "doi:10.1146/annurev.immunol.18.1.495"
+  ],
+  "confidence": 0.9
+}

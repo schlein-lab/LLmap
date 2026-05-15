@@ -5,9 +5,9 @@
 // the runtime will see at a given locus.
 //
 // Usage:
-//   llmap variant-query --priors dbsnp.priors \
-//                       --chr chr14 \
-//                       --pos 105580000 \
+//   llmap variant-query --priors dbsnp.priors
+//                       --chr chr14
+//                       --pos 105580000
 //                       [--window 5000]
 //
 // Multiple --priors paths can be passed (comma-separated) to inspect the
@@ -22,6 +22,7 @@
 //   - multi-file aggregation per schema.json:aggregation_rules
 //   - TSV / JSON output modes
 
+#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <string>

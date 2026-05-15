@@ -474,7 +474,127 @@ inputs and the recorded knowledge SHAs.
 
 ---
 
-## 13. Open questions
+## 13. Chromosomal positions as a multi-dimensional manifold
+
+A chromosomal "position" in the classical mapper sense is a 1-D
+integer: `(chr, base)`. That representation is *too small* to describe
+real biology — two reads that both have `chr14:105580000` may belong
+to different paralogs, different haplotypes, different somatic clones,
+different ancestral haplotype blocks, different gene-conversion
+events. The classical 1-D `pos` collapses all of that into a single
+number.
+
+LLmap operates on a richer **position manifold**
+
+```math
+\mathcal{M} \;=\; \mathbb{R} \;\times\; \mathcal{A} \;\times\; \mathcal{P} \;\times\; \mathcal{S} \;\times\; \mathcal{T} \;\times\; \mathcal{F}
+```
+
+with axes:
+
+| Axis | Meaning | Source of values |
+|---|---|---|
+| `R` | Reference 1-D position `(chr, pos)` | the assembly itself |
+| `A` | Allele / haplotype index | population variant catalogs (gnomAD, HPRC) |
+| `P` | Paralog identity inside a multi-copy family | `specific_loci/*` + PSV catalogs |
+| `S` | Structural context (within centromere, SD block, telomere, NUMT, etc.) | Layer 1 + Layer 2 annotation |
+| `T` | Temporal axis (germline vs somatic vs evolutionary fixed) | ClinVar, COSMIC, per-sample history |
+| `F` | Population frequency band (singleton, rare, common, fixed) | gnomAD AF distribution |
+
+Every point `μ ∈ M` carries a precomputed local prior `P(μ)`
+("blueprint"): how often is something here, what should reads look
+like, what variants are expected, what paralog signature should
+dominate.
+
+The **mapping problem becomes a projection problem**:
+
+```math
+\text{read} \;\xrightarrow{\text{embed}}\; \mathbf{f} \in \mathcal{F}_{\text{feat}}
+\;\xrightarrow{\text{collapse}}\; \mu \in \mathcal{M}
+```
+
+* `embed` maps the read into a feature space (minimizer signature,
+  k-mer rarity, mismatch pattern, length, soft-clip profile).
+* `collapse` is the WaveCollapse step: starting from a probability
+  cloud `ψ(μ)` over the manifold, apply the four prior layers in
+  succession; each layer is a projection operator that contracts the
+  cloud along one or more axes:
+
+```math
+\psi_0(\mu) \;\xrightarrow{\hat{\Pi}_1}\;
+\psi_1(\mu) \;\xrightarrow{\hat{\Pi}_2}\;
+\psi_2(\mu) \;\xrightarrow{\hat{\Pi}_3}\;
+\psi_3(\mu) \;\xrightarrow{\hat{\Pi}_4}\;
+\psi_4(\mu)
+```
+
+The cloud either collapses to a single `μ̂` (deterministic mapping)
+or remains a wave (multi-position output with amplitudes summing to
+one). The novelty channel reports the residue when the read's
+features lie far from any well of `P(μ)`.
+
+### 13.1 The blueprint as precompiled prior
+
+The `M` manifold's prior `P(μ)` is **precompiled** from the layered
+knowledge — that is the blueprint:
+
+* **Density blueprint** — expected read coverage per `(R, A, P, S)`
+  cell, learned from the population coverage distribution. The
+  mapper uses this to flag windows that are unexpectedly empty or
+  unexpectedly oversaturated.
+* **Pattern blueprint** — expected mismatch/soft-clip patterns. A
+  read showing the canonical alpha-satellite higher-order-repeat
+  shift is *expected* in centromeres and not penalised; the same
+  pattern in coding regions triggers the novelty channel.
+* **Reunion blueprint** — which reads should *cluster* together at
+  what `μ`. Reads from the same paralog `P` should pool; reads from
+  different paralogs `P, P'` should stay separated even when their
+  `R` is similar.
+
+### 13.2 Three uses of the blueprint at runtime
+
+1. **Pre-sorting.** Before chain DP, each read's coarse manifold cell
+   is determined from the minimizer signature alone. Reads landing
+   in the same `(R-bin, S-bin)` cell are batched and processed
+   together; their decisions share regional context. This is what
+   makes the per-base parameter manifold tractable — we don't
+   recompute Layer-1/2/4 priors per read, we precompute them per
+   cell and reuse.
+
+2. **Pattern recognition.** A *cluster* of reads at the same `μ`
+   that exhibit the same off-prior signature is itself a signal: a
+   private SV in this sample, a clonal somatic event, a hidden
+   paralog copy not in the reference. The mapper reports this
+   cluster as a coherent finding rather than as N independent reads.
+
+3. **Targeted reunification.** Reads at neighbouring `μ` (same `P`,
+   adjacent `R`) are explicitly grouped for assembly / phasing
+   downstream. The mapper's output is a structured manifold-aware
+   BAM where the `XP` tag carries the paralog index and the `XT` tag
+   carries the temporal-context guess (germline / somatic / fixed).
+
+### 13.3 Mathematical statement
+
+The manifold-aware mapping is
+
+```math
+\hat{\mu}(R) \;=\; \arg\max_{\mu \in \mathcal{M}}
+\; \log P(R \mid \mu) + \sum_{\ell=1}^4 \beta_\ell \log P_\ell(\mu)
+- \mu_{\text{nov}} \mathcal{L}_{\text{novelty}}(R, \mu)
+```
+
+subject to the Heisenberg-like bound of § 2.2 — `μ̂` is **emitted as
+a point** only if the wavefunction has collapsed; otherwise the
+emission is the wavefunction itself.
+
+This is the rigorous statement of what the field has been calling
+"alignment". Once one writes it this way, the existing-mapper
+behaviour (uniform prior, point-output everywhere, no novelty
+channel) is visibly a degenerate special case — not best practice.
+
+---
+
+## 14. Open questions
 
 * Calibration of the `β_ℓ` mixing coefficients. Currently fixed; eventually learned from held-out gold-standard datasets per organism.
 * Calibration of `ℏ_map`. Currently derived analytically from `k` and `N`; could be empirical.

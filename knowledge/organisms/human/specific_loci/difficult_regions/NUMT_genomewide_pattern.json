@@ -1,0 +1,30 @@
+{
+  "name": "NUMT_genomewide_dispersed",
+  "taxonomy_id": "paralog_family",
+  "description": "Dispersed pattern of >700 nuclear mitochondrial DNA insertions (NUMTs) scattered across all autosomes and X, ranging from ~100 bp to ~14 kb at 80-99% identity to chrM. Reads from chrM commonly mismap to NUMTs and vice versa, generating spurious heteroplasmy calls. This entry is a pattern/landscape marker, not a single coordinate.",
+  "coordinates": {"genomewide": true, "note": "pattern, not a single contiguous coordinate range"},
+  "size_bp_total_aggregate": 1400000,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "many",
+    "homology_percent": 95.0,
+    "internal_structure": "Hundreds of NUMTs distributed across all nuclear chromosomes; sizes from <100 bp to ~14 kb; identities to chrM 80-99% (older NUMTs more diverged); largest single NUMTs on chr1, chr5 (chr5q33), chr11."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "False mtDNA heteroplasmy in clinical sequencing"
+  ],
+  "sources": [
+    "doi:10.1371/journal.pgen.1000834",
+    "doi:10.1093/molbev/msi198",
+    "doi:10.1101/gr.10.6.795"
+  ],
+  "confidence": 0.9
+}

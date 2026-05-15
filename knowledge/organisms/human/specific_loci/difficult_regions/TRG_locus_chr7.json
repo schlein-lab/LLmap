@@ -1,0 +1,30 @@
+{
+  "name": "TRG_locus_chr7p14",
+  "taxonomy_id": "paralog_family",
+  "description": "T-cell receptor gamma (TRG) locus on chromosome 7p14. ~160 kb spanning ~14 V-gamma gene segments (6-7 functional) and 5 J-gamma segments with 2 constant regions (Cg1, Cg2). Compact relative to TRA/TRB/IGH but still V(D)J-recombined per T-cell clone.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 38240000, "end": 38400000}},
+  "size_bp": 160000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "single",
+    "homology_percent": 85.0,
+    "internal_structure": "V-gamma cluster (~14 Vs) -> Jg1.1-Jg1.2-Cg1 -> Jg2.1-Jg2.3-Cg2. V(D)J recombination per clone."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "gamma-delta T-cell lymphoma",
+    "T-cell clonality assays use TRG PCR"
+  ],
+  "sources": [
+    "doi:10.1093/nar/gkh752",
+    "doi:10.1146/annurev.immunol.18.1.495"
+  ],
+  "confidence": 0.9
+}
