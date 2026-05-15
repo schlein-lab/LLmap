@@ -1,0 +1,30 @@
+{
+  "name": "16q12_SD_blocks",
+  "taxonomy_id": "paralog_family",
+  "description": "16q12.1-q12.2 SD modules — LCR16a-derived duplicons inserted distal to the pericentromere; cluster around CYLD, NKD1, SALL1 and the GPR114 area. Source of rare ~1 Mb 16q12 microdeletions.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 50200000, "end": 53000000}},
+  "size_bp": 2800000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Mosaic of LCR16a-related duplicons interspersed with unique sequence; SDs typically 30-150 kb at ~95-98% identity; some inverted relative to LCR16a consensus."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16q12.1 microdeletion (rare ID)",
+    "Townes-Brocks syndrome (SALL1)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/ng.534"
+  ],
+  "confidence": 0.65
+}

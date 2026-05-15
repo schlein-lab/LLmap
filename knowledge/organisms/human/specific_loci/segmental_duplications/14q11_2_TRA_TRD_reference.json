@@ -1,0 +1,32 @@
+{
+  "name": "14q11_2_TRA_TRD_reference",
+  "taxonomy_id": "paralog_family",
+  "description": "T-cell receptor alpha/delta (TRA/TRD) locus on chr14q11.2, ~1 Mb spanning ~70 TRAV/TRDV variable, 5 TRDD diversity, 4 TRDJ, the TRDC constant, 61 TRAJ joining, and TRAC constant gene segments. The TRD locus is embedded within the TRA locus and is excised during alpha-chain rearrangement. The locus is somatically rearranged in every T cell and shows heavy paralog content among V-genes. Full locus details documented in /difficult_regions/TRA_TRD_locus_chr14.json; this entry serves as an SD-tier cross-reference.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 21621904, "end": 22552132}},
+  "size_bp": 930228,
+  "architecture": {
+    "type": "VDJ_locus",
+    "copy_number_in_population": "somatic_recombination",
+    "homology_percent": 92.0,
+    "internal_structure": "TRAV/TRDV cluster proximal, TRD core (TRDD-TRDJ-TRDC) embedded inside, TRAJ cluster distal, TRAC constant at the distal end."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "related_diseases": [
+    "T-cell lymphoma (TCR translocations t(14;14), inv(14))",
+    "ataxia-telangiectasia-like disorder"
+  ],
+  "cross_reference": "/difficult_regions/TRA_TRD_locus_chr14.json",
+  "sources": [
+    "doi:10.1093/nar/gks1313",
+    "doi:10.1038/nature02399",
+    "IMGT TRA/TRD database"
+  ],
+  "confidence": 0.9
+}

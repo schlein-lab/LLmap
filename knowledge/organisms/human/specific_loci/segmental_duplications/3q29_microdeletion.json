@@ -1,0 +1,35 @@
+{
+  "name": "3q29_microdeletion_DLG1",
+  "taxonomy_id": "paralog_family",
+  "description": "3q29 recurrent ~1.6 Mb microdeletion / microduplication mediated by flanking direct-orientation SD blocks at 3q29 (LCR3q29A, LCR3q29B) of ~16-20 kb at >97% identity. Highly penetrant for schizophrenia (40x risk), intellectual disability, and autism. The reciprocal duplication is milder but associated with ID and microcephaly.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 195700000, "end": 197300000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["LCR3q29A", "LCR3q29B"],
+    "homology_percent": 98.0,
+    "internal_structure": "Two flanking SD blocks of ~15-20 kb at >97% identity (TFRC/PAK2 paralog cassettes); unique core contains 21-22 RefSeq genes including DLG1, BDH1, PAK2, PIGZ, MFI2, FBXO45, NCBP2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "3q29 deletion syndrome (schizophrenia, ID, autism)",
+    "3q29 duplication syndrome (ID, microcephaly)",
+    "schizophrenia (OR ~40 for deletion)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1056/NEJMoa055201",
+    "doi:10.1038/ng.589",
+    "doi:10.1038/mp.2017.246",
+    "ClinGen Dosage Sensitivity 3q29 recurrent (HI=3)"
+  ],
+  "confidence": 0.95
+}

@@ -1,0 +1,35 @@
+{
+  "name": "chr22_22q11_21_LCR22D_breakpoint_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "LCR22-D, a ~700 kb SD block at chr22:21.5-22.2 Mb (GRCh38). Distal breakpoint of the canonical 3 Mb DiGeorge deletion (A-D NAHR). LCR22-D is the largest and most complex LCR22 module, containing GGT/USP18/BCRP/POM121L paralogs in mixed orientation; structural haplotype diversity makes long-read assembly essential for resolution.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 21500000, "end": 22200000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "mixed_direct_inverted_block",
+    "copy_number_in_population": "structurally_polymorphic",
+    "homology_percent": 99.0,
+    "internal_structure": "Largest LCR22, complex GGT/USP18/BCRP/POM121L mosaic in direct+inverted orientation; multiple sub-haplotypes (LCR22-D-1 through D-6) characterised by long-read sequencing."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q11.2 deletion syndrome (canonical A-D)",
+    "22q11.2 duplication syndrome",
+    "schizophrenia"
+  ],
+  "cross_references": [
+    "22q11_21_DiGeorge.json"
+  ],
+  "sources": [
+    "doi:10.1038/s41588-019-0539-z",
+    "doi:10.1038/nrg2593",
+    "PMID:31784727"
+  ],
+  "confidence": 0.95
+}

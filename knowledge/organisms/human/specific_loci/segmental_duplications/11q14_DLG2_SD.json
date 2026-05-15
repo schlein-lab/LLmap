@@ -1,0 +1,30 @@
+{
+  "name": "11q14_DLG2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "11q14.1 segmental duplication interval inside the very large DLG2 (PSD-93) gene body. Intronic SDs predispose to recurrent intragenic DLG2 deletions associated with schizophrenia and neurodevelopmental phenotypes.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 83000000, "end": 85500000}},
+  "size_bp": 2500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Intronic SDs of 5-30 kb at ~94% identity; large gene body (~2.2 Mb) with multiple repeat-prone introns; family-internal SDs to DLG1/3/4."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "schizophrenia (DLG2 intragenic CNV)",
+    "intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:23042115"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19q13_42_43_PRSS_family",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.42-q13.43 distal SD-rich tail containing the PRSS (kallikrein / serine protease) family (PRSS57, PRSS1-like cluster, KLK family at 19q13.41 boundary), VSTM1, NLRP2/7/12 paralogs and the subtelomeric SD field of 19q. The 19q tail also harbours the very last KRAB-ZNF blocks (ZNF274, ZIM2, PEG3).",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 55400000, "end": 58600000}},
+  "size_bp": 3200000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "PRSS / KLK serine-protease paralog tandem clusters of 50-200 kb at 85-95% identity; NLRP paralog cassettes; subtelomeric duplicons shared with other chromosome tails; very high SD density characteristic of the chr19 distal tip."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hereditary pancreatitis (PRSS1/PRSS2)",
+    "Familial cold autoinflammatory syndrome (NLRP12)",
+    "Recurrent reproductive failure (NLRP7)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075",
+    "PMID:18617664"
+  ],
+  "confidence": 0.8
+}

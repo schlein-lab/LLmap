@@ -1,0 +1,30 @@
+{
+  "name": "chr21_21q22_3_BACE2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "21q22.3 region around BACE2 (beta-secretase 2), a paralog of BACE1 (11q23.3). Local SD blocks 20-60 kb at 94-96% identity flank BACE2; trisomy-21 dosage of BACE2 modulates APP processing in Down syndrome brain.",
+  "coordinates": {"grch38": {"chr": "chr21", "start": 41100000, "end": 41700000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "intrachromosomal_flanking_SD",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 95.0,
+    "internal_structure": "Two flanking SD pairs (~25 kb, ~55 kb) around BACE2 at 94-96% identity; intergene paralog (BACE1) on chr11."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Down syndrome amyloid pathology (BACE2 dosage)",
+    "Type 2 diabetes (BACE2 in pancreatic beta cells)"
+  ],
+  "sources": [
+    "doi:10.1073/pnas.012585199",
+    "PMID:11827465"
+  ],
+  "confidence": 0.75
+}

@@ -1,0 +1,29 @@
+{
+  "name": "9_centromere_alpha_satellite",
+  "taxonomy_id": "centromere_like",
+  "description": "Chr9 alpha-satellite higher-order repeat array (D9Z1/D9Z4) at the active centromere. T2T-CHM13 resolved the array to ~7 Mb; sits between the 9p12 HSat3 block and 9q12 heterochromatin, making chr9 the most heterochromatin-rich autosome.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 43226000, "end": 45518000}},
+  "size_bp": 2292000,
+  "architecture": {
+    "type": "centromeric_alpha_satellite",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.5,
+    "internal_structure": "Active alpha-satellite higher-order repeat embedded in CENP-A chromatin; flanked by HSat3 on p side and heterochromatin block on q side."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Centromeric aneuploidy susceptibility"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-022-05325-5"
+  ],
+  "confidence": 0.9
+}

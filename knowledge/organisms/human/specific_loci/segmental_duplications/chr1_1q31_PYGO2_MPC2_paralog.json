@@ -1,0 +1,29 @@
+{
+  "name": "chr1_1q31_PYGO2_MPC2_paralog",
+  "taxonomy_id": "paralog_family",
+  "description": "Small but well-defined SD block at 1q31 around PYGO2, MPC2 and SHC1 paralogs. The duplicons share ancestry with chr1q21 SDs and contribute to occasional larger 1q duplication events.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 192000000, "end": 193500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pair of 30-60 kb SD blocks at ~95% identity flanking a unique interval; gene paralog complement includes PYGO2, MPC2, SHC1-related sequence."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1q31 microduplication (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature11082"
+  ],
+  "confidence": 0.6
+}

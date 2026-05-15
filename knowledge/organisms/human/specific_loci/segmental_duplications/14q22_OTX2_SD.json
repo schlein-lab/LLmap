@@ -1,0 +1,31 @@
+{
+  "name": "14q22_OTX2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "OTX2 (orthodenticle homeobox 2) at 14q22.3 sits in a ~3 Mb interval flanked by directly-oriented SDs (10-40 kb modules at 94-98% identity) that mediate recurrent ~2-4 Mb microdeletions causing anophthalmia/microphthalmia and pituitary dysfunction. The proximal flank also harbours BMP4 paralog modules.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 56000000, "end": 59000000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Pairs of 10-40 kb SDs at 94-98% identity flanking OTX2; small BMP4-paralog modules at the proximal edge."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "anophthalmia/microphthalmia (MCOPS5)",
+    "combined pituitary hormone deficiency"
+  ],
+  "sources": [
+    "doi:10.1086/430098",
+    "doi:10.1210/jc.2007-2294",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

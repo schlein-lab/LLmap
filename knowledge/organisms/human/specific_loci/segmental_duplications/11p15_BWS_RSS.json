@@ -1,0 +1,36 @@
+{
+  "name": "11p15_Beckwith_Wiedemann_Russell_Silver",
+  "taxonomy_id": "paralog_family",
+  "description": "11p15.5 imprinted region containing the two imprinted control regions ICR1 (H19/IGF2) and ICR2 (KCNQ1OT1/CDKN1C). Microdeletions, microduplications, and uniparental disomy at this locus cause Beckwith-Wiedemann syndrome (overgrowth, predisposition to embryonal tumors) and the reciprocal Russell-Silver syndrome (growth restriction). Recurrent CNVs are rare but reported; most cases are epimutations or UPD.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 1900000, "end": 3200000}},
+  "size_bp": 1300000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_11p15.5_telomeric", "SD_11p15.4_centromeric"],
+    "homology_percent": 95.0,
+    "internal_structure": "Imprinted gene cluster spanning two ICRs: ICR1 (~2.0 Mb) controls H19/IGF2; ICR2 (~2.7 Mb) controls KCNQ1OT1/CDKN1C/KCNQ1. Modest SD content; breakpoints typically non-recurrent. CDKN1C, IGF2, H19, KCNQ1OT1 are the main dosage/imprinting effectors."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Beckwith-Wiedemann syndrome (overgrowth, Wilms tumor, hepatoblastoma)",
+    "Russell-Silver syndrome (growth restriction)",
+    "isolated hemihyperplasia",
+    "embryonal tumor predisposition"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1038/ejhg.2009.106",
+    "doi:10.1136/jmg.2008.058230",
+    "doi:10.1038/nrendo.2017.166",
+    "ClinGen 11p15.5 ICR1/ICR2 dosage"
+  ],
+  "confidence": 0.9
+}

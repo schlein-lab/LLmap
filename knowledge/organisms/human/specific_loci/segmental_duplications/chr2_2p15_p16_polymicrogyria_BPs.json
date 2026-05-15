@@ -1,0 +1,31 @@
+{
+  "name": "chr2_2p15_p16_polymicrogyria_BPs",
+  "taxonomy_id": "paralog_family",
+  "description": "2p15-p16.1 microdeletion syndrome region with breakpoints embedded in flanking segmental duplications. Deletions of ~0.6-5.7 Mb produce intellectual disability with bilateral polymicrogyria; smallest-region-of-overlap contains BCL11A, USP34, XPO1, REL.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 59000000, "end": 63500000}},
+  "size_bp": 4500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Flanking SDs of 30-80 kb at ~95% identity acting as NAHR substrates for the recurrent ~3-5 Mb deletions; intervening unique segment contains BCL11A, REL, USP34, XPO1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "2p15-p16.1 microdeletion syndrome",
+    "Polymicrogyria with intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1136/jmedgenet-2012-100892",
+    "doi:10.1002/ajmg.a.31634",
+    "PMID:17564972"
+  ],
+  "confidence": 0.75
+}

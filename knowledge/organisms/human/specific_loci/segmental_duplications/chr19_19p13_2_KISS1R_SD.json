@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19p13_2_KISS1R_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.2 region surrounding KISS1R (GPR54), the kisspeptin receptor central to pubertal onset. The locus is flanked by short SD blocks shared with other 19p loci and lies in a broader SD-dense neighborhood including SMARCA4 and CACNA1A.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 900000, "end": 1300000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 94.0,
+    "internal_structure": "Several 2-10 kb intra-chromosomal duplicons at 94-98% identity flanking KISS1R, ARID3A, WDR18; embedded in 19p subtelomeric SD field."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hypogonadotropic hypogonadism 8 (KISS1R)",
+    "Central precocious puberty 1"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1056/NEJMoa035322",
+    "PMID:14573733"
+  ],
+  "confidence": 0.65
+}

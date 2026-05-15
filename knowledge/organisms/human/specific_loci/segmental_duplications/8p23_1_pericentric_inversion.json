@@ -1,0 +1,31 @@
+{
+  "name": "8p23_1_pericentric_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "8p23.1 polymorphic pericentric inversion (~4.7 Mb) between the two REPP/REPD inverted SD blocks. Heterozygote frequency ~26% in Europeans; predisposes to recurrent t(4;8) translocations and 8p23.1 microdeletion/duplication CNVs in offspring.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 8000000, "end": 12000000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "balanced_inversion_polymorphism",
+    "homology_percent": 99.0,
+    "internal_structure": "Inversion mediated by two large inverted SD blocks at 8p23.1 (REPP proximal, REPD distal); inversion variant carries defensin and OR clusters in opposite orientation relative to GRCh38."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Recurrent t(4;8)(p16;p23) translocations",
+    "8p23.1 deletion/duplication offspring risk"
+  ],
+  "sources": [
+    "doi:10.1086/430842",
+    "doi:10.1038/ng1562",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,31 @@
+{
+  "name": "4p16_3_LETM1_WHSC1_NSD2_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "4p16.3 inner SD cluster around LETM1 and WHSC1/NSD2. WHSC1/NSD2 belongs to the NSD methyltransferase paralog family (NSD1 on 5q35, NSD3/WHSC1L1 on 8p11). The locus contains short tandem duplicons that complicate read mapping at the WHS critical region.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 1700000, "end": 2500000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 92.0,
+    "internal_structure": "Tandem SD pair flanking LETM1; WHSC1/NSD2 PWWP-SET domain shares 60-70% protein identity with NSD1 (5q35) and NSD3 (8p11), and three short intragenic SDs (~5 kb each)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Wolf-Hirschhorn syndrome (WHSC1 haploinsufficiency)",
+    "multiple myeloma t(4;14) (WHSC1/NSD2 overexpression)"
+  ],
+  "sources": [
+    "doi:10.1086/342730",
+    "doi:10.1038/leu.2008.183",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,32 @@
+{
+  "name": "11p13_WT1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "11p13 segmental duplication interval flanking WT1, PAX6 and the WAGR contiguous-gene deletion region. SDs of 5-50 kb predispose to the recurrent WAGR (Wilms tumor, Aniridia, Genitourinary, mental Retardation) microdeletion.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 31500000, "end": 32700000}},
+  "size_bp": 1200000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Flanking SD blocks of 10-50 kb at ~96% identity mediate the WAGR deletion; intervening unique region harbours WT1, PAX6, RCN1, BDNF."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "WAGR syndrome",
+    "Wilms tumor",
+    "aniridia (PAX6)",
+    "Denys-Drash syndrome"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:17357071"
+  ],
+  "confidence": 0.75
+}

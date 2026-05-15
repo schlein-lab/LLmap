@@ -1,0 +1,36 @@
+{
+  "name": "9p24_duplication_syndrome",
+  "taxonomy_id": "paralog_family",
+  "description": "9p24 trisomy/duplication syndrome — distal 9p duplication (often unbalanced t(X;9) or de novo) overlapping DMRT1/DMRT2/DMRT3 cluster. Recurrent SD blocks at 9p24 (notably 9p24.3 subtelomeric duplicons and the KANK1/DOCK8 paralog cassettes) mediate a subset. JAK2/CD274 (PD-L1) duplications recurrent in cancer (Hodgkin lymphoma).",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 0, "end": 12000000}},
+  "size_bp": 12000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_9p24_subtelomeric", "SD_9p24.3_DMRT_flank"],
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD cluster + 9p24.3 KANK1 SD; critical genes DMRT1/2/3 (sex reversal on loss; female-to-male DSD on duplication), DOCK8, KANK1. JAK2 + CD274/PDCD1LG2 amplification recurrent in classical Hodgkin and PMBL."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "9p24 duplication syndrome (DSD, ID)",
+    "9p deletion syndrome (Alfi syndrome, 46,XY DSD via DMRT loss)",
+    "Hodgkin lymphoma (JAK2/PD-L1 amplification)",
+    "primary mediastinal B-cell lymphoma"
+  ],
+  "penetrance": "variable",
+  "sources": [
+    "doi:10.1038/2417",
+    "doi:10.1182/blood-2010-05-282780",
+    "doi:10.1086/302710",
+    "ClinGen Dosage Sensitivity DMRT1 (HI=3)"
+  ],
+  "confidence": 0.85
+}

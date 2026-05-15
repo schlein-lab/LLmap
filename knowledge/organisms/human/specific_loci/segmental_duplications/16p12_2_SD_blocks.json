@@ -1,0 +1,31 @@
+{
+  "name": "16p12_2_SD_blocks",
+  "taxonomy_id": "paralog_family",
+  "description": "16p12.2 SD blocks (Bailey 2002 catalog) lying proximal to the 16p12.1 recurrent CNV. Contain LCR16a-derived duplicons and OTOA pseudogene paralogs. Mediate rare ~3 Mb 16p12.2-p11.2 deletions and recurrent 520 kb 16p12.2 deletions distinct from 16p12.1.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 21500000, "end": 22000000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Two SD modules of ~80-150 kb at ~97% identity composed of LCR16a duplicons and OTOA paralog (OTOA/OTOAP1 ~99.5%); flanks UQCRC2-EEF2K interval."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p12.2 microdeletion (developmental delay)",
+    "non-syndromic deafness DFNB22 (OTOA conversion artefact)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/ng.534",
+    "doi:10.1038/ejhg.2011.158"
+  ],
+  "confidence": 0.75
+}

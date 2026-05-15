@@ -1,0 +1,32 @@
+{
+  "name": "10q11_21_RET_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10q11.21 segmental duplication block flanking the RET proto-oncogene and CCDC6. Pericentromeric SDs mediate the recurrent RET/CCDC6 (PTC1) and RET/NCOA4 (PTC3) intrachromosomal inversions / fusions that drive papillary thyroid carcinoma.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 42700000, "end": 43800000}},
+  "size_bp": 1100000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Pericentromeric SD-rich; Alu-mediated inversions between RET and CCDC6/NCOA4 generate radiation-induced and somatic fusion oncogenes."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "papillary thyroid carcinoma (PTC1, PTC3)",
+    "MEN2 (germline RET)",
+    "Hirschsprung disease"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:10918592",
+    "PMID:18079394"
+  ],
+  "confidence": 0.85
+}

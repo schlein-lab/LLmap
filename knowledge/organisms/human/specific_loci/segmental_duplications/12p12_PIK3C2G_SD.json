@@ -1,0 +1,28 @@
+{
+  "name": "12p12_PIK3C2G_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12p12.3 segmental duplication block over PIK3C2G and adjacent KRAS / SOX5 flank. Contains intra- and interchromosomal SDs paired with PIK3C2A (11p15) and PIK3C2B (1q32) plus duplicons that flank the KRAS hotspot.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 18300000, "end": 19500000}},
+  "size_bp": 1200000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 92.0,
+    "internal_structure": "Family-internal SDs of 5-20 kb to PIK3C2A/B; SOX5 large intronic SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "rare 12p12 microdeletions"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

@@ -1,0 +1,31 @@
+{
+  "name": "11q13_cyclin_D1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "11q13.3 segmental duplication-enriched region containing CCND1 (cyclin D1), FGF3, FGF4, FGF19 and the 11q13 chromosomal fragile/amplicon. Recurrent SDs and breakage-fusion-bridge events drive the 11q13 amplicon present in breast, head-and-neck, esophageal and bladder cancers.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 69200000, "end": 70200000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 94.0,
+    "internal_structure": "Small (5-20 kb) intrachromosomal SDs around CCND1 and the FGF3/4/19 cluster; common chromosomal fragile site FRA11A nearby; somatic amplicon expanded 10-100x in tumours."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "11q13 amplification in solid tumors",
+    "mantle cell lymphoma (IGH-CCND1 t(11;14))",
+    "head and neck squamous cell carcinoma"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:16760443"
+  ],
+  "confidence": 0.8
+}

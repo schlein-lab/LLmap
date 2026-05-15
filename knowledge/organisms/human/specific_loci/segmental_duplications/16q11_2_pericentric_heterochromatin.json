@@ -1,0 +1,31 @@
+{
+  "name": "16q11_2_pericentric_heterochromatin",
+  "taxonomy_id": "paralog_family",
+  "description": "16q11.2 pericentromeric heterochromatin block — large, highly variable satellite-DNA region adjacent to the 16 centromere. Composed of HSat2, HSat3, and pericentromeric SD duplicons; size polymorphism of 5-15 Mb in the population. Resolved end-to-end only in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 46400000, "end": 53000000}},
+  "size_bp": 6600000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Composite block of HSat2 (chr1/16 specific satellite), HSat3, alpha-satellite higher-order repeats, and pericentromeric SDs derived from many ancestral donor loci; T2T-CHM13 resolves ~10 Mb total. GRCh38 contains gaps and underrepresents true content."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "pericentric inversion polymorphism (16q heterochromatin)",
+    "chromosomal instability (general)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abj5089",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.8
+}

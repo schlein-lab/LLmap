@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19q11_pericentric_inversion",
+  "taxonomy_id": "centromere_like",
+  "description": "19q11 pericentric region — common polymorphic pericentric inversion site of chromosome 19. Flanked by very large SD-rich blocks shared with 19p12, dense with KRAB-ZNF paralogs; site of frequent assembly collapse in GRCh38 (partially resolved in CHM13).",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 24500000, "end": 28500000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Inverted SD pairs (~100-300 kb) at >99% identity flanking the pericentric region; ZNF/centromere transition zone with abundant alpha-satellite remnants; T2T-CHM13 resolves most of the gap."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Polymorphic pericentric inv(19)",
+    "Reduced recombination in inversion heterozygotes"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.8
+}

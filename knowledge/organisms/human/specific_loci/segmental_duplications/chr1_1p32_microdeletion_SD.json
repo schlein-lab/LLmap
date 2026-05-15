@@ -1,0 +1,29 @@
+{
+  "name": "chr1_1p32_microdeletion_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "1p32.3 region flanking JUN and NFIA with several SDs; site of rare recurrent 1p32 microdeletions/duplications associated with central nervous system malformation phenotypes.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 58000000, "end": 60000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Flanking SD pair of 20-60 kb at ~94% identity, mediating rare ~1.5-2 Mb CNVs encompassing NFIA, JUN."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1p32 microdeletion (NFIA-related CNS phenotypes)"
+  ],
+  "sources": [
+    "doi:10.1038/ejhg.2012.249",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

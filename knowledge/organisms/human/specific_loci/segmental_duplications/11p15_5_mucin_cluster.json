@@ -1,0 +1,32 @@
+{
+  "name": "11p15_5_mucin_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "11p15.5 secreted-mucin gene cluster MUC2 - MUC5AC - MUC5B - MUC6. Tandemly arrayed paralogs with massive PTS/VNTR exons; each gene contains internal hyper-variable tandem repeats and the genes themselves share extensive intergenic SDs.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 1000000, "end": 1300000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Four mucin paralogs in tandem; massive central PTS-VNTR tandem repeats (60-507 bp units, kilobases long) inside each gene; SDs of 10-50 kb at 88-94% identity between paralogs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "asthma / chronic bronchitis (MUC5AC/MUC5B)",
+    "idiopathic pulmonary fibrosis (MUC5B promoter)",
+    "inflammatory bowel disease (MUC2)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:16373495",
+    "PMID:21506741"
+  ],
+  "confidence": 0.85
+}

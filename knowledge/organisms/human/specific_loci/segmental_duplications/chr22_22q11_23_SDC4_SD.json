@@ -1,0 +1,32 @@
+{
+  "name": "chr22_22q11_23_SDC4_GSTT_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "22q11.23 region containing GSTT1/GSTT2/DDT/MIF SDs and the SDC4 paralog cluster. GSTT1 deletion is one of the most common SD-mediated copy-number polymorphisms in humans (~20% null homozygotes in European populations); driven by ~18 kb direct-orientation SDs flanking GSTT1.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 24300000, "end": 24800000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "highly_variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "~18 kb direct-orientation SDs flanking GSTT1; recurrent NAHR causes GSTT1 null allele. Nearby GSTT2/GSTT2B duplicons and DDT/MIF tandem paralogs at >98% identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "GSTT1 null (chemotherapy/xenobiotic metabolism)",
+    "cancer susceptibility (GSTT1 dosage)",
+    "drug response variability"
+  ],
+  "sources": [
+    "doi:10.1038/nrg2593",
+    "doi:10.1186/gb-2010-11-1-r3",
+    "PMID:11237011"
+  ],
+  "confidence": 0.9
+}

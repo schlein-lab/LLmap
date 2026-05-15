@@ -1,0 +1,29 @@
+{
+  "name": "13q21_LCR_gene_desert",
+  "taxonomy_id": "paralog_family",
+  "description": "13q21.1-q21.33 gene desert (~25 Mb) interrupted by sparse but high-identity LCRs that participate in evolutionary inversions distinguishing human from chimpanzee lineages. The region contains the DACH1 isoform cluster and harbours recurrent low-frequency CNVs reported in autism cohorts.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 56000000, "end": 75000000}},
+  "size_bp": 19000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Sparse SD modules (1-20 kb at 92-98% identity) embedded in transposon-rich gene desert; DACH1 isoform-switching hotspot at 71.2-72.0 Mb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "13q21 microdeletion (autism, ID, rare)"
+  ],
+  "sources": [
+    "doi:10.1038/nature02564",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

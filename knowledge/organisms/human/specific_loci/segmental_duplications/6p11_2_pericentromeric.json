@@ -1,0 +1,31 @@
+{
+  "name": "6p11_2_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "6p11.2 pericentromeric SD block — part of the inter-chromosomal pericentromeric mosaic described by She 2004 and Bailey 2002. Contains BAGE-family pseudogene paralogs, PRIM2 fragments, and short duplicons shared with other pericentromeres (1, 2, 5, 9, 16, 22). Highly recombinogenic, frequent assembly errors in pre-T2T builds.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 57500000, "end": 60500000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentromeric mosaic of SD blocks shared with multiple chromosome pericentromeres; BAGE pseudogene paralogs; PRIM2 N-terminal fragment paralogs; resolved fully only in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Robertsonian-translocation breakpoint region (rare)",
+    "neocentromere formation"
+  ],
+  "sources": [
+    "doi:10.1038/nature02466",
+    "doi:10.1126/science.1072047",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.75
+}

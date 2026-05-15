@@ -1,0 +1,31 @@
+{
+  "name": "16p11_2_BOLA2_BP4_BP5_duplicons",
+  "taxonomy_id": "paralog_family",
+  "description": "BOLA2/SLX1/SULT1A duplicon family forming BP4 and BP5 of the 16p11.2 proximal recurrent CNV. The BOLA2 duplicon is human-specific (~282 kya, Nuttle 2016) and its tandem copy expansion created the NAHR substrate that drives 16p11.2 microdeletion/microduplication.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 29400000, "end": 30200000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "BP4 and BP5 each contain BOLA2A/B, SLX1A/B, SULT1A3/A4 paralogs at ~99.5% identity over ~102 kb. BOLA2 copy number varies 3-8 in humans; absent in Neanderthals/Denisovans. Plays mechanistic role in iron-sulfur cluster biogenesis."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 recurrent deletion/duplication (autism, schizophrenia)",
+    "iron-deficiency anemia association (BOLA2 dosage)"
+  ],
+  "sources": [
+    "doi:10.1038/nature19075",
+    "doi:10.1038/nature08727",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.95
+}

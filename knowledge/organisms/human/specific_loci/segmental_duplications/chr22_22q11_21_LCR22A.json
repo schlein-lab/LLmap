@@ -1,0 +1,35 @@
+{
+  "name": "chr22_22q11_21_LCR22A_breakpoint_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "LCR22-A, the proximal breakpoint of the canonical 22q11.21 DiGeorge/VCFS deletion. ~700 kb SD block at chr22:18.6-19.3 Mb (GRCh38) containing PRODH/GGT/DGCR6/USP18/BCRP paralogs in complex inverted+direct mosaic. Most NAHR events that produce the 3 Mb DGS deletion initiate within LCR22-A; LCR22-A is itself >99% identical between haplotypes in its core but harbors structural polymorphism at the kilobase scale.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 18600000, "end": 19300000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "mixed_direct_inverted_block",
+    "copy_number_in_population": "structurally_polymorphic",
+    "homology_percent": 99.0,
+    "internal_structure": "Mosaic of 6-12 modules (BCRL, GGT, USP18, BCRP, PRODH-paralog) in mixed orientation; haplotype-level rearrangement common."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q11.2 deletion syndrome (proximal BP)",
+    "22q11.2 duplication syndrome",
+    "schizophrenia risk"
+  ],
+  "cross_references": [
+    "22q11_21_DiGeorge.json"
+  ],
+  "sources": [
+    "doi:10.1038/nrg2593",
+    "doi:10.1038/s41588-019-0539-z",
+    "PMID:31784727"
+  ],
+  "confidence": 0.95
+}

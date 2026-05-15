@@ -1,0 +1,32 @@
+{
+  "name": "4q35_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "4q35 subtelomeric SD block distal to the D4Z4 array. Contains a >40 kb subtelomeric duplicon shared with 10q26 (~98% identity) plus shorter copies on other acrocentric and telomeric ends. The 4qA/4qB haplotype divergence (pLAM and SSLP) sits inside this SD and determines FSHD1 permissiveness.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 190120000, "end": 190214555}},
+  "size_bp": 94555,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Subtelomeric duplicon shared with 10qter at ~98% identity; contains the pLAM region (DUX4 3'UTR polyA signal), the 4qA/4qB SSLP, and TUBB4Q pseudogene; degenerate (TTAGGG)n telomere boundary at the distal end.",
+    "haplotype_variants": ["4qA", "4qB", "4qA-L"]
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "FSHD1 (4qA haplotype required for pathogenicity)",
+    "subtelomeric rearrangements"
+  ],
+  "sources": [
+    "doi:10.1126/science.1189044",
+    "doi:10.1093/hmg/ddh284",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.9
+}

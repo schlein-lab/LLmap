@@ -1,0 +1,32 @@
+{
+  "name": "12q13_KRT_keratin_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "12q13.13 type II keratin gene cluster (KRT1-KRT8, hair keratins KRT81-KRT86 plus KRTAPs). ~25 tandemly arrayed paralogs in ~700 kb at 60-95% identity; shares duplicons with the type I keratin cluster on 17q21.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 52600000, "end": 53300000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 88.0,
+    "internal_structure": "~25 keratin coding genes in tandem; coding-region homology 60-95%; intergenic SD modules of 3-15 kb; hair keratin sub-cluster KRT81-KRT86 at distal end."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "epidermolytic hyperkeratosis (KRT1, KRT10)",
+    "epidermolysis bullosa simplex (KRT5)",
+    "pachyonychia congenita (KRT6A, KRT6B, KRT16, KRT17)",
+    "monilethrix (hair keratins)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:16702426"
+  ],
+  "confidence": 0.85
+}

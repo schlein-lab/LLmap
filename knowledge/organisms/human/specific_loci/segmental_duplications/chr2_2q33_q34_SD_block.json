@@ -1,0 +1,30 @@
+{
+  "name": "chr2_2q33_q34_SD_block",
+  "taxonomy_id": "paralog_family",
+  "description": "2q33-q34 SD-rich block containing the SATB2 region and nearby CASP10/CASP8 paralogs. Flanking SDs mediate the 2q33.1 microdeletion (Glass syndrome, SATB2).",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 199000000, "end": 202000000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Two flanking SDs of 50-100 kb at ~95% identity; intervening unique segment contains SATB2, FZD7, CASP8/10 paralog block."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Glass syndrome (SATB2-associated, 2q33.1 deletion)"
+  ],
+  "sources": [
+    "doi:10.1038/ejhg.2013.214",
+    "doi:10.1126/science.1072047",
+    "PMID:24088041"
+  ],
+  "confidence": 0.7
+}

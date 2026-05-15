@@ -1,0 +1,31 @@
+{
+  "name": "13q12_12_GJB2_GJB6_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "13q12.11 connexin cluster harbouring GJB2 (Cx26) and GJB6 (Cx30) ~35 kb apart, with recurrent NAHR-mediated deletions of GJB6 (del(GJB6-D13S1830), del(GJB6-D13S1854)) flanked by small (~5-10 kb) directly oriented SDs. These deletions, often in trans with a GJB2 point mutation, cause non-syndromic recessive hearing loss DFNB1.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 20180000, "end": 20480000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.5,
+    "internal_structure": "Two pairs of ~5 kb direct SDs flanking GJB6 mediate the 309-kb (D13S1830) and 232-kb (D13S1854) recurrent deletions; GJB2 lies just proximal."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "DFNB1 non-syndromic hearing loss",
+    "Clouston hidrotic ectodermal dysplasia (GJB6 missense)"
+  ],
+  "sources": [
+    "doi:10.1056/NEJMoa012052",
+    "doi:10.1086/425862",
+    "doi:10.1038/sj.ejhg.5201648"
+  ],
+  "confidence": 0.9
+}

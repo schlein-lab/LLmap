@@ -1,0 +1,30 @@
+{
+  "name": "12p11_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12p11.21-p11.1 pericentromeric segmental duplication pile-up immediately p-arm of the chr12 centromere. Hosts the TBX5/TBX3 paralog cores and recurrent SDs shared with other pericentromeres.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 32000000, "end": 34800000}},
+  "size_bp": 2800000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Pericentromeric SD modules of 10-150 kb at 94-98% identity; shared duplicons with chr2p, chr10q, chr16p pericentromeric blocks; assembly-uncertain."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "pericentromeric assembly gaps",
+    "12p marker chromosomes / Pallister-Killian (i(12p))"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:17357071"
+  ],
+  "confidence": 0.7
+}

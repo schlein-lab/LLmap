@@ -1,0 +1,31 @@
+{
+  "name": "10q11_22_NCOA4_Cooper_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10q11.22 NCOA4-centric Cooper-described pericentromeric SD cluster harbouring NCOA4, BMS1, ANXA8/ANXA8L1/2, NPY4R and FAM35 paralog families. Recurrently expanded SDs cause one of the densest pericentromeric SD pile-ups in the genome.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 47000000, "end": 49000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Mosaic of 10-200 kb duplicons at 96-99% identity; multiple paralog copies of NCOA4, ANXA8, BMS1, NPY4R; >50% of region in SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "10q11.21q11.23 microdeletion/duplication syndrome",
+    "RET/NCOA4 fusion (PTC3)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:21841781",
+    "doi:10.1002/ajmg.a.34176"
+  ],
+  "confidence": 0.9
+}

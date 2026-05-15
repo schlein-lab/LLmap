@@ -1,0 +1,30 @@
+{
+  "name": "10q21_CTNNA3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10q21.3 segmental duplication interval inside CTNNA3 (alpha-T-catenin) overlapping the common chromosomal fragile site FRA10B. Houses LRRTM3 within a CTNNA3 intron and is enriched for short intronic SDs paired with the wider catenin family.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 67700000, "end": 69500000}},
+  "size_bp": 1800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 92.0,
+    "internal_structure": "Intronic SDs of 5-30 kb at 90-95% identity; common fragile site FRA10D / FRA10B in vicinity; large gene body (>1.7 Mb) with multiple repeat-prone introns."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "arrhythmogenic right ventricular cardiomyopathy (CTNNA3)",
+    "Alzheimer disease risk modifier (LRRTM3)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:17357071"
+  ],
+  "confidence": 0.65
+}

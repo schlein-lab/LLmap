@@ -1,0 +1,31 @@
+{
+  "name": "13q14_RB1_paralog_region",
+  "taxonomy_id": "paralog_family",
+  "description": "Retinoblastoma RB1 region at 13q14.2 contains pseudogene RB1P (RBL2-like) and small intra-chromosomal SDs flanking the RB1 tumour-suppressor that mediate recurrent intragenic and contiguous deletions causing retinoblastoma and the 13q14 deletion syndrome (13q-syndrome).",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 47800000, "end": 49600000}},
+  "size_bp": 1800000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Multiple LCR pairs of 1-10 kb at 90-99% identity flanking RB1 introns 17, 19, 24; AluY/AluSx pairs predispose to ~5-100 kb intragenic NAHR deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "retinoblastoma",
+    "13q deletion syndrome"
+  ],
+  "sources": [
+    "doi:10.1002/humu.10257",
+    "doi:10.1086/383253",
+    "doi:10.1038/sj.ejhg.5201716"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,30 @@
+{
+  "name": "8q24_3_RECQL4_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "8q24.3 distal region containing RECQL4 (Rothmund-Thomson syndrome) with telomere-adjacent SDs and the 8q telomere. Rare microdeletions encompassing RECQL4 reported.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 144500000, "end": 145100000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "subtelomeric_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 92.0,
+    "internal_structure": "Small subtelomeric SD blocks adjacent to RECQL4; modest paralog content."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Rothmund-Thomson syndrome (RECQL4)",
+    "RAPADILINO / Baller-Gerold syndromes"
+  ],
+  "sources": [
+    "doi:10.1038/12027",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

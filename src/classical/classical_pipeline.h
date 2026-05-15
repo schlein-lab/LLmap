@@ -52,6 +52,14 @@ struct ClassicalPipelineConfig {
 
     // Parallelization
     uint32_t num_threads = 0;              // 0 = use hardware_concurrency
+
+    // Layer 3 active LLM checkpoint dispatcher. Untyped pointer here so the
+    // classical_pipeline header stays free of checkpoint-module includes.
+    // The pipeline implementation casts to checkpoint::CheckpointDispatcher*.
+    // When non-null and the top two chain scores are within 5 % of each
+    // other, AlignRead consults the dispatcher with an AmbiguousChain
+    // checkpoint, and uses its wave decision to re-rank the chains.
+    void* checkpoint_dispatcher = nullptr;
 };
 
 // A single alignment from the classical pipeline

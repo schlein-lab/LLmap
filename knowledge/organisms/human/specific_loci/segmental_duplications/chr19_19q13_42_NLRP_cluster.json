@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19q13_42_NLRP_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.42 NLRP (NACHT-LRR-PYD) inflammasome receptor cluster: NLRP2, NLRP4, NLRP5, NLRP7, NLRP8, NLRP9, NLRP11, NLRP12, NLRP13 in tandem at 60-90% identity. Site of recurrent reproductive imprinting disorders (NLRP7) and autoinflammatory disease (NLRP12).",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 55500000, "end": 56400000}},
+  "size_bp": 900000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 85.0,
+    "internal_structure": "~9 NLRP paralog genes in tandem at 60-90% identity over ~900 kb; conserved NACHT and LRR domains drive partial cross-mapping; short SD flanks of 10-30 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Familial biparental hydatidiform mole (NLRP7)",
+    "Familial cold autoinflammatory syndrome (NLRP12)",
+    "Recurrent reproductive failure"
+  ],
+  "sources": [
+    "doi:10.1186/1471-2148-9-202",
+    "doi:10.1126/science.1072047",
+    "PMID:16462743"
+  ],
+  "confidence": 0.85
+}

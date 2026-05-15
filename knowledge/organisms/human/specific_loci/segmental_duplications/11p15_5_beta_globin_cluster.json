@@ -1,0 +1,34 @@
+{
+  "name": "11p15_5_beta_globin_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "11p15.5 beta-globin cluster: HBE1 - HBG2 - HBG1 - HBD - HBB locus and the upstream Locus Control Region. Five tandemly arrayed paralogs at >95% identity that arose by gene duplication; recurrent NAHR/gene-conversion drives delta-beta thalassemia, HPFH, hereditary persistence, and the Lepore/anti-Lepore fusion hemoglobins.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 5200000, "end": 5300000}},
+  "size_bp": 100000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Five paralogous globin genes in 60 kb (HBE-Ggamma-Agamma-HBD-HBB) at 90-99% identity (HBG1/HBG2 ~99%, HBD/HBB ~93%); LCR with five DNase hypersensitive sites upstream; gene-conversion hotspots between HBG1/HBG2 and HBD/HBB."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "sickle cell disease",
+    "beta-thalassemia",
+    "delta-beta thalassemia",
+    "hereditary persistence of fetal hemoglobin (HPFH)",
+    "Hb Lepore / anti-Lepore"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:8460642",
+    "PMID:20301599"
+  ],
+  "confidence": 0.95
+}

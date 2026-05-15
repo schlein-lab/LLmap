@@ -1,0 +1,31 @@
+{
+  "name": "chr3_3q21_RAB7L1_region",
+  "taxonomy_id": "paralog_family",
+  "description": "3q21 region encompassing RAB7L1 (RAB29) and the MEGF6/RHO paralog block. Flanking SDs contribute to rare 3q21 microdeletions; the locus is also a Parkinson's-disease susceptibility region (PARK16).",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 128500000, "end": 130000000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 93.0,
+    "internal_structure": "Flanking SDs of 15-40 kb at ~93% identity; RAB family paralog dispersion across multiple chromosomes."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Parkinson's disease susceptibility (PARK16)",
+    "Rare 3q21 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1038/ng.485",
+    "doi:10.1126/science.1072047",
+    "PMID:19915575"
+  ],
+  "confidence": 0.6
+}

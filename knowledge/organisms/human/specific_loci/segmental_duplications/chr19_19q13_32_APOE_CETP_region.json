@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19q13_32_APOE_CETP_region",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.32 region containing APOE/APOC1/APOC2/APOC4 lipoprotein gene cluster, plus CETP and LIPC paralog field. Includes the strongest single common genetic risk locus for Alzheimer disease (APOE) and a major lipid-trait hub.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 44900000, "end": 45700000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "stable",
+    "homology_percent": 80.0,
+    "internal_structure": "Tandem APOE/APOC1/APOC4/APOC2/CLPTM1 cluster at 65-90% identity over ~50 kb; CETP and LIPC at ~50% pairwise identity (deeper paralogs); short flanking SDs of 5-20 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Alzheimer disease (APOE epsilon4)",
+    "Hyperlipoproteinemia type III (APOE)",
+    "Dyslipidemia (CETP / LIPC variants)"
+  ],
+  "sources": [
+    "doi:10.1126/science.8346443",
+    "doi:10.1126/science.1072047",
+    "PMID:8346443"
+  ],
+  "confidence": 0.9
+}

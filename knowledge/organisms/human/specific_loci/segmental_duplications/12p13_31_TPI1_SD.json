@@ -1,0 +1,28 @@
+{
+  "name": "12p13_31_TPI1_CCND2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12p13.31 segmental duplication interval flanking TPI1, CCND2 and the GAPDH paralog GAPDHS. Short SDs paired with the glycolysis paralog family create one of the densest pseudogene clusters on chr12 (GAPDH pseudogenes scattered genome-wide).",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 4000000, "end": 6000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 90.0,
+    "internal_structure": "Small SDs of 3-15 kb at 88-93% identity; processed-pseudogene-derived paralogs of TPI1, GAPDH; cyclin-D family SDs to CCND1 (11q13) and CCND3 (6p21)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "triosephosphate isomerase deficiency (TPI1)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

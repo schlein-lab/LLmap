@@ -1,0 +1,30 @@
+{
+  "name": "16q22_CTCF_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16q22.1 SD modules flanking the CTCF and ZNF19/ZNF23 cluster. Direct-orientation SDs mediate rare ~1 Mb 16q22 microdeletions that include CTCF (haploinsufficiency causes intellectual disability with microcephaly).",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 67500000, "end": 68800000}},
+  "size_bp": 1300000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Flanking SD blocks of ~30-80 kb at ~95-97% identity, mostly derived from ZNF KRAB-domain duplicons; CTCF unique core lies between two SD modules."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CTCF-related intellectual disability",
+    "16q22 microdeletion (rare)"
+  ],
+  "sources": [
+    "doi:10.1038/ng.2776",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

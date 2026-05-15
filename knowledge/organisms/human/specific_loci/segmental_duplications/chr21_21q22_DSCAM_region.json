@@ -1,0 +1,31 @@
+{
+  "name": "chr21_21q22_DSCAM_region_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "21q22.2 region surrounding DSCAM (Down Syndrome Cell Adhesion Molecule); part of the Down Syndrome Critical Region (DSCR). DSCAM itself spans ~840 kb with extensive intronic SDs and is flanked by short SD blocks; dosage in trisomy 21 implicated in congenital heart defects.",
+  "coordinates": {"grch38": {"chr": "chr21", "start": 40300000, "end": 42600000}},
+  "size_bp": 2300000,
+  "architecture": {
+    "type": "intragene_and_flanking_SD",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 95.0,
+    "internal_structure": "Intronic SDs within DSCAM and short flanking duplicons at >95% identity; partial DSCAM paralog DSCAML1 on chr11."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Down syndrome congenital heart disease (DSCAM dosage)",
+    "DSCAM-related neurodevelopmental phenotypes"
+  ],
+  "sources": [
+    "doi:10.1038/35012518",
+    "doi:10.1086/302846",
+    "PMID:18519640"
+  ],
+  "confidence": 0.8
+}

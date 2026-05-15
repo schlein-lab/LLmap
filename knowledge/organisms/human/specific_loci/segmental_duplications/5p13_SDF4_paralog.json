@@ -1,0 +1,30 @@
+{
+  "name": "5p13_3_subtelomeric_SDF4_paralog",
+  "taxonomy_id": "paralog_family",
+  "description": "5p13.3 SD block containing SDF4/CCDC127 paralogs and OR2W3-related olfactory-receptor duplicons. Part of the 5p13 microduplication syndrome critical region (Lebel 2012) which causes 5p13.3 duplication phenotype with developmental delay; flanking SDs mediate the recurrent rearrangement.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 1200000, "end": 2800000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Two flanking SDs of ~150-300 kb at 95-97% identity containing SDF4 and CCDC127 paralog tracts; unique core contains IRX2, IRX1 (distal to TERT region); shorter intervening olfactory-receptor duplicons."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "5p13 microduplication syndrome",
+    "intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1002/ajmg.a.35463",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

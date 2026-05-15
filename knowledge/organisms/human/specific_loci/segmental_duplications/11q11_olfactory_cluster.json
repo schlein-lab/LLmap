@@ -1,0 +1,31 @@
+{
+  "name": "11q11_olfactory_receptor_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "11q11 olfactory receptor gene cluster, the largest OR cluster on chr11 and one of the largest in the genome. Densely populated by OR4, OR5, OR8 and OR10 family paralogs interspersed with SDs that share homology with OR clusters on chr1, chr6, chr7, chr11q12 and chr14. The recurrent 11q11 microdeletion (~250 kb) lies inside this cluster.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 55000000, "end": 56500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "~40 OR coding genes and pseudogenes at 80-99% identity; SD modules of 5-50 kb; recurrent 250 kb 11q11 microdeletion flanked by paired OR SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "11q11 microdeletion (recurrent CNV)",
+    "olfactory phenotype variability"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:11875030",
+    "PMID:23042115"
+  ],
+  "confidence": 0.85
+}

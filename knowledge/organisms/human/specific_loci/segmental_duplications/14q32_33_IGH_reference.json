@@ -1,0 +1,30 @@
+{
+  "name": "14q32_33_IGH_reference",
+  "taxonomy_id": "paralog_family",
+  "description": "Immunoglobulin heavy chain (IGH) locus at 14q32.33, ~1.25 Mb on the minus strand. Documented in detail at /immunoglobulin/IGH_locus_chr14.json. This SD-tier cross-reference exists so chr14-SD pipelines hit the file; full V/D/J cluster, C-region paralog list (IGHM, IGHD, IGHG3, IGHG1, IGHA1, IGHGP, IGHG2, IGHG4, IGHE, IGHA2), CHM13 IGHG4 duplicate, and somatic VDJ/class-switch behaviour are documented there.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 105583700, "end": 106879800}},
+  "size_bp": 1296100,
+  "architecture": {
+    "type": "VDJ_locus",
+    "copy_number_in_population": "somatic_recombination",
+    "homology_percent": 93.0,
+    "internal_structure": "See /immunoglobulin/IGH_locus_chr14.json"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "related_diseases": [
+    "IGH translocations in B-cell lymphoma t(14;18) BCL2, t(8;14) MYC, t(11;14) CCND1, t(14;14) IGHG4"
+  ],
+  "cross_reference": "/immunoglobulin/IGH_locus_chr14.json",
+  "sources": [
+    "doi:10.1093/nar/gks1313",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.95
+}

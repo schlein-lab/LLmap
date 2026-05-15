@@ -1,0 +1,32 @@
+{
+  "name": "11q23_KMT2A_MLL_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "11q23.3 segmental duplication region around KMT2A (MLL). KMT2A is itself a member of a large paralog family (KMT2A-D) and its breakpoint cluster region (BCR) is flanked by Alu/SD elements that mediate the recurrent translocations t(4;11), t(9;11), t(11;19) found in infant ALL and therapy-related AML.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 118300000, "end": 118500000}},
+  "size_bp": 200000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 93.0,
+    "internal_structure": "Alu-rich KMT2A BCR (~8.3 kb) flanked by short SDs; partial tandem duplication (PTD) of KMT2A exons 2-8 is a recurrent somatic event in AML."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "KMT2A-rearranged ALL/AML",
+    "KMT2A partial tandem duplication (PTD) in AML",
+    "Wiedemann-Steiner syndrome"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:9326215",
+    "PMID:18923524"
+  ],
+  "confidence": 0.85
+}
