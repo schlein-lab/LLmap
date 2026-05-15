@@ -1,0 +1,30 @@
+{
+  "name": "16q23_3_WWOX_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16q23.1-q23.3 SD modules within the WWOX/FRA16D fragile site. Multiple small intragenic SDs at ~95% identity contribute to instability of this common fragile site and intragenic WWOX deletions seen in cancer and neurodevelopmental syndromes.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 78000000, "end": 79500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Intragenic SD blocks of ~10-30 kb at ~94-96% identity in WWOX introns 1, 5 and 8; co-localise with FRA16D fragile site."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "WWOX-related epileptic encephalopathy",
+    "FRA16D-associated cancers"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1016/j.cancergencyto.2007.01.004"
+  ],
+  "confidence": 0.6
+}

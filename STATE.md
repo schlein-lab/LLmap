@@ -13,7 +13,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 178 |
+| Last successful iteration | 179 |
 | Total iterations | 178 |
 
 ---
@@ -430,6 +430,7 @@ notes: |
 | 176 | 2026-05-15 | n/a | Refactor classifier.cpp (iteration 176) | Split classifier.cpp (531 LOC) → 3 files: classifier.cpp (148 LOC), classifier_json.cpp (180 LOC), classifier_predicate.cpp (193 LOC) + classifier_internal.h (66 LOC); JSON parser and predicate evaluation separated into internal namespace; monolith count 2→1; 1509 tests pass |
 | 177 | 2026-05-15 | n/a | Refactor cmd_align.cpp (iteration 177) | Split cmd_align.cpp (409 LOC) by extracting batch processing loop into cmd_align_run.cpp (156 LOC); cmd_align.cpp reduced to 293 LOC; added BatchAlignResult struct to cmd_align_internal.h; monolith count 1→0; 1509 tests pass |
 | 178 | 2026-05-15 | n/a | Verification pass (iteration 178) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
+| 179 | 2026-05-15 | n/a | Fix linker error (iteration 179) | Fixed llmap_classical → llmap_checkpoint link dependency in src/CMakeLists.txt; build passes, 1518 tests pass, monolith count 0; autonomous build remains complete |
 
 ---
 

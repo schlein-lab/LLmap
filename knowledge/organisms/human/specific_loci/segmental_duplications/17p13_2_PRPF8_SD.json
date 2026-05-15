@@ -1,0 +1,29 @@
+{
+  "name": "17p13_2_PRPF8_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17p13.2 SD modules near PRPF8 — small SDs at ~96% identity that contribute to atypical recurrent CNVs distal to the canonical 17p13.3 LIS1 region.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 4100000, "end": 4700000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Two small ~20-30 kb SD modules at ~96% identity flanking PRPF8 and SLC25A11."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Retinitis pigmentosa 13 (PRPF8)",
+    "17p13.2 microdeletion (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}
