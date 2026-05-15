@@ -1,0 +1,33 @@
+{
+  "name": "4q21_microdeletion_PRDM8_FGF5",
+  "taxonomy_id": "paralog_family",
+  "description": "4q21 recurrent microdeletion syndrome — ~1.4-13 Mb interstitial deletion of 4q21. Critical genes: PRKG2 (skeletal), RASGEF1B, HNRNPD, HNRPDL, AFF1 (ID gene), FGF5, BMP2K. Phenotype: severe ID, absent or delayed speech, marked growth retardation, distinctive facies, neonatal muscular hypotonia. Some breakpoints recurrent at flanking SD blocks at 4q21.21 and 4q21.23.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 79000000, "end": 88000000}},
+  "size_bp": 9000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_4q21.21_proximal", "SD_4q21.23_distal"],
+    "homology_percent": 96.0,
+    "internal_structure": "Flanking SD blocks of ~30-100 kb at >95% identity; unique core contains PRKG2, RASGEF1B, HNRNPD, HNRPDL, AFF1 (primary dosage gene for ID), FGF5, BMP2K, PPEF2, NUDT9, SDAD1, MRPS18C, SCD5."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "4q21 microdeletion syndrome (severe ID, absent speech, growth retardation)",
+    "developmental delay"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1038/ejhg.2010.45",
+    "doi:10.1136/jmedgenet-2012-100921",
+    "ClinGen Dosage Sensitivity 4q21 region"
+  ],
+  "confidence": 0.85
+}

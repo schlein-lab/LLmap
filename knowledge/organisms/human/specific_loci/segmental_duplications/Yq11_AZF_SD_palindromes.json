@@ -1,0 +1,37 @@
+{
+  "name": "Yq11_AZFa_AZFb_AZFc_palindromes",
+  "taxonomy_id": "paralog_family",
+  "description": "Y chromosome AZF (azoospermia factor) regions a, b, c in Yq11.22-q11.23. Highly palindromic SD architecture (P1-P5 palindromes of 30-2400 kb at >99.9% intra-palindrome identity). NAHR between inverted palindrome arms and between direct ampliconic repeats causes recurrent AZFa (~792 kb), AZFb (~6.2 Mb), and AZFc (~3.5 Mb) deletions — the major non-Klinefelter genetic causes of male infertility (Sertoli-cell-only syndrome, severe oligozoospermia).",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 12700000, "end": 28800000}},
+  "size_bp": 16100000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["HERV15_yq1_yq2", "P5_palindrome", "P4_palindrome", "P3_palindrome", "P2_palindrome", "P1_palindrome", "b1_amplicon", "b2_amplicon", "g1_amplicon"],
+    "homology_percent": 99.9,
+    "internal_structure": "AZFa: ~792 kb between HERV15yq1 and HERV15yq2 (USP9Y, DDX3Y). AZFb: ~6.2 Mb spanning palindromes P5-P1-proximal (EIF1AY, RPS4Y2, KDM5D, RBMY1). AZFc: ~3.5 Mb of palindromes P1-P3 with b/g amplicons (DAZ1-4, CDY1, BPY2). >99.9% palindrome arm identity.",
+    "BP_pairs_recurrent": ["P5/P1_proximal (AZFb)", "b2/b4 (AZFc)", "b1/b3 (AZFc partial)"]
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Male infertility - AZFa deletion (Sertoli-cell-only)",
+    "Male infertility - AZFb deletion (maturation arrest)",
+    "Male infertility - AZFc deletion (severe oligozoospermia)",
+    "Gr/gr partial AZFc deletion (low-penetrance fertility effect)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1038/nature01722",
+    "doi:10.1038/ng.437",
+    "doi:10.1093/hmg/10.20.2279",
+    "ClinGen Dosage Sensitivity AZF regions"
+  ],
+  "confidence": 0.95
+}

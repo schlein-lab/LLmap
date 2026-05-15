@@ -1,0 +1,35 @@
+{
+  "name": "16p13_3_Rubinstein_Taybi_CREBBP",
+  "taxonomy_id": "paralog_family",
+  "description": "16p13.3 microdeletion (Rubinstein-Taybi syndrome) — variable-size deletions (often <500 kb to several Mb) encompassing CREBBP. Most cases are intragenic LoF or microdeletions; recurrent breakpoints mediated by flanking SD blocks at 16p13.3. Phenotype: ID, broad thumbs and halluces, facial dysmorphism, increased cancer risk. Reciprocal duplication causes a milder phenotype (16p13.3 duplication syndrome).",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 3700000, "end": 4000000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_16p13.3_CREBBP_flank_proximal", "SD_16p13.3_CREBBP_flank_distal"],
+    "homology_percent": 96.0,
+    "internal_structure": "Flanking SD blocks of ~10-50 kb at >95% identity mediate a fraction of recurrent breakpoints; unique core centered on CREBBP (primary dosage gene; HAT/transcriptional coactivator), with ADCY9, SRL nearby. Larger deletions extend to TRAP1, DNASE1, NDE1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Rubinstein-Taybi syndrome type 1 (CREBBP LoF/del)",
+    "16p13.3 duplication syndrome (mild ID)",
+    "increased cancer susceptibility (CREBBP HAT loss)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1038/376348a0",
+    "doi:10.1086/302671",
+    "doi:10.1136/jmg.2007.052266",
+    "ClinGen Dosage Sensitivity CREBBP (HI=3)"
+  ],
+  "confidence": 0.95
+}
