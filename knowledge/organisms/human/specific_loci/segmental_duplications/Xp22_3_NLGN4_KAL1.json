@@ -1,0 +1,37 @@
+{
+  "name": "Xp22_3_distal_NLGN4_KAL1",
+  "taxonomy_id": "paralog_family",
+  "description": "Xp22.3 distal/contiguous gene-deletion region — encompasses STS, KAL1 (ANOS1; Kallmann syndrome), NLGN4 (autism), VCX cluster paralogs. Recurrent deletions are mediated by VCX-A/-B/-C SD blocks at >99% identity. Continuous-gene-deletion phenotypes vary by extent: STS only (X-linked ichthyosis), STS+KAL1 (with Kallmann), STS+NLGN4 (with autism/ID), large deletions also remove TBL1X, GPR143 (ocular albinism). Complements existing Xp22_3_STS.json with the broader contiguous-gene context.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 5000000, "end": 9500000}},
+  "size_bp": 4500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["VCX_A_Xp22.3", "VCX_B_Xp22.3", "VCX_C_Xp22.3"],
+    "homology_percent": 99.5,
+    "internal_structure": "Four VCX paralogs (VCX-A, VCX-B, VCX-C, VCX2/VCY-A) at >99% identity, organized in tandem at Xp22.3; pseudoautosomal-1 boundary nearby. Critical contiguous genes: STS (steroid sulfatase), KAL1 (ANOS1), NLGN4X (autism), GPR143 (ocular albinism), HCCS, MID1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "X-linked ichthyosis (STS LoF)",
+    "Kallmann syndrome X-linked (KAL1/ANOS1)",
+    "X-linked ID with autism (NLGN4X)",
+    "ocular albinism type 1 (GPR143)",
+    "contiguous Xp22.3 deletion syndrome"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1056/NEJM198703053161002",
+    "doi:10.1086/302708",
+    "doi:10.1086/375628",
+    "ClinGen Dosage Sensitivity NLGN4X, ANOS1, STS"
+  ],
+  "confidence": 0.9
+}
