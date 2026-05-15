@@ -12,6 +12,16 @@ Outputs:
   <tier_dir>/<mapper>/rep0/accuracy.json
   <tier_dir>/comparison.tsv     # one row per read, each mapper's call
   <tier_dir>/summary.json
+
+BUGFIX 2026-05-15: load_truth() previously stored (source_start+source_end)//2 as
+truth["pos"], while score_one() treated truth["pos"] as the *start* of the source
+interval. The effective truth interval became [midpoint, end] instead of
+[start, end], so reads aligned to their true source start were scored as off by
+~half the read length (multi-kb for HiFi tiers). Result: F1@1kb=0.000 across
+all non-human organisms with long-read tiers. truth["pos"] now holds the actual
+source_start; truth["end"] is source_end. BAM coords were correct all along —
+this was a truth-loading bug, not a mapper bug and not a coord-space mismatch
+between the fake reference build and gen_synth_reads (those are consistent).
 """
 from __future__ import annotations
 
@@ -64,11 +74,15 @@ def load_truth(path: Path) -> Dict[str, Dict]:
             chrom = parts[1]
             if len(parts) >= 6:
                 # new schema: start, end, strand, class
+                # IMPORTANT: source_start/source_end are fake-reference coords
+                # (the same space the mapper sees), so we store source_start as
+                # pos. score_one() treats truth["pos"]..truth["end"] as the
+                # closed interval and computes distance to the nearest edge.
                 try:
                     start = int(parts[2]); end = int(parts[3])
                 except ValueError:
                     continue
-                pos = (start + end) // 2
+                pos = start
                 strand = parts[4]
                 cls = parts[5]
                 end_val = end

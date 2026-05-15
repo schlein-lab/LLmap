@@ -51,3 +51,21 @@ bwa-mem2 + winnowmap UNAVAILABLE (skipped cleanly).
 
 Smoke test: synthetic_stress tier 1 with llmap+minimap2 running in
 background. If clean, dispatch Phase C agents on next wake.
+
+## Iter 003 — 2026-05-15T22:38 CEST — Bench critical bug detected
+
+Full bench at 9/16 organisms processed. **F1@1kb=0.000 across all
+non-human organisms** for both llmap AND minimap2 — diagnosed as
+truth-vs-BAM coordinate mismatch in the harness (not mapper bug).
+
+Symptom: arabidopsis tier 1, 999/1000 reads MAPPED but 0/1000 within
+1kb of truth. Same minimap2.
+
+Hypothesis: gen_synth_reads.py records original-genome coords in
+truth.tsv, but build_fake_reference.py stitches a packed FASTA with
+fake-ref coords. BAM POS uses fake-ref → join fails 100%.
+
+Phase C debug agent dispatched to fix. Also flagged: bacteria tier 6
+llmap produced empty SAM (separate bug).
+
+Bench continues running in background.

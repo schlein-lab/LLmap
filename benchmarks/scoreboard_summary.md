@@ -1,6 +1,6 @@
 # LLmap cross-species scoreboard
 
-Aggregated over **4** result rows.
+Aggregated over **16** result rows.
 
 ## Head-to-head
 
