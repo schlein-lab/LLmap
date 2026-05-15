@@ -31,23 +31,28 @@ const char* PresetName(Preset preset) {
 void ApplyPreset(Preset preset, AlignArgs& args) {
     switch (preset) {
         case Preset::MapHifi:
-            // PacBio HiFi. minimap2 -x map-hifi does not hard-filter by identity;
-            // the empirical identity distribution on real HiFi vs an imperfect
-            // reference (e.g., paralog-rich IGH) sits at mean ~0.72 because the
-            // reference itself is collapsed. We follow the same policy: keep a
-            // low floor and let MAPQ separate good from bad downstream.
+            // PacBio HiFi. The earlier permissive 0.50 floor produced near-100%
+            // mapping rate on T6 but threshold-sweep validation showed only ~1%
+            // of those mappings matched minimap2's position -- the chain-DP
+            // picks the wrong paralog in repetitive loci and the identity
+            // filter cannot rescue it because cross-paralog alignments also
+            // score ~99% (paralogs are ~99% identical). Restoring 0.85 keeps
+            // us conservative: at 0.85 on T6 we map ~12% with ~56% position
+            // concordance; at 0.90 we map ~12% with ~93% concordance. 0.85 is
+            // the floor for keeping VDJ-region reads with real biological
+            // mismatches in.
             args.kmer_size = 19;
             args.window_size = 19;
-            args.min_identity = 0.50f;
+            args.min_identity = 0.85f;
             args.min_chain = 40;
             break;
 
         case Preset::MapOnt:
         case Preset::MapPb:
-            // ONT/legacy PacBio: higher error rate (~5-15%); same policy.
+            // ONT/legacy PacBio: higher error rate (~5-15%); 0.70 floor.
             args.kmer_size = 15;
             args.window_size = 10;
-            args.min_identity = 0.40f;
+            args.min_identity = 0.70f;
             args.min_chain = 20;
             break;
 
