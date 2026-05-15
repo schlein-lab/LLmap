@@ -3,9 +3,12 @@
 #include <algorithm>
 #include <cctype>
 #include <cstdio>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <optional>
 #include <sstream>
+#include <unordered_map>
 
 namespace llmap::annot {
 
@@ -368,15 +371,24 @@ Classifier::Classifier(std::vector<ClassifierRule> rules)
         });
 }
 
+namespace {
+// Read whole file into string, or return std::nullopt.
+std::optional<std::string> SlurpFile(const std::filesystem::path& p) {
+    std::ifstream f(p);
+    if (!f) return std::nullopt;
+    std::stringstream ss;
+    ss << f.rdbuf();
+    return ss.str();
+}
+}  // namespace
+
 std::unique_ptr<Classifier> Classifier::Load(const std::filesystem::path& path) {
-    std::ifstream f(path);
-    if (!f) {
+    auto contents = SlurpFile(path);
+    if (!contents) {
         std::cerr << "[annot] failed to open " << path.string() << "\n";
         return nullptr;
     }
-    std::stringstream ss;
-    ss << f.rdbuf();
-    JsonReader rdr(ss.str());
+    JsonReader rdr(*contents);
     auto root = rdr.Parse();
     if (!root || root->type != Json::Type::Object) {
         std::cerr << "[annot] failed to parse JSON in " << path.string() << "\n";
@@ -405,6 +417,42 @@ std::unique_ptr<Classifier> Classifier::Load(const std::filesystem::path& path) 
             DecodeMappingHints(*hints, rule.mapping_hints);
         rules.push_back(std::move(rule));
     }
+
+    // Merge mapping_hints from sibling regions/*.json files when the rule
+    // itself didn't carry hints inline. This is the standard layout used by
+    // knowledge/organisms/<org>/{classifier_rules.json,regions/*.json}.
+    auto regions_dir = path.parent_path() / "regions";
+    if (std::filesystem::exists(regions_dir) &&
+        std::filesystem::is_directory(regions_dir)) {
+
+        std::unordered_map<std::string, ParamOverride> hints_by_region;
+        for (const auto& entry : std::filesystem::directory_iterator(regions_dir)) {
+            if (!entry.is_regular_file()) continue;
+            if (entry.path().extension() != ".json") continue;
+            auto contents = SlurpFile(entry.path());
+            if (!contents) continue;
+            JsonReader rrdr(*contents);
+            auto root = rrdr.Parse();
+            if (!root || root->type != Json::Type::Object) continue;
+            const Json* nm = root->Get("name");
+            const Json* h = root->Get("mapping_hints");
+            if (!nm || nm->type != Json::Type::String) continue;
+            if (!h) continue;
+            ParamOverride p;
+            DecodeMappingHints(*h, p);
+            hints_by_region[nm->AsString()] = p;
+        }
+
+        for (auto& rule : rules) {
+            auto it = hints_by_region.find(rule.region_name);
+            if (it == hints_by_region.end()) continue;
+            // Inline-on-rule hints take precedence; otherwise inherit.
+            ParamOverride merged = rule.mapping_hints;
+            merged.OverlayOver(it->second);
+            rule.mapping_hints = merged;
+        }
+    }
+
     return std::make_unique<Classifier>(std::move(rules));
 }
 
