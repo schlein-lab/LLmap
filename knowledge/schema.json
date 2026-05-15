@@ -1,0 +1,143 @@
+{
+  "schema_version": "0.1.0",
+  "description": "LLmap region knowledge schema. Universal contract for region annotations across any genome (real, synthetic, fictive).",
+
+  "feature_vocabulary": {
+    "description": "Sequence-derived features. All extractors are organism-agnostic. Per-organism rules combine these into region classifications.",
+    "entries": [
+      {
+        "id": "shannon_5mer",
+        "type": "float",
+        "range": [0.0, 5.0],
+        "description": "Shannon entropy of 5-mer distribution in a sliding window (default 1 kb). Low = repetitive, high = mixed."
+      },
+      {
+        "id": "gc_content",
+        "type": "float",
+        "range": [0.0, 1.0],
+        "description": "Fraction of G+C bases."
+      },
+      {
+        "id": "tandem_period",
+        "type": "int | null",
+        "range": [2, 10000],
+        "description": "Autocorrelation-derived dominant tandem repeat period in bp. Null if none detected."
+      },
+      {
+        "id": "kmer_multiplicity_p95",
+        "type": "int",
+        "description": "95th percentile of k-mer occurrence count within the entire reference. High = paralog/repeat-rich."
+      },
+      {
+        "id": "palindrome_density",
+        "type": "float",
+        "range": [0.0, 1.0],
+        "description": "Density of reverse-complement palindromes (for inverted-terminal-repeats in viruses, etc.)."
+      },
+      {
+        "id": "orf_density",
+        "type": "float",
+        "range": [0.0, 1.0],
+        "description": "Fraction of window covered by ORF >= 300 nt. Requires codon table — universal but its parameters are organism-tunable."
+      },
+      {
+        "id": "consensus_match",
+        "type": "string | null",
+        "description": "Best-matching consensus motif from organism library (e.g. Alu, LINE-1, B1, P-element)."
+      }
+    ]
+  },
+
+  "universal_region_taxonomy": {
+    "description": "Region types that apply across any genome. Per-organism modules add specific subtypes.",
+    "entries": [
+      {
+        "id": "unique_single_copy",
+        "description": "Sequence appears exactly once in the genome. Strong specificity; mapping should be deterministic.",
+        "mapping_hints": {"expected_unique": true, "max_occ_multiplier": 1.0}
+      },
+      {
+        "id": "low_complexity",
+        "description": "High repetitive content (low Shannon entropy, often AT- or GC-biased homopolymers).",
+        "mapping_hints": {"expected_unique": false, "max_occ_multiplier": 5.0, "lambda_scale": 2.0}
+      },
+      {
+        "id": "tandem_repeat",
+        "description": "Periodic structure with detectable tandem_period.",
+        "mapping_hints": {"expected_unique": false, "max_occ_multiplier": 20.0, "lambda_scale": 3.0, "report_multi_position": true}
+      },
+      {
+        "id": "paralog_family",
+        "description": "High intra-genome homology to other locations. Reads belong to ONE specific copy but map equally well to siblings.",
+        "mapping_hints": {"expected_unique": "ambiguous", "report_multi_position": true, "require_psv_disambiguation": true}
+      },
+      {
+        "id": "dispersed_repeat",
+        "description": "Mobile-element-derived sequence repeated thousands of times (SINEs, LINEs, MITEs, LTRs).",
+        "mapping_hints": {"expected_unique": false, "max_occ_multiplier": 100.0, "lambda_scale": 1.5}
+      },
+      {
+        "id": "terminal_repeat",
+        "description": "Telomere / ITR / LTR — sequence flanking the linear end of the chromosome or transposable element.",
+        "mapping_hints": {"expected_unique": false, "max_occ_multiplier": 10.0}
+      },
+      {
+        "id": "centromere_like",
+        "description": "Spindle-attachment region. Often built from a satellite tandem repeat.",
+        "mapping_hints": {"expected_unique": false, "max_occ_multiplier": 200.0, "report_multi_position": true}
+      },
+      {
+        "id": "coding",
+        "description": "ORF-containing region with codon usage matching the organism's coding standard.",
+        "mapping_hints": {"expected_unique": true, "max_occ_multiplier": 1.0}
+      },
+      {
+        "id": "pseudogene",
+        "description": "Coding-like but with stop-codon insertions, frameshifts, or transposon-disruption.",
+        "mapping_hints": {"expected_unique": "ambiguous", "require_psv_disambiguation": true}
+      },
+      {
+        "id": "custom",
+        "description": "Organism-specific or user-defined. Module supplies its own mapping_hints."
+      }
+    ]
+  },
+
+  "mapping_hint_vocabulary": {
+    "description": "Effects an annotation can have on the chain-DP scoring at runtime.",
+    "entries": [
+      {"id": "expected_unique", "type": "bool | 'ambiguous'", "default": true},
+      {"id": "max_occ_multiplier", "type": "float", "default": 1.0, "description": "Scales the global MinimizerIndex max_occ for anchors in this region."},
+      {"id": "lambda_scale", "type": "float", "default": 1.0, "description": "Scales the effective minimizer k for this region (>1 = coarser, smaller k effective)."},
+      {"id": "report_multi_position", "type": "bool", "default": false, "description": "Force the chain extractor to emit top-N chains instead of collapsing to one."},
+      {"id": "require_psv_disambiguation", "type": "bool", "default": false, "description": "Require an external PSV catalog or per-read LLM call to pick the right copy."}
+    ]
+  },
+
+  "module_layout": {
+    "description": "Each organism module must contain at least the following files.",
+    "required": [
+      "regions/*.json (one file per region the module recognises; each adheres to region_entry schema)",
+      "classifier_rules.json (feature-vector -> region-name rules, deterministic)",
+      "MODULE.md (organism description, source list, last-updated)"
+    ],
+    "optional": [
+      "consensus_motifs/*.fa (FASTA of well-known motifs for consensus_match feature)",
+      "codon_table.json (organism codon usage table for orf_density)",
+      "psv_catalog.tsv (paralog-specific-variant positions for paralog_family)"
+    ]
+  },
+
+  "region_entry_schema": {
+    "description": "Format of one regions/<name>.json file.",
+    "fields": [
+      {"name": "name", "type": "string", "required": true},
+      {"name": "taxonomy_id", "type": "string", "required": true, "note": "must be one of universal_region_taxonomy.entries.id"},
+      {"name": "description", "type": "string", "required": true},
+      {"name": "feature_signature", "type": "object", "required": true, "note": "predicate over the feature_vocabulary"},
+      {"name": "mapping_hints", "type": "object", "required": true},
+      {"name": "sources", "type": "array<string>", "required": true, "note": "DOIs, PMIDs, URLs"},
+      {"name": "confidence", "type": "float", "required": false}
+    ]
+  }
+}
