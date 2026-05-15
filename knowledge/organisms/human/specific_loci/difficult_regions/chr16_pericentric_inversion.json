@@ -1,0 +1,29 @@
+{
+  "name": "chr16_pericentric_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "Pericentric inversion polymorphism inv(16)(p11q11) / inv(16)(p11.2q12.1)-class variants on chromosome 16. Encompasses the chr16 centromere and 16q11.2 heterochromatin. Recurrent in the population; mostly benign.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 34500000, "end": 50000000}},
+  "size_bp": 15500000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentric inversion spanning chr16 centromere and 16q11.2 classical satellite block; breakpoints in alpha-satellite / pericentric satellite."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "inv(16)(p11q11) cytogenetic variant"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "PMID:25182931"
+  ],
+  "confidence": 0.75
+}

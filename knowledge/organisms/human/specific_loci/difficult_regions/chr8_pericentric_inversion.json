@@ -1,0 +1,32 @@
+{
+  "name": "chr8_pericentric_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "Pericentric inversion polymorphism on chromosome 8 (inv(8)(p23.1q22.1)-like polymorphisms) mediated by inverted SDs at 8p23.1 (REPP/REPD) and at 8q22. Carriers are predisposed to recurrent t(8;8) translocations and the recurrent inv dup del(8p) rearrangement.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 7000000, "end": 13000000}},
+  "size_bp": 6000000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Same SD architecture as the 8p23.1 defensin block but considered here as the inversion polymorphism (population frequency ~25%); inverted SDs at p- and q-side flank the inverted segment."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "inv dup del(8p)",
+    "t(8;8) recurrent translocation",
+    "8p23.1 deletion / duplication"
+  ],
+  "sources": [
+    "doi:10.1086/431652",
+    "doi:10.1086/430842",
+    "doi:10.1038/nrg2593"
+  ],
+  "confidence": 0.85
+}

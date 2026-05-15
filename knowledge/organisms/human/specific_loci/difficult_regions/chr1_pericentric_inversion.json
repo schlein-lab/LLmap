@@ -1,0 +1,29 @@
+{
+  "name": "chr1_pericentric_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "Pericentric inversion polymorphism inv(1)(p13q21)-class variants spanning the chr1 centromere and 1q12 HSat2/HSat3 heterochromatin block. Recurrent in the population; complicates SV mapping near the chr1 centromere.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 115000000, "end": 150000000}},
+  "size_bp": 35000000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentric inversion spanning chr1 centromere and 1q12 classical heterochromatin block; breakpoints in alpha-satellite / pericentric HSat."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "inv(1)(p13q21) cytogenetic variant"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "PMID:25182931"
+  ],
+  "confidence": 0.7
+}

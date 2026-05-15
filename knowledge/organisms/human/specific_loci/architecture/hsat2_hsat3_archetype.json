@@ -1,0 +1,30 @@
+{
+  "name": "HSat2_HSat3_classical_satellite_architecture",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Architectural archetype: human classical satellites HSat2 and HSat3. AT-rich pentamer-based tandem arrays forming the bulk of pericentric heterochromatin (C-band) on chr1q12, chr9q12, chr16q11.2 and Yq12. HSat2 monomers are CATTC-rich and HSat3 are ATTCC-rich; the two often co-occur in interleaved blocks.",
+  "coordinates": {"grch38": {"chr": "architectural_archetype", "start": 0, "end": 0}},
+  "size_bp": 0,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "many",
+    "homology_percent": 95.0,
+    "internal_structure": "HSat2: CATTC/GGAAT pentamer-based, ~26-bp consensus, AT-rich (~75% AT); HSat3: ATTCC-based, related architecture, slightly different pentamer composition; both form blocks of 1-30 Mb; population-level size polymorphism (qh+/qh-); fully resolved only in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "ICF syndrome (pericentric instability)"
+  ],
+  "sources": [
+    "PMID:225837",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abl4178"
+  ],
+  "confidence": 0.9
+}
