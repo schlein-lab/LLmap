@@ -1,0 +1,37 @@
+{
+  "name": "1p36_microdeletion_recurrent_CNV",
+  "taxonomy_id": "paralog_family",
+  "description": "1p36 deletion syndrome — most common terminal deletion syndrome (~1 in 5000). Variable-size deletions (1.5-10 Mb) of the distal short arm of chromosome 1. Critical regions: 1p36.33 (proximal: GABRD, SKI, MMP23B) and 1p36.32-31 (distal: PRDM16, RERE, KCNAB2, GNB1, MTHFR). Most breakpoints are non-recurrent (MMBIR/FoSTeS), but subtelomeric SD blocks at 1p36 mediate a subset. Complements existing chr1_1p36_microdeletion_breakpoints and chr1_1p36_subtelomeric_SD_cluster files with explicit ClinGen consensus statement context.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 0, "end": 10000000}},
+  "size_bp": 10000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_1p36_subtelomeric", "SD_1p36.32_proximal"],
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD cluster (~30-200 kb blocks); critical dosage genes MMP23B, GABRD, SKI, PRDM16, RERE (the major ID gene), KCNAB2, GNB1, MTHFR, AGRN. Distinct phenotypic subregions identified: cardiac (PRDM16, SKI), seizures (KCNAB2, MMP23B), ID (RERE)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1p36 deletion syndrome (Class I terminal, Class II interstitial)",
+    "developmental delay / ID",
+    "epilepsy",
+    "cardiomyopathy / cardiac defects (PRDM16, SKI)",
+    "obesity, hyperphagia"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1086/302721",
+    "doi:10.1086/520009",
+    "doi:10.1038/gim.2011.10",
+    "ClinGen Dosage Sensitivity 1p36 region (HI=3)"
+  ],
+  "confidence": 0.95
+}

@@ -1,0 +1,31 @@
+{
+  "name": "17q22_NOG_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17q22 SD modules flanking NOG and C17orf67. Direct-orientation duplicons mediate rare ~2.5 Mb 17q22 microdeletions associated with proximal symphalangism.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 56500000, "end": 59000000}},
+  "size_bp": 2500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Two SD blocks of ~30-60 kb at ~97% identity flanking NOG, TRIM37, MIR21."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "17q22 microdeletion syndrome",
+    "Proximal symphalangism (NOG)",
+    "Mulibrey nanism (TRIM37)"
+  ],
+  "sources": [
+    "doi:10.1016/j.ajhg.2009.07.020",
+    "doi:10.1038/ng.534"
+  ],
+  "confidence": 0.75
+}
