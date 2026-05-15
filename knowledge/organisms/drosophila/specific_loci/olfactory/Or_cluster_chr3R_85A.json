@@ -1,0 +1,27 @@
+{
+  "name": "Or_cluster_chr3R_85A",
+  "taxonomy_id": "paralog_family",
+  "description": "Drosophila chemoreceptor cluster: Or85a/b/c/d/e/f tandem cluster on chr3R \u2014 largest Or sub-cluster. Drosophila has ~60 Or and ~60 Gr chemoreceptor genes total, dispersed across the genome with several tandem sub-clusters. Intra-cluster identity 40-95%, no genome-wide superfamily expansion like mammalian ORs.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3R",
+      "start": 5000000,
+      "end": 5100000
+    }
+  },
+  "size_bp": 100000,
+  "expected_copy_count": "2-6 paralogs per tandem cluster",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1016/S0092-8674(00)80582-6",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.85
+}

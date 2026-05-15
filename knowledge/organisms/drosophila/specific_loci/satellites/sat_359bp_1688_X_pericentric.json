@@ -1,0 +1,27 @@
+{
+  "name": "sat_359bp_1688_X_pericentric",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Drosophila simple satellite block: 359-bp satellite (1.688 g/cc family) \u2014 major X pericentric satellite, ~11 Mb total array in heterochromatin. AT-rich repeat unit 359 bp; sub-variants 353/356/260 bp.. Drosophila satellites are chromosome-position-specific and used as cytogenetic markers (Lohe 1993). They form most of the ~30% of the genome that is heterochromatin.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 22000000,
+      "end": 23000000
+    }
+  },
+  "size_bp": 1000000,
+  "expected_copy_count": "10^4-10^7 simple-repeat copies, chromosome-position-specific",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:8472699",
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1534/genetics.118.301631"
+  ],
+  "confidence": 0.75
+}

@@ -1,0 +1,27 @@
+{
+  "name": "polyAT_alt_10000bp",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "dinucleotide_alternating",
+  "description": "Alternating AT dinucleotide (ATATAT...) of 10000 bp. GC=0% but with a 2-bp period \u2014 distinct stress mode from homopolymer (k-mer complexity is {AT,TA}). Models AT-rich satellite blocks.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_009",
+      "start": 0,
+      "end": 10000
+    }
+  },
+  "size_bp": 10000,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.15,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

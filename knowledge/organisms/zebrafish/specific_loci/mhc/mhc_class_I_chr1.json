@@ -1,0 +1,28 @@
+{
+  "name": "mhc_class_I_chr1",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish MHC: non-classical mhc class Ia/Ib paralogs on chr1 (mhc1zba) \u2014 class I genes dispersed across multiple chromosomes (chr1, chr3, chr8, chr19) unlike mammals where they are co-located. Unlike tetrapods, zebrafish MHC class I and class II are unlinked and dispersed across multiple chromosomes \u2014 the canonical 'MHC region' concept does not apply. Each subfamily has 5-30 paralogs with intra-cluster identity 75-95%. High population polymorphism: >100 alleles described per locus.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr1",
+      "start": 31000000,
+      "end": 31700000
+    }
+  },
+  "size_bp": 700000,
+  "expected_copy_count": "5-30 paralogs per cluster, highly polymorphic",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/384345a0",
+    "doi:10.1038/nature12111",
+    "doi:10.1007/s00251-017-0997-3"
+  ],
+  "confidence": 0.8
+}

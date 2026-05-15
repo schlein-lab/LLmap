@@ -1,0 +1,26 @@
+{
+  "name": "chr4_pericentric_AATAT",
+  "taxonomy_id": "tandem_repeat",
+  "description": "chr4 pericentric AATAT-rich block \u2014 the heterochromatic 'dot' proper. ~1 Mb of tandem AATAT pentanucleotide repeat interrupted by retrotransposon insertions. Mostly absent from BDGP6.46 assembly; the assembled segment is a placeholder for the larger satellite block.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr4",
+      "start": 0,
+      "end": 350000
+    }
+  },
+  "size_bp": 350000,
+  "expected_copy_count": "~10^5 AATAT pentanucleotide copies",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:8472699",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.7
+}

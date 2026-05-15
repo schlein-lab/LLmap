@@ -1,0 +1,35 @@
+{
+  "name": "AdV2_fiber_knob_tropism",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA",
+  "description": "AdV2 L5 fiber gene encoding the trimeric fiber protein whose C-terminal knob domain mediates primary-receptor binding. Species C (Ad2/Ad5) fibers bind CAR (CXADR); species B and D bind CD46 or sialic acid; species F (Ad40/41) Ad41 carries two fiber proteins (long Ad41L and short Ad41S) \u2014 unique among human adenoviruses \u2014 and uses both CAR and a yet-uncharacterized receptor for enteric tropism. Knob-domain sequences are the principal serotype-discrimination target.",
+  "coordinates": {
+    "NCBI_RefSeq_AC_000007.1": {
+      "chr": "AC_000007.1",
+      "start": 31000,
+      "end": 33000
+    }
+  },
+  "size_bp": 2000,
+  "expected_paralogs": [
+    {
+      "name": "fiber",
+      "approx_offset_in_locus": 0
+    }
+  ],
+  "expected_copy_count": "1 per genome (or 2 fiber genes in Ad40/41)",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 10000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "type_disambig_aware": true
+  },
+  "sources": [
+    "doi:10.1099/0022-1317-79-9-2169",
+    "doi:10.1006/viro.1999.9920"
+  ],
+  "confidence": 0.91
+}

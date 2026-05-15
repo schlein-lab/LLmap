@@ -1,0 +1,71 @@
+{
+  "name": "cyp13A_chrII_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "cyp-13A subfamily tandem cluster on chromosome II. ~10 paralogs at 70-95% identity expanded by tandem duplication; insect CYP6-related family that metabolises xenobiotics and possibly endogenous lipids.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "II",
+      "start": 11400000,
+      "end": 11600000
+    }
+  },
+  "size_bp": 200000,
+  "expected_paralogs": [
+    {
+      "name": "cyp-13A1",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "cyp-13A2",
+      "approx_offset_in_locus": 15000
+    },
+    {
+      "name": "cyp-13A3",
+      "approx_offset_in_locus": 30000
+    },
+    {
+      "name": "cyp-13A4",
+      "approx_offset_in_locus": 45000
+    },
+    {
+      "name": "cyp-13A5",
+      "approx_offset_in_locus": 60000
+    },
+    {
+      "name": "cyp-13A6",
+      "approx_offset_in_locus": 75000
+    },
+    {
+      "name": "cyp-13A7",
+      "approx_offset_in_locus": 90000
+    },
+    {
+      "name": "cyp-13A8",
+      "approx_offset_in_locus": 105000
+    },
+    {
+      "name": "cyp-13A11",
+      "approx_offset_in_locus": 120000
+    },
+    {
+      "name": "cyp-13A12",
+      "approx_offset_in_locus": 135000
+    }
+  ],
+  "expected_copy_count": "~10 cyp-13A paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-9-185",
+    "WormBase WS285 cyp gene family",
+    "doi:10.1126/science.282.5396.2012"
+  ],
+  "confidence": 0.8
+}

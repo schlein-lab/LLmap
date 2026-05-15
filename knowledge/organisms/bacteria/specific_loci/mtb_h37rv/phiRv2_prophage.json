@@ -1,0 +1,27 @@
+{
+  "name": "mtb_h37rv_phiRv2_prophage",
+  "taxonomy_id": "custom",
+  "description": "phiRv2 \u2014 8.7 kb prophage-like element near PPE38.",
+  "coordinates": {
+    "GenBank_NC_000962.3": {
+      "chr": "NC_000962.3",
+      "start": 2632000,
+      "end": 2641000
+    }
+  },
+  "size_bp": 9000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PHASTER:doi:10.1093/nar/gkw387",
+    "doi:10.1038/31159"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "defective_lambdoid"
+}

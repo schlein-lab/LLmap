@@ -1,0 +1,46 @@
+{
+  "name": "humanspec_FAM72_dup_gorilla",
+  "taxonomy_id": "human_specific_compare",
+  "description": "Human-specific duplicon contrast: FAM72_dup. Status in Gorilla gorilla: 'human_specific_expansion'. In human (GRCh38) the locus sits on chr1:~120.7 Mb; in this ape the syntenic region is approximated on chr1. Used by LLmap to refuse silent absorption of human-vs-ape divergence when mapping cross-species reads.",
+  "human_locus_grch38": {
+    "chr": "chr1",
+    "start": 120703919,
+    "end": 120753919
+  },
+  "ape_syntenic_locus": {
+    "T2T_Gor": {
+      "chr": "chr1",
+      "start": 120703919,
+      "end": 120753919
+    }
+  },
+  "size_bp": 50000,
+  "human_specific_status": "human_specific_expansion",
+  "present_in_this_ape": false,
+  "architecture": {
+    "type": "human_lineage_duplicon",
+    "homology_percent": 98.5,
+    "copy_number_in_population": "variable_CNV",
+    "internal_structure": "Reference contrast for FAM72_dup. See Dennis 2012, Suntsova 2017, T2T-ape 2024 for duplicon-by-duplicon presence calls."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "human-specific cortex expansion / neurodevelopmental dosage (e.g. FAM72_dup)"
+  ],
+  "confidence": 0.65,
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014",
+    "doi:10.1016/j.cell.2012.03.033"
+  ]
+}

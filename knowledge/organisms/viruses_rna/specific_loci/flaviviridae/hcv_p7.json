@@ -1,0 +1,29 @@
+{
+  "name": "HCV_p7",
+  "taxonomy_id": "custom",
+  "description": "p7 viroporin.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 2580,
+      "end": 2768
+    }
+  },
+  "size_bp": 189,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "NC_004102.1",
+    "doi:10.1002/hep.27259"
+  ],
+  "confidence": 0.92
+}

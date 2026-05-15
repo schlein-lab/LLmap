@@ -1,0 +1,27 @@
+{
+  "name": "paeruginosa_pao1_pKLC102_ICE_locus",
+  "taxonomy_id": "custom",
+  "description": "pKLC102/PAGI-2-like ICE locus in PAO1; ~104 kb integrative conjugative element. Integrates at tRNA-Lys; widespread across Pseudomonas strains.",
+  "coordinates": {
+    "GenBank_NC_002516.2": {
+      "chr": "NC_002516.2",
+      "start": 4900000,
+      "end": 5005000
+    }
+  },
+  "size_bp": 105000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "ICEberg2.0:doi:10.1093/nar/gky1123",
+    "doi:10.1128/JB.187.13.4509-4516.2005"
+  ],
+  "confidence": 0.9,
+  "ice_family": "pKLC102"
+}

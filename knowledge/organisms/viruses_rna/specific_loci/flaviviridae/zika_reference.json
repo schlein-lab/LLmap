@@ -1,0 +1,35 @@
+{
+  "name": "Zika_virus_reference",
+  "taxonomy_id": "custom",
+  "description": "Zika virus reference (NC_012532.1, Asian lineage MR766 ancestor; PRVABC59 contemporary). ~10794 nt ssRNA(+). Same organisation as Dengue. African vs Asian lineages; Asian lineage caused 2015-16 Americas epidemic (microcephaly, GBS).",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_012532.1": {
+      "start": 1,
+      "end": 10794
+    }
+  },
+  "size_bp": 10794,
+  "lineages": [
+    "African",
+    "Asian/American"
+  ],
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Zika_fever",
+    "Congenital_Zika_syndrome",
+    "Guillain-Barre"
+  ],
+  "sources": [
+    "NC_012532.1",
+    "doi:10.1126/science.aaf6116"
+  ],
+  "confidence": 0.98
+}

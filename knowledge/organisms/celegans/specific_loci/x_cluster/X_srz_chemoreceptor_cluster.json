@@ -1,0 +1,28 @@
+{
+  "name": "X_srz_chemoreceptor_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "X-linked srz (serpentine receptor, class Z) chemoreceptor cluster on C. elegans X chromosome. ~50-80 paralogs at 70-95% nucleotide identity; tandemly arrayed in the X central-right arm. srz family is expanded in Caenorhabditis lineage.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "X",
+      "start": 8000000,
+      "end": 9500000
+    }
+  },
+  "size_bp": 1500000,
+  "expected_copy_count": "50-80 srz paralogs",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/gb-2005-6-10-r86",
+    "WormBase WS285"
+  ],
+  "confidence": 0.7
+}

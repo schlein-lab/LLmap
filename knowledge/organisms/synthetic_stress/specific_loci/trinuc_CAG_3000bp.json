@@ -1,0 +1,29 @@
+{
+  "name": "trinuc_CAG_3000bp",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "trinucleotide_expansion",
+  "description": "(CAG)n trinucleotide expansion, 3000 bp total (1000 copies). HD-like: Huntington/SCA-relevant polyglutamine repeat. Forms hairpins; common in 35+ Mendelian repeat disorders. Stresses mapper handling of pathogenic short tandem repeats.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_021",
+      "start": 0,
+      "end": 3000
+    }
+  },
+  "size_bp": 3000,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.85,
+    "anchor_weight_scale": 0.15,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "repeat_unit": "CAG",
+    "copy_count": 1000
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

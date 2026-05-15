@@ -1,0 +1,26 @@
+{
+  "name": "paeruginosa_pao1_T6SS_HSI_III_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "T6SS HSI-III cluster in PAO1.",
+  "coordinates": {
+    "GenBank_NC_002516.2": {
+      "chr": "NC_002516.2",
+      "start": 5520000,
+      "end": 5545000
+    }
+  },
+  "size_bp": 25000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 18000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "system": "T6SS_HSI-III"
+}

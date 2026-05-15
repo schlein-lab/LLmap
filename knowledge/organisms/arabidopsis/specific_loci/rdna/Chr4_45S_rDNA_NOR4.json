@@ -1,0 +1,32 @@
+{
+  "name": "Chr4_45S_rDNA_NOR4",
+  "taxonomy_id": "tandem_repeat",
+  "description": "NOR4 on the short arm of Chr4 (TAIR10). 45S rDNA tandem array (~10 kb units encoding 18S/5.8S/25S). Copy number 350-750 in Col-0; under-assembled in TAIR10 and resolved in T2T-Col-CEN (Naish 2021).",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr4",
+      "start": 1,
+      "end": 3873790
+    }
+  },
+  "size_bp": 3873789,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 300000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true,
+    "cross_chromosome_paralog": true
+  },
+  "sources": [
+    "doi:10.1126/science.abi7489",
+    "doi:10.1093/nar/gkr1090",
+    "doi:10.1093/nar/gkr1090"
+  ],
+  "confidence": 0.85,
+  "repeat_unit_bp": 10000,
+  "expected_copy_count": "350-750 45S units"
+}

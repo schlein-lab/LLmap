@@ -1,0 +1,38 @@
+{
+  "name": "16S_V3_Bacteroidetes",
+  "taxonomy_id": "16S_rRNA",
+  "marker": "16S_rRNA",
+  "region_role": "variable_core",
+  "description": "16S rRNA hypervariable region V3 in phylum Bacteroidetes. Approximately 64 bp on the E. coli numbering scheme (positions 433-497). Gram-negative anaerobes, dominant gut; e.g. Bacteroides, Prevotella. Species- to genus-level discriminating; real biological variation expected \u2014 allow high mismatch during mapping.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_007",
+      "start": 0,
+      "end": 64
+    }
+  },
+  "size_bp": 64,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "marker": "16S_rRNA",
+    "v_region": "V3",
+    "phylum": "Bacteroidetes",
+    "ecoli_coord": [
+      433,
+      497
+    ]
+  },
+  "sources": [
+    "SILVA 138.1 SSU Ref NR99",
+    "GTDB R220",
+    "GreenGenes2 2024.09",
+    "doi:10.1093/nar/gks1219"
+  ],
+  "confidence": 0.9
+}

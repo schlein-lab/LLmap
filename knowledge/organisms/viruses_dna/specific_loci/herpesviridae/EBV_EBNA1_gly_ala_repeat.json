@@ -1,0 +1,29 @@
+{
+  "name": "EBV_EBNA1_gly_ala_repeat",
+  "taxonomy_id": "low_complexity",
+  "virus_type": "dsDNA",
+  "description": "EBNA1 glycine-alanine repeat (GAr): low-complexity (Gly-Ala)n region within EBNA1 (~239 amino acids of repeat in the B95-8 strain, encoded by ~720 bp of (GGN-GCN)n DNA). The GAr inhibits proteasomal degradation of EBNA1 and blocks its presentation on MHC-I, contributing to immune evasion. Highly repetitive coding sequence \u2014 short reads pile up across the repeat and require copy-number-aware assembly to determine repeat length; length is polymorphic between strains.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_007605.1": {
+      "chr": "NC_007605.1",
+      "start": 108200,
+      "end": 109200
+    }
+  },
+  "size_bp": 1000,
+  "expected_copy_count": "~239 amino acid (Gly-Ala) units in B95-8; varies per strain",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "low_complexity_aware": true
+  },
+  "sources": [
+    "doi:10.1038/375685a0",
+    "doi:10.1073/pnas.94.23.12616"
+  ],
+  "confidence": 0.9
+}

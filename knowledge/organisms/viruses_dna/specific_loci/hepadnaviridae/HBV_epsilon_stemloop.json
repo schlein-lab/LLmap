@@ -1,0 +1,27 @@
+{
+  "name": "HBV_epsilon_stemloop",
+  "taxonomy_id": "custom",
+  "custom_subtype": "rna_secondary_structure_dna_template",
+  "virus_type": "dsDNA-RT",
+  "description": "HBV epsilon (ε) encapsidation signal: a conserved stem-loop structure at nt 1849-1907 of the pgRNA (located on the DNA template within ORF C). Contains a basal stem, internal bulge, apical stem and apical loop. Required for pgRNA encapsidation into the nucleocapsid and serves as the template for priming of (−)-strand DNA synthesis: the polymerase covalently links the first dNTP of the (−)-strand to a tyrosine residue using the bulge sequence as template. Mutations in the basal stem destroy replication. Sequence-level conservation across all 10 HBV genotypes.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_003977.2": {"chr": "NC_003977.2", "start": 1849, "end": 1907}
+  },
+  "size_bp": 59,
+  "expected_copy_count": "1 ε per genome, also present in the terminal redundancy of pgRNA",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 1.4,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "hairpin_structure": true
+  },
+  "sources": [
+    "doi:10.1093/emboj/16.1.59",
+    "doi:10.1006/jmbi.1996.0805",
+    "doi:10.1128/JVI.69.6.3350-3357.1995"
+  ],
+  "confidence": 0.92
+}

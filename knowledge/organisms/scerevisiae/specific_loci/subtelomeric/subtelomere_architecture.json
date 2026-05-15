@@ -1,0 +1,32 @@
+{
+  "name": "subtelomere_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Subtelomeric architecture in S. cerevisiae. The 32 subtelomeres (immediately interior to Y'/X elements) are paralog-family hotspots: SUC/MAL/MEL sugar-utilisation gene cassettes, PAU seripauperins, AAD aryl-alcohol dehydrogenases, COS family, FLO flocculin pseudogenes/genes, IMD2, HXT, and SOR. Recombination between subtelomeres is the primary driver of gene family expansion/contraction and strain phenotypic diversity. Many of these gene blocks are within a few kb of the X-element/Y'-element border.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "subtelomeric_all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 30000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 85.0,
+    "internal_structure": "X-element / Y'-element border immediately interior to telomere; subtelomeric paralog cassettes (SUC/MAL/MEL/PAU/AAD/COS/FLO) within ~30 kb of chromosome end"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:11553334"
+  ],
+  "confidence": 0.85
+}

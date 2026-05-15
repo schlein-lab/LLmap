@@ -1,0 +1,27 @@
+{
+  "name": "nmeningitidis_mc58_Nf1_filamentous_prophage",
+  "taxonomy_id": "custom",
+  "description": "Nf1 filamentous prophage in MC58 (~8 kb). Inovirus-like; encodes neisserial phage-encoded toxin.",
+  "coordinates": {
+    "GenBank_NC_003112.2": {
+      "chr": "NC_003112.2",
+      "start": 1156000,
+      "end": 1164000
+    }
+  },
+  "size_bp": 8000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PHASTER:doi:10.1093/nar/gkw387",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "filamentous_inovirus"
+}

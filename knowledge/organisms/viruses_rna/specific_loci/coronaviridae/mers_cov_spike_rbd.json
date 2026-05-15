@@ -1,0 +1,28 @@
+{
+  "name": "MERS-CoV_spike_rbd",
+  "taxonomy_id": "custom",
+  "description": "MERS-CoV RBD (aa 367-606). Binds DPP4/CD26.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_019843.3": {
+      "start": 22556,
+      "end": 23272
+    }
+  },
+  "size_bp": 717,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 6000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MERS"
+  ],
+  "sources": [
+    "NC_019843.3"
+  ],
+  "confidence": 0.95
+}

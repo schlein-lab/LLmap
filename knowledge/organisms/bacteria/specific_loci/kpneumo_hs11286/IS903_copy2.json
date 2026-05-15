@@ -1,0 +1,29 @@
+{
+  "name": "kpneumo_hs11286_IS903_copy2",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS903 copy 2 of 2 in this genome. 1057 bp IS5-family element; common in Klebsiella. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS903 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_016845.1": {
+      "chr": "NC_016845.1",
+      "start": 4180000,
+      "end": 4181057,
+      "strand": "-"
+    }
+  },
+  "size_bp": 1057,
+  "expected_copy_count": "2 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

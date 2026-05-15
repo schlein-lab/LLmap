@@ -1,0 +1,35 @@
+{
+  "name": "PAU_seripauperin_family",
+  "taxonomy_id": "paralog_family",
+  "description": "Seripauperin (PAU) gene family in S. cerevisiae S288C. 23 paralogs (PAU1-PAU24) distributed across nearly all subtelomeric regions of the 16 chromosomes. Encode ~120 aa seripauperin proteins (cell-wall mannoproteins) repressed by oxygen. Paralogs share 70-99% nucleotide identity; the most recently duplicated PAU pairs are indistinguishable at the short-read level.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "subtelomeric_all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 360,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "single-exon ~360 bp ORF; one copy per subtelomere"
+  },
+  "expected_copy_count": "~23 PAU paralogs genome-wide",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 35000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:11553334",
+    "SGD PAU family"
+  ],
+  "confidence": 0.85
+}

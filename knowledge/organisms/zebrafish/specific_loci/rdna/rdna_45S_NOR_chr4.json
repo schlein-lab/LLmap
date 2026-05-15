@@ -1,0 +1,26 @@
+{
+  "name": "rdna_45S_NOR_chr4",
+  "taxonomy_id": "tandem_repeat",
+  "description": "45S ribosomal DNA NOR on chr4 short arm in zebrafish. Repeat unit ~11.5 kb containing 18S-5.8S-28S genes plus IGS. Copy number 200-500 per haploid genome; assembly is collapsed in GRCz11 to a few placeholder copies. Single primary NOR locus.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr4",
+      "start": 200000,
+      "end": 1300000
+    }
+  },
+  "size_bp": 1100000,
+  "expected_copy_count": "200-500 tandem 11.5 kb 45S units per haploid genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 50000,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "PMID:8978791"
+  ],
+  "confidence": 0.7
+}

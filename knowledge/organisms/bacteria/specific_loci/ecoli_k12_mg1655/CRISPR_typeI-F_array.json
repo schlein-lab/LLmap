@@ -1,0 +1,26 @@
+{
+  "name": "ecoli_k12_mg1655_CRISPR_typeI-F_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Smaller secondary CRISPR locus near the I-E system; orphan repeats in MG1655 (cas operon truncated). Listed for spacer-array detection.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 2884195,
+      "end": 2885640
+    }
+  },
+  "size_bp": 1445,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "crispr_type": "I-F (orphan)"
+}

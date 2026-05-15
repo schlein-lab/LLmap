@@ -1,0 +1,37 @@
+{
+  "name": "Ty3_LTR_family",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Ty3 retrotransposon family in S. cerevisiae. 5.4 kb element with 340 bp 'sigma' LTRs. S288C carries 2 full-length Ty3 elements plus ~40 solo sigma LTRs. Integrates immediately upstream of Pol III transcription start sites via TFIIIB interaction. Ty3 is the founder of the gypsy-like retrotransposon superfamily.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 5400,
+  "ltr_size_bp": 340,
+  "ltr_consensus": "sigma (340 bp)",
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "5'LTR (340 bp) - gag-pol ORFs - 3'LTR; solo LTRs are recombination products of intra-element exchange"
+  },
+  "expected_copy_count": "~2 full-length elements + ~40 solo LTRs per haploid S288C genome; strain-variable",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:9637730",
+    "SGD Ty element database"
+  ],
+  "confidence": 0.9
+}

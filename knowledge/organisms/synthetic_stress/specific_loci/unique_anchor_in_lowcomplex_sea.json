@@ -1,0 +1,31 @@
+{
+  "name": "unique_anchor_in_lowcomplex_sea",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "needle_in_haystack",
+  "description": "A unique 1 kb anchor sequence embedded at the center of a 10 Mb low-complexity (AT-rich, Shannon < 1.0) flanking sea. Models alpha-satellite islands and isolated unique sequence in centromeric/pericentromeric regions. Stresses mapper's ability to find a tiny unique signal amid massive ambiguous context.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_068",
+      "start": 0,
+      "end": 10000000
+    }
+  },
+  "size_bp": 10000000,
+  "mapping_hints": {
+    "expected_unique": "anchor_only",
+    "lambda_scale": 1.85,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 2000000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "unique_anchor_offset": [
+      5000000,
+      5001000
+    ]
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

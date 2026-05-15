@@ -1,0 +1,25 @@
+{
+  "name": "germ_cell_less_gcl_chrX_5E",
+  "taxonomy_id": "unique_single_copy",
+  "description": "Drosophila polar granule / germline factor: germ cell-less (gcl) \u2014 required for pole cell formation. Single-copy in D. melanogaster, no within-genome paralogs \u2014 useful unique-mapping anchor for read-placement QC in testis/ovary samples.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 6100000,
+      "end": 6140000
+    }
+  },
+  "size_bp": 40000,
+  "expected_copy_count": "1 per haplotype",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "max_occ": 5000,
+    "report_multi_position": false
+  },
+  "sources": [
+    "doi:10.1146/annurev.cellbio.13.1.365",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.95
+}

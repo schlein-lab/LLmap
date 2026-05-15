@@ -1,0 +1,28 @@
+{
+  "name": "5S_rRNA_solo_loci",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Solo 5S rRNA genes in S. pombe. Unlike S. cerevisiae (where 5S is embedded in the rDNA array), S. pombe scatters its ~30 copies of 5S rRNA across the three chromosomes as solo Pol III transcription units. Each ~120 bp gene plus short flanking sequence is near-identical across copies (>97%), so reads multi-map. Independent of the chrIII rDNA arrays.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I,II,III",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 120,
+  "expected_copy_count": "~30 dispersed 5S rRNA copies genome-wide",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PomBase 5S annotation"
+  ],
+  "confidence": 0.85
+}

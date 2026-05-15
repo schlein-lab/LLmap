@@ -1,0 +1,28 @@
+{
+  "name": "tDNA_boundary_cluster_cen2",
+  "taxonomy_id": "paralog_family",
+  "description": "tRNA gene cluster acting as the chromatin boundary at S. pombe centromere 2 (chrII). Pol III transcription of tRNAs at the imr/otr junction blocks heterochromatin spreading from otr into cnt and from cnt into otr. Multiple tRNA paralogs per cluster (tRNA-Ala, tRNA-Gly, tRNA-Pro etc.) with near-identical mature-RNA sequence.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "II",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 1500,
+  "expected_copy_count": "4-10 tRNA genes per boundary cluster (both L and R sides)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223"
+  ],
+  "confidence": 0.85
+}

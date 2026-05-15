@@ -1,0 +1,26 @@
+{
+  "name": "chr2_q_telomere",
+  "taxonomy_id": "terminal_repeat",
+  "description": "Telomere terminal repeat (TTAGGG)n hexamer block on the q-arm of zebrafish chromosome 2. Zebrafish use the same vertebrate TTAGGG repeat as mammals. Length 2-20 kb per telomere; subtelomeric TAR-like degenerate variants extend a further 10-30 kb.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr2",
+      "start": 59590629,
+      "end": 59640629
+    }
+  },
+  "size_bp": 50000,
+  "expected_copy_count": "~300-3000 TTAGGG hexamer copies per chromosome end",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 40000,
+    "lambda_scale": 2.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "PMID:3413074",
+    "doi:10.1038/nature12111"
+  ],
+  "confidence": 0.7
+}

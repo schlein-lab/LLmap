@@ -1,0 +1,30 @@
+{
+  "name": "chr11_5S_rDNA_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Rice 5S rDNA tandem array on chr11 (IRGSP-1.0). ~300-500 copies of ~330 bp 5S unit (Sakai 2003).",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr11",
+      "start": 12700000,
+      "end": 13200000
+    }
+  },
+  "size_bp": 500000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1186/1939-8433-6-4",
+    "doi:10.1038/nature03895"
+  ],
+  "confidence": 0.8,
+  "repeat_unit_bp": 330,
+  "expected_copy_count": "~300-500 units"
+}

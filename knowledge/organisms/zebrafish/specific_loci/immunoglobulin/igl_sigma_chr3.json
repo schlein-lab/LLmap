@@ -1,0 +1,29 @@
+{
+  "name": "igl_sigma_chr3",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish IGL sigma cluster on chr3 \u2014 teleost-specific light chain isotype with VJ-C linkage (multiple V-J-C cassettes rather than mammalian-style VJ recombination across the whole locus). Zebrafish Ig isotypes (IgM/IgD/IgZ) differ from mammalian. Intra-cluster paralog identity 70-95% in V segments; PSVs are essential for correct V-gene assignment.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr3",
+      "start": 32400000,
+      "end": 32900000
+    }
+  },
+  "size_bp": 500000,
+  "expected_copy_count": "1 locus, VDJ-rearranged per B cell; ~40-50 VH/VL gene segments",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1073/pnas.0509720102",
+    "doi:10.1146/annurev-immunol-031210-101331"
+  ],
+  "confidence": 0.85
+}

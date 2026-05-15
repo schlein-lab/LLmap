@@ -1,0 +1,31 @@
+{
+  "name": "Influenza_A_segment_PB1",
+  "taxonomy_id": "custom",
+  "description": "PB1: catalytic subunit of polymerase. Encodes PB1-F2 (+1 ORF) \u2014 apoptosis/virulence factor.",
+  "virus_type": "ssRNA(-)",
+  "segmented": true,
+  "coordinates": {
+    "NC_002021.1": {
+      "start": 1,
+      "end": 2341
+    }
+  },
+  "size_bp": 2341,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza"
+  ],
+  "sources": [
+    "NC_002021.1",
+    "WHO influenza nomenclature",
+    "doi:10.1016/S0140-6736(17)33293-2"
+  ],
+  "confidence": 0.98
+}

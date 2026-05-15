@@ -1,0 +1,31 @@
+{
+  "name": "rDNA_chrXII_tandem_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Ribosomal DNA tandem array on S. cerevisiae chromosome XII. Each 9.1 kb RDN1 unit encodes the 18S, 5.8S, and 25S rRNAs in the 35S transcript plus the divergently-transcribed 5S (RDN5) gene; units are separated by NTS1/NTS2 spacers containing the rARS replication origin and RFB (replication fork barrier). The array spans the chromosome XII centre and is the largest tandem repeat in the yeast genome (~150 copies per haploid in W303/S288C; copy number is strain- and growth-phase-variable). sacCer3 collapses the array to a placeholder ~9 kb single unit at chrXII:451575-468931 (RDN1) with the actual array length unrepresented.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "chrXII",
+      "start": 451575,
+      "end": 468931
+    }
+  },
+  "size_bp_collapsed_in_reference": 17356,
+  "size_bp_in_vivo_estimate": 1365000,
+  "expected_copy_count": "~100-200 copies of the 9.1 kb RDN1 unit; strain-variable",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:9421530",
+    "SGD chrXII rDNA annotation"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,29 @@
+{
+  "name": "kpneumo_hs11286_integron_class1_In4_reference",
+  "taxonomy_id": "custom",
+  "description": "Class 1 integron In4 \u2014 reference card. Class 1 integrons consist of a 5' conserved sequence (5'CS: intI1, attI1, Pc) and a 3' CS (qacEdelta1-sul1), with a variable gene-cassette array between them. In1..In12 are the founding members of the class 1 integron numbering. Variable cassettes include aacA, aadA, dfrA, blaOXA, blaIMP, blaVIM, etc.",
+  "coordinates": {
+    "GenBank_integron_consensus": {
+      "chr": "integron_consensus",
+      "start": 0,
+      "end": 1
+    }
+  },
+  "size_bp": 1,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1111/j.1574-6976.2009.00175.x",
+    "CARD:doi:10.1093/nar/gkz935"
+  ],
+  "confidence": 0.85,
+  "integron_class": 1,
+  "integron_id": "In4",
+  "reference_card_only": true
+}

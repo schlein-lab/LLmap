@@ -1,0 +1,28 @@
+{
+  "name": "CSA1_CHS3_paired_TNL",
+  "taxonomy_id": "paralog_family",
+  "description": "Paired TIR-NLR locus CSA1/CHS3 \u2014 autoimmunity in chs3-2d (Yang 2010).",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr5",
+      "start": 12700000,
+      "end": 12770000
+    }
+  },
+  "size_bp": 70000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1105/tpc.009308",
+    "doi:10.1146/annurev.phyto.45.062806.094427"
+  ],
+  "confidence": 0.8,
+  "repeat_class": "NB-LRR"
+}

@@ -1,0 +1,57 @@
+{
+  "name": "HPV18_LCR_URR_origin",
+  "taxonomy_id": "regulatory",
+  "virus_type": "dsDNA",
+  "description": "HPV18 long control region (LCR), also called the upstream regulatory region (URR), ~750-1000 bp of non-coding DNA between L1 and E6 containing the origin of replication (ori), the early promoter p97/p105 (type-dependent), four E2-binding sites (E2BS1-4), an E1-binding site overlapping ori, and binding sites for host transcription factors (AP-1, NF1, Oct-1, YY1, glucocorticoid receptor). The ori spans an A/T-rich auxiliary element and an E1-binding palindrome around which E1 hexamerizes during replication initiation. Sequence variation within the LCR drives type-specific tropism and oncogenic potential and is the primary anchor for type-specific qPCR design.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001357.1": {
+      "chr": "NC_001357.1",
+      "start": 7137,
+      "end": 7856
+    }
+  },
+  "size_bp": 720,
+  "expected_paralogs": [
+    {
+      "name": "E2BS1",
+      "approx_offset_in_locus": 50
+    },
+    {
+      "name": "E2BS2",
+      "approx_offset_in_locus": 350
+    },
+    {
+      "name": "E2BS3",
+      "approx_offset_in_locus": 600
+    },
+    {
+      "name": "E2BS4",
+      "approx_offset_in_locus": 700
+    },
+    {
+      "name": "origin_ori_E1BS",
+      "approx_offset_in_locus": 650
+    },
+    {
+      "name": "early_promoter_TATA",
+      "approx_offset_in_locus": 720
+    }
+  ],
+  "expected_copy_count": "1 per episomal genome; intact LCR retained in many integrated forms",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "circular_handling": true,
+    "type_disambig_aware": true
+  },
+  "sources": [
+    "doi:10.1006/viro.1996.0259",
+    "doi:10.1006/viro.1995.1259",
+    "doi:10.1038/nrc798"
+  ],
+  "confidence": 0.92
+}

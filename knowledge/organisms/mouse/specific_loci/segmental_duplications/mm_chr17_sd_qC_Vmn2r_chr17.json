@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr17_sd_qC_Vmn2r_chr17",
+  "taxonomy_id": "paralog_family",
+  "description": "Segmental duplication block on chr17 (qC_Vmn2r_chr17). Mean identity 97.0% across 75 kb tiles. Vmn2r chr17 cluster.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr17",
+      "start": 53500000,
+      "end": 56500000
+    }
+  },
+  "size_bp": 3000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "segmental_duplication",
+    "BP_mediating_SDs": [
+      "chr17_qC_Vmn2r_chr17_SD"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 75,
+    "internal_structure": "Vmn2r chr17 cluster",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "UCSC genomicSuperDups mm39",
+    "She et al. 2008 (PMID:18421352)"
+  ]
+}

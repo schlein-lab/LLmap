@@ -1,0 +1,35 @@
+{
+  "name": "dg_element_architecture",
+  "taxonomy_id": "tandem_repeat",
+  "description": "dg element architecture in S. pombe centromeres. ~4.6 kb tandem repeat unit found in the otr domain of all three centromeres at 80-95% pairwise identity. Source of the centromeric small RNAs that direct RNAi-Clr4 H3K9 methylation.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I,II,III",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 4600,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 88.0,
+    "internal_structure": "4600 bp unit tandemly repeated; shared across cen1/2/3"
+  },
+  "expected_copy_count": "10-40 copies total across the three centromeres",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:11498586"
+  ],
+  "confidence": 0.9
+}

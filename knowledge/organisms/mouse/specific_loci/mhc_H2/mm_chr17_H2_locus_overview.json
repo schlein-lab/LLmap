@@ -1,0 +1,49 @@
+{
+  "name": "mm_chr17_H2_locus_overview",
+  "taxonomy_id": "locus_summary",
+  "description": "Mouse MHC (H2) overview chr17 ~33-37 Mb. Three classical class I (H-2K proximal, H-2D, H-2L distal in BALB/c). Class II I-A and I-E. Extended class Ib clusters Q, T, M with vomeronasal-coupled M10 mini-cluster. Strain-variable: H-2L absent C57BL/6; H-2Ea pseudogene in C57BL/6.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr17",
+      "start": 33500000,
+      "end": 37500000
+    }
+  },
+  "size_bp": 4000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "mhc_locus_summary",
+    "BP_mediating_SDs": [
+      "H2_classI",
+      "H2_classII",
+      "H2_classIb_Q",
+      "H2_classIb_T",
+      "H2_classIb_M"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 4000,
+    "internal_structure": "K-proximal, classII middle, D/L + Q/T/M classIb distal",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "IMGT mouse MHC",
+    "Ohta 1980",
+    "Kumanovics 2003 (PMID:12586999)",
+    "Ensembl mm39"
+  ]
+}

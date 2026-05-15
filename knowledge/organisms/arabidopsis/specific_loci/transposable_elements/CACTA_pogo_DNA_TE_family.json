@@ -1,0 +1,27 @@
+{
+  "name": "CACTA_pogo_DNA_TE_family",
+  "taxonomy_id": "tandem_repeat",
+  "description": "CACTA-superfamily DNA transposons (Wicker 2007 classification).",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr3",
+      "start": 14000000,
+      "end": 14500000
+    }
+  },
+  "size_bp": 500000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nrg2165"
+  ],
+  "confidence": 0.7,
+  "repeat_class": "transposable_element"
+}

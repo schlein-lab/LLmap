@@ -1,0 +1,28 @@
+{
+  "name": "Influenza_A_NA_N2",
+  "taxonomy_id": "paralog_family",
+  "description": "Influenza A NA subtype N2. Sialidase; oseltamivir target. Resistance H275Y (N1), R292K (N2).",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002018.1": {
+      "start": 1,
+      "end": 1413
+    }
+  },
+  "size_bp": 1413,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza"
+  ],
+  "sources": [
+    "WHO influenza nomenclature"
+  ],
+  "confidence": 0.95
+}

@@ -1,0 +1,35 @@
+{
+  "name": "Ebola_virus_Zaire_reference",
+  "taxonomy_id": "custom",
+  "description": "Ebola virus (Zaire ebolavirus, Mayinga 1976 reference NC_002549.1). 18959 nt ssRNA(-). 7 genes: NP-VP35-VP40-GP-VP30-VP24-L. Each gene flanked by conserved transcription start/stop signals. 3' leader and 5' trailer required for replication.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002549.1": {
+      "start": 1,
+      "end": 18959
+    }
+  },
+  "size_bp": 18959,
+  "architecture": {
+    "type": "linear_monopartite",
+    "copy_number_in_population": "single_segment",
+    "homology_percent": 97.0,
+    "internal_structure": "3'leader-NP-VP35-VP40-GP-VP30-VP24-L-5'trailer"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ebola_virus_disease"
+  ],
+  "sources": [
+    "NC_002549.1",
+    "Carroll 2015 doi:10.1038/nature14594"
+  ],
+  "confidence": 0.99
+}

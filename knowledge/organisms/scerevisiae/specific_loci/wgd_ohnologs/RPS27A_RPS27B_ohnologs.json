@@ -1,0 +1,42 @@
+{
+  "name": "RPS27A_RPS27B_ohnologs",
+  "taxonomy_id": "paralog_family",
+  "description": "Ribosomal protein S27A and S27B WGD ohnologs. >97% identity.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "VIII",
+      "start": 0,
+      "end": 0,
+      "paralog_chr": "XV"
+    }
+  },
+  "size_bp_per_unit": 1500,
+  "expected_paralogs": [
+    {
+      "name": "RPS27A",
+      "approx_offset_in_locus": 0,
+      "chr": "VIII"
+    },
+    {
+      "name": "RPS27B",
+      "approx_offset_in_locus": 0,
+      "chr": "XV"
+    }
+  ],
+  "expected_copy_count": "2 ohnologous copies (post-WGD pair) on different chromosomes",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature01747",
+    "PMID:17646407",
+    "SGD ohnolog table"
+  ],
+  "confidence": 0.85
+}

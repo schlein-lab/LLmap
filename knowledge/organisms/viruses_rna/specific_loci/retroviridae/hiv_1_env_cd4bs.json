@@ -1,0 +1,29 @@
+{
+  "name": "HIV-1_env_cd4bs",
+  "taxonomy_id": "custom",
+  "description": "CD4 binding site epitope cluster on gp120 (VRC01-class bnAbs).",
+  "virus_type": "ssRNA_RT",
+  "coordinates": {
+    "NC_001802.1": {
+      "start": 6810,
+      "end": 7290
+    }
+  },
+  "size_bp": 481,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HIV/AIDS"
+  ],
+  "sources": [
+    "NC_001802.1",
+    "Los Alamos HIV Sequence Database"
+  ],
+  "confidence": 0.9
+}

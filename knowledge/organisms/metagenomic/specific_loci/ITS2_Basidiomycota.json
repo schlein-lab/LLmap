@@ -1,0 +1,32 @@
+{
+  "name": "ITS2_Basidiomycota",
+  "taxonomy_id": "ITS_fungal",
+  "marker": "ITS",
+  "region_role": "variable_core",
+  "description": "Fungal ITS2 region in Basidiomycota. Approximate consensus length ~230 bp (highly variable: 80-700 bp across the fungal kingdom). Mushroom-forming fungi + smuts/rusts. The fungal barcode-of-choice (Schoch 2012). Allow high mismatch \u2014 real biological variability is the signal.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_072",
+      "start": 0,
+      "end": 230
+    }
+  },
+  "size_bp": 230,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "marker": "ITS2",
+    "fungal_group": "Basidiomycota"
+  },
+  "sources": [
+    "UNITE 9.0 release",
+    "doi:10.1073/pnas.1117018109",
+    "doi:10.1111/1755-0998.13265"
+  ],
+  "confidence": 0.9
+}

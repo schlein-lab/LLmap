@@ -1,0 +1,30 @@
+{
+  "name": "mat2P_silent_cassette",
+  "taxonomy_id": "paralog_family",
+  "description": "Silent storage cassette mat2-P on S. pombe chromosome II. ~2.1 kb donor cassette carrying P (plus) information, located ~15 kb centromere-proximal to mat1. Silenced by Clr4-H3K9me-Swi6 heterochromatin (mat heterochromatic island).",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "II",
+      "start": 2128000,
+      "end": 2132000
+    }
+  },
+  "size_bp": 4000,
+  "expected_copy_count": "3 cassettes total (mat1 active + mat2-P + mat3-M silent), all on chrII",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:2667790",
+    "PMID:11459813",
+    "PomBase mat region annotation"
+  ],
+  "confidence": 0.95
+}

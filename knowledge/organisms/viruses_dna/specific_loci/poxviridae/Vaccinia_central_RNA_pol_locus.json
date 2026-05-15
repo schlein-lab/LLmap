@@ -1,0 +1,51 @@
+{
+  "name": "Vaccinia_central_RNA_pol_locus",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA",
+  "description": "Vaccinia central conserved region encoding the multi-subunit viral RNA polymerase (rpo147 J6R, rpo132 A24R, rpo35 A29L, rpo30 E4L, rpo22 J4R, rpo19 A5R, rpo18 D7R, rpo7 G5.5R) and associated transcription factors (VETF, NPH I/II). This region is the highest-conservation locus across the entire Poxviridae family and is the primary phylogenetic anchor for orthopox/parapox/molluscipox classification. PSV-disambig essential for distinguishing vaccinia from cowpox/monkeypox/variola when typing clinical samples or biothreat surveillance.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_006998.1": {
+      "chr": "NC_006998.1",
+      "start": 85000,
+      "end": 100000
+    }
+  },
+  "size_bp": 15000,
+  "expected_paralogs": [
+    {
+      "name": "rpo147_J6R",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "rpo132_A24R",
+      "approx_offset_in_locus": 4000
+    },
+    {
+      "name": "rpo35_A29L",
+      "approx_offset_in_locus": 7000
+    },
+    {
+      "name": "rpo30_E4L",
+      "approx_offset_in_locus": 9000
+    },
+    {
+      "name": "rpo22_J4R",
+      "approx_offset_in_locus": 11000
+    }
+  ],
+  "expected_copy_count": "1 per genome",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 1.2,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "type_disambig_aware": true
+  },
+  "sources": [
+    "doi:10.1099/0022-1317-72-5-1031",
+    "doi:10.1146/annurev.mi.31.100177.001541"
+  ],
+  "confidence": 0.92
+}

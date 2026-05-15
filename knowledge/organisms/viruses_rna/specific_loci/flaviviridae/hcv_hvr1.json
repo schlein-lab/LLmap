@@ -1,0 +1,29 @@
+{
+  "name": "HCV_hvr1",
+  "taxonomy_id": "custom",
+  "description": "Hypervariable region 1 (HVR1) \u2014 first 27 aa of E2. Extreme sequence variability; quasispecies driver; CD81/SR-B1 binding.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 1491,
+      "end": 1571
+    }
+  },
+  "size_bp": 81,
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "NC_004102.1",
+    "doi:10.1002/hep.27259"
+  ],
+  "confidence": 0.95
+}

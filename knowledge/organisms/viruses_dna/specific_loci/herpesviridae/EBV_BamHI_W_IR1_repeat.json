@@ -1,0 +1,29 @@
+{
+  "name": "EBV_BamHI_W_IR1_repeat",
+  "taxonomy_id": "tandem_repeat",
+  "virus_type": "dsDNA",
+  "description": "EBV major internal repeat IR1 (BamHI-W repeat): tandem array of 6-12 copies of a 3.072 kb unit located between BamHI-C and BamHI-Y, encompassing the W1/W2 exons that contribute to EBNA-LP and the W promoter (Wp) that drives initial EBNA expression after primary infection. Copy number varies between isolates and is a marker for clonality tracking \u2014 single-cell-of-origin clonal expansions retain identical W-repeat counts while polyclonal infections show heterogeneity. The repeat unit contains a BamHI restriction site that defines the BamHI-W fragment of the historical EBV restriction map.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_007605.1": {
+      "chr": "NC_007605.1",
+      "start": 12000,
+      "end": 35000
+    }
+  },
+  "size_bp": 23000,
+  "expected_copy_count": "6-12 tandem 3.072 kb units; per-genome ~7 in B95-8",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "copy_count_aware": true
+  },
+  "sources": [
+    "doi:10.1128/jvi.46.3.1059-1063.1983",
+    "doi:10.1093/nar/gks1313"
+  ],
+  "confidence": 0.92
+}

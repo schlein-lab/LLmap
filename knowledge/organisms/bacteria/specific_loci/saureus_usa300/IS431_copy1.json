@@ -1,0 +1,29 @@
+{
+  "name": "saureus_usa300_IS431_copy1",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS431 copy 1 of 3 in this genome. 790 bp staphylococcal IS \u2014 flanks SCCmec cassette and mecA acquisition. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS431 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_007793.1": {
+      "chr": "NC_007793.1",
+      "start": 38900,
+      "end": 39690,
+      "strand": "+"
+    }
+  },
+  "size_bp": 790,
+  "expected_copy_count": "3 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

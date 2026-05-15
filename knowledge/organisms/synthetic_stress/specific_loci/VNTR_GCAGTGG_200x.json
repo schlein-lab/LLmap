@@ -1,0 +1,29 @@
+{
+  "name": "VNTR_GCAGTGG_200x",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "vntr",
+  "description": "VNTR-like 7-bp tandem (unit: GCAGTGG) at 200 copies = 1400 bp. Models minisatellite arrays (D1S80, MUC1-like). Stresses copy-number resolution under length-aware alignment.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_040",
+      "start": 0,
+      "end": 1400
+    }
+  },
+  "size_bp": 1400,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "repeat_unit": "GCAGTGG",
+    "copy_count": 200
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

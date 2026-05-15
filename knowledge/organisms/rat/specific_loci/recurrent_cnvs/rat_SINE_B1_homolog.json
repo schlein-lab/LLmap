@@ -1,0 +1,28 @@
+{
+  "name": "rat_SINE_B1_homolog",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Rat B1-like SINE family related to mouse B1 (Alu-precursor lineage). Dispersed repetitive element, not uniquely positionable.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "dispersed",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 0,
+  "expected_copy_count": "10^4-10^5 dispersed copies genome-wide",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 100000,
+    "lambda_scale": 1.7,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "RepeatMasker rn7",
+    "RGD"
+  ],
+  "confidence": 0.85
+}

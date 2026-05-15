@@ -1,0 +1,27 @@
+{
+  "name": "Slc6a4_CNV_chr10",
+  "taxonomy_id": "paralog_family",
+  "description": "Serotonin transporter Slc6a4 CNV region on chr10. Polymorphic in rat behaviour-genetic models. Recurrent CNV documented in rat strain comparisons; multi-copy mapping requires PSV awareness.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr10",
+      "start": 65000000,
+      "end": 65300000
+    }
+  },
+  "size_bp": 300000,
+  "expected_copy_count": "2-20 copies depending on strain/haplotype",
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "RGD CNV database",
+    "Ensembl rat"
+  ],
+  "confidence": 0.75
+}

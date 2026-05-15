@@ -1,0 +1,29 @@
+{
+  "name": "paralog_pair_925",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "duplicon_high_identity",
+  "description": "Two-paralog cassette (50 kb each) at 92.5% pairwise identity. Spans the gradient from divergent (90%) to near-identical (99.9%) duplications. Stresses PSV density vs disambiguation power.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_073",
+      "start": 0,
+      "end": 100000
+    }
+  },
+  "size_bp": 100000,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": true,
+    "copies": 2,
+    "identity_pct": 92.5
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

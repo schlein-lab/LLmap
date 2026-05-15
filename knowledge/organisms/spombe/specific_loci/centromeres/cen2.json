@@ -1,0 +1,30 @@
+{
+  "name": "cen2_chrII",
+  "taxonomy_id": "centromere_like",
+  "description": "Centromere 2 (cen2) on S. pombe chromosome II. ~65 kb. cnt2 central core (~7 kb, unique sequence) flanked by imr2L/R innermost repeats and otr2L/R outer dg/dh cassettes. The four cassettes per side are oriented asymmetrically; otr2 carries the highest dg/dh copy number of the three centromeres on the left arm.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "II",
+      "start": 1602264,
+      "end": 1644747
+    }
+  },
+  "size_bp": 42483,
+  "expected_copy_count": "1 monocentric centromere per chromosome; dg/dh otr cassettes 2-10 copies per side",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223",
+    "PMID:8462105",
+    "PomBase centromere annotation"
+  ],
+  "confidence": 0.95
+}

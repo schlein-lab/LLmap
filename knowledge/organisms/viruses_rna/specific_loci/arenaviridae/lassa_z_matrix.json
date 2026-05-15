@@ -1,0 +1,28 @@
+{
+  "name": "Lassa_z_matrix",
+  "taxonomy_id": "custom",
+  "description": "Lassa Z matrix protein (RING domain). Late budding factor; PPXY/PSAP motifs.",
+  "virus_type": "ssRNA(-)_ambisense",
+  "coordinates": {
+    "NC_004297.1": {
+      "start": 6900,
+      "end": 7196
+    }
+  },
+  "size_bp": 297,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "NC_004297.1"
+  ],
+  "confidence": 0.93
+}

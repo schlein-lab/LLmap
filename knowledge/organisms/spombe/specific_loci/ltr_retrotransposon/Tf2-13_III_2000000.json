@@ -1,0 +1,28 @@
+{
+  "name": "Tf2-13_III_2000000",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Full-length Tf2 retrotransposon copy Tf2-13 on S. pombe chromosome III near position 2000000. ~4.9 kb gypsy-class element with ~350 bp 5' and 3' LTRs and an internal gag-pol polyprotein ORF. Multi-maps to the other ~12 full-length Tf2 elements at >99% identity in the gag-pol region; PSV-disambiguation requires reads spanning the unique 5'/3' flanking insertion site.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "III",
+      "start": 2000000,
+      "end": 2004900
+    }
+  },
+  "size_bp": 4900,
+  "expected_copy_count": "1 of ~13 full-length Tf2 elements",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PomBase Tf2 annotation"
+  ],
+  "confidence": 0.75
+}

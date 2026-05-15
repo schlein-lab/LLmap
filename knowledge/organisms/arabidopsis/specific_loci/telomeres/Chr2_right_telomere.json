@@ -1,0 +1,29 @@
+{
+  "name": "Chr2_right_telomere",
+  "taxonomy_id": "telomere",
+  "description": "Chr2 right-arm telomere (TAIR10). Plant-type TTTAGGG tandem repeat (Richards & Ausubel 1988); ~2-5 kb in Col-0, extended to canonical length in T2T-Col.",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr2",
+      "start": 19648289,
+      "end": 19698289
+    }
+  },
+  "size_bp": 50000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1016/0092-8674(88)90494-1",
+    "doi:10.1126/science.abi7489"
+  ],
+  "confidence": 0.85,
+  "repeat_unit": "TTTAGGG"
+}

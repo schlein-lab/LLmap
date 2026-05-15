@@ -1,0 +1,27 @@
+{
+  "name": "chr3L_telomere",
+  "taxonomy_id": "terminal_repeat",
+  "description": "Drosophila telomere \u2014 fundamentally different from vertebrate telomeres. Drosophila has lost telomerase and uses three non-LTR retrotransposons (HeT-A, TART, TAHRE) that target chromosome ends. HeT-A is the most abundant (~80% of telomere mass), TART ~15%, TAHRE rare. Repeats are head-to-tail polymers ~6-10 kb each, telomeres range 5-30 kb. Adjacent TAS (telomere-associated sequence) extends another 10-30 kb of complex repeat.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3L",
+      "start": 0,
+      "end": 50000
+    }
+  },
+  "size_bp": 50000,
+  "expected_copy_count": "1-10 HeT-A/TART/TAHRE copies per chromosome end, variable",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 30000,
+    "lambda_scale": 2.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nrg2008",
+    "doi:10.1101/gr.185579.114",
+    "PMID:7569991"
+  ],
+  "confidence": 0.8
+}

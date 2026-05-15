@@ -1,0 +1,30 @@
+{
+  "name": "chr6_45S_rDNA_NOR",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Maize 45S rDNA NOR on chr6 short arm (B73 RefGen v5). ~9 kb 45S rRNA tandem repeat unit. Copy number ~5000-12000 in B73; still under-assembled in v5.",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr6",
+      "start": 16500000,
+      "end": 18500000
+    }
+  },
+  "size_bp": 2000000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.abg5289",
+    "doi:10.1038/nature22971"
+  ],
+  "confidence": 0.85,
+  "repeat_unit_bp": 9000,
+  "expected_copy_count": "~5000-12000 45S units"
+}

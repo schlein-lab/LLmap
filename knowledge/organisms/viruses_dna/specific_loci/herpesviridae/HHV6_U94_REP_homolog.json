@@ -1,0 +1,29 @@
+{
+  "name": "HHV6_U94_REP_homolog",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA",
+  "description": "HHV-6 U94 gene encoding a parvovirus REP-homologous protein (the only Rep-like gene in any herpesvirus, acquired by horizontal gene transfer from an AAV-like ancestor). Required for chromosomal integration at the telomere and for maintenance of latency; binds ssDNA, has helicase activity, and represses lytic gene expression. Unique to HHV-6A/B and HHV-7. Sequence identity HHV-6A/B ~95% \u2014 useful PSV target for species discrimination in clinical samples.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001664.4": {
+      "chr": "NC_001664.4",
+      "start": 143000,
+      "end": 144700
+    }
+  },
+  "size_bp": 1700,
+  "expected_copy_count": "1 per genome",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "species_disambig_hhv6a_vs_6b": true
+  },
+  "sources": [
+    "doi:10.1099/0022-1317-78-12-3187",
+    "doi:10.1099/vir.0.80776-0"
+  ],
+  "confidence": 0.91
+}

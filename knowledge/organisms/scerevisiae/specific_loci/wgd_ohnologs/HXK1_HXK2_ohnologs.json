@@ -1,0 +1,42 @@
+{
+  "name": "HXK1_HXK2_ohnologs",
+  "taxonomy_id": "paralog_family",
+  "description": "HXK1 and HXK2 hexokinase WGD ohnologs. ~78% nucleotide identity. HXK2 is the dominant glucose-repressed isoform; HXK1 is glucose-induced.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "VI",
+      "start": 0,
+      "end": 0,
+      "paralog_chr": "VII"
+    }
+  },
+  "size_bp_per_unit": 1500,
+  "expected_paralogs": [
+    {
+      "name": "HXK1",
+      "approx_offset_in_locus": 0,
+      "chr": "VI"
+    },
+    {
+      "name": "HXK2",
+      "approx_offset_in_locus": 0,
+      "chr": "VII"
+    }
+  ],
+  "expected_copy_count": "2 ohnologous copies (post-WGD pair) on different chromosomes",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature01747",
+    "PMID:17646407",
+    "SGD ohnolog table"
+  ],
+  "confidence": 0.85
+}

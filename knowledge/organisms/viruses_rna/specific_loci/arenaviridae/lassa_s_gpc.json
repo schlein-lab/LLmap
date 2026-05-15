@@ -1,0 +1,28 @@
+{
+  "name": "Lassa_s_gpc",
+  "taxonomy_id": "custom",
+  "description": "Lassa GPC precursor \u2192 GP1 (\u03b1-DG receptor binding) + GP2 (fusion) + SSP (stable signal peptide).",
+  "virus_type": "ssRNA(-)_ambisense",
+  "coordinates": {
+    "NC_004296.1": {
+      "start": 1872,
+      "end": 3346
+    }
+  },
+  "size_bp": 1475,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "NC_004296.1"
+  ],
+  "confidence": 0.95
+}

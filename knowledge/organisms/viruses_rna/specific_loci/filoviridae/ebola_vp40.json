@@ -1,0 +1,29 @@
+{
+  "name": "Ebola_vp40",
+  "taxonomy_id": "custom",
+  "description": "VP40 matrix protein. Drives budding.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002549.1": {
+      "start": 4479,
+      "end": 5459
+    }
+  },
+  "size_bp": 981,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ebola_virus_disease"
+  ],
+  "sources": [
+    "NC_002549.1",
+    "doi:10.1126/science.1259657"
+  ],
+  "confidence": 0.96
+}

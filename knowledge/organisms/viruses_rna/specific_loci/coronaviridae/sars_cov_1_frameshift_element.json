@@ -1,0 +1,28 @@
+{
+  "name": "SARS-CoV-1_frameshift_element",
+  "taxonomy_id": "custom",
+  "description": "SARS-CoV-1 ORF1a/1b -1 PRF slippery sequence + pseudoknot.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004718.3": {
+      "start": 13393,
+      "end": 13455
+    }
+  },
+  "size_bp": 63,
+  "mapping_hints": {
+    "lambda_scale": 0.8,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SARS"
+  ],
+  "sources": [
+    "NC_004718.3"
+  ],
+  "confidence": 0.97
+}

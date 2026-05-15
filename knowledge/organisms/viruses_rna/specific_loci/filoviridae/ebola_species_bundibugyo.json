@@ -1,0 +1,28 @@
+{
+  "name": "Bundibugyo_ebolavirus",
+  "taxonomy_id": "custom",
+  "description": "Bundibugyo ebolavirus. Uganda 2007.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_014373.1": {
+      "start": 1,
+      "end": 18940
+    }
+  },
+  "size_bp": 18940,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Filovirus_hemorrhagic_fever"
+  ],
+  "sources": [
+    "NC_014373.1"
+  ],
+  "confidence": 0.97
+}

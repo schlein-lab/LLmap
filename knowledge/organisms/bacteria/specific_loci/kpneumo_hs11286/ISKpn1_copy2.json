@@ -1,0 +1,29 @@
+{
+  "name": "kpneumo_hs11286_ISKpn1_copy2",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence ISKpn1 copy 2 of 2 in this genome. 1800 bp Klebsiella-specific IS3-family element. IS elements are mobile and create paralog signal across distant genomic loci; reads from ISKpn1 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_016845.1": {
+      "chr": "NC_016845.1",
+      "start": 4115000,
+      "end": 4116800,
+      "strand": "-"
+    }
+  },
+  "size_bp": 1800,
+  "expected_copy_count": "2 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,31 @@
+{
+  "name": "chr07_CentO_CRR_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "chr07 centromere (IRGSP-1.0). CentO 155-165 bp satellite tandem array interspersed with CRR Ty3/Gypsy centromere-specific retrotransposons (Cheng 2002).",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr07",
+      "start": 12100000,
+      "end": 13000000
+    }
+  },
+  "size_bp": 900000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1105/tpc.010019",
+    "doi:10.1186/1939-8433-6-4",
+    "doi:10.1038/nature03895"
+  ],
+  "confidence": 0.85,
+  "expected_copy_count": "CentO ~500-2000 monomers + CRR retroelements",
+  "satellite_unit_bp": 155
+}

@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr14_Olfr_chr14_qB_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Olfr chr14qB. ~35 OR genes, intra-cluster identity 96.5%, CNV-rich.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr14",
+      "start": 50500000,
+      "end": 50750000
+    }
+  },
+  "size_bp": 250000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "olfactory_receptor_cluster",
+    "BP_mediating_SDs": [
+      "Olfr_chr14_qB_cluster_repeat_unit"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 15,
+    "internal_structure": "35 Olfr paralog genes in tandem",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "MGI mouse genome features",
+    "Niimura 2003 (PMID:14732693)"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "HIV-1_reference_HXB2",
+  "taxonomy_id": "custom",
+  "description": "HIV-1 reference genome (HXB2, NC_001802.1, group M subtype B). 9181 nt. Encodes gag, pol, env + accessory (vif, vpr, vpu, tat, rev, nef). 5' and 3' LTRs (U3-R-U5). Pol -1 PRF.",
+  "virus_type": "ssRNA_RT",
+  "coordinates": {
+    "NC_001802.1": {
+      "start": 1,
+      "end": 9181
+    }
+  },
+  "size_bp": 9181,
+  "architecture": {
+    "type": "linear_monopartite_diploid",
+    "copy_number_in_population": "two_RNA_copies_per_virion",
+    "homology_percent": 99.0,
+    "internal_structure": "5'LTR(U3-R-U5)-gag-pol(-1PRF)-vif-vpr-tat-rev-vpu-env-nef-3'LTR"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HIV/AIDS"
+  ],
+  "sources": [
+    "NC_001802.1",
+    "doi:10.1006/viro.1999.9954"
+  ],
+  "confidence": 0.99
+}

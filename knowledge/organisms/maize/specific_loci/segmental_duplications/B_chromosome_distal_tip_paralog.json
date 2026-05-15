@@ -1,0 +1,27 @@
+{
+  "name": "B_chromosome_distal_tip_paralog",
+  "taxonomy_id": "paralog_family",
+  "description": "B-chromosome distal-tip repeat \u2014 paralogs cross-hybridise to A chromosome knob arrays (Alfenito 1993).",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr4",
+      "start": 245000000,
+      "end": 245100000
+    }
+  },
+  "size_bp": 100000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1093/genetics/170.4.1979"
+  ],
+  "confidence": 0.65,
+  "repeat_class": "B_chromosome_paralog"
+}

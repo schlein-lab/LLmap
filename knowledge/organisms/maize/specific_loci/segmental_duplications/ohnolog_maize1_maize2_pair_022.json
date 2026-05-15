@@ -1,0 +1,32 @@
+{
+  "name": "ohnolog_maize1_maize2_pair_022",
+  "taxonomy_id": "paralog_family",
+  "description": "Synthetic representative ohnolog pair (chr2\u2194chr10) from maize allotetraploidisation (Schnable 2011). Used to flag duplicate-syntenic regions in LLmap.",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr2",
+      "start": 24500000,
+      "end": 24510000
+    }
+  },
+  "size_bp": 10000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1073/pnas.1101368108"
+  ],
+  "confidence": 0.55,
+  "repeat_class": "ohnolog_WGD",
+  "partner_locus": {
+    "chr": "chr10",
+    "start": 27100000,
+    "end": 27110000
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "HBV_polymerase_rt_domain",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA-RT",
+  "description": "HBV reverse-transcriptase (RT) domain of the polymerase ORF (aa 349-692 of P; nt ~130-1160 on the genome with wrap). Contains the YMDD catalytic motif and is the target of nucleos(t)ide analogue therapy (lamivudine, entecavir, tenofovir). Drug-resistance mutations are clinically scored at positions rtM204V/I, rtL180M, rtN236T, rtA181T/V. The RT domain overlaps the S gene in a different frame, so RT mutations frequently alter HBsAg sequence — read mapping must disambiguate between the two reading frames when calling resistance.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_003977.2": {"chr": "NC_003977.2", "start": 130, "end": 1160}
+  },
+  "size_bp": 1031,
+  "expected_paralogs": [
+    {"name": "YMDD_motif", "approx_offset_in_locus": 480},
+    {"name": "B_domain_rtL180", "approx_offset_in_locus": 415},
+    {"name": "C_domain_rtM204", "approx_offset_in_locus": 480},
+    {"name": "D_domain_rtN236", "approx_offset_in_locus": 580}
+  ],
+  "expected_copy_count": "1 per genome",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 1.2,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "overlapping_frame_aware": true,
+    "drug_resistance_calling": true
+  },
+  "sources": [
+    "doi:10.1093/jac/dkr101",
+    "doi:10.1002/hep.21982"
+  ],
+  "confidence": 0.92
+}

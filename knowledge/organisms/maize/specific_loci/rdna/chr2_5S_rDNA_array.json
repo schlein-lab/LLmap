@@ -1,0 +1,30 @@
+{
+  "name": "chr2_5S_rDNA_array",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Maize 5S rDNA tandem array on chr2 (B73 RefGen v5). ~340 bp 5S unit, several hundred to thousand copies.",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr2",
+      "start": 208000000,
+      "end": 208500000
+    }
+  },
+  "size_bp": 500000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.abg5289",
+    "doi:10.1038/nature22971"
+  ],
+  "confidence": 0.7,
+  "repeat_unit_bp": 340,
+  "expected_copy_count": "~500-3000 units"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "jockey_hotspot_chrX_telomere",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Drosophila TE insertion hotspot: jockey non-LTR retrotransposon hotspot near X heterochromatin/telomere. Drosophila genomes carry ~15-20% TE content. Insertion hotspots reflect both target-site preference and lower selection in low-recombination regions. Reads hitting these regions are typically misplaced unless full-length insertion-specific anchors are available.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 22000000,
+      "end": 23000000
+    }
+  },
+  "size_bp": 1000000,
+  "expected_copy_count": "10-100 copies of the named TE family genome-wide; locally enriched 3-10x baseline",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1186/gb-2002-3-12-research0084",
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1038/35057149"
+  ],
+  "confidence": 0.7
+}

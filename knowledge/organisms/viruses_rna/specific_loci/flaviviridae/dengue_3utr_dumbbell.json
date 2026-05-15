@@ -1,0 +1,29 @@
+{
+  "name": "Dengue_3utr_dumbbell",
+  "taxonomy_id": "custom",
+  "description": "Dumbbell elements (DB1/DB2) in 3' UTR; pseudoknots cPK1/cPK2; cHP. Involved in cyclisation + sfRNA stability.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_001474.2": {
+      "start": 10500,
+      "end": 10650
+    }
+  },
+  "size_bp": 151,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Dengue_fever"
+  ],
+  "sources": [
+    "doi:10.1126/science.1250897",
+    "doi:10.1016/j.virol.2015.02.022"
+  ],
+  "confidence": 0.95
+}

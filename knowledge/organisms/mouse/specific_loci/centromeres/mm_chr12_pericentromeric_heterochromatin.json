@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr12_pericentromeric_heterochromatin",
+  "taxonomy_id": "heterochromatin",
+  "description": "Mouse chr12 pericentromeric heterochromatin region. AT-rich, H3K9me3-marked, minor+major satellite + adjacent SD.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr12",
+      "start": 1,
+      "end": 6500000
+    }
+  },
+  "size_bp": 6499999,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "heterochromatin_block",
+    "BP_mediating_SDs": [
+      "chr12_pericentromeric"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 40,
+    "internal_structure": "major+minor satellite + flanking SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Probst 2010",
+    "UCSC mm39"
+  ]
+}

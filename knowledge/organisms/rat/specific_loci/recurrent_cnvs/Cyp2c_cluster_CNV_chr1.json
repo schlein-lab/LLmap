@@ -1,0 +1,27 @@
+{
+  "name": "Cyp2c_cluster_CNV_chr1",
+  "taxonomy_id": "paralog_family",
+  "description": "CYP2C cytochrome P450 cluster on chr1. Strain-specific copy-number variation (BN vs DA vs F344) at Cyp2c11, Cyp2c12, Cyp2c13 genes; drug metabolism phenotypes. Recurrent CNV documented in rat strain comparisons; multi-copy mapping requires PSV awareness.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr1",
+      "start": 173000000,
+      "end": 174000000
+    }
+  },
+  "size_bp": 1000000,
+  "expected_copy_count": "2-20 copies depending on strain/haplotype",
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "RGD CNV database",
+    "Ensembl rat"
+  ],
+  "confidence": 0.75
+}

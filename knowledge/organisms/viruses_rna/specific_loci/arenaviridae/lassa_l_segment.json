@@ -1,0 +1,30 @@
+{
+  "name": "Lassa_virus_L_segment_reference",
+  "taxonomy_id": "custom",
+  "description": "Lassa virus L segment (NC_004297.1, Josiah strain). ~7279 nt. Ambisense: L (RdRp) + Z (matrix) in opposite orientation, separated by intergenic hairpin. ssRNA(-) bisegmented.",
+  "virus_type": "ssRNA(-)_ambisense",
+  "segmented": true,
+  "coordinates": {
+    "NC_004297.1": {
+      "start": 1,
+      "end": 7279
+    }
+  },
+  "size_bp": 7279,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 6000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Lassa_fever"
+  ],
+  "sources": [
+    "NC_004297.1",
+    "doi:10.1016/0042-6822(89)90304-1"
+  ],
+  "confidence": 0.97
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Zika_3utr_xrRNA_sfRNA",
+  "taxonomy_id": "custom",
+  "description": "Zika 3' UTR with xrRNA elements producing sfRNA. xrRNA1/2 + DB elements. Critical for pathogenesis.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_012532.1": {
+      "start": 10377,
+      "end": 10794
+    }
+  },
+  "size_bp": 418,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Zika_fever"
+  ],
+  "sources": [
+    "NC_012532.1"
+  ],
+  "confidence": 0.95
+}

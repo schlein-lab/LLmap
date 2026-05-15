@@ -1,0 +1,28 @@
+{
+  "name": "cnt1_central_core",
+  "taxonomy_id": "centromere_like",
+  "description": "Central core cnt1 of centromere 1. ~5 kb of unique non-repetitive sequence that recruits the inner kinetochore (Mis6, Sim4) and loads CENP-A^Cnp1 nucleosomes. Reads from cnt1 are uniquely mappable, in contrast to the flanking imr and otr.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I",
+      "start": 3764000,
+      "end": 3769000
+    }
+  },
+  "size_bp": 5000,
+  "expected_copy_count": "1 unique central core",
+  "mapping_hints": {
+    "expected_unique": true,
+    "max_occ": 10000,
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 1.0,
+    "report_multi_position": false,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223"
+  ],
+  "confidence": 0.95
+}

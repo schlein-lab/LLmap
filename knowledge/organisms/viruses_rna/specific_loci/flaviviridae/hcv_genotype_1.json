@@ -1,0 +1,29 @@
+{
+  "name": "HCV_genotype_1",
+  "taxonomy_id": "paralog_family",
+  "description": "Genotype 1 (1a, 1b). Most prevalent globally, dominant in N. America, Europe. ~22% genetic divergence from gt2. ~30-35% pairwise nt divergence between genotypes.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 1,
+      "end": 9646
+    }
+  },
+  "size_bp": 9646,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "Smith 2013 doi:10.1002/hep.26744",
+    "ICTV HCV classification"
+  ],
+  "confidence": 0.97
+}

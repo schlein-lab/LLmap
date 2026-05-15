@@ -1,0 +1,30 @@
+{
+  "name": "chr09_45S_rDNA_NOR",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Rice 45S rDNA NOR on chr9 short arm (IRGSP-1.0). ~9 kb 45S unit tandem array (Iwata 1984); >1000 copies, under-assembled.",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr09",
+      "start": 1,
+      "end": 2000000
+    }
+  },
+  "size_bp": 1999999,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 300000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1186/1939-8433-6-4",
+    "doi:10.1038/nature03895"
+  ],
+  "confidence": 0.85,
+  "repeat_unit_bp": 9000,
+  "expected_copy_count": ">1000 45S units"
+}

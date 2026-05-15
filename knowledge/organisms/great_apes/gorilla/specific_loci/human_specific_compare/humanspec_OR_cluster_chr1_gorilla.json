@@ -1,0 +1,46 @@
+{
+  "name": "humanspec_OR_cluster_chr1_gorilla",
+  "taxonomy_id": "human_specific_compare",
+  "description": "Human-specific duplicon contrast: OR_cluster_chr1. Status in Gorilla gorilla: 'olfactory_pseudogene_pattern'. In human (GRCh38) the locus sits on chr1:~158.0 Mb; in this ape the syntenic region is approximated on chr1. Used by LLmap to refuse silent absorption of human-vs-ape divergence when mapping cross-species reads.",
+  "human_locus_grch38": {
+    "chr": "chr1",
+    "start": 158001796,
+    "end": 158601796
+  },
+  "ape_syntenic_locus": {
+    "T2T_Gor": {
+      "chr": "chr1",
+      "start": 158001796,
+      "end": 158601796
+    }
+  },
+  "size_bp": 600000,
+  "human_specific_status": "olfactory_pseudogene_pattern",
+  "present_in_this_ape": true,
+  "architecture": {
+    "type": "ape_shared_duplicon",
+    "homology_percent": 95.0,
+    "copy_number_in_population": "variable_CNV",
+    "internal_structure": "Reference contrast for OR_cluster_chr1. See Dennis 2012, Suntsova 2017, T2T-ape 2024 for duplicon-by-duplicon presence calls."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "human-specific cortex expansion / neurodevelopmental dosage (e.g. OR_cluster_chr1)"
+  ],
+  "confidence": 0.65,
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014",
+    "doi:10.1016/j.cell.2012.03.033"
+  ]
+}

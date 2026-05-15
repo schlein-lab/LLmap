@@ -1,0 +1,43 @@
+{
+  "name": "gibbon_chrY_IR3_amplicon",
+  "taxonomy_id": "amplicon_y",
+  "description": "Nomascus leucogenys chrY IR3 ampliconic mirror. AmpliconY copy structure differs strongly between great apes; gibbon estimated copies: 2. Substrate for intrachromosomal NAHR and rapid Y-lineage turnover (Hughes/Page 2010, T2T-ape 2024).",
+  "coordinates": {
+    "Nleu_3_0": {
+      "chr": "chrY",
+      "start": 21521428,
+      "end": 21801428
+    }
+  },
+  "size_bp": 280000,
+  "estimated_copies": 2,
+  "architecture": {
+    "type": "palindrome",
+    "BP_mediating_SDs": [
+      "IR3_proximal_arm",
+      "IR3_distal_arm"
+    ],
+    "homology_percent": 99.7,
+    "copy_number_in_population": "variable_CNV",
+    "internal_structure": "Y ampliconic family IR3; intra-Y NAHR via arm-to-arm gene-conversion; copy number under strong meiotic-drive-like turnover."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "ape Y spermatogenic phenotypes (analogous to human AZFa/b/c)"
+  ],
+  "confidence": 0.6,
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ]
+}

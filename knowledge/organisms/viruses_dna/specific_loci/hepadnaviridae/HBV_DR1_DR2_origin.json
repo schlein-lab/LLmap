@@ -1,0 +1,30 @@
+{
+  "name": "HBV_DR1_DR2_origin",
+  "taxonomy_id": "tandem_repeat",
+  "virus_type": "dsDNA-RT",
+  "description": "HBV direct repeat regions DR1 (nt 1824) and DR2 (nt 1590), each an 11-nt motif (5'-TTCACCTCTGC-3') that serve as priming sites for plus-strand DNA synthesis. The terminal redundancy r (~9 nt) at the ends of the minus-strand DNA pairs DR1 to DR2 to circularize the genome during reverse transcription. Critical for replication and host integration events: virtually all chromosomal integration junctions cluster near DR1, making this the principal integration-hotspot motif. The DR1/DR2/r triad defines the cohesive overlap of the partially dsDNA rcDNA.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_003977.2": {"chr": "NC_003977.2", "start": 1590, "end": 1834}
+  },
+  "size_bp": 245,
+  "expected_paralogs": [
+    {"name": "DR2", "approx_offset_in_locus": 0},
+    {"name": "DR1", "approx_offset_in_locus": 234}
+  ],
+  "expected_copy_count": "2 direct repeats per genome plus the terminal redundancy r",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "host_integration_aware": true
+  },
+  "sources": [
+    "doi:10.1016/0092-8674(82)90247-X",
+    "doi:10.1128/JVI.69.6.3350-3357.1995",
+    "doi:10.1038/ng.2295"
+  ],
+  "confidence": 0.94
+}

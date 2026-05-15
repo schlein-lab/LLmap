@@ -1,0 +1,30 @@
+{
+  "name": "cen1_chrI",
+  "taxonomy_id": "centromere_like",
+  "description": "Centromere 1 (cen1) on S. pombe chromosome I. ~35 kb. Domain layout from centre outward: cnt1 (central core, ~5 kb, unique non-repetitive sequence binding Mis6/Sim4 and loading CENP-A^Cnp1) flanked symmetrically by imr1L/R (innermost repeats, ~5 kb each, partial otr-like sequence plus a tDNA boundary cluster) flanked by otr1L/R (outer repeats, the dg/dh tandem cassettes carrying H3K9me Clr4-Swi6 heterochromatin). Otr boundaries are defined by tRNA-Ala/Gly clusters.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I",
+      "start": 3753687,
+      "end": 3789421
+    }
+  },
+  "size_bp": 35734,
+  "expected_copy_count": "1 monocentric centromere per chromosome; dg/dh otr cassettes 2-10 copies per side",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223",
+    "PMID:8462105",
+    "PomBase centromere annotation"
+  ],
+  "confidence": 0.95
+}

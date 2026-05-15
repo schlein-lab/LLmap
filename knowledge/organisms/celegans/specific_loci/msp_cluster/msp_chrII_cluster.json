@@ -1,0 +1,25 @@
+{
+  "name": "MSP_chrII_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Secondary MSP (Major Sperm Protein) tandem cluster on C. elegans chromosome II. Contains a subset of msp paralogs (including msp-3, msp-19, msp-45, msp-49, msp-79, msp-142) interspersed with ssp-9, ssp-10 sperm-specific genes. Paralog identity to the chrIV main cluster is >90% across the coding sequence, so reads from chrII and chrIV msp copies multi-map. The cluster sits in the autosome arm domain enriched for tandem-duplicated germline genes.",
+  "coordinates": {
+    "WBcel235": {"chr": "II", "start": 9700000, "end": 10100000}
+  },
+  "size_bp": 400000,
+  "expected_copy_count": "8-12 msp paralogs in this secondary cluster",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:9851916",
+    "doi:10.1126/science.282.5396.2012",
+    "WormBase WS285 msp gene family"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,32 @@
+{
+  "name": "chr1_Sprr_cluster_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Small proline-rich protein (Sprr) cluster on chr1. Tandem cornified-envelope paralogs at 95-98% identity. Multi-copy at 95-99% identity; PSV disambiguation required.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr1",
+      "start": 218000000,
+      "end": 219000000
+    }
+  },
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Tandem 5-50 kb modules at 95-99% identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "UCSC genomicSuperDups mRatBN7.2",
+    "RGD"
+  ],
+  "confidence": 0.7
+}

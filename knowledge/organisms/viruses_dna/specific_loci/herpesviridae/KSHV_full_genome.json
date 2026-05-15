@@ -1,0 +1,77 @@
+{
+  "name": "KSHV_full_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome",
+  "virus_type": "dsDNA",
+  "description": "Kaposi sarcoma-associated herpesvirus (HHV-8, KSHV) gamma-2-herpesvirus: linear dsDNA ~165 kb (~140 kb unique long region + ~30 kb of GC-rich terminal repeats). Causative agent of Kaposi sarcoma, primary effusion lymphoma (PEL), multicentric Castleman disease, and KSHV inflammatory cytokine syndrome (KICS). Establishes latency in B cells and endothelial cells. Encodes ~90 ORFs including many host-mimicking gene captures (vIL-6, vBcl-2, vIRFs, vCyclin, vFLIP) and a cluster of 12 viral microRNAs. Latency-associated nuclear antigen (LANA, ORF73) tethers the episome to host chromatin via its central tandem-repeat domain.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_009333.1": {
+      "chr": "NC_009333.1",
+      "start": 1,
+      "end": 137969
+    }
+  },
+  "size_bp": 137969,
+  "expected_copy_count": "1-150 episomal copies per latent B cell; thousands of linear genomes per lytic cell",
+  "expected_paralogs": [
+    {
+      "name": "TR_terminal_repeat",
+      "approx_offset_in_locus": 1
+    },
+    {
+      "name": "ORF73_LANA",
+      "approx_offset_in_locus": 123000
+    },
+    {
+      "name": "vCyclin_ORF72",
+      "approx_offset_in_locus": 122700
+    },
+    {
+      "name": "vFLIP_ORF71_K13",
+      "approx_offset_in_locus": 122500
+    },
+    {
+      "name": "K1_VIP",
+      "approx_offset_in_locus": 200
+    },
+    {
+      "name": "K12_kaposin_clusters",
+      "approx_offset_in_locus": 117500
+    },
+    {
+      "name": "vIL6_K2",
+      "approx_offset_in_locus": 17500
+    },
+    {
+      "name": "vIRF_cluster_K9_K10_K11",
+      "approx_offset_in_locus": 84000
+    },
+    {
+      "name": "miRNA_cluster",
+      "approx_offset_in_locus": 119000
+    },
+    {
+      "name": "ori-Lyt_left",
+      "approx_offset_in_locus": 24200
+    },
+    {
+      "name": "ori-Lyt_right",
+      "approx_offset_in_locus": 119900
+    }
+  ],
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "terminal_repeat_aware": true
+  },
+  "sources": [
+    "doi:10.1126/science.7997879",
+    "doi:10.1099/0022-1317-80-12-3093",
+    "ICTV Herpesviridae 2022"
+  ],
+  "confidence": 0.93
+}

@@ -1,0 +1,32 @@
+{
+  "name": "chr16_Krt_typeII_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Type II keratin paralog block on chr16. Tandem ~50 kb modules. Multi-copy at 95-99% identity; PSV disambiguation required.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr16",
+      "start": 10000000,
+      "end": 11500000
+    }
+  },
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Tandem 5-50 kb modules at 95-99% identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "UCSC genomicSuperDups mRatBN7.2",
+    "RGD"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,39 @@
+{
+  "name": "bithorax_complex_chr3R",
+  "taxonomy_id": "paralog_family",
+  "description": "Bithorax complex (BX-C) at cytological band 89E on chr3R. Contains the posterior Hox genes Ubx, abd-A, Abd-B plus the ~300 kb of cis-regulatory bxd, abx, iab-2..iab-8 infraabdominal domains and the bxd ncRNA. The most thoroughly dissected cis-regulatory landscape in animal genetics.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3R",
+      "start": 12625000,
+      "end": 12950000
+    }
+  },
+  "size_bp": 325000,
+  "expected_paralogs": [
+    {
+      "name": "Ubx",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "abd-A",
+      "approx_offset_in_locus": 120000
+    },
+    {
+      "name": "Abd-B",
+      "approx_offset_in_locus": 220000
+    }
+  ],
+  "expected_copy_count": "1 cluster per haplotype",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "max_occ": 10000,
+    "report_multi_position": false
+  },
+  "sources": [
+    "PMID:2972632",
+    "doi:10.1242/dev.122.10.2967"
+  ],
+  "confidence": 0.95
+}

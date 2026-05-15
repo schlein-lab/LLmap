@@ -1,0 +1,25 @@
+{
+  "name": "Notch_locus_chrX_3C7",
+  "taxonomy_id": "paralog_family",
+  "description": "Notch locus on chrX at cytological band 3C7. Single Notch gene in Drosophila \u2014 the ancestral copy from which vertebrate NOTCH1-4 paralogs diverged by two rounds of WGD. No drosophila Notch2/3/4. Useful negative control for paralog analysis: any read matching Notch in Drosophila MUST map uniquely (no within-organism paralogs).",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chrX",
+      "start": 3120000,
+      "end": 3180000
+    }
+  },
+  "size_bp": 60000,
+  "expected_paralogs": [],
+  "expected_copy_count": "1 per haplotype (ancestral single Notch)",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "max_occ": 5000,
+    "report_multi_position": false
+  },
+  "sources": [
+    "doi:10.1126/science.1099862"
+  ],
+  "confidence": 0.95
+}

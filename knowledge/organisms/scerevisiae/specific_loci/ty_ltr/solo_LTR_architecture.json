@@ -1,0 +1,32 @@
+{
+  "name": "solo_LTR_architecture",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Solo LTR architecture record for S. cerevisiae. Solo delta/sigma/tau/omega LTRs are 251-371 bp tandem-repeat remnants of unequal homologous recombination between the two LTRs of a full-length Ty element. ~380 solo LTRs dot the genome in S288C, predominantly upstream of tRNA and other Pol III genes; solo LTRs outnumber full-length elements ~10:1.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 330,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "single LTR (251-371 bp depending on Ty family) without intervening gag-pol; recombination remnant"
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:9637730"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,49 @@
+{
+  "name": "JCV_LT_st_splice_paralogs",
+  "taxonomy_id": "paralog_family",
+  "virus_type": "dsDNA",
+  "description": "JCV early region produces multiple proteins from alternative splicing of one pre-mRNA: large T antigen (LT, full-length, contains J-domain, ori-binding domain, helicase, p53/RB binding), small t antigen (st, shares N-terminal J-domain with LT, has PP2A-binding C-terminus, lacks helicase). JCV and BKV additionally express T' (T-prime) isoforms (T'135, T'136, T'165) from alternative splice acceptors. MCV produces a tumour-truncated LT in MCC plus a 57kT-like product. Reads spanning splice junctions are isoform-discriminating; intronic reads only map to the unspliced LT track.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001699.1": {
+      "chr": "NC_001699.1",
+      "start": 2585,
+      "end": 4928
+    }
+  },
+  "size_bp": 2344,
+  "expected_paralogs": [
+    {
+      "name": "LT_full_length",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "small_t",
+      "approx_offset_in_locus": 200
+    },
+    {
+      "name": "T_prime_isoforms_if_JCV_BKV",
+      "approx_offset_in_locus": 400
+    },
+    {
+      "name": "MCC_tumor_truncated_LT_if_MCV",
+      "approx_offset_in_locus": 800
+    }
+  ],
+  "expected_copy_count": "1 early-region locus per genome with multiple spliced isoforms",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "splice_aware": true,
+    "isoform_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/278261a0",
+    "doi:10.1128/JVI.79.16.10448-10458.2005",
+    "doi:10.1073/pnas.0806526105"
+  ],
+  "confidence": 0.91
+}

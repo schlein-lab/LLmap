@@ -1,0 +1,29 @@
+{
+  "name": "HIV-1_env_v1_v2",
+  "taxonomy_id": "custom",
+  "description": "env V1/V2 hypervariable loops (~aa 131-196). Length-polymorphic; PG9/PG16 bnAb epitope; \u03b14\u03b27 binding.",
+  "virus_type": "ssRNA_RT",
+  "coordinates": {
+    "NC_001802.1": {
+      "start": 6615,
+      "end": 6912
+    }
+  },
+  "size_bp": 298,
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "HIV/AIDS"
+  ],
+  "sources": [
+    "NC_001802.1",
+    "Los Alamos HIV Sequence Database"
+  ],
+  "confidence": 0.9
+}

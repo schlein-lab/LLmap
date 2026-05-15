@@ -1,0 +1,32 @@
+{
+  "name": "16S_primer_805R_V4",
+  "taxonomy_id": "16S_rRNA",
+  "marker": "16S_rRNA",
+  "region_role": "conserved_primer",
+  "description": "Conserved 16S primer-binding site '805R_V4' (length 21 bp, E. coli position ~785). Consensus: GACTACNVGGGTATCTAATCC. EMP V4 reverse; Apprill 2015. Universal across most Bacteria; minimal real-biology mismatch expected \u2014 mapper should NOT tolerate high mismatch here.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_044",
+      "start": 0,
+      "end": 21
+    }
+  },
+  "size_bp": 21,
+  "mapping_hints": {
+    "expected_unique": "conserved_consensus",
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "primer_seq": "GACTACNVGGGTATCTAATCC",
+    "ecoli_pos": 785
+  },
+  "sources": [
+    "Earth Microbiome Project 16S primers",
+    "doi:10.1111/1462-2920.13023",
+    "doi:10.3354/ame01753"
+  ],
+  "confidence": 0.95
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chr4_NLR_block_5",
+  "taxonomy_id": "paralog_family",
+  "description": "Chromosome 4 right-arm NLR (NOD-like receptor) cluster sub-block. Zebrafish has the largest known vertebrate NLR expansion (~400 genes), almost all concentrated on chr4 q-arm. Intra-cluster identity 70-95%, frequent tandem duplications and segmental duplications. The 'novel fish' NLR subfamily (NLR-C) accounts for most of the expansion. Howe 2013 reports the q-arm is also heterochromatin-dense and gene-poor in non-NLR categories.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr4",
+      "start": 52000000,
+      "end": 58000000
+    }
+  },
+  "size_bp": 6000000,
+  "expected_copy_count": "30-80 NLR paralogs per ~5 Mb sub-block",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature12111",
+    "doi:10.1186/1471-2164-9-526",
+    "doi:10.1101/gr.166777.113"
+  ],
+  "confidence": 0.8
+}

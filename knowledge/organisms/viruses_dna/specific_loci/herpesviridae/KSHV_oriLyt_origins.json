@@ -1,0 +1,39 @@
+{
+  "name": "KSHV_oriLyt_origins",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_origin",
+  "virus_type": "dsDNA",
+  "description": "KSHV lytic origins of replication: two near-identical oriLyt elements (oriLyt-L at ~24 kb, oriLyt-R at ~120 kb), each ~1.2 kb containing AT-rich palindromic core, GC-rich repeats, and binding sites for the lytic transactivator RTA/ORF50, K-bZIP/ORF-K8, and the viral pre-replication complex (ORF6/8/9/40/41/44/56/59). The two oriLyt loci are highly homologous (~95% identity) \u2014 paralog-disambiguation required when assigning replication-fork or breakpoint reads.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_009333.1": {
+      "chr": "NC_009333.1",
+      "start": 24200,
+      "end": 121100
+    }
+  },
+  "size_bp": 96900,
+  "expected_paralogs": [
+    {
+      "name": "oriLyt_L",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "oriLyt_R",
+      "approx_offset_in_locus": 95700
+    }
+  ],
+  "expected_copy_count": "2 oriLyt per genome (paralogs)",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1128/JVI.77.14.7978-7990.2003",
+    "doi:10.1128/JVI.78.13.7299-7310.2004"
+  ],
+  "confidence": 0.9
+}

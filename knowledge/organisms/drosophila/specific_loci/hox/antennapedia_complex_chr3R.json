@@ -1,0 +1,63 @@
+{
+  "name": "antennapedia_complex_chr3R",
+  "taxonomy_id": "paralog_family",
+  "description": "Antennapedia complex (ANT-C) at cytological band 84A-84B on chr3R. Contains the anterior Hox genes lab, pb, zen, zen2, bcd, Dfd, Scr, ftz, Antp spanning ~350 kb. zen/zen2 are derived from ancestral Hox3 by drosophila-specific duplication and loss of homeotic function. bcd (bicoid) is a Hox3 derivative repurposed as the anterior morphogen.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3R",
+      "start": 2400000,
+      "end": 2750000
+    }
+  },
+  "size_bp": 350000,
+  "expected_paralogs": [
+    {
+      "name": "lab",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "pb",
+      "approx_offset_in_locus": 50000
+    },
+    {
+      "name": "zen",
+      "approx_offset_in_locus": 100000
+    },
+    {
+      "name": "zen2",
+      "approx_offset_in_locus": 110000
+    },
+    {
+      "name": "bcd",
+      "approx_offset_in_locus": 130000
+    },
+    {
+      "name": "Dfd",
+      "approx_offset_in_locus": 170000
+    },
+    {
+      "name": "Scr",
+      "approx_offset_in_locus": 220000
+    },
+    {
+      "name": "ftz",
+      "approx_offset_in_locus": 260000
+    },
+    {
+      "name": "Antp",
+      "approx_offset_in_locus": 300000
+    }
+  ],
+  "expected_copy_count": "1 cluster per haplotype",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "max_occ": 10000,
+    "report_multi_position": false
+  },
+  "sources": [
+    "PMID:6133938",
+    "doi:10.1126/science.1099862"
+  ],
+  "confidence": 0.95
+}

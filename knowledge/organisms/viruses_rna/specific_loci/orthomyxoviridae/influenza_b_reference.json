@@ -1,0 +1,34 @@
+{
+  "name": "Influenza_B_reference",
+  "taxonomy_id": "custom",
+  "description": "Influenza B virus (NC_002204.1 PB1 prototype). 8 segments, ~14.5 kb total. Two lineages since 1980s: B/Victoria/2/87 and B/Yamagata/16/88. B/Yamagata possibly extinct post-COVID (no confirmed isolates since Mar 2020).",
+  "virus_type": "ssRNA(-)",
+  "segmented": true,
+  "coordinates": {
+    "NC_002204.1": {
+      "start": 1,
+      "end": 2369
+    }
+  },
+  "size_bp": 14548,
+  "lineages": [
+    "B/Victoria",
+    "B/Yamagata_(presumed_extinct)"
+  ],
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza"
+  ],
+  "sources": [
+    "NC_002204-NC_002211",
+    "doi:10.1038/s41591-021-01601-5"
+  ],
+  "confidence": 0.97
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chrI_R_telomere",
+  "taxonomy_id": "terminal_repeat",
+  "description": "R-arm telomere of C. elegans chromosome I. C. elegans telomeres are tandem arrays of the hexameric TTAGGC repeat (CCTAAG/GCCTAA on the complement); mean telomere length in N2 wild-type is ~4-9 kb but varies 2-15 kb between strains. The subtelomere immediately interior carries strain-variable TAS-like repeats and is enriched for non-LTR retrotransposons. WBcel235 represents the telomere as ~10 kb of nominal sequence at each chromosome end; the actual array length is strain- and animal-specific.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "I",
+      "start": 15062434,
+      "end": 15072434
+    }
+  },
+  "size_bp": 10000,
+  "expected_copy_count": "300-2500 tandem TTAGGC hexamers (~2-15 kb of array) per chromosome end",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 1.8,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "subtelomere_handling": true
+  },
+  "sources": [
+    "PMID:1944263",
+    "doi:10.1126/science.282.5396.2012",
+    "WormBase WS285 telomere annotation"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,30 @@
+{
+  "name": "KSHV_miRNA_cluster",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_mirna_cluster",
+  "virus_type": "dsDNA",
+  "description": "KSHV encodes 12 pre-miRNAs (miR-K12-1 through miR-K12-12) clustered in a ~4 kb intronic region between K12/kaposin and ORF71/vFLIP. Twelve mature miRNAs (some plus star strands) target host immune and apoptosis pathways (BCLAF1, TWEAKR, MICB, etc.). Hairpin secondary structures conserved across KSHV strains; short reads with mismatches near hairpin loops require lambda-aware error tolerance.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_009333.1": {
+      "chr": "NC_009333.1",
+      "start": 117500,
+      "end": 122500
+    }
+  },
+  "size_bp": 5000,
+  "expected_copy_count": "12 pre-miRNAs per genome",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "hairpin_structure": true
+  },
+  "sources": [
+    "doi:10.1038/nature03677",
+    "doi:10.1371/journal.ppat.1000557"
+  ],
+  "confidence": 0.91
+}

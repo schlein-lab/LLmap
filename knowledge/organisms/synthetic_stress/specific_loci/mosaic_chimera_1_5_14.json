@@ -1,0 +1,36 @@
+{
+  "name": "mosaic_chimera_1_5_14",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "chimera",
+  "description": "Mosaic chimera: 5 kb chunks lifted from chr1, chr5, chr14 stitched head-to-tail. Each chunk is unique in its source; junctions are artificial and have no homology. Stresses split-read / chimeric alignment scoring and breakpoint detection.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_064",
+      "start": 0,
+      "end": 15000
+    }
+  },
+  "size_bp": 15000,
+  "mapping_hints": {
+    "expected_unique": "per_chunk",
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "junction_offsets": [
+      5000,
+      10000
+    ],
+    "source_chrs": [
+      "chr1",
+      "chr5",
+      "chr14"
+    ]
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-1_reference",
+  "taxonomy_id": "custom",
+  "description": "SARS-CoV-1 reference genome (Tor2, NC_004718.3). 29751 nt ssRNA(+). 2002-2003 SARS outbreak. Genome organisation parallels SARS-CoV-2 but spike lacks furin cleavage site; ACE2 receptor binding.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004718.3": {
+      "start": 1,
+      "end": 29751
+    }
+  },
+  "size_bp": 29751,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SARS"
+  ],
+  "sources": [
+    "NC_004718.3",
+    "doi:10.1126/science.1085952"
+  ],
+  "confidence": 0.99
+}

@@ -1,0 +1,35 @@
+{
+  "name": "WGD_ohnolog_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Architectural record for the whole-genome-duplication (WGD) ohnolog set in S. cerevisiae. ~100 Mya ancestor underwent allopolyploidisation (Marcet-Houben & Gabaldon 2015) or autopolyploidisation followed by ~90% gene loss. ~550 ohnolog pairs survive (Wapinski 2007, Byrne & Wolfe 2005). Ohnolog pairs span the full identity range: ribosomal-protein ohnologs are >97% identical and require PSVs in introns/UTRs; metabolic ohnologs (GAL, HXK, HXT, ADH) range 70-90% identity; ancient ohnologs are <70%. Track the SGD ohnolog table for the complete list.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 1500,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "near_constant",
+    "homology_percent": 85.0,
+    "internal_structure": "pairs of paralogous genes on different chromosomes, derived from the ~100 Mya WGD; ~550 retained pairs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature01747",
+    "doi:10.1101/gr.3672305",
+    "PMID:17646407",
+    "doi:10.1186/s13059-015-0814-y",
+    "SGD ohnolog table"
+  ],
+  "confidence": 0.9
+}

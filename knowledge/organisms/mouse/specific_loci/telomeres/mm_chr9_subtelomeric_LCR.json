@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr9_subtelomeric_LCR",
+  "taxonomy_id": "repeat_family",
+  "description": "Mouse chr9 subtelomeric LCR \u2014 duplicon-rich SD block adjacent to TTAGGG. Mediates telomere-telomere misalignment/Robertsonian-like t-events in karyotype.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr9",
+      "start": 121859700,
+      "end": 124299700
+    }
+  },
+  "size_bp": 2440000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "subtelomeric_LCR",
+    "BP_mediating_SDs": [
+      "chr9_subtelomere_LCR"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 15,
+    "internal_structure": "subtelomeric SD blocks + tandem repeat fringe",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "She 2008",
+    "UCSC mm39 genomicSuperDups"
+  ]
+}

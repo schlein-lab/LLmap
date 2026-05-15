@@ -1,0 +1,30 @@
+{
+  "name": "otr3_outer_repeats",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Outer repeats otr3L and otr3R of centromere 3. Highest dg/dh tandem copy number of all S. pombe centromeres, contributing most of cen3's ~110 kb size.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "III",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 30000,
+  "expected_copy_count": "2-10 dg/dh cassette copies per side (chromosome-dependent)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223",
+    "PMID:11498586"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,31 @@
+{
+  "name": "18S_primer_V4_964R",
+  "taxonomy_id": "18S_rRNA",
+  "marker": "18S_rRNA",
+  "region_role": "conserved_primer",
+  "description": "18S primer-binding consensus 'V4_964R' (length 21 bp). Consensus: ACTTTCGTTCTTGATYRATGA. Eukaryotic V4 reverse; Stoeck 2010. Conserved across the broad eukaryotic group it targets; mapper should NOT tolerate high mismatch.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_068",
+      "start": 0,
+      "end": 21
+    }
+  },
+  "size_bp": 21,
+  "mapping_hints": {
+    "expected_unique": "conserved_consensus",
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "primer_seq": "ACTTTCGTTCTTGATYRATGA"
+  },
+  "sources": [
+    "doi:10.1016/0378-1119(88)90066-2",
+    "doi:10.1111/j.1462-2920.2010.02300.x",
+    "Earth Microbiome Project 18S primers"
+  ],
+  "confidence": 0.95
+}

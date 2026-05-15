@@ -1,0 +1,31 @@
+{
+  "name": "bonobo_chr3_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Pan paniscus chr3 centromere / pericentromere. Alpha-satellite higher-order repeat (HOR) array; 13-monomer HOR unit (~2223 bp). T2T-resolved alpha-sat array; flanked by ape-lineage PpanSAT satellite blocks. Centromere mapping is HOR-aware; LLmap should refuse to silently collapse cross-species divergence here.",
+  "coordinates": {
+    "T2T_Pan_paniscus": {
+      "chr": "chr3",
+      "start": 41598787,
+      "end": 44697574
+    }
+  },
+  "size_bp": 3098787,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers in 13-mer HOR units, tandemly arrayed over 3.1 Mb",
+  "hor_size_monomers": 13,
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ],
+  "confidence": 0.7
+}

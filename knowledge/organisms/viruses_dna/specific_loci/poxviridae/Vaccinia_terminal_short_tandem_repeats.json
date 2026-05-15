@@ -1,0 +1,30 @@
+{
+  "name": "Vaccinia_terminal_short_tandem_repeats",
+  "taxonomy_id": "tandem_repeat",
+  "virus_type": "dsDNA",
+  "description": "Vaccinia ITR-internal short tandem repeats: two arrays of short tandem repeats embedded in the ITRs - the proximal ~70 bp 'TR70' block (typically ~13 copies in WR) and the distal ~125 bp 'TR125' block (~17 copies). Copy numbers vary across vaccinia strains and even between virion preparations of the same strain (slippage during replication), which is a known driver of vaccinia genome-size polymorphism. Highly repetitive tracts; short reads are essentially uninformative without long-read or assembly-based copy-number determination.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_006998.1": {
+      "chr": "NC_006998.1",
+      "start": 200,
+      "end": 4000
+    }
+  },
+  "size_bp": 3800,
+  "expected_copy_count": "~13 TR70 copies + ~17 TR125 copies per ITR in WR; variable across strains",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "copy_count_aware": true,
+    "low_complexity_aware": true
+  },
+  "sources": [
+    "doi:10.1016/0042-6822(91)90165-8",
+    "doi:10.1006/viro.2002.1453"
+  ],
+  "confidence": 0.9
+}

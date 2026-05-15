@@ -1,0 +1,27 @@
+{
+  "name": "chr3L_proximal_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Drosophila segmental duplication / repeat-junction region: chr3L proximal SD complex. These regions are partially collapsed in BDGP6.46 \u2014 paralogous reads should always be reported multi-position.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr3L",
+      "start": 22750000,
+      "end": 23500000
+    }
+  },
+  "size_bp": 750000,
+  "expected_copy_count": "variable",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1101/gr.185579.114",
+    "doi:10.1534/genetics.118.301631"
+  ],
+  "confidence": 0.7
+}

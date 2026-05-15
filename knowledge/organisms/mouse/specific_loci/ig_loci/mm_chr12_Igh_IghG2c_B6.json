@@ -1,0 +1,44 @@
+{
+  "name": "mm_chr12_Igh_IghG2c_B6",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse Ig heavy constant: Cgamma2c (C57BL/6 allele) \u2014 replaces IghG2a in BALB/c. Class-switch acceptor in CSR. mm39 chr12qF1.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr12",
+      "start": 113375000,
+      "end": 113383000
+    }
+  },
+  "size_bp": 8000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "constant_region_gene",
+    "BP_mediating_SDs": [
+      "Igh_IghG2c_B6_paralog"
+    ],
+    "homology_percent": 99.3,
+    "sd_length_kb": 8,
+    "internal_structure": "Cgamma2c (C57BL/6 allele) \u2014 replaces IghG2a in BALB/c",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "IMGT mouse Ig locus",
+    "Yoshino 2014",
+    "Honjo 2002"
+  ]
+}

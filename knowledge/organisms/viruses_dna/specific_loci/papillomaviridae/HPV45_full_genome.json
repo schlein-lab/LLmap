@@ -1,0 +1,64 @@
+{
+  "name": "HPV45_full_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome",
+  "virus_type": "dsDNA",
+  "description": "HPV45 complete circular dsDNA genome, ~7858 bp, high-risk mucosal HPV in species alpha-7. Genes: E6, E7, E1, E2, E4, E5, L2, L1 plus the LCR/URR. Epidemiology: ~5% cervical cancers. Stable circular episome at low copy per basal keratinocyte; rolling-circle amplification in upper-layer differentiated cells; integration into host chromosome is the principal step toward malignant progression and typically disrupts E2 while preserving E6/E7.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001590.1": {
+      "chr": "NC_001590.1",
+      "start": 1,
+      "end": 7858
+    }
+  },
+  "size_bp": 7858,
+  "circular": true,
+  "expected_paralogs": [
+    {
+      "name": "E6",
+      "approx_offset_in_locus": 102
+    },
+    {
+      "name": "E7",
+      "approx_offset_in_locus": 569
+    },
+    {
+      "name": "E1",
+      "approx_offset_in_locus": 893
+    },
+    {
+      "name": "E2",
+      "approx_offset_in_locus": 2784
+    },
+    {
+      "name": "L2",
+      "approx_offset_in_locus": 4291
+    },
+    {
+      "name": "L1",
+      "approx_offset_in_locus": 5641
+    },
+    {
+      "name": "LCR",
+      "approx_offset_in_locus": 7156
+    }
+  ],
+  "expected_copy_count": "10-100 episomal copies per basal keratinocyte; thousands in productive lesions; variable integrated copies in carcinoma",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "circular_handling": true,
+    "type_disambig_aware": true,
+    "host_integration_aware": true
+  },
+  "sources": [
+    "ICTV Papillomaviridae 2022",
+    "NCBI Virus RefSeq NC_001590.1",
+    "doi:10.1006/viro.2002.1593"
+  ],
+  "confidence": 0.94
+}

@@ -1,0 +1,31 @@
+{
+  "name": "gibbon_chr17_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Nomascus leucogenys chr17 centromere / pericentromere. Alpha-satellite higher-order repeat (HOR) array; 8-monomer HOR unit (~1368 bp). T2T-resolved alpha-sat array; flanked by ape-lineage GibbonSAT satellite blocks. Centromere mapping is HOR-aware; LLmap should refuse to silently collapse cross-species divergence here.",
+  "coordinates": {
+    "Nleu_3_0": {
+      "chr": "chr17",
+      "start": 41019622,
+      "end": 43539244
+    }
+  },
+  "size_bp": 2519622,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers in 8-mer HOR units, tandemly arrayed over 2.5 Mb",
+  "hor_size_monomers": 8,
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,33 @@
+{
+  "name": "triploid_paralogs_95_97_99",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "multi_paralog",
+  "description": "Three overlapping paralog copies of a 50 kb cassette at pairwise identities 95% / 97% / 99% (analogous to a recently expanded gene family with one ancient and two recent copies). Stresses 3-way paralog disambiguation and copy-assignment under graded divergence.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_071",
+      "start": 0,
+      "end": 150000
+    }
+  },
+  "size_bp": 150000,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": true,
+    "copies": 3,
+    "identities_pct": [
+      95.0,
+      97.0,
+      99.0
+    ]
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

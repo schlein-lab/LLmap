@@ -1,0 +1,32 @@
+{
+  "name": "rbcL_Angiosperms_eudicots",
+  "taxonomy_id": "rbcL_cp",
+  "marker": "rbcL",
+  "region_role": "variable_core",
+  "description": "Plastid rbcL (RuBisCO large subunit, ~1400 bp; CBOL plant barcode core region typically 600-700 bp window) for plant group Angiosperms_eudicots. Eudicotyledonous flowering plants \u2014 bulk of land flora. Slow-evolving but excellent family/genus resolution. Allow moderate mismatch.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_103",
+      "start": 0,
+      "end": 700
+    }
+  },
+  "size_bp": 700,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.25,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "marker": "rbcL",
+    "plant_group": "Angiosperms_eudicots"
+  },
+  "sources": [
+    "doi:10.1073/pnas.0905845106",
+    "BOLD Plants",
+    "NCBI RefSeq plastid"
+  ],
+  "confidence": 0.9
+}

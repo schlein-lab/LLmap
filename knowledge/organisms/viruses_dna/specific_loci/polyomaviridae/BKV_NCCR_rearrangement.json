@@ -1,0 +1,31 @@
+{
+  "name": "BKV_NCCR_rearrangement",
+  "taxonomy_id": "custom",
+  "custom_subtype": "regulatory_rearrangement",
+  "virus_type": "dsDNA",
+  "description": "BK virus NCCR rearrangement: archetype BKV (urine isolates) carries an unmodified NCCR with intact O/P/Q/R/S blocks; rearranged BKV isolates found in blood and kidney biopsies of transplant patients with BK-associated nephropathy show duplications, deletions, and block rearrangements that increase early-gene expression and accelerate replication. NCCR sequencing is the gold standard for distinguishing 'reservoir' from 'pathogenic' BKV in transplant medicine.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_001538.1": {
+      "chr": "NC_001538.1",
+      "start": 4950,
+      "end": 5153
+    }
+  },
+  "size_bp": 200,
+  "expected_copy_count": "1 NCCR per genome; rearrangements duplicate/delete subblocks",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "rearrangement_aware": true,
+    "structural_variant_aware": true
+  },
+  "sources": [
+    "doi:10.1099/vir.0.81399-0",
+    "doi:10.1111/j.1600-6143.2012.04127.x"
+  ],
+  "confidence": 0.91
+}

@@ -1,0 +1,32 @@
+{
+  "name": "HBV_S_gene_overlapping_P",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA-RT",
+  "description": "HBV surface gene (S ORF) encoding PreS1/PreS2/S (HBsAg) on the same strand as polymerase (P ORF) in a different reading frame, fully overlapping. The 'a-determinant' (aa 124-147 of S) is the major neutralizing epitope and the basis of HBsAg-based vaccination and diagnostic assays; mutations here (G145R) cause vaccine-escape phenotypes that complicate read assignment between vaccine-strain and wildtype references. Because S and P overlap, any S mutation also alters P; this constrains evolution and creates hidden linkage between drug-resistance (P) and immune-escape (S) variants.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_003977.2": {"chr": "NC_003977.2", "start": 2848, "end": 835}
+  },
+  "size_bp": 1170,
+  "expected_paralogs": [
+    {"name": "PreS1", "approx_offset_in_locus": 0},
+    {"name": "PreS2", "approx_offset_in_locus": 324},
+    {"name": "S_HBsAg", "approx_offset_in_locus": 489},
+    {"name": "a_determinant", "approx_offset_in_locus": 858}
+  ],
+  "expected_copy_count": "1 per genome; overlapping reading frame with P",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "circular_handling": true,
+    "overlapping_frame_aware": true
+  },
+  "sources": [
+    "doi:10.1016/0140-6736(90)91874-A",
+    "doi:10.1099/vir.0.80582-0"
+  ],
+  "confidence": 0.93
+}

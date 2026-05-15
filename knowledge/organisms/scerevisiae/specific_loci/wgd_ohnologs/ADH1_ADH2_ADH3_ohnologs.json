@@ -1,0 +1,42 @@
+{
+  "name": "ADH1_ADH2_ADH3_ohnologs",
+  "taxonomy_id": "paralog_family",
+  "description": "Alcohol dehydrogenase ADH1/ADH2 ohnologs (>95% identity, both involved in ethanol metabolism in opposite directions); ADH3 mitochondrial ohnolog.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "XV,XIII",
+      "start": 0,
+      "end": 0,
+      "paralog_chr": "XIII"
+    }
+  },
+  "size_bp_per_unit": 1500,
+  "expected_paralogs": [
+    {
+      "name": "ADH1,ADH3",
+      "approx_offset_in_locus": 0,
+      "chr": "XV,XIII"
+    },
+    {
+      "name": "ADH2",
+      "approx_offset_in_locus": 0,
+      "chr": "XIII"
+    }
+  ],
+  "expected_copy_count": "2 ohnologous copies (post-WGD pair) on different chromosomes",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature01747",
+    "PMID:17646407",
+    "SGD ohnolog table"
+  ],
+  "confidence": 0.85
+}

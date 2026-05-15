@@ -1,0 +1,29 @@
+{
+  "name": "SARS-CoV-2_frameshift_element_orf1ab",
+  "taxonomy_id": "custom",
+  "description": "Programmed -1 ribosomal frameshift (PRF) element at ORF1a/ORF1b junction. Slippery sequence UUUAAAC + downstream pseudoknot (attenuator hairpin + 3-stem pseudoknot). Conserved across betacoronaviruses; drug target (merafloxacin, PK-class). Frameshift efficiency ~25-50%.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_045512.2": {
+      "start": 13441,
+      "end": 13503
+    }
+  },
+  "size_bp": 63,
+  "mapping_hints": {
+    "lambda_scale": 0.8,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "COVID-19"
+  ],
+  "sources": [
+    "NC_045512.2",
+    "doi:10.1038/s41586-020-2008-3"
+  ],
+  "confidence": 0.99
+}

@@ -1,0 +1,28 @@
+{
+  "name": "imr1_innermost_repeats",
+  "taxonomy_id": "paralog_family",
+  "description": "Innermost repeats imr1L and imr1R of centromere 1. ~5 kb each side, partially repetitive sequence containing a cluster of tRNA genes that act as the cnt/otr chromatin boundary (Mis6-Cnp1 inside; H3K9me-Swi6 outside).",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 12000,
+  "expected_copy_count": "2 copies per centromere (L and R, inverted)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 25000,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223"
+  ],
+  "confidence": 0.9
+}

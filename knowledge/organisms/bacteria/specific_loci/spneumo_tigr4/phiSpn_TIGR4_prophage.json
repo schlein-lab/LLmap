@@ -1,0 +1,27 @@
+{
+  "name": "spneumo_tigr4_phiSpn_TIGR4_prophage",
+  "taxonomy_id": "custom",
+  "description": "Prophage region in TIGR4; ~40 kb siphovirus-like. Lambda-like architecture.",
+  "coordinates": {
+    "GenBank_NC_003028.3": {
+      "chr": "NC_003028.3",
+      "start": 800100,
+      "end": 840400
+    }
+  },
+  "size_bp": 40300,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "PHASTER:doi:10.1093/nar/gkw387",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "lambdoid_siphovirus"
+}

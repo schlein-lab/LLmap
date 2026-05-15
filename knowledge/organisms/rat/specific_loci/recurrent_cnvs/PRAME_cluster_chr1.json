@@ -1,0 +1,27 @@
+{
+  "name": "PRAME_cluster_chr1",
+  "taxonomy_id": "paralog_family",
+  "description": "PRAME-like cluster on rat chr1 (analogous to human chr1q21). Multiple paralogs with strain CNV. Recurrent CNV documented in rat strain comparisons; multi-copy mapping requires PSV awareness.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr1",
+      "start": 86000000,
+      "end": 87500000
+    }
+  },
+  "size_bp": 1500000,
+  "expected_copy_count": "2-20 copies depending on strain/haplotype",
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "RGD CNV database",
+    "Ensembl rat"
+  ],
+  "confidence": 0.75
+}

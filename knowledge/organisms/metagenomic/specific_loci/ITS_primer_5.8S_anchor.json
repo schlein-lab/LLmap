@@ -1,0 +1,32 @@
+{
+  "name": "ITS_primer_5.8S_anchor",
+  "taxonomy_id": "ITS_fungal",
+  "marker": "ITS",
+  "region_role": "conserved_primer",
+  "description": "Fungal ITS conserved anchor / primer '5.8S_anchor' (length 28 bp). Consensus: CGCTTTGGCGCATCGATGAAGAACGTAG. Conserved 5.8S anchor between ITS1 and ITS2. Conserved across Fungi at sub-1% mismatch; mapper should NOT tolerate high mismatch.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_087",
+      "start": 0,
+      "end": 28
+    }
+  },
+  "size_bp": 28,
+  "mapping_hints": {
+    "expected_unique": "conserved_consensus",
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "primer_seq": "CGCTTTGGCGCATCGATGAAGAACGTAG"
+  },
+  "sources": [
+    "doi:10.1111/j.1365-294X.1993.tb00005.x",
+    "White 1990 PCR Protocols (ITS1, ITS2, ITS3, ITS4)",
+    "doi:10.1111/j.1755-0998.2009.02628.x",
+    "UNITE 9.0"
+  ],
+  "confidence": 0.95
+}

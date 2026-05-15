@@ -1,0 +1,30 @@
+{
+  "name": "cen3_chrIII",
+  "taxonomy_id": "centromere_like",
+  "description": "Centromere 3 (cen3) on S. pombe chromosome III. ~110 kb, the largest centromere in the genome. cnt3 central core (~13 kb, unique sequence loading CENP-A^Cnp1) flanked by imr3L/R innermost repeats and otr3L/R outer dg/dh cassettes; cen3 has the highest dg/dh copy number of the three centromeres.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "III",
+      "start": 1070904,
+      "end": 1137003
+    }
+  },
+  "size_bp": 66099,
+  "expected_copy_count": "1 monocentric centromere per chromosome; dg/dh otr cassettes 2-10 copies per side",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 60000,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:8090223",
+    "PMID:8462105",
+    "PomBase centromere annotation"
+  ],
+  "confidence": 0.95
+}

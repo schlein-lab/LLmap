@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr12_Igh_3prime_RR_enhancer",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse Igh variable/diversity/joining or regulatory region: Igh 3' regulatory region (hs3a/hs1,2/hs3b/hs4 palindrome).",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr12",
+      "start": 113165000,
+      "end": 113195000
+    }
+  },
+  "size_bp": 30000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "ig_VDJ_cluster",
+    "BP_mediating_SDs": [
+      "Igh_Igh_3prime_RR_enhancer_cluster"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 5,
+    "internal_structure": "Igh 3' regulatory region (hs3a/hs1,2/hs3b/hs4 palindrome)",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "IMGT mouse Igh",
+    "Johnston 2006 (PMID:16424222)"
+  ]
+}

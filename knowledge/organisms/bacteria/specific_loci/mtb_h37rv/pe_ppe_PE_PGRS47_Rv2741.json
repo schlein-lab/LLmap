@@ -1,0 +1,27 @@
+{
+  "name": "mtb_h37rv_pe_ppe_PE_PGRS47_Rv2741",
+  "taxonomy_id": "paralog_family",
+  "description": "PE_PGRS47_Rv2741 \u2014 PE_PGRS subfamily member of the PE/PPE/PGRS family. High paralog identity to other family members; PGRS extensions (where present) are tandem GC-rich repeat blocks resistant to short-read mapping.",
+  "coordinates": {
+    "GenBank_NC_000962.3": {
+      "chr": "NC_000962.3",
+      "start": 3043000,
+      "end": 3047000
+    }
+  },
+  "size_bp": 4000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/31159",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.88,
+  "pe_ppe_subfamily": "PE_PGRS"
+}

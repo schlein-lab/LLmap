@@ -1,0 +1,63 @@
+{
+  "name": "EBV_integration_hotspots",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_integration_locus",
+  "virus_type": "dsDNA",
+  "description": "EBV typically persists as a non-integrated episome but integrates sporadically in lymphomas and gastric/nasopharyngeal carcinomas. Integration events show enrichment at common fragile sites (FRA3B/FHIT, FRA16D/WWOX), MYC, BACH2, ETS1, TNFAIP3, and at GC-rich palindromic host regions. Breakpoints on the EBV side cluster within IR1/W and at the TR junction. Functional consequence varies: integrations into BACH2 in Burkitt lymphoma and into MYC enhancers in some endemic cases reshape host gene expression.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_007605.1": {
+      "chr": "NC_007605.1",
+      "start": 12000,
+      "end": 35000
+    }
+  },
+  "size_bp": 23000,
+  "expected_copy_count": "0-10 integrated copies in EBV+ carcinomas; mostly episomal",
+  "expected_host_targets": [
+    {
+      "name": "MYC",
+      "host_chr": "chr8",
+      "host_pos": 127736000,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "BACH2",
+      "host_chr": "chr6",
+      "host_pos": 90636000,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "FHIT_FRA3B",
+      "host_chr": "chr3",
+      "host_pos": 60000000,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "WWOX_FRA16D",
+      "host_chr": "chr16",
+      "host_pos": 78100000,
+      "host_assembly": "GRCh38"
+    },
+    {
+      "name": "TNFAIP3",
+      "host_chr": "chr6",
+      "host_pos": 137866000,
+      "host_assembly": "GRCh38"
+    }
+  ],
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "host_integration_aware": true,
+    "split_read_aware": true
+  },
+  "sources": [
+    "doi:10.1038/ncomms14506",
+    "doi:10.1038/s41388-019-0975-3"
+  ],
+  "confidence": 0.88
+}

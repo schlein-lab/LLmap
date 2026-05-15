@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr16_overall_SD_density",
+  "taxonomy_id": "chromosome_summary",
+  "description": "chr16 overall SD density summary on mm39. Mouse SD content ~5% genome-wide (She 2008). Mapping fallback for unanchored high-identity reads.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr16",
+      "start": 1,
+      "end": 98008968
+    }
+  },
+  "size_bp": 98008967,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "chromosome_summary",
+    "BP_mediating_SDs": [
+      "chr16_SD_aggregate"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 25,
+    "internal_structure": "aggregate of pericentromeric + interstitial + subtelo SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "UCSC genomicSuperDups mm39",
+    "She et al. 2008"
+  ]
+}

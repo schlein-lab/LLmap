@@ -1,0 +1,28 @@
+{
+  "name": "Marburg_marburgvirus",
+  "taxonomy_id": "custom",
+  "description": "Marburg virus (Marburgvirus, family Filoviridae). Outbreaks 1967 (Marburg/Frankfurt/Belgrade), Angola 2004-5, Rwanda 2024. 6 genes (no VP30 separate transcription regulator role).",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_001608.3": {
+      "start": 1,
+      "end": 19111
+    }
+  },
+  "size_bp": 19111,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Filovirus_hemorrhagic_fever"
+  ],
+  "sources": [
+    "NC_001608.3"
+  ],
+  "confidence": 0.97
+}

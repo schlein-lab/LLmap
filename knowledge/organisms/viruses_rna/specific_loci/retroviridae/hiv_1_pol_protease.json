@@ -1,0 +1,29 @@
+{
+  "name": "HIV-1_pol_protease",
+  "taxonomy_id": "custom",
+  "description": "HIV-1 protease (99 aa). Drug target (saquinavir-class PIs). Resistance mutations: L90M, V82A, M46I.",
+  "virus_type": "ssRNA_RT",
+  "coordinates": {
+    "NC_001802.1": {
+      "start": 2253,
+      "end": 2549
+    }
+  },
+  "size_bp": 297,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HIV/AIDS"
+  ],
+  "sources": [
+    "NC_001802.1",
+    "Los Alamos HIV Sequence Database"
+  ],
+  "confidence": 0.97
+}

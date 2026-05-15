@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr10_sd_qA3_olfactory",
+  "taxonomy_id": "paralog_family",
+  "description": "Segmental duplication block on chr10 (qA3_olfactory). Mean identity 96.5% across 35 kb tiles. Olfr block A3.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr10",
+      "start": 13500000,
+      "end": 15500000
+    }
+  },
+  "size_bp": 2000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "segmental_duplication",
+    "BP_mediating_SDs": [
+      "chr10_qA3_olfactory_SD"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 35,
+    "internal_structure": "Olfr block A3",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "UCSC genomicSuperDups mm39",
+    "She et al. 2008 (PMID:18421352)"
+  ]
+}

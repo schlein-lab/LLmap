@@ -1,0 +1,44 @@
+{
+  "name": "mm_chr7_centromere_minor_satellite",
+  "taxonomy_id": "repeat_family",
+  "description": "Mouse chr7 centromere minor satellite (120 bp consensus, CENP-B-box bearing). Functional kinetochore foundation.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr7",
+      "start": 2800000,
+      "end": 3100000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "tandem_repeat",
+    "BP_mediating_SDs": [
+      "chr7_minor_sat"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 2,
+    "internal_structure": "120 bp minor satellite tandem array with CENP-B box",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "Wong 1990",
+    "Kipling 1991",
+    "UCSC mm39 RepeatMasker"
+  ]
+}

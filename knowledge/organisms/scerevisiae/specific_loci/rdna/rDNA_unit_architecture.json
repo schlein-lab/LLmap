@@ -1,0 +1,33 @@
+{
+  "name": "rDNA_unit_architecture",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Architecture record for the S. cerevisiae 9.1 kb RDN1 unit. Each unit contains: 35S pre-rRNA (Pol I, 6.7 kb encoding 18S-ITS1-5.8S-ITS2-25S), NTS1 spacer with replication fork barrier (RFB) bound by Fob1, rARS replication origin, RDN5 5S gene (Pol III), and NTS2 spacer. Recombination across units (gene conversion) homogenises sequence and changes copy number; expansion/contraction is mediated by Fob1-dependent unequal sister-chromatid exchange.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "chrXII",
+      "start": 451575,
+      "end": 460695
+    }
+  },
+  "size_bp": 9120,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "35S Pol I unit (~6.7 kb) - NTS1 (~1 kb, rARS+RFB) - RDN5 5S Pol III gene - NTS2 spacer (~1 kb)"
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:9421530"
+  ],
+  "confidence": 0.95
+}

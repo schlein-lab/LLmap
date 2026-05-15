@@ -1,0 +1,39 @@
+{
+  "name": "MHC_class2_gorilla",
+  "taxonomy_id": "mhc_region",
+  "description": "Gorilla gorilla Gogo-DR/DQ/DP class II cluster. Gorilla-lineage MHC nomenclature uses 'Gogo-' prefix (e.g. Gogo-A, Gogo-B, Gogo-C). Trans-species polymorphism shared with human HLA; ape-specific paralog expansions and losses documented in Suntsova 2017 and T2T-ape 2024.",
+  "coordinates": {
+    "T2T_Gor": {
+      "chr": "chr6",
+      "start": 32467147,
+      "end": 33567147
+    }
+  },
+  "size_bp": 1100000,
+  "mhc_class": "class_II",
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.5,
+    "internal_structure": "Ape MHC: extensive haplotype divergence, trans-species polymorphism, ape-lineage gene duplications (Patr-AL, Gogo-AL etc.)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "immune-mediated phenotypes (ape host-pathogen interaction studies)"
+  ],
+  "confidence": 0.7,
+  "sources": [
+    "doi:10.1038/nature01025",
+    "doi:10.1038/nature08516",
+    "doi:10.1038/nature12228",
+    "doi:10.1038/s41586-024-07073-0",
+    "doi:10.1016/j.cell.2017.03.014"
+  ]
+}

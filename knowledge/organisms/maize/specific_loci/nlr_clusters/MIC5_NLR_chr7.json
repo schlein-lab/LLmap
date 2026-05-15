@@ -1,0 +1,28 @@
+{
+  "name": "MIC5_NLR_chr7",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous NLR cluster MIC5 chr7 (NAM pan-NLR set).",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr7",
+      "start": 160000000,
+      "end": 160100000
+    }
+  },
+  "size_bp": 100000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1146/annurev.phyto.36.1.323",
+    "doi:10.1126/science.abg5289"
+  ],
+  "confidence": 0.8,
+  "repeat_class": "NB-LRR"
+}

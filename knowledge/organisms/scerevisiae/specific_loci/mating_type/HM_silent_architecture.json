@@ -1,0 +1,30 @@
+{
+  "name": "HM_silent_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Architecture of the chr III mating-type silent cassettes. Y region is the variable Ya (~640 bp) or Yalpha (~750 bp) cassette flanked by W (~720 bp), X (~700 bp), Z1 (~240 bp), Z2 (~90 bp) homology blocks. All three loci (HML, MAT, HMR) share W/X/Z homology, so any short read covering only W/X/Z (not Y) maps to all three cassettes. Switching is initiated by HO endonuclease cut at MAT-Y/Z border, repaired by gene conversion from HML or HMR donor.",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "chrIII",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp": 8500,
+  "expected_copy_count": "1 active MAT + 2 silent (HML, HMR) cassettes, all on chr III",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:5573719",
+    "PMID:12112540",
+    "SGD MAT/HML/HMR annotation"
+  ],
+  "confidence": 0.95
+}

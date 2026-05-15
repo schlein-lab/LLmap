@@ -1,0 +1,44 @@
+{
+  "name": "Igk_locus_chr4",
+  "taxonomy_id": "paralog_family",
+  "description": "Rat immunoglobulin kappa light chain locus on chr4. ~150 Vkappa gene segments, 5 Jkappa, single Ckappa. Most rat antibody light chains use kappa; lambda usage is minor.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr4",
+      "start": 95000000,
+      "end": 96500000
+    }
+  },
+  "size_bp": 1500000,
+  "expected_paralogs": [
+    {
+      "name": "Vk_cluster",
+      "approx_offset_in_locus": 0
+    },
+    {
+      "name": "Jk_cluster",
+      "approx_offset_in_locus": 1380000
+    },
+    {
+      "name": "Ck",
+      "approx_offset_in_locus": 1420000
+    }
+  ],
+  "expected_copy_count": "1 per haplotype",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "sources": [
+    "doi:10.1186/1471-2164-11-644",
+    "doi:10.1186/1471-2164-7-218",
+    "Schluter 2010",
+    "IMGT rat database"
+  ],
+  "confidence": 0.85
+}

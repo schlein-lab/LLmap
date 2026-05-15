@@ -1,0 +1,30 @@
+{
+  "name": "EBV_terminal_repeat_clonality",
+  "taxonomy_id": "terminal_repeat",
+  "virus_type": "dsDNA",
+  "description": "EBV terminal repeats (TR): 0.5 kb tandem units present at both ends of the linear genome. On circularization to form the latent episome, the terminal repeats fuse and the number of TR units in the joint is preserved \u2014 Southern blot or PCR across the fusion is the classical assay for monoclonality (Raab-Traub & Flynn 1986: a single-band TR pattern indicates a clonal tumor). Short-read mapping into the TR alone is uninformative for clonality; long-read spanning reads or specific TR-junction probes are required.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_007605.1": {
+      "chr": "NC_007605.1",
+      "start": 1,
+      "end": 500
+    }
+  },
+  "size_bp": 500,
+  "expected_copy_count": "4-12 TR units per genome end; fused count preserved in circular episome",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "terminal_repeat_aware": true,
+    "clonality_marker": true
+  },
+  "sources": [
+    "doi:10.1016/0092-8674(86)90517-X",
+    "doi:10.1146/annurev.mi.41.100187.000515"
+  ],
+  "confidence": 0.92
+}

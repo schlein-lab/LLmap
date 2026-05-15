@@ -1,0 +1,32 @@
+{
+  "name": "COI_primer_MiFish_U_F",
+  "taxonomy_id": "COI_mt",
+  "marker": "COI",
+  "region_role": "conserved_primer",
+  "description": "COI / animal-eDNA primer-binding consensus 'MiFish_U_F' (length 21 bp). Consensus: GTCGGTAAAACTCGTGCCAGC. Fish 12S MiFish forward; Miya 2015 (12S not COI but same eDNA workflow). Conserved across the intended taxonomic range; mapper should NOT tolerate high mismatch.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_101",
+      "start": 0,
+      "end": 21
+    }
+  },
+  "size_bp": 21,
+  "mapping_hints": {
+    "expected_unique": "conserved_consensus",
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.9,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "primer_seq": "GTCGGTAAAACTCGTGCCAGC"
+  },
+  "sources": [
+    "Folmer 1994",
+    "doi:10.1186/1742-9994-10-34",
+    "doi:10.1098/rsos.150088",
+    "BOLD Systems"
+  ],
+  "confidence": 0.95
+}

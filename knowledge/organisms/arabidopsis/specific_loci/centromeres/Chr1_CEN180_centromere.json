@@ -1,0 +1,30 @@
+{
+  "name": "Chr1_CEN180_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Chr1 centromere on TAIR10. Tandem array of the CEN180 (178-179 bp) satellite repeat with thousands of monomers interspersed with ATHILA retroelements (Naish 2021).",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr1",
+      "start": 14500000,
+      "end": 16000000
+    }
+  },
+  "size_bp": 1500000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.abi7489",
+    "doi:10.1093/nar/gkr1090"
+  ],
+  "confidence": 0.9,
+  "expected_copy_count": "~1000-3000 CEN180 monomers per chromosome",
+  "satellite_unit_bp": 178
+}

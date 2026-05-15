@@ -1,0 +1,28 @@
+{
+  "name": "msp-19_chrIV_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "msp-19 paralog within the chrIV Major Sperm Protein tandem cluster. Single-exon ~350 bp ORF encoding a ~125 aa MSP. Identity to neighbouring msp paralogs >95% in CDS; reliable read-level assignment requires 3' UTR or intergenic PSVs.",
+  "coordinates": {
+    "WBcel235": {
+      "chr": "IV",
+      "start": 7120000,
+      "end": 7120350
+    }
+  },
+  "size_bp": 350,
+  "expected_copy_count": "1 paralog within the ~28-40 msp gene family",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "PMID:9851916",
+    "WormBase WS285"
+  ],
+  "confidence": 0.75
+}

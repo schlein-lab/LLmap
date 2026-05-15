@@ -1,0 +1,29 @@
+{
+  "name": "mtb_h37rv_IS1081_copy3",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Insertion sequence IS1081 copy 3 of 6 in this genome. 1324 bp IS256-family element; stable in M. tuberculosis lineages. IS elements are mobile and create paralog signal across distant genomic loci; reads from IS1081 should be reported as multi-mapping.",
+  "coordinates": {
+    "GenBank_NC_000962.3": {
+      "chr": "NC_000962.3",
+      "start": 2148300,
+      "end": 2149656,
+      "strand": "+"
+    }
+  },
+  "size_bp": 1356,
+  "expected_copy_count": "6 copies in reference genome",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "is_element": true
+  },
+  "sources": [
+    "ISfinder:https://www-is.biotoul.fr",
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9
+}

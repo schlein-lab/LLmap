@@ -1,0 +1,43 @@
+{
+  "name": "mm_chrM_mitochondrial_full",
+  "taxonomy_id": "organelle_genome",
+  "description": "Full mouse mtDNA reference NC_005089. NUMT pseudogene insertions cross-map with chrM (problematic for low-MAPQ MT calls).",
+  "coordinates": {
+    "mm39": {
+      "chr": "chrM",
+      "start": 1,
+      "end": 16299
+    }
+  },
+  "size_bp": 16298,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "mitochondrial_genome",
+    "BP_mediating_SDs": [
+      "mitochondrial_full"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 5,
+    "internal_structure": "NUMT insertion paralogous to chrM",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "UCSC mm39 NUMT track",
+    "Calabrese 2017"
+  ]
+}

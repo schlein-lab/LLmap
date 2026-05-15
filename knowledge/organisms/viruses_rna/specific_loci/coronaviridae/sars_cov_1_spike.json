@@ -1,0 +1,28 @@
+{
+  "name": "SARS-CoV-1_spike",
+  "taxonomy_id": "custom",
+  "description": "SARS-CoV-1 spike (1255 aa). RBD ~306-527, no polybasic furin site (single R667). ACE2 receptor.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004718.3": {
+      "start": 21492,
+      "end": 25259
+    }
+  },
+  "size_bp": 3768,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SARS"
+  ],
+  "sources": [
+    "NC_004718.3"
+  ],
+  "confidence": 0.97
+}

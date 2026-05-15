@@ -1,0 +1,29 @@
+{
+  "name": "chr4_right_telomere",
+  "taxonomy_id": "telomere",
+  "description": "chr4 right-arm telomere (B73 RefGen v5). Plant TTTAGGG tandem repeat; ends still under-resolved on most B73 pseudomolecules.",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr4",
+      "start": 250280460,
+      "end": 250330460
+    }
+  },
+  "size_bp": 50000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.abg5289",
+    "doi:10.1038/nature22971"
+  ],
+  "confidence": 0.8,
+  "repeat_unit": "TTTAGGG"
+}

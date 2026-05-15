@@ -1,0 +1,29 @@
+{
+  "name": "HCV_3utr",
+  "taxonomy_id": "custom",
+  "description": "HCV 3' UTR: variable region + poly(U/UC) tract + 98-nt X-tail (three stem-loops 3'SLI-III). Essential for replication. No poly(A).",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 9375,
+      "end": 9646
+    }
+  },
+  "size_bp": 272,
+  "mapping_hints": {
+    "lambda_scale": 0.9,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "NC_004102.1",
+    "doi:10.1002/hep.27259"
+  ],
+  "confidence": 0.95
+}

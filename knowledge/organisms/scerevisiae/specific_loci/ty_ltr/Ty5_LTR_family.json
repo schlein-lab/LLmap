@@ -1,0 +1,37 @@
+{
+  "name": "Ty5_LTR_family",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Ty5 retrotransposon family in S. cerevisiae. 5.4 kb element with 251 bp 'omega' LTRs. S288C carries 0-1 full-length Ty5 plus ~6 solo omega LTRs, mostly at subtelomeric silent chromatin. Ty5 integrates preferentially into Sir-mediated heterochromatin (telomeres, HM cassettes).",
+  "coordinates": {
+    "sacCer3": {
+      "chr": "all",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 5400,
+  "ltr_size_bp": 251,
+  "ltr_consensus": "omega (251 bp)",
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "5'LTR (251 bp) - gag-pol ORFs - 3'LTR; solo LTRs are recombination products of intra-element exchange"
+  },
+  "expected_copy_count": "~1 full-length elements + ~6 solo LTRs per haploid S288C genome; strain-variable",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1126/science.274.5287.546",
+    "PMID:9637730",
+    "SGD Ty element database"
+  ],
+  "confidence": 0.9
+}

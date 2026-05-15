@@ -1,0 +1,29 @@
+{
+  "name": "HCV_ns5a",
+  "taxonomy_id": "custom",
+  "description": "NS5A phosphoprotein. Domain I-III. Daclatasvir/ledipasvir/velpatasvir target. Resistance: M28T, Q30R/H, L31M/V, Y93H/N.",
+  "virus_type": "ssRNA(+)",
+  "coordinates": {
+    "NC_004102.1": {
+      "start": 6257,
+      "end": 7601
+    }
+  },
+  "size_bp": 1345,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hepatitis_C"
+  ],
+  "sources": [
+    "NC_004102.1",
+    "doi:10.1002/hep.27259"
+  ],
+  "confidence": 0.97
+}

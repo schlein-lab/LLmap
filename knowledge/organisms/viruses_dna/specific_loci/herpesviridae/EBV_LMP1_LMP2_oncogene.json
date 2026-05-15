@@ -1,0 +1,29 @@
+{
+  "name": "EBV_LMP1_LMP2_oncogene",
+  "taxonomy_id": "coding",
+  "virus_type": "dsDNA",
+  "description": "EBV latent membrane proteins LMP1 (BNLF1) and LMP2A/LMP2B encoded at the right end of the genome adjacent to the right TR. LMP1 is the principal viral oncogene \u2014 a constitutive CD40 mimic that activates NF-kB, JNK, PI3K/AKT; required for B-cell transformation in vitro. LMP2A provides a tonic BCR-mimicking signal via its ITAM. LMP1 and LMP2 mRNAs span the TR-internal junction in circularized episomes, making split-read detection across the TR a marker for episome circularity.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_007605.1": {
+      "chr": "NC_007605.1",
+      "start": 166400,
+      "end": 170000
+    }
+  },
+  "size_bp": 3600,
+  "expected_copy_count": "1 per genome",
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.0,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "tr_junction_aware": true
+  },
+  "sources": [
+    "doi:10.1016/0092-8674(85)90325-7",
+    "doi:10.1038/sj.onc.1209980"
+  ],
+  "confidence": 0.92
+}

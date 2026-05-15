@@ -1,0 +1,32 @@
+{
+  "name": "subtelomere_architecture",
+  "taxonomy_id": "paralog_family",
+  "description": "Subtelomeric architecture in S. pombe. Immediately interior to the telomere TTAC(C/G)(0-1)(C/G)(1-8) array lies a ~50 kb gene-poor subtelomeric domain enriched for the tlh1/tlh2 helicase paralogs, SPAC* and SPBC* lineage-specific genes, and Tf2 LTR insertions. On chr III the subtelomere is replaced by the rDNA array. Subtelomeres are silenced via Clr4/H3K9me and Swi6-HP1 chromatin.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I,II",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 50000,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "near_constant",
+    "homology_percent": 85.0,
+    "internal_structure": "~50 kb subtelomeric domain with tlh1/tlh2 helicase paralogs, SPAC/SPBC lineage genes, Tf2 LTR fragments; chrIII subtelomere replaced by rDNA"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PomBase subtelomere annotation"
+  ],
+  "confidence": 0.85
+}

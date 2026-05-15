@@ -1,0 +1,35 @@
+{
+  "name": "HBV_X_gene_integration_hotspot",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_integration_locus",
+  "virus_type": "dsDNA-RT",
+  "description": "HBV X gene (HBx) and the adjacent DR1/DR2 region account for the vast majority of HBV-host integration breakpoints in hepatocellular carcinoma (HCC). Integrations cluster around the cohesive end region (nt ~1500-1900) and typically truncate HBx near its 3' end while retaining the N-terminal trans-activation domain. Host targets are enriched for TERT promoter, MLL4 (KMT2B), CCNE1, and FN1 — TERT alone accounts for ~30% of HBV-driven HCC integrations. The 3.5 kb pgRNA's terminal redundancy facilitates microhomology-mediated end joining at the integration site.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_003977.2": {"chr": "NC_003977.2", "start": 1374, "end": 1838}
+  },
+  "size_bp": 465,
+  "expected_copy_count": "highly variable, 0-100s of integrated copies per HCC tumor genome",
+  "expected_host_targets": [
+    {"name": "TERT_promoter", "host_chr": "chr5", "host_pos": 1295000, "host_assembly": "GRCh38"},
+    {"name": "KMT2B_MLL4", "host_chr": "chr19", "host_pos": 35718000, "host_assembly": "GRCh38"},
+    {"name": "CCNE1", "host_chr": "chr19", "host_pos": 29811000, "host_assembly": "GRCh38"},
+    {"name": "FN1", "host_chr": "chr2", "host_pos": 215360000, "host_assembly": "GRCh38"}
+  ],
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.1,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "host_integration_aware": true,
+    "split_read_aware": true
+  },
+  "sources": [
+    "doi:10.1038/ng.2295",
+    "doi:10.1038/nature11252",
+    "doi:10.1053/j.gastro.2015.05.044",
+    "doi:10.1126/science.1230062"
+  ],
+  "confidence": 0.92
+}

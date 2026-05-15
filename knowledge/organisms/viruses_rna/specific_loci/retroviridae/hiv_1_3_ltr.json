@@ -1,0 +1,29 @@
+{
+  "name": "HIV-1_3_ltr",
+  "taxonomy_id": "custom",
+  "description": "HIV-1 3' LTR. Polyadenylation signal AAUAAA; integration site for proviral DNA.",
+  "virus_type": "ssRNA_RT",
+  "coordinates": {
+    "NC_001802.1": {
+      "start": 8634,
+      "end": 9181
+    }
+  },
+  "size_bp": 548,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 6000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HIV/AIDS"
+  ],
+  "sources": [
+    "NC_001802.1",
+    "Los Alamos HIV Sequence Database"
+  ],
+  "confidence": 0.97
+}

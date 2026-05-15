@@ -1,0 +1,27 @@
+{
+  "name": "ecoli_k12_mg1655_rhs_rearrangement_hotspot",
+  "taxonomy_id": "paralog_family",
+  "description": "Rhs family (rearrangement hot spot) gene clusters rhsA, rhsB, rhsC, rhsD, rhsE \u2014 five large (~3.7 kb) loci scattered across the chromosome that share ~99% identity in their core repetitive 'core'+'extension' segment. Drive homologous recombination and frequent rearrangements. Reads from the Rhs core must be treated as multi-mapping until PSV (extension-tip) disambiguation succeeds.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 700000,
+      "end": 3800000
+    }
+  },
+  "size_bp": 3100000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq",
+    "doi:10.1111/j.1365-2958.1991.tb01885.x"
+  ],
+  "confidence": 0.9,
+  "expected_copy_count": "5 (rhsA..rhsE)"
+}

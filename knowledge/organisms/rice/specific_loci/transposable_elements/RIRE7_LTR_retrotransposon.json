@@ -1,0 +1,28 @@
+{
+  "name": "RIRE7_LTR_retrotransposon",
+  "taxonomy_id": "tandem_repeat",
+  "description": "RIRE7 Ty3/Gypsy LTR retrotransposon.",
+  "coordinates": {
+    "IRGSP_1_0": {
+      "chr": "chr5",
+      "start": 6000000,
+      "end": 6060000
+    }
+  },
+  "size_bp": 60000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "sources": [
+    "doi:10.1038/nrg2165",
+    "doi:10.1146/annurev.arplant.59.032607.092744"
+  ],
+  "confidence": 0.75,
+  "repeat_class": "transposable_element"
+}

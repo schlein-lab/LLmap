@@ -1,0 +1,37 @@
+{
+  "name": "HBV_full_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "viral_genome",
+  "virus_type": "dsDNA-RT",
+  "description": "Hepatitis B virus complete genome: partially double-stranded circular relaxed-circular DNA (rcDNA), ~3.2 kb, replicated via an RNA intermediate (pgRNA) using viral reverse transcriptase. The genome is functionally circular and uses four overlapping open reading frames (P/polymerase, S/surface, C/core, X) that together encode 7 proteins through alternative initiation. Reference genotype A (NC_003977.2, Galibert 1979 / Norder revision). HBV exists as 10 major genotypes (A-J) with up to 8% intergenotype divergence; intra-genotype divergence <4%. Maps as a single locus but covalently closed circular (cccDNA) intermediate in nucleus and integrated forms in chronic infection require circular-aware mapping and host-junction detection.",
+  "coordinates": {
+    "NCBI_RefSeq_NC_003977.2": {"chr": "NC_003977.2", "start": 1, "end": 3182}
+  },
+  "size_bp": 3182,
+  "circular": true,
+  "expected_copy_count": "10^4-10^9 rcDNA copies per infected hepatocyte in chronic HBV; integrated copies sub-clonal in hepatocellular carcinoma",
+  "expected_paralogs": [
+    {"name": "ORF_P_polymerase", "approx_offset_in_locus": 2307, "note": "spans nt 2307-1623 across origin"},
+    {"name": "ORF_S_PreS1_PreS2_S", "approx_offset_in_locus": 2848},
+    {"name": "ORF_C_PreC_Core", "approx_offset_in_locus": 1814},
+    {"name": "ORF_X", "approx_offset_in_locus": 1374}
+  ],
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 1.2,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "circular_handling": true,
+    "host_integration_aware": true,
+    "genotype_aware": true
+  },
+  "sources": [
+    "doi:10.1038/281646a0",
+    "doi:10.1099/vir.0.19493-0",
+    "ICTV Hepadnaviridae taxonomy 2022",
+    "NCBI Virus RefSeq NC_003977.2"
+  ],
+  "confidence": 0.95
+}

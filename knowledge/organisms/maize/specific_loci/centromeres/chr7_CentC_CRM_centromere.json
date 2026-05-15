@@ -1,0 +1,31 @@
+{
+  "name": "chr7_CentC_CRM_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "chr7 centromere (B73 RefGen v5). CentC 156-bp satellite tandem array interspersed with CRM (centromeric retrotransposon of maize) Ty3/Gypsy LTR elements; functional centromere by CENH3 ChIP-seq (Schneider 2016; Liu 2020).",
+  "coordinates": {
+    "B73_RefGen_v5": {
+      "chr": "chr7",
+      "start": 62000000,
+      "end": 64500000
+    }
+  },
+  "size_bp": 2500000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 250000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true
+  },
+  "sources": [
+    "doi:10.1126/science.abg5289",
+    "doi:10.1038/nature22971",
+    "doi:10.1101/gr.198837.115"
+  ],
+  "confidence": 0.85,
+  "expected_copy_count": "CentC ~1000-5000 monomers + CRM retroelements",
+  "satellite_unit_bp": 156
+}

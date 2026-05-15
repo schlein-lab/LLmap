@@ -1,0 +1,28 @@
+{
+  "name": "mhc_class_II_chr8",
+  "taxonomy_id": "paralog_family",
+  "description": "Zebrafish MHC: mhc class II region on chr8 \u2014 DAB/DGB paralogs; class II is on a completely different chromosome from class I, reflecting the ancestral teleost MHC fragmentation. Unlike tetrapods, zebrafish MHC class I and class II are unlinked and dispersed across multiple chromosomes \u2014 the canonical 'MHC region' concept does not apply. Each subfamily has 5-30 paralogs with intra-cluster identity 75-95%. High population polymorphism: >100 alleles described per locus.",
+  "coordinates": {
+    "GRCz11": {
+      "chr": "chr8",
+      "start": 32500000,
+      "end": 33400000
+    }
+  },
+  "size_bp": 900000,
+  "expected_copy_count": "5-30 paralogs per cluster, highly polymorphic",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/384345a0",
+    "doi:10.1038/nature12111",
+    "doi:10.1007/s00251-017-0997-3"
+  ],
+  "confidence": 0.8
+}

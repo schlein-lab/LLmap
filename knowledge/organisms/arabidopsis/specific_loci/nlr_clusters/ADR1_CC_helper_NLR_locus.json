@@ -1,0 +1,28 @@
+{
+  "name": "ADR1_CC_helper_NLR_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "ADR1 helper CC-NLR (Bonardi 2011) \u2014 required downstream signalling.",
+  "coordinates": {
+    "TAIR10": {
+      "chr": "Chr1",
+      "start": 11500000,
+      "end": 11550000
+    }
+  },
+  "size_bp": 50000,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1105/tpc.009308",
+    "doi:10.1146/annurev.phyto.45.062806.094427"
+  ],
+  "confidence": 0.8,
+  "repeat_class": "NB-LRR"
+}

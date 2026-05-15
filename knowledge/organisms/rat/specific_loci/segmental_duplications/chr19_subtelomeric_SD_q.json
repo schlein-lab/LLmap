@@ -1,0 +1,33 @@
+{
+  "name": "chr19_subtelomeric_SD_q",
+  "taxonomy_id": "paralog_family",
+  "description": "Subtelomeric SD/LCR block at q-arm tip of chr19. Subtelomeric repeats shared across rat chromosome ends. Multi-copy at 95-99% sequence identity; assembly-uncertain in mRatBN7.2.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr19",
+      "start": 60895611,
+      "end": 62395611
+    }
+  },
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "SD modules of 10-200 kb at 95-99% identity; shared duplicons across rat pericentromeric/subtelomeric regions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "UCSC genomicSuperDups mRatBN7.2",
+    "RGD"
+  ],
+  "confidence": 0.65
+}

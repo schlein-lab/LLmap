@@ -1,0 +1,29 @@
+{
+  "name": "Ebola_np",
+  "taxonomy_id": "custom",
+  "description": "NP nucleoprotein.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_002549.1": {
+      "start": 470,
+      "end": 2689
+    }
+  },
+  "size_bp": 2220,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 6000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ebola_virus_disease"
+  ],
+  "sources": [
+    "NC_002549.1",
+    "doi:10.1126/science.1259657"
+  ],
+  "confidence": 0.97
+}

@@ -1,0 +1,29 @@
+{
+  "name": "duplicon_995pct_300kb",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "duplicon_high_identity",
+  "description": "Two-copy duplicon of 300000 bp at 99.5% pairwise identity (1 mismatch every 200 bp on average). Models recent segmental duplications (e.g. SMN1/SMN2, NF1/NF1P). Stresses paralog-specific variant (PSV) disambiguation: paralogous k-mers dominate index.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_063",
+      "start": 0,
+      "end": 600000
+    }
+  },
+  "size_bp": 600000,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": true,
+    "copies": 2,
+    "identity_pct": 99.5
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

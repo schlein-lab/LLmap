@@ -1,0 +1,27 @@
+{
+  "name": "Ces_cluster_CNV_chr19",
+  "taxonomy_id": "paralog_family",
+  "description": "Carboxylesterase (Ces) gene cluster on chr19. ~10 paralogs (Ces1, Ces2 sub-clusters), strain-variable copies. Recurrent CNV documented in rat strain comparisons; multi-copy mapping requires PSV awareness.",
+  "coordinates": {
+    "mRatBN7_2": {
+      "chr": "chr19",
+      "start": 18000000,
+      "end": 19500000
+    }
+  },
+  "size_bp": 1500000,
+  "expected_copy_count": "2-20 copies depending on strain/haplotype",
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1038/nature02426",
+    "RGD CNV database",
+    "Ensembl rat"
+  ],
+  "confidence": 0.75
+}

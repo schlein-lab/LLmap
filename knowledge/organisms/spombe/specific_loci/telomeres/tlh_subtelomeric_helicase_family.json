@@ -1,0 +1,29 @@
+{
+  "name": "tlh_subtelomeric_helicase_family",
+  "taxonomy_id": "paralog_family",
+  "description": "tlh1 / tlh2 / tlh3 / tlh4 subtelomeric RecQ-family helicase paralog cluster in S. pombe. Each ~5 kb tlh ORF sits at the boundary of a non-rDNA subtelomere; tlh1 and tlh2 are >97% identical sister paralogs, tlh3/tlh4 are more diverged copies. Silenced by Clr4-mediated H3K9me; reactivation in clr4-delta or epe1-delta cells. Reads from tlh1 and tlh2 multi-map heavily.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I,II",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 5000,
+  "expected_copy_count": "2-4 tlh paralogs (tlh1, tlh2, tlh3, tlh4)",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PMID:18347655",
+    "PomBase tlh"
+  ],
+  "confidence": 0.85
+}

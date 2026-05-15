@@ -1,0 +1,29 @@
+{
+  "name": "Influenza_C_reference",
+  "taxonomy_id": "custom",
+  "description": "Influenza C virus. 7 segments (HEF combined). Mild respiratory disease, mostly children. HEF (hemagglutinin-esterase-fusion) replaces HA + NA. 6 lineages (C/Aichi-like, C/Mississippi-like, etc.).",
+  "virus_type": "ssRNA(-)",
+  "segmented": true,
+  "coordinates": {
+    "NC_006307.2": {
+      "start": 1,
+      "end": 2365
+    }
+  },
+  "size_bp": 12900,
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Influenza_C"
+  ],
+  "sources": [
+    "NC_006307-NC_006313"
+  ],
+  "confidence": 0.95
+}

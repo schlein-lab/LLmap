@@ -1,0 +1,32 @@
+{
+  "name": "poly_G_10000bp",
+  "taxonomy_id": "synthetic",
+  "synthetic_class": "homopolymer",
+  "description": "Pure poly-G homopolymer of 10000 bp (GC=100%). G-quadruplex-prone, sequencer-hostile (PacBio/ONT homopolymer-collapse). Tests mapper robustness to systematic length errors.",
+  "coordinates": {
+    "synth": {
+      "chr": "synth_003",
+      "start": 0,
+      "end": 10000
+    }
+  },
+  "size_bp": 10000,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.1,
+    "max_occ": 1000000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false,
+    "require_psv_disambig": false,
+    "shannon_5mer_expected": [
+      0.0,
+      0.5
+    ],
+    "g_quadruplex_prone": true
+  },
+  "sources": [
+    "synthetic, designed as mapper stress test \u2014 no biological source"
+  ],
+  "confidence": 1.0
+}

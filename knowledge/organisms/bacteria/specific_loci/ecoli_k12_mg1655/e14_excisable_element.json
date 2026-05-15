@@ -1,0 +1,26 @@
+{
+  "name": "ecoli_k12_mg1655_e14_excisable_element",
+  "taxonomy_id": "custom",
+  "description": "e14 prophage-like element (15 kb); excisable, encodes pin DNA invertase and Mcr restriction system. Mu-like attachment site.",
+  "coordinates": {
+    "GenBank_NC_000913.3": {
+      "chr": "NC_000913.3",
+      "start": 1195430,
+      "end": 1210646
+    }
+  },
+  "size_bp": 15216,
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "NCBI:RefSeq"
+  ],
+  "confidence": 0.9,
+  "prophage_family": "Mu-like"
+}

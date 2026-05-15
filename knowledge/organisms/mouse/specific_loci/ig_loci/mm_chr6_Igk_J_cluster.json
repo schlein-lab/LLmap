@@ -1,0 +1,43 @@
+{
+  "name": "mm_chr6_Igk_J_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse Ig kappa: Igk Jkappa cluster (Jk1-Jk5).",
+  "coordinates": {
+    "mm39": {
+      "chr": "chr6",
+      "start": 70700000,
+      "end": 70703000
+    }
+  },
+  "size_bp": 3000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "ig_VDJ_cluster",
+    "BP_mediating_SDs": [
+      "Igk_J_cluster"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 3,
+    "internal_structure": "Igk Jkappa cluster (Jk1-Jk5)",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "IMGT mouse Igk",
+    "Brekke 2003"
+  ]
+}

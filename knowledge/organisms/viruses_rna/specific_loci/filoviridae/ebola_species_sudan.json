@@ -1,0 +1,28 @@
+{
+  "name": "Sudan_ebolavirus",
+  "taxonomy_id": "custom",
+  "description": "Sudan ebolavirus. Outbreaks 1976, 1979, 2000, 2004, 2012, 2022 (Uganda). ~57% nt identity to EBOV Zaire.",
+  "virus_type": "ssRNA(-)",
+  "coordinates": {
+    "NC_006432.1": {
+      "start": 1,
+      "end": 18875
+    }
+  },
+  "size_bp": 18875,
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Filovirus_hemorrhagic_fever"
+  ],
+  "sources": [
+    "NC_006432.1"
+  ],
+  "confidence": 0.97
+}

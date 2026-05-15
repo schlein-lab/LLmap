@@ -1,0 +1,34 @@
+{
+  "name": "18S_V4_Excavata",
+  "taxonomy_id": "18S_rRNA",
+  "marker": "18S_rRNA",
+  "region_role": "variable_core",
+  "description": "18S rRNA hypervariable region V4 in eukaryotic group Excavata. ~510 bp on the S. cerevisiae rrn18 numbering (positions 565-1075). Trypanosomes, Giardia, Trichomonas; parasitic and free-living. V4 and V9 are the most widely used metabarcoding targets for eukaryotes (Stoeck 2010, de Vargas 2015 Tara Oceans). Allow high mismatch for cross-clade biology.",
+  "coordinates": {
+    "consensus": {
+      "chr": "meta_063",
+      "start": 0,
+      "end": 510
+    }
+  },
+  "size_bp": 510,
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false,
+    "marker": "18S_rRNA",
+    "v_region": "V4",
+    "eukaryotic_group": "Excavata"
+  },
+  "sources": [
+    "SILVA 138.1 SSU Ref NR99 (eukaryotic)",
+    "PR2 5.0.0 protist database",
+    "doi:10.1111/j.1365-294X.2009.04480.x",
+    "doi:10.1126/science.1261605"
+  ],
+  "confidence": 0.9
+}

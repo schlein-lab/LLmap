@@ -1,0 +1,28 @@
+{
+  "name": "5S_rRNA_chrI_cluster",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "5S rRNA solo loci on S. pombe chromosome I. 12 of the ~30 dispersed 5S rRNA paralogs on S. pombe chromosome I. Each ~120 bp Pol III unit is near-identical (>97%) to the others; reads multi-map across all chromosomes.",
+  "coordinates": {
+    "ASM294v2": {
+      "chr": "I",
+      "start": 0,
+      "end": 0
+    }
+  },
+  "size_bp_per_unit": 120,
+  "expected_copy_count": "12 5S copies on chrI",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 35000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1038/nature724",
+    "PomBase 5S"
+  ],
+  "confidence": 0.8
+}

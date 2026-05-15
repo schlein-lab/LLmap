@@ -1,0 +1,27 @@
+{
+  "name": "cluster_42AB_chr2R",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Drosophila piRNA-producing cluster: 42AB \u2014 dual-strand piRNA cluster on chr2R pericentric heterochromatin, ~240 kb, the largest piRNA cluster in the genome, targets dozens of TE families.. Sequence content is essentially a transposon graveyard \u2014 dense, layered TE remnants 100-99% identical to active copies elsewhere. Reads here have many off-target placements at active TE insertion sites.",
+  "coordinates": {
+    "BDGP6_46": {
+      "chr": "chr2R",
+      "start": 6250000,
+      "end": 6500000
+    }
+  },
+  "size_bp": 250000,
+  "expected_copy_count": "10-50 partial TE copies per cluster",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "allow_high_mismatch": false
+  },
+  "sources": [
+    "doi:10.1016/j.cell.2007.01.043",
+    "doi:10.1101/gr.185579.114"
+  ],
+  "confidence": 0.85
+}

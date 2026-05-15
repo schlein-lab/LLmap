@@ -1,0 +1,43 @@
+{
+  "name": "mm_chrY_Ssty2_amplicon",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse Y ampliconic region: Ssty2 ampliconic palindrome array. Intra-chromosomal gene-conversion-driven copy preservation.",
+  "coordinates": {
+    "mm39": {
+      "chr": "chrY",
+      "start": 40500000,
+      "end": 45500000
+    }
+  },
+  "size_bp": 5000000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "y_ampliconic_palindrome",
+    "BP_mediating_SDs": [
+      "Ssty2_amplicon"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 200,
+    "internal_structure": "Y palindrome arm with intra-chromosomal gene conversion",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "MGI_count": null,
+    "DGV_mouse_count": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "Soh 2014 (PMID:25337974)",
+    "UCSC mm39 chrY"
+  ]
+}
