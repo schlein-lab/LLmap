@@ -90,4 +90,17 @@ void ApplyPsvAssignments(
     const std::vector<std::string>& read_sequences,
     bool verbose);
 
+// Reporting (cmd_align_report.cpp)
+void PrintAlignmentSummary(
+    const AlignArgs& args,
+    const classical::ClassicalPipelineStats& stats,
+    std::size_t total_reads,
+    std::size_t n_mapped,
+    std::size_t n_unmapped,
+    float align_time_ms,
+    float total_time_ms);
+
+bool ShouldRunLlmDiagnostics(const AlignArgs& args, float mapping_rate);
+bool IsLlmEnabledButSkipped(const AlignArgs& args, float mapping_rate);
+
 }  // namespace llmap::cli::align_internal
