@@ -30,7 +30,7 @@ After the identity-preset and chain-DP fixes (commits `dd1305d`, `1529c73`) and 
 | T6 | 419,857 | 100.00% | 79.88% | 87.71% |
 | **T5** iso-seq, 17.17M reads vs human transcriptome | LLmap | 25 min | 16,422,489 / 17,165,724 = 95.7% | 0.943 | streaming verified at 17M-read scale |
 | | minimap2 | 26 min | 15,970,754 / 17,165,724 = 93.04% primary | — | +37M secondary alignments emitted |
-| **T3** 2.5M real HiFi WGS, 111 GB FASTQ | LLmap | running, 8 GB RAM stable | (was OOM before, now streamed in 50k batches) | | |
+| **T3** 2.5M real HiFi WGS, 111 GB FASTQ vs GRCh38 chr14+chr20 | LLmap | hit 2 h SLURM cap; resubmitted with 6 h | 193,791 / 193,902 partial = 97.88% (cancelled at 82 min, ~8% of input) | | streaming verified: bounded 9.5 GB RAM throughout, valid SAM output. Throughput ~40 reads/s on whole-chromosome reference — much slower than T1/T6 because index produces far more hits/read on a 173 MB ref. Algorithmic bottleneck, not OOM. |
 | | minimap2 | 46 min (rep2) | 50.6% | | only minimap2 rep2 done |
 | **T4** Illumina WGS | not staged | | | | |
 
