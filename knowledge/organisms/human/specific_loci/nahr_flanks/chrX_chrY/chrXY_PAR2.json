@@ -1,0 +1,45 @@
+{
+  "name": "chrXY_PAR2",
+  "description": "Pseudoautosomal region 2, Xq28 / Yq12. ~330 kb, recently evolved, lower obligate recombination rate than PAR1.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 155701383,
+      "end": 156030895
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 56887903,
+      "end": 57217415
+    }
+  },
+  "size_bp": 329513,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "PAR2"
+    ],
+    "homology_percent": 100.0,
+    "sd_length_kb": 330,
+    "microhomology_bp_at_breakpoint": "n/a",
+    "internal_structure": "IL9R, SPRY3, VAMP7, WASH6P",
+    "copy_number_in_population": "diploid"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {},
+  "confidence": 0.95,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family"
+}

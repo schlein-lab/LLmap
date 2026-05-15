@@ -1,0 +1,42 @@
+{
+  "name": "chrX_intra_paralog_FAM156A_FAM156B",
+  "description": "X-chromosomal intrachromosomal paralog cluster FAM156A_FAM156B. Genes: FAM156A/B. tandem paralog.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 53700000,
+      "end": 53720000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "FAM156A_FAM156B"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "FAM156A/B",
+    "copy_number_in_population": "variable_CNV (somatic in tumors)"
+  },
+  "related_diseases": [
+    "tandem paralog"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.82,
+  "sources": [
+    "Bailey & Eichler SD-DB",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

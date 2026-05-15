@@ -1,0 +1,45 @@
+{
+  "name": "chrX_recurrent_Xp22.2_del_PHF8",
+  "description": "Recurrent ClinGen-curated X chromosome CNV Xp22.2_del_PHF8. Affects: PHF8.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 54000000,
+      "end": 54500000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "Xp22.2_del_PHF8_flank"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PHF8",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Siderius X-linked ID"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "HI=3 or TS=3 (gene-dependent)"
+  },
+  "confidence": 0.88,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "ClinGen dosage curation",
+    "gnomAD-SV v4.1"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

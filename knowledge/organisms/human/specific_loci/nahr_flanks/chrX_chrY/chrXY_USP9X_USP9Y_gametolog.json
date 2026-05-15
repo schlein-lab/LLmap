@@ -1,0 +1,50 @@
+{
+  "name": "chrXY_USP9X_USP9Y_gametolog",
+  "description": "X/Y gametolog pair USP9X_USP9Y. Identity ~94.0%, length ~20 kb. Xp11.4 41_085_000-41_236_000 vs Yq11.21 12_658_000-12_860_000. Related to: Sertoli cell only, ID.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 0,
+      "end": 0,
+      "note": "Xp11.4 41_085_000-41_236_000"
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "Yq11.21 12_658_000-12_860_000"
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "USP9X",
+      "USP9Y"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "gametolog pair USP9X_USP9Y",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Sertoli cell only, ID"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family"
+}

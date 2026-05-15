@@ -1,0 +1,47 @@
+{
+  "name": "chrY_AZFc_partial_b1_b3",
+  "description": "AZFc partial b1 b3 NAHR product mediated by b1/b3 NAHR. Removes/alters: RBMY, PRY, HSFY.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 18750000,
+      "end": 24330000
+    }
+  },
+  "size_bp": 5580000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "b1/b3 NAHR"
+    ],
+    "homology_percent": 99.9,
+    "sd_length_kb": 5600,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "AZF amplicon block",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 110000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "b1/b3 deletion, AZFbc-like phenotype"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "AZFa/b/c each HI=3"
+  },
+  "confidence": 0.93,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Repping et al 2002 Am J Hum Genet 71:906",
+    "Repping et al 2003 Nat Genet 35:247",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map",
+    "Tuttelmann et al 2007 Reprod Biomed Online (AZF review)"
+  ],
+  "taxonomy_id": "paralog_family"
+}

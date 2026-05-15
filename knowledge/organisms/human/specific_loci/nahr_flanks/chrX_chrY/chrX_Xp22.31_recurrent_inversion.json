@@ -1,0 +1,43 @@
+{
+  "name": "chrX_Xp22.31_recurrent_inversion",
+  "description": "Recurrent Xp22.31 inversion polymorphism mediated by inverted SDs at Xp22.31 boundaries. Permissive haplotype for downstream deletions.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 6400000,
+      "end": 8200000
+    }
+  },
+  "size_bp": 1800000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "S232_REP1",
+      "S232_REP2"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "STS region",
+    "copy_number_in_population": "polymorphic inversion"
+  },
+  "related_diseases": [
+    "X-linked ichthyosis predisposition"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Vissers/Schluth-Bolard 2010 inv Xp",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

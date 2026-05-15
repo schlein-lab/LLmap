@@ -1,0 +1,43 @@
+{
+  "name": "chrX_ATRX_SD_distal",
+  "description": "chrX Xq13.1 locus ATRX_SD_distal SD/NAHR substrate. Mediator: ATRX_SD. Genes: ATRX 3'.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 77780000,
+      "end": 77800000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "ATRX_SD"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ATRX 3'",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "ATR-X"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.8,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

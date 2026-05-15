@@ -1,0 +1,45 @@
+{
+  "name": "chrY_idic_Yp_break_in_P3",
+  "description": "Isodicentric Y formed via palindrome-mediated U-type fold: isodicentric Y with breakpoint in P3 (most common).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 21855000,
+      "end": 22905000
+    }
+  },
+  "size_bp": 1050000,
+  "nahr_class": "palindrome_NAHR",
+  "architecture": {
+    "type": "palindrome",
+    "BP_mediating_SDs": [
+      "P3 break"
+    ],
+    "homology_percent": 99.97,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies (kb-scale)",
+    "internal_structure": "isodicentric U-type rearrangement",
+    "copy_number_in_population": "de novo, mosaic with 45,X"
+  },
+  "related_diseases": [
+    "mixed gonadal dysgenesis",
+    "Turner mosaicism",
+    "infertility"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.9,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

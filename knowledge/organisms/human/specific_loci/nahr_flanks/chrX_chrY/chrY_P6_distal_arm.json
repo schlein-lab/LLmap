@@ -1,0 +1,43 @@
+{
+  "name": "chrY_P6_distal_arm",
+  "description": "Single arm (distal_arm) of Y palindrome P6. Pairs with the opposing arm at 99.95% identity to form NAHR substrate.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 10030000,
+      "end": 10104000
+    }
+  },
+  "size_bp": 74000,
+  "nahr_class": "palindrome_NAHR",
+  "architecture": {
+    "type": "palindrome",
+    "BP_mediating_SDs": [
+      "P6_proximal_arm",
+      "P6_distal_arm"
+    ],
+    "homology_percent": 99.95,
+    "sd_length_kb": 110,
+    "microhomology_bp_at_breakpoint": "kilobase IGC tracts",
+    "internal_structure": "P6 arm",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Spermatogenic failure"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map"
+  ],
+  "taxonomy_id": "paralog_family"
+}

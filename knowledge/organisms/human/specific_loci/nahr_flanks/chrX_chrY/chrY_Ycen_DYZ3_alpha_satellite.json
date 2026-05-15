@@ -1,0 +1,42 @@
+{
+  "name": "chrY_DYZ3_alpha_satellite",
+  "description": "Y centromeric alpha-satellite array (DYZ3). Substrate for Y centromere repositioning and isodicentric formation.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 10300000,
+      "end": 10700000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "DYZ3"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 400,
+    "microhomology_bp_at_breakpoint": "alpha-satellite HOR",
+    "internal_structure": "171 bp alpha-satellite HOR",
+    "copy_number_in_population": "variable"
+  },
+  "related_diseases": [
+    "idic(Y) formation"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

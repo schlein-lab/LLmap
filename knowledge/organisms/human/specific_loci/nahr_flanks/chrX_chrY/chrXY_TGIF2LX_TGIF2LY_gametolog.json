@@ -1,0 +1,50 @@
+{
+  "name": "chrXY_TGIF2LX_TGIF2LY_gametolog",
+  "description": "X/Y gametolog pair TGIF2LX_TGIF2LY. Identity ~93.0%, length ~10 kb. Xq21.31 89_000_000-89_010_000 vs Yp11.2 3_400_000-3_410_000. Related to: transcription factor.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 0,
+      "end": 0,
+      "note": "Xq21.31 89_000_000-89_010_000"
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "Yp11.2 3_400_000-3_410_000"
+    }
+  },
+  "size_bp": 10000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "TGIF2LX",
+      "TGIF2LY"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "gametolog pair TGIF2LX_TGIF2LY",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "transcription factor"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family"
+}

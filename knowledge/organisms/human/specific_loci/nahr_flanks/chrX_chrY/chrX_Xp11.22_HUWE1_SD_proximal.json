@@ -1,0 +1,43 @@
+{
+  "name": "chrX_HUWE1_SD_proximal",
+  "description": "chrX Xp11.22 locus HUWE1_SD_proximal SD/NAHR substrate. Mediator: HUWE1_SD.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 53550000,
+      "end": 53580000
+    }
+  },
+  "size_bp": 30000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HUWE1_SD"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "HUWE1 5'",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Turner-Mhats / Brunner ID dup"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}
