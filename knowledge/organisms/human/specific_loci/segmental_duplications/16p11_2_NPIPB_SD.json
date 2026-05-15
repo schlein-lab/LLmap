@@ -1,0 +1,30 @@
+{
+  "name": "16p11_2_NPIPB_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "NPIPB nuclear pore complex interacting protein B family — multi-copy human-specific duplicon family distributed across chr16p11.2 BP4-BP5 and beyond. NPIPB1-B15 paralogs at >99% identity drive most of the BP4/BP5 SD content alongside BOLA2; key contributor to 16p11.2 CNV recurrence.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 21800000, "end": 33800000}},
+  "size_bp": 12000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "NPIPB1-B15 plus NPIPA family copies distributed throughout 16p; each duplicon ~10-15 kb at >99% identity; copy number variable 12-30 across populations."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 120000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 recurrent CNV (NAHR substrate)",
+    "human-specific genomic instability"
+  ],
+  "sources": [
+    "doi:10.1038/nature19075",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

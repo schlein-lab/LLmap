@@ -1,0 +1,35 @@
+{
+  "name": "chrX_Xq28_G6PD_dispersed_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq28 region containing G6PD (glucose-6-phosphate dehydrogenase) plus FLNA, EMD, F8 (cross-ref). G6PD lies in a small SD cluster sharing fragments with autosomal pseudogenes; clinically the most polymorphic enzyme locus in humans (>400 variants worldwide).",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 154500000, "end": 154700000}},
+  "size_bp": 200000,
+  "architecture": {
+    "type": "short_dispersed_SD",
+    "copy_number_in_population": "stable_hemizygous_male",
+    "homology_percent": 92.0,
+    "internal_structure": "Short ~5 kb SD fragments around G6PD; flanked by FLNA, EMD, F8 in the Xq28 LCR-rich tail."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "G6PD deficiency (favism, drug-induced hemolysis)",
+    "X-linked Emery-Dreifuss muscular dystrophy (EMD)",
+    "FLNA-related disorders (periventricular nodular heterotopia, OPD spectrum)"
+  ],
+  "cross_references": [
+    "Xq28_recurrent.json",
+    "chrX_Xq28_MECP2_dup.json"
+  ],
+  "sources": [
+    "doi:10.1038/350353a0",
+    "PMID:8533761"
+  ],
+  "confidence": 0.85
+}

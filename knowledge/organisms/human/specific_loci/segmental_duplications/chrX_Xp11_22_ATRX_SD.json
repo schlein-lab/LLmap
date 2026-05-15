@@ -1,0 +1,30 @@
+{
+  "name": "chrX_Xp11_22_ATRX_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xp11.22 region around the ATRX gene; contains a complex ~200 kb pericentromeric SD with paralogs on chrX (Xq13), chr3p11, and 16p11 derived from the ATRX-Y promoter region. Misalignment causes ATRX false-positive variant calls in short-read pipelines.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 76800000, "end": 77100000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "intrachromosomal_plus_interchromosomal_SD",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 97.5,
+    "internal_structure": "Intronic ATRX SDs plus 16p11 and 3p11 dispersed paralogs at >97% identity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "ATR-X syndrome (alpha-thalassemia mental retardation, X-linked)",
+    "X-linked intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1086/507816",
+    "PMID:7697716"
+  ],
+  "confidence": 0.8
+}

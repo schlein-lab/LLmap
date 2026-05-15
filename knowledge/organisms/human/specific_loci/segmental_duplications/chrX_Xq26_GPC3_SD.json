@@ -1,0 +1,31 @@
+{
+  "name": "chrX_Xq26_2_GPC3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq26.2 region containing GPC3 (glypican 3, Simpson-Golabi-Behmel syndrome). GPC3 spans ~500 kb and harbors intronic SDs; nearby BCORL1 (paralog of BCOR on Xp11.4) creates a long-range paralogy. Recurrent intragenic GPC3 deletions cause SGBS.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 132600000, "end": 133400000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "intragene_dispersed_SD",
+    "copy_number_in_population": "stable_hemizygous_male",
+    "homology_percent": 95.0,
+    "internal_structure": "Intronic GPC3 SDs and LINE-rich regions; BCORL1 paralog of BCOR (Xp11.4) at same band."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Simpson-Golabi-Behmel syndrome (GPC3)",
+    "X-linked overgrowth syndromes",
+    "Wilms tumor predisposition"
+  ],
+  "sources": [
+    "doi:10.1038/ng0696-241",
+    "PMID:8589695"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,31 @@
+{
+  "name": "chr20_centromere_pericentric",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 20 centromere and pericentric SD field (20p11.1 / 20q11.1 boundary). The chr20 centromere is small (~1.5 Mb of D20Z2 alpha-satellite) but flanked by megabase-scale pericentric SDs that mediate the common polymorphic pericentric inv(20) and frequent NAHR events.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 26400000, "end": 28100000}},
+  "size_bp": 1700000,
+  "architecture": {
+    "type": "centromeric_array_plus_SD",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "D20Z2 alpha-satellite higher-order repeat core (~1.5 Mb) of 171 bp monomers; pericentric SDs of 100-500 kb at >99% identity flanking the centromere; gap in GRCh38, fully resolved in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Pericentric inv(20) polymorphism",
+    "Recombination suppression in inversion carriers"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.85
+}

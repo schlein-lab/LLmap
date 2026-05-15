@@ -1,0 +1,31 @@
+{
+  "name": "chr20_20q13_33_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20q13.33 distal subtelomeric SD field (last ~500 kb of chr20q). Contains shared subtelomeric duplicons with multiple other chromosome ends, terminal LINE-rich repeats and the OPRL1/COL9A3 paralog region; common site of subtelomeric rearrangements.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 63800000, "end": 64444167}},
+  "size_bp": 644167,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Mosaic of 5-50 kb subtelomeric duplicons at 95-99% identity shared with the subtelomeres of multiple other chromosomes; characteristic terminal SD enrichment; assembly fully resolved only in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Subtelomeric 20q13.33 deletion / duplication",
+    "Cryptic translocations involving 20q tip"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.8
+}

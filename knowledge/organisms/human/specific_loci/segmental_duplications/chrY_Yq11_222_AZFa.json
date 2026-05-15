@@ -1,0 +1,34 @@
+{
+  "name": "chrY_Yq11_222_AZFa_USP9Y",
+  "taxonomy_id": "paralog_family",
+  "description": "AZFa (Azoospermia Factor a) sub-region of MSY at proximal Yq11.221, ~792 kb containing USP9Y and DDX3Y. Flanked by two ~10 kb HERV-derived direct repeats (HERV15yq1/HERV15yq2) at 94% identity; NAHR between these HERVs causes the recurrent ~792 kb AZFa deletion underlying ~5% of non-obstructive azoospermia.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 14300000, "end": 15100000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "HERV_flanked_direct_repeat",
+    "copy_number_in_population": "stable_in_fertile_males",
+    "homology_percent": 94.0,
+    "internal_structure": "Two HERV15 proviruses in direct orientation flanking USP9Y and DDX3Y; recurrent NAHR deletion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "AZFa deletion / Sertoli cell-only syndrome",
+    "non-obstructive azoospermia"
+  ],
+  "cross_references": [
+    "../y_chromosome/chrY_AZF.json"
+  ],
+  "sources": [
+    "doi:10.1038/35057157",
+    "doi:10.1038/sj.ejhg.5200839",
+    "PMID:11875031"
+  ],
+  "confidence": 0.95
+}

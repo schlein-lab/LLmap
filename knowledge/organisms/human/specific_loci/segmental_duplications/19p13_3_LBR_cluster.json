@@ -1,0 +1,34 @@
+{
+  "name": "19p13_3_LBR_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.3 subtelomeric region with a complex SD cluster (LBR/MIER2/THEG paralog cassettes). Recurrent terminal deletions / duplications cause 19p13 microdeletion (ID, microcephaly, characteristic facies). MIER2 and APC2 contribute to dosage phenotype; flanking subtelomeric SDs at 19pter mediate a fraction of breakpoints. Distinct from the more common 19q13.11 microdeletion.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 0, "end": 4000000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_19p13.3_subtelomeric", "SD_19p13.3_LBR_paralog"],
+    "homology_percent": 96.0,
+    "internal_structure": "Subtelomeric SD cluster (~30-150 kb blocks) shared with other subtelomeric regions; critical genes MIER2, APC2, PLK5, THEG, ODF3L2, LBR (more proximal at 1q42). High GC-content and tight gene packing characteristic of 19pter."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "19p13.3 microdeletion syndrome (ID, microcephaly)",
+    "19p13.3 microduplication syndrome",
+    "developmental delay"
+  ],
+  "penetrance": "variable",
+  "sources": [
+    "doi:10.1002/ajmg.a.34301",
+    "doi:10.1136/jmedgenet-2013-101919",
+    "ClinGen Dosage Sensitivity 19p13.3 region"
+  ],
+  "confidence": 0.75
+}

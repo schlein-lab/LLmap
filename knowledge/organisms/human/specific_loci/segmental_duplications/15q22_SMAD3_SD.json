@@ -1,0 +1,30 @@
+{
+  "name": "15q22_SMAD3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "SMAD3 (Loeys-Dietz syndrome type 3, aneurysm-osteoarthritis) at 15q22.33 is flanked by ~5-20 kb directly-oriented SDs at 92-96% identity that drive rare intragenic deletions and a recurrent ~1 Mb 15q22 microdeletion. The proximal flank harbours SMAD6 paralog footprints shared with chr6 SMAD-family loci.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 67000000, "end": 68100000}},
+  "size_bp": 1100000,
+  "architecture": {
+    "type": "flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "5-20 kb directly-oriented SDs at 92-96% identity flanking SMAD3; intragenic Alu-Alu pairs drive small deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Loeys-Dietz syndrome 3",
+    "aneurysm-osteoarthritis syndrome"
+  ],
+  "sources": [
+    "doi:10.1038/ng.744",
+    "doi:10.1056/NEJMoa1107159"
+  ],
+  "confidence": 0.85
+}

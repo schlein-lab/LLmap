@@ -1,0 +1,29 @@
+{
+  "name": "14q22_RTN1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "14q22.3-q23.1 region containing RTN1, MNAT1, NID2, and OTX2 (covered separately). Small intra-chromosomal SDs (5-20 kb at 93-97% identity) flank RTN1 and the OTX2 proximal flank, contributing to rare CNVs distinct from the OTX2 microdeletion.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 59600000, "end": 61500000}},
+  "size_bp": 1900000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "5-20 kb SD pairs at 93-97% identity flanking RTN1; small OTX2-region paralog footprints distal."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "rare 14q22-q23 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1101/gr.5042206"
+  ],
+  "confidence": 0.65
+}

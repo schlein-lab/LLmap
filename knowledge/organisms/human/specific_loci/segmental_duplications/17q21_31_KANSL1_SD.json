@@ -1,0 +1,32 @@
+{
+  "name": "17q21_31_KANSL1_inversion_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "KANSL1-flanking SDs (sub-locus of 17q21.31 inversion polymorphism). Two ~200 kb LCR17q21 blocks flank KANSL1 in inverted orientation on the H1 haplotype and in direct orientation on H2, explaining why microdeletions are restricted to H2 carriers (NAHR substrate alignment).",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 45800000, "end": 46500000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "LCR17q21A (proximal) and LCR17q21B (distal) of ~200 kb at >99% identity; H1 = inverted (NAHR-protected), H2 = direct (NAHR-permissive); KANSL1 unique core between the LCRs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Koolen-de Vries syndrome (KANSL1 haploinsufficiency)",
+    "Progressive supranuclear palsy (MAPT H1)",
+    "Parkinson disease risk (H1)"
+  ],
+  "sources": [
+    "doi:10.1038/ng1508",
+    "doi:10.1038/ng1772",
+    "doi:10.1038/ng.2613"
+  ],
+  "confidence": 0.95
+}

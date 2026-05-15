@@ -1,0 +1,29 @@
+{
+  "name": "13q12_3_SACS_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "SACS (sacsin, ARSACS spastic ataxia of Charlevoix-Saguenay) at 13q12.12 is flanked by small directly-oriented SDs (5-15 kb at 93-96% identity) that contribute to rare intragenic deletions. SACS is a >700 kb gene with a single 12.8 kb mega-exon highly enriched for Alu repeats, an additional fragility factor.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 23300000, "end": 23700000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "5-15 kb SDs flanking SACS; intragenic Alu-Alu pairs within the 12.8 kb mega-exon drive small deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "ARSACS (autosomal recessive spastic ataxia of Charlevoix-Saguenay)"
+  ],
+  "sources": [
+    "doi:10.1038/ng1296-411",
+    "doi:10.1038/sj.ejhg.5201648"
+  ],
+  "confidence": 0.7
+}

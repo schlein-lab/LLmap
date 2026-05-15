@@ -1,0 +1,36 @@
+{
+  "name": "2p15_p16_1_microdeletion_BCL11A_REL",
+  "taxonomy_id": "paralog_family",
+  "description": "2p15-p16.1 microdeletion syndrome — ~1.5-5 Mb deletions causing ID, microcephaly, autism, optic nerve hypoplasia, and characteristic facies. Critical genes BCL11A (HbF regulation, ID) and REL. Most breakpoints are non-recurrent (MMBIR), but flanking SD blocks at 2p15 and 2p16.1 mediate a fraction of recurrent events. Complements the existing chr2_2p15_p16_polymicrogyria_BPs entry with the broader microdeletion phenotype.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 59500000, "end": 62500000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_2p16.1_BCL11A_flank", "SD_2p15_FANCL_flank"],
+    "homology_percent": 95.0,
+    "internal_structure": "Flanking SD blocks of ~10-50 kb at >95% identity (low SD density region); unique core contains BCL11A (primary dosage gene; persistence of HbF when LoF), REL (NF-kB family), USP34, XPO1, COMMD1, FANCL, PUS10, PEX13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "2p15-p16.1 microdeletion syndrome (ID, microcephaly, optic nerve hypoplasia)",
+    "Dias-Logan syndrome (BCL11A LoF)",
+    "persistence of fetal hemoglobin (HPFH) via BCL11A",
+    "autism spectrum"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1136/jmg.2009.069013",
+    "doi:10.1136/jmedgenet-2013-101568",
+    "doi:10.1038/ng.3009",
+    "ClinGen Dosage Sensitivity BCL11A (HI=3)"
+  ],
+  "confidence": 0.9
+}

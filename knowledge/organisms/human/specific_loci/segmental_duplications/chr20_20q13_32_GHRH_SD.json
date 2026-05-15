@@ -1,0 +1,30 @@
+{
+  "name": "chr20_20q13_32_GHRH_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20q13.32 SD region surrounding GHRH (growth-hormone releasing hormone) and KCNB1. Short flanking SDs of ~5-20 kb at 92-96% identity contribute to GRCh38 mapping ambiguity at gene boundaries; locus is part of the 20q tail SD field.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 36300000, "end": 36600000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 94.0,
+    "internal_structure": "Short 5-20 kb intra-chromosomal SDs at 92-96% identity flanking GHRH, MANBAL; mosaic of partial duplicons."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Isolated growth hormone deficiency (GHRH variants)",
+    "Idiopathic short stature"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.6
+}

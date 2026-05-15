@@ -1,0 +1,31 @@
+{
+  "name": "chr11q11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 11 q-arm pericentric flank (11q11-11q12.1), the q-side sub-centromeric LCR shoreline. Hosts the 11q11 olfactory-receptor SD cluster distally. Alpha-satellite (D11Z1), pericentromeric SDs and HSat patches. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 54425074, "end": 57500000}, "chm13": {"chr": "chr11", "start": 54800000, "end": 58000000}},
+  "size_bp": 3074926,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D11Z1", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [2000, 4000],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + HSat patches + pericentromeric SD shoreline; distally adjoins 11q11 olfactory-receptor SD cluster."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "11q11 recurrent CNVs (olfactory-receptor-mediated)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,30 @@
+{
+  "name": "5q35_3_subtelomeric_SD",
+  "taxonomy_id": "terminal_repeat",
+  "description": "5q35.3 subtelomeric SD region distal to the Sotos critical interval. Contains FLT4 (VEGFR3), GNB2L1, and a ~60 kb subtelomeric duplicon shared with other chromosome ends at ~95% identity. Terminal 5q deletions (rare) and subtelomeric translocations involving 5qter are mediated by this block.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 180400000, "end": 181538259}},
+  "size_bp": 1138259,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD block of ~60 kb shared with multiple chromosome ends at ~95% identity; FLT4 receptor tyrosine kinase intragenic SDs; degenerate (TTAGGG)n telomere boundary."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Milroy disease (FLT4 LOF)",
+    "5q35 terminal deletion (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.6
+}

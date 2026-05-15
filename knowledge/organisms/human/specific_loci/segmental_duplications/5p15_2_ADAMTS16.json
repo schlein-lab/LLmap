@@ -1,0 +1,30 @@
+{
+  "name": "5p15_2_ADAMTS16_region",
+  "taxonomy_id": "paralog_family",
+  "description": "5p15.2 region containing ADAMTS16 (a-disintegrin-and-metalloproteinase-with-thrombospondin-motifs paralog of ADAMTS18/20). Short intragenic SDs and cross-chromosome paralog tracts (ADAMTS18 on 16q23, ADAMTS20 on 12q12) at 60-75% protein identity. Listed as a CNV polymorphism region in DGV.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 5100000, "end": 5500000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Short intragenic SDs ~5-15 kb in ADAMTS16 introns; cross-chromosome paralog tracts (ADAMTS16 <-> ADAMTS18/20) at 60-75% protein identity; rare CNVs in DGV."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 6000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "premature ovarian failure (ADAMTS16 LOF rare)",
+    "hypertension association"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.5
+}

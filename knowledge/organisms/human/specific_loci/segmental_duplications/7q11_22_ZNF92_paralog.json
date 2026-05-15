@@ -1,0 +1,29 @@
+{
+  "name": "7q11_22_ZNF_paralog_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "7q11.21-q11.22 ZNF (zinc-finger) gene cluster with multiple KRAB-ZNF paralogs (ZNF92, ZNF273, ZNF735) at ~90-95% identity. Part of the larger genome-wide KRAB-ZNF expansion; contributes to mapping ambiguity but rarely causes clinical CNV.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 64500000, "end": 67500000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "stable_germline",
+    "homology_percent": 92.0,
+    "internal_structure": "Cluster of ~10 KRAB-ZNF genes with shared C-terminal zinc-finger arrays; tandem expansion in primate lineage."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "No direct disease; reads from KRAB-ZNF family map ambiguously"
+  ],
+  "sources": [
+    "doi:10.1101/gr.5660106",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

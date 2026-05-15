@@ -1,0 +1,31 @@
+{
+  "name": "chr20_20q13_12_HNF4A_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20q13.12 SD region containing HNF4A (MODY1 / maturity-onset diabetes of the young gene), R3HDML and TOX2. Flanked by short SD blocks of ~10-30 kb at 93-96% identity.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 43000000, "end": 43400000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 94.0,
+    "internal_structure": "Short 10-30 kb intra-chromosomal SDs at 93-96% identity flanking HNF4A; partial inter-chromosomal SDs to HNF1A region on chr12."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MODY1 (HNF4A)",
+    "Fanconi renotubular syndrome 4"
+  ],
+  "sources": [
+    "doi:10.1038/384458a0",
+    "doi:10.1126/science.1072047",
+    "PMID:8945471"
+  ],
+  "confidence": 0.6
+}

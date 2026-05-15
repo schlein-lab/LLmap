@@ -1,0 +1,32 @@
+{
+  "name": "chr20_20p12_BMP2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20p12.3 SD region containing BMP2 (bone morphogenetic protein 2) and the regulatory region driving the 20p12 recurrent CNV. The locus is flanked by short SDs of ~10-30 kb at 90-95% identity and harbours regulatory polymorphisms strongly associated with bone mineral density.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 6700000, "end": 7100000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "direct",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 93.0,
+    "internal_structure": "Two short ~15 kb direct SDs at 90-95% identity flanking the BMP2 regulatory desert; common 20p12 CNVs reported in non-syndromic and syndromic cohorts."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Brachydactyly type A2",
+    "Symphalangism/multiple synostoses",
+    "Osteoporosis susceptibility"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1086/498879",
+    "PMID:16252237"
+  ],
+  "confidence": 0.7
+}

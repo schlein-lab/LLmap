@@ -1,0 +1,32 @@
+{
+  "name": "chrYp11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome Y p-arm pericentric flank (Yp11.2), the immediate sub-centromeric LCR shoreline on the p-side of the chrY centromere. Distally adjoins the PAR1 / SRY region. Alpha-satellite (DYZ3), pericentromeric SDs and HSat patches. Resolved in T2T-CHM13 (HG002 Y assembly).",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 8800000, "end": 10316945}, "chm13": {"chr": "chrY", "start": 9000000, "end": 10500000}},
+  "size_bp": 1516945,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_DYZ3", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1000, 2500],
+    "homology_percent": 95.0,
+    "internal_structure": "Y-specific alpha-sat HOR (DYZ3) + HSat patches + pericentromeric SD shoreline; distal flank borders PAR1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "XX-male / XY-female translocation breakpoints (PAR1-adjacent)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-023-06457-y",
+    "doi:10.1038/nature01722"
+  ],
+  "confidence": 0.85
+}

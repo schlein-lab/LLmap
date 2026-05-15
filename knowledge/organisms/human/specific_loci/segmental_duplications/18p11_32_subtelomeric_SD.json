@@ -1,0 +1,30 @@
+{
+  "name": "18p11_32_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18p subtelomeric SD cluster — small SD modules in the most distal 18p with paralogs to 4p, 8p, and Yq subtelomeric regions. Mediates terminal 18p deletions (18p-) and unbalanced subtelomeric rearrangements.",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 1, "end": 1500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD modules of ~10-50 kb at ~94-97% identity; share paralog content with other subtelomeres; assembly imperfect in GRCh38."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "18p deletion syndrome (de Grouchy)",
+    "subtelomeric unbalanced translocation"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.6
+}

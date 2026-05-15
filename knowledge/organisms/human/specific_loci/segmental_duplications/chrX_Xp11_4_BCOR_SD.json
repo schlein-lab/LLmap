@@ -1,0 +1,31 @@
+{
+  "name": "chrX_Xp11_4_BCOR_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xp11.4 SD cluster around BCOR/BCORL1 (BCORL1 is autosomal-shifted paralog on Xq26). Short ~10 kb SD pairs flank BCOR; BCOR-internal SDs and BCOR/BCORL1 paralogy cause cross-mapping problems for short reads.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 39800000, "end": 40200000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "intragene_plus_intrachromosomal_paralog",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 95.0,
+    "internal_structure": "Intronic BCOR SDs; BCORL1 paralog on Xq26 at ~85% protein identity but with stretches of high nucleotide identity in conserved domains."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Oculo-facio-cardio-dental syndrome (BCOR)",
+    "BCOR-ITD pediatric sarcomas / BCOR-rearranged tumors",
+    "Lenz microphthalmia"
+  ],
+  "sources": [
+    "doi:10.1038/ng1226",
+    "PMID:14559994"
+  ],
+  "confidence": 0.75
+}

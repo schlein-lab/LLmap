@@ -1,0 +1,29 @@
+{
+  "name": "15q23_HEXA_neighbouring_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "HEXA (Tay-Sachs disease) at 15q23 is flanked by small (~5-15 kb at 93-96% identity) intra-chromosomal SDs and Alu repeats. The most common Ashkenazi Tay-Sachs allele is a 4-bp insertion, but rare large deletions (e.g. the 7.6 kb French-Canadian del) and intragenic NAHR events occur via these SDs.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 72340000, "end": 72700000}},
+  "size_bp": 360000,
+  "architecture": {
+    "type": "flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "5-15 kb SDs flanking HEXA; intragenic Alu-Alu pairs at intron 7-8 drive the 7.6 kb deletion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Tay-Sachs disease"
+  ],
+  "sources": [
+    "doi:10.1086/302393",
+    "doi:10.1136/jmg.34.10.825"
+  ],
+  "confidence": 0.7
+}

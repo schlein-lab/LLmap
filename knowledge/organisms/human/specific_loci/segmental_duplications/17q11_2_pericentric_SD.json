@@ -1,0 +1,29 @@
+{
+  "name": "17q11_2_pericentric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17 pericentromeric SD blocks adjacent to the centromere on 17q11.1-q11.2. Composite SDs derived from many ancestral donors; contributes to mapping ambiguity near the centromere and to evolutionary acceptor sites of new duplicons.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 26000000, "end": 28000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentromeric SD mosaic with multiple ~30-100 kb modules at ~94-97% identity; donor loci spread across 17p, 7q, 22q, others; resolved fully in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "general mapping ambiguity"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

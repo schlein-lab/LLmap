@@ -1,0 +1,30 @@
+{
+  "name": "7q31_2_CFTR_region",
+  "taxonomy_id": "paralog_family",
+  "description": "7q31.2 region containing CFTR (cystic fibrosis transmembrane conductance regulator). CFTR itself is single-copy but flanked by small SDs and Alu-rich segments that mediate rare large CFTR deletions (e.g. CFTRdele2,3(21kb) Slavic founder allele) and complex CF alleles.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 117400000, "end": 117800000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "Alu_mediated_flanking_repeats",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Alu-Alu pairs flanking CFTR exons mediate recurrent intragenic deletions; small SD blocks flanking the gene; classic Slavic CFTRdele2,3 21 kb deletion as recurrent breakpoint."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 3000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cystic fibrosis (CFTR)",
+    "Congenital bilateral absence of vas deferens"
+  ],
+  "sources": [
+    "doi:10.1126/science.2475911",
+    "doi:10.1086/302804"
+  ],
+  "confidence": 0.7
+}

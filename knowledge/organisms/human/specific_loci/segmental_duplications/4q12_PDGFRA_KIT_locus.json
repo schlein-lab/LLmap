@@ -1,0 +1,31 @@
+{
+  "name": "4q12_PDGFRA_KIT_KDR_locus",
+  "taxonomy_id": "paralog_family",
+  "description": "4q12 type-III receptor tyrosine kinase cluster — PDGFRA, KIT, KDR/VEGFR2 lie in a ~600 kb tandem block. Kinase and Ig-like ectodomains share 60-80% protein identity, and at least three intragenic SDs of ~5-10 kb sit in PDGFRA introns. Site of the FIP1L1-PDGFRA fusion (cryptic ~800 kb deletion) causing hypereosinophilic syndrome.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 54200000, "end": 55800000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 90.0,
+    "internal_structure": "Tandem block of PDGFRA-KIT-KDR at ~5 Mb spacing; kinase domains 60-80% protein identity; short intragenic SDs in PDGFRA introns; recurrent ~800 kb interstitial deletion creates FIP1L1-PDGFRA fusion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "chronic eosinophilic leukemia (FIP1L1-PDGFRA)",
+    "GIST (KIT/PDGFRA gain-of-function)",
+    "anti-angiogenic drug response (KDR)"
+  ],
+  "sources": [
+    "doi:10.1056/NEJMoa025217",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

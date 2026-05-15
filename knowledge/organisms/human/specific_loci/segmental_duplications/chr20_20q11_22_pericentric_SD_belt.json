@@ -1,0 +1,31 @@
+{
+  "name": "chr20_20q11_22_pericentric_SD_belt",
+  "taxonomy_id": "paralog_family",
+  "description": "20q11.22 distal pericentric SD belt — the centromere-distal partner of the 20q11.21 inversion SD pair. Contains MAPRE1, EFCAB8, ASIP-related paralogs and inter-chromosomal SDs to chr20p11. One of the densest contiguous SD belts on chr20.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 31700000, "end": 33700000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Mosaic of direct and inverted SDs of 50-300 kb at 95-99% identity; intra-chr20 duplicons to 20p11; embedded in the pericentric SD field that mediates inv(20) polymorphism."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "20q11 recurrent CNVs",
+    "Inversion-mediated meiotic instability"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075",
+    "PMID:21984749"
+  ],
+  "confidence": 0.8
+}

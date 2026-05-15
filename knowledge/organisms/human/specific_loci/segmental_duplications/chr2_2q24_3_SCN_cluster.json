@@ -1,0 +1,32 @@
+{
+  "name": "chr2_2q24_3_SCN_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "2q24.3 sodium-channel alpha-subunit gene cluster: SCN1A, SCN2A, SCN3A, SCN9A arose by tandem segmental duplication and share 70-80% identity. SCN1A mutations cause Dravet syndrome; CNVs across the cluster contribute to severe epileptic encephalopathies.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 165000000, "end": 167500000}},
+  "size_bp": 2500000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 80.0,
+    "internal_structure": "Tandem array of voltage-gated sodium-channel alpha-subunit genes (SCN1A, SCN2A, SCN3A, SCN9A, SCN7A) at 60-85% identity over their ~100 kb gene bodies; flanking small SDs of ~10-30 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Dravet syndrome (SCN1A)",
+    "Epileptic encephalopathy (SCN2A, SCN8A)",
+    "Erythromelalgia (SCN9A)"
+  ],
+  "sources": [
+    "doi:10.1038/ng1095",
+    "doi:10.1126/science.1072047",
+    "PMID:14534309"
+  ],
+  "confidence": 0.8
+}

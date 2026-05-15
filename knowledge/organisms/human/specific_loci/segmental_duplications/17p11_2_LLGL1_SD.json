@@ -1,0 +1,29 @@
+{
+  "name": "17p11_2_LLGL1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Middle SMS-REP block containing LLGL1 and FLII paralogs. Sub-locus of the proximal-mid SMS-REP triad; sits between proximal and distal SMS-REPs and is involved in some atypical SMS deletion breakpoints.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 18200000, "end": 18450000}},
+  "size_bp": 250000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "fixed_paralog",
+    "homology_percent": 98.5,
+    "internal_structure": "Single ~250 kb middle SMS-REP module composed of LLGL1, FLII, TOP3A paralogous content at >98% identity to flanking SMS-REPs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Atypical Smith-Magenis syndrome breakpoints"
+  ],
+  "sources": [
+    "doi:10.1038/ng1063",
+    "doi:10.1086/516566"
+  ],
+  "confidence": 0.7
+}

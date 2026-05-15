@@ -1,0 +1,31 @@
+{
+  "name": "4p11_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "4p11 pericentromeric SD mosaic — part of the inter-chromosomal pericentromeric duplication network. Shares ~95% identity blocks with pericentromeres of chr1, 2, 9, 16, 22. Contains anonymous ORFs (formerly mis-annotated as genes) and DUX4-like retrocopies. Frequent assembly gaps in pre-T2T builds; fully resolved only in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 49500000, "end": 51500000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentromeric mosaic of SD blocks of 50-200 kb shared with multiple chromosome pericentromeres; DUX4L retrocopies; alpha-satellite admixture; resolved fully only in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "neocentromere formation (rare)",
+    "Robertsonian translocations (rare)"
+  ],
+  "sources": [
+    "doi:10.1038/nature02466",
+    "doi:10.1126/science.1072047",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.7
+}

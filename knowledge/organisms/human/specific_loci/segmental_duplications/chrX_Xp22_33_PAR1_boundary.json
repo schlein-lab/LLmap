@@ -1,0 +1,35 @@
+{
+  "name": "chrX_Xp22_33_PAR1_boundary_KAL1_region",
+  "taxonomy_id": "paralog_family",
+  "description": "PAR1 boundary at Xp22.33 (telomeric 2.781 Mb of chrX, X:1-2781479 in GRCh38) shared identically with Yp11.32 PAR1 (cross-ref). The PAR1 boundary harbors the ANOS1 (KAL1) gene whose deletion causes X-linked Kallmann syndrome. PAR1 itself is hemizygous for males outside the X-Y exchange region and shows the highest meiotic recombination rate in the genome (~20-fold above average).",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 1, "end": 2781479}},
+  "size_bp": 2781000,
+  "architecture": {
+    "type": "interchromosomal_identical_block",
+    "copy_number_in_population": "2_in_both_sexes",
+    "homology_percent": 100.0,
+    "internal_structure": "PAR1 region 100% identical between Xp22.33 and Yp11.32; ANOS1/KAL1, STS-adjacent, ASMT, IL3RA, CSF2RA, SHOX, ZBED1, CRLF2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "X-linked Kallmann syndrome (ANOS1/KAL1)",
+    "Leri-Weill dyschondrosteosis (SHOX)",
+    "Langer mesomelic dysplasia (SHOX biallelic)"
+  ],
+  "cross_references": [
+    "../y_chromosome/chrY_PAR1.json"
+  ],
+  "sources": [
+    "doi:10.1038/ng1031",
+    "doi:10.1038/ng0697-54",
+    "PMID:1944596"
+  ],
+  "confidence": 0.95
+}
