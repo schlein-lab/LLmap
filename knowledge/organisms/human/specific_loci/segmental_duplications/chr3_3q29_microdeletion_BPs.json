@@ -1,0 +1,32 @@
+{
+  "name": "chr3_3q29_microdeletion_BPs",
+  "taxonomy_id": "paralog_family",
+  "description": "3q29 recurrent microdeletion/microduplication breakpoints. Two flanking ~17-24 kb low-copy repeats in direct orientation drive the ~1.6 Mb NAHR event; deletion confers strong schizophrenia and intellectual-disability risk and includes DLG1, BDH1, PAK2.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 195700000, "end": 197600000}},
+  "size_bp": 1900000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Two flanking LCRs of ~17-24 kb at ~98% identity in direct orientation; intervening unique segment of ~1.6 Mb contains DLG1, BDH1, PAK2, TFRC, PCYT1A."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "3q29 microdeletion syndrome",
+    "3q29 microduplication syndrome",
+    "schizophrenia (40x risk)"
+  ],
+  "sources": [
+    "doi:10.1056/NEJMoa051962",
+    "doi:10.1038/mp.2010.26",
+    "PMID:16157806"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,32 @@
+{
+  "name": "14q32_31_DLK1_MEG3_imprinted_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Imprinted DLK1-MEG3 (DLK1-DIO3) domain at 14q32.2, ~1.4 Mb, with paternally-expressed DLK1/RTL1/DIO3 and maternally-expressed MEG3/MEG8/snoRNA-cluster/miRNA-cluster. The cluster is flanked by small directly-oriented SDs (5-15 kb at 95-98% identity) that drive rare deletions causing Temple syndrome (mat UPD14/del) and Kagami-Ogata syndrome (pat UPD14/del). Robertsonian translocations involving 14 commonly unmask UPD14.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 100700000, "end": 102100000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "imprinted_cluster_with_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "DLK1 - MEG3 (IG-DMR) - RTL1 - MEG8 - DLK1 snoRNA/miRNA clusters - DIO3 ordered telomere-distal-to-centromere; flanking 5-15 kb SDs at the cluster edges."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false,
+    "imprinting_aware": true
+  },
+  "related_diseases": [
+    "Temple syndrome (maternal UPD14 / IG-DMR del)",
+    "Kagami-Ogata syndrome (paternal UPD14 / IG-DMR del)"
+  ],
+  "sources": [
+    "doi:10.1038/ng.187",
+    "doi:10.1038/ejhg.2014.92",
+    "doi:10.1136/jmedgenet-2013-101937"
+  ],
+  "confidence": 0.9
+}

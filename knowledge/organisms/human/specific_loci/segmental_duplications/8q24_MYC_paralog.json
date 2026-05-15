@@ -1,0 +1,32 @@
+{
+  "name": "8q24_MYC_paralog_blocks",
+  "taxonomy_id": "paralog_family",
+  "description": "8q24.21 region around MYC. The MYC locus itself is unique but the surrounding 8q24 gene desert hosts numerous enhancer elements and is the most-amplified region in solid cancers (ecDNA, double-minutes). 8q24 also contains PVT1 with extensive intra-locus duplications and fusion partners.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 127000000, "end": 130000000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "focal_amplification_target",
+    "copy_number_in_population": "stable_germline_amplified_somatic",
+    "homology_percent": 95.0,
+    "internal_structure": "MYC and PVT1 single-copy in germline; ecDNA amplicons of 1-3 Mb create copy-number gains in colorectal, prostate, ovarian, breast, neuroblastoma (MYCN-low/MYC-driven) cancers."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Burkitt lymphoma (t(8;14) MYC-IGH)",
+    "Multiple myeloma (MYC translocations)",
+    "Colorectal/prostate cancer 8q24 risk locus"
+  ],
+  "sources": [
+    "doi:10.1038/nature21356",
+    "doi:10.1038/s41586-019-1763-5",
+    "doi:10.1038/ng.2007.18"
+  ],
+  "confidence": 0.85
+}

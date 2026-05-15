@@ -1,0 +1,29 @@
+{
+  "name": "8_centromere_pericentric_SD",
+  "taxonomy_id": "centromere_like",
+  "description": "Chr8 pericentromere with alpha-satellite D8Z2 array and flanking pericentromeric SD mosaic. T2T-CHM13 resolves a ~5 Mb alpha-satellite array previously gapped in GRCh38.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 44033000, "end": 47031000}},
+  "size_bp": 2998000,
+  "architecture": {
+    "type": "centromeric_alpha_satellite_plus_SD",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.5,
+    "internal_structure": "Alpha-satellite D8Z2 array plus pericentromeric SDs; GRCh38 has gap, CHM13 has full assembly."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocation susceptibility"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-022-05325-5"
+  ],
+  "confidence": 0.8
+}

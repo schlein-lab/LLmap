@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19q13_42_NKG2_LRC_xref",
+  "taxonomy_id": "cross_reference",
+  "description": "Cross-reference: 19q13.42 leukocyte-receptor complex (LRC) extended view. The LRC spans the KIR cluster (../kir/KIR_locus_chr19.json), the LILR/LAIR cluster (chr19_19p13_3_LILR_LAIR_xref.json), and the NKG2/CD94 sub-cluster nearby. This file collects the SD-relevant pointers in one place.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 54000000, "end": 55400000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Composite leukocyte-receptor complex: LILR/LAIR proximal cluster, NKG2 / CD94 lectin-like receptors, then KIR distal cluster. Many SDs at 90-99% identity; haplotype diversity drives both gene-content and copy-number variation."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "NK-cell signaling variation",
+    "Infectious and autoimmune disease susceptibility"
+  ],
+  "sources": [
+    "doi:10.1038/nri1394",
+    "doi:10.1126/science.1072047",
+    "../kir/KIR_locus_chr19.json"
+  ],
+  "confidence": 0.85,
+  "see_also": "../kir/KIR_locus_chr19.json"
+}

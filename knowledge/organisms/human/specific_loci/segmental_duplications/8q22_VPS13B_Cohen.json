@@ -1,0 +1,29 @@
+{
+  "name": "8q22_2_VPS13B_Cohen_region",
+  "taxonomy_id": "paralog_family",
+  "description": "8q22.2 region containing VPS13B (Cohen syndrome). Flanked by modest SDs that mediate rare exonic and whole-gene deletions in Finnish/Amish founder populations.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 99800000, "end": 100900000}},
+  "size_bp": 1100000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Modest intragenic and flanking SDs at VPS13B; recurrent exon-level deletions documented in Cohen syndrome patients."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cohen syndrome (VPS13B)"
+  ],
+  "sources": [
+    "doi:10.1086/375454",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.5
+}

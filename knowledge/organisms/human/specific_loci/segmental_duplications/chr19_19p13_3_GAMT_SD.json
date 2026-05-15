@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19p13_3_GAMT_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.3 subtelomeric SD block containing GAMT (guanidinoacetate N-methyltransferase) flanked by short SDs and adjacent paralog clusters (DAZAP1, RPS15). The 19p subtelomere is unusually SD-dense in the first 2 Mb and contributes to recurrent subtelomeric deletions and translocations.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 1300000, "end": 1700000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 95.0,
+    "internal_structure": "Several 5-15 kb SD blocks at 95-98% identity flanking GAMT, MUM1, NDUFS7; subtelomeric SD enrichment characteristic of the 19p tip; partial inter-chromosomal SDs to other subtelomeres."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "GAMT deficiency (cerebral creatine deficiency syndrome 2)",
+    "19p13.3 subtelomeric microdeletion"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature03466",
+    "PMID:15269782"
+  ],
+  "confidence": 0.7
+}

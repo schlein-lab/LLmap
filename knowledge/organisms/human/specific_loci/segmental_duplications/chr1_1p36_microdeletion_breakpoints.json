@@ -1,0 +1,30 @@
+{
+  "name": "chr1_1p36_microdeletion_breakpoints",
+  "taxonomy_id": "paralog_family",
+  "description": "Recurrent breakpoint cluster for the 1p36 microdeletion syndrome. Variable deletion sizes (1.5-10 Mb) are stabilised at several SD-mediated breakpoint hotspots within distal 1p36, the most common at ~2.0-2.5 Mb from the telomere.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 2000000, "end": 5400000}},
+  "size_bp": 3400000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Several SD pairs of 10-40 kb at >95% identity acting as NAHR substrates; non-recurrent breakpoints frequently at microhomology junctions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1p36 deletion syndrome (Monosomy 1p36)"
+  ],
+  "sources": [
+    "doi:10.1086/513609",
+    "doi:10.1038/ejhg.2008.62",
+    "PMID:17357071"
+  ],
+  "confidence": 0.75
+}

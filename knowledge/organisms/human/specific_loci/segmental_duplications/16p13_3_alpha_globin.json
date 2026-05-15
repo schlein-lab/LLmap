@@ -1,0 +1,34 @@
+{
+  "name": "16p13_3_alpha_globin_HBA",
+  "taxonomy_id": "paralog_family",
+  "description": "16p13.3 alpha-globin (HBA1/HBA2) gene cluster, ~140 kb subtelomeric region with paralogous HBA1 and HBA2 duplicons (>99.9% identity) and flanking Z, X, Y boxes of homology. NAHR between the Z boxes (~4 kb at >99% identity) produces the common -alpha3.7 deletion; NAHR between X boxes produces the -alpha4.2 deletion. Most prevalent monogenic disease worldwide (alpha-thalassemia).",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 170000, "end": 230000}},
+  "size_bp": 60000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.9,
+    "internal_structure": "Tandem duplication of HBA1/HBA2 with intergenic Z (3.7 kb), X (4.2 kb) and Y homology boxes; HS-40 alpha-MCS upstream regulatory element; LUC7L/POLR3K telomeric, MPG/HBQ1 centromeric. Common variants: -alpha3.7 (rightward), -alpha4.2 (leftward); -SEA, -MED, -FIL deletions remove both HBA copies."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "alpha-thalassemia (-alpha3.7, -alpha4.2 deletions)",
+    "Hb Bart hydrops fetalis (--/--)",
+    "HbH disease (--/-alpha)",
+    "ATR-16 syndrome (contiguous 16p13.3 deletion)"
+  ],
+  "sources": [
+    "doi:10.1038/nrg2348",
+    "doi:10.1182/blood-2010-08-300335",
+    "doi:10.1126/science.1072047",
+    "doi:10.1016/j.bcmd.2007.10.001"
+  ],
+  "confidence": 0.95
+}

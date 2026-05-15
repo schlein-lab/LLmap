@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19q13_41_CEACAM_SIGLEC_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.41 CEACAM/PSG and SIGLEC paralog clusters. CEACAM family encodes carcinoembryonic antigen-related cell adhesion molecules (CEACAM1-8, plus 11 PSG paralogs for pregnancy-specific glycoproteins). The neighbouring SIGLEC (CD33-related) family is a separate ~12-paralog tandem array. Both clusters are highly SD-rich and CNV-polymorphic.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 51400000, "end": 52600000}},
+  "size_bp": 1200000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "CEACAM/PSG block (~600 kb) with ~25 paralog/pseudogene units at 85-98% identity; adjacent SIGLEC-CD33 block (~500 kb) with ~12 paralogs at 85-95% identity; both arrays share Ig-V-like and Ig-C2-like exon homology driving cross-mapping."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Pregnancy complications (PSG variants)",
+    "Alzheimer disease risk (SIGLEC3/CD33)",
+    "Cancer biomarker (CEACAM5/CEA)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1186/1471-2148-9-114",
+    "PMID:19467224"
+  ],
+  "confidence": 0.85
+}

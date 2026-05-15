@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19q13_33_ZNF_tail_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.33-q13.41 second large KRAB-ZNF cluster (~30 paralogs), telomeric to the q13.31 mega-cluster. Includes ZNF114, ZNF160, ZNF347, ZNF347, ZNF480, ZNF578, ZNF611, ZNF600. Together with the q13.31 cluster constitutes the chr19 ZNF tail accounting for the majority of human KRAB-ZNFs.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 51000000, "end": 53500000}},
+  "size_bp": 2500000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "~25-30 KRAB-ZNF paralog genes in tandem at 90-98% identity over ~2.5 Mb; intra-cluster SDs of 10-80 kb; same conserved KRAB-A / ZF-array motifs as 19q13.31 driving cross-mapping; partial GRCh38 assembly issues."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Transposable element silencing variation",
+    "Rare 19q13.33 microdeletions"
+  ],
+  "sources": [
+    "doi:10.1101/gr.6557307",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature05295"
+  ],
+  "confidence": 0.9
+}

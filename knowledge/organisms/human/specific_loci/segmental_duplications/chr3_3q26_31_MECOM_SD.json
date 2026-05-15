@@ -1,0 +1,31 @@
+{
+  "name": "chr3_3q26_31_MECOM_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "3q26.31 MECOM/EVI1 region with flanking segmental duplications. Site of recurrent inv(3)(q21q26) / t(3;3)(q21;q26) in myeloid malignancies that places a distal GATA2 enhancer next to MECOM; the inversion breakpoints lie in the SD belt.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 168200000, "end": 170500000}},
+  "size_bp": 2300000,
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Inverted SDs of 30-100 kb at ~95% identity flanking MECOM; somatic inv(3)(q21q26) hijacks the GATA2 enhancer at 3q21 to activate MECOM."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Acute myeloid leukaemia with inv(3)/t(3;3)",
+    "Radio-ulnar synostosis with amegakaryocytic thrombocytopenia (MECOM)"
+  ],
+  "sources": [
+    "doi:10.1016/j.cell.2014.02.019",
+    "doi:10.1038/leu.2008.358",
+    "PMID:24613345"
+  ],
+  "confidence": 0.85
+}

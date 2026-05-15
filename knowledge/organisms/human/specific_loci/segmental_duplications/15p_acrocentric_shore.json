@@ -1,0 +1,36 @@
+{
+  "name": "15p_acrocentric_shore",
+  "taxonomy_id": "paralog_family",
+  "description": "Chr15 acrocentric p-arm proximal to the NOR and distal to the centromere. Composed of DJ/PJ inter-acrocentric SD modules, beta-satellite, gamma-satellite, and HSat3 blocks at >95% identity recurring on all five acrocentrics. T2T-CHM13 first resolves this region; GRCh38 leaves it as a gap interval. NOR proper is documented at /ribosomal/chr15_NOR.json.",
+  "coordinates": {
+    "grch38": {"chr": "chr15", "start": 0, "end": 17083673},
+    "chm13": {"chr": "chr15", "start": 0, "end": 17000000}
+  },
+  "size_bp": 17083673,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "DJ and PJ acrocentric duplicons (1-100 kb modules at 95-99% identity) interleaved with HSat3, beta-satellite, gamma-satellite, and rDNA tail; ectopic NAHR with chr13p/14p/21p/22p drives Robertsonian translocations rob(13;15), rob(14;15), rob(15;21), rob(15;22)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "cross_acrocentric_paralog": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations rob(13;15), rob(14;15)",
+    "Prader-Willi/Angelman via UPD15 (rob carriers)"
+  ],
+  "cross_reference": "/ribosomal/chr15_NOR.json",
+  "sources": [
+    "doi:10.1038/s41586-023-05976-y",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.5042206"
+  ],
+  "confidence": 0.85
+}

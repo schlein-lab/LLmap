@@ -1,0 +1,31 @@
+{
+  "name": "5p13_2_NIPBL_region",
+  "taxonomy_id": "paralog_family",
+  "description": "5p13.2 NIPBL region — cohesin-loader gene mutated in Cornelia de Lange syndrome (CdLS). Recurrent ~3.7 Mb microduplication of 5p13.2 with NIPBL overexpression also causes a distinct dup(5p13) phenotype. Flanking short SDs (~98% identity) drive the recurrent rearrangement.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 35500000, "end": 39500000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Two flanking SD blocks of ~50-100 kb at >97% identity bracketing NIPBL, C5orf42, RANBP3L; reciprocal del/dup phenotypes; short intragenic duplicons within NIPBL introns."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cornelia de Lange syndrome (NIPBL LOF)",
+    "5p13 duplication syndrome (NIPBL overexpression)"
+  ],
+  "sources": [
+    "doi:10.1038/ng1539",
+    "doi:10.1136/jmg.2009.073270",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.8
+}

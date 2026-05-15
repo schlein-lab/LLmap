@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19p13_3_subtelomeric_SD_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.3 distal subtelomeric SD cluster (first ~2 Mb from chr19 p-telomere). chr19 is the most SD-rich autosome by density and the 19p subtelomere carries multiple interspersed duplicon blocks shared with other subtelomeric regions, with the WASH gene family, FAM138 and DUX4-like paralogs nearby.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 60000, "end": 2000000}},
+  "size_bp": 1940000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Mosaic of 5-50 kb subtelomeric duplicons at 95-99% identity shared with multiple other subtelomeres (1p, 4p, 16p, Xp); WASH paralog at the chromosome cap; abundant short intra-chromosomal SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "subtelomeric 19p13.3 deletion / duplication",
+    "translocations involving 19p subtelomere"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075",
+    "PMID:18617664"
+  ],
+  "confidence": 0.75
+}

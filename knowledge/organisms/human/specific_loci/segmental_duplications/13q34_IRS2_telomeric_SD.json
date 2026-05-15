@@ -1,0 +1,30 @@
+{
+  "name": "13q34_IRS2_telomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "IRS2 (insulin receptor substrate 2) at 13q34 lies inside a ~250 kb subtelomeric SD module shared at >95% identity with regions of 4q35 and 10q26. The block is flanked by AT-rich palindromes that act as fragile-site nuclei and mediate intragenic IRS2 rearrangements rarely reported in T2D-linked cohorts.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 109740000, "end": 110000000}},
+  "size_bp": 260000,
+  "architecture": {
+    "type": "subtelomeric_block",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "~250 kb subtelomeric SD with directly-oriented 5-15 kb internal repeats and AT-rich palindromic flanks; shared with subtelomeric regions on 4q and 10q."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "type 2 diabetes susceptibility (IRS2)",
+    "13q subtelomeric deletion"
+  ],
+  "sources": [
+    "doi:10.1086/513609",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

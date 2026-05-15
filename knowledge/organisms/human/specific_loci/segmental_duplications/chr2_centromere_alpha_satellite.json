@@ -1,0 +1,30 @@
+{
+  "name": "chr2_centromere_alpha_satellite",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 2 alpha-satellite array (D2Z1). The chr2 centromere is the unique surviving centromere of the ancestral ape chr2A-chr2B fusion; the inactive ancestral centromere of chr2B persists at 2q21.2 as a fossil satellite remnant.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 92188145, "end": 94090557}},
+  "size_bp": 1902412,
+  "architecture": {
+    "type": "tandem_satellite",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "Alpha-satellite HOR array D2Z1 of 1-3 Mb; flanking pericentric SDs at 2p11.2 and 2q11.1; fossil ancestral-centromere remnant at 2q21.2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Ancestral chromosome-2 fusion (evolutionary)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.2949305",
+    "PMID:15994306"
+  ],
+  "confidence": 0.85
+}

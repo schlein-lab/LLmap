@@ -1,0 +1,32 @@
+{
+  "name": "9q34_TSC1_paralog_region",
+  "taxonomy_id": "paralog_family",
+  "description": "9q34.13 region containing TSC1 (Tuberous Sclerosis Complex 1) plus the subtelomeric SD-rich 9q34. Has intermediate SDs that mediate rare large deletions encompassing TSC1; also harbors ABL1 (BCR-ABL fusion partner in CML).",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 132000000, "end": 137500000}},
+  "size_bp": 5500000,
+  "architecture": {
+    "type": "subtelomeric_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 93.0,
+    "internal_structure": "Small to intermediate SD blocks throughout 9q34 around TSC1, ABL1, NOTCH1, VAV2; subtelomeric WASH/FAM86 families at the very telomere; rare large TSC1-encompassing deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Tuberous sclerosis complex (TSC1)",
+    "9q34 deletion syndrome (Kleefstra)",
+    "Chronic myeloid leukaemia (ABL1)"
+  ],
+  "sources": [
+    "doi:10.1126/science.277.5327.805",
+    "doi:10.1038/ng.156",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

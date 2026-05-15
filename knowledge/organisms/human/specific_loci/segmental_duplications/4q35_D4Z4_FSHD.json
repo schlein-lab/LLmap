@@ -1,0 +1,33 @@
+{
+  "name": "4q35_D4Z4_FSHD1_macrosatellite",
+  "taxonomy_id": "tandem_repeat",
+  "description": "4q35.2 D4Z4 macrosatellite — 3.3 kb GC-rich repeat unit, each unit encoding a copy of the DUX4 retrogene. Healthy individuals carry 11-100 D4Z4 units; FSHD1 patients carry 1-10 units on a permissive 4qA haplotype (poly-A signal stabilises DUX4 mRNA). A near-identical D4Z4 array also exists on 10q26, complicating mapping and Southern blotting.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 190050000, "end": 190120000}},
+  "size_bp": 70000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "Tandem array of 3.3 kb units, each containing the DUX4 ORF. Allele length varies 1-100 units. Highly homologous (>98%) array on 10q26 (~chr10:133.65-133.72 Mb GRCh38) confounds mapping; the distinguishing 4qA/4qB SSLP and pLAM poly-A signal lie 3' of the array on chr4.",
+    "repeat_unit_bp": 3300
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Facioscapulohumeral muscular dystrophy type 1 (FSHD1)",
+    "facioscapulohumeral muscular dystrophy type 2 (modifier)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1189044",
+    "doi:10.1038/ng765",
+    "doi:10.1038/ng.2007.7",
+    "doi:10.1093/hmg/ddh284"
+  ],
+  "confidence": 0.95
+}

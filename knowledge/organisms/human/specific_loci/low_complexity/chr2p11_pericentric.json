@@ -1,0 +1,32 @@
+{
+  "name": "chr2p11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 2 p-arm pericentric flank (2p11.2-2p11.1) — the ancient ape-fusion-side sub-centromeric LCR shoreline. Mixed alpha-satellite (D2Z), pericentromeric SDs and HSat patches. Site of the 2p11 immunoglobulin-kappa locus (IGK) at the proximal edge, immediately distal to centromeric heterochromatin. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 89830437, "end": 92188145}, "chm13": {"chr": "chr2", "start": 89900000, "end": 93000000}},
+  "size_bp": 2357708,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D2Z", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 4000],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + HSat2 patches + Horvath/She pericentromeric SD mosaic on the ape-fusion p-side; immediately distal to IGK."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "IGK B-cell V(D)J recombination boundary issues"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003",
+    "doi:10.1038/nature03466"
+  ],
+  "confidence": 0.85
+}

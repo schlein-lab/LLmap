@@ -1,0 +1,30 @@
+{
+  "name": "9q22_3_FANCC_PTCH1",
+  "taxonomy_id": "paralog_family",
+  "description": "9q22.32-q22.33 region containing FANCC (Fanconi anaemia C) and PTCH1 (Gorlin syndrome / basal cell nevus). Flanked by intermediate SDs; rare interstitial deletions cause contiguous-gene phenotypes (Gorlin plus FANCC carrier).",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 95000000, "end": 99500000}},
+  "size_bp": 4500000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Modest SDs flanking PTCH1/FANCC; rare large deletions encompassing both."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Gorlin syndrome (PTCH1)",
+    "Fanconi anaemia complementation group C"
+  ],
+  "sources": [
+    "doi:10.1016/0092-8674(96)80021-4",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

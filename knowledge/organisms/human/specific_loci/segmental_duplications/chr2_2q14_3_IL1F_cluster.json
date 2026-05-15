@@ -1,0 +1,31 @@
+{
+  "name": "chr2_2q14_3_IL1F_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "2q14.3 interleukin-1 family (IL1F) gene cluster. IL1A, IL1B, IL1RN, IL18 and the IL1F5-F10 (IL36/IL37/IL38) genes arose by tandem segmental duplication; cluster shows population copy-number variation at the IL1F gene boundary.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 112800000, "end": 114000000}},
+  "size_bp": 1200000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 80.0,
+    "internal_structure": "Tandem array of IL1-family coding genes (IL1A, IL1B, IL1RN, IL36A/B/G, IL37, IL38, IL18) at 50-85% identity; intronic structure preserved across paralogs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Autoinflammatory disease (IL1F mutations)",
+    "Psoriasis susceptibility (IL36RN)"
+  ],
+  "sources": [
+    "doi:10.1038/nri2691",
+    "doi:10.1126/science.1072047",
+    "PMID:20303875"
+  ],
+  "confidence": 0.75
+}

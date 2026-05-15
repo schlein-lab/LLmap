@@ -1,0 +1,29 @@
+{
+  "name": "chr6q11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 6 q-arm pericentric flank (6q11.1-6q11.2), the q-side sub-centromeric LCR shoreline. Alpha-satellite (D6Z1), pericentromeric SDs and HSat patches. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 59829934, "end": 62500000}, "chm13": {"chr": "chr6", "start": 60000000, "end": 63000000}},
+  "size_bp": 2670066,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D6Z1", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 3500],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + HSat patches + Horvath/She pericentromeric SD shoreline on the q-side."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003"
+  ],
+  "confidence": 0.8
+}

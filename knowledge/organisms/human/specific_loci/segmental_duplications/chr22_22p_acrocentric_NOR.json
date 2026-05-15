@@ -1,0 +1,36 @@
+{
+  "name": "chr22_22p_acrocentric_short_arm_NOR",
+  "taxonomy_id": "paralog_family",
+  "description": "22p acrocentric short arm hosting a rDNA NOR (~300 copies of 43 kb 45S rRNA unit) and proximal SDs shared with chr13p, 14p, 15p, 21p (interacrocentric homology >99%). Hot spot for Robertsonian translocations involving chr22 (rob(13;22), rob(14;22), rob(15;22), rob(21;22)).",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 0, "end": 13700000}},
+  "size_bp": 13700000,
+  "architecture": {
+    "type": "tandem_repeat_plus_interacrocentric_SDs",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.5,
+    "internal_structure": "Distal satellite (BSAT/ACRO), rDNA tandem array, proximal interchromosomal SD junctions to other acrocentric short arms."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations involving 22p",
+    "ribosomopathies (rDNA dosage)",
+    "Cat-eye syndrome (22q11 marker chromosomes)"
+  ],
+  "cross_references": [
+    "../ribosomal/",
+    "../centromeres/"
+  ],
+  "sources": [
+    "doi:10.1038/s41586-023-05976-y",
+    "doi:10.1126/science.abj6987",
+    "PMID:10591208"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19q13_12_ZNF45_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.12 KRAB-ZNF cluster centred on ZNF45 (also ZNF229, ZNF230, ZNF180, ZNF302). One of several large ZNF blocks on chr19 that together encode the largest paralog family in the human genome; KRAB-ZNFs are transposable element silencers.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 44400000, "end": 45100000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "stable",
+    "homology_percent": 95.0,
+    "internal_structure": "~12-15 KRAB-ZNF paralog genes in tandem head-to-tail at 90-98% identity over ~700 kb; conserved KRAB-A and ZF-array exons drive cross-mapping; short flanking SDs <30 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "transposable element silencing variation",
+    "developmental phenotypes via KRAB-ZNF dosage"
+  ],
+  "sources": [
+    "doi:10.1101/gr.6557307",
+    "doi:10.1126/science.1072047",
+    "PMID:17726096"
+  ],
+  "confidence": 0.8
+}

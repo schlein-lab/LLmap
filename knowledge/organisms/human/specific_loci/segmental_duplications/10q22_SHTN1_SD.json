@@ -1,0 +1,31 @@
+{
+  "name": "10q22_SHTN1_BMPR1A_distal_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10q22.3 distal-to-PTEN segmental duplication region around SHTN1/KIAA1598 and the BMPR1A locus. The same SD pair that flanks PTEN at 10q23 extends into 10q22.3 and mediates the larger 10q22-q23 microdeletion variant in juvenile polyposis-of-infancy.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 80000000, "end": 82500000}},
+  "size_bp": 2500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Paired SD blocks of 50-150 kb at 96-98% identity define proximal breakpoint of the 10q22-q23 microdeletion; intervening unique sequence harbours BMPR1A."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "juvenile polyposis of infancy",
+    "10q22-q23 microdeletion syndrome",
+    "Cowden / Bannayan-Riley-Ruvalcaba (extended)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:17400792"
+  ],
+  "confidence": 0.8
+}

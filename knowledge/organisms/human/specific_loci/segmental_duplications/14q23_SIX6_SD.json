@@ -1,0 +1,30 @@
+{
+  "name": "14q23_SIX6_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "14q23.1 SIX6 homeobox locus flanked by small (~10 kb) SD pairs at ~95% identity. Recurrent ~1.5 Mb microdeletions cause bilateral anophthalmia/microphthalmia. SIX6 is paralog of the SIX gene family scattered on chr2 and chr19 with shared ancient duplicons.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 60600000, "end": 62100000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "~10 kb directly-oriented SDs flanking SIX6; small SIX-family paralog footprints (5 kb) shared with chr2 SIX2/SIX3."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "bilateral anophthalmia",
+    "MCOPS2 microphthalmia"
+  ],
+  "sources": [
+    "doi:10.1086/430098",
+    "doi:10.1038/nature02564"
+  ],
+  "confidence": 0.75
+}

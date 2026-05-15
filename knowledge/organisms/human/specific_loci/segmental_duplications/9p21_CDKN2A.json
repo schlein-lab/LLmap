@@ -1,0 +1,32 @@
+{
+  "name": "9p21_CDKN2A_region",
+  "taxonomy_id": "paralog_family",
+  "description": "9p21.3 region containing CDKN2A/CDKN2B/MTAP and the type-I interferon (IFN) gene cluster (~16 IFN-alpha paralogs at >85% identity). One of the most-deleted regions across solid cancers; the IFN cluster represents a true paralog family confounding short-read mapping.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 21000000, "end": 22500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "tandem_paralog_array_plus_tumor_suppressor",
+    "copy_number_in_population": "rare_germline_CNV_frequent_somatic_deletion",
+    "homology_percent": 90.0,
+    "internal_structure": "~16 IFNA paralogs plus IFNB1/IFNW1 in tandem array at 9p21.3 distal to CDKN2A; CDKN2A/MTAP/CDKN2B form recurrent somatic homozygous deletion target in glioblastoma, melanoma, pancreatic cancer."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Familial melanoma (CDKN2A)",
+    "Glioblastoma / multiple cancers (somatic CDKN2A loss)",
+    "Coronary artery disease 9p21 risk locus"
+  ],
+  "sources": [
+    "doi:10.1038/ng0995-114",
+    "doi:10.1126/science.1142447",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

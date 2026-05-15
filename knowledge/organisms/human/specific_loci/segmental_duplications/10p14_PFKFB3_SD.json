@@ -1,0 +1,28 @@
+{
+  "name": "10p14_PFKFB3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10p14 segmental duplication interval covering PFKFB3 (6-phosphofructo-2-kinase) and adjacent CUGBP2/GATA3 flank. Contains short interchromosomal SDs paired with the PFKFB-family paralogs (PFKFB1/2/4) on chr3, chr10 and chrX.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 6100000, "end": 6700000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 92.0,
+    "internal_structure": "Family-internal SDs of 5-20 kb at ~90-95% identity to PFKFB1/2/4; mostly stable single-copy at this locus."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "10p14 deletion (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

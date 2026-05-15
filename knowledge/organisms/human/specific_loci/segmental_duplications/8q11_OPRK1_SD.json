@@ -1,0 +1,29 @@
+{
+  "name": "8q11_OPRK1_region_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "8q11.2 region around OPRK1 (kappa opioid receptor) and SNTG1 with intermediate SD content. Rare 8q11 microdeletions reported in neurodevelopmental cohorts.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 51000000, "end": 55000000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Modest SDs around OPRK1/SNTG1; not a major NAHR hotspot but reported in DECIPHER as recurrent deletion site."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "8q11.2 microdeletion (neurodevelopmental delay)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nrg2593"
+  ],
+  "confidence": 0.45
+}

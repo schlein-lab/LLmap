@@ -1,0 +1,30 @@
+{
+  "name": "9p12q13_pericentric_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "inv(9)(p12q13) - the canonical 'normal variant' pericentric inversion encompassing the pericentromeric satellite blocks. Frequency 1-3% in most populations (higher in some African and Asian cohorts). Traditionally considered benign; some studies report subfertility association.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 38000000, "end": 67000000}},
+  "size_bp": 29000000,
+  "architecture": {
+    "type": "inverted_pericentric",
+    "copy_number_in_population": "balanced_inversion_polymorphism",
+    "homology_percent": 99.5,
+    "internal_structure": "Pericentric inversion mediated by satellite/SD-rich breakpoints in 9p12 and 9q13; >1% population frequency makes this a polymorphism rather than disease variant."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "inv(9) carrier (mostly benign)",
+    "Possible mild subfertility association"
+  ],
+  "sources": [
+    "doi:10.1159/000076818",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.85
+}

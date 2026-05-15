@@ -1,0 +1,30 @@
+{
+  "name": "8p23_3_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "8p subtelomeric region (8p23.3) containing FBXO25, ERICH1 and subtelomeric SD families shared with other chromosome ends. Recurrent 8p23 terminal deletions documented in unbalanced translocations.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 0, "end": 2200000}},
+  "size_bp": 2200000,
+  "architecture": {
+    "type": "subtelomeric_SD",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Subtelomeric WASH-family and FAM86 paralogs shared across chromosome ends; substrate for telomere-capture rearrangements."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "8p subtelomeric deletion (neurodevelopmental)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nrg2593",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.6
+}

@@ -1,0 +1,33 @@
+{
+  "name": "chr22_22q11_21_LCR22C_breakpoint_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "LCR22-C, a ~250 kb SD block at chr22:20.7-20.95 Mb (GRCh38). Distal breakpoint of the nested A-C (~2.0 Mb) DiGeorge deletion subtype. Contains GGT/USP18/BCRP modules at >99% identity with LCR22-A/B/D.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 20700000, "end": 20950000}},
+  "size_bp": 250000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "structurally_polymorphic",
+    "homology_percent": 99.2,
+    "internal_structure": "GGT/USP18/BCRP paralog modules; intermediate size between LCR22-B and LCR22-D."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q11.2 nested A-C deletion",
+    "atypical 22q11.2 rearrangements"
+  ],
+  "cross_references": [
+    "22q11_21_DiGeorge.json"
+  ],
+  "sources": [
+    "doi:10.1038/nrg2593",
+    "doi:10.1086/302727"
+  ],
+  "confidence": 0.9
+}

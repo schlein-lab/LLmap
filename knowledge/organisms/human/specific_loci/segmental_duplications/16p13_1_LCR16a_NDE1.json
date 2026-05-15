@@ -1,0 +1,33 @@
+{
+  "name": "16p13_1_LCR16a_NDE1",
+  "taxonomy_id": "paralog_family",
+  "description": "16p13.1 LCR16a-rich region surrounding NDE1, MYH11 and ABCC1. The LCR16a duplicon family is the founder of chromosome 16's SD evolution (Bailey 2002; Johnson 2001) and is enriched here as multiple copies in direct orientation. Mediates 16p13.11 microdeletion/microduplication CNVs.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 14900000, "end": 16500000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Multiple LCR16a duplicons (~20 kb core unit) plus LCR16b modules, organised in three large SD blocks at >95% identity flanking NDE1/MYH11/ABCC1/KIAA0430. LCR16a is the seed duplicon for nearly all chromosome 16 SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p13.11 recurrent microdeletion (epilepsy, schizophrenia, ID)",
+    "thoracic aortic aneurysm (MYH11)",
+    "microhydranencephaly (NDE1 biallelic LoF)"
+  ],
+  "sources": [
+    "doi:10.1086/319503",
+    "doi:10.1126/science.1072047",
+    "doi:10.1093/hmg/ddl473",
+    "doi:10.1038/ng.534"
+  ],
+  "confidence": 0.85
+}

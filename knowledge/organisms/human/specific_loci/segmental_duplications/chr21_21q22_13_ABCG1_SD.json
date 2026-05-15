@@ -1,0 +1,31 @@
+{
+  "name": "chr21_21q22_13_ABCG1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "21q22.13 SD cluster around ABCG1/UMODL1; ABCG1 has paralogs ABCG2/ABCG5/ABCG8 elsewhere (4q22, 2p21) and a local intragene SD plus ~30 kb flanking duplicons at 96% identity. Rare CNVs at this locus modulate HDL metabolism and atherosclerosis risk.",
+  "coordinates": {"grch38": {"chr": "chr21", "start": 43500000, "end": 44100000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "intrachromosomal_flanking_SD",
+    "copy_number_in_population": "low_frequency_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Direct-orientation ~30 kb SD pair flanking ABCG1; intragene SD within ABCG1 introns; cross-chromosome paralogs not co-mappable."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HDL cholesterol level variation (ABCG1)",
+    "atherosclerosis risk modulation",
+    "Tangier-like phenotypes"
+  ],
+  "sources": [
+    "doi:10.1038/ng.291",
+    "PMID:18193043"
+  ],
+  "confidence": 0.75
+}

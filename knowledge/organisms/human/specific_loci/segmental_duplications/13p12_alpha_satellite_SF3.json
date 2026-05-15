@@ -1,0 +1,36 @@
+{
+  "name": "13p12_alpha_satellite_SF3",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Chr13 centromeric alpha-satellite higher-order repeat (HOR) array of the SF3 (suprachromosomal family 3) clade, shared with the centromere of chr21 (D13Z1/D21Z1). The HOR is dimeric to multimeric (~1.7 kb monomer), spanning several Mb. Surrounding the HOR are divergent monomeric alpha-satellite, then beta-satellite/gamma-satellite shore blocks transitioning to the p-arm acrocentric stalk.",
+  "coordinates": {
+    "grch38": {"chr": "chr13", "start": 16500000, "end": 18000000},
+    "chm13": {"chr": "chr13", "start": 12500000, "end": 17400000}
+  },
+  "size_bp": 4900000,
+  "architecture": {
+    "type": "tandem_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "D13Z1 dimeric HOR core (~2-3 Mb) flanked by divergent monomeric alpha-satellite; near-identical D21Z1 on chr21 (SF3 family). Functional CENP-A core occupies a sub-Mb subdomain (Altemose 2022)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 300000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true,
+    "cross_acrocentric_paralog": true
+  },
+  "related_diseases": [
+    "centromeric instability",
+    "Robertsonian translocations"
+  ],
+  "sources": [
+    "doi:10.1126/science.abl4178",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1186/s13059-014-0531-y"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chr2_2q21_SD_module",
+  "taxonomy_id": "paralog_family",
+  "description": "2q21 SD region encompassing the LCT (lactase) gene and the LRP1B-RAB3GAP1 interval. Contains flanking SDs that contribute to rare 2q21 rearrangements; the LCT regulatory variant is in unique sequence but its haplotype block extends into nearby SDs.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 134500000, "end": 136500000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Flanking SDs of 20-60 kb at ~94% identity; unique gene complement includes LCT, MCM6, R3HDM1, ZRANB3."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Rare 2q21 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature11082"
+  ],
+  "confidence": 0.6
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chr2_2q11_BARD1_paralog",
+  "taxonomy_id": "paralog_family",
+  "description": "2q11 SD region containing pericentric paralogs of BARD1, BUB1 and ANKRD36-family duplicons. Part of the pericentromere-2 SD belt that contributes to recurrent rearrangements across 2q11-q13.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 96500000, "end": 98500000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Pericentric SD blocks of 30-100 kb at 96-99% identity; ANKRD36/ANKRD36B/ANKRD36C and BARD1 paralog signal."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Pericentromeric 2q rearrangements"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature11082"
+  ],
+  "confidence": 0.65
+}

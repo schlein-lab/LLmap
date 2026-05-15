@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19p13_3_LILR_LAIR_xref",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.42 LILR/LAIR leukocyte receptor cluster, the proximal partner of the broader leukocyte-receptor complex (LRC) that includes the KIR cluster. Contains LILRA1-6, LILRB1-5, LAIR1/2 paralogs as a tandem array at 80-95% identity; modulates NK / myeloid signaling.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 54200000, "end": 54700000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 92.0,
+    "internal_structure": "~11 LILR + 2 LAIR paralog genes in tandem at 80-95% identity over ~500 kb; SD blocks of 10-50 kb between paralogs; immediately centromeric to KIR — together forming the LRC."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Autoimmune disease susceptibility (LILR/LAIR variants)",
+    "NK / myeloid signaling variation"
+  ],
+  "sources": [
+    "doi:10.1038/nri1394",
+    "doi:10.1126/science.1072047",
+    "PMID:15485625"
+  ],
+  "confidence": 0.85,
+  "see_also": "../kir/KIR_locus_chr19.json"
+}

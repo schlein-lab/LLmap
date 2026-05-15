@@ -1,0 +1,30 @@
+{
+  "name": "chr3_3p21_GNAT1_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "3p21.31 SD-rich block in the GNAT1-GNAI2 cluster, flanked by chemokine receptor genes (CCR1-9) and the AMT/NICN1 paralog region. Small flanking SDs contribute to rare interstitial deletions in 3p21.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 49500000, "end": 51000000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 92.0,
+    "internal_structure": "Tandem array of G-protein alpha (GNAT1, GNAT2, GNAI2) and CCR1-9 chemokine receptor paralogs at 60-95% identity; flanking SDs of 10-30 kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Stationary night blindness (GNAT1)",
+    "3p21 interstitial deletion (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature11082"
+  ],
+  "confidence": 0.6
+}

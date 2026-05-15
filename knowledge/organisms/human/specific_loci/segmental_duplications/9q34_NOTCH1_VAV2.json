@@ -1,0 +1,36 @@
+{
+  "name": "9q34_subtelomeric_NOTCH1",
+  "taxonomy_id": "paralog_family",
+  "description": "9q34.3 subtelomeric microdeletion (Kleefstra syndrome) — ~1 Mb terminal deletion encompassing EHMT1 (the dosage-sensitive gene), with breakpoints frequently in subtelomeric SD/9q34 paralog blocks containing NOTCH1/VAV2/ABL1-flanking duplicons. Phenotype: intellectual disability, hypotonia, characteristic facies, autism, cardiac defects.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 139500000, "end": 141213431}},
+  "size_bp": 1700000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_9q34.3_subtelomeric", "SD_9q34.3_EHMT1_proximal"],
+    "homology_percent": 96.0,
+    "internal_structure": "Subtelomeric SD cluster (~30-200 kb segments) shared with other acrocentric/subtelomeric regions; unique core contains EHMT1 (primary dosage gene), CACNA1B, ARRDC1, TRAF2, EXD3."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Kleefstra syndrome (9q34.3 deletion / EHMT1 LoF)",
+    "intellectual disability",
+    "autism spectrum",
+    "9q subtelomeric deletion syndrome"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1086/505693",
+    "doi:10.1086/426392",
+    "doi:10.1002/ajmg.a.32685",
+    "ClinGen Dosage Sensitivity EHMT1 (HI=3)"
+  ],
+  "confidence": 0.9
+}

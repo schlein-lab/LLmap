@@ -1,0 +1,33 @@
+{
+  "name": "chr22_22q11_22_SDF2L1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "22q11.22 SD cluster around SDF2L1/IGLL5/LRP5L. Contains short inverted SD pairs of 10-40 kb at 96-98% identity that occasionally mediate rare 22q11.22 microdeletions. Overlaps the proximal end of the IGL light-chain locus (cross-ref).",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 22500000, "end": 23200000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "inverted_short_SDs",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 97.0,
+    "internal_structure": "Inverted SD pairs around SDF2L1/IGLL5; partial overlap with IGL locus duplicons."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "rare 22q11.22 microdeletions",
+    "B-cell development anomalies (IGLL5/IGL)"
+  ],
+  "cross_references": [
+    "../immunoglobulin/IGL_locus_chr22.json"
+  ],
+  "sources": [
+    "doi:10.1038/nature01266",
+    "PMID:10591208"
+  ],
+  "confidence": 0.75
+}

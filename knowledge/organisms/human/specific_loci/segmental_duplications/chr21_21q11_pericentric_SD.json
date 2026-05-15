@@ -1,0 +1,31 @@
+{
+  "name": "chr21_21q11_pericentromeric_SD_module",
+  "taxonomy_id": "paralog_family",
+  "description": "21q11 pericentromeric region containing layered intra- and interchromosomal SD blocks ('21q11 SD module') with paralogs shared with chr11, chr18, chr2 pericentromeric regions; very low gene content, dominated by retrotransposed pseudogenes (TPTE-like, BAGE, USP25). Common site of unbalanced translocations.",
+  "coordinates": {"grch38": {"chr": "chr21", "start": 12915808, "end": 16800000}},
+  "size_bp": 3900000,
+  "architecture": {
+    "type": "pericentromeric_SD_mosaic",
+    "copy_number_in_population": "variable",
+    "homology_percent": 97.5,
+    "internal_structure": "Mosaic of 10-100 kb SD blocks duplicated from euchromatic donors elsewhere in the genome ('pericentromeric seeding'); enriched in TPTE2, BAGE2, USP25 paralogs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "21q11 microdeletion (rare, USP25 dosage)",
+    "complex pericentromeric rearrangements"
+  ],
+  "sources": [
+    "doi:10.1038/35012518",
+    "doi:10.1101/gr.2900204",
+    "PMID:11237011"
+  ],
+  "confidence": 0.85
+}

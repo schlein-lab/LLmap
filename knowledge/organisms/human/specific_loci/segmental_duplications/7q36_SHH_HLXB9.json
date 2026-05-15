@@ -1,0 +1,32 @@
+{
+  "name": "7q36_SHH_MNX1_region",
+  "taxonomy_id": "paralog_family",
+  "description": "7q36.3 distal region containing SHH (Sonic hedgehog) and MNX1 (HLXB9). SHH paralogs IHH (2q35) and DHH (12q13) lie elsewhere but PSV catalog must distinguish them in cross-mapping. 7q36 itself harbors LMBR1-internal ZRS enhancer whose duplication causes limb malformations.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 155500000, "end": 156800000}},
+  "size_bp": 1300000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 80.0,
+    "internal_structure": "SHH single-copy at 7q36.3; LMBR1 intronic ZRS is hotspot for ~30-450 kb duplications causing PPD2; cross-genome paralogs IHH/DHH need PSV awareness."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Holoprosencephaly type 3 (SHH)",
+    "Currarino syndrome (MNX1)",
+    "Preaxial polydactyly / triphalangeal thumb (ZRS duplications)"
+  ],
+  "sources": [
+    "doi:10.1038/ng1196-353",
+    "doi:10.1126/science.1085371",
+    "doi:10.1086/426461"
+  ],
+  "confidence": 0.75
+}

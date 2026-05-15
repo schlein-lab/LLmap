@@ -1,0 +1,31 @@
+{
+  "name": "chr3_3p14_FHIT_region",
+  "taxonomy_id": "paralog_family",
+  "description": "3p14.2 FHIT gene region encompassing the FRA3B common fragile site, the largest in the human genome. FRA3B and the surrounding SDs are hotspots for somatic deletions in epithelial cancers; the locus harbours flanking low-copy repeats that mediate rare germline rearrangements.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 59700000, "end": 61500000}},
+  "size_bp": 1800000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "somatic_unstable",
+    "homology_percent": 92.0,
+    "internal_structure": "Common fragile site FRA3B inside FHIT intron 5; flanking SDs of 10-50 kb at ~92% identity; high density of late-replicating, AT-rich DNA prone to replication stress."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "FHIT loss in epithelial cancers (lung, oesophagus)",
+    "Common fragile site FRA3B instability"
+  ],
+  "sources": [
+    "doi:10.1038/nrc1691",
+    "doi:10.1126/science.272.5260.453",
+    "PMID:8638140"
+  ],
+  "confidence": 0.8
+}

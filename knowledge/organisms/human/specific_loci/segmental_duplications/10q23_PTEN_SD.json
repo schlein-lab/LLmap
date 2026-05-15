@@ -1,0 +1,33 @@
+{
+  "name": "10q23_PTEN_region_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10q23.31 segmental duplications flanking PTEN, KLLN, BMPR1A and the PTEN pseudogene PTENP1 (chr9). Intra- and interchromosomal SDs mediate recurrent 10q23 microdeletions linked to juvenile polyposis / Bannayan-Riley-Ruvalcaba / Cowden syndromes.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 87800000, "end": 89200000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Two ~30-80 kb SD blocks flanking PTEN/BMPR1A at ~97% identity drive NAHR-mediated 10q23 microdeletion; PTENP1 pseudogene on 9p13 creates strong paralog confusion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cowden syndrome",
+    "Bannayan-Riley-Ruvalcaba syndrome",
+    "juvenile polyposis (BMPR1A)",
+    "10q23 microdeletion syndrome"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:17357071",
+    "PMID:17400792"
+  ],
+  "confidence": 0.85
+}

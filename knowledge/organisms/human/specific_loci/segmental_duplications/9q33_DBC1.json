@@ -1,0 +1,30 @@
+{
+  "name": "9q33_3_DBC1_region",
+  "taxonomy_id": "paralog_family",
+  "description": "9q33.1-q33.3 region around DBC1/BRINP1 with modest SDs; rare 9q33 microdeletions reported in nail-patella-syndrome-like and neurodevelopmental cohorts. Hosts LMX1B nearby.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 121000000, "end": 130000000}},
+  "size_bp": 9000000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 92.0,
+    "internal_structure": "Sparse SD clusters; mostly single-copy gene-dense region with intermediate SDs flanking LMX1B."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Nail-patella syndrome (LMX1B)",
+    "9q33 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1086/302804",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.4
+}

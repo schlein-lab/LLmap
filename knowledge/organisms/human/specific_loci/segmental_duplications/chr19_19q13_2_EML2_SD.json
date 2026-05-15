@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19q13_2_EML2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.2 SD field surrounding EML2 (echinoderm microtubule-associated protein-like 2) and BCKDHA. Sits between the CYP4F cluster and the very large 19q13.31/q13.33 ZNF blocks; contains intermediate-density intra-chromosomal SDs and is a recombination hotspot.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 41500000, "end": 42500000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 96.0,
+    "internal_structure": "Several 10-50 kb SD duplicons at 95-99% identity flanking EML2, BCKDHA, GIPR; partial inter-chromosomal SDs to chr10/chr17."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MSUD (BCKDHA) — adjacent unique gene",
+    "Rare 19q13.2 microdeletions"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075",
+    "PMID:18617664"
+  ],
+  "confidence": 0.65
+}

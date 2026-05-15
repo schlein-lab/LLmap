@@ -1,0 +1,30 @@
+{
+  "name": "16p11_2_ATXN2L_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.2 ATXN2L SD block, internal to the distal 16p11.2 (SH2B1) recurrent CNV. Contains ATXN2L, SH2B1, TUFM duplicons paralogous to other chromosome 16 SDs. Forms one of the SD boundaries of the 220 kb distal 16p11.2 deletion.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 28800000, "end": 28900000}},
+  "size_bp": 100000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.5,
+    "internal_structure": "ATXN2L/SH2B1-containing SD module of ~50 kb at >98% identity to a more proximal paralog; defines proximal breakpoint of distal 16p11.2 220 kb CNV."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 distal deletion (early-onset obesity)",
+    "SH2B1 haploinsufficiency"
+  ],
+  "sources": [
+    "doi:10.1038/nature08727",
+    "doi:10.1136/jmedgenet-2011-100654"
+  ],
+  "confidence": 0.8
+}

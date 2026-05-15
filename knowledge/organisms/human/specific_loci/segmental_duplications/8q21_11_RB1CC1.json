@@ -1,0 +1,28 @@
+{
+  "name": "8q21_11_RB1CC1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "8q21.11 region around RB1CC1/FIP200 and additional intermediate SDs; rare interstitial deletions reported. Modest paralog burden compared to canonical NAHR hotspots.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 80000000, "end": 82000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 93.0,
+    "internal_structure": "Small SD clusters around RB1CC1; rare in clinical CNV databases."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 4000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "RB1CC1 haploinsufficiency (schizophrenia risk allele)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.4
+}

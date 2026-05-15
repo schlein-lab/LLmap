@@ -1,0 +1,31 @@
+{
+  "name": "6p21_MHC_HLA_crossref",
+  "taxonomy_id": "paralog_family",
+  "description": "Cross-reference stub for the 6p21.3 MHC region. Full annotation is provided under specific_loci/mhc/. The MHC class I (HLA-A/B/C and pseudogenes E/F/G/H/J/K/L) and class II (HLA-DR/DQ/DP) paralog families are the densest concentration of SD-paralog content on chr6 and one of the most diverse regions in the human genome (>30 Mb of validated alternative haplotypes including PGF/COX/QBL/MANN/APD/SSTO/DBB).",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 28510120, "end": 33480577}},
+  "size_bp": 4970457,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "highly_polymorphic_haplotype",
+    "homology_percent": 90.0,
+    "internal_structure": "See organisms/human/specific_loci/mhc/ for detailed sub-region files (class_I, class_II, class_III, alpha/beta/kappa blocks). 8 alt-haplotype contigs in GRCh38 primary assembly.",
+    "see_also": "organisms/human/specific_loci/mhc/"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "see /mhc submodule for full disease list"
+  ],
+  "sources": [
+    "doi:10.1038/nature01000",
+    "doi:10.1038/nature06250",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.99
+}

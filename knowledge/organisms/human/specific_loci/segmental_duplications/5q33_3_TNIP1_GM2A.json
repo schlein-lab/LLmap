@@ -1,0 +1,30 @@
+{
+  "name": "5q33_3_GM2A_TNIP1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "5q33.3 SD pair surrounding TNIP1 and GM2A. GM2A is paralogous to NPC2 (14q24) and SAP-B/SAP-C (10q21) at the saposin-fold level. Short intragenic SDs and a flanking ~15 kb duplicon contribute to paralog confusion in lipid-storage-disease gene panels.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 150600000, "end": 151200000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 92.0,
+    "internal_structure": "Short flanking SDs ~15-30 kb at ~92% identity around GM2A and TNIP1; intragenic SDs in TNIP1 introns; cross-chromosome paralog tracts in NPC2 (14q24)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 6000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "GM2-gangliosidosis AB-variant (GM2A LOF)",
+    "psoriasis association (TNIP1)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.55
+}

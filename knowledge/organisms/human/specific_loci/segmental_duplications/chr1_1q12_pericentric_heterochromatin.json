@@ -1,0 +1,31 @@
+{
+  "name": "chr1_1q12_pericentric_heterochromatin",
+  "taxonomy_id": "centromere_like",
+  "description": "1q12 pericentric heterochromatin block, one of the largest constitutive heterochromatin regions in the human genome. Composed predominantly of classical satellite II/III tandem repeats; site of recurrent inversions and ICF-syndrome decondensation.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 122000000, "end": 125000000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "tandem_satellite",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "Megabase-scale arrays of HSat2 (5 bp) and HSat3 (5 bp) classical satellites; flanked by mixed SDs; assembly remains incomplete in GRCh38 (gap), fully resolved in CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "ICF syndrome (Immunodeficiency-Centromeric instability-Facial anomalies)",
+    "Pericentric inversion polymorphism inv(1)(p11q12)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/nature11082",
+    "PMID:35357919"
+  ],
+  "confidence": 0.85
+}

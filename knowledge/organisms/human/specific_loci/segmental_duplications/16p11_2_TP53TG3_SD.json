@@ -1,0 +1,30 @@
+{
+  "name": "16p11_2_TP53TG3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.2 TP53TG3 SD cluster — a multi-copy tandem array of TP53TG3/TP53TG3B/TP53TG3C/TP53TG3D/TP53TG3E/TP53TG3F paralogs at >99.5% identity, lying within the 16p11.2 proximal recurrent CNV region. Contributes to copy-number heterogeneity inside BP4-BP5.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 33000000, "end": 33700000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "Six TP53TG3 paralog copies in tandem direct orientation at >99.5% identity; CNV in the population (3-12 copies)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 recurrent CNV neighborhood",
+    "p53 stress-response regulation"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chr3_centromere_alpha_satellite",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 3 alpha-satellite array (D3Z1). Higher-order repeat monomer of 171 bp; size in the population ranges from ~1 to ~6 Mb. The chr3 alpha-satellite higher-order repeat shows extensive sequence heterogeneity between haplotypes.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 90772459, "end": 93655574}},
+  "size_bp": 2883115,
+  "architecture": {
+    "type": "tandem_satellite",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "Alpha-satellite HOR array D3Z1; flanking pericentric SDs at 3p11.1 and 3q11.1; haplotype-specific HOR variants known."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Centromere instability"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1146/annurev-genom-090413-025311"
+  ],
+  "confidence": 0.8
+}

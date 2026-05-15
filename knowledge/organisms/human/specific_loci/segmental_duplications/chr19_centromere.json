@@ -1,0 +1,30 @@
+{
+  "name": "chr19_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 19 centromere and pericentric SD field. The chr19 centromere is small (~2 Mb of alpha-satellite, D19Z3 array) but surrounded by extraordinarily SD-dense pericentric KRAB-ZNF and pseudogene blocks; one of the most challenging regions in GRCh38, fully resolved only in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 24600000, "end": 27300000}},
+  "size_bp": 2700000,
+  "architecture": {
+    "type": "centromeric_array_plus_SD",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "Core D19Z3 alpha-satellite higher-order repeat array (~2 Mb) with ~171 bp monomers and complex higher-order organization; pericentric SDs of 50-300 kb at >99% identity carry KRAB-ZNF paralogs; centromere position drifts in CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Chromosomal instability in pericentric inversions"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.85
+}

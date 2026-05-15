@@ -1,0 +1,30 @@
+{
+  "name": "8q12_1_CHD7_region",
+  "taxonomy_id": "paralog_family",
+  "description": "8q12.1-q12.2 region around CHD7 (CHARGE syndrome gene). CHD7 itself is single-copy but flanked by intermediate SDs; recurrent ~4-8 Mb deletions encompassing CHD7 occur in CHARGE-spectrum patients via SD-mediated NAHR.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 60500000, "end": 64000000}},
+  "size_bp": 3500000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Small SD blocks flanking CHD7; rare large NAHR-mediated deletions documented in CHARGE syndrome cohort."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CHARGE syndrome (CHD7)",
+    "Kallmann syndrome (CHD7)"
+  ],
+  "sources": [
+    "doi:10.1038/ng1407",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

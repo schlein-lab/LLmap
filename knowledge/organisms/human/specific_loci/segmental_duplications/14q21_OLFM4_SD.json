@@ -1,0 +1,29 @@
+{
+  "name": "14q21_OLFM4_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "14q21.3 contains an intra-chromosomal SD pair flanking the GNG2/NID2/PSMC6 cluster with small 5-20 kb modules at 93-97% identity. The block is a known fragile-site neighbour and harbours rare CNVs reported in colorectal-cancer somatic profiles.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 51700000, "end": 53800000}},
+  "size_bp": 2100000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pairs of 5-20 kb SDs at 93-97% identity flanking GNG2/NID2/PSMC6; LINE-rich intervening segments."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "rare 14q21 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1101/gr.5042206"
+  ],
+  "confidence": 0.7
+}

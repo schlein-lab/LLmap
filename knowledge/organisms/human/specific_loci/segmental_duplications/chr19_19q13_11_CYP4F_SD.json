@@ -1,0 +1,31 @@
+{
+  "name": "chr19_19q13_11_CYP4F_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19q13.11/12 CYP4F cytochrome-P450 cluster — a tandem array of CYP4F2/3/8/11/12/22 paralogs at 80-95% identity, flanked by small SDs. The cluster harbours the leukotriene B4 and arachidonic acid omega-hydroxylases; CYP4F2*3 is a clinically important warfarin-dose modifier.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 15700000, "end": 16100000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "stable",
+    "homology_percent": 90.0,
+    "internal_structure": "~6-7 CYP4F paralog genes (12-15 exons each) in tandem at 80-95% identity over ~400 kb, with short flanking SDs <20 kb; common SNV/indel paralog-specific markers."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Warfarin dose variability (CYP4F2*3)",
+    "Vitamin K metabolism variation"
+  ],
+  "sources": [
+    "doi:10.1124/dmd.107.018325",
+    "doi:10.1126/science.1072047",
+    "PMID:18305138"
+  ],
+  "confidence": 0.85
+}

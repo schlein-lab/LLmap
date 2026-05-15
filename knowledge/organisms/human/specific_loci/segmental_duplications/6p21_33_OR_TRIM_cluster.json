@@ -1,0 +1,31 @@
+{
+  "name": "6p21_33_OR_TRIM_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "6p21.33 olfactory-receptor (OR) and TRIM family paralog cluster, distal/centromeric to the MHC. Contains ~20 OR2/OR5/OR12 paralogs and the TRIM10/TRIM15/TRIM26/TRIM27 cluster. The 7-stage SD-paralog map of Bailey 2002 places this immediately distal to the MHC and partially overlapping the class-I extended haplotype. Independent CNV polymorphism in healthy populations.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 28800000, "end": 30200000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 93.0,
+    "internal_structure": "Mixed tandem array of ~20 OR paralogs (OR2/OR5/OR12 families) at 85-95% identity plus TRIM10/15/26/27/31/40 tandem cluster at 80-95% identity; OR cluster is one of the largest in the genome."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "olfaction polymorphism",
+    "TRIM27-associated autoimmunity (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature01000",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.7
+}

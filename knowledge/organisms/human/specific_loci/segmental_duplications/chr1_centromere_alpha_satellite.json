@@ -1,0 +1,30 @@
+{
+  "name": "chr1_centromere_alpha_satellite",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 1 centromeric alpha-satellite array (D1Z7). Composed of higher-order repeats (HORs) built from 171 bp alpha-satellite monomers. The active centromere CENP-A domain sits within a sub-region of the array. Fully resolved only in T2T-CHM13 (~9 Mb HOR).",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 121535434, "end": 124535434}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "tandem_satellite",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "Megabase-scale higher-order alpha-satellite HOR array (D1Z7), monomer 171 bp; flanking pericentric SDs and HSat2/3 blocks; active CENP-A domain typically <1 Mb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Centromere instability (CENP-A misregulation)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1146/annurev-genom-090413-025311",
+    "PMID:35357919"
+  ],
+  "confidence": 0.85
+}

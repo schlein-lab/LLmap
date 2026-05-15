@@ -1,0 +1,31 @@
+{
+  "name": "9p12_pericentromeric_satellite",
+  "taxonomy_id": "centromere_like",
+  "description": "9p12 pericentromeric region containing massive HSat3 (human satellite 3) blocks and alpha-satellite arrays. CHM13-T2T resolved this as the largest contiguous heterochromatin block of any human chromosome; GRCh38 has it as a gap. Polymorphic in size; common 9qh+ variant frequency >1%.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 38400000, "end": 43200000}},
+  "size_bp": 4800000,
+  "architecture": {
+    "type": "centromeric_alpha_satellite_plus_HSat3",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.5,
+    "internal_structure": "HSat3 pentanucleotide repeat (CATTC)n megablocks plus alpha-satellite D9Z1/D9Z3 arrays plus pericentromeric SD mosaic; the largest variable satellite block in the human genome."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.1,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "9qh+ chromosomal heteromorphism (mostly benign)",
+    "Robertsonian translocation susceptibility"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-022-05325-5",
+    "doi:10.1101/gr.270645.120"
+  ],
+  "confidence": 0.9
+}

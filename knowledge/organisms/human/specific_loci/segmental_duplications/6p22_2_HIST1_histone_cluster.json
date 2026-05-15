@@ -1,0 +1,32 @@
+{
+  "name": "6p22_2_HIST1_histone_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "6p22.1-p22.2 HIST1 histone gene cluster — the largest of three histone clusters in human (HIST1 here, HIST2 on 1q21, HIST3 on 1q42). Contains ~55 replication-dependent histone genes (H1, H2A, H2B, H3, H4 paralogs) over ~2 Mb. Each subtype has 6-15 near-identical paralogs (>97% identity). Read mapping to a specific H2A or H4 copy is essentially impossible without long reads or PSV-aware callers.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 25700000, "end": 27900000}},
+  "size_bp": 2200000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 97.0,
+    "internal_structure": "~55 histone genes including 12x H2A, 17x H2B, 14x H3, 15x H4 paralogs; arranged in mixed-orientation tandem array; paralog identity often >99% at protein level, 90-99% at nucleotide level; no introns (replication-dependent histones).",
+    "paralog_count": 55
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "rare somatic mutations in cancer (e.g. H3F3A H3.3 K27M)",
+    "histone-CNV association studies"
+  ],
+  "sources": [
+    "doi:10.1006/geno.2002.6850",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.95
+}

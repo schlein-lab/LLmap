@@ -1,0 +1,30 @@
+{
+  "name": "4p16_1_PCDH7_intragenic_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Intragenic SD pair flanking PCDH7 on 4p16.1, a member of the protocadherin paralog family. Short tandem duplications of the EC1-EC2 cadherin domains generate paralogous tracts shared with PCDH9 (13q21) and PCDH10 (4q28), creating cross-chromosome paralog confusion in short-read mapping.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 30700000, "end": 31200000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 92.0,
+    "internal_structure": "Two intragenic SDs of ~30-50 kb at ~92% identity within PCDH7; EC1-2 ectodomain shares 60-70% protein identity with PCDH9 (chr13) and PCDH10 (chr4q)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 8000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "neurodevelopmental disorders (rare)",
+    "cancer (epithelial-mesenchymal transition marker)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.6
+}

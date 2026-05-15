@@ -1,0 +1,33 @@
+{
+  "name": "5q13_q14_NUMT_major_mitochondrial_insertion",
+  "taxonomy_id": "paralog_family",
+  "description": "5q13.3-q14.3 NUMT (nuclear-mitochondrial-DNA) insertion — the largest known continuous NUMT in the human genome. A ~620 kb nuclear segment carries a near-complete mitochondrial-genome insertion (~14 kb) at ~98% identity to the rCRS mtDNA. False-positive heteroplasmy and mtDNA-mapping pile-ups in short-read data originate predominantly from this and a smaller chr1p36 NUMT.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 80400000, "end": 81100000}},
+  "size_bp": 14906,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 98.0,
+    "internal_structure": "Single nuclear insertion of a near-complete mtDNA genome (~14.9 kb of the 16.5 kb rCRS) at ~98% identity; flanked by unique nuclear sequence with no further mtDNA-like tracts within 1 Mb. Common confounder for cell-free DNA mtDNA quantification.",
+    "mtDNA_coverage": "near_complete"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "false-positive mtDNA heteroplasmy calls",
+    "mitochondrial-disease misdiagnosis"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1101/gr.6028407",
+    "doi:10.1093/molbev/msg197",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.95
+}

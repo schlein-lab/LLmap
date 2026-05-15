@@ -1,0 +1,30 @@
+{
+  "name": "16q24_ANKRD11_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16q24.3 SDs flanking ANKRD11 — the KBG syndrome gene. Direct-orientation duplicon pair mediates recurrent ~200-700 kb microdeletions encompassing ANKRD11.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 89100000, "end": 89700000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Two flanking SD modules of ~30-50 kb at ~97% identity surrounding ANKRD11; subtelomeric LCR component contributes."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "KBG syndrome (ANKRD11)",
+    "16q24.3 microdeletion syndrome"
+  ],
+  "sources": [
+    "doi:10.1038/ng.2776",
+    "doi:10.1038/ejhg.2010.255"
+  ],
+  "confidence": 0.8
+}

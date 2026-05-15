@@ -1,0 +1,34 @@
+{
+  "name": "10q26_3_subtelomeric_recurrent_CNV",
+  "taxonomy_id": "paralog_family",
+  "description": "10q26.3 distal subtelomeric deletion / duplication region. Recurrent terminal deletions (1-12 Mb) cause 10q26 deletion syndrome (ID, growth retardation, congenital anomalies, craniofacial features). Subtelomeric SD blocks at 10q26.3 mediate a subset of breakpoints. DMBT1 and FGFR2 lie within frequently deleted regions; TLX1 lies more proximally on 10q24.31.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 130000000, "end": 133797422}},
+  "size_bp": 3800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_10q26.3_subtelomeric", "SD_10q26_DMBT1_flank"],
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD cluster (~50-200 kb blocks) shared with other subtelomeric regions; critical dosage-sensitive gene candidates include DOCK1, FGFR2 (more proximal), TCERG1L; DMBT1 paralog cassette contributes to variable breakpoints."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "10q26 deletion syndrome (ID, GU anomalies, craniofacial)",
+    "isolated congenital heart disease",
+    "T-ALL (TLX1 rearrangements, more proximal at 10q24.31)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1002/ajmg.a.34228",
+    "doi:10.1136/jmg.2007.054775",
+    "ClinGen Dosage Sensitivity 10q26.3 region"
+  ],
+  "confidence": 0.8
+}

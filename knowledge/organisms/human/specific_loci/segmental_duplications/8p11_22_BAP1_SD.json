@@ -1,0 +1,32 @@
+{
+  "name": "8p11_22_FGFR1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "8p11.22-p11.23 region containing FGFR1 with flanking SDs implicated in recurrent 8p11.2 microdeletion syndrome and 8p11 myeloproliferative neoplasms (FGFR1 fusion). Also harbors WHSC1L1/NSD3.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 37500000, "end": 39500000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Moderate SD blocks (~30-80 kb) flanking FGFR1; substrate for rare ~5 Mb deletions and translocation breakpoints producing FGFR1 fusion oncoproteins."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "8p11 myeloproliferative syndrome (FGFR1 fusions)",
+    "8p11.22 microdeletion syndrome",
+    "Hartsfield syndrome (FGFR1)"
+  ],
+  "sources": [
+    "doi:10.1182/blood.V92.4.1432",
+    "doi:10.1086/302804",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

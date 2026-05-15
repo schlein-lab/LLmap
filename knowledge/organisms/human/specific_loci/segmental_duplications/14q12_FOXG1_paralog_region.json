@@ -1,0 +1,31 @@
+{
+  "name": "14q12_FOXG1_paralog_region",
+  "taxonomy_id": "paralog_family",
+  "description": "FOXG1 at 14q12 is a haploinsufficient forkhead transcription factor (Rett-like congenital variant). Flanked by paralogous SDs (~5-30 kb at 92-96% identity) shared with related FOX-family loci (FOXA1/FOXC1). Recurrent ~1-4 Mb 14q12 microdeletions and intragenic FOXG1 deletions cause the FOXG1 syndrome.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 28700000, "end": 30200000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Two pairs of directly-oriented SD modules (5-30 kb) at 92-96% identity ~500 kb upstream and ~700 kb downstream of FOXG1; intragenic AluY-AluY pairs additionally drive small deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "FOXG1 syndrome (congenital Rett variant)",
+    "14q12 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1086/521275",
+    "doi:10.1038/ejhg.2010.97",
+    "doi:10.1038/ng.2562"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,29 @@
+{
+  "name": "12q12_ARFGAP1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12q12 pericentromeric segmental duplication interval flanking ARFGAP1, PTHLH and the LRRK2-flanking 12q12 region. Pericentromeric SDs shared with other acrocentric / pericentromeric regions complicate assembly through the chr12 centromere.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 38000000, "end": 41000000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentromeric SD modules of 10-100 kb at 92-98% identity; shared duplicons with chr2p, chr10q, chr16p pericentromeric SD pile-ups."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Parkinson disease (LRRK2)",
+    "12q12 microdeletions (rare)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

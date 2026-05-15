@@ -1,0 +1,32 @@
+{
+  "name": "chr21_21q21_intrachromosomal_SD_blocks",
+  "taxonomy_id": "paralog_family",
+  "description": "21q21 hosts several intrachromosomal SD blocks (NCAM2-flanking, APP upstream) of 50-200 kb at >95% identity. Hot region for somatic copy-number changes in Alzheimer-like APP duplications and rare 21q21.3 microdeletions affecting NCAM2.",
+  "coordinates": {"grch38": {"chr": "chr21", "start": 20000000, "end": 30000000}},
+  "size_bp": 10000000,
+  "architecture": {
+    "type": "intrachromosomal_direct_SDs",
+    "copy_number_in_population": "low_recurrent_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Direct-oriented 50-200 kb SD blocks flanking NCAM2 and APP; NAHR-mediated APP-locus duplications cause early-onset familial Alzheimer disease."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "APP duplication early-onset Alzheimer disease",
+    "21q21.3 NCAM2 microdeletion",
+    "Cerebral amyloid angiopathy (APP dosage)"
+  ],
+  "sources": [
+    "doi:10.1038/ng1718",
+    "doi:10.1038/nature05290",
+    "PMID:16461860"
+  ],
+  "confidence": 0.85
+}

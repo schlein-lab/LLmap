@@ -1,0 +1,31 @@
+{
+  "name": "9p24_NFIB_subtelomeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "9p24 distal/subtelomeric region containing NFIB, JAK2, CD274 (PD-L1) and SMARCA2. Site of recurrent ~9p24 amplifications in Hodgkin lymphoma and PMBCL (PD-L1/PD-L2 gain). Flanked by intermediate SDs.",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 0, "end": 7000000}},
+  "size_bp": 7000000,
+  "architecture": {
+    "type": "subtelomeric_SD_plus_amplicon",
+    "copy_number_in_population": "stable_germline_amplified_somatic",
+    "homology_percent": 92.0,
+    "internal_structure": "Subtelomeric SD families plus single-copy CD274/PDCD1LG2/JAK2 amplicon target in lymphoma; rare germline 9p24 deletions/duplications (NFIB) cause neurodevelopmental phenotype."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hodgkin lymphoma (PD-L1/PD-L2 amplification)",
+    "Primary mediastinal B-cell lymphoma",
+    "9p deletion syndrome"
+  ],
+  "sources": [
+    "doi:10.1182/blood-2010-05-282780",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.75
+}

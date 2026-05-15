@@ -1,0 +1,31 @@
+{
+  "name": "chr2_2p11_2_centromeric_SDs",
+  "taxonomy_id": "centromere_like",
+  "description": "2p11.2 pericentromeric segmental-duplication belt, immediately telomeric of the chr2 alpha-satellite array. Contains ANKRD20-family duplicons and the ancient 2:9 ancestral fusion-site SDs (the chr2 centromere descends from the ape chr2A-chr2B fusion).",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 90500000, "end": 92500000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 97.0,
+    "internal_structure": "Pericentric SD blocks of 50-200 kb at 97-99% identity bordering the alpha-satellite array; ANKRD20A paralog signal; residual fossil-telomere repeats at the ancestral fusion site."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ancestral chromosome-2 fusion site",
+    "Pericentric inversions"
+  ],
+  "sources": [
+    "doi:10.1101/gr.2949305",
+    "doi:10.1126/science.abj6987",
+    "PMID:15994306"
+  ],
+  "confidence": 0.8
+}

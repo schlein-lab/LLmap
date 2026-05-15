@@ -1,0 +1,30 @@
+{
+  "name": "10p15_IDI1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "10p15.3 segmental duplication block surrounding IDI1 (isopentenyl-diphosphate delta-isomerase 1) and the WDR37/ADARB2 distal subtelomeric flank. Contains intrachromosomal duplicons paired with IDI2 and short pericentromeric SD copies; part of the 10p subtelomeric SD cluster shared with other subtelomeres.",
+  "coordinates": {"grch38": {"chr": "chr10", "start": 1000000, "end": 1500000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "10-30 kb duplicons at 93-97% identity between IDI1 and IDI2 paralog; subtelomeric blocks shared with other chromosome ends."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "10p15.3 deletion syndrome",
+    "subtelomeric rearrangements"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:17357071"
+  ],
+  "confidence": 0.7
+}

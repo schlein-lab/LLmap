@@ -1,0 +1,29 @@
+{
+  "name": "12q24_SLC6A6_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12q24.31 segmental duplication interval flanking SLC6A6 (taurine transporter) and the 12q24 / KCNJ8 region. Intra- and interchromosomal SDs link this locus to other SLC6-family paralogs across the genome.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 119500000, "end": 120500000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 93.0,
+    "internal_structure": "Family-internal SDs of 5-15 kb to SLC6A1/2/3/4/11/12/13 paralogs on chr3, chr5, chr16; short subtelomeric SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "taurine transporter deficiency (rare)",
+    "retinal degeneration (SLC6A6)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

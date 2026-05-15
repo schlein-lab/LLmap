@@ -1,0 +1,30 @@
+{
+  "name": "7q21_3_PEG10_imprint_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "7q21.3 region containing imprinted PEG10/SGCE locus and flanking SDs implicated in myoclonus-dystonia syndrome (SGCE deletions). Smaller SD blocks mediate rare deletions causing maternal-expressed gene loss-of-function.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 94000000, "end": 95500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Modest SD blocks (~20 kb each) flanking SGCE/PEG10 imprinted cluster; substrate for rare microdeletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 5000,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Myoclonus-dystonia syndrome (SGCE)",
+    "Silver-Russell-like imprinting disorders"
+  ],
+  "sources": [
+    "doi:10.1038/ng1296",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

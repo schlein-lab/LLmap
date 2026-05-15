@@ -1,0 +1,31 @@
+{
+  "name": "chr8p11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 8 p-arm pericentric flank (8p11.1-8p11.21), the immediate sub-centromeric LCR shoreline on the p-side of the chr8 centromere. Alpha-satellite (D8Z2), pericentromeric SDs, HSat patches. Site of the 8p11 myeloproliferative-disorder breakpoints (FGFR1). Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 41500000, "end": 44033744}, "chm13": {"chr": "chr8", "start": 41700000, "end": 44400000}},
+  "size_bp": 2533744,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D8Z2", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 3500],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + HSat patches + pericentromeric SD shoreline; distally adjoins FGFR1 / 8p11 myeloproliferative-syndrome region."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "8p11 myeloproliferative syndrome (FGFR1)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003"
+  ],
+  "confidence": 0.8
+}

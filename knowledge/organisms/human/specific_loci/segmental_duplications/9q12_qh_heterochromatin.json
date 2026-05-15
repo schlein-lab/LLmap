@@ -1,0 +1,30 @@
+{
+  "name": "9q12_qh_heterochromatin",
+  "taxonomy_id": "centromere_like",
+  "description": "9q12 heterochromatin (qh) block containing HSat3 (CATTC repeat) variable from 0 to >20 Mb between haplotypes. The 9qh+ polymorphism is the most common heteromorphism in human cytogenetics (~8% population). Site of pericentric inversion polymorphism (inv(9)(p12q13)).",
+  "coordinates": {"grch38": {"chr": "chr9", "start": 43000000, "end": 65000000}},
+  "size_bp": 22000000,
+  "architecture": {
+    "type": "tandem_satellite_block",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.8,
+    "internal_structure": "Pure HSat3 CATTC-pentamer tandem array; varies 0-25 Mb between haplotypes; CHM13 anchors the canonical block size; GRCh38 has placeholder N-gap."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.05,
+    "max_occ": 1000000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "9qh+ heteromorphism (benign variant)",
+    "Disputed association with reproductive failure"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.270645.120"
+  ],
+  "confidence": 0.95
+}

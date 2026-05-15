@@ -1,0 +1,31 @@
+{
+  "name": "7q11_21_RFC2_adjacent_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "7q11.21 region centromeric-adjacent to the Williams-Beuren critical region, containing POM121-like and RFC2-paralog duplicons. Acts as substrate for atypical/large WBS deletions extending beyond the canonical 1.55 Mb interval.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 64000000, "end": 72000000}},
+  "size_bp": 8000000,
+  "architecture": {
+    "type": "direct_flanking_SD",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Multiple POM121-like and NSUN5/TRIM50 paralog duplicons distributed across 7q11.21 acting as auxiliary breakpoints for atypical Williams-Beuren rearrangements."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Atypical Williams-Beuren deletion",
+    "7q11.21 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1086/302804",
+    "doi:10.1038/nrg2593",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

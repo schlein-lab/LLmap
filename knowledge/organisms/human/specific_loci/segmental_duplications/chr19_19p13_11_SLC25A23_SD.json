@@ -1,0 +1,32 @@
+{
+  "name": "chr19_19p13_11_SLC25A23_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "19p13.11 SD region containing SLC25A23 (Ca2+-activated mitochondrial carrier) and adjacent paralog blocks. 19p13.11 is the proximal partner of the recurrent 19p13.11 microdeletion / microduplication CNV mediated by flanking SDs and is part of the broader chr19 SD-enrichment field.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 17500000, "end": 19200000}},
+  "size_bp": 1700000,
+  "architecture": {
+    "type": "direct",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.5,
+    "internal_structure": "Two ~50-150 kb SD blocks at ~99% identity in direct orientation flanking the recurrent 19p13.11 CNV interval (~700 kb-1 Mb deletion); content includes SLC25A23, NR2C2AP, KLF1 and several ZNF paralogs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "19p13.11 microdeletion syndrome",
+    "19p13.11 microduplication syndrome",
+    "intellectual disability and dysmorphism"
+  ],
+  "sources": [
+    "doi:10.1136/jmg.2009.071563",
+    "doi:10.1126/science.1072047",
+    "PMID:19858123"
+  ],
+  "confidence": 0.85
+}

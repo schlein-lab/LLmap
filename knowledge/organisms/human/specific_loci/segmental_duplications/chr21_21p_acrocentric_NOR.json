@@ -1,0 +1,36 @@
+{
+  "name": "chr21_21p_acrocentric_short_arm_NOR",
+  "taxonomy_id": "paralog_family",
+  "description": "21p acrocentric short arm carrying one of five nucleolar organizer regions (NORs) with ~300-400 tandem rDNA 45S repeats (~43 kb each) and distal/proximal junction SD blocks shared homologously with chr13p, 14p, 15p, 22p. Robertsonian translocation hotspot; trisomy-21 origin via 14;21 / 21;21 rob fusion is well documented.",
+  "coordinates": {"grch38": {"chr": "chr21", "start": 0, "end": 10864561}},
+  "size_bp": 10800000,
+  "architecture": {
+    "type": "tandem_repeat_plus_interacrocentric_SDs",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.5,
+    "internal_structure": "Distal satellite (BSAT, ACRO), rDNA array (~300 copies of 43 kb 45S unit), proximal junction SDs shared with other acrocentric short arms (interchromosomal SDs at 99.5% identity)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations (rob(13;21), rob(14;21), rob(21;22))",
+    "Down syndrome (trisomy 21 via translocation)",
+    "ribosomopathies (rDNA dosage)"
+  ],
+  "cross_references": [
+    "../ribosomal/",
+    "../centromeres/"
+  ],
+  "sources": [
+    "doi:10.1038/s41586-023-05976-y",
+    "doi:10.1126/science.abj6987",
+    "PMID:33288741"
+  ],
+  "confidence": 0.9
+}

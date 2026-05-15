@@ -1,0 +1,32 @@
+{
+  "name": "7q35_q36_LCR_SHFM_region",
+  "taxonomy_id": "paralog_family",
+  "description": "7q35-q36 region with low-copy repeats and complex SD architecture upstream/around SHH. Hosts rare interstitial duplications causing triphalangeal thumb / preaxial polydactyly via SHH ZRS enhancer dosage effects and recurrent 7q36 deletions.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 149000000, "end": 156000000}},
+  "size_bp": 7000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Multiple SD clusters across 7q35-q36 including SDs flanking LMBR1 (which contains the SHH-ZRS limb enhancer at intron 5) and HLXB9/MNX1 region SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Preaxial polydactyly type II (ZRS duplications)",
+    "Triphalangeal thumb-polysyndactyly syndrome",
+    "Currarino syndrome (MNX1)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1085371",
+    "doi:10.1086/426461",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

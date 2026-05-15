@@ -1,0 +1,31 @@
+{
+  "name": "chr3_3p13_LSAMP_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "3p13 SD cluster around the LSAMP locus and the FOXP1 region. Contains a recurrent fragile-site/SD-mediated breakpoint cluster involved in 3p13 microdeletions and somatic translocations.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 71000000, "end": 72500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 93.0,
+    "internal_structure": "Flanking SD pair of 20-50 kb at ~93% identity; LSAMP paralogs OBCAM/NEGR1/NTM share Ig-domain homology dispersed across the genome."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "FOXP1-related 3p13 microdeletion syndrome",
+    "LSAMP loss in osteosarcoma"
+  ],
+  "sources": [
+    "doi:10.1038/ejhg.2010.96",
+    "doi:10.1126/science.1072047",
+    "PMID:20571510"
+  ],
+  "confidence": 0.65
+}

@@ -1,0 +1,32 @@
+{
+  "name": "6q24_TPRG1_PARK2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "6q24.2-q26 region containing PARK2/PRKN (parkin, the largest human gene by genomic span at ~1.4 Mb), TPRG1, and short flanking SDs. PARK2 introns are CNV hotspots (recurrent exonic deletions causing autosomal-recessive juvenile Parkinson disease). Common CNVs within PARK2 introns; SDs flank a 6q24 transient neonatal diabetes (TNDM) imprinting region (PLAGL1/HYMAI).",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 144000000, "end": 165500000}},
+  "size_bp": 21500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "Multiple short SDs (~5-50 kb) within and around PARK2 introns at 90-97% identity; recurrent intragenic exonic CNVs; 6q24 TNDM imprinting domain at ~144 Mb (PLAGL1/HYMAI/ZAC1); LINE-1 rich intervening sequence."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "autosomal-recessive juvenile Parkinson disease (PARK2)",
+    "transient neonatal diabetes mellitus type 1 (6q24 TNDM)",
+    "lung adenocarcinoma (PARK2 somatic deletion)"
+  ],
+  "sources": [
+    "doi:10.1038/33416",
+    "doi:10.1038/ng.491",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

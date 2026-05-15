@@ -1,0 +1,31 @@
+{
+  "name": "6q14_1_recurrent_microdeletion",
+  "taxonomy_id": "paralog_family",
+  "description": "6q14.1 recurrent microdeletion region — a non-NAHR-driven but recurrent ~5 Mb interstitial deletion associated with intellectual disability and seizures. Some breakpoints cluster at short flanking SDs (~96% identity), others at LINE-1 / Alu pairs (non-allelic homologous recombination via interspersed repeats).",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 76500000, "end": 82500000}},
+  "size_bp": 6000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Heterogeneous breakpoints: ~30% at flanking SDs of ~15-50 kb at ~95% identity, remainder at L1/Alu pairs; unique core contains SENP6, TPBG, MYO6, IMPG1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "6q14 microdeletion syndrome",
+    "intellectual disability",
+    "epilepsy"
+  ],
+  "sources": [
+    "doi:10.1136/jmg.2009.073270",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}
