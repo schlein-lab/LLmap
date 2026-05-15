@@ -1,0 +1,32 @@
+{
+  "name": "IGK_locus_chr2",
+  "taxonomy_id": "paralog_family",
+  "description": "Immunoglobulin kappa light chain locus on chr2p11.2, ~1.8 Mb. Contains ~40 functional Vκ genes (and ~36 pseudogenes), 5 Jκ segments, and a single Cκ exon. The Vκ region is organised into two clusters (distal and proximal) separated by a ~800 kb spacer; the proximal cluster is inverted relative to the distal cluster. Recombines somatically via V-J joining (no D segments). Intra-locus Vκ duplications produce paralogous sequence requiring PSV-aware mapping.",
+  "coordinates": {
+    "grch38": {"chr": "chr2", "start": 88800000, "end": 90600000},
+    "chm13":  {"chr": "chr2", "start": 88150000, "end": 89950000}
+  },
+  "size_bp": 1800000,
+  "expected_paralogs": [
+    {"name": "Vk_proximal_cluster", "approx_offset_in_locus": 0},
+    {"name": "Vk_distal_cluster",   "approx_offset_in_locus": 900000},
+    {"name": "Jk_cluster",          "approx_offset_in_locus": 1750000},
+    {"name": "IGKC",                "approx_offset_in_locus": 1780000}
+  ],
+  "expected_copy_count": "1 functional per haplotype but rearranged in mature B cells; one inversion of the proximal Vk cluster also occurs as a polymorphism",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "sources": [
+    "doi:10.1006/jmbi.2001.4862",
+    "doi:10.1038/nature01601",
+    "IMGT IGK database (http://www.imgt.org)"
+  ],
+  "confidence": 0.9
+}

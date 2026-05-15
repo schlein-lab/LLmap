@@ -1,0 +1,28 @@
+{
+  "name": "chr17_olfactory_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "Olfactory receptor (OR) gene cluster on chr17p13.3, ~25 OR genes plus ~30 OR pseudogenes from the OR1, OR3 subfamilies. Lies near the subtelomere of chr17p. Although smaller than the chr1 and chr11 clusters, the chr17p13 cluster contains some of the highest-identity tandem OR duplicates in the human genome (multiple gene pairs >99% identical) and has documented copy-number variation.",
+  "coordinates": {
+    "grch38": {"chr": "chr17", "start": 3300000, "end": 3700000},
+    "chm13":  {"chr": "chr17", "start": 3200000, "end": 3600000}
+  },
+  "size_bp": 400000,
+  "expected_paralogs": [
+    {"name": "OR1_subfamily", "approx_offset_in_locus": 0},
+    {"name": "OR3_subfamily", "approx_offset_in_locus": 150000}
+  ],
+  "expected_copy_count": "~25 functional OR genes + ~30 pseudogenes per haplotype; population CNV evidence at some sub-blocks",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true
+  },
+  "sources": [
+    "doi:10.1101/gr.1326003",
+    "doi:10.1038/nrg1601"
+  ],
+  "confidence": 0.8
+}

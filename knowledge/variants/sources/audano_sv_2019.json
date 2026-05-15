@@ -1,0 +1,17 @@
+{
+  "id": "audano_sv_2019",
+  "display_name": "Audano et al. 2019 long-read SV catalog",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "sv",
+  "version": "2019-01",
+  "url": "https://eichlerlab.gs.washington.edu/help/audano/",
+  "format": "VCF.gz",
+  "license": "Open (academic use)",
+  "doi": ["10.1016/j.cell.2018.12.019"],
+  "expected_count": 100000,
+  "size_on_disk_gb": 0.03,
+  "ingest_command": "bcftools view audano_2019.sv.vcf.gz | bcftools annotate -x '^INFO/SVTYPE,INFO/SVLEN,INFO/AF,INFO/END' | llmap variant-ingest --source audano_sv_2019 --kind sv --bucket-bp 100 --output audano.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Pioneer long-read SV catalog (15 individuals, PacBio CLR). Excellent for VNTR / mid-size INS that short-read catalogs miss."
+}

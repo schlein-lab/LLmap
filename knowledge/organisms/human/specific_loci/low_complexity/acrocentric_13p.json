@@ -1,0 +1,29 @@
+{
+  "name": "chr13p_acrocentric_short_arm",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 13 short arm (13p), an acrocentric short arm composed of (proximal to distal) alpha-satellite, beta-satellite, 45S rDNA NOR, gamma-satellite-like sequences and subtelomeric repeats. Mostly unassembled in GRCh38; resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 0, "end": 16500000}},
+  "size_bp": 16500000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Centromeric alpha-satellite (D13Z1) -> beta-satellite arrays -> 45S rDNA NOR (~30-50 repeat units) -> distal heterochromatic stalk; nearly identical p-arm architecture shared with chr14, 15, 21, 22."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations (13;14, 13;15, 13;21, 13;22)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/nature01400"
+  ],
+  "confidence": 0.85
+}

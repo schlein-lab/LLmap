@@ -1,0 +1,31 @@
+{
+  "name": "16p11_2_distal_SH2B1",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.2 distal recurrent microdeletion/duplication region (~220 kb), flanked by directly oriented SDs. Distinct from the more proximal 16p11.2 region. Associated with obesity (SH2B1 dosage) and developmental delay.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 28800000, "end": 29050000}},
+  "size_bp": 250000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Flanking SDs of ~30-50 kb at >99% identity mediate recurrent ~220 kb CNV; unique segment contains SH2B1, ATXN2L, TUFM, ATP2A1, SBK1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 distal deletion syndrome",
+    "severe early-onset obesity",
+    "developmental delay"
+  ],
+  "sources": [
+    "doi:10.1038/nature08727",
+    "doi:10.1136/jmedgenet-2011-100654"
+  ],
+  "confidence": 0.9
+}

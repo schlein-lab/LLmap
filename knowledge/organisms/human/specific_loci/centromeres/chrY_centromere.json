@@ -1,0 +1,34 @@
+{
+  "name": "chrY_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome Y centromere/pericentromere (acen band interval). Alpha-satellite higher-order repeat (HOR) array: DYZ3 (~5.7 kb HOR, ~6-monomer); chrY-specific; T2T-resolved Rhie 2023. Flanked by pericentric HSat2/HSat3 satellite blocks. GRCh38 represents this region only as a placeholder gap interval filled with model alpha-satellite; fully sequence-resolved only in T2T-CHM13.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 10316945,
+      "end": 10544039
+    },
+    "chm13": {
+      "chr": "chrY",
+      "start": 10565750,
+      "end": 10883085
+    }
+  },
+  "size_bp": 227094,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers organised into HOR units (~1-6 kb each), tandemly arrayed",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1126/science.abl4178",
+    "doi:10.1126/science.abj6987",
+    "PMID:2581134",
+    "doi:10.1038/s41586-023-06457-y"
+  ],
+  "confidence": 0.9
+}

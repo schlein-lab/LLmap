@@ -1,0 +1,41 @@
+{
+  "name": "chrY_AZF",
+  "taxonomy_id": "paralog_family",
+  "description": "Azoospermia factor region on the long arm of chrY (Yq11.2), spanning AZFa, AZFb, and AZFc sub-intervals. ~9 Mb of male-specific Y (MSY) euchromatin containing the eight Y-chromosome ampliconic palindromes P1-P8 of Skaletsky 2003. Each palindrome carries inverted repeat arms of 99.94-99.997% identity around a short spacer, hosting multi-copy testis-specific gene families (DAZ, BPY2, CDY, RBMY, PRY, XKRY, HSFY, TSPY). Deletions in AZFb and AZFc are the commonest known molecular cause of male infertility. Palindrome arms are by far the highest-identity intra-chromosomal paralogs in the human genome — short-read mapping cannot resolve them at all; long-read or LR-anchored mapping with PSV catalogue is required.",
+  "coordinates": {
+    "grch38": {"chr": "chrY", "start": 14500000, "end": 26500000},
+    "chm13":  {"chr": "chrY", "start": 13700000, "end": 26200000}
+  },
+  "size_bp": 12000000,
+  "expected_paralogs": [
+    {"name": "AZFa_USP9Y_DDX3Y", "approx_offset_in_locus": 0},
+    {"name": "P5_palindrome_b1_b3", "approx_offset_in_locus": 2500000},
+    {"name": "P4_palindrome", "approx_offset_in_locus": 3500000},
+    {"name": "AZFb_b1_b4_b5_b6_PRY_RBMY", "approx_offset_in_locus": 4000000},
+    {"name": "P3_palindrome", "approx_offset_in_locus": 5500000},
+    {"name": "P2_palindrome_CDY1", "approx_offset_in_locus": 6500000},
+    {"name": "P1_palindrome_b2_b3_b4_DAZ_BPY2", "approx_offset_in_locus": 7500000},
+    {"name": "AZFc_b2_b4_DAZ1_4_BPY2_CDY1", "approx_offset_in_locus": 8000000},
+    {"name": "P6_palindrome", "approx_offset_in_locus": 9000000},
+    {"name": "P7_palindrome", "approx_offset_in_locus": 10000000},
+    {"name": "P8_palindrome", "approx_offset_in_locus": 11000000}
+  ],
+  "expected_copy_count": "haplotype-specific; reference carries 4 DAZ, 2 BPY2, 4 CDY copies; AZFc deletions (b2/b4) remove 1.6 Mb in ~1/4000 men",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "palindrome_handling": true,
+    "haplotype_specific_copy_number": true
+  },
+  "sources": [
+    "doi:10.1038/nature01722",
+    "doi:10.1038/nature03440",
+    "doi:10.1038/s41586-023-06457-y",
+    "doi:10.1093/humrep/dei041"
+  ],
+  "confidence": 0.95
+}

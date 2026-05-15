@@ -1,0 +1,17 @@
+{
+  "id": "hprc_panvariants",
+  "display_name": "Human Pangenome Reference Consortium pan-variant calls",
+  "organism": "human",
+  "assembly": "GRCh38+CHM13v2",
+  "kind": "mixed",
+  "version": "r2 (HPRC release 2)",
+  "url": "https://github.com/human-pangenomics/hprc-r2",
+  "format": "VCF.gz",
+  "license": "CC0",
+  "doi": ["10.1038/s41586-023-05896-x"],
+  "expected_count": 80000000,
+  "size_on_disk_gb": 1.5,
+  "ingest_command": "for asm in $(ls hprc-r2/decomposed/*.vcf.gz); do bcftools view $asm; done | bcftools sort -Oz -o hprc_merged.vcf.gz && llmap variant-ingest --source hprc_panvariants --kind mixed --bucket-bp 100 --output hprc.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Pangenome-derived SNVs and SVs from 219 haplotype-resolved assemblies; especially strong in formerly-hard regions (centromeres, SDs, immunoglobulin loci). Highest value for the IGHG project."
+}

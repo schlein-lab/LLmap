@@ -1,0 +1,32 @@
+{
+  "name": "2q13_recurrent_CNV_region",
+  "taxonomy_id": "paralog_family",
+  "description": "2q13 recurrent microdeletion/microduplication region flanked by directly oriented segmental duplications mediating NAHR. Associated with variable phenotype including developmental delay, cardiac defects (NPHP1 nephronophthisis is the better-known recessive disorder at a partly overlapping locus).",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 110300000, "end": 111900000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Flanking SD pair with >95% identity over 50-100 kb, mediating recurrent ~1.7 Mb CNVs; contains MALL, NPHP1, BUB1 paralogs; nearby 2q13 RGPD gene family extends the paralog complexity."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "2q13 microdeletion syndrome",
+    "Nephronophthisis 1 (NPHP1)",
+    "developmental delay"
+  ],
+  "sources": [
+    "doi:10.1136/jmedgenet-2012-101412",
+    "doi:10.1038/ejhg.2012.119",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.8
+}

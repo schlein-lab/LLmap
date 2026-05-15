@@ -1,0 +1,17 @@
+{
+  "id": "dbvar",
+  "display_name": "NCBI dbVar nstd166 common SVs",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "sv",
+  "version": "2024-01",
+  "url": "https://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/by_study/genotype/nstd166/",
+  "format": "VCF.gz",
+  "license": "Public domain (NCBI)",
+  "doi": ["10.1093/nar/gkv1286"],
+  "expected_count": 6000000,
+  "size_on_disk_gb": 0.4,
+  "ingest_command": "bcftools view nstd166.GRCh38.variant_call.vcf.gz | bcftools annotate -x '^INFO/SVTYPE,INFO/AF,INFO/SVLEN,INFO/END' | llmap variant-ingest --source dbvar --kind sv --bucket-bp 100 --output dbvar.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Aggregates SV submissions from many studies; reciprocal-overlap verification target for novel-SV review. Used in IGHG pipeline phase D."
+}

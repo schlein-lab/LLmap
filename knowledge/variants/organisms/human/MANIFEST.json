@@ -1,0 +1,40 @@
+{
+  "organism": "human",
+  "assemblies": ["GRCh38", "CHM13v2"],
+  "default_catalog_set": [
+    "gnomad_genome_snv",
+    "gnomad_sv",
+    "hprc_panvariants",
+    "clinvar"
+  ],
+  "extended_catalog_set": [
+    "dbsnp",
+    "gnomad_genome_snv",
+    "gnomad_sv",
+    "dgv",
+    "dbvar",
+    "1kg_sv_phase3",
+    "hprc_panvariants",
+    "clinvar",
+    "audano_sv_2019",
+    "beyter_iceland_2021"
+  ],
+  "recommended_profiles": {
+    "minimal": {
+      "catalogs": ["gnomad_genome_snv", "gnomad_sv"],
+      "approx_disk_gb": 9.3,
+      "notes": "Smallest footprint that still gives reliable AF for SNV and SV."
+    },
+    "default": {
+      "catalogs": ["gnomad_genome_snv", "gnomad_sv", "hprc_panvariants", "clinvar"],
+      "approx_disk_gb": 11.0,
+      "notes": "Recommended for routine human mapping including paralog-rich loci."
+    },
+    "research_full": {
+      "catalogs": ["dbsnp", "gnomad_genome_snv", "gnomad_sv", "dgv", "dbvar", "1kg_sv_phase3", "hprc_panvariants", "clinvar", "audano_sv_2019", "beyter_iceland_2021"],
+      "approx_disk_gb": 23.5,
+      "notes": "All catalogs. Use for variant-discovery research where false novelty is expensive."
+    }
+  },
+  "notes": "All catalogs are GRCh38-coordinate by default. CHM13v2 prior files can be derived by lifting over via the t2t-chm13 chain file from UCSC; ingestion command in each source spec accepts --liftover-chain for that purpose."
+}

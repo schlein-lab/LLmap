@@ -1,0 +1,35 @@
+{
+  "name": "1q21_1_distal_NBPF_NOTCH2NL",
+  "taxonomy_id": "paralog_family",
+  "description": "1q21.1 distal segmental-duplication block (BP3-BP4) harbouring NBPF/Olduvai-domain genes and NOTCH2NL paralogs (A/B/C/R). Site of the recurrent 1q21.1 distal microdeletion/duplication syndrome; SDs flanking the unique core mediate non-allelic homologous recombination. NOTCH2NLA/B/C are human-specific paralogs of NOTCH2 with >99% identity.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 146500000, "end": 147900000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Direct-orientation SD blocks flanking a ~1.35 Mb unique segment; NBPF copies in tandem clusters with Olduvai (DUF1220) domain expansions; NOTCH2NL paralogs A/B/C plus the centromeric NOTCH2 progenitor share >99% identity over tens of kb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "1q21.1 distal microdeletion syndrome",
+    "1q21.1 distal microduplication syndrome",
+    "congenital heart defects",
+    "macrocephaly/microcephaly",
+    "schizophrenia susceptibility"
+  ],
+  "sources": [
+    "doi:10.1056/NEJMoa0805384",
+    "doi:10.1016/j.cell.2018.03.067",
+    "doi:10.1126/science.1072047",
+    "PMID:18784092"
+  ],
+  "confidence": 0.9
+}

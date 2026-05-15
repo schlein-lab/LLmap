@@ -7,6 +7,18 @@ mathematician / statistician can verify and extend.
 Mapping is approached as **Bayesian inference of read origin under
 physical constraints**, not max-likelihood pattern matching.
 
+> *A genome is mathematics and physics. We have long modelled it as biology
+> with text-search. The text-search era is over.*
+
+The rigid application of one global pattern-matching rule (one `k`, one
+`identity_threshold`, one chain-score function) across every region of
+every genome of every organism — the assumption made implicitly by every
+production short- and long-read mapper — is **no longer adequate** for
+the data we now collect (HiFi at 99.9 % accuracy, full-T2T assemblies,
+T2T pangenomes, exhaustive population variant catalogs). LLmap is a
+re-foundation: parameters vary per base, priors compose, knowledge is
+plumbed into the inference rather than glued on afterwards.
+
 ---
 
 ## 0. The gap in existing mappers
@@ -368,7 +380,101 @@ in exchange.
 
 ---
 
-## 11. Open questions
+## 11. Organism-agnostic / pure-math mode
+
+The four prior layers in § 1 are **optional**. Every layer is a `+ log Pᵢ`
+term in the action — if no `Pᵢ` is provided, the corresponding term is
+zero and the inference still works.
+
+A useful corollary: **LLmap can map sequences for which no biological
+knowledge exists at all.** Synthetic oligo pools, designed CRISPR
+constructs, sequence from a novel organism we have never seen, fictive
+test data, alien DNA — the layered priors degrade gracefully to the
+sequence-only term `E_seq`. What you lose is the region-specific
+refinement; what you keep is
+
+* the **physical** treatment (wave-particle formulation, Heisenberg
+  bound, GA dynamics, energy minimisation),
+* the **mathematical** treatment (Bayesian posterior, multi-position
+  wave emission, novelty channel),
+* the **online stochastic update** of empirical priors during the run.
+
+The field has long conflated *sequence alignment* with *biological
+sequence alignment*. They are not the same. The first is a problem in
+discrete mathematics and statistical physics; the second is the first
+plus a particular set of priors. LLmap separates the two cleanly:
+
+```
+mapping(sequence)            ← Pure-math mode, works on anything
+mapping(sequence, organism)  ← Add P_taxonomy + P_locus from organism module
+mapping(sequence, organism, --llm=auto)
+                              ← Plus P_agent at checkpoints
+mapping(sequence, organism, --llm=auto, --variants priors)
+                              ← Plus P_variant from gnomAD / dbVar / etc.
+```
+
+Each step adds capability; none is required. The base case is
+sequence-only and is still mathematically principled.
+
+---
+
+## 12. On-premise deployment
+
+A "fully on-premise" LLmap operates with these constraints:
+
+* No network access at runtime — no live API calls, no web fetches
+* All prior knowledge present as local files
+* No cloud LLM (Layer 3 is `--llm=off` or `--llm=local` with a
+  self-hosted model)
+* Reproducible: same input + same prior files → bit-identical output
+
+This mode is the default for clinical / forensic / IP-sensitive sites.
+LLmap must support it natively.
+
+### 12.1 What ships locally
+
+| Component | On-premise form |
+|---|---|
+| Reference genome | local FASTA (already standard) |
+| Layer 1 (taxonomy) | `knowledge/organisms/<org>/{classifier_rules.json, regions/*.json}` — KB-scale |
+| Layer 2 (specific_loci) | `knowledge/organisms/<org>/specific_loci/**.json` — MB-scale |
+| Layer 4 (variants) | pre-ingested `.priors` from gnomAD / dbVar / ClinVar / HPRC etc. — typically GB-scale |
+| Layer 3 (agent) | one of three options: `--llm=off` (skipped), `--llm=local <endpoint>` (talks to an on-prem LLM gateway), or `--llm=cached` (reuses agent decisions cached from a prior run) |
+
+### 12.2 Air-gapped operation
+
+In a fully air-gapped environment:
+
+* The site obtains the LLmap binary plus a release-tagged `knowledge/`
+  tarball and any required `.priors` files via approved channels (USB,
+  vetted artefact server).
+* `llmap align --llm=off` is the routine command.
+* No DNS resolution, no outbound traffic, no telemetry.
+* The novelty channel still works — it is intrinsic to the math, not
+  to any external service.
+
+### 12.3 Hybrid on-prem / agent
+
+Some sites have an on-prem LLM gateway (e.g., Anthropic on-prem, a
+locally-hosted Llama). `--llm=local --endpoint <url>` routes the
+agent through that gateway; nothing else changes. The cache layer
+makes the agent essentially free on second runs.
+
+### 12.4 Reproducibility audit trail
+
+Every record in the output BAM carries provenance tags:
+
+* `XL:Z:1234567` — local knowledge SHA-256 (matches a specific release of `knowledge/`)
+* `XK:Z:0c46…` — variant priors SHA-256 (matches a specific build of the priors file)
+* `XA:Z:on|off|local-<endpoint>` — agent mode at the time of mapping
+* `XC:Z:<decision_id>` — if Layer 3 fired, the cached decision identifier
+
+A reviewer can later regenerate exact-byte output given the same
+inputs and the recorded knowledge SHAs.
+
+---
+
+## 13. Open questions
 
 * Calibration of the `β_ℓ` mixing coefficients. Currently fixed; eventually learned from held-out gold-standard datasets per organism.
 * Calibration of `ℏ_map`. Currently derived analytically from `k` and `N`; could be empirical.

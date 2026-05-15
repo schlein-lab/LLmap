@@ -1,0 +1,29 @@
+{
+  "name": "chr3p_subtelomeric_variable",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 3 p-arm subtelomeric region containing a mosaic of subterminal repeats shared with other subtelomeres, degenerate TTAGGG stretches and small SDs. Variable per individual; site of 3p- (3p deletion) syndrome breakpoints.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 0, "end": 2300000}},
+  "size_bp": 2300000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Subterminal mosaic shared across multiple chromosome ends; TAR1-family subterminal repeats; degenerate telomere repeats; canonical TTAGGG distal tip."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "3p deletion syndrome"
+  ],
+  "sources": [
+    "doi:10.1101/gr.3284105",
+    "doi:10.1038/nature04338"
+  ],
+  "confidence": 0.7
+}

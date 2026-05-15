@@ -1,0 +1,17 @@
+{
+  "id": "clinvar",
+  "display_name": "ClinVar clinically interpreted variants",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "snv",
+  "version": "weekly release",
+  "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz",
+  "format": "VCF.gz",
+  "license": "Public domain (NCBI)",
+  "doi": ["10.1093/nar/gkx1153"],
+  "expected_count": 3500000,
+  "size_on_disk_gb": 0.08,
+  "ingest_command": "bcftools view clinvar.vcf.gz | bcftools annotate -x '^INFO/CLNSIG,INFO/AF_EXAC,INFO/AF_TGP,INFO/CLNVC' | llmap variant-ingest --source clinvar --bucket-bp 100 --tag-pathogenic --output clinvar.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Used both as AF source (where AF_EXAC/AF_TGP populated) and as a clinical-relevance tag — pathogenic positions can be flagged for elevated reporting even if AF is low."
+}

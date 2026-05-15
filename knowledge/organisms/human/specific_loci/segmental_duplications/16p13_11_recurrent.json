@@ -1,0 +1,33 @@
+{
+  "name": "16p13_11_recurrent_CNV",
+  "taxonomy_id": "paralog_family",
+  "description": "16p13.11 recurrent ~1.5 Mb microdeletion/microduplication region, flanked by paralogous SD blocks at >95% identity. Susceptibility CNV for epilepsy, intellectual disability, schizophrenia, and autism.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 15100000, "end": 16600000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 97.0,
+    "internal_structure": "Three SD blocks (LCR16a/LCR16b) mediating ~1.5 Mb and ~800 kb recurrent CNVs; core contains MYH11, NDE1, ABCC1, ABCC6, KIAA0430."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p13.11 microdeletion syndrome",
+    "epilepsy",
+    "schizophrenia susceptibility",
+    "aortic aneurysm (MYH11)"
+  ],
+  "sources": [
+    "doi:10.1093/hmg/ddl473",
+    "doi:10.1136/jmg.2009.067355",
+    "doi:10.1093/hmg/ddp361"
+  ],
+  "confidence": 0.85
+}

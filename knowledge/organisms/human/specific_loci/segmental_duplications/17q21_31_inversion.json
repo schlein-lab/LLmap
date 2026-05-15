@@ -1,0 +1,34 @@
+{
+  "name": "17q21_31_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "17q21.31 region with a common ~900 kb polymorphic inversion (H1 vs H2 haplotypes). H2 carriers are at risk for the Koolen-de Vries syndrome microdeletion (KANSL1 locus). Flanked by inverted SDs mediating both the inversion and recurrent CNVs.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 45500000, "end": 46500000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Inverted SD pair of ~100-200 kb at >99% identity flanking the MAPT/KANSL1/CRHR1 interval; H1 and H2 haplotypes differ by a ~900 kb inversion plus duplication; H2 underrepresented in European populations historically."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Koolen-de Vries syndrome (17q21.31 microdeletion)",
+    "Progressive supranuclear palsy (MAPT H1 haplotype)",
+    "Parkinson disease risk (H1)",
+    "frontotemporal dementia"
+  ],
+  "sources": [
+    "doi:10.1038/ng1508",
+    "doi:10.1038/ng1772",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/ng1607"
+  ],
+  "confidence": 0.95
+}

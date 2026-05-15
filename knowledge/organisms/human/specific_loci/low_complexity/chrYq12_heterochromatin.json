@@ -1,0 +1,30 @@
+{
+  "name": "chrYq12_heterochromatin_DYZ1_DYZ2",
+  "taxonomy_id": "low_complexity",
+  "description": "Y-chromosome q-arm heterochromatin block (Yq12), composed primarily of DYZ1 (HSat3-like, ~3.6 kb monomer) and DYZ2 (TTCCA/GAATG pentamer) tandem repeat arrays. Highly variable in size between individuals (10-40 Mb); largely a gap in GRCh38 and only resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 26600000, "end": 57227415}},
+  "size_bp": 30600000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "DYZ1 (~3.6 kb HSat3 unit) and DYZ2 (TTCCA pentamer) tandem arrays; extreme size polymorphism in the population; AT-rich, gene-poor."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Yqh size polymorphism (largely benign)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/nature01722",
+    "PMID:225837"
+  ],
+  "confidence": 0.9
+}

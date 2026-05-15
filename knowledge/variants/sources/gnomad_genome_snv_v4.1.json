@@ -1,0 +1,17 @@
+{
+  "id": "gnomad_genome_snv",
+  "display_name": "gnomAD v4.1 genome SNVs",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "snv",
+  "version": "4.1",
+  "url": "https://gnomad.broadinstitute.org/downloads#v4-variants",
+  "format": "VCF.gz",
+  "license": "CC0 (gnomAD data release terms)",
+  "doi": ["10.1038/s41586-020-2308-7", "10.1038/s41586-023-06045-0"],
+  "expected_count": 760000000,
+  "size_on_disk_gb": 9.0,
+  "ingest_command": "for chr in chr{1..22} chrX chrY; do bcftools view -f PASS gnomad.genomes.v4.1.sites.${chr}.vcf.bgz | bcftools annotate -x '^INFO/AF,INFO/AF_popmax' ; done | llmap variant-ingest --source gnomad_genome_snv --bucket-bp 100 --output gnomad_snv.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Highest-quality SNV AF catalog for human; preferred over dbSNP for AF estimates."
+}

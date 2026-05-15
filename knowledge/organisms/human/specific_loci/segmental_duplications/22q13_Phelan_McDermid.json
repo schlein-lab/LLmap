@@ -1,0 +1,31 @@
+{
+  "name": "22q13_Phelan_McDermid_SHANK3",
+  "taxonomy_id": "paralog_family",
+  "description": "22q13.33 subtelomeric region (Phelan-McDermid syndrome). Variable-size terminal deletions remove SHANK3 and other genes. Subtelomeric SDs and the 22q telomere make breakpoint mapping difficult; not strictly recurrent (most are terminal), but the SD architecture distally is complex.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 50500000, "end": 50800000}},
+  "size_bp": 300000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD-rich region; SHANK3 lies ~70 kb from the telomere; non-recurrent deletions range from <100 kb to >9 Mb; ring chromosome 22 also produces the phenotype."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Phelan-McDermid syndrome (22q13.3 deletion)",
+    "autism (SHANK3)",
+    "intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1136/jmedgenet-2014-102427",
+    "doi:10.1038/nrg.2017.49"
+  ],
+  "confidence": 0.85
+}
