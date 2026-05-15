@@ -23,13 +23,17 @@
 namespace llmap::annot {
 
 struct FeaturePredicate {
-    enum class Op { GE, LE, EQ, RangeIn, MultiplicityMin };
+    enum class Op {
+        GE, LE, EQ, RangeIn, MultiplicityMin,
+        ConsensusIn,    // f.consensus_match in {value_list}; empty => no match
+        AlwaysFalse     // unsupported / unknown predicate => never matches
+    };
     std::string feature;
-    Op op;
+    Op op = Op::AlwaysFalse;
     float bound_lo = 0.0f;
     float bound_hi = 0.0f;
     int int_bound = 0;
-    std::string str_bound;
+    std::vector<std::string> str_values;
 };
 
 struct ClassifierRule {

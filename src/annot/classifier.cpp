@@ -221,6 +221,14 @@ bool MatchOne(const WindowFeatures& f, const FeaturePredicate& p) {
             return fv >= p.bound_lo && fv <= p.bound_hi;
         case FeaturePredicate::Op::MultiplicityMin:
             return f.kmer_multiplicity_p95 >= static_cast<uint32_t>(p.int_bound);
+        case FeaturePredicate::Op::ConsensusIn:
+            if (f.consensus_match.empty()) return false;
+            for (const auto& v : p.str_values) {
+                if (f.consensus_match == v) return true;
+            }
+            return false;
+        case FeaturePredicate::Op::AlwaysFalse:
+            return false;
     }
     return false;
 }
@@ -300,10 +308,23 @@ std::optional<FeaturePredicate> DecodeOnePredicateA(const Json& node) {
         }
         return p;
     }
-    // Note: "in" with a string-set value is dropped here because we don't yet
-    // have consensus_match feature plumbing; the corresponding rule simply
-    // matches via the other predicates of the conjunction.
-    return std::nullopt;
+    if (op == "in" && val_n && val_n->type == Json::Type::Array) {
+        p.op = FeaturePredicate::Op::ConsensusIn;
+        for (const auto& v : val_n->arr_v) {
+            if (v.type == Json::Type::String) p.str_values.push_back(v.str_v);
+        }
+        return p;
+    }
+    if (op == "is_null") {
+        // f.tandem_period == -1 means "no period detected" -- treat as null.
+        p.op = FeaturePredicate::Op::EQ;
+        p.feature = p.feature;
+        p.bound_lo = -1.0f;
+        return p;
+    }
+    // Unknown op: emit an always-false predicate so the rule fails closed.
+    p.op = FeaturePredicate::Op::AlwaysFalse;
+    return p;
 }
 
 // Parse a feature_signature node in either array-of-predicates form
