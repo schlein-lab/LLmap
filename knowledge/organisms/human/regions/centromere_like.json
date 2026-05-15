@@ -1,0 +1,25 @@
+{
+  "name": "centromere_like",
+  "taxonomy_id": "centromere_like",
+  "description": "Centromeric and pericentromeric chromatin: the spindle-attachment region of each chromosome. Architecturally a layered assembly of (i) the active alpha-satellite higher-order-repeat (HOR) array that binds CENP-A nucleosomes, (ii) flanking divergent monomeric alpha satellite, (iii) pericentric blocks of beta/gamma satellite and Human Satellite II/III, and (iv) segmental duplications. Sizes 0.1-5 Mb per chromosome, fully resolved only by T2T-CHM13 (2022). This is the broader category that contains the individual satellite tandem_repeat entries; classifier rules should rank centromere_like above the constituent satellites when multiple satellite types co-occur in a window.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [1.3, 2.5]},
+    "gc_content": {"range": [0.32, 0.55]},
+    "tandem_period": {"range": [60, 230]},
+    "kmer_multiplicity_p95": {"min": 500},
+    "consensus_match": {"any_of": ["alpha_satellite", "beta_satellite", "gamma_satellite", "HSat2", "HSat3"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 200.0,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-022-04601-8",
+    "doi:10.1038/nrg.2017.71"
+  ],
+  "confidence": 0.9
+}

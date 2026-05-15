@@ -1,0 +1,24 @@
+{
+  "name": "tandem_repeat_gamma_satellite",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Gamma satellite: ~220 bp GC-rich tandem repeat (originally described on chromosomes 8 and X, later expanded by T2T-CHM13). Forms pericentromeric blocks. Tandem period roughly twice that of beta satellite, giving a distinctive autocorrelation signature. GC-rich relative to alpha satellite.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [1.8, 2.5]},
+    "gc_content": {"range": [0.48, 0.60]},
+    "tandem_period": {"range": [215, 225]},
+    "kmer_multiplicity_p95": {"min": 200},
+    "consensus_match": {"any_of": ["gamma_satellite", "GSAT"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 80.0,
+    "lambda_scale": 2.0,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1093/hmg/3.4.583",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.75
+}

@@ -1,0 +1,29 @@
+{
+  "organism": "Mus musculus",
+  "ncbi_translation_table": 1,
+  "description": "Standard genetic code (NCBI table 1) with Mus musculus codon usage frequencies. Frequencies are per-thousand codon usage compiled from the GENCODE M33 protein-coding transcriptome on GRCm39 and are very close to published mouse codon-usage tables (Codon Usage Database). Used by the orf_density feature extractor to score open reading frames using mouse-likelihood ratios.",
+  "sources": [
+    "doi:10.1093/nar/28.1.292",
+    "doi:10.1093/nar/gkac1071"
+  ],
+  "start_codons": ["ATG"],
+  "stop_codons": ["TAA", "TAG", "TGA"],
+  "codon_frequencies_per_thousand": {
+    "TTT": 17.2, "TTC": 21.5, "TTA":  6.6, "TTG": 13.1,
+    "CTT": 13.4, "CTC": 19.4, "CTA":  8.1, "CTG": 39.5,
+    "ATT": 15.4, "ATC": 22.5, "ATA":  7.4, "ATG": 22.8,
+    "GTT": 10.7, "GTC": 15.4, "GTA":  7.4, "GTG": 28.4,
+    "TCT": 15.2, "TCC": 18.1, "TCA": 11.8, "TCG":  4.2,
+    "CCT": 18.4, "CCC": 18.2, "CCA": 17.3, "CCG":  6.2,
+    "ACT": 13.7, "ACC": 19.2, "ACA": 16.0, "ACG":  5.6,
+    "GCT": 20.0, "GCC": 25.7, "GCA": 16.0, "GCG":  6.4,
+    "TAT": 12.2, "TAC": 16.1, "TAA":  1.0, "TAG":  0.8,
+    "CAT": 10.4, "CAC": 15.3, "CAA": 12.0, "CAG": 34.1,
+    "AAT": 15.6, "AAC": 20.3, "AAA": 21.9, "AAG": 33.6,
+    "GAT": 21.0, "GAC": 26.0, "GAA": 27.0, "GAG": 39.4,
+    "TGT": 11.4, "TGC": 12.2, "TGA":  1.6, "TGG": 12.5,
+    "CGT":  4.7, "CGC": 10.0, "CGA":  6.6, "CGG": 10.2,
+    "AGT": 12.7, "AGC": 19.7, "AGA": 12.0, "AGG": 12.0,
+    "GGT": 11.4, "GGC": 22.2, "GGA": 16.8, "GGG": 15.2
+  }
+}

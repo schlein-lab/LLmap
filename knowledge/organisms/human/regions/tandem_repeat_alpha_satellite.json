@@ -1,0 +1,25 @@
+{
+  "name": "tandem_repeat_alpha_satellite",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Alpha satellite (alphoid) DNA: the 171 bp tandem repeat monomer that builds the active centromere of every human chromosome. Organised hierarchically into chromosome-specific higher-order repeats (HORs) of 2-34 monomers. AT-rich (GC ~0.36) with a short, simple monomer giving very low 5-mer Shannon entropy (1.3-1.7). The T2T-CHM13 assembly fully resolved these arrays for the first time. Mapping requires high max_occ and explicit multi-position output; reliable copy assignment generally needs HOR-specific PSV catalogs.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [1.3, 1.7]},
+    "gc_content": {"range": [0.32, 0.42]},
+    "tandem_period": {"range": [165, 175]},
+    "kmer_multiplicity_p95": {"min": 1000},
+    "consensus_match": {"any_of": ["alpha_satellite", "alphoid_HOR"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 200.0,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "PMID:2581134",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-022-04601-8"
+  ],
+  "confidence": 0.95
+}
