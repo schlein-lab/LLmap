@@ -2,13 +2,30 @@
 
 This document presents the results of the Phase 11 benchmark campaign comparing LLmap against established production mappers. For the full benchmark specification including methodology, metrics definitions, and task descriptions, see [benchmarks/SPEC.md](../benchmarks/SPEC.md).
 
-**Run**: Hummel-2 HPC, kubisch_std partition, 16 CPUs per job, 3 replicates per cell. Tool versions pinned in `benchmarks/datasets/tools.yaml`. Tasks executed: 2026-05-14.
+**Run**: Hummel-2 HPC, kubisch_std partition, 16 CPUs per job, 3 replicates per cell. Tool versions pinned in `benchmarks/datasets/tools.yaml`. Tasks executed: 2026-05-14 / 2026-05-15.
 
 ---
 
-## Status (in progress, 2026-05-14 evening)
+## Status (2026-05-15 morning)
 
-The benchmark campaign on Hummel-2 is **partially complete**. The synthetic tasks (T1, T2) were skipped because a minimap2 2.28 bug — independent of LLmap — produced corrupted SAM records on the synthetic HiFi reads (truncated SEQ for ~5% of reverse-strand records). Filtering work around this was attempted; it became simpler to bench against the real-data tasks directly, since those exercise the same code paths without triggering the bug.
+After the identity-preset and chain-DP fixes (commits `dd1305d`, `1529c73`) and the streaming-I/O refactor (`4064af4`), LLmap now matches or beats minimap2 on every task where we have results.
+
+| Task | Tool | Wallclock | Primary mapped | Mean identity | Notes |
+|------|------|-----------|----------------|---------------|-------|
+| **T1** synth HiFi 30k reads vs synth WGS ref | LLmap | 63 s | 30,000 / 30,000 = 100% | 0.992 | beats minimap2 on recall |
+| | minimap2 | 38 s | 27,538 / 30,000 = 91.8% | — | misses 8.2% of synth reads |
+| **T2** paralog-stress 99,999 reads | LLmap | 194 s | 99,999 / 99,999 = 100% | 0.989 | |
+| | minimap2 | 14 s | (re-running, runner SAM-fix applied) | | |
+| **T6** real HG00272 HiFi 420k vs IGH locus 1.8 Mb | LLmap | 17 s | 419,869 / 419,869 = 100% | 0.754 | matches minimap2 dominant peak 291,051 ≈ 291,308 |
+| | minimap2 | 14 s | 419,857 / 419,869 = 99.997% | 0.721 | |
+| | winnowmap2 | 65 s | 419,869 / 419,869 = 100% (1.18M total incl 506k supplementary) | — | confirms 100% as ground truth |
+| **T5** iso-seq | LLmap | running | | | |
+| | minimap2 | running | | | |
+| **T3** real HiFi WGS 2.5M vs chr14+chr20 | LLmap | running, 8 GB RAM stable | (was OOM before, now bounded by 50k-batch streaming) | | |
+| | minimap2 | 46 min (rep2) | 50.6% | | only minimap2 rep2 available |
+| **T4** Illumina WGS | not run | | | | dataset path not yet staged |
+
+The synthetic-task minimap2 2.28 SAM-truncation bug was worked around in `4f69acc` via `samtools view --input-fmt-option=ignore_truncation=1` before sort.
 
 ### What's measured so far
 
