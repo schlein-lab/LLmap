@@ -31,31 +31,32 @@ const char* PresetName(Preset preset) {
 void ApplyPreset(Preset preset, AlignArgs& args) {
     switch (preset) {
         case Preset::MapHifi:
-            // PacBio HiFi: high accuracy (>Q20), similar to minimap2 -x map-hifi
+            // PacBio HiFi. minimap2 -x map-hifi does not hard-filter by identity;
+            // the empirical identity distribution on real HiFi vs an imperfect
+            // reference (e.g., paralog-rich IGH) sits at mean ~0.72 because the
+            // reference itself is collapsed. We follow the same policy: keep a
+            // low floor and let MAPQ separate good from bad downstream.
             args.kmer_size = 19;
             args.window_size = 19;
-            args.min_identity = 0.85f;   // HiFi reads are >99% accurate per-base,
-                                          // but in paralog-rich loci a read mapped
-                                          // to the closest non-identical paralog
-                                          // legitimately sits near 0.85 identity.
-            args.min_chain = 40;          // Higher threshold for confident chains
+            args.min_identity = 0.50f;
+            args.min_chain = 40;
             break;
 
         case Preset::MapOnt:
         case Preset::MapPb:
-            // ONT/legacy PacBio: higher error rate (~5-15%)
+            // ONT/legacy PacBio: higher error rate (~5-15%); same policy.
             args.kmer_size = 15;
             args.window_size = 10;
-            args.min_identity = 0.70f;   // Relaxed for error-prone reads
-            args.min_chain = 20;          // Lower threshold for longer reads
+            args.min_identity = 0.40f;
+            args.min_chain = 20;
             break;
 
         case Preset::Sr:
-            // Short reads (Illumina): very high accuracy, short length
+            // Short reads (Illumina): very high accuracy, short length.
             args.kmer_size = 21;
             args.window_size = 11;
-            args.min_identity = 0.95f;   // Illumina reads are >99.9% accurate
-            args.min_chain = 50;          // Require strong chains for short reads
+            args.min_identity = 0.80f;   // SR alignments below this are noise.
+            args.min_chain = 50;
             break;
 
         case Preset::None:
