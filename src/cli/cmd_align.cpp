@@ -13,6 +13,7 @@
 #include "annot/annotation_store.h"
 #include "checkpoint/checkpoint_cache.h"
 #include "checkpoint/checkpoint_dispatcher.h"
+#include "claude_agent/anthropic_client.h"
 #include "checkpoint/checkpoint_types.h"
 #include "classical/classical_pipeline.h"
 #include "core/thread_pool.h"
@@ -195,22 +196,48 @@ int run_align(int argc, char** argv) {
 
     std::unique_ptr<checkpoint::CheckpointCache> checkpoint_cache;
     std::unique_ptr<checkpoint::CheckpointDispatcher> checkpoint_dispatcher;
+    std::unique_ptr<claude_agent::AnthropicClient> checkpoint_client;
     if (llm_mode != checkpoint::LlmMode::Off) {
         checkpoint_cache = std::make_unique<checkpoint::CheckpointCache>(
             args.llm_cache_dir.empty()
                 ? std::filesystem::path{}
                 : std::filesystem::path(args.llm_cache_dir));
-        // Agent wiring stays optional: an agent is constructed only if the
-        // legacy --llm flag is set and the API key is available. When the
-        // chain-DP-side checkpoint firing lands, replace nullptr here with
-        // the PipelineAgent pointer created below.
-        checkpoint_dispatcher = std::make_unique<checkpoint::CheckpointDispatcher>(
-            llm_mode, checkpoint_cache.get(), nullptr);
+
+        // Direct AnthropicClient for synchronous per-checkpoint calls.
+        // Picks up the key from --llm-api-key, --psv-llm-api-key flow, or
+        // env ANTHROPIC_API_KEY. If no key, the dispatcher falls back per
+        // the LlmMode policy.
+        std::string api_key = GetApiKey(args);
+        if (!api_key.empty()) {
+            claude_agent::AgentConfig acfg;
+            acfg.api_key = api_key;
+            acfg.model = "claude-sonnet-4-6";
+            checkpoint_client =
+                std::make_unique<claude_agent::AnthropicClient>(acfg);
+            checkpoint_dispatcher =
+                std::make_unique<checkpoint::CheckpointDispatcher>(
+                    llm_mode, checkpoint_cache.get(),
+                    checkpoint_client.get(),
+                    checkpoint::CheckpointDispatcher::DirectClientTag{});
+        } else {
+            checkpoint_dispatcher =
+                std::make_unique<checkpoint::CheckpointDispatcher>(
+                    llm_mode, checkpoint_cache.get(),
+                    static_cast<claude_agent::PipelineAgent*>(nullptr));
+            if (llm_mode == checkpoint::LlmMode::Required) {
+                std::fprintf(stderr,
+                    "ERROR: --llm-mode=required but no API key (set "
+                    "ANTHROPIC_API_KEY or use --llm-api-key)\n");
+                return 1;
+            }
+        }
         if (args.verbose) {
             std::fprintf(stderr,
-                "Layer 3 checkpoint dispatcher: mode=%s, cache=%s\n",
+                "Layer 3 checkpoint dispatcher: mode=%s, cache=%s, "
+                "api_key=%s\n",
                 checkpoint::LlmModeName(llm_mode),
-                checkpoint_cache->RootDir().c_str());
+                checkpoint_cache->RootDir().c_str(),
+                api_key.empty() ? "absent" : "present");
         }
     }
 
