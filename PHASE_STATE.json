@@ -1,0 +1,14 @@
+{
+  "started": "2026-05-15T21:00:00+02:00",
+  "horizon_hours": 96,
+  "deadline": "2026-05-19T21:00:00+02:00",
+  "current_phase": "A",
+  "phase_a_agents_dispatched": false,
+  "completed_organisms": [],
+  "in_flight_organisms": [],
+  "benchmarks_run": [],
+  "failed_regions": [],
+  "deploy_target": "losslessmap.com",
+  "last_iter": 0,
+  "last_wake": null
+}
