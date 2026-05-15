@@ -1,0 +1,30 @@
+{
+  "name": "16p11_2_SULT1A_paralog_array",
+  "taxonomy_id": "paralog_family",
+  "description": "SULT1A1/SULT1A2/SULT1A3/SULT1A4 sulfotransferase gene cluster — a 16p11.2 BP4/BP5 paralog quartet at >99% identity. SULT1A3 (proximal) and SULT1A4 (distal) are >99.9% identical and span the BP4-BP5 NAHR substrate; CNV-active.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 28500000, "end": 30100000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "SULT1A1 single-copy plus SULT1A2 single-copy at distal 16p11.2; SULT1A3/A4 paralogs at >99.9% identity inside BP4 and BP5 SD blocks; co-localised with BOLA2A/B."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 recurrent CNV (NAHR substrate)",
+    "drug metabolism variation (SULT1A1 copy number)"
+  ],
+  "sources": [
+    "doi:10.1038/nature19075",
+    "doi:10.1097/FPC.0b013e328011aa90"
+  ],
+  "confidence": 0.85
+}

@@ -41,6 +41,73 @@ one of these intervals, and tightens its expectation of multi-position chains.
 | `Xp22_3_STS.json` | Xp22.31 | direct VCX SDs | STS |
 | `Xq28_recurrent.json` | Xq28 int22h / F8 | inverted SDs | F8, MECP2 |
 
+### chr16 (densest SD chromosome in the genome; LCR16a duplicon family)
+
+| File | Region | Mechanism | Key dosage genes |
+|------|--------|-----------|-------------------|
+| `16p11_2_ATXN2L_SD.json` | 16p11.2 distal | direct SDs | ATXN2L, SH2B1 |
+| `16p11_2_BOLA2_BP4_BP5.json` | 16p11.2 BP4-BP5 duplicons | direct SDs | BOLA2A/B, SLX1, SULT1A3/A4 |
+| `16p11_2_BP2_BP3_SD.json` | 16p11.2-p12.1 BP2-BP3 | direct SDs | LCR16a core |
+| `16p11_2_NPIPB_SD.json` | 16p NPIPB array | direct SDs | NPIPB1-B15 |
+| `16p11_2_SULT1A_paralog.json` | 16p11.2 SULT1A cluster | direct SDs | SULT1A1/A2/A3/A4 |
+| `16p11_2_TBC1D10B_SD.json` | 16p11.2 BP4-BP5 internal | direct SDs | TBC1D10B, CORO1A |
+| `16p11_2_TP53TG3_SD.json` | 16p11.2 TP53TG3 array | direct SDs | TP53TG3A-F |
+| `16p12_1_MYH11_BP1_BP2.json` | 16p12.1 BP1-BP2 | direct SDs | MYH11 paralogs |
+| `16p12_2_SD_blocks.json` | 16p12.2 (Bailey 2002) | direct SDs | OTOA, LCR16a |
+| `16p13_1_LCR16a_NDE1.json` | 16p13.1 LCR16a | mosaic SDs | NDE1, MYH11 |
+| `16p13_2_A2BP1_SD.json` | 16p13.2 RBFOX1 | intragenic SDs | RBFOX1 |
+| `16p13_3_alpha_globin.json` | 16p13.3 HBA cluster | direct SDs (Z/X) | HBA1, HBA2 |
+| `16p13_3_subtelomeric_SD.json` | 16p13.3 PKD1 paralogs | direct SDs | PKD1, TSC2 |
+| `16p13_3_subtelomere_cap.json` | 16pter cap | subtelomeric SDs | - |
+| `16p13_3_Rubinstein_Taybi.json` | 16p13.3 CREBBP | direct SDs | CREBBP |
+| `16p11_2_distal_220kb_SH2B1.json` | 16p11.2 distal recurrent | direct SDs | SH2B1 (recurrence) |
+| `16q11_2_pericentric_heterochromatin.json` | 16q11.2 pericentric | satellite + SD mosaic | (heterochromatin) |
+| `16q12_SD_blocks.json` | 16q12 | mosaic SDs | CYLD, NKD1, SALL1 |
+| `16q22_CTCF_SD.json` | 16q22 | direct SDs | CTCF |
+| `16q23_3_WWOX_SD.json` | 16q23.3 FRA16D | intragenic SDs | WWOX |
+| `16q24_ANKRD11_SD.json` | 16q24.3 | direct SDs | ANKRD11 |
+
+### chr17 (SMS-REPs, NF1-REPs, CMT1A-REPs, KANSL1 H1/H2)
+
+| File | Region | Mechanism | Key dosage genes |
+|------|--------|-----------|-------------------|
+| `17p11_2_Potocki_Lupski.json` | 17p11.2 dup (reciprocal) | direct SMS-REPs | RAI1 |
+| `17p11_2_distal_LCR.json` | 17p11.2 distal LCR | direct SDs | (atypical SMS BP) |
+| `17p11_2_FLCN_SD.json` | 17p11.2 FLCN | direct SDs | FLCN |
+| `17p11_2_LLGL1_SD.json` | 17p11.2 middle SMS-REP | direct SDs | LLGL1, FLII |
+| `17p11_2_TRIM16_SD.json` | 17p11.2 TRIM16/16L | direct SDs | TRIM16, TRIM16L |
+| `17p12_PMP22_CMT1A.json` | 17p12 CMT1A-REPs | direct SDs | PMP22 |
+| `17p13_1_BCL6B_SD.json` | 17p13.1 | direct SDs | BCL6B, TP53 |
+| `17p13_2_PRPF8_SD.json` | 17p13.2 | direct SDs | PRPF8 |
+| `17p13_3_LIS1_SD.json` | 17p13.3 | direct SDs | PAFAH1B1 (LIS1), YWHAE |
+| `17p13_3_Miller_Dieker.json` | 17p13.3 Miller-Dieker | direct SDs | PAFAH1B1, YWHAE |
+| `17p13_subtelomeric_SD.json` | 17pter cap | subtelomeric SDs | - |
+| `17q11_2_NF1_REPa.json` | 17q11.2 NF1-REPa | direct SDs | SUZ12P1 paralog |
+| `17q11_2_NF1_REPc.json` | 17q11.2 NF1-REPc | direct SDs | SUZ12 paralog |
+| `17q11_2_pericentric_SD.json` | 17q11.1-q11.2 pericentric | mosaic SDs | - |
+| `17q21_31_KANSL1_SD.json` | 17q21.31 KANSL1 flank | inverted/direct (H1/H2) | KANSL1 |
+| `17q21_31_Koolen_de_Vries.json` | 17q21.31 microdeletion | direct SDs (on H2) | KANSL1 |
+| `17q21_32_LRRC37_SD.json` | 17q21.31-q21.32 LRRC37 | direct SDs | LRRC37A/A2/A3/B |
+| `17q22_NOG_SD.json` | 17q22 | direct SDs | NOG, TRIM37 |
+| `17q23_2_TBX2_TBX4_SD.json` | 17q23.2 SD flanks | direct SDs | TBX2, TBX4 |
+| `17q23_TBX2_TBX4.json` | 17q23 microdeletion (rec.) | direct SDs | TBX2, TBX4 |
+| `17q24_q25_NPLOC4_SD.json` | 17q24-q25 | mosaic SDs | NPLOC4 |
+| `17q25_3_subtelomeric_SD.json` | 17qter cap | subtelomeric SDs | KRT cluster, SECTM1 |
+
+### chr18
+
+| File | Region | Mechanism | Key dosage genes |
+|------|--------|-----------|-------------------|
+| `18p11_32_subtelomeric_SD.json` | 18pter cap | subtelomeric SDs | - |
+| `18p11_31_STK11_paralog.json` | 18p11.31 | direct SDs | STK11 paralog |
+| `18p11_21_pericentric_SD.json` | 18p11.21 pericentric | mosaic SDs | - |
+| `18q11_2_SD_module.json` | 18q11.2 | direct SDs | GATA6 |
+| `18q12_DTNA_SD.json` | 18q12 | intragenic SDs | DTNA |
+| `18q21_SMAD7_SD.json` | 18q21 | direct SDs | SMAD7 |
+| `18q21_2_TCF4_SD.json` | 18q21.2 | intragenic SDs | TCF4 |
+| `18q22_TNFRSF11A_SD.json` | 18q22 | direct SDs | TNFRSF11A (RANK) |
+| `18q23_ZADH2_SD.json` | 18q23 subtelomeric | mosaic SDs | ZADH2, TSHZ1, CTDP1 |
+
 ### chr19 (most SD-dense autosome, largest ZNF paralog family)
 
 | File | Region | Mechanism | Key dosage genes |
@@ -96,7 +163,7 @@ one of these intervals, and tightens its expectation of multi-position chains.
 | `chr20_20q13_33_KCNQ2_SD.json` | 20q13.33 | complex SDs | KCNQ2, CHRNA4 |
 | `chr20_20q13_33_subtelomeric_SD.json` | 20q13.33 tip | subtelomeric SDs | OPRL1, COL9A3 region |
 
-Total: 24 (original) + 26 (chr19) + 19 (chr20) = 69 SD-locus files.
+Total: 24 (original) + 21 (chr16 new) + 22 (chr17 new) + 9 (chr18) + 26 (chr19) + 19 (chr20) = 121 SD-locus files (chr16-18 add ~52 new entries; chr16 alone is the densest SD chromosome in the human genome).
 
 ## Primary sources
 
