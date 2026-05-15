@@ -187,6 +187,8 @@ add_library(llmap_annot STATIC
     annot/interval_tree.cpp
     annot/annotation_store.cpp
     annot/classifier.cpp
+    annot/classifier_json.cpp
+    annot/classifier_predicate.cpp
 )
 
 target_include_directories(llmap_annot PUBLIC

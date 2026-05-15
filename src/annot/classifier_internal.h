@@ -3,7 +3,9 @@
 
 #include "annot/classifier.h"
 #include "annot/annot_types.h"
+#include "annot/feature_extractor.h"
 
+#include <filesystem>
 #include <optional>
 #include <string>
 #include <vector>

@@ -1,388 +1,19 @@
 #include "annot/classifier.h"
+#include "annot/classifier_internal.h"
 
 #include <algorithm>
-#include <cctype>
-#include <cstdio>
 #include <filesystem>
-#include <fstream>
 #include <iostream>
-#include <optional>
-#include <sstream>
 #include <unordered_map>
 
 namespace llmap::annot {
 
-namespace {
-
-// --- tiny JSON reader -----------------------------------------------------
-//
-// Supports: objects, arrays, strings (no escape handling beyond \"), numbers
-// (decimal), bools, null. Whitespace tolerated. Comments not supported (we
-// stick to standard JSON for the rule files).
-
-struct Json {
-    enum class Type { Null, Bool, Number, String, Array, Object };
-    Type type = Type::Null;
-    bool bool_v = false;
-    double num_v = 0.0;
-    std::string str_v;
-    std::vector<Json> arr_v;
-    std::vector<std::pair<std::string, Json>> obj_v;
-
-    const Json* Get(const std::string& key) const {
-        if (type != Type::Object) return nullptr;
-        for (const auto& kv : obj_v) if (kv.first == key) return &kv.second;
-        return nullptr;
-    }
-    bool AsBool(bool defv = false) const {
-        if (type == Type::Bool) return bool_v;
-        return defv;
-    }
-    double AsNumber(double defv = 0.0) const {
-        if (type == Type::Number) return num_v;
-        return defv;
-    }
-    std::string AsString(const std::string& defv = "") const {
-        if (type == Type::String) return str_v;
-        return defv;
-    }
-};
-
-class JsonReader {
-public:
-    explicit JsonReader(std::string src) : src_(std::move(src)), pos_(0) {}
-    std::optional<Json> Parse() {
-        SkipWs();
-        Json out;
-        if (!ParseValue(out)) return std::nullopt;
-        SkipWs();
-        return out;
-    }
-
-private:
-    std::string src_;
-    size_t pos_;
-
-    void SkipWs() {
-        while (pos_ < src_.size() &&
-               (std::isspace(static_cast<unsigned char>(src_[pos_])))) ++pos_;
-    }
-    bool Peek(char c) {
-        SkipWs();
-        return pos_ < src_.size() && src_[pos_] == c;
-    }
-    bool Eat(char c) {
-        SkipWs();
-        if (pos_ < src_.size() && src_[pos_] == c) { ++pos_; return true; }
-        return false;
-    }
-    bool ParseValue(Json& out) {
-        SkipWs();
-        if (pos_ >= src_.size()) return false;
-        char c = src_[pos_];
-        if (c == '{') return ParseObject(out);
-        if (c == '[') return ParseArray(out);
-        if (c == '"') return ParseString(out);
-        if (c == 't' || c == 'f') return ParseBool(out);
-        if (c == 'n') return ParseNull(out);
-        if (c == '-' || std::isdigit(static_cast<unsigned char>(c)))
-            return ParseNumber(out);
-        return false;
-    }
-    bool ParseString(Json& out) {
-        if (!Eat('"')) return false;
-        std::string s;
-        while (pos_ < src_.size() && src_[pos_] != '"') {
-            if (src_[pos_] == '\\' && pos_ + 1 < src_.size()) {
-                char n = src_[pos_ + 1];
-                switch (n) {
-                    case '"': s.push_back('"'); break;
-                    case '\\': s.push_back('\\'); break;
-                    case 'n': s.push_back('\n'); break;
-                    case 't': s.push_back('\t'); break;
-                    case 'r': s.push_back('\r'); break;
-                    default: s.push_back(n);
-                }
-                pos_ += 2;
-            } else {
-                s.push_back(src_[pos_]);
-                ++pos_;
-            }
-        }
-        if (!Eat('"')) return false;
-        out.type = Json::Type::String;
-        out.str_v = std::move(s);
-        return true;
-    }
-    bool ParseNumber(Json& out) {
-        size_t start = pos_;
-        if (src_[pos_] == '-') ++pos_;
-        while (pos_ < src_.size() &&
-               (std::isdigit(static_cast<unsigned char>(src_[pos_])) ||
-                src_[pos_] == '.' || src_[pos_] == 'e' || src_[pos_] == 'E' ||
-                src_[pos_] == '+' || src_[pos_] == '-')) ++pos_;
-        try {
-            out.num_v = std::stod(src_.substr(start, pos_ - start));
-        } catch (...) { return false; }
-        out.type = Json::Type::Number;
-        return true;
-    }
-    bool ParseBool(Json& out) {
-        if (src_.compare(pos_, 4, "true") == 0) {
-            pos_ += 4;
-            out.type = Json::Type::Bool;
-            out.bool_v = true;
-            return true;
-        }
-        if (src_.compare(pos_, 5, "false") == 0) {
-            pos_ += 5;
-            out.type = Json::Type::Bool;
-            out.bool_v = false;
-            return true;
-        }
-        return false;
-    }
-    bool ParseNull(Json& out) {
-        if (src_.compare(pos_, 4, "null") == 0) {
-            pos_ += 4;
-            out.type = Json::Type::Null;
-            return true;
-        }
-        return false;
-    }
-    bool ParseArray(Json& out) {
-        if (!Eat('[')) return false;
-        out.type = Json::Type::Array;
-        SkipWs();
-        if (Eat(']')) return true;
-        while (true) {
-            Json elem;
-            if (!ParseValue(elem)) return false;
-            out.arr_v.push_back(std::move(elem));
-            SkipWs();
-            if (Eat(',')) continue;
-            if (Eat(']')) return true;
-            return false;
-        }
-    }
-    bool ParseObject(Json& out) {
-        if (!Eat('{')) return false;
-        out.type = Json::Type::Object;
-        SkipWs();
-        if (Eat('}')) return true;
-        while (true) {
-            Json key;
-            SkipWs();
-            if (!ParseString(key)) return false;
-            SkipWs();
-            if (!Eat(':')) return false;
-            Json val;
-            if (!ParseValue(val)) return false;
-            out.obj_v.emplace_back(std::move(key.str_v), std::move(val));
-            SkipWs();
-            if (Eat(',')) continue;
-            if (Eat('}')) return true;
-            return false;
-        }
-    }
-};
-
-// --- predicate evaluation -------------------------------------------------
-
-bool MatchOne(const WindowFeatures& f, const FeaturePredicate& p) {
-    auto getf = [&](const std::string& name, float& out) -> bool {
-        if      (name == "shannon_5mer") { out = f.shannon_5mer; return true; }
-        else if (name == "gc_content")   { out = f.gc_content; return true; }
-        else if (name == "palindrome_density") { out = f.palindrome_density; return true; }
-        else if (name == "orf_density")  { out = f.orf_density; return true; }
-        else if (name == "tandem_period") {
-            if (f.tandem_period < 0) return false;
-            out = static_cast<float>(f.tandem_period); return true;
-        }
-        else if (name == "kmer_multiplicity_p95") {
-            out = static_cast<float>(f.kmer_multiplicity_p95); return true;
-        }
-        return false;
-    };
-
-    float fv;
-    switch (p.op) {
-        case FeaturePredicate::Op::GE:
-            if (!getf(p.feature, fv)) return false;
-            return fv >= p.bound_lo;
-        case FeaturePredicate::Op::LE:
-            if (!getf(p.feature, fv)) return false;
-            return fv <= p.bound_hi;
-        case FeaturePredicate::Op::EQ:
-            if (!getf(p.feature, fv)) return false;
-            return std::abs(fv - p.bound_lo) < 1e-6f;
-        case FeaturePredicate::Op::RangeIn:
-            if (!getf(p.feature, fv)) return false;
-            return fv >= p.bound_lo && fv <= p.bound_hi;
-        case FeaturePredicate::Op::MultiplicityMin:
-            return f.kmer_multiplicity_p95 >= static_cast<uint32_t>(p.int_bound);
-        case FeaturePredicate::Op::ConsensusIn:
-            if (f.consensus_match.empty()) return false;
-            for (const auto& v : p.str_values) {
-                if (f.consensus_match == v) return true;
-            }
-            return false;
-        case FeaturePredicate::Op::AlwaysFalse:
-            return false;
-    }
-    return false;
-}
-
-// Apply mapping_hints JSON object to ParamOverride.
-void DecodeMappingHints(const Json& obj, ParamOverride& p) {
-    if (obj.type != Json::Type::Object) return;
-    for (const auto& kv : obj.obj_v) {
-        const std::string& k = kv.first;
-        const Json& v = kv.second;
-        if      (k == "k" && v.type == Json::Type::Number)        p.k = static_cast<uint8_t>(v.num_v);
-        else if (k == "w" && v.type == Json::Type::Number)        p.w = static_cast<uint8_t>(v.num_v);
-        else if (k == "max_occ" && v.type == Json::Type::Number)  p.max_occ = static_cast<uint32_t>(v.num_v);
-        else if (k == "max_occ_multiplier" && v.type == Json::Type::Number)
-            p.max_occ = static_cast<uint32_t>(5000 * v.num_v);  // scale against typical 5000
-        else if (k == "lambda_scale" && v.type == Json::Type::Number)
-            p.lambda_scale = static_cast<float>(v.num_v);
-        else if (k == "identity_threshold" && v.type == Json::Type::Number)
-            p.identity_threshold = static_cast<float>(v.num_v);
-        else if (k == "anchor_weight_scale" && v.type == Json::Type::Number)
-            p.anchor_weight_scale = static_cast<float>(v.num_v);
-        else if (k == "report_multi_position")  p.report_multi_position = v.AsBool();
-        else if (k == "require_psv_disambiguation") p.require_psv_disambig = v.AsBool();
-        else if (k == "allow_high_mismatch") p.allow_high_mismatch = v.AsBool();
-        else if (k == "require_llm_at_runtime") p.require_llm_at_runtime = v.AsBool();
-    }
-}
-
-// Parse a single feature_signature predicate of either of two syntaxes:
-//   (a) human-style:  {"feature": "x", "op": "between"|"eq"|"lt"|"gt"|"le"|"ge"|"in", "value": ...}
-//   (b) compact:      {"x": {"range": [lo, hi]}} or {"x": {"min": v}} / {"max": v}
-//
-// Returns std::nullopt for unrecognised forms; caller silently drops them.
-std::optional<FeaturePredicate> DecodeOnePredicateA(const Json& node) {
-    auto* feat_n = node.Get("feature");
-    auto* op_n = node.Get("op");
-    auto* val_n = node.Get("value");
-    if (!feat_n || !op_n || feat_n->type != Json::Type::String ||
-        op_n->type != Json::Type::String) {
-        return std::nullopt;
-    }
-    FeaturePredicate p;
-    p.feature = feat_n->str_v;
-    const std::string& op = op_n->str_v;
-
-    if (op == "between" && val_n && val_n->type == Json::Type::Array &&
-        val_n->arr_v.size() == 2) {
-        p.op = FeaturePredicate::Op::RangeIn;
-        p.bound_lo = static_cast<float>(val_n->arr_v[0].AsNumber());
-        p.bound_hi = static_cast<float>(val_n->arr_v[1].AsNumber());
-        return p;
-    }
-    if ((op == "ge" || op == "gte" || op == "geq" || op == "gt") && val_n &&
-        val_n->type == Json::Type::Number) {
-        p.op = FeaturePredicate::Op::GE;
-        p.bound_lo = static_cast<float>(val_n->num_v);
-        return p;
-    }
-    if ((op == "le" || op == "lte" || op == "leq" || op == "lt") && val_n &&
-        val_n->type == Json::Type::Number) {
-        p.op = FeaturePredicate::Op::LE;
-        p.bound_hi = static_cast<float>(val_n->num_v);
-        return p;
-    }
-    if (op == "eq" && val_n && val_n->type == Json::Type::Number) {
-        p.op = FeaturePredicate::Op::EQ;
-        p.bound_lo = static_cast<float>(val_n->num_v);
-        return p;
-    }
-    if (op == "min" && val_n && val_n->type == Json::Type::Number) {
-        if (p.feature == "kmer_multiplicity_p95") {
-            p.op = FeaturePredicate::Op::MultiplicityMin;
-            p.int_bound = static_cast<int>(val_n->num_v);
-        } else {
-            p.op = FeaturePredicate::Op::GE;
-            p.bound_lo = static_cast<float>(val_n->num_v);
-        }
-        return p;
-    }
-    if (op == "in" && val_n && val_n->type == Json::Type::Array) {
-        p.op = FeaturePredicate::Op::ConsensusIn;
-        for (const auto& v : val_n->arr_v) {
-            if (v.type == Json::Type::String) p.str_values.push_back(v.str_v);
-        }
-        return p;
-    }
-    if (op == "is_null") {
-        // f.tandem_period == -1 means "no period detected" -- treat as null.
-        p.op = FeaturePredicate::Op::EQ;
-        p.feature = p.feature;
-        p.bound_lo = -1.0f;
-        return p;
-    }
-    // Unknown op: emit an always-false predicate so the rule fails closed.
-    p.op = FeaturePredicate::Op::AlwaysFalse;
-    return p;
-}
-
-// Parse a feature_signature node in either array-of-predicates form
-// (style a) or compact object form (style b).
-std::vector<FeaturePredicate> DecodeSignature(const Json& sig) {
-    std::vector<FeaturePredicate> out;
-    if (sig.type == Json::Type::Array) {
-        for (const auto& p : sig.arr_v) {
-            auto pred = DecodeOnePredicateA(p);
-            if (pred) out.push_back(std::move(*pred));
-        }
-        return out;
-    }
-    if (sig.type != Json::Type::Object) return out;
-    for (const auto& kv : sig.obj_v) {
-        const std::string& feat = kv.first;
-        const Json& v = kv.second;
-        if (v.type != Json::Type::Object) continue;
-
-        const Json* range_node = v.Get("range");
-        const Json* min_node = v.Get("min");
-        const Json* max_node = v.Get("max");
-
-        if (range_node && range_node->type == Json::Type::Array &&
-            range_node->arr_v.size() == 2 &&
-            range_node->arr_v[0].type == Json::Type::Number &&
-            range_node->arr_v[1].type == Json::Type::Number) {
-            FeaturePredicate p;
-            p.feature = feat;
-            p.op = FeaturePredicate::Op::RangeIn;
-            p.bound_lo = static_cast<float>(range_node->arr_v[0].num_v);
-            p.bound_hi = static_cast<float>(range_node->arr_v[1].num_v);
-            out.push_back(std::move(p));
-        }
-        if (min_node && min_node->type == Json::Type::Number) {
-            FeaturePredicate p;
-            p.feature = feat;
-            if (feat == "kmer_multiplicity_p95") {
-                p.op = FeaturePredicate::Op::MultiplicityMin;
-                p.int_bound = static_cast<int>(min_node->num_v);
-            } else {
-                p.op = FeaturePredicate::Op::GE;
-                p.bound_lo = static_cast<float>(min_node->num_v);
-            }
-            out.push_back(std::move(p));
-        }
-        if (max_node && max_node->type == Json::Type::Number) {
-            FeaturePredicate p;
-            p.feature = feat;
-            p.op = FeaturePredicate::Op::LE;
-            p.bound_hi = static_cast<float>(max_node->num_v);
-            out.push_back(std::move(p));
-        }
-    }
-    return out;
-}
-
-}  // namespace
+using internal::Json;
+using internal::JsonReader;
+using internal::SlurpFile;
+using internal::MatchOne;
+using internal::DecodeMappingHints;
+using internal::DecodeSignature;
 
 Classifier::Classifier(std::vector<ClassifierRule> rules)
     : rules_(std::move(rules)) {
@@ -391,17 +22,6 @@ Classifier::Classifier(std::vector<ClassifierRule> rules)
             return a.priority > b.priority;
         });
 }
-
-namespace {
-// Read whole file into string, or return std::nullopt.
-std::optional<std::string> SlurpFile(const std::filesystem::path& p) {
-    std::ifstream f(p);
-    if (!f) return std::nullopt;
-    std::stringstream ss;
-    ss << f.rdbuf();
-    return ss.str();
-}
-}  // namespace
 
 std::unique_ptr<Classifier> Classifier::Load(const std::filesystem::path& path) {
     auto contents = SlurpFile(path);
@@ -440,8 +60,7 @@ std::unique_ptr<Classifier> Classifier::Load(const std::filesystem::path& path) 
     }
 
     // Merge mapping_hints from sibling regions/*.json files when the rule
-    // itself didn't carry hints inline. This is the standard layout used by
-    // knowledge/organisms/<org>/{classifier_rules.json,regions/*.json}.
+    // itself didn't carry hints inline.
     auto regions_dir = path.parent_path() / "regions";
     if (std::filesystem::exists(regions_dir) &&
         std::filesystem::is_directory(regions_dir)) {
@@ -450,13 +69,13 @@ std::unique_ptr<Classifier> Classifier::Load(const std::filesystem::path& path) 
         for (const auto& entry : std::filesystem::directory_iterator(regions_dir)) {
             if (!entry.is_regular_file()) continue;
             if (entry.path().extension() != ".json") continue;
-            auto contents = SlurpFile(entry.path());
-            if (!contents) continue;
-            JsonReader rrdr(*contents);
-            auto root = rrdr.Parse();
-            if (!root || root->type != Json::Type::Object) continue;
-            const Json* nm = root->Get("name");
-            const Json* h = root->Get("mapping_hints");
+            auto file_contents = SlurpFile(entry.path());
+            if (!file_contents) continue;
+            JsonReader rrdr(*file_contents);
+            auto region_root = rrdr.Parse();
+            if (!region_root || region_root->type != Json::Type::Object) continue;
+            const Json* nm = region_root->Get("name");
+            const Json* h = region_root->Get("mapping_hints");
             if (!nm || nm->type != Json::Type::String) continue;
             if (!h) continue;
             ParamOverride p;
@@ -467,7 +86,6 @@ std::unique_ptr<Classifier> Classifier::Load(const std::filesystem::path& path) 
         for (auto& rule : rules) {
             auto it = hints_by_region.find(rule.region_name);
             if (it == hints_by_region.end()) continue;
-            // Inline-on-rule hints take precedence; otherwise inherit.
             ParamOverride merged = rule.mapping_hints;
             merged.OverlayOver(it->second);
             rule.mapping_hints = merged;
