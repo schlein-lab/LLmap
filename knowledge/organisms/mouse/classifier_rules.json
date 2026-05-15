@@ -1,0 +1,123 @@
+{
+  "module": "mouse",
+  "schema_version": "0.1.0",
+  "description": "Deterministic feature -> region rules for Mus musculus GRCm39. Rules are evaluated in priority order (most specific first). The first rule whose predicate matches assigns the window. If no rule matches, the window is labelled unique_single_copy as default fallback.",
+  "default_region": "mouse_unique_single_copy",
+  "rules": [
+    {
+      "priority": 1,
+      "region": "mouse_telomeric_repeat",
+      "predicate": {
+        "consensus_match": {"any_of": ["TTAGGG", "telomere", "(TTAGGG)n"]},
+        "tandem_period": {"range": [6, 6]}
+      }
+    },
+    {
+      "priority": 2,
+      "region": "mouse_minor_satellite",
+      "predicate": {
+        "tandem_period": {"range": [118, 122]},
+        "kmer_multiplicity_p95": {"min": 200},
+        "consensus_match": {"any_of": ["MMSAT", "MinSat", "MinorSat"]}
+      }
+    },
+    {
+      "priority": 3,
+      "region": "mouse_major_satellite",
+      "predicate": {
+        "tandem_period": {"range": [230, 238]},
+        "kmer_multiplicity_p95": {"min": 500},
+        "consensus_match": {"any_of": ["MMSAT_GSAT", "MajSat", "GSAT_MM", "MajorSat"]}
+      }
+    },
+    {
+      "priority": 4,
+      "region": "mouse_centromere_block",
+      "predicate": {
+        "kmer_multiplicity_p95": {"min": 500},
+        "shannon_5mer": {"range": [1.4, 2.6]},
+        "consensus_match": {"any_of": ["MinSat", "MajSat", "MMSAT", "GSAT_MM"]}
+      }
+    },
+    {
+      "priority": 5,
+      "region": "mouse_b1_sine",
+      "predicate": {
+        "consensus_match": {"any_of": ["B1_Mus", "B1_Mm", "B1F", "B1F1", "B1F2"]}
+      }
+    },
+    {
+      "priority": 6,
+      "region": "mouse_b2_sine",
+      "predicate": {
+        "consensus_match": {"any_of": ["B2_Mus", "B2_Mm", "B2_Mm1a", "B2_Mm1t", "B2_Mm2"]}
+      }
+    },
+    {
+      "priority": 7,
+      "region": "mouse_l1md_line1",
+      "predicate": {
+        "consensus_match": {"any_of": ["L1Md", "L1Md_A", "L1Md_T", "L1Md_Gf", "L1_Mus", "L1_Mm", "LINE1_Mus"]}
+      }
+    },
+    {
+      "priority": 8,
+      "region": "mouse_iap_erv",
+      "predicate": {
+        "consensus_match": {"any_of": ["IAPLTR1", "IAPLTR2", "IAPEz", "IAP_Mus", "IAP-d", "IAP-int"]}
+      }
+    },
+    {
+      "priority": 9,
+      "region": "mouse_immunoglobulin_loci",
+      "predicate": {
+        "consensus_match": {"any_of": ["IGHV", "IGHD", "IGHJ", "IGHC", "IGKV", "IGKJ", "IGKC", "IGLV", "IGLC"]}
+      }
+    },
+    {
+      "priority": 10,
+      "region": "mouse_mhc_h2_complex",
+      "predicate": {
+        "consensus_match": {"any_of": ["H2-K", "H2-D", "H2-L", "H2-Aa", "H2-Ab", "H2-Ea", "H2-Eb", "H2_class_I", "H2_class_II"]}
+      }
+    },
+    {
+      "priority": 11,
+      "region": "mouse_olfactory_receptors",
+      "predicate": {
+        "consensus_match": {"any_of": ["Olfr", "OR_7TM", "olfactory_receptor"]}
+      }
+    },
+    {
+      "priority": 12,
+      "region": "mouse_low_complexity",
+      "predicate": {
+        "shannon_5mer": {"range": [0.0, 1.8]}
+      }
+    },
+    {
+      "priority": 13,
+      "region": "mouse_pseudogene",
+      "predicate": {
+        "orf_density": {"range": [0.1, 0.6]},
+        "kmer_multiplicity_p95": {"range": [2, 50]}
+      }
+    },
+    {
+      "priority": 14,
+      "region": "mouse_coding",
+      "predicate": {
+        "orf_density": {"min": 0.6},
+        "kmer_multiplicity_p95": {"max": 5}
+      }
+    },
+    {
+      "priority": 15,
+      "region": "mouse_unique_single_copy",
+      "predicate": {
+        "kmer_multiplicity_p95": {"max": 1},
+        "shannon_5mer": {"range": [3.2, 5.0]}
+      }
+    }
+  ]
+}

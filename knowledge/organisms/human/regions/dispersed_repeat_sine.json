@@ -1,0 +1,24 @@
+{
+  "name": "dispersed_repeat_sine",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Non-Alu SINEs: principally MIR (Mammalian-wide Interspersed Repeat, ~260 bp, ~600000 copies) and the related MIR3 subfamilies. Ancient (>100 Myr) tRNA-derived SINEs predating the primate radiation. Lower copy count and lower GC than Alu but still hundreds of thousands of copies. Consensus matches a core tRNA-like body plus a CORE-SINE domain shared across mammals.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.1, 3.7]},
+    "gc_content": {"range": [0.40, 0.55]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"min": 1000},
+    "consensus_match": {"any_of": ["MIR", "MIR3", "tRNA_SINE"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 60.0,
+    "lambda_scale": 1.5,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/35057062",
+    "doi:10.1093/molbev/msi202"
+  ],
+  "confidence": 0.85
+}

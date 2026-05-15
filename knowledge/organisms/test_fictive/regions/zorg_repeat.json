@@ -1,0 +1,23 @@
+{
+  "name": "zorg_repeat",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Invented 89-bp tandem repeat unit found in pericentromeric blocks of the (fictional) test_fictive genome. Arrays span hundreds of kilobases per chromosome. AT-biased monomer with a hypothetical CENP-Z binding motif at positions 30-46. Used purely as a tandem_repeat exemplar for the EXTENDING.md walkthrough.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [1.5, 2.1]},
+    "gc_content": {"range": [0.38, 0.46]},
+    "tandem_period": {"range": [87, 91]},
+    "kmer_multiplicity_p95": {"min": 100},
+    "consensus_match": {"any_of": ["ZORG89", "zorg_monomer"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 50.0,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "synthetic, no biological basis — see EXTENDING.md example."
+  ],
+  "confidence": 1.0
+}

@@ -1,0 +1,24 @@
+{
+  "name": "tandem_repeat_telomeric",
+  "taxonomy_id": "terminal_repeat",
+  "description": "Vertebrate telomere repeat (TTAGGG)n on the lagging strand / (CCCTAA)n on the leading strand. Caps every linear chromosome end; typical length in somatic human cells 5-15 kb, in germline up to ~20 kb. The 6 bp hexamer drives extremely low Shannon entropy (~0.5) because only a handful of 5-mers occur. GC ~0.5. Sub-telomeric regions transition into TAR1 / degenerate variants which classifier should treat as low_complexity rather than terminal_repeat.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [0.3, 0.9]},
+    "gc_content": {"range": [0.45, 0.55]},
+    "tandem_period": {"range": [6, 6]},
+    "kmer_multiplicity_p95": {"min": 5000},
+    "consensus_match": {"any_of": ["TTAGGG", "telomere"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 100.0,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "PMID:3413074",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.98
+}

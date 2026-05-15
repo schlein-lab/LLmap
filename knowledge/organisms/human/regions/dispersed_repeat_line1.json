@@ -1,0 +1,24 @@
+{
+  "name": "dispersed_repeat_line1",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Long Interspersed Nuclear Element 1 (LINE-1, L1): autonomous retrotransposon, full-length ~6 kb, encoding ORF1 (RNA-binding) and ORF2 (endonuclease + reverse transcriptase). ~500000 copies in the human genome (~17% of DNA), most are 5' truncated. Subfamilies L1PA (primate-specific) and the still-active L1HS/L1PA1. AT-rich (GC ~0.42) relative to Alus. 3' polyA tail. Insertions are a known cause of human disease (e.g. haemophilia A, DMD).",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.0, 3.7]},
+    "gc_content": {"range": [0.38, 0.46]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"min": 5000},
+    "consensus_match": {"any_of": ["L1", "LINE1", "L1HS", "L1PA"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 80.0,
+    "lambda_scale": 1.5,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/35057062",
+    "doi:10.1038/nrg2640"
+  ],
+  "confidence": 0.95
+}

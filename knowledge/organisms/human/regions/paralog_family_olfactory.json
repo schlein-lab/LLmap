@@ -1,0 +1,24 @@
+{
+  "name": "paralog_family_olfactory",
+  "taxonomy_id": "paralog_family",
+  "description": "Olfactory receptor (OR) gene clusters: the largest gene superfamily in the human genome with ~400 functional 7TM receptors plus ~600 OR pseudogenes distributed across 50+ clusters on all chromosomes except 20 and Y. Largest clusters on chr11 (chr11q11-q13, chr11p15) and chr1q44. Cluster members share 40-99% identity; within-cluster paralogs typically 60-90%. Most ORs are encoded by a single coding exon of ~1 kb. Population copy-number variation is extensive.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.7, 4.5]},
+    "gc_content": {"range": [0.42, 0.58]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [5, 40]},
+    "consensus_match": {"any_of": ["OR_7TM", "olfactory_receptor"]}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 12.0,
+    "lambda_scale": 1.3,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1101/gr.1326003",
+    "doi:10.1186/gb-2007-8-r86"
+  ],
+  "confidence": 0.85
+}

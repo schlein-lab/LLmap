@@ -1,0 +1,25 @@
+{
+  "name": "mouse_telomeric_repeat",
+  "taxonomy_id": "terminal_repeat",
+  "description": "Vertebrate telomeric repeat (TTAGGG)n bound by the shelterin complex. Mouse telomeres are notoriously long (20-50 kb at the lab-strain ends; even longer in M. m. castaneus) compared to human (5-15 kb). Repeat unit itself is identical to human and other vertebrates.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [1.0, 2.2]},
+    "gc_content": {"range": [0.45, 0.55]},
+    "tandem_period": {"range": [6, 6]},
+    "kmer_multiplicity_p95": {"min": 1000},
+    "consensus_match": {"any_of": ["TTAGGG", "telomere", "(TTAGGG)n"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 100.0,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1073/pnas.86.18.7049",
+    "doi:10.1038/345740a0",
+    "doi:10.1038/nature01262"
+  ],
+  "confidence": 0.98
+}

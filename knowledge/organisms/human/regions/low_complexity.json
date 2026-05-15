@@ -1,0 +1,24 @@
+{
+  "name": "low_complexity",
+  "taxonomy_id": "low_complexity",
+  "description": "Homopolymer runs (AAAA..., TTTT...), simple di/tri-nucleotide microsatellites with no clean tandem period, and AT-rich heterochromatic stretches such as the long heterochromatic block of chrY (Yq12) and pericentromeric AT islands. Shannon 5-mer entropy is depressed because only a handful of 5-mers dominate the window. Mapping is inherently ambiguous; anchor density is reduced and chains in such regions need a wider multi-position search.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [0.5, 2.5]},
+    "gc_content": {"range": [0.15, 0.45]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"min": 50},
+    "consensus_match": {"is_null": true}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 5.0,
+    "lambda_scale": 2.0,
+    "report_multi_position": false,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/35057062",
+    "doi:10.1093/nar/gkg616"
+  ],
+  "confidence": 0.9
+}

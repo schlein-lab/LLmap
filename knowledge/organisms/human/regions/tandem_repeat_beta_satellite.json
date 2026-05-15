@@ -1,0 +1,25 @@
+{
+  "name": "tandem_repeat_beta_satellite",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Beta satellite (Sau3A family): 68 bp GC-rich tandem repeat clustered on the short arms (p-arms) of the five acrocentric chromosomes (13, 14, 15, 21, 22) and on chromosome 9 and the Y. Found adjacent to rDNA arrays in the satellite stalk and nucleolus organiser region. Short monomer drives low Shannon entropy; higher GC than alpha satellite distinguishes the two.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [1.4, 2.0]},
+    "gc_content": {"range": [0.50, 0.62]},
+    "tandem_period": {"range": [66, 70]},
+    "kmer_multiplicity_p95": {"min": 500},
+    "consensus_match": {"any_of": ["beta_satellite", "Sau3A"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 100.0,
+    "lambda_scale": 2.5,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "PMID:225837",
+    "doi:10.1093/hmg/2.4.405",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,24 @@
+{
+  "name": "unique_single_copy",
+  "taxonomy_id": "unique_single_copy",
+  "description": "The bulk of the euchromatic human genome: sequence that occurs exactly once in GRCh38/CHM13. Includes intergenic single-copy DNA and most introns. Shannon 5-mer entropy is near-maximal because the local 5-mer distribution is approximately random. Mapping should be deterministic with minimal multi-mapping penalty.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.8, 4.6]},
+    "gc_content": {"range": [0.35, 0.55]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"max": 3},
+    "consensus_match": {"is_null": true}
+  },
+  "mapping_hints": {
+    "expected_unique": true,
+    "max_occ_multiplier": 1.0,
+    "lambda_scale": 1.0,
+    "report_multi_position": false,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/35057062",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.95
+}

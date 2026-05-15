@@ -1,0 +1,25 @@
+{
+  "name": "mouse_immunoglobulin_loci",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse immunoglobulin loci. IgH (Igh) is on chromosome 12 distal (~3 Mb spanning V_H, D_H, J_H, and C_H gene segments — Cmu, Cdelta, Cgamma3, Cgamma1, Cgamma2b, Cgamma2c (C57BL/6) or Cgamma2a (BALB/c), Cepsilon, Calpha). IgK (Igk) is on chromosome 6 (~3 Mb V_K + J_K + C_K). IgL (Igl) is on chromosome 16 (much smaller, only a few V_lambda segments — mice are heavily kappa-biased, ~95% kappa light chains). Within each locus, V-gene segments share 75-95% identity, generating mapping ambiguity that requires PSV disambiguation.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.0, 4.0]},
+    "gc_content": {"range": [0.42, 0.55]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [5, 100]},
+    "consensus_match": {"any_of": ["IGHV", "IGHD", "IGHJ", "IGHC", "IGKV", "IGKJ", "IGKC", "IGLV", "IGLC"]}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 10.0,
+    "lambda_scale": 1.2,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1038/nature01262",
+    "doi:10.1146/annurev.iy.11.040193.000325",
+    "doi:10.1093/nar/gku1056"
+  ],
+  "confidence": 0.88
+}

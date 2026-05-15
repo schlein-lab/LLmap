@@ -1,0 +1,25 @@
+{
+  "name": "paralog_family_mhc",
+  "taxonomy_id": "paralog_family",
+  "description": "Major Histocompatibility Complex on chr6p21.3 (~3.6 Mb). Class I (HLA-A, -B, -C, plus -E, -F, -G) and Class II (HLA-DRA, -DRB1/3/4/5, -DQA1, -DQB1, -DPA1, -DPB1) genes belong to several paralog families with extreme allelic polymorphism (>30000 HLA alleles in IPD-IMGT/HLA). Paralogous class I A/B/C share ~70-90% nucleotide identity in exons 2-3 (the peptide-binding groove); class II DRB copies share >95% identity. Short-read mapping notoriously collapses paralogs; long-read or PSV-aware mapping is required. CHM13 provides a single haplotype; population mapping should consult the MHC pangenome.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.6, 4.4]},
+    "gc_content": {"range": [0.40, 0.58]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [3, 30]},
+    "consensus_match": {"any_of": ["HLA", "MHC"]}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 8.0,
+    "lambda_scale": 1.2,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1038/44853",
+    "doi:10.1093/nar/gkz950",
+    "doi:10.1038/s41586-023-05896-x"
+  ],
+  "confidence": 0.9
+}

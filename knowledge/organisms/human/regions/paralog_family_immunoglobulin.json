@@ -1,0 +1,25 @@
+{
+  "name": "paralog_family_immunoglobulin",
+  "taxonomy_id": "paralog_family",
+  "description": "Immunoglobulin heavy- and light-chain loci: IGH on chr14q32 (~1.25 Mb, ~50 functional V, 23 D, 6 J, 9 C segments including IGHG1-4, IGHA1-2, IGHM, IGHE, IGHD), IGK on chr2p11 (~1.8 Mb), IGL on chr22q11 (~1.05 Mb). C-region paralogs (IGHG1/2/3/4, IGHA1/2) share 90-95% identity and require paralog-specific variants (PSVs) for copy assignment. V genes show high intra-locus duplication and recombine somatically (V(D)J) so a single read may span the rearranged junction. The locus also carries the IGHGP pseudogene (90.7% identity to IGHG4 with 155 fixed PSVs).",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.5, 4.5]},
+    "gc_content": {"range": [0.42, 0.62]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [5, 50]},
+    "consensus_match": {"any_of": ["IGH", "IGK", "IGL", "IGHG", "IGHA", "IGHM"]}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 10.0,
+    "lambda_scale": 1.2,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1038/nature01601",
+    "doi:10.1038/nri2941",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.9
+}

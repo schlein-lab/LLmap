@@ -1,0 +1,141 @@
+{
+  "schema_version": "0.1.0",
+  "organism": "Homo sapiens",
+  "description": "Deterministic decision rules mapping feature vectors to region names. Each window is evaluated against rules in descending priority; the first rule whose predicates ALL match assigns the region. Higher priority wins overlap. Predicates reference feature_vocabulary ids from schema.json.",
+  "rules": [
+    {
+      "region_name": "tandem_repeat_telomeric",
+      "priority": 100,
+      "predicates": [
+        {"feature": "tandem_period", "op": "eq", "value": 6},
+        {"feature": "shannon_5mer", "op": "lt", "value": 0.9},
+        {"feature": "consensus_match", "op": "in", "value": ["TTAGGG", "telomere"]}
+      ]
+    },
+    {
+      "region_name": "tandem_repeat_alpha_satellite",
+      "priority": 95,
+      "predicates": [
+        {"feature": "tandem_period", "op": "between", "value": [165, 175]},
+        {"feature": "gc_content", "op": "between", "value": [0.32, 0.42]},
+        {"feature": "shannon_5mer", "op": "lt", "value": 1.8}
+      ]
+    },
+    {
+      "region_name": "tandem_repeat_gamma_satellite",
+      "priority": 92,
+      "predicates": [
+        {"feature": "tandem_period", "op": "between", "value": [215, 225]},
+        {"feature": "gc_content", "op": "between", "value": [0.48, 0.60]}
+      ]
+    },
+    {
+      "region_name": "tandem_repeat_beta_satellite",
+      "priority": 90,
+      "predicates": [
+        {"feature": "tandem_period", "op": "between", "value": [66, 70]},
+        {"feature": "gc_content", "op": "between", "value": [0.50, 0.62]}
+      ]
+    },
+    {
+      "region_name": "centromere_like",
+      "priority": 85,
+      "predicates": [
+        {"feature": "tandem_period", "op": "between", "value": [60, 230]},
+        {"feature": "shannon_5mer", "op": "lt", "value": 2.5},
+        {"feature": "kmer_multiplicity_p95", "op": "gt", "value": 500}
+      ]
+    },
+    {
+      "region_name": "dispersed_repeat_alu",
+      "priority": 80,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["Alu", "AluJ", "AluS", "AluY"]},
+        {"feature": "gc_content", "op": "between", "value": [0.50, 0.65]}
+      ]
+    },
+    {
+      "region_name": "dispersed_repeat_line1",
+      "priority": 78,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["L1", "LINE1", "L1HS", "L1PA"]},
+        {"feature": "gc_content", "op": "between", "value": [0.38, 0.46]}
+      ]
+    },
+    {
+      "region_name": "dispersed_repeat_ltr",
+      "priority": 75,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["HERV", "HERV-K", "HERV-H", "HERV-W", "LTR"]}
+      ]
+    },
+    {
+      "region_name": "dispersed_repeat_sine",
+      "priority": 72,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["MIR", "MIR3", "tRNA_SINE"]}
+      ]
+    },
+    {
+      "region_name": "paralog_family_immunoglobulin",
+      "priority": 65,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["IGH", "IGK", "IGL", "IGHG", "IGHA", "IGHM"]}
+      ]
+    },
+    {
+      "region_name": "paralog_family_mhc",
+      "priority": 64,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["HLA", "MHC"]}
+      ]
+    },
+    {
+      "region_name": "paralog_family_kir",
+      "priority": 63,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["KIR"]}
+      ]
+    },
+    {
+      "region_name": "paralog_family_olfactory",
+      "priority": 62,
+      "predicates": [
+        {"feature": "consensus_match", "op": "in", "value": ["OR_7TM", "olfactory_receptor"]}
+      ]
+    },
+    {
+      "region_name": "low_complexity",
+      "priority": 40,
+      "predicates": [
+        {"feature": "shannon_5mer", "op": "lt", "value": 2.5},
+        {"feature": "kmer_multiplicity_p95", "op": "gt", "value": 50}
+      ]
+    },
+    {
+      "region_name": "coding",
+      "priority": 30,
+      "predicates": [
+        {"feature": "orf_density", "op": "gt", "value": 0.5},
+        {"feature": "shannon_5mer", "op": "gt", "value": 3.5},
+        {"feature": "kmer_multiplicity_p95", "op": "lt", "value": 5}
+      ]
+    },
+    {
+      "region_name": "pseudogene",
+      "priority": 25,
+      "predicates": [
+        {"feature": "orf_density", "op": "between", "value": [0.1, 0.5]},
+        {"feature": "kmer_multiplicity_p95", "op": "between", "value": [2, 10]}
+      ]
+    },
+    {
+      "region_name": "unique_single_copy",
+      "priority": 1,
+      "predicates": [
+        {"feature": "kmer_multiplicity_p95", "op": "lt", "value": 3},
+        {"feature": "shannon_5mer", "op": "gt", "value": 3.8}
+      ]
+    }
+  ]
+}

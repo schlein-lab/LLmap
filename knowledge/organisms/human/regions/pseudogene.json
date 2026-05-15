@@ -1,0 +1,25 @@
+{
+  "name": "pseudogene",
+  "taxonomy_id": "pseudogene",
+  "description": "Pseudogenes: coding-like sequences disabled by premature stop codons, frameshifts, splice-site mutations, or transposon insertions. ~14000 in GENCODE. Two main classes: (i) processed pseudogenes from L1-mediated retrotransposition of mRNA (lack introns, carry polyA remnant, flanked by target-site duplications) and (ii) unprocessed/duplicated pseudogenes from genomic duplication (retain exon-intron structure). Often >90% identical to the parent gene (e.g. IGHGP vs IGHG4 at 90.7%), creating chronic mapping ambiguity. orf_density positive but interrupted; codon-table-conformance partial.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.4, 4.4]},
+    "gc_content": {"range": [0.40, 0.60]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [2, 10]},
+    "orf_density": {"range": [0.1, 0.5]},
+    "consensus_match": {"is_null": true}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 4.0,
+    "lambda_scale": 1.1,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1186/gb-2012-13-9-r51",
+    "doi:10.1101/gr.084244.108"
+  ],
+  "confidence": 0.85
+}
