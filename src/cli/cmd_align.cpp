@@ -372,6 +372,10 @@ int run_align(int argc, char** argv) {
     std::printf("    rejected: length:     %zu\n",
                 agg_stats.alignments_filtered_by_length);
     std::printf("    avg identity:         %.3f\n", agg_stats.avg_identity);
+    std::printf("  Phase breakdown (sum across threads):\n");
+    std::printf("    seeding:     %.2f s\n", agg_stats.seeding_time_ms / 1000.0f);
+    std::printf("    chaining:    %.2f s\n", agg_stats.chaining_time_ms / 1000.0f);
+    std::printf("    extension:   %.2f s\n", agg_stats.extension_time_ms / 1000.0f);
     std::printf("  Align time:     %.2f s\n", align_time_ms / 1000.0f);
     std::printf("  Total time:     %.2f s\n", total_time_ms / 1000.0f);
     std::printf("  Throughput:     %.1f reads/s\n",
