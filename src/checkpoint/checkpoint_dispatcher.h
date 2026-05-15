@@ -19,7 +19,10 @@
 #include <cstddef>
 #include <stdexcept>
 
-namespace llmap::claude_agent { class PipelineAgent; }
+namespace llmap::claude_agent {
+class PipelineAgent;
+class AnthropicClient;
+}  // namespace llmap::claude_agent
 
 namespace llmap::checkpoint {
 
@@ -39,6 +42,16 @@ public:
     CheckpointDispatcher(LlmMode mode,
                          CheckpointCache* cache,
                          claude_agent::PipelineAgent* agent);
+
+    // Direct-client variant: skip PipelineAgent and call AnthropicClient
+    // directly for synchronous checkpoint consultation. This is the path
+    // actually used by `llmap align --llm-mode {auto,required}`.
+    // Tagged ctor to avoid ambiguity with the nullptr-PipelineAgent form.
+    struct DirectClientTag {};
+    CheckpointDispatcher(LlmMode mode,
+                         CheckpointCache* cache,
+                         claude_agent::AnthropicClient* client,
+                         DirectClientTag);
 
     // The hot-path entry point. Always returns a usable AgentDecision; the
     // caller checks `fallback_used` to decide whether to fall back to
@@ -63,6 +76,7 @@ private:
     LlmMode mode_;
     CheckpointCache* cache_;
     claude_agent::PipelineAgent* agent_;
+    claude_agent::AnthropicClient* client_;
     CheckpointToolRegistry tools_;
     Stats stats_;
 };
