@@ -1,0 +1,25 @@
+{
+  "name": "mouse_mhc_h2_complex",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse Major Histocompatibility Complex (H-2) on chromosome 17 (~3.6 Mb, ~200 genes). Class I region (K, D, L) and Class II region (I-A, I-E) plus Class III (complement, TNF, HSP70). Highly polymorphic across mouse strains (haplotypes H-2b in C57BL/6, H-2d in BALB/c, H-2k in CBA/C3H, etc.). Class I and Class II classical genes share 60-90% identity across paralogs (H2-K1 vs H2-D1 vs H2-L) creating systematic mapping ambiguity. Reference is the C57BL/6J H-2b haplotype.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.0, 4.2]},
+    "gc_content": {"range": [0.45, 0.58]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [5, 50]},
+    "consensus_match": {"any_of": ["H2-K", "H2-D", "H2-L", "H2-Aa", "H2-Ab", "H2-Ea", "H2-Eb", "H2_class_I", "H2_class_II"]}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 8.0,
+    "lambda_scale": 1.2,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1038/nature01262",
+    "doi:10.1038/35057062",
+    "doi:10.1146/annurev.immunol.21.090501.080131"
+  ],
+  "confidence": 0.86
+}

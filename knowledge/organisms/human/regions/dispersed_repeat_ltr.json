@@ -1,0 +1,24 @@
+{
+  "name": "dispersed_repeat_ltr",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Endogenous retroviruses (HERVs) and solo LTRs: human-genome-resident retroviral remnants. Full proviruses (~6-11 kb) consist of two flanking LTRs (250-1400 bp each) bracketing gag/pol/env. ~8% of the human genome. Families HERV-K (youngest, HML-2 still capable of forming viral particles), HERV-H, HERV-W (the latter encodes syncytin-1 for placentation), HERV-L. Most internal coding is decayed; solo LTRs from homologous recombination are far more common than intact proviruses.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.2, 3.9]},
+    "gc_content": {"range": [0.40, 0.55]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"min": 500},
+    "consensus_match": {"any_of": ["HERV", "HERV-K", "HERV-H", "HERV-W", "LTR"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 40.0,
+    "lambda_scale": 1.4,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/35057062",
+    "doi:10.1038/nrmicro2783"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,24 @@
+{
+  "name": "dispersed_repeat_alu",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "Alu Short Interspersed Nuclear Element (SINE): primate-specific ~300 bp dimeric element derived from 7SL RNA. With ~1.1 million copies it is the most abundant repeat in the human genome (~11% of total DNA). Subfamilies AluJ (oldest), AluS, AluY (youngest, still mobilising). GC-rich (50-65%) relative to surrounding DNA, with characteristic A-box and B-box internal RNA Pol III promoter elements. Shannon entropy near-genomic-average (~3.0-3.5) because Alus look 'sequence-like' but k-mer multiplicity is enormous.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.0, 3.6]},
+    "gc_content": {"range": [0.50, 0.65]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"min": 10000},
+    "consensus_match": {"any_of": ["Alu", "AluJ", "AluS", "AluY"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 100.0,
+    "lambda_scale": 1.5,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/nrg798",
+    "doi:10.1038/35057062"
+  ],
+  "confidence": 0.95
+}

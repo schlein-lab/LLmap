@@ -1,0 +1,25 @@
+{
+  "name": "mouse_b2_sine",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "B2 SINE: a tRNA-derived rodent-specific SINE family (~190 bp monomer), distinct from B1 in origin and slightly longer. ~350,000 copies in the mouse genome (~2.4% of genomic DNA). Transcribed by Pol III; many copies retain an internal Pol III promoter. Stress-induced B2 RNAs interact with Pol II during heat shock. Mouse-specific — does not appear in primates.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [2.5, 3.5]},
+    "gc_content": {"range": [0.48, 0.60]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"min": 800},
+    "consensus_match": {"any_of": ["B2_Mus", "B2_Mm", "B2_Mm1a", "B2_Mm1t", "B2_Mm2"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 150.0,
+    "lambda_scale": 1.5,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/nature01262",
+    "doi:10.1038/nsmb951",
+    "doi:10.1038/nrg798"
+  ],
+  "confidence": 0.92
+}

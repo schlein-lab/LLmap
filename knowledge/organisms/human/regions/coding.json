@@ -1,0 +1,26 @@
+{
+  "name": "coding",
+  "taxonomy_id": "coding",
+  "description": "Protein-coding exons. ~20000 protein-coding genes, ~180000 exons, ~1.5% of the genome. Average exon length 145 bp; mean coding-sequence length per gene ~1.4 kb. GC content 45-60% with strong variation: housekeeping genes and isochores H2/H3 are GC-rich, tissue-specific genes are GC-moderate. Codon usage is biased (e.g. CTG > TTA for Leu, GCC > GCA for Ala). orf_density must be high and codons must conform to the codon_table.json frequencies. Shannon 5-mer entropy is high (3.5-4.5) because triplet usage spreads probability across many 5-mers.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.5, 4.5]},
+    "gc_content": {"range": [0.45, 0.60]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"max": 5},
+    "orf_density": {"min": 0.5},
+    "consensus_match": {"is_null": true}
+  },
+  "mapping_hints": {
+    "expected_unique": true,
+    "max_occ_multiplier": 1.0,
+    "lambda_scale": 0.9,
+    "report_multi_position": false,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/35057062",
+    "doi:10.1038/nature11247",
+    "doi:10.1093/nar/28.1.292"
+  ],
+  "confidence": 0.95
+}

@@ -1,0 +1,25 @@
+{
+  "name": "mouse_olfactory_receptors",
+  "taxonomy_id": "paralog_family",
+  "description": "Mouse olfactory receptor (OR) gene clusters. Mouse has ~1100 intact OR genes (~30% more than human), organized into ~40 genomic clusters spread across nearly every chromosome but with hotspots on chr2, chr7, chr9, chr11, chr14, chr17, and chrX. Each gene is a ~1 kb intronless 7-transmembrane GPCR. Within-cluster pairwise identity 60-95%; between-cluster identity 40-70%. The largest cluster (chr7) contains >100 OR genes within ~3 Mb. Pseudogene fraction is ~25% in mouse (~50% in human).",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.0, 4.2]},
+    "gc_content": {"range": [0.40, 0.55]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [10, 200]},
+    "consensus_match": {"any_of": ["Olfr", "OR_7TM", "olfactory_receptor"]}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 30.0,
+    "lambda_scale": 1.3,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1038/nature01262",
+    "doi:10.1101/gr.1278503",
+    "doi:10.1186/gb-2003-4-11-r71"
+  ],
+  "confidence": 0.84
+}

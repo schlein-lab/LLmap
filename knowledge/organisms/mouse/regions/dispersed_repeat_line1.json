@@ -1,0 +1,25 @@
+{
+  "name": "mouse_l1md_line1",
+  "taxonomy_id": "dispersed_repeat",
+  "description": "L1Md: the mouse-specific lineage of LINE-1 long interspersed nuclear elements. Full-length L1Md is ~7 kb (5' UTR + ORF1 + ORF2 + 3' UTR + poly-A tail); most copies are 5'-truncated. ~600,000 L1-related copies in mouse, ~3000 of which are full-length and potentially active. Active L1Md subfamilies include L1Md_A, L1Md_T (the youngest, currently most active), and L1Md_Gf. L1 activity is substantially higher in mouse than in human, producing more de-novo insertions per generation.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [2.5, 3.6]},
+    "gc_content": {"range": [0.35, 0.48]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"min": 200},
+    "consensus_match": {"any_of": ["L1Md", "L1Md_A", "L1Md_T", "L1Md_Gf", "L1_Mus", "L1_Mm", "LINE1_Mus"]}
+  },
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ_multiplier": 100.0,
+    "lambda_scale": 1.5,
+    "report_multi_position": true,
+    "require_psv_disambiguation": false
+  },
+  "sources": [
+    "doi:10.1038/nature01262",
+    "doi:10.1101/gr.5560707",
+    "doi:10.1146/annurev-genet-110711-155616"
+  ],
+  "confidence": 0.91
+}

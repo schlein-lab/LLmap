@@ -1,0 +1,24 @@
+{
+  "name": "paralog_family_kir",
+  "taxonomy_id": "paralog_family",
+  "description": "Killer-cell Immunoglobulin-like Receptor cluster on chr19q13.4, within the leukocyte receptor complex (LRC). Roughly 150 kb encoding 14 functional KIR genes plus 2 pseudogenes. Gene content varies between haplotypes (A vs B haplotypes; gene copy-number variable). Paralogs share 85-99% identity, especially within the D1/D2/D0 immunoglobulin-like domains. Mapping requires haplotype-aware references; GRCh38 carries a single haplotype, T2T-CHM13 provides an alternate.",
+  "feature_signature": {
+    "shannon_5mer": {"range": [3.7, 4.4]},
+    "gc_content": {"range": [0.45, 0.58]},
+    "tandem_period": {"is_null": true},
+    "kmer_multiplicity_p95": {"range": [3, 25]},
+    "consensus_match": {"any_of": ["KIR"]}
+  },
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "max_occ_multiplier": 8.0,
+    "lambda_scale": 1.2,
+    "report_multi_position": true,
+    "require_psv_disambiguation": true
+  },
+  "sources": [
+    "doi:10.1038/35038512",
+    "doi:10.1146/annurev-immunol-032712-095951"
+  ],
+  "confidence": 0.85
+}
