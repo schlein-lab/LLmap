@@ -1,0 +1,14 @@
+[
+  {
+    "organism": "homo_sapiens",
+    "region": "all",
+    "mapper": "llmap",
+    "failure_mode": "low_F1(0.477)"
+  },
+  {
+    "organism": "homo_sapiens",
+    "region": "all",
+    "mapper": "llmap",
+    "failure_mode": "low_F1(0.445)"
+  }
+]

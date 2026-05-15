@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "version": 1,
+    "description": "Per-organism config for benchmarks/scripts/gen_synth_reads.py. assembly_key matches the key inside specific_loci JSON 'coordinates' dicts. error_profile + length_distribution + read_profile drive the synthetic read simulator. coverage_target_x is a sanity guide, not a hard requirement.",
+    "loci_root": "knowledge/organisms"
+  },
+  "human": {
+    "reference": "benchmarks/datasets/cache/human_grch38/reference.fa",
+    "assembly_key": "GRCh38",
+    "loci_dir": "knowledge/organisms/human/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 12000, "sd": 3000, "min": 200, "max": 30000},
+    "coverage_target_x": 5
+  },
+  "mouse": {
+    "reference": "benchmarks/datasets/cache/mouse_mm39/reference.fa",
+    "assembly_key": "mm39",
+    "loci_dir": "knowledge/organisms/mouse/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 12000, "sd": 3000, "min": 200, "max": 30000},
+    "coverage_target_x": 5
+  },
+  "rat": {
+    "reference": "benchmarks/datasets/cache/rat_rn7/reference.fa",
+    "assembly_key": "rn7",
+    "loci_dir": "knowledge/organisms/rat/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.0012, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 10000, "sd": 2500, "min": 200, "max": 25000},
+    "coverage_target_x": 5
+  },
+  "great_apes": {
+    "reference": "benchmarks/datasets/cache/great_apes/reference.fa",
+    "assembly_key": "T2T_Pan",
+    "loci_dir": "knowledge/organisms/great_apes",
+    "sub_organisms": ["chimpanzee", "bonobo", "gorilla", "orangutan", "gibbon"],
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 15000, "sd": 4000, "min": 300, "max": 35000},
+    "coverage_target_x": 4
+  },
+  "zebrafish": {
+    "reference": "benchmarks/datasets/cache/zebrafish_grcz11/reference.fa",
+    "assembly_key": "GRCz11",
+    "loci_dir": "knowledge/organisms/zebrafish/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.0015, "ins_pct": 0.0005, "del_pct": 0.0005},
+    "length_distribution": {"mean": 9000, "sd": 2500, "min": 200, "max": 22000},
+    "coverage_target_x": 5
+  },
+  "drosophila": {
+    "reference": "benchmarks/datasets/cache/drosophila_dm6/reference.fa",
+    "assembly_key": "dm6",
+    "loci_dir": "knowledge/organisms/drosophila/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 8000, "sd": 2000, "min": 200, "max": 20000},
+    "coverage_target_x": 10
+  },
+  "celegans": {
+    "reference": "benchmarks/datasets/cache/celegans_wbcel235/reference.fa",
+    "assembly_key": "WBcel235",
+    "loci_dir": "knowledge/organisms/celegans/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 6000, "sd": 1500, "min": 200, "max": 18000},
+    "coverage_target_x": 15
+  },
+  "scerevisiae": {
+    "reference": "benchmarks/datasets/cache/scerevisiae_r64/reference.fa",
+    "assembly_key": "sacCer3",
+    "loci_dir": "knowledge/organisms/scerevisiae/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 5000, "sd": 1500, "min": 200, "max": 15000},
+    "coverage_target_x": 20
+  },
+  "spombe": {
+    "reference": "benchmarks/datasets/cache/spombe_asm294v2/reference.fa",
+    "assembly_key": "ASM294v2",
+    "loci_dir": "knowledge/organisms/spombe/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 5000, "sd": 1500, "min": 200, "max": 15000},
+    "coverage_target_x": 20
+  },
+  "arabidopsis": {
+    "reference": "benchmarks/datasets/cache/arabidopsis_tair10/reference.fa",
+    "assembly_key": "TAIR10",
+    "loci_dir": "knowledge/organisms/arabidopsis/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 8000, "sd": 2000, "min": 200, "max": 20000},
+    "coverage_target_x": 10
+  },
+  "rice": {
+    "reference": "benchmarks/datasets/cache/rice_irgsp1/reference.fa",
+    "assembly_key": "IRGSP-1.0",
+    "loci_dir": "knowledge/organisms/rice/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.0012, "ins_pct": 0.0004, "del_pct": 0.0004},
+    "length_distribution": {"mean": 9000, "sd": 2500, "min": 200, "max": 22000},
+    "coverage_target_x": 8
+  },
+  "maize": {
+    "reference": "benchmarks/datasets/cache/maize_b73v5/reference.fa",
+    "assembly_key": "B73_RefGen_v5",
+    "loci_dir": "knowledge/organisms/maize/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.0015, "ins_pct": 0.0005, "del_pct": 0.0005},
+    "length_distribution": {"mean": 10000, "sd": 3000, "min": 200, "max": 25000},
+    "coverage_target_x": 4
+  },
+  "viruses_dna": {
+    "reference": "benchmarks/datasets/cache/viruses_dna/reference.fa",
+    "assembly_key": "viral",
+    "loci_dir": "knowledge/organisms/viruses_dna/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 3000, "sd": 1000, "min": 100, "max": 10000},
+    "coverage_target_x": 50
+  },
+  "viruses_rna": {
+    "reference": "benchmarks/datasets/cache/viruses_rna/reference.fa",
+    "assembly_key": "viral",
+    "loci_dir": "knowledge/organisms/viruses_rna/specific_loci",
+    "read_profile": "ont",
+    "error_profile": {"sub_pct": 0.02, "ins_pct": 0.01, "del_pct": 0.01},
+    "length_distribution": {"mean": 2000, "sd": 800, "min": 100, "max": 8000},
+    "coverage_target_x": 50
+  },
+  "bacteria": {
+    "reference": "benchmarks/datasets/cache/bacteria/reference.fa",
+    "assembly_key": "bacterial",
+    "loci_dir": "knowledge/organisms/bacteria/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 7000, "sd": 2000, "min": 200, "max": 20000},
+    "coverage_target_x": 30
+  },
+  "synthetic_stress": {
+    "reference": "benchmarks/datasets/cache/synthetic_stress/reference.fa",
+    "assembly_key": "synth",
+    "loci_dir": "knowledge/organisms/synthetic_stress/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.001, "ins_pct": 0.0003, "del_pct": 0.0003},
+    "length_distribution": {"mean": 4000, "sd": 1500, "min": 100, "max": 12000},
+    "coverage_target_x": 10
+  },
+  "metagenomic": {
+    "reference": "benchmarks/datasets/cache/metagenomic/reference.fa",
+    "assembly_key": "meta",
+    "loci_dir": "knowledge/organisms/metagenomic/specific_loci",
+    "read_profile": "hifi",
+    "error_profile": {"sub_pct": 0.002, "ins_pct": 0.0005, "del_pct": 0.0005},
+    "length_distribution": {"mean": 5000, "sd": 2000, "min": 100, "max": 15000},
+    "coverage_target_x": 5
+  }
+}

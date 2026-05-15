@@ -1,0 +1,5 @@
+mapper	status	source	version	command_prefix
+llmap	OK	native	llmap 1.0.0	/home/<user>/llmap-local/build/src/llmap
+minimap2	OK	native	2.26-r1175	minimap2
+bwa-mem2	UNAVAILABLE	-	-	-
+winnowmap	UNAVAILABLE	-	-	-
