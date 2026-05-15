@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | the HPC cluster status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 234 |
-| Total iterations | 234 |
+| Last successful iteration | 235 |
+| Total iterations | 235 |
 
 ---
 
@@ -476,6 +476,7 @@ notes: |
 | 232 | 2026-05-16 | n/a | Fallback commit (iteration 232) | Scoreboard aggregation + T1/T2 regression investigation started |
 | 233 | 2026-05-16 | n/a | T1/T2 regression investigation (iteration 233) | **Root cause identified**: scoreboard F1=0.47 is from old benchmark (commit 46670607); current code achieves F1=0.96 (P=0.98, R=0.94) on T1 subset test. Recent Phase A/B/C fixes (WFA2 extension, identity filter, parallelization) already resolved the regression. Right-extension +50 padding fix (removes ref_end inflation) committed for completeness. 1518 tests pass; monolith count 0 |
 | 234 | 2026-05-16 | n/a | Verification pass (iteration 234) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
+| 235 | 2026-05-16 | n/a | Verification pass (iteration 235) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 
 ---
 
