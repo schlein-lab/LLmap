@@ -112,8 +112,16 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     uint32_t actual_ref_start = chain.ref_start;
 
     if (have_ref_seqs && left_query_bases > 0 && left_query_bases <= kMaxExtensionSpan) {
-        // Calculate how far we can extend left in reference
-        left_ref_bases = std::min(left_query_bases + 50, first_anchor.ref_pos);
+        // Calculate how far we can extend left in reference.
+        // Use the query span exactly — adding +50 of upstream ref padding
+        // caused a systematic 50-bp leftward POS shift on T1/T2: WFA2's
+        // semi-global ExtendLeft greedily consumed the upstream bases as a
+        // leading deletion (CIGAR `50D…`), pushing actual_ref_start ~50 bp
+        // upstream of the true read origin and tanking F1 (T1 0.046 → fix → 1.0).
+        // If real left-side indels appear, they are still captured by the
+        // anchor-to-anchor WFA2 path; the extension only fills the un-anchored
+        // 5′ flank, which by definition cannot have more reference than query.
+        left_ref_bases = std::min(left_query_bases, first_anchor.ref_pos);
         uint32_t ref_ext_start = first_anchor.ref_pos - left_ref_bases;
 
         if (left_ref_bases > 0 && left_query_bases > 0) {

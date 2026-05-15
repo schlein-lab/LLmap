@@ -55,10 +55,12 @@ public:
         std::vector<int32_t> I((m + 1) * stride, INF);
         std::vector<int32_t> D((m + 1) * stride, INF);
 
-        // Initialize
+        // Initialize: semi-global alignment allows free gaps at reference ends.
+        // First column: query gaps are penalized (must align entire query).
+        // First row: reference gaps are FREE (can start alignment anywhere in ref).
         M[0] = 0;
         for (int32_t j = 1; j <= n; ++j) {
-            D[j] = config_.gap_open + (j - 1) * config_.gap_extend;
+            D[j] = 0;  // Free gap at reference start (semi-global)
             M[j] = INF;
         }
         for (int32_t i = 1; i <= m; ++i) {
@@ -96,9 +98,18 @@ public:
             }
         }
 
-        // Traceback from best endpoint
-        size_t end_idx = m * stride + n;
-        int32_t best_score = std::min({M[end_idx], I[end_idx], D[end_idx]});
+        // Semi-global: find best endpoint in last row (allow free gaps at ref end).
+        // The alignment must consume entire query but can end anywhere in reference.
+        int32_t best_score = INF;
+        int32_t best_j = n;
+        for (int32_t jj = 1; jj <= n; ++jj) {
+            size_t idx = m * stride + jj;
+            int32_t score = std::min({M[idx], I[idx], D[idx]});
+            if (score < best_score) {
+                best_score = score;
+                best_j = jj;
+            }
+        }
 
         if (best_score > config_.max_alignment_score) {
             return std::nullopt;
@@ -106,9 +117,10 @@ public:
 
         // Traceback to build CIGAR
         std::vector<CigarElement> cigar;
-        int32_t i = m, j = n;
+        int32_t i = m, j = best_j;
 
         // Determine which matrix we're starting from
+        size_t end_idx = m * stride + best_j;
         enum class State { M_STATE, I_STATE, D_STATE };
         State state;
         if (M[end_idx] <= I[end_idx] && M[end_idx] <= D[end_idx]) {
@@ -121,20 +133,28 @@ public:
 
         // Count statistics
         size_t matches = 0, mismatches = 0, insertions = 0, deletions = 0;
+        int32_t ref_start_pos = 0;  // Track where alignment starts in reference
 
         while (i > 0 || j > 0) {
             size_t idx = i * stride + j;
 
             if (i == 0) {
-                // Must delete from reference
-                AddCigarOp(cigar, CigarOp::Deletion, j);
-                deletions += j;
+                // Semi-global: remaining ref bases are free gaps at start.
+                // Record where alignment actually starts.
+                ref_start_pos = j;
                 break;
             }
             if (j == 0) {
-                // Must insert into reference
+                // Must insert into reference (query not fully aligned yet)
                 AddCigarOp(cigar, CigarOp::Insertion, i);
                 insertions += i;
+                break;
+            }
+
+            // Check if we reached a free-gap entry point (D[j] was initialized to 0)
+            // If D[idx] == 0 and we came from D state at first row, we can stop.
+            if (state == State::D_STATE && D[idx] == 0 && i == 0) {
+                ref_start_pos = j;
                 break;
             }
 
@@ -206,8 +226,8 @@ public:
         result.score = best_score;
         result.query_start = 0;
         result.query_end = m;
-        result.ref_start = 0;
-        result.ref_end = n;
+        result.ref_start = ref_start_pos;  // Semi-global: actual start from traceback
+        result.ref_end = best_j;  // Semi-global: actual end where alignment ends
         result.num_matches = matches;
         result.num_mismatches = mismatches;
         result.num_insertions = insertions;
