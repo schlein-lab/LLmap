@@ -20,6 +20,11 @@ struct ChainConfig {
     // Chain length constraints
     uint32_t max_gap_ref = 5000;      // Max gap in reference coordinates
     uint32_t max_gap_query = 5000;    // Max gap in query coordinates
+    uint32_t max_gap_diff = 500;      // Max |ref_gap - query_gap|; bounds indel
+                                      // size in a single anchor pair. Without
+                                      // this, chains span paralog boundaries
+                                      // with cross-paralog "indels" producing
+                                      // low-identity composite alignments.
     uint32_t min_chain_anchors = 3;   // Min anchors to form valid chain
 
     // Score filtering (tuned for improved mapping rate per Phase A.1)

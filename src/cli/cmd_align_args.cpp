@@ -34,7 +34,10 @@ void ApplyPreset(Preset preset, AlignArgs& args) {
             // PacBio HiFi: high accuracy (>Q20), similar to minimap2 -x map-hifi
             args.kmer_size = 19;
             args.window_size = 19;
-            args.min_identity = 0.90f;   // HiFi reads are >99% accurate
+            args.min_identity = 0.85f;   // HiFi reads are >99% accurate per-base,
+                                          // but in paralog-rich loci a read mapped
+                                          // to the closest non-identical paralog
+                                          // legitimately sits near 0.85 identity.
             args.min_chain = 40;          // Higher threshold for confident chains
             break;
 

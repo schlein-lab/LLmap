@@ -42,6 +42,14 @@ int32_t AnchorPairScore(
     // Gap difference = abs(ref_gap - query_gap)
     int64_t gap_diff = std::abs(ref_gap - query_gap);
 
+    // Reject pairs whose indel mass exceeds max_gap_diff. Without this, chains
+    // happily span across paralog boundaries (where ref/query gaps diverge by
+    // thousands of bp) with a zero net score, producing low-identity composite
+    // alignments. Real biological indels are small; cross-paralog jumps aren't.
+    if (gap_diff > static_cast<int64_t>(config.max_gap_diff)) {
+        return std::numeric_limits<int32_t>::min();
+    }
+
     // Minimap2-style scoring: min(gap) bases are matches
     int64_t min_gap = std::min(ref_gap, query_gap);
     int64_t score = min_gap * config.match_score - gap_diff * config.gap_penalty;
