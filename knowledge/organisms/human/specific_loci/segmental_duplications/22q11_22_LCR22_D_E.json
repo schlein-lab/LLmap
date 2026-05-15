@@ -1,0 +1,36 @@
+{
+  "name": "22q11_22_LCR22_D_E_distal",
+  "taxonomy_id": "paralog_family",
+  "description": "22q11.22 distal deletion/duplication, mediated by NAHR between LCR22-D and LCR22-E (or LCR22-F). Distal nested 22q11.2 CNVs (~1.0-1.5 Mb) telomeric to the canonical DiGeorge 3 Mb region. Phenotype: milder ID, growth retardation, behavioral issues; some patients have classic DiGeorge-like features. Critical genes: MAPK1, CRKL (already in DiGeorge core for A-D), HIC2, SMARCB1 (more telomeric).",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 21800000, "end": 23200000}},
+  "size_bp": 1400000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["LCR22_D", "LCR22_E", "LCR22_F"],
+    "homology_percent": 97.0,
+    "internal_structure": "LCR22-D, -E, -F SD blocks of ~100-300 kb each at >97% identity (USP18/BCR/GGT paralog cassettes); unique core contains MAPK1, PPIL2, YPEL1, MAPK1, PPM1F. Distinct from the canonical proximal LCR22A-D DiGeorge region but architecturally continuous."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q11.2 distal deletion syndrome",
+    "22q11.2 distal duplication",
+    "intellectual disability with growth restriction",
+    "cardiac and renal anomalies"
+  ],
+  "penetrance": "variable",
+  "sources": [
+    "doi:10.1086/527671",
+    "doi:10.1038/ejhg.2008.181",
+    "doi:10.1136/jmedgenet-2011-100199",
+    "ClinGen Dosage Sensitivity 22q11.2 distal (HI=3)"
+  ],
+  "confidence": 0.9
+}

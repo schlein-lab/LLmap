@@ -1,0 +1,28 @@
+{
+  "name": "18p11_31_STK11_paralog_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18p11.31 SDs containing a STK11 paralog (the canonical STK11 is on 19p13.3). The paralog cassette is part of a chr18 SD block that shares ancestry with chr19p13.3 duplicons and contributes to STK11-targeted MLPA artefacts.",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 4500000, "end": 5500000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "fixed_paralog",
+    "homology_percent": 96.0,
+    "internal_structure": "STK11 paralog fragment plus C18orf42 duplicon, ~50 kb at ~96% identity to chr19p13.3 STK11; flanked by smaller SD modules."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "STK11 MLPA/PCR false-positive (Peutz-Jeghers screening artefact)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.55
+}

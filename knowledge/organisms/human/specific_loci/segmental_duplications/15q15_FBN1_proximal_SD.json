@@ -1,0 +1,32 @@
+{
+  "name": "15q15_FBN1_proximal_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "FBN1 (fibrillin-1, Marfan syndrome) at 15q21.1 sits adjacent to a 15q15-15q21 SD cluster harbouring DUOX1/DUOX2 dual oxidase paralogs and the FBN1 region flank. Small (5-30 kb at 93-98% identity) intra-chromosomal SDs flank FBN1 introns and mediate rare intragenic deletions reported in Marfan-spectrum probands.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 45500000, "end": 49000000}},
+  "size_bp": 3500000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "DUOX1-DUOX2 ~80% identical paralog cluster proximal; 5-30 kb intronic SD pairs flanking FBN1 distal; Alu-mediated breakpoints add small deletions."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Marfan syndrome",
+    "congenital hypothyroidism (DUOX2)",
+    "ectopia lentis"
+  ],
+  "sources": [
+    "doi:10.1038/sj.ejhg.5201936",
+    "doi:10.1056/NEJMoa012752",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.85
+}

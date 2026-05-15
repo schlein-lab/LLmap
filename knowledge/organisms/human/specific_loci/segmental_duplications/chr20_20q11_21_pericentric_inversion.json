@@ -1,0 +1,32 @@
+{
+  "name": "chr20_20q11_21_pericentric_inversion",
+  "taxonomy_id": "paralog_family",
+  "description": "20q11.21 SD-flanked region — site of the common polymorphic pericentric inv(20)(p12q11) and of recurrent 20q11.21 microdeletion / microduplication CNVs. Contains EYA2-related paralogs, CEP250 and TM9SF4; flanked by inverted SD pairs that mediate the inversion polymorphism.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 29400000, "end": 31700000}},
+  "size_bp": 2300000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Inverted SD pairs of ~100-300 kb at ~98-99% identity flanking the 20q11.21 interval; embedded in pericentric SD-enriched belt; recurrent ~1-2 Mb microdeletion/duplication described in ID/dysmorphism cohorts."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "20q11.21 microdeletion syndrome",
+    "20q11.21 microduplication",
+    "Pericentric inv(20) polymorphism"
+  ],
+  "sources": [
+    "doi:10.1136/jmedgenet-2011-100089",
+    "doi:10.1126/science.1072047",
+    "PMID:21984749"
+  ],
+  "confidence": 0.85
+}

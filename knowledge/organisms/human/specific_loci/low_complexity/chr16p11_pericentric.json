@@ -1,0 +1,33 @@
+{
+  "name": "chr16p11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 16 p-arm pericentric flank (16p11.1-16p11.2), the immediate sub-centromeric LCR shoreline on the p-side of the chr16 centromere. Distally adjoins the high-density 16p11.2 SD-mediated recurrent CNV region (autism / schizophrenia). Alpha-satellite (D16Z2), pericentromeric SDs and HSat patches. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 33800000, "end": 36311158}, "chm13": {"chr": "chr16", "start": 34100000, "end": 36600000}},
+  "size_bp": 2511158,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D16Z2", "HSat2", "HSat3", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 3500],
+    "homology_percent": 95.0,
+    "internal_structure": "alpha-sat HOR + HSat patches + pericentromeric SD shoreline; distally adjoins the 16p11.2 BP1-BP5 SD-mediated recurrent CNV region."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "16p11.2 deletion/duplication syndrome (autism, schizophrenia)",
+    "ICF syndrome"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003",
+    "doi:10.1056/NEJMoa075974"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,32 @@
+{
+  "name": "chr2_2q31_HOXD_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "2q31.1 HOXD homeobox gene cluster (HOXD1, HOXD3, HOXD4, HOXD8-13). One of the four canonical mammalian HOX clusters arising from genome-wide duplications; paralogs to HOXA (chr7), HOXB (chr17), HOXC (chr12). Microdeletions cause synpolydactyly and limb malformations.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 176000000, "end": 176400000}},
+  "size_bp": 400000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 60.0,
+    "internal_structure": "Compact 100 kb HOXD cluster with 9 active HOX genes; cross-cluster paralog signal to HOXA/B/C; flanking TAD-defining CTCF arrays and EVX2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Synpolydactyly (HOXD13)",
+    "Hand-foot-genital syndrome",
+    "Limb malformations"
+  ],
+  "sources": [
+    "doi:10.1038/ng0796-275",
+    "doi:10.1038/nrg2010",
+    "PMID:8589726"
+  ],
+  "confidence": 0.85
+}

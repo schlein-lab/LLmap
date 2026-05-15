@@ -1,0 +1,33 @@
+{
+  "name": "15q13_3_BP4_BP5_LCR",
+  "taxonomy_id": "paralog_family",
+  "description": "15q13.3 BP4 and BP5 LCRs (LCR15s) detail. Each ~250 kb SD block at >99% identity composed of GOLGA8 (GOLGA8I, GOLGA8O, GOLGA8R), CHRFAM7A (CHRNA7-FAM7A hybrid paralog), ARHGAP11B paralogs, and TRPM1 flanking element. Mediates the recurrent ~1.5 Mb 15q13.3 microdeletion encompassing CHRNA7. Documented at coarser level in 15q13_3_CHRNA7.json; this entry zooms on the LCR cassette anatomy.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 30900000, "end": 32500000}},
+  "size_bp": 1600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "BP4 = GOLGA8R/GOLGA8O + CHRFAM7A; BP5 = GOLGA8I + CHRFAM7A duplicate; ARHGAP11B paralog cassette embedded; TRPM1 unique distal."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "15q13.3 microdeletion",
+    "idiopathic generalized epilepsy",
+    "schizophrenia"
+  ],
+  "cross_reference": "/segmental_duplications/15q13_3_CHRNA7.json",
+  "sources": [
+    "doi:10.1038/ng.292",
+    "doi:10.1038/ng.293",
+    "doi:10.1126/science.1216880"
+  ],
+  "confidence": 0.9
+}

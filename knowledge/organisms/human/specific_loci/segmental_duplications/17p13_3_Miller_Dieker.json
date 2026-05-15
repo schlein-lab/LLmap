@@ -1,0 +1,35 @@
+{
+  "name": "17p13_3_Miller_Dieker_lissencephaly",
+  "taxonomy_id": "paralog_family",
+  "description": "Miller-Dieker syndrome (17p13.3 microdeletion ~3-4 Mb) and isolated lissencephaly sequence — contiguous gene-deletion syndrome encompassing PAFAH1B1 (LIS1) and YWHAE. Subtelomeric SD blocks at 17p13.3 mediate a fraction of breakpoints. Reciprocal 17p13.3 duplication causes a milder ID/autism phenotype.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 0, "end": 3400000}},
+  "size_bp": 3400000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_17p13.3_subtelomeric", "SD_17p13.3_PAFAH1B1_flank"],
+    "homology_percent": 97.0,
+    "internal_structure": "Subtelomeric SD cluster at 17p13.3 (~50-200 kb blocks); critical dosage-sensitive genes PAFAH1B1 (LIS1; lissencephaly), YWHAE (developmental brain), CRK, RPH3AL. Larger MDS deletions remove both LIS1+YWHAE; isolated lissencephaly removes LIS1 only."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Miller-Dieker lissencephaly syndrome (MDLS)",
+    "isolated lissencephaly sequence (ILS)",
+    "17p13.3 duplication syndrome (ID, autism)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1056/NEJM199306103282304",
+    "doi:10.1038/364717a0",
+    "doi:10.1086/505693",
+    "ClinGen Dosage Sensitivity PAFAH1B1 (HI=3), YWHAE (HI=3)"
+  ],
+  "confidence": 0.95
+}

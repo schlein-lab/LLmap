@@ -1,0 +1,31 @@
+{
+  "name": "chrX_Xq22_1_PLP1_PMD_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq22.1-22.2 region containing PLP1 (proteolipid protein 1). PLP1 is duplicated in ~70% of Pelizaeus-Merzbacher disease (PMD) cases via non-recurrent CNVs whose breakpoints often fall in flanking LCR-like elements (~5-25 kb at 90-99% identity) on either side of PLP1. Triplication and complex rearrangements also documented.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 102900000, "end": 103900000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "flanking_SD_pair",
+    "copy_number_in_population": "non_recurrent_CNV_hotspot",
+    "homology_percent": 95.0,
+    "internal_structure": "Several short SD blocks (5-25 kb) flanking PLP1 in inverted/direct orientation; complex non-recurrent rearrangements typical."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Pelizaeus-Merzbacher disease (PMD, PLP1 duplication)",
+    "Spastic paraplegia 2 (SPG2, PLP1 point mutations)"
+  ],
+  "sources": [
+    "doi:10.1086/508474",
+    "doi:10.1086/520059",
+    "PMID:17033625"
+  ],
+  "confidence": 0.9
+}

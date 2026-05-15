@@ -1,0 +1,34 @@
+{
+  "name": "chr1qh_size_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "1qh+ / 1qh- size polymorphism: classical heterochromatin block at 1q12 (HSat2 + HSat3) varies by several megabases between individuals. Large variants (1qh+) detected in routine karyotype as an enlarged dark band. Largely benign but associated with reproductive failure in some studies. Only fully resolved in T2T-CHM13; GRCh38 represents this as a near-empty placeholder.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 125184587, "end": 142200000}, "chm13": {"chr": "chr1", "start": 122700000, "end": 144800000}},
+  "size_bp": 17000000,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["HSat2_A", "HSat2_B", "HSat3"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [8000, 35000],
+    "homology_percent": 95.0,
+    "internal_structure": "HSat2 (CATTC-rich) + HSat3 (ATTCC-rich) tandem arrays; size range 8-35 Mb across individuals; cytogenetic enlargement = 1qh+."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.1,
+    "max_occ": 5000000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "1qh+ associated with recurrent miscarriage (debated)",
+    "ICF syndrome (DNMT3B/ZBTB24/CDCA7/HELLS)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abl4178",
+    "PMID:225837",
+    "doi:10.1007/BF00271272"
+  ],
+  "confidence": 0.85
+}

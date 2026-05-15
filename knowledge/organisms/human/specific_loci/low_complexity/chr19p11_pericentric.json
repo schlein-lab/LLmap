@@ -1,0 +1,29 @@
+{
+  "name": "chr19p11_pericentric_alpha_HSat",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 19 p-arm pericentric flank (19p11-19p12), the immediate sub-centromeric LCR shoreline on the p-side of the chr19 centromere. Alpha-satellite (D19Z1/D19Z2/D19Z3), pericentromeric SDs and HSat patches. The 19p12 region carries extensive ZNF KRAB-zinc-finger paralog clusters. Resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr19", "start": 22100000, "end": 24631782}, "chm13": {"chr": "chr19", "start": 22400000, "end": 24900000}},
+  "size_bp": 2531782,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["alpha_sat_D19Z1", "alpha_sat_D19Z2", "alpha_sat_D19Z3", "HSat2", "subcentromeric_SD"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [1500, 3500],
+    "homology_percent": 95.0,
+    "internal_structure": "Three coexisting alpha-sat HORs (D19Z1/D19Z2/D19Z3) on the p-side; pericentromeric SD shoreline + ZNF KRAB-zinc-finger paralog clusters."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1101/gr.1531003"
+  ],
+  "confidence": 0.8
+}

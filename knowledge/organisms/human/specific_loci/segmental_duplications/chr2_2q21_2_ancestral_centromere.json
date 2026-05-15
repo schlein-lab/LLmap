@@ -1,0 +1,30 @@
+{
+  "name": "chr2_2q21_2_ancestral_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Fossil ancestral centromere of chr2B (chimpanzee chr2B equivalent) at 2q21.2. After the chr2A-chr2B fusion this centromere was inactivated; degenerate alpha-satellite, pericentric SDs and HSAT remnants persist at this position.",
+  "coordinates": {"grch38": {"chr": "chr2", "start": 132000000, "end": 134000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "tandem_satellite",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Degenerate alpha-satellite remnants and pericentric SDs spanning ~2 Mb; loss of CENP-A activity but residual satellite signature."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Fossil centromere (evolutionary)"
+  ],
+  "sources": [
+    "doi:10.1101/gr.2949305",
+    "doi:10.1126/science.abj6987",
+    "PMID:15994306"
+  ],
+  "confidence": 0.7
+}

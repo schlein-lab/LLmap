@@ -1,0 +1,30 @@
+{
+  "name": "chrX_Xp22_2_AP1S2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xp22.2 SD cluster around AP1S2/GRPR/CTPS2; harbors ~20 kb directly oriented SD pairs at >97% identity that mediate rare Xp22.2 microdeletions associated with intellectual disability (Fried syndrome).",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 15300000, "end": 16100000}},
+  "size_bp": 800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_hemizygous_male",
+    "homology_percent": 97.0,
+    "internal_structure": "Short direct SD pairs ~15-25 kb flanking AP1S2; intronic AP1S2 SDs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "X-linked intellectual disability (Fried syndrome, AP1S2)",
+    "MEND syndrome"
+  ],
+  "sources": [
+    "doi:10.1086/505913",
+    "PMID:16783569"
+  ],
+  "confidence": 0.75
+}

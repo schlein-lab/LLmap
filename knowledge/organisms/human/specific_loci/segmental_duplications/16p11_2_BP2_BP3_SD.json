@@ -1,0 +1,29 @@
+{
+  "name": "16p11_2_BP2_BP3_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "BP2 and BP3 segmental duplication blocks of the 16p11.2-p12.1 region — bound the rare ~9 Mb 16p11.2-p12.1 deletion that includes both the proximal 16p11.2 and 16p12.1 recurrent intervals. Direct-orientation duplicons at >98% identity.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 21500000, "end": 30200000}},
+  "size_bp": 8700000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "BP2 (~150 kb at 16p12.1) and BP3 (~150 kb between 16p12.1 and 16p11.2) at >98% identity; LCR16a-derived core; share content with BP4-BP5 NPIPB duplicons."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2-p12.1 deletion (severe developmental delay)"
+  ],
+  "sources": [
+    "doi:10.1038/nature19075",
+    "doi:10.1038/ng.534"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,30 @@
+{
+  "name": "6q21_FYN_HACE1_region_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "6q21 region containing FYN (Src-family kinase paralog of SRC/YES1/LCK/HCK), HACE1, and BACH2. FYN SH2/SH3 domains are >65% identical to other Src-family paralogs on chr20 (SRC), 18q21 (YES1), 1p35 (LCK), 20q11 (HCK), creating cross-chromosome paralog confusion in kinase-domain reads. Short intragenic SDs in BACH2.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 109500000, "end": 113500000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 88.0,
+    "internal_structure": "Cross-chromosome paralog tracts (FYN <-> SRC/YES1/LCK/HCK) at >65% protein identity; short intragenic SDs in BACH2 (~5-15 kb); no major local CNV."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.05,
+    "anchor_weight_scale": 0.8,
+    "max_occ": 5000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HACE1-related neurodevelopmental syndrome",
+    "T-cell lymphoma (FYN somatic mutations)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature15394"
+  ],
+  "confidence": 0.55
+}

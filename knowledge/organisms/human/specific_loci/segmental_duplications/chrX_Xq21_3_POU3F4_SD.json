@@ -1,0 +1,30 @@
+{
+  "name": "chrX_Xq21_3_POU3F4_inversion_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq21.1 region 900 kb upstream of POU3F4. Three SDs in inverted orientation (~2-5 kb at >99% identity) mediate recurrent inversions and 8-kb-flanking microdeletions that disrupt POU3F4 regulation and cause DFNX2 (X-linked deafness type 3).",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 82400000, "end": 83400000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "inverted_short_SDs",
+    "copy_number_in_population": "stable_hemizygous_male",
+    "homology_percent": 99.0,
+    "internal_structure": "Three inverted SD copies of 2-5 kb at 99% identity flanking the POU3F4 regulatory region; NAHR causes recurrent inversion + deletion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "DFNX2 / DFN3 X-linked mixed deafness (POU3F4)",
+    "X-linked stapes gusher"
+  ],
+  "sources": [
+    "doi:10.1038/ng1496",
+    "PMID:15048888"
+  ],
+  "confidence": 0.9
+}

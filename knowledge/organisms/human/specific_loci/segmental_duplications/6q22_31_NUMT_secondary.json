@@ -1,0 +1,29 @@
+{
+  "name": "6q22_31_NUMT_insertion",
+  "taxonomy_id": "paralog_family",
+  "description": "6q22.31 NUMT insertion — a ~10 kb nuclear-mitochondrial-DNA insertion at chr6:124-125 Mb covering parts of mtDNA from ND4 to ATP6 at ~97% identity to rCRS. Listed in the Mitomap NUMT database (Lascaro 2008); contributes to false-positive heteroplasmy artefacts particularly for ND4/ND5/CYTB reads.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 124700000, "end": 124712000}},
+  "size_bp": 12000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "diploid_stable",
+    "homology_percent": 97.0,
+    "internal_structure": "Single ~10 kb mtDNA-derived insertion covering ND4L-ATP6 region at ~97% identity to rCRS; flanked by unique nuclear sequence."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "false-positive mtDNA heteroplasmy calls"
+  ],
+  "sources": [
+    "doi:10.1186/1471-2164-9-267",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.65
+}

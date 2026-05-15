@@ -1,0 +1,30 @@
+{
+  "name": "12q15_MDM2_amplicon_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12q15 segmental duplication region centred on MDM2 and the recurrent dedifferentiated-liposarcoma / well-differentiated-liposarcoma amplicon. Tandem and inverted SDs of 10-100 kb seed breakage-fusion-bridge cycles that generate ring chromosomes and giant marker chromosomes.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 69000000, "end": 70500000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 95.0,
+    "internal_structure": "Flanking SDs of 10-100 kb at ~95% identity; MDM2 amplified 10-100x in liposarcoma alongside CDK4, HMGA2; ring/giant marker chromosomes."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 25000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "well-differentiated / dedifferentiated liposarcoma",
+    "intimal sarcoma"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:18923524"
+  ],
+  "confidence": 0.85
+}

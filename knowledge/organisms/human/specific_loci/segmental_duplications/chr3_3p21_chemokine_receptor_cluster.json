@@ -1,0 +1,31 @@
+{
+  "name": "chr3_3p21_chemokine_receptor_cluster",
+  "taxonomy_id": "paralog_family",
+  "description": "3p21.31 CC-chemokine receptor (CCR1-CCR2-CCR3-CCR5-CCR9-XCR1-CX3CR1) gene cluster arising by tandem duplication. CCR5-delta32 is the famous HIV-resistance allele. The cluster has detectable copy-number variation in some populations.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 46000000, "end": 47200000}},
+  "size_bp": 1200000,
+  "architecture": {
+    "type": "tandem_paralog_array",
+    "copy_number_in_population": "low_CNV",
+    "homology_percent": 85.0,
+    "internal_structure": "Tandem CC-chemokine receptor genes CCR1, CCR2, CCR3, CCR5, CCR9, XCR1, CX3CR1 at 50-90% identity within ~1.2 Mb."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HIV resistance (CCR5-delta32)",
+    "Inflammatory disease susceptibility"
+  ],
+  "sources": [
+    "doi:10.1038/382722a0",
+    "doi:10.1126/science.1072047",
+    "PMID:8752274"
+  ],
+  "confidence": 0.8
+}

@@ -1,0 +1,31 @@
+{
+  "name": "17q23_2_TBX2_TBX4_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17q23.1-q23.2 SD blocks flanking TBX2 and TBX4. Direct-orientation SD pair mediates recurrent ~2.2 Mb 17q23.1-q23.2 microdeletion/microduplication, encompassing TBX2, TBX4 (small patella / ischiocoxopodopatellar syndrome).",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 59400000, "end": 61600000}},
+  "size_bp": 2200000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Flanking SD blocks of ~30-50 kb at ~98% identity; core contains TBX2, TBX4, BRIP1, MED13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "17q23.1-q23.2 microdeletion syndrome",
+    "Small patella syndrome (TBX4)",
+    "Congenital heart defects (TBX2 dosage)"
+  ],
+  "sources": [
+    "doi:10.1136/jmg.2009.073825",
+    "doi:10.1002/ajmg.a.34030"
+  ],
+  "confidence": 0.85
+}

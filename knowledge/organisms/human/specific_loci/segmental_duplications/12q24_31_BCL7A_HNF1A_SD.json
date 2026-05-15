@@ -1,0 +1,31 @@
+{
+  "name": "12q24_31_BCL7A_HNF1A_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "12q24.31 segmental duplication interval containing BCL7A, HNF1A and the surrounding MODY3 / lymphoma t(12;14) breakpoint cluster. BCL7A family SDs paired with BCL7B (7q11.23) and BCL7C (16p11.2) plus Alu-rich HNF1A flanks predispose to recurrent translocations.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 120900000, "end": 122600000}},
+  "size_bp": 1700000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "stable_2",
+    "homology_percent": 93.0,
+    "internal_structure": "Family-internal SDs of 5-20 kb to BCL7B/C and HNF1B (17q12); Alu-rich HNF1A breakpoint cluster; recurrent t(12;14) in B-cell lymphoma."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 12000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "MODY3 (HNF1A)",
+    "diffuse large B-cell lymphoma (BCL7A)",
+    "hepatic adenoma (HNF1A)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "PMID:9683603"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,29 @@
+{
+  "name": "14q31_GALC_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "GALC (galactosylceramidase, Krabbe disease) at 14q31.3 region. A common ~30 kb directly-oriented SD pair at 99% identity flanking GALC mediates a recurrent ~30 kb deletion of exons 11-17 that is the most common Krabbe-disease allele in European populations.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 87900000, "end": 88150000}},
+  "size_bp": 250000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Two ~5 kb direct SDs at >99% identity ~30 kb apart inside GALC; NAHR yields the 30-kb exon 11-17 deletion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Krabbe disease (globoid cell leukodystrophy)"
+  ],
+  "sources": [
+    "doi:10.1086/302393",
+    "doi:10.1136/jmg.34.10.825"
+  ],
+  "confidence": 0.85
+}

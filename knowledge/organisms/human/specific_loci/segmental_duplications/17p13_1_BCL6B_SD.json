@@ -1,0 +1,30 @@
+{
+  "name": "17p13_1_BCL6B_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17p13.1 SD modules near BCL6B and TP53 — small but recurrent duplicon cluster that contributes to 17p13.1 microdeletions (TP53 region) seen in cancer-predisposition cohorts.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 7300000, "end": 7900000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Two ~30 kb SD modules at ~96% identity flanking the TP53 unique segment; BCL6B-paralog component shared with several KRAB-ZNF clusters."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "17p13.1 microdeletion (Li-Fraumeni-like)",
+    "TP53 contiguous deletion"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1002/humu.21561"
+  ],
+  "confidence": 0.6
+}

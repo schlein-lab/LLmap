@@ -1,0 +1,30 @@
+{
+  "name": "chr20_20q11_22_BCL2L1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20q11.21-q11.22 SD region containing BCL2L1 (BCL-xL), TPX2 and ID1; an amplification hotspot in solid tumors. Flanked by intermediate-size SDs (~30-80 kb) at 95-98% identity and embedded in the broader 20q pericentric SD field.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 31200000, "end": 31800000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Direct SD blocks of 30-80 kb at 95-98% identity flanking the BCL2L1/TPX2/ID1 hub; somatic amplification of the SD-mediated cassette in multiple cancer types."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Somatic 20q11 amplification in solid tumors",
+    "Apoptosis dysregulation"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.7
+}

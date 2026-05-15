@@ -1,0 +1,35 @@
+{
+  "name": "14q11_2_microdeletion_SUPT16H",
+  "taxonomy_id": "paralog_family",
+  "description": "14q11.2 recurrent microdeletion / microduplication syndrome — ~0.6-1.5 Mb CNV flanked by direct-orientation SD blocks at 14q11.2 (paralog cassettes including OR-cluster duplicons and CRIP1/2 paralogs). Critical genes SUPT16H and CHD8 (the latter at 14q11.2 distal). Penetrance variable; ID, autism, craniofacial features.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 21000000, "end": 23000000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_14q11.2_proximal_OR", "SD_14q11.2_distal_OR"],
+    "homology_percent": 97.0,
+    "internal_structure": "Two flanking SD clusters with olfactory-receptor (OR4Q3/OR4M1) paralog cassettes at >95% identity; unique core contains SUPT16H, CHD8 (autism gene), RAB2B, CIDEB, METTL3."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "14q11.2 microdeletion syndrome (ID, autism)",
+    "14q11.2 microduplication syndrome",
+    "developmental delay"
+  ],
+  "penetrance": "variable",
+  "sources": [
+    "doi:10.1038/ejhg.2010.49",
+    "doi:10.1136/jmedgenet-2012-101321",
+    "ClinGen Dosage Sensitivity CHD8 (HI=3)",
+    "ClinGen Dosage Sensitivity SUPT16H"
+  ],
+  "confidence": 0.85
+}

@@ -1,0 +1,36 @@
+{
+  "name": "chrX_Xq28_FLNA_emerin_LCR_tail",
+  "taxonomy_id": "paralog_family",
+  "description": "Most distal Xq28 LCR-rich tail (between MECP2 and PAR2-adjacent region) containing FLNA, EMD, RPL10, MTCP1, BRCC3, plus dispersed SDs of 5-20 kb at 95-99% identity. Recurrent and non-recurrent CNVs in this tail span 0.3-1.0 Mb, often associated with severe X-linked ID, choroideremia-adjacent rearrangements, or FLNA microdeletions.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 154800000, "end": 155400000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "dispersed_short_LCRs",
+    "copy_number_in_population": "stable_diploid",
+    "homology_percent": 97.0,
+    "internal_structure": "Dense cluster of short (5-20 kb) intergenic SDs interleaved with FLNA, EMD, RPL10, MTCP1, BRCC3, IKBKG (NEMO)."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "IKBKG/NEMO rearrangements (incontinentia pigmenti, X-linked anhidrotic ectodermal dysplasia with immunodeficiency)",
+    "FLNA-related disorders (PVNH, OPD spectrum)",
+    "Emery-Dreifuss MD (EMD)"
+  ],
+  "cross_references": [
+    "Xq28_recurrent.json",
+    "chrX_Xq28_MECP2_dup.json"
+  ],
+  "sources": [
+    "doi:10.1038/35013114",
+    "doi:10.1038/nature01266",
+    "PMID:10839543"
+  ],
+  "confidence": 0.85
+}

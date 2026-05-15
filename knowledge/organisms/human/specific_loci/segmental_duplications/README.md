@@ -41,7 +41,62 @@ one of these intervals, and tightens its expectation of multi-position chains.
 | `Xp22_3_STS.json` | Xp22.31 | direct VCX SDs | STS |
 | `Xq28_recurrent.json` | Xq28 int22h / F8 | inverted SDs | F8, MECP2 |
 
-Total: 24 SD-locus files.
+### chr19 (most SD-dense autosome, largest ZNF paralog family)
+
+| File | Region | Mechanism | Key dosage genes |
+|------|--------|-----------|-------------------|
+| `chr19_19p13_3_subtelomeric_SD_cluster.json` | 19p13.3 tip | subtelomeric SDs | WASH, FAM138, DUX4-like |
+| `chr19_19p13_3_GAMT_SD.json` | 19p13.3 | complex SDs | GAMT, MUM1 |
+| `chr19_19p13_3_LILR_LAIR_xref.json` | 19q13.42 (LRC) | tandem paralog | LILR/LAIR (LRC) |
+| `chr19_19p13_2_KISS1R_SD.json` | 19p13.2 | complex SDs | KISS1R |
+| `chr19_19p13_2_NOTCH3_SD.json` | 19p13.12 | complex SDs | NOTCH3 |
+| `chr19_19p13_11_INSR_SD.json` | 19p13.2 | complex SDs | INSR |
+| `chr19_19p13_11_SLC25A23_SD.json` | 19p13.11 | direct SDs | SLC25A23, KLF1 |
+| `chr19_19p12_ZNF_block.json` | 19p12 | tandem KRAB-ZNF | proximal ZNF cluster |
+| `chr19_centromere.json` | 19cen | alpha-sat + SDs | D19Z3 |
+| `chr19_19q11_pericentric_inversion.json` | 19q11 | inverted SDs | pericentric inv(19) |
+| `chr19_19q13_11_CYP4F_SD.json` | 19q13.11 | tandem paralog | CYP4F2/3/8/11/12/22 |
+| `chr19_19q13_12_ZNF45_cluster.json` | 19q13.12 | tandem KRAB-ZNF | ZNF45 cluster |
+| `chr19_19q13_2_EML2_SD.json` | 19q13.2 | complex SDs | EML2, BCKDHA |
+| `chr19_19q13_2_PSG_xref.json` | 19q13.2 | tandem paralog | PSG1-PSG11 |
+| `chr19_19q13_31_ZNF_largest_cluster.json` | 19q13.31 | tandem KRAB-ZNF | **largest ZNF cluster** (~40-50) |
+| `chr19_19q13_32_APOE_CETP_region.json` | 19q13.32 | tandem paralog | APOE/APOC, CETP, LIPC |
+| `chr19_19q13_32_KIR_xref.json` | 19q13.42 (KIR) | xref → /kir/ | KIR cluster |
+| `chr19_19q13_33_ZNF_tail_cluster.json` | 19q13.33-q13.41 | tandem KRAB-ZNF | ~30 KRAB-ZNF tail paralogs |
+| `chr19_19q13_33_TGFB1_SD.json` | 19q13.2 | complex SDs | TGFB1, BCL3 |
+| `chr19_19q13_41_CEACAM_SIGLEC_cluster.json` | 19q13.41 | tandem paralog | CEACAM / PSG / SIGLEC |
+| `chr19_19q13_41_FCGBP_SD.json` | 19q13.41 | tandem paralog | FCGBP |
+| `chr19_19q13_42_NLRP_cluster.json` | 19q13.42 | tandem paralog | NLRP2/4/5/7/8/9/11/12/13 |
+| `chr19_19q13_42_NKG2_LRC_xref.json` | 19q13.42 (LRC) | tandem paralog | LRC overview |
+| `chr19_19q13_42_43_PRSS_family.json` | 19q13.42-43 | complex SDs | PRSS / KLK paralogs |
+| `chr19_19q13_43_TRIM_KRTAP_xref.json` | 19q13.43 | tandem paralog | KRTAP4/5 cluster |
+| `chr19_19q13_43_subtelomeric_SD.json` | 19q13.43 tip | subtelomeric SDs | ZIM2 / PEG3 |
+
+### chr20
+
+| File | Region | Mechanism | Key dosage genes |
+|------|--------|-----------|-------------------|
+| `chr20_20p13_subtelomeric_SD.json` | 20p13 tip | subtelomeric SDs | DEFB125-132 cluster |
+| `chr20_20p13_OXT_AVP_SD.json` | 20p13 | inverted paralog | OXT/AVP |
+| `chr20_20p12_3_recurrent_CNV.json` | 20p12.3 | direct SDs | JAG1 (Alagille) |
+| `chr20_20p12_BMP2_SD.json` | 20p12 | direct SDs | BMP2 |
+| `chr20_20p11_23_PAX1_SD.json` | 20p11.22 | complex SDs | PAX1, FOXA2 |
+| `chr20_20p11_21_CDC25B_SD.json` | 20p11.21 | direct SDs | CDC25B |
+| `chr20_20p11_21_FOXA2_FERMT1.json` | 20p11.21 | complex SDs | FERMT1, BMP2K |
+| `chr20_centromere_pericentric.json` | 20cen | alpha-sat + SDs | D20Z2 |
+| `chr20_20q11_21_pseudocentromeric_SD.json` | 20q11.1-q11.21 | complex SDs | pericentric belt |
+| `chr20_20q11_21_pericentric_inversion.json` | 20q11.21 | inverted SDs | inv(20)(p12q11) + microdel/dup |
+| `chr20_20q11_22_BCL2L1_SD.json` | 20q11.21-22 | direct SDs | BCL2L1, TPX2, ID1 |
+| `chr20_20q11_22_pericentric_SD_belt.json` | 20q11.22 | complex SDs | distal pericentric belt |
+| `chr20_20q13_12_HNF4A_SD.json` | 20q13.12 | complex SDs | HNF4A (MODY1) |
+| `chr20_20q13_13_NCOA3_SD.json` | 20q13.12 | direct SDs | NCOA3 (AIB1) |
+| `chr20_20q13_2_PTPN1_SD.json` | 20q13.13 | direct SDs | PTPN1 |
+| `chr20_20q13_2_ZNF217_SD.json` | 20q13.2 | direct SDs | ZNF217, CYP24A1, BCAS1 |
+| `chr20_20q13_32_GHRH_SD.json` | 20q13.32 | complex SDs | GHRH |
+| `chr20_20q13_33_KCNQ2_SD.json` | 20q13.33 | complex SDs | KCNQ2, CHRNA4 |
+| `chr20_20q13_33_subtelomeric_SD.json` | 20q13.33 tip | subtelomeric SDs | OPRL1, COL9A3 region |
+
+Total: 24 (original) + 26 (chr19) + 19 (chr20) = 69 SD-locus files.
 
 ## Primary sources
 

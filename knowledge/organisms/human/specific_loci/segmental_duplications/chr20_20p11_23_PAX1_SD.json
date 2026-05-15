@@ -1,0 +1,30 @@
+{
+  "name": "chr20_20p11_23_PAX1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "20p11.22 SD region containing PAX1 (paired-box transcription factor, otofaciocervical syndrome gene), FOXA2 and SNAP25. Flanked by short SDs (~10-30 kb) and embedded in the proximal-20p SD field.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 21600000, "end": 22100000}},
+  "size_bp": 500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "stable",
+    "homology_percent": 95.0,
+    "internal_structure": "Short 10-30 kb intra-chromosomal SDs at 93-97% identity flanking PAX1, FOXA2; partial inter-chromosomal SDs to other PAX family loci."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.55,
+    "max_occ": 10000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Otofaciocervical syndrome (PAX1)",
+    "Klippel-Feil syndrome susceptibility"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.6
+}

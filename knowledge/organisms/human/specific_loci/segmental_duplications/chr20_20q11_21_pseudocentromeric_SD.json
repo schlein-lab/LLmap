@@ -1,0 +1,31 @@
+{
+  "name": "chr20_20q11_21_pseudocentromeric_SD",
+  "taxonomy_id": "centromere_like",
+  "description": "20q11.1-q11.21 proximal pericentric duplicon belt — the centromere-proximal partner of the inv(20)(p12q11) inversion. Contains alpha-satellite remnants, the BANF1 region and SDs shared with 20p11. One of the densest pericentric SD belts in the genome and a key source of mosaic GRCh38 misassembly.",
+  "coordinates": {"grch38": {"chr": "chr20", "start": 28100000, "end": 29400000}},
+  "size_bp": 1300000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "highly_variable",
+    "homology_percent": 99.0,
+    "internal_structure": "Pericentric SDs of 100-500 kb at >99% identity flanking the chr20 centromere; alpha-satellite-flanking transition zone; intra-chr20 duplicon network linking 20p11 and 20q11; resolved only in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 150000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Pericentric inv(20) polymorphism",
+    "Mosaic 20q11 trisomies"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.85
+}

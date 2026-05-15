@@ -1,0 +1,37 @@
+{
+  "name": "17q21_31_Koolen_de_Vries_KANSL1",
+  "taxonomy_id": "paralog_family",
+  "description": "Koolen-de Vries syndrome (17q21.31 ~500-650 kb microdeletion). Recurrent deletion arises almost exclusively on the H2 inversion haplotype (17q21.31 inversion polymorphism), where flanking inverted SD blocks are reoriented into direct orientation, enabling NAHR. The reciprocal duplication is also recurrent but milder. Critical gene: KANSL1.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 45500000, "end": 46200000}},
+  "size_bp": 650000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["KANSL1_LCR_proximal", "KANSL1_LCR_distal"],
+    "homology_percent": 99.0,
+    "internal_structure": "Two KANSL1 SD blocks of ~100-200 kb at >98% identity, reoriented direct on the H2 inversion haplotype; unique core contains KANSL1 (primary dosage gene), MAPT, CRHR1, STH, ARL17A/B paralog cassettes."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Koolen-de Vries syndrome (17q21.31 deletion)",
+    "17q21.31 microduplication syndrome (mild)",
+    "intellectual disability",
+    "epilepsy"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1038/ng1862",
+    "doi:10.1038/ng1858",
+    "doi:10.1038/ng1860",
+    "doi:10.1038/ng.646",
+    "ClinGen Dosage Sensitivity KANSL1 (HI=3)"
+  ],
+  "confidence": 0.95
+}

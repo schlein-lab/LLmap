@@ -1,0 +1,30 @@
+{
+  "name": "17p11_2_distal_LCR",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal LCR17p subset — flanking SD blocks on the distal side of the SMS-REPs, mediating atypical larger ~5 Mb 17p11.2 deletions that extend telomeric of the canonical Smith-Magenis interval. Some atypical 17p11.2 SMS-like deletions use these LCRs as one breakpoint.",
+  "coordinates": {"grch38": {"chr": "chr17", "start": 15500000, "end": 17000000}},
+  "size_bp": 1500000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Distal LCR17pA, B, C modules of ~100-200 kb at ~98% identity; share TRIM16 and ALOX12 paralog cores with proximal SMS-REPs."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Atypical Smith-Magenis syndrome (large deletions)",
+    "Potocki-Lupski syndrome variants"
+  ],
+  "sources": [
+    "doi:10.1086/516566",
+    "doi:10.1038/ng924"
+  ],
+  "confidence": 0.7
+}

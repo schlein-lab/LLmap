@@ -1,0 +1,30 @@
+{
+  "name": "15q21_TJP1_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "15q13-q21 transitional SD region between the proximal HERC2/CHRNA7 paralog field and the FBN1 region. Contains TJP1, B2M, and PAQR5 with small directly-oriented SDs (5-20 kb at 93-97% identity) flanking each gene; sparse but high-identity LCRs occasionally mediate rare CNVs.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 41000000, "end": 45000000}},
+  "size_bp": 4000000,
+  "architecture": {
+    "type": "intra_chromosomal_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "5-20 kb SD pairs at 93-97% identity flanking TJP1 and B2M; LINE-rich intervening segments."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "B2M-related immunodeficiency (rare)",
+    "rare 15q21 microdeletion"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1101/gr.5042206"
+  ],
+  "confidence": 0.65
+}

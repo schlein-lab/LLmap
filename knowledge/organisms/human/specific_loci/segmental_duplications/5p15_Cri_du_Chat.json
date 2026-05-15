@@ -1,0 +1,35 @@
+{
+  "name": "5p15_Cri_du_Chat_terminal_deletion",
+  "taxonomy_id": "paralog_family",
+  "description": "Cri-du-Chat syndrome (5p- syndrome) — terminal 5p deletions (5-40 Mb) causing the characteristic cat-like cry, microcephaly, ID, and distinctive facies. Critical regions: 5p15.3 (cry, CTNND2, TERT region) and 5p15.2 (ID, severe phenotype, SEMA5A, CDH18). Most breakpoints non-recurrent; subtelomeric SD blocks mediate a subset. Complements the existing 5p15_33_PROK2_TERT file with the broader Cri-du-Chat phenotype context.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 0, "end": 12000000}},
+  "size_bp": 12000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_5p15.33_subtelomeric", "SD_5p15.2_proximal"],
+    "homology_percent": 95.0,
+    "internal_structure": "Subtelomeric SD cluster (~20-150 kb blocks); two critical regions: 5p15.3 (cat-cry region, contains TERT, SLC6A3, CTNND2 partial, MRPL36); 5p15.2 (severe phenotype, SEMA5A, CDH18, CDH12). Reciprocal 5p duplications also documented but milder."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cri-du-Chat syndrome (5p- syndrome)",
+    "5p15 microdeletion (isolated cat-cry phenotype)",
+    "5p duplication syndrome"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1093/hmg/10.7.717",
+    "doi:10.1086/308447",
+    "doi:10.1136/jmg.2007.054957",
+    "ClinGen Dosage Sensitivity CTNND2 / 5p15 region"
+  ],
+  "confidence": 0.95
+}

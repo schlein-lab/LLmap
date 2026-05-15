@@ -1,0 +1,35 @@
+{
+  "name": "chrY_Yq11_222_AZFb_P5_proximal_P1",
+  "taxonomy_id": "paralog_family",
+  "description": "AZFb sub-region of MSY at Yq11.223, ~6.2 Mb spanning palindromes P5 and proximal-P1; harbors RBMY1, EIF1AY, KDM5D, HSFY, PRY paralogs. Recurrent P5/proximal-P1 NAHR deletion (~6.2 Mb) removes AZFb and causes spermatogenic arrest. AZFb+c (P5/distal-P1) deletions are ~7.7 Mb.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 19100000, "end": 25300000}},
+  "size_bp": 6200000,
+  "architecture": {
+    "type": "palindrome_mediated_block",
+    "copy_number_in_population": "stable_in_fertile_males",
+    "homology_percent": 99.9,
+    "internal_structure": "Spans palindrome P5 and proximal arm of P1 (each palindrome has near-identical inverted arms at >99.9% identity); NAHR between P5 and proximal-P1 arms causes recurrent AZFb deletion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "AZFb deletion / spermatogenic arrest",
+    "AZFb+c combined deletion",
+    "non-obstructive azoospermia"
+  ],
+  "cross_references": [
+    "../y_chromosome/chrY_AZF.json"
+  ],
+  "sources": [
+    "doi:10.1038/nature01722",
+    "doi:10.1038/ng798",
+    "PMID:11528398"
+  ],
+  "confidence": 0.95
+}

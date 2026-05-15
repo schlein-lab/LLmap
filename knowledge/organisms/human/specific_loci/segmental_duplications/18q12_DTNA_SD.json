@@ -1,0 +1,28 @@
+{
+  "name": "18q12_DTNA_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18q12.1 SD modules within DTNA — intragenic SDs in DTNA and adjacent MAPRE2 contribute to rare intragenic CNVs of DTNA.",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 34500000, "end": 35500000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Intragenic SD blocks of ~20-50 kb at ~96% identity in DTNA introns; mediate intragenic copy-number variation."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "left ventricular non-compaction (DTNA dosage)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.5
+}

@@ -1,0 +1,35 @@
+{
+  "name": "12q14_microdeletion_HMGA2",
+  "taxonomy_id": "paralog_family",
+  "description": "12q14 microdeletion syndrome — recurrent ~1-3 Mb interstitial deletion at 12q14.3, with breakpoints frequently in flanking SD blocks. Critical gene HMGA2 (haploinsufficiency = growth restriction, intellectual disability, osteopoikilosis if LEMD3 included). Phenotype: short stature, ID, learning disability, characteristic facies, occasional osteopoikilosis.",
+  "coordinates": {"grch38": {"chr": "chr12", "start": 65000000, "end": 68000000}},
+  "size_bp": 3000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "BP_mediating_SDs": ["SD_12q14_proximal", "SD_12q14_distal"],
+    "homology_percent": 96.0,
+    "internal_structure": "Flanking SD blocks of ~20-100 kb at >95% identity mediate a fraction of breakpoints; unique core contains HMGA2 (primary dosage gene), LEMD3 (osteopoikilosis), MSRB3, GRIP1, RAB3IP."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "12q14 microdeletion syndrome (short stature, ID)",
+    "osteopoikilosis (when LEMD3 included)",
+    "Silver-Russell-like phenotype (HMGA2 LoF)"
+  ],
+  "penetrance": "high",
+  "sources": [
+    "doi:10.1086/518486",
+    "doi:10.1002/ajmg.a.32569",
+    "doi:10.1136/jmedgenet-2013-101859",
+    "ClinGen Dosage Sensitivity HMGA2 (HI=3)"
+  ],
+  "confidence": 0.85
+}

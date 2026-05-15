@@ -1,0 +1,30 @@
+{
+  "name": "18p11_21_pericentric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "18p11.21 pericentric SD modules — composite SDs derived from multiple ancestral donors flanking the 18 centromere on the p-arm side. Contributes to recurrent 18p11.2 microdeletions in cohorts of neurodevelopmental disorder.",
+  "coordinates": {"grch38": {"chr": "chr18", "start": 13500000, "end": 15500000}},
+  "size_bp": 2000000,
+  "architecture": {
+    "type": "complex_mosaic",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Pericentromeric SD mosaic of ~30-100 kb modules at ~94-97% identity; donor loci include chr1, chr2, chr16; resolved in T2T-CHM13."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "18p11.2 microdeletion (rare)",
+    "general pericentric mapping ambiguity"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

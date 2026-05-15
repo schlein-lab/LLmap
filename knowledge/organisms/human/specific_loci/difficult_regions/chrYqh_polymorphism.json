@@ -1,0 +1,34 @@
+{
+  "name": "chrYqh_size_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "Yqh+ / Yqh- size polymorphism: the Yq12 heterochromatin block (DYZ1 + DYZ2) varies in size from ~10 Mb (Yqh-) to ~40 Mb (Yqh+) across individuals. Largest size polymorphism of any human chromosome region. Largely benign. GRCh38 represents this as a gap; resolved in the T2T-Y (HG002) reference.",
+  "coordinates": {"grch38": {"chr": "chrY", "start": 26600000, "end": 57227415}, "chm13": {"chr": "chrY", "start": 26700000, "end": 62460029}},
+  "size_bp": 30600000,
+  "architecture": {
+    "type": "tandem",
+    "satellite_composition": ["DYZ1_HSat3", "DYZ2_pentamer"],
+    "copy_number_in_population": "variable_CNV",
+    "common_size_range_kb": [10000, 40000],
+    "homology_percent": 95.0,
+    "internal_structure": "Long tandem arrays of DYZ1 (~3.6 kb HSat3-like monomer) and DYZ2 (TTCCA pentamer); extreme size polymorphism, ratio DYZ1:DYZ2 also varies; AT-rich, gene-poor."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.1,
+    "max_occ": 5000000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Yqh+/- mostly benign cytogenetic variant",
+    "Cryptic Y-fragment in 46,XX testicular DSD (Yp-derived)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-023-06457-y",
+    "doi:10.1038/nature01722",
+    "PMID:225837"
+  ],
+  "confidence": 0.9
+}

@@ -1,0 +1,29 @@
+{
+  "name": "13q32_ZIC2_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "ZIC2 (holoprosencephaly type 5) at 13q32.3 is flanked by small SDs (5-15 kb at 93-96% identity) shared with the ZIC5/ZIC1 paralog cluster on chr3 and chr18. A polyalanine expansion in ZIC2 plus rare deletions cause HPE5. Small SDs additionally contribute to ZIC2 intragenic rearrangements.",
+  "coordinates": {"grch38": {"chr": "chr13", "start": 99980000, "end": 100270000}},
+  "size_bp": 290000,
+  "architecture": {
+    "type": "flanking_SD",
+    "copy_number_in_population": "rare_CNV",
+    "homology_percent": 94.0,
+    "internal_structure": "5-15 kb SD pairs flanking ZIC2; ZIC5 paralog 200 kb distal forms an inverted SD pair shared with chr3 ZIC1/ZIC4."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 15000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "holoprosencephaly type 5 (HPE5)"
+  ],
+  "sources": [
+    "doi:10.1038/ng0398-180",
+    "doi:10.1086/302393"
+  ],
+  "confidence": 0.75
+}
