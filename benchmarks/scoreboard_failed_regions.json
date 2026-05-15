@@ -1,170 +1,359 @@
 [
   {
+    "organism": "arabidopsis",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "arabidopsis",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "empty_sam"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "bacteria",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "empty_sam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier10",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "empty_sam"
+  },
+  {
+    "organism": "celegans",
+    "tier": "tier6",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier2",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing_bam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "llmap",
+    "failure_mode": "empty_sam"
+  },
+  {
+    "organism": "drosophila",
+    "tier": "tier5",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing_bam"
+  },
+  {
     "organism": "homo_sapiens",
-    "region": "all",
+    "tier": "T1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "homo_sapiens",
+    "tier": "T1",
+    "region_class": "all",
     "mapper": "llmap",
     "failure_mode": "low_F1(0.477)"
   },
   {
     "organism": "homo_sapiens",
-    "region": "all",
+    "tier": "T1",
+    "region_class": "all",
+    "mapper": "winnowmap",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "homo_sapiens",
+    "tier": "T2",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
+    "failure_mode": "missing"
+  },
+  {
+    "organism": "homo_sapiens",
+    "tier": "T2",
+    "region_class": "all",
     "mapper": "llmap",
     "failure_mode": "low_F1(0.445)"
   },
   {
     "organism": "homo_sapiens",
-    "region": "T1/all",
-    "mapper": "tier1",
+    "tier": "T2",
+    "region_class": "all",
+    "mapper": "winnowmap",
     "failure_mode": "missing"
   },
   {
-    "organism": "homo_sapiens",
-    "region": "T1/all",
-    "mapper": "tier10",
+    "organism": "scerevisiae",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
     "failure_mode": "missing"
   },
   {
-    "organism": "homo_sapiens",
-    "region": "T1/all",
-    "mapper": "tier2",
+    "organism": "scerevisiae",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
     "failure_mode": "missing"
   },
   {
-    "organism": "homo_sapiens",
-    "region": "T1/all",
-    "mapper": "tier5",
+    "organism": "synthetic_stress",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "bwa-mem2",
     "failure_mode": "missing"
   },
   {
-    "organism": "homo_sapiens",
-    "region": "T1/all",
-    "mapper": "tier6",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "homo_sapiens",
-    "region": "T2/all",
-    "mapper": "tier1",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "homo_sapiens",
-    "region": "T2/all",
-    "mapper": "tier10",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "homo_sapiens",
-    "region": "T2/all",
-    "mapper": "tier2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "homo_sapiens",
-    "region": "T2/all",
-    "mapper": "tier5",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "homo_sapiens",
-    "region": "T2/all",
-    "mapper": "tier6",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "arabidopsis/all",
-    "mapper": "llmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "arabidopsis/all",
-    "mapper": "minimap2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "bacteria/all",
-    "mapper": "llmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "bacteria/all",
-    "mapper": "minimap2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "scerevisiae/all",
-    "mapper": "llmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "scerevisiae/all",
-    "mapper": "minimap2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "scerevisiae/all",
-    "mapper": "tier10",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "scerevisiae/all",
-    "mapper": "tier2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "scerevisiae/all",
-    "mapper": "tier5",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "scerevisiae/all",
-    "mapper": "tier6",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "synthetic_stress/all",
-    "mapper": "llmap",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "synthetic_stress/all",
-    "mapper": "minimap2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "synthetic_stress/all",
-    "mapper": "tier10",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "synthetic_stress/all",
-    "mapper": "tier2",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "synthetic_stress/all",
-    "mapper": "tier5",
-    "failure_mode": "missing"
-  },
-  {
-    "organism": "unknown",
-    "region": "synthetic_stress/all",
-    "mapper": "tier6",
+    "organism": "synthetic_stress",
+    "tier": "tier1",
+    "region_class": "all",
+    "mapper": "winnowmap",
     "failure_mode": "missing"
   }
 ]

@@ -69,3 +69,19 @@ Phase C debug agent dispatched to fix. Also flagged: bacteria tier 6
 llmap produced empty SAM (separate bug).
 
 Bench continues running in background.
+
+## Iter 004 — 2026-05-15T23:08 CEST — Bench fix validated, Phase C in flight
+
+After analyze_bench.py truth-pos fix, real F1 numbers across 6 organisms:
+- arabidopsis: LLmap 0.999-1.000 (5 tiers)
+- bacteria: LLmap 0.998-1.000 (4 tiers, rRNA paralog dip on tier 10)
+- celegans: LLmap 0.998-1.000 (3 tiers with data)
+- drosophila: LLmap 1.000 (2 tiers)
+- scerevisiae: LLmap 1.000
+- synthetic_stress: LLmap 0.998 vs minimap2 0.999
+
+LLmap matches minimap2 within Δ=0.001-0.002 where mapped.
+
+**LLmap empty-SAM on tier 5/6 some organisms** (arabidopsis t6, bacteria
+t5, celegans t1+t6) — Phase C debug agent dispatched + aggregator
+schema fix. Bench continues (currently at drosophila tier 2).
