@@ -574,6 +574,22 @@ target_link_libraries(test_pipeline_agent
 )
 gtest_discover_tests(test_pipeline_agent)
 
+# ========== Checkpoint Module Tests ==========
+
+add_executable(test_checkpoint
+    unit/test_checkpoint.cpp
+)
+target_link_libraries(test_checkpoint
+    PRIVATE
+    llmap_checkpoint
+    llmap_claude_agent
+    llmap_annot
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_checkpoint)
+
 # ========== PSV Module Tests ==========
 
 add_executable(test_psv

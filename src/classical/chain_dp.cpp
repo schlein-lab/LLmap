@@ -7,6 +7,17 @@
 #include <limits>
 #include <numeric>
 
+// TODO(layer3): hook a checkpoint::CheckpointDispatcher* into ChainConfig
+// (or thread it through ClassicalPipeline) and call dispatcher->Consult()
+// when:
+//   - top-N chains score within 5% of best            -> AmbiguousChain
+//   - annotation flags require_psv_disambig           -> ParalogDisambiguation
+//   - read lands in a window with no annotation       -> UnknownRegion
+//   - read length exceeds ref window by > 10%         -> SDExpansion
+//   - extension leaves a large soft-clip              -> NovelInsertion
+// See src/checkpoint/checkpoint_dispatcher.h for the consult API and
+// src/cli/cmd_align.cpp for where the dispatcher is currently constructed.
+
 namespace llmap::classical {
 
 namespace internal {

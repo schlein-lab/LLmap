@@ -1,0 +1,29 @@
+{
+  "name": "HIST1_cluster_chr6p22",
+  "taxonomy_id": "paralog_family",
+  "description": "Histone gene cluster HIST1 on chromosome 6p22.2-p21.3. Contains ~55 of the ~70 replication-dependent histone genes in tandem, including multiple paralogs of H1, H2A, H2B, H3, H4 with very high coding-sequence identity. The H4 paralogs in particular share >99% identity over their 309 bp ORFs.",
+  "coordinates": {"grch38": {"chr": "chr6", "start": 25700000, "end": 27900000}},
+  "size_bp": 2200000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "single",
+    "homology_percent": 99.0,
+    "internal_structure": "Tandem clustering of H1, H2A, H2B, H3, H4 paralogs; each histone family contains 10-15 paralogs at >95% nucleotide identity; HIST1H4A through HIST1H4L all encode identical H4 protein."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Tessadori-Bicknell-van Haaften neurodevelopmental syndromes (H4 mutations)"
+  ],
+  "sources": [
+    "doi:10.1186/gb-2002-3-7-research0036",
+    "doi:10.1038/s41588-019-0407-x"
+  ],
+  "confidence": 0.95
+}

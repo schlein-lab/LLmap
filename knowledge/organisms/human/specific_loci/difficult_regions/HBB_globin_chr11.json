@@ -1,0 +1,32 @@
+{
+  "name": "HBB_beta_globin_cluster_chr11p15_5",
+  "taxonomy_id": "paralog_family",
+  "description": "Beta-globin gene cluster on 11p15.5, containing HBE1 - HBG2 - HBG1 - HBBP1 - HBD - HBB in tandem (~60 kb). HBG1 and HBG2 paralogs share >99% identity; HBD and HBB share ~93% identity; HBBP1 is a non-functional paralog. Recurrent gene-conversion and unequal crossover drives the many globin-disorder structural alleles (HPFH, Lepore, Kenya).",
+  "coordinates": {"grch38": {"chr": "chr11", "start": 5200000, "end": 5300000}},
+  "size_bp": 100000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "single",
+    "homology_percent": 95.0,
+    "internal_structure": "5' HBE1 (epsilon) - HBG2 (gamma-G) - HBG1 (gamma-A) - HBBP1 (pseudogene) - HBD (delta) - HBB (beta) 3'; LCR (locus control region) at 5' end; very high paralog identity especially HBG1/HBG2."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Beta-thalassaemia",
+    "Sickle cell disease (HBB E6V)",
+    "Hereditary persistence of fetal haemoglobin (HPFH)",
+    "Lepore / anti-Lepore haemoglobins"
+  ],
+  "sources": [
+    "doi:10.1146/annurev.genom.7.080505.115700",
+    "doi:10.1101/cshperspect.a011700"
+  ],
+  "confidence": 0.95
+}
