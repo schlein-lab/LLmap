@@ -1,0 +1,45 @@
+{
+  "name": "chr18_pericentromeric_18q11_SD_field",
+  "taxonomy_id": "paralog_family",
+  "description": "18q11.1 pericentromeric SD field. Contains the classic 18q11.2 SD module already described; also harbors ~1 Mb of mosaic ANKRD30 / ZNF / olfactory duplicons. NAHR substrate for both germline rearrangements and somatic instability.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr18",
+      "start": 18700000,
+      "end": 21800000
+    }
+  },
+  "size_bp": 3100000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 250,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ROCK1 region pseudogenes, ANKRD20A pseudogenes, olfactory receptor remnants",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 28,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "mitotic_instability_observed"
+  },
+  "confidence": 0.55,
+  "sources": [
+    "Bailey/Eichler SD-DB"
+  ]
+}

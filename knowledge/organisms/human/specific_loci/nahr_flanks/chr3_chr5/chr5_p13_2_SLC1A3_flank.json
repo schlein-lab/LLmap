@@ -1,0 +1,47 @@
+{
+  "name": "chr5_p13_2_SLC1A3_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "NAHR-prone SD-flanked interval at chr5:36500000-37100000 (SD_5p13_prox / SD_5p13_dist).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr5",
+      "start": 36500000,
+      "end": 37100000
+    }
+  },
+  "size_bp": 600000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_5p13_prox",
+      "SD_5p13_dist"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 8,
+    "microhomology_bp_at_breakpoint": "not_characterized",
+    "internal_structure": "SLC1A3, NIPBL region",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cornelia de Lange contiguous (NIPBL)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "NA",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.55,
+  "sources": [
+    "PMID:15146185"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "chr11_q23_1_DDX10_NUP98_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "NUP98 / DDX10 partner regions on 11q23.1; recurrent SD-mediated inv(11) in pediatric AML.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr11",
+      "start": 108900000,
+      "end": 109050000
+    }
+  },
+  "size_bp": 150000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_NUP98_5p",
+      "SD_DDX10_3p"
+    ],
+    "homology_percent": 93.0,
+    "sd_length_kb": 6,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NUP98, DDX10",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "NUP98-DDX10 AML",
+      "omim": null
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 0,
+    "dbvar_count": 4,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "AML"
+  },
+  "confidence": 0.75,
+  "sources": [
+    "Arai1997",
+    "COSMIC"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "chr16_p11_2_BOLA2_duplicon_family",
+  "taxonomy_id": "paralog_family",
+  "description": "BOLA2 duplicon \u2014 human-specific ~95 kb duplicon embedded in BP4 and BP5 of 16p11.2. Fixed expansion in modern humans (~282 kya); architectural sine-qua-non for autism CNV recurrence.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 28000000,
+      "end": 30500000
+    }
+  },
+  "size_bp": 2500000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "BOLA2_duplicon"
+    ],
+    "homology_percent": 99.7,
+    "sd_length_kb": 95,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "BOLA2 + SLX1B/SULT1A copies; human-specific expansion",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.9,
+    "anchor_weight_scale": 0.25,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:25409090 Nuttle 2016",
+    "PMID:28009285 Sudmant 2015"
+  ]
+}

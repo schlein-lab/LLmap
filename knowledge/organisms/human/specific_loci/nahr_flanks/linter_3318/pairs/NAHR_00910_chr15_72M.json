@@ -1,0 +1,52 @@
+{
+  "name": "NAHR_00910_chr15_72M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr15:72671198-75274718 (2.60 Mb interior) flanked by paralogous 24.8 kb LCRs at 98.88% identity, propensity X=4.34.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 72646567,
+      "end": 75299600
+    }
+  },
+  "size_bp": 2653033,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr15:72646567-72671198",
+      "chr15:75274718-75299600"
+    ],
+    "homology_percent": 98.88,
+    "sd_length_kb": 24.76,
+    "interior_bp": 2603520,
+    "propensity_X": 4.344,
+    "internal_structure": "no protein-coding genes annotated",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 0,
+    "n_total_features": 0,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

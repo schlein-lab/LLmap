@@ -1,0 +1,45 @@
+{
+  "name": "chr6_q26_PARK2_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "PARK2 (PRKN) at 6q26 has SD-flanked exons producing recurrent exonic deletions/duplications in Parkinson disease.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr6",
+      "start": 161300000,
+      "end": 163100000
+    }
+  },
+  "size_bp": 1800000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_PARK2_prox",
+      "SD_PARK2_dist"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PARK2 large gene with SD-flanked exonic rearrangements",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Parkinson disease, juvenile autosomal recessive 2"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 185,
+    "dbvar_count": 412,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "PARK2_LOH_in_tumors"
+  },
+  "confidence": 0.9,
+  "sources": []
+}

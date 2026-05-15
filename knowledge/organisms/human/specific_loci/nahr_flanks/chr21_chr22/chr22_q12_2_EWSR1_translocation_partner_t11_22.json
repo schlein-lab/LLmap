@@ -1,0 +1,51 @@
+{
+  "name": "chr22_q12_2_EWSR1_translocation_partner_t11_22",
+  "taxonomy_id": "paralog_family",
+  "description": "EWSR1 breakpoint region (22q12.2). Recurrent t(11;22)(q24;q12) EWSR1-FLI1 in Ewing sarcoma.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 29000000,
+      "end": 29200000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "EWSR1_translocation_partner_t11_22"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "EWSR1 breakpoint region (22q12.2). Recurrent t(11;22)(q24;q12) EWSR1-FLI1 in Ewing sarcoma.",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ewing sarcoma"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent in Ewing sarcoma"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016"
+  ]
+}

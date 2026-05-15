@@ -1,0 +1,50 @@
+{
+  "name": "chr22_q11_21_LCR22B_block",
+  "taxonomy_id": "paralog_family",
+  "description": "LCR22B segmental duplication block on 22q11.21. Composite duplicon (~141 kb) built from BCRL, GGTLC, USP18-like, IGLV-pseudogene, POM121-like modules. Substrate for inter-LCR22 NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 20128181,
+      "end": 20269520
+    }
+  },
+  "size_bp": 141339,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "LCR22B"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 141,
+    "microhomology_bp_at_breakpoint": "n/a (intra-block reference)",
+    "internal_structure": "mosaic of BCRL2/3/4, GGTLC, USP18-like, POM121L, IGLV pseudogenes, FAM230",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Edelmann et al. 1999 (LCR22 map)",
+    "Pavlicek et al. 2005",
+    "Demaerel et al. 2019 AJHG (LCR22 nomenclature update)",
+    "McDonald-McGinn et al. 2015 (22q11.2DS Nat Rev Dis Primers)",
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4"
+  ]
+}

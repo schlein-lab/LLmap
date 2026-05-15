@@ -1,0 +1,47 @@
+{
+  "name": "chr2_q13_BUB1_LCR",
+  "taxonomy_id": "paralog_family",
+  "description": "BUB1-flanking LCR within 2q13 microdeletion.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr2",
+      "start": 111800000,
+      "end": 112100000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr2_q13_BUB1_LCR_proximal_SD",
+      "chr2_q13_BUB1_LCR_distal_SD"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 80,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "generic SD pair flanking unique core",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "2q13 microdeletion"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not classified",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "doi:10.1136/jmedgenet-2013-101859"
+  ]
+}

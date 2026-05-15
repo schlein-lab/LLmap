@@ -1,0 +1,51 @@
+{
+  "name": "chr21_q22_12_RUNX1_RUNX1T1_t8_21_AML",
+  "taxonomy_id": "paralog_family",
+  "description": "RUNX1 (AML1) breakpoint region. Recurrent t(8;21)(q22;q22.1) -> RUNX1-RUNX1T1 in AML M2.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr21",
+      "start": 34800000,
+      "end": 36100000
+    }
+  },
+  "size_bp": 1300000,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "RUNX1_RUNX1T1_t8_21_AML"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 1300,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "RUNX1 (AML1) breakpoint region. Recurrent t(8;21)(q22;q22.1) -> RUNX1-RUNX1T1 in AML M2.",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "AML t(8;21)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent in AML M2"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016"
+  ]
+}

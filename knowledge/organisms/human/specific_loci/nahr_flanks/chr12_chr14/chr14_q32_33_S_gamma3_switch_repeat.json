@@ -1,0 +1,50 @@
+{
+  "name": "chr14_q32_33_S_gamma3_switch_repeat",
+  "description": "IGH class-switch tandem repeat region (Sgamma3) \u2014 AID-targeted somatic NAHR substrate during CSR. Internal tandem ~49-bp or pentamer repeat unit drives intra-locus deletional recombination. Sgamma3 49-bp tandem repeat 5' of IGHG3",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 106240000,
+      "end": 106243000
+    }
+  },
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "Sgamma3_tandem",
+      "Smu_tandem"
+    ],
+    "homology_percent": 70.0,
+    "sd_length_kb": 3,
+    "microhomology_bp_at_breakpoint": "0-7",
+    "internal_structure": "tandem repeat of 25-100 bp unit, internally near-identical",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "B-cell lymphoma translocations through switch regions",
+    "class-switch-recombination defects"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "very_high"
+  },
+  "confidence": 0.95,
+  "sources": [
+    "Chaudhuri 2007 Adv Immunol",
+    "Stavnezer 2008 Annu Rev Immunol",
+    "Watson 2013 AJHG"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 3000
+}

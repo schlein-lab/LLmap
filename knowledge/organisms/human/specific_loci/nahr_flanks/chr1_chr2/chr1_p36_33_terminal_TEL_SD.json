@@ -1,0 +1,49 @@
+{
+  "name": "chr1_p36_33_terminal_TEL_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal-most 1p36.33 telomeric SD block; provides recombination substrate for terminal 1p36 deletions stabilised at the chromosome end.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 0,
+      "end": 500000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "1p36.33_TEL_SD_proximal",
+      "1p36.33_TEL_SD_distal"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "Subtelomeric repeat array (TAR1/TelBam3.4-like) plus 10-30 kb intrachromosomal SDs.",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Monosomy 1p36 syndrome (terminal class)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "HI=3 (1p36 region)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "doi:10.1086/513609",
+    "PMID:17357071",
+    "doi:10.1038/ejhg.2008.62"
+  ]
+}

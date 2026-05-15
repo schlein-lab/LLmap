@@ -1,0 +1,49 @@
+{
+  "name": "chr14_q32_33_translocation_MAFB_t14_20",
+  "description": "Recurrent IGH switch-region translocation joining IGH-MAFB_t14_20 to MAFB at 20q12. Driver of MM t(14;20). Breakpoint typically inside S-mu or downstream switch region, joined by NHEJ to non-IGH partner.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 106030000,
+      "end": 106340000
+    }
+  },
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "IGH_switch_region",
+      "MAFB_t14_20_partner_locus"
+    ],
+    "homology_percent": 70.0,
+    "sd_length_kb": 3,
+    "microhomology_bp_at_breakpoint": "2-7",
+    "internal_structure": "switch tandem repeat fused to partner regulatory or coding region",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "MM t(14;20)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "very_high"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "COSMIC",
+    "Kuppers 2005 Nat Rev Cancer",
+    "Mitelman DB"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 310000
+}

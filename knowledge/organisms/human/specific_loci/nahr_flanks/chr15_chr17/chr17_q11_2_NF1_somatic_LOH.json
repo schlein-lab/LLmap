@@ -1,0 +1,48 @@
+{
+  "name": "chr17_q11_2_NF1_somatic_LOH",
+  "taxonomy_id": "paralog_family",
+  "description": "NF1-REPs mediate somatic mitotic NAHR causing recurrent NF1 LOH in neurofibromas + MPNST; primary 'second-hit' mechanism in NF1.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 31700000,
+      "end": 33000000
+    }
+  },
+  "size_bp": 1300000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NF1-REPa",
+      "NF1-REPc"
+    ],
+    "homology_percent": 97.8,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "NF1-REPs as somatic mitotic NAHR substrate",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "neurofibroma",
+    "MPNST"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent NF1 LOH in NF1-related tumors"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:17033964"
+  ]
+}

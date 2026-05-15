@@ -1,0 +1,44 @@
+{
+  "name": "chr16_q11_2_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "16q11.2 pericentromeric/proximal SD block \u2014 paralog to 16p11.1; potential substrate for centromere-spanning rearrangements.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 46500000,
+      "end": 50000000
+    }
+  },
+  "size_bp": 3500000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "pericentromeric_mosaic"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Paralog block to p-arm pericentromeric SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "PMID:11731218"
+  ]
+}

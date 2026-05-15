@@ -1,0 +1,54 @@
+{
+  "name": "NAHR_00372_chr1_148M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr1:148109148-149516057 (1.41 Mb interior) flanked by paralogous 5.4 kb LCRs at 96.15% identity, propensity X=3.59.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr1",
+      "start": 148103790,
+      "end": 149521440
+    }
+  },
+  "size_bp": 1417650,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr1:148103790-148109148",
+      "chr1:149516057-149521440"
+    ],
+    "homology_percent": 96.15,
+    "sd_length_kb": 5.37,
+    "interior_bp": 1406909,
+    "propensity_X": 3.586,
+    "internal_structure": "ENSG00000286185, NBPF11, NBPF14, NBPF19, NBPF9, NOTCH2NLB, NOTCH2NLC, NUDT4B, PDE4DIP, PPIAL4G",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0002572:Episodic vomiting"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 10,
+    "n_total_features": 27,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

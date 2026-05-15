@@ -1,0 +1,45 @@
+{
+  "name": "chr6_q25_3_ARID1B_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "6q25.3 ARID1B region with SD-mediated recurrent deletions causing Coffin-Siris.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr6",
+      "start": 156700000,
+      "end": 157200000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_ARID1B_prox",
+      "SD_ARID1B_dist"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 35,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "ARID1B Coffin-Siris syndrome gene flanked by SDs",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Coffin-Siris syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 11,
+    "dbvar_count": 86,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": []
+}

@@ -1,0 +1,45 @@
+{
+  "name": "chr15_q11_GOLGA8_duplicon_family",
+  "taxonomy_id": "paralog_family",
+  "description": "GOLGA8 duplicon family \u2014 recurrent ~30-50 kb module dispersed across all BP1-BP6 clusters of 15q11-q13. Architectural backbone of every PWS/AS/CHRNA7 recurrent CNV.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 22500000,
+      "end": 33000000
+    }
+  },
+  "size_bp": 10500000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "GOLGA8_duplicon_cluster"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 40,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "GOLGA8 ORF + flanking LCR; ~50 copies on chr15",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.9,
+  "sources": [
+    "PMID:11331952 Pujana 2001",
+    "PMID:23290073 Antonacci 2014"
+  ]
+}

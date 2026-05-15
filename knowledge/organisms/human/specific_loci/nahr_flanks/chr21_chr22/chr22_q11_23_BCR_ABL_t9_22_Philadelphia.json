@@ -1,0 +1,52 @@
+{
+  "name": "chr22_q11_23_BCR_ABL_t9_22_Philadelphia",
+  "taxonomy_id": "paralog_family",
+  "description": "BCR gene breakpoint cluster region. NAHR-independent but recurrent translocation t(9;22)(q34;q11) -> BCR-ABL1 Philadelphia chromosome in CML/ALL.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 23500000,
+      "end": 23800000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "BCR_ABL_t9_22_Philadelphia"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 300,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "BCR gene breakpoint cluster region. NAHR-independent but recurrent translocation t(9;22)(q34;q11) -> BCR-ABL1 Philadelphia chromosome in CML/ALL.",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CML",
+    "Ph+ ALL"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "recurrent in CML"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "Bailey & Eichler SD-DB (UCSC SegDups)",
+    "Sharp et al. 2005 AJHG",
+    "ClinGen Dosage Sensitivity Map",
+    "gnomAD-SV v4",
+    "Stankiewicz & Lupski 2002",
+    "Carvalho & Lupski 2016"
+  ]
+}

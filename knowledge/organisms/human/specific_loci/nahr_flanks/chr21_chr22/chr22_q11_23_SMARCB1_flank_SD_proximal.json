@@ -1,0 +1,49 @@
+{
+  "name": "chr22_q11_23_SMARCB1_flank_SD_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "SMARCB1 proximal SD flank (rhabdoid tumor)",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 23780000,
+      "end": 23820000
+    }
+  },
+  "size_bp": 40000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SMARCB1_flank_SD_proximal"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 40,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "SMARCB1 proximal SD flank (rhabdoid tumor)",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Rhabdoid tumor predisposition"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "rhabdoid tumors"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Bailey & Eichler SD-DB",
+    "Rouleau et al. 1993 (NF2 cloning)",
+    "ClinGen Dosage Sensitivity (NF2 HI=3)",
+    "gnomAD-SV v4"
+  ]
+}

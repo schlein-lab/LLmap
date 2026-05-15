@@ -1,0 +1,55 @@
+{
+  "name": "NAHR_00563_chr10_46M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr10:46360780-46812001 (0.45 Mb interior) flanked by paralogous 28.1 kb LCRs at 98.33% identity, propensity X=4.37.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr10",
+      "start": 46332689,
+      "end": 46840017
+    }
+  },
+  "size_bp": 507328,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr10:46332689-46360780",
+      "chr10:46812001-46840017"
+    ],
+    "homology_percent": 98.33,
+    "sd_length_kb": 28.05,
+    "interior_bp": 451221,
+    "propensity_X": 4.374,
+    "internal_structure": "ANTXRL, ANXA8, ANXA8L1, FAM25G, GDF10, GDF2, GPRIN2, NPY4R, PTPN20, RBP3, SYT15, ZNF488",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0011025:Abnormal cardiovascular system physiology",
+    "HP:0030610:Photoreceptor outer segment loss on macular OCT"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 12,
+    "n_total_features": 27,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

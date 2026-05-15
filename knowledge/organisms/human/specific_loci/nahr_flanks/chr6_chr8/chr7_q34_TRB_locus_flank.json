@@ -1,0 +1,43 @@
+{
+  "name": "chr7_q34_TRB_locus_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "TRB locus at 7q34 undergoes physiological somatic V(D)J recombination; flanking SDs also produce constitutional CNVs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr7",
+      "start": 142000000,
+      "end": 142500000
+    }
+  },
+  "size_bp": 500000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_TRB_prox",
+      "SD_TRB_dist"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 18,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "T-cell receptor beta locus with V-J segmental duplications",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 1200,
+    "dbvar_count": 425,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "T_cell_leukemia_translocations"
+  },
+  "confidence": 0.9,
+  "sources": []
+}

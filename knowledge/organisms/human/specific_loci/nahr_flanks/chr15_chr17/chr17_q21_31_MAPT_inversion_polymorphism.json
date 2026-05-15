@@ -1,0 +1,54 @@
+{
+  "name": "chr17_q21_31_MAPT_inversion_polymorphism",
+  "taxonomy_id": "paralog_family",
+  "description": "17q21.31 H1/H2 inversion polymorphism \u2014 ~900 kb inversion spanning MAPT/CRHR1/KANSL1. H2 haplotype (~20% in Europeans, near-absent in Africans) is a primate-specific inversion under positive selection in Europeans. Inverted orientation creates direct-orientation SDs that mediate the recurrent 17q21.31 microdeletion (Koolen-de Vries syndrome) almost exclusively on H2 background.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 45500000,
+      "end": 46700000
+    }
+  },
+  "size_bp": 1200000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR17q21.31_A",
+      "LCR17q21.31_B",
+      "LCR17q21.31_C",
+      "LCR17q21.31_D"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Four major SD blocks (A-D) define inversion; H2 = inverted relative to ancestral H1; H1=80%, H2=20% Europeans, near-zero Africans",
+    "copy_number_in_population": "fixed_polymorphic_inversion"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Koolen-de Vries syndrome (17q21.31 microdeletion) \u2014 exclusively on H2",
+    "Parkinson disease risk modifier (H1)",
+    "PSP/CBD risk (H1)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient (KANSL1)",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.98,
+  "sources": [
+    "PMID:15732076 Stefansson 2005",
+    "PMID:22641211 Steinberg 2012 H2-defined",
+    "PMID:16906163 Zody 2008",
+    "PMID:16906162 Koolen 2006"
+  ]
+}

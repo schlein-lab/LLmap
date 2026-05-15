@@ -1,0 +1,51 @@
+{
+  "name": "chr15_q13_1_PWS_AS_BP3",
+  "taxonomy_id": "paralog_family",
+  "description": "BP3 segmental duplication cluster \u2014 the major distal breakpoint for both Type-I (BP1-BP3) and Type-II (BP2-BP3) Prader-Willi / Angelman deletions. HERC2 + GOLGA8 duplicons in inverted orientation relative to BP1/BP2 facilitating NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 28500000,
+      "end": 28800000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "HERC2_paralog_block",
+      "GOLGA8_duplicon_cluster",
+      "OCA2_flanking_SD"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 500,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "HERC2 large paralog (~150 kb at 99% identity) + GOLGA8 modules + ULK4 duplicon fragments",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Prader-Willi syndrome (Type I+II)",
+    "Angelman syndrome (Type I+II)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.95,
+  "sources": [
+    "PMID:11331952",
+    "PMID:12107281",
+    "PMID:15918153 Sharp 2005"
+  ]
+}

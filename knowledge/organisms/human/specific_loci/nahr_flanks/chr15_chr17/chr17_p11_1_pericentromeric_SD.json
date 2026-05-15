@@ -1,0 +1,45 @@
+{
+  "name": "chr17_p11_1_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "17p11.1 pericentromeric SD pile-up \u2014 proximal anchor of chr17 centromere; intra-17 duplicons + shared modules with other pericentromeres.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 22000000,
+      "end": 22800000
+    }
+  },
+  "size_bp": 800000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "pericentromeric_mosaic"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Pericentromeric mosaic SDs",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "PMID:12466850 She 2004",
+    "PMID:11731217"
+  ]
+}

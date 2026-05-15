@@ -1,0 +1,50 @@
+{
+  "name": "chr19_19p13_3_STK11_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "STK11 (Peutz-Jeghers) flanking SDs; recurrent germline deletions and somatic LoF in lung adenocarcinoma.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 1100000,
+      "end": 1500000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 14,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "STK11, ATP5F1D, MIDN",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 45000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Peutz-Jeghers (STK11)",
+    "Lung adenocarcinoma somatic LoF"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 8,
+    "dbvar_count": 91,
+    "clingen_dosage_call": "haploinsufficient_STK11",
+    "tumor_recurrence": "LUAD_STK11_recurrent_loss"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "COSMIC",
+    "ClinGen",
+    "Bailey/Eichler SD-DB"
+  ]
+}

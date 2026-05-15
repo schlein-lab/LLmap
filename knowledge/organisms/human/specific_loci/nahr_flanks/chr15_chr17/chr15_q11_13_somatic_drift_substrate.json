@@ -1,0 +1,45 @@
+{
+  "name": "chr15_q11_13_somatic_drift_substrate",
+  "taxonomy_id": "paralog_family",
+  "description": "15q11-q13 SD pile-up also serves as somatic mitotic drift substrate in clonal B-cell expansions; not a classical tumor LOH region but flagged for single-cell CNV instability.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 22500000,
+      "end": 33000000
+    }
+  },
+  "size_bp": 10500000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HERC2_paralog_block",
+      "GOLGA8_duplicon_cluster"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "PWS/AS SDs as somatic NAHR substrate",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "PMID:11331952"
+  ]
+}

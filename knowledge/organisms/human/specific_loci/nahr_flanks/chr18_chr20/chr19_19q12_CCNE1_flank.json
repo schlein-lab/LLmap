@@ -1,0 +1,49 @@
+{
+  "name": "chr19_19q12_CCNE1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "CCNE1 amplicon flanking SDs; recurrent focal amplification hotspot in ovarian, gastric, and uterine carcinomas.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 29800000,
+      "end": 30200000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "CCNE1, URI1, POP4",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Ovarian high-grade serous CCNE1 amp",
+    "Gastric CCNE1 amp"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 6,
+    "dbvar_count": 138,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "HGSOC_CCNE1_amp_recurrent"
+  },
+  "confidence": 0.85,
+  "sources": [
+    "COSMIC",
+    "Bailey/Eichler SD-DB"
+  ]
+}

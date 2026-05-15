@@ -1,0 +1,50 @@
+{
+  "name": "chr14_q11_2_TCRalpha_TCRdelta_locus",
+  "description": "T-cell receptor alpha/delta locus on 14q11.2 \u2014 V-segment paralog SDs + TCRD intra-cluster. Substrate for somatic VDJ recombination plus germline V-cluster NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 21621904,
+      "end": 22552132
+    }
+  },
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "TRAV_paralogs",
+      "TRDV_paralogs"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 4,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "~46 TRAV gene segments + 8 TRDV interspersed, J cluster, C-alpha/C-delta",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "T-ALL inv(14)/t(14;14)",
+    "ataxia-telangiectasia somatic rearrangements"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 12,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "high"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "IMGT",
+    "Boehm 1989",
+    "COSMIC"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 930228
+}

@@ -1,0 +1,47 @@
+{
+  "name": "chr8_p11_22_FGFR1_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "FGFR1 at 8p11.22 has SD flanks; recurrent translocations and CNVs cause 8p11 myeloproliferative syndrome and Pfeiffer/Hartsfield/Kallmann.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr8",
+      "start": 38400000,
+      "end": 38600000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_FGFR1_prox",
+      "SD_FGFR1_dist"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 32,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "FGFR1 / 8p11 myeloproliferative syndrome region",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "8p11 myeloproliferative syndrome",
+    "Pfeiffer syndrome",
+    "Kallmann syndrome 2"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 45,
+    "dbvar_count": 165,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": "FGFR1_amplification_breast"
+  },
+  "confidence": 0.85,
+  "sources": []
+}

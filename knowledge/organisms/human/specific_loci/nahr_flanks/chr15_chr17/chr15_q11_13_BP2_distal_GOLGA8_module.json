@@ -1,0 +1,49 @@
+{
+  "name": "chr15_q11_13_BP2_distal_GOLGA8_module",
+  "taxonomy_id": "paralog_family",
+  "description": "Distal GOLGA8 module within BP2 within the 15q11-q13 PWS/AS region \u2014 fine-grained SD sub-module driving NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 23300000,
+      "end": 23360000
+    }
+  },
+  "size_bp": 60000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "HERC2_paralog_block",
+      "GOLGA8_duplicon_cluster"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 60,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Distal GOLGA8 module within BP2, ~60 kb at >98% identity",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Prader-Willi syndrome",
+    "Angelman syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "PMID:11331952",
+    "PMID:12107281"
+  ]
+}

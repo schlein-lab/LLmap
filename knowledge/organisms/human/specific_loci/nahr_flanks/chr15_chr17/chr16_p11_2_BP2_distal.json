@@ -1,0 +1,48 @@
+{
+  "name": "chr16_p11_2_BP2_distal",
+  "taxonomy_id": "paralog_family",
+  "description": "BP2 \u2014 proximal anchor of the distal 16p11.2 ~220 kb recurrent deletion involving SH2B1 (severe early-onset obesity).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 28750000,
+      "end": 28950000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog",
+      "LCR16p11.2_distal"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LCR16a + flanking SDs",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 90000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 distal microdeletion (SH2B1 obesity)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.92,
+  "sources": [
+    "PMID:19553049 Bochukova 2010",
+    "PMID:20531441 Bachmann-Gagescu 2010"
+  ]
+}

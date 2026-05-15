@@ -1,0 +1,47 @@
+{
+  "name": "chr7_p11.1_SD_centro_B",
+  "taxonomy_id": "paralog_family",
+  "description": "Segmental duplication block on chr7 p11.1 (centro_B). Generic SD flank from Bailey/Eichler SD-DB tracking ~94-99% identity duplicons with NAHR potential.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr7",
+      "start": 60200000,
+      "end": 60300000
+    }
+  },
+  "size_bp": 100000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_centro_B_A",
+      "SD_centro_B_B"
+    ],
+    "homology_percent": 95.5,
+    "sd_length_kb": 100,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "generic paralog block, see SD-DB",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "Bailey 2002 Science",
+    "Eichler SD-DB",
+    "Bailey 2001 GenomeRes"
+  ]
+}

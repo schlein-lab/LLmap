@@ -1,0 +1,47 @@
+{
+  "name": "chr19_19p13_2_INSR_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "INSR (insulin receptor) flanking SDs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr19",
+      "start": 7150000,
+      "end": 7450000
+    }
+  },
+  "size_bp": 300000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_proximal",
+      "SD_distal"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 12,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "INSR, BSG",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.25,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Donohue / Rabson-Mendenhall (INSR)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 8,
+    "dbvar_count": 15,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.6,
+  "sources": [
+    "Bailey/Eichler SD-DB"
+  ]
+}

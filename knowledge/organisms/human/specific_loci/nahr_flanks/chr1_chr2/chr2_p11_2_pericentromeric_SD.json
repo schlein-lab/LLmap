@@ -1,0 +1,46 @@
+{
+  "name": "chr2_p11_2_pericentromeric_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "2p11.2 pericentromeric SD belt: IGKV proximal duplicons + intra-/interchromosomal SDs to chr1/9/16.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr2",
+      "start": 89000000,
+      "end": 93000000
+    }
+  },
+  "size_bp": 4000000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "chr2_p11_2_pericentromeric_SD_proximal_SD",
+      "chr2_p11_2_pericentromeric_SD_distal_SD"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "not characterised",
+    "internal_structure": "generic SD pair flanking unique core",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "not classified",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.75,
+  "sources": [
+    "doi:10.1101/gr.137711.112",
+    "PMID:11381028"
+  ]
+}

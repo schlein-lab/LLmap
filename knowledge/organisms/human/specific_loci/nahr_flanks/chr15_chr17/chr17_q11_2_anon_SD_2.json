@@ -1,0 +1,45 @@
+{
+  "name": "chr17_q11_2_anon_SD_2",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous intra-chromosomal segmental duplication on 17q11. Mapping ambiguity flag; chr17 is densest SD chromosome (Bailey 2002).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 28500000,
+      "end": 28700000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "intra_chr17_SD"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Generic intra-17 SD, ~50-100 kb",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.6,
+  "sources": [
+    "Bailey SD-DB",
+    "PMID:12107281"
+  ]
+}

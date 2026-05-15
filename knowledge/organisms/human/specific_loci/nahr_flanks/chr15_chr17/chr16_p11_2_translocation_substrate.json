@@ -1,0 +1,44 @@
+{
+  "name": "chr16_p11_2_translocation_substrate",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.2 BP4-BP5 SDs mediate rare recurrent translocations t(16;X), t(16;Y) via LCR16a-mediated NAHR.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 28000000,
+      "end": 31000000
+    }
+  },
+  "size_bp": 3000000,
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "complex_duplicon",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog"
+    ],
+    "homology_percent": 99.0,
+    "sd_length_kb": 150,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Translocation substrate via LCR16a-mediated NAHR",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "PMID:18184952"
+  ]
+}

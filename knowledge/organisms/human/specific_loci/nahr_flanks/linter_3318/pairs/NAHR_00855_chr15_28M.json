@@ -1,0 +1,59 @@
+{
+  "name": "NAHR_00855_chr15_28M",
+  "taxonomy_id": "paralog_family",
+  "description": "Linter NAHR-prone interval (genome-wide SD-pair scan v2). chr15:28714168-30133301 (1.42 Mb interior) flanked by paralogous 16.4 kb LCRs at 98.35% identity, propensity X=4.14.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr15",
+      "start": 28697783,
+      "end": 30149675
+    }
+  },
+  "size_bp": 1451892,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "chr15:28697783-28714168",
+      "chr15:30133301-30149675"
+    ],
+    "homology_percent": 98.35,
+    "sd_length_kb": 16.38,
+    "interior_bp": 1419133,
+    "propensity_X": 4.145,
+    "internal_structure": "APBA2, ARHGAP11B, CHRFAM7A, CHRNA7, ENSG00000284906, ENTREP2, FAN1, GOLGA6L7, GOLGA8H, GOLGA8J, GOLGA8K, GOLGA8O, GOLGA8Q, GOLGA8R, GOLGA8T, KLF13, MTMR10, NSMCE3, OTUD7A, TJP1",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "HP:0000512:Abnormal electroretinogram",
+    "HP:0001999:Abnormal facial shape",
+    "HP:0003076:Glycosuria",
+    "HP:0003623:Neonatal onset",
+    "HP:0011800:Midface retrusion",
+    "HP:0030680:Abnormal cardiovascular system morphology"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_HI3_genes": [],
+    "clingen_TS3_genes": [],
+    "n_protein_coding_genes": 21,
+    "n_total_features": 59,
+    "top_region_rank": null,
+    "known_syndrome": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "schlein-lab eye_evolution NAHR linter v2 (genome_wide_nahr_v2)",
+    "raw_3318_sd_pairs.tsv 2026-05"
+  ]
+}

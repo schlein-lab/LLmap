@@ -1,0 +1,48 @@
+{
+  "name": "somatic_MOSAIC_Tetrasomy12p_Pallister",
+  "taxonomy_id": "paralog_family",
+  "description": "Pallister-Killian tetrasomy 12p isochromosome via mitotic mechanism; arises post-zygotically via mitotic NAHR or non-disjunction",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 1,
+      "end": 35500000
+    }
+  },
+  "size_bp": 35499999,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "Tetrasomy12p_Pallister_telomeric_SD",
+      "Tetrasomy12p_Pallister_centromeric_SD"
+    ],
+    "homology_percent": 95,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Pallister-Killian tetrasomy 12p isochromosome via mitotic mechanism",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Pallister_Killian"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "mosaic"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "PCAWG 2020",
+    "Carvalho Lupski 2016 doi:10.1038/nrg.2015.25"
+  ]
+}

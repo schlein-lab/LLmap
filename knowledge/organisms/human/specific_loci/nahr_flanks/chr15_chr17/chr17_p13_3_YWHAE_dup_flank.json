@@ -1,0 +1,46 @@
+{
+  "name": "chr17_p13_3_YWHAE_dup_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "17p13.3 distal flank of YWHAE microduplication syndrome.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 1100000,
+      "end": 1300000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR17p13.3_distal"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 80,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Subtelomeric SD block",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "17p13.3 microduplication (YWHAE)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.8,
+  "sources": [
+    "PMID:19305408"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "chr6_p21_32_HLA_DRB_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "HLA-DRB haplotype-specific NAHR; copy number varies (DRB3/4/5 presence depends on DRB1 allele).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr6",
+      "start": 32400000,
+      "end": 32600000
+    }
+  },
+  "size_bp": 200000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_DRB_prox",
+      "SD_DRB_dist"
+    ],
+    "homology_percent": 98.5,
+    "sd_length_kb": 40,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "DRB1/3/4/5 paralog cluster with haplotype-specific copy number",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 1200,
+    "dbvar_count": 95,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": []
+}

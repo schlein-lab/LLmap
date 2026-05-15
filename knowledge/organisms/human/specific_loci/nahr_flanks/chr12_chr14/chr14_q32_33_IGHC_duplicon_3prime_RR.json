@@ -1,0 +1,51 @@
+{
+  "name": "chr14_q32_33_IGHC_duplicon_3prime_RR",
+  "description": "3' regulatory region (RR1/RR2) duplicated downstream of each alpha gene.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 105860000,
+      "end": 106180000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "IGHC_duplicon_3prime_RR_proximal",
+      "IGHC_duplicon_3prime_RR_distal"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 30,
+    "microhomology_bp_at_breakpoint": "2-30",
+    "internal_structure": "duplicated cassette containing constant gene + switch region + 3' regulatory elements",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "IgG/IgA/IgE subclass-deficiency haplotypes",
+    "IGH-locus mosaicism"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 4,
+    "dbvar_count": 18,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": "moderate"
+  },
+  "confidence": 0.92,
+  "sources": [
+    "Hofker 1989 PNAS",
+    "Migone 1984",
+    "Watson 2013 AJHG",
+    "IMGT"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 320000
+}

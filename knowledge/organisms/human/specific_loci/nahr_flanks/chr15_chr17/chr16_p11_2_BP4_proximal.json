@@ -1,0 +1,50 @@
+{
+  "name": "chr16_p11_2_BP4_proximal",
+  "taxonomy_id": "paralog_family",
+  "description": "BP4 \u2014 proximal anchor of the canonical 16p11.2 autism/obesity ~600 kb recurrent deletion (BP4-BP5). LCR16a-rich duplicon block in direct orientation with BP5.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr16",
+      "start": 29400000,
+      "end": 29650000
+    }
+  },
+  "size_bp": 250000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "LCR16a_paralog",
+      "BOLA2_duplicon"
+    ],
+    "homology_percent": 99.2,
+    "sd_length_kb": 250,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "LCR16a core + BOLA2 duplicon at >99% identity; one of densest SD blocks in genome",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.8,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 recurrent del (autism, obesity)",
+    "16p11.2 recurrent dup (schizophrenia, underweight)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.97,
+  "sources": [
+    "PMID:18184952 Weiss 2008",
+    "PMID:21841780 Walters 2010",
+    "PMID:25409090 Nuttle 2016 BOLA2"
+  ]
+}

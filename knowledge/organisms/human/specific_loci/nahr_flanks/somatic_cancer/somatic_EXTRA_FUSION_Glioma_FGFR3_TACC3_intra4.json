@@ -1,0 +1,49 @@
+{
+  "name": "somatic_EXTRA_FUSION_Glioma_FGFR3_TACC3_intra4",
+  "taxonomy_id": "paralog_family",
+  "description": "FGFR3-TACC3 GBM intra-chr4 microdeletion; somatic; SD/Alu flanked",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr4",
+      "start": 1790000,
+      "end": 1820000
+    }
+  },
+  "size_bp": 30000,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "Glioma_FGFR3_TACC3_intra4_SD_5p",
+      "Glioma_FGFR3_TACC3_intra4_SD_3p"
+    ],
+    "homology_percent": 93,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "FGFR3-TACC3 GBM intra-chr4 microdeletion",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.45,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "glioma_FGFR3_TACC3"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": "subset_GBM"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Mitelman DB",
+    "COSMIC v100",
+    "TCGA"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "chr9_p24_3_JAK2_DOCK8_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "9p24.3 SD block flanking JAK2/INSL6/INSL4; recurrent telomeric deletions in MPN with JAK2 amplifications.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr9",
+      "start": 4900000,
+      "end": 5500000
+    }
+  },
+  "size_bp": 600000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_9p24_3_prox",
+      "SD_9p24_3_dist"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 85,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "JAK2, INSL6, INSL4",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    {
+      "name": "Myeloproliferative neoplasm",
+      "omim": "254450"
+    },
+    {
+      "name": "9p deletion syndrome",
+      "omim": "158170"
+    }
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 12,
+    "dbvar_count": 38,
+    "clingen_dosage_call": "sufficient_evidence_HI",
+    "tumor_recurrence": "MPN"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "Bailey2002",
+    "Cocca2019",
+    "ClinGen"
+  ]
+}

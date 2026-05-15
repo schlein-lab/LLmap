@@ -1,0 +1,49 @@
+{
+  "name": "chr14_p_pericen_SD_pair_003",
+  "description": "chr14 acrocentric short-arm/pericentromeric segmental-duplication block #3. 14p is rDNA-bearing acrocentric, satellite II/III + alpha-satellite repeats; high-copy with chr13/15/21/22 pericentromeric paralogs (acrocentric robertsonian fusion substrate).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 1600000,
+      "end": 1650000
+    }
+  },
+  "nahr_class": "translocation",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "14p_alpha_sat",
+      "13p_15p_21p_22p_alpha_sat"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "rDNA tandem repeat + alpha-satellite + pericentromeric SD",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocation rob(13;14), rob(14;21)",
+    "uniparental disomy 14"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": null,
+    "tumor_recurrence": null
+  },
+  "confidence": 0.7,
+  "sources": [
+    "Eichler SD-DB",
+    "Stankiewicz & Lupski 2002"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 50000
+}

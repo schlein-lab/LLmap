@@ -1,0 +1,45 @@
+{
+  "name": "chr8_q12_2_CHD7_flank",
+  "taxonomy_id": "paralog_family",
+  "description": "CHD7 at 8q12.2 has SD flanks; recurrent exonic deletions cause CHARGE syndrome.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr8",
+      "start": 60700000,
+      "end": 61100000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "SD_CHD7_prox",
+      "SD_CHD7_dist"
+    ],
+    "homology_percent": 96.0,
+    "sd_length_kb": 32,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "CHD7 CHARGE syndrome gene flanked by SDs",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "CHARGE syndrome"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 38,
+    "dbvar_count": 142,
+    "clingen_dosage_call": "haploinsufficient",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": []
+}

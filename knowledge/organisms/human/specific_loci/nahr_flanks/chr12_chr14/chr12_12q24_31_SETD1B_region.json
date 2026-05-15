@@ -1,0 +1,49 @@
+{
+  "name": "chr12_12q24_31_SETD1B_region",
+  "description": "SETD1B gene region within 12q24.31 microdeletion \u2014 haploinsufficient ID gene.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 121800000,
+      "end": 122200000
+    }
+  },
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "12q24_31_SETD1B_region_prox",
+      "12q24_31_SETD1B_region_dist"
+    ],
+    "homology_percent": 95.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "see description",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "SETD1B-related intellectual disability"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": 3,
+    "dbvar_count": 25,
+    "clingen_dosage_call": "no_evidence_dosage",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.85,
+  "sources": [
+    "ClinGen",
+    "ClinGen",
+    "Sharp 2005"
+  ],
+  "taxonomy_id": "paralog_family",
+  "size_bp": 400000
+}

@@ -1,0 +1,47 @@
+{
+  "name": "chr9_p23_anon_SD_pair_011",
+  "taxonomy_id": "paralog_family",
+  "description": "Anonymous SD pair on chr9p23 flanking a ~886 kb interval; inversion architecture, paralog identity ~97.06%.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr9",
+      "start": 10600627,
+      "end": 11487542
+    }
+  },
+  "size_bp": 886915,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "chr9_p23_SD_a",
+      "chr9_p23_SD_b"
+    ],
+    "homology_percent": 97.06,
+    "sd_length_kb": 18,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "uncharacterized",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.39,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 45000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": 0,
+    "clingen_dosage_call": "no_evidence",
+    "tumor_recurrence": null
+  },
+  "confidence": 0.71,
+  "sources": [
+    "Bailey2002",
+    "SD-DB-Eichler",
+    "gnomAD-SVv4"
+  ]
+}

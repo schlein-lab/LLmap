@@ -1,0 +1,49 @@
+{
+  "name": "chr22_q12_2_NF2_5prime_flank_SD_A",
+  "taxonomy_id": "paralog_family",
+  "description": "Proximal SD flank 5' of NF2",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr22",
+      "start": 29200000,
+      "end": 29250000
+    }
+  },
+  "size_bp": 50000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "NF2_5prime_flank_SD_A"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 50,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Proximal SD flank 5' of NF2",
+    "copy_number_in_population": "fixed"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.35,
+    "max_occ": 70000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "NF2 (neurofibromatosis 2)"
+  ],
+  "recurrence_evidence": {
+    "gnomad_sv_count": null,
+    "dbvar_count": null,
+    "clingen_dosage_call": "HI=3",
+    "tumor_recurrence": "recurrent in schwannoma/meningioma"
+  },
+  "confidence": 0.8,
+  "sources": [
+    "Bailey & Eichler SD-DB",
+    "Rouleau et al. 1993 (NF2 cloning)",
+    "ClinGen Dosage Sensitivity (NF2 HI=3)",
+    "gnomAD-SV v4"
+  ]
+}
