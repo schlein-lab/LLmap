@@ -1,0 +1,17 @@
+{
+  "id": "1kg_sv_phase3",
+  "display_name": "1000 Genomes phase 3 SV release",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "sv",
+  "version": "phase3-v8.20230925",
+  "url": "http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/",
+  "format": "VCF.gz",
+  "license": "Open (IGSR data sharing policy)",
+  "doi": ["10.1038/nature15394"],
+  "expected_count": 170000,
+  "size_on_disk_gb": 0.05,
+  "ingest_command": "bcftools view 1kGP_high_coverage_Illumina.chr*.filtered.SNV_INDEL_SV_phased_panel.vcf.gz | bcftools view -i 'INFO/SVTYPE != \".\"' | llmap variant-ingest --source 1kg_sv_phase3 --kind sv --bucket-bp 100 --output 1kg_sv.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Population-stratified AFs (AFR/AMR/EAS/EUR/SAS) available; ingest currently aggregates to global AF only."
+}

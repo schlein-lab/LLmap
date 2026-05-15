@@ -1,0 +1,34 @@
+{
+  "name": "8p23_1_defensin_inverted_SD",
+  "taxonomy_id": "paralog_family",
+  "description": "8p23.1 inverted segmental duplication block containing the beta-defensin gene cluster (DEFB1, DEFB4, DEFA1A3, SPAG11) and OR7 olfactory receptor paralogs. The inverted SD pair on 8p drives the common 4-5 Mb 8p23.1 polymorphic inversion and recurrent microdeletion/duplication CNVs.",
+  "coordinates": {"grch38": {"chr": "chr8", "start": 7200000, "end": 12500000}},
+  "size_bp": 5300000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Two ~1.5 Mb SD blocks in inverted orientation (REPP/REPD) at ~99% identity, flanking GATA4, NEIL2, FDFT1; contains DEFB cluster with population-level copy-number variation (typical diploid copy 4-12) and OR cluster."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "8p23.1 deletion syndrome",
+    "8p23.1 duplication syndrome",
+    "congenital diaphragmatic hernia",
+    "beta-defensin CNV / inflammatory disease association"
+  ],
+  "sources": [
+    "doi:10.1086/430842",
+    "doi:10.1086/431652",
+    "doi:10.1038/ng1562",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.9
+}

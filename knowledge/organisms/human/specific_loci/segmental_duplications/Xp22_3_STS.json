@@ -1,0 +1,32 @@
+{
+  "name": "Xp22_3_STS_VCX_region",
+  "taxonomy_id": "paralog_family",
+  "description": "Xp22.31 region containing the steroid sulfatase (STS) gene, flanked by VCX gene family copies on directly oriented SDs (S1, S2, S3, S4 / VCX2, VCX3A, VCX, VCX3B). NAHR between flanking VCX duplicons drives the recurrent ~1.5 Mb Xp22.31 deletion underlying X-linked ichthyosis.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 6400000, "end": 8200000}},
+  "size_bp": 1800000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "VCX paralogs in direct orientation flanking the STS gene; SDs at >99% identity over ~10 kb; recurrent ~1.5 Mb deletion in male hemizygous carriers."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "X-linked ichthyosis (STS deficiency)",
+    "Kallmann syndrome (contiguous deletion)",
+    "intellectual disability (VCX dosage)"
+  ],
+  "sources": [
+    "doi:10.1038/ng0697-159",
+    "doi:10.1086/421555",
+    "PMID:11731633"
+  ],
+  "confidence": 0.9
+}

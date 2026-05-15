@@ -1,0 +1,44 @@
+{
+  "name": "KIR_locus_chr19",
+  "taxonomy_id": "paralog_family",
+  "description": "Killer-cell immunoglobulin-like receptor (KIR) gene cluster on chr19q13.42, within the leukocyte receptor complex (LRC). Approximately 100-200 kb depending on haplotype: contains 14-15 KIR genes (KIR2DL1-5, KIR2DS1-5, KIR3DL1-3, KIR3DS1, KIR2DP1, KIR3DP1) with intra-cluster identity 85-99%. Gene content varies between haplotypes (A vs B haplotypes), and within haplotype each KIR allele can also vary. Mapping requires both PSV-aware paralog disambiguation and haplotype-aware copy-number handling.",
+  "coordinates": {
+    "grch38": {"chr": "chr19", "start": 54720000, "end": 54870000},
+    "chm13":  {"chr": "chr19", "start": 56950000, "end": 57100000}
+  },
+  "size_bp": 150000,
+  "expected_paralogs": [
+    {"name": "KIR3DL3",  "approx_offset_in_locus": 0},
+    {"name": "KIR2DS2",  "approx_offset_in_locus": 14000},
+    {"name": "KIR2DL2_or_KIR2DL3", "approx_offset_in_locus": 28000},
+    {"name": "KIR2DL5B", "approx_offset_in_locus": 42000},
+    {"name": "KIR2DS3_or_KIR2DS5", "approx_offset_in_locus": 56000},
+    {"name": "KIR2DP1",  "approx_offset_in_locus": 70000},
+    {"name": "KIR2DL1",  "approx_offset_in_locus": 84000},
+    {"name": "KIR3DP1",  "approx_offset_in_locus": 98000},
+    {"name": "KIR2DL4",  "approx_offset_in_locus": 112000},
+    {"name": "KIR3DL1_or_KIR3DS1", "approx_offset_in_locus": 126000},
+    {"name": "KIR2DL5A", "approx_offset_in_locus": 132000},
+    {"name": "KIR2DS5",  "approx_offset_in_locus": 138000},
+    {"name": "KIR2DS1",  "approx_offset_in_locus": 142000},
+    {"name": "KIR3DL2",  "approx_offset_in_locus": 148000}
+  ],
+  "expected_copy_count": "haplotype-specific gene content; A haplotypes carry 7 KIR genes, B haplotypes carry 8-13. Two pseudogenes (KIR2DP1, KIR3DP1) are fixed framework markers",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "haplotype_specific_copy_number": true
+  },
+  "sources": [
+    "doi:10.1038/35038512",
+    "doi:10.1038/nri.2017.10",
+    "doi:10.1038/ng1097-264",
+    "IPD-KIR database"
+  ],
+  "confidence": 0.9
+}

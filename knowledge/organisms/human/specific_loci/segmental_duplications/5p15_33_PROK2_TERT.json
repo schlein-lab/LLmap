@@ -1,0 +1,30 @@
+{
+  "name": "5p15_33_subtelomeric",
+  "taxonomy_id": "paralog_family",
+  "description": "5p15.33 subtelomeric region containing TERT and SDHA-paralog SDs. Cri-du-chat syndrome (5p-) involves variable terminal 5p deletions; the flanking SDs (including SDHAP1 / SDHAP3 paralogs) make breakpoint mapping ambiguous and contribute to recurrent SVs in some cancers (TERT promoter region).",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 100000, "end": 2200000}},
+  "size_bp": 2100000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 96.0,
+    "internal_structure": "Subtelomeric SD-rich region with SDHA paralogs (SDHAP1/3), TERT-flanking duplicons, and TRIP13 region; high mutational rate, frequent translocation partner in cancer."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Cri-du-chat syndrome",
+    "Telomere shortening disorders (TERT)"
+  ],
+  "sources": [
+    "doi:10.1086/302841",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.6
+}

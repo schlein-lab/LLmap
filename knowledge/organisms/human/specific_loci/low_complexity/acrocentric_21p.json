@@ -1,0 +1,29 @@
+{
+  "name": "chr21p_acrocentric_short_arm",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 21 short arm (21p), an acrocentric short arm composed of alpha-satellite, beta-satellite, 45S rDNA NOR and gamma-satellite-like sequences. Mostly unassembled in GRCh38; resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr21", "start": 0, "end": 10800000}},
+  "size_bp": 10800000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Acrocentric short-arm architecture shared with chr13/14/15/22; alpha-sat -> beta-sat -> NOR -> stalk."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations involving chr21 (rob(14;21) -> Down syndrome carriers)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/35057062"
+  ],
+  "confidence": 0.85
+}

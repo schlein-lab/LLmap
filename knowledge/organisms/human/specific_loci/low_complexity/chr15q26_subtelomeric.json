@@ -1,0 +1,29 @@
+{
+  "name": "chr15q26_subtelomeric_variable",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 15 q-arm subtelomeric region (15q26), containing a variable mosaic of subterminal repeats, degenerate (TTAGGG)n stretches, and segmental duplications shared with other subtelomeres. Site of recurrent 15q26 microdeletions (IGF1R locus) presenting with intrauterine growth restriction.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 99500000, "end": 101991189}},
+  "size_bp": 2500000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Subterminal mosaic of subtelomeric repeats shared across multiple chromosome ends, TAR1 family, degenerate telomere repeats, and small SDs; ends in canonical TTAGGG telomere."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "15q26 microdeletion (IGF1R, intrauterine growth restriction)"
+  ],
+  "sources": [
+    "doi:10.1136/jmedgenet-2011-100654",
+    "doi:10.1101/gr.3284105"
+  ],
+  "confidence": 0.75
+}

@@ -1,0 +1,43 @@
+{
+  "name": "IGH_locus_chr14",
+  "taxonomy_id": "paralog_family",
+  "description": "Immunoglobulin heavy chain locus on chr14q32.33, ~1.25 Mb spanning V-D-J-C clusters in proximal-to-distal order on the minus strand: ~50 functional VH genes (and ~80 pseudogenes), 23 DH segments, 6 JH segments, then the constant region with IGHM, IGHD, IGHG3, IGHG1, IGHA1, IGHGP (pseudogene), IGHG2, IGHG4, IGHE, IGHA2. The four IGHG paralogs share 90-95% intra-cluster identity and require paralog-specific variants (PSVs) for copy assignment. CHM13 carries a duplicated IGHG4 paralog absent from the GRCh38 primary haplotype. Somatic VDJ recombination and class-switch recombination produce structural heterogeneity even within a single B cell.",
+  "coordinates": {
+    "grch38": {"chr": "chr14", "start": 105500000, "end": 107300000},
+    "chm13":  {"chr": "chr14", "start": 99670000, "end": 101470000}
+  },
+  "size_bp": 1800000,
+  "expected_paralogs": [
+    {"name": "VH_cluster", "approx_offset_in_locus": 0},
+    {"name": "DH_cluster", "approx_offset_in_locus": 1050000},
+    {"name": "JH_cluster", "approx_offset_in_locus": 1170000},
+    {"name": "IGHM",  "approx_offset_in_locus": 1200000},
+    {"name": "IGHD",  "approx_offset_in_locus": 1212000},
+    {"name": "IGHG3", "approx_offset_in_locus": 1300000},
+    {"name": "IGHG1", "approx_offset_in_locus": 1340000},
+    {"name": "IGHA1", "approx_offset_in_locus": 1370000},
+    {"name": "IGHGP", "approx_offset_in_locus": 1400000},
+    {"name": "IGHG2", "approx_offset_in_locus": 1450000},
+    {"name": "IGHG4", "approx_offset_in_locus": 1490000},
+    {"name": "IGHE",  "approx_offset_in_locus": 1540000},
+    {"name": "IGHA2", "approx_offset_in_locus": 1580000}
+  ],
+  "expected_copy_count": "1 per haplotype but heterogeneous due to VDJ rearrangement and isotype class-switching; IGHG4 carries an additional duplicate copy on CHM13",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "sources": [
+    "doi:10.1093/nar/gks1313",
+    "doi:10.1146/annurev.iy.04.040186.001543",
+    "doi:10.1038/nature01601",
+    "doi:10.1126/science.abj6987",
+    "IMGT IGH database (http://www.imgt.org)"
+  ],
+  "confidence": 0.95
+}

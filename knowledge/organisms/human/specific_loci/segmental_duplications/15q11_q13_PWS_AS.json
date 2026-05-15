@@ -1,0 +1,34 @@
+{
+  "name": "15q11_q13_Prader_Willi_Angelman",
+  "taxonomy_id": "paralog_family",
+  "description": "15q11-q13 Prader-Willi / Angelman syndrome critical region. Three BP clusters (BP1, BP2, BP3) of segmental duplications, each containing HERC2/GOLGA8/NIPA paralogs, mediate recurrent NAHR-driven deletions (BP1-BP3 or BP2-BP3 type I/II) and duplications (Dup15q syndrome). Imprinted SNRPN/UBE3A interval is the unique core.",
+  "coordinates": {"grch38": {"chr": "chr15", "start": 22600000, "end": 28200000}},
+  "size_bp": 5600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.0,
+    "internal_structure": "Three SD breakpoint clusters BP1, BP2, BP3 of ~400-500 kb each at ~99% identity; HERC2 (and HERC2P) is the largest duplicon. Imprinted domain (SNRPN, UBE3A) lies between BP2 and BP3."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Prader-Willi syndrome",
+    "Angelman syndrome",
+    "15q11-q13 duplication syndrome (Dup15q)",
+    "autism spectrum"
+  ],
+  "sources": [
+    "doi:10.1038/ejhg.2008.232",
+    "doi:10.1086/302808",
+    "doi:10.1086/302508",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.95
+}

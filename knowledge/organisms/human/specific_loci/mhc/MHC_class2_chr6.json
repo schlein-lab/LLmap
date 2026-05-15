@@ -1,0 +1,39 @@
+{
+  "name": "MHC_class2_chr6",
+  "taxonomy_id": "paralog_family",
+  "description": "MHC class II region on chr6p21.32, centromeric portion of the ~3.6 Mb extended MHC. Contains the classical class II genes HLA-DRA, HLA-DRB1/3/4/5 (DRB content varies by haplotype), HLA-DQA1, HLA-DQB1, HLA-DPA1, HLA-DPB1, plus the antigen-processing TAP1/TAP2 and proteasome PSMB8/PSMB9 genes. DRB locus content is haplotype-specific (DR1/DR8 haplotypes carry only DRB1; DR15/16 carry DRB1+DRB5; DR3/11/12/13/14 carry DRB1+DRB3; DR4/7/9 carry DRB1+DRB4) — a known structural variation that breaks reference-based mapping. Sequence polymorphism is concentrated in exon 2 (peptide-binding β1 domain).",
+  "coordinates": {
+    "grch38": {"chr": "chr6", "start": 32400000, "end": 33170000},
+    "chm13":  {"chr": "chr6", "start": 32200000, "end": 32970000}
+  },
+  "size_bp": 770000,
+  "expected_paralogs": [
+    {"name": "HLA-DRA",  "approx_offset_in_locus": 0},
+    {"name": "HLA-DRB9_pseudo", "approx_offset_in_locus": 80000},
+    {"name": "HLA-DRB1", "approx_offset_in_locus": 130000},
+    {"name": "HLA-DRB3/4/5_haplotype_specific", "approx_offset_in_locus": 100000},
+    {"name": "HLA-DQA1", "approx_offset_in_locus": 200000},
+    {"name": "HLA-DQB1", "approx_offset_in_locus": 230000},
+    {"name": "HLA-DPA1", "approx_offset_in_locus": 600000},
+    {"name": "HLA-DPB1", "approx_offset_in_locus": 620000}
+  ],
+  "expected_copy_count": "1 of each shared gene per haplotype; DRB locus copy number is haplotype-specific (1 or 2 paralog genes)",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "haplotype_specific_copy_number": true,
+    "HLA_typing_handoff": true
+  },
+  "sources": [
+    "doi:10.1038/44853",
+    "doi:10.1038/nrg1489",
+    "doi:10.1146/annurev.genom.7.080505.115726",
+    "IPD-IMGT/HLA database"
+  ],
+  "confidence": 0.95
+}

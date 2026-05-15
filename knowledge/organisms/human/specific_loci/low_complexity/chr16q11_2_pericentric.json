@@ -1,0 +1,30 @@
+{
+  "name": "chr16q11_2_pericentric_satellite",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 16 pericentric q-arm heterochromatin block (16q11.2), composed of alpha-satellite, HSat2 and HSat3 classical satellite arrays. One of the three classical heterochromatin C-band regions (1q12, 9q12, 16q11.2) that show pericentric instability in ICF syndrome.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 46380000, "end": 53000000}},
+  "size_bp": 6600000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Mixed alpha-satellite + HSat2 + HSat3 blocks; smaller than chr1/chr9 pericentric blocks but architecturally similar."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "ICF syndrome (1q12, 9q12, 16q11 instability)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abl4178",
+    "PMID:225837"
+  ],
+  "confidence": 0.85
+}

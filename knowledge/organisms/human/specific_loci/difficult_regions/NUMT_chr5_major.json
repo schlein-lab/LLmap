@@ -1,0 +1,30 @@
+{
+  "name": "NUMT_chr5_major_mtDNA_insert",
+  "taxonomy_id": "paralog_family",
+  "description": "Largest known human nuclear mitochondrial DNA insertion (NUMT) on chr5q33.1, ~5.8 kb of mtDNA-derived sequence at ~97-99% identity to chrM. Reads from chrM can map spuriously here (and vice versa). Hazkani-Covo et al. 2010 catalogued thousands of NUMTs genome-wide; this is among the largest single contiguous ones.",
+  "coordinates": {"grch38": {"chr": "chr5", "start": 134258000, "end": 134264000}},
+  "size_bp": 6000,
+  "architecture": {
+    "type": "dispersed",
+    "copy_number_in_population": "single",
+    "homology_percent": 98.0,
+    "internal_structure": "~5.8 kb fragment of mitochondrial genome (covers a large arc of chrM); flanking sequence is single-copy nuclear; one of >700 NUMTs identified in human genome."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 5000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Spurious 'heteroplasmy' calls from NUMT contamination in mtDNA sequencing"
+  ],
+  "sources": [
+    "doi:10.1371/journal.pgen.1000834",
+    "doi:10.1093/molbev/msi198",
+    "doi:10.1038/35057062"
+  ],
+  "confidence": 0.85
+}

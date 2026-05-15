@@ -1,0 +1,38 @@
+{
+  "name": "IGL_locus_chr22",
+  "taxonomy_id": "paralog_family",
+  "description": "Immunoglobulin lambda light chain locus on chr22q11.2, ~1.05 Mb. Contains ~30 functional Vλ genes (and ~33 pseudogenes) organised in three clusters (A, B, C) by phylogeny, plus 7 J-C tandem units (IGLJ1-IGLC1 ... IGLJ7-IGLC7) of which 4 (Cλ1, Cλ2, Cλ3, Cλ7) encode functional constant regions. V-J joining without D segments. The seven J-C cassettes share 95-99% identity and produce strong paralog-family signal across ~50 kb at the 3' end of the locus.",
+  "coordinates": {
+    "grch38": {"chr": "chr22", "start": 22020000, "end": 23070000},
+    "chm13":  {"chr": "chr22", "start": 17500000, "end": 18550000}
+  },
+  "size_bp": 1050000,
+  "expected_paralogs": [
+    {"name": "Vl_cluster_A", "approx_offset_in_locus": 0},
+    {"name": "Vl_cluster_B", "approx_offset_in_locus": 300000},
+    {"name": "Vl_cluster_C", "approx_offset_in_locus": 700000},
+    {"name": "IGLJ1_IGLC1", "approx_offset_in_locus": 980000},
+    {"name": "IGLJ2_IGLC2", "approx_offset_in_locus": 990000},
+    {"name": "IGLJ3_IGLC3", "approx_offset_in_locus": 1000000},
+    {"name": "IGLJ4_IGLC4_pseudo", "approx_offset_in_locus": 1010000},
+    {"name": "IGLJ5_IGLC5_pseudo", "approx_offset_in_locus": 1020000},
+    {"name": "IGLJ6_IGLC6_pseudo", "approx_offset_in_locus": 1030000},
+    {"name": "IGLJ7_IGLC7", "approx_offset_in_locus": 1040000}
+  ],
+  "expected_copy_count": "1 per haplotype; 7 J-C cassettes with 4 functional Cλ paralogs at 95-99% identity",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "VDJ_special_handling": true
+  },
+  "sources": [
+    "doi:10.1006/geno.1998.5495",
+    "doi:10.1038/990031",
+    "IMGT IGL database (http://www.imgt.org)"
+  ],
+  "confidence": 0.9
+}

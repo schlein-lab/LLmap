@@ -1,0 +1,33 @@
+{
+  "name": "chr17_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 17 centromere/pericentromere (acen band interval). Alpha-satellite higher-order repeat (HOR) array: D17Z1 (~16-monomer HOR, classical 2.7 kb); SF3. Flanked by pericentric HSat2/HSat3 satellite blocks. GRCh38 represents this region only as a placeholder gap interval filled with model alpha-satellite; fully sequence-resolved only in T2T-CHM13.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr17",
+      "start": 22813679,
+      "end": 26616164
+    },
+    "chm13": {
+      "chr": "chr17",
+      "start": 23892419,
+      "end": 27486939
+    }
+  },
+  "size_bp": 3802485,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers organised into HOR units (~1-6 kb each), tandemly arrayed",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1126/science.abl4178",
+    "doi:10.1126/science.abj6987",
+    "PMID:2581134"
+  ],
+  "confidence": 0.9
+}

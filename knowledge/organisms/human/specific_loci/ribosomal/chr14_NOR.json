@@ -1,0 +1,36 @@
+{
+  "name": "chr14_NOR",
+  "taxonomy_id": "tandem_repeat",
+  "description": "Nucleolar organiser region (NOR) on the p-arm of chr14, harbouring the 45S ribosomal DNA tandem array. Each ~45 kb 45S unit encodes the 18S, 5.8S, and 28S rRNAs separated by ITS1 and ITS2 and flanked by an intergenic spacer (IGS). The array sits on the acrocentric stalk distal to the alpha-satellite centromere and proximal to the beta-satellite/gamma-satellite p-arm. GRCh38 represents this region only as a placeholder gap interval \u2014 no rDNA sequence is assembled there. T2T-CHM13 (Nurk 2022, Hoyt 2022) is the first reference to resolve the actual array.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr14",
+      "start": 0,
+      "end": 16000000
+    },
+    "chm13": {
+      "chr": "chr14",
+      "start": 2100000,
+      "end": 2400000
+    }
+  },
+  "size_bp_chm13_array": 300000,
+  "expected_copy_count": "50-90 copies",
+  "mapping_hints": {
+    "expected_unique": false,
+    "lambda_scale": 2.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 500000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true,
+    "tandem_array_handling": true,
+    "cross_acrocentric_paralog": true
+  },
+  "sources": [
+    "doi:10.1101/gr.072348.107",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abk3112"
+  ],
+  "confidence": 0.85
+}

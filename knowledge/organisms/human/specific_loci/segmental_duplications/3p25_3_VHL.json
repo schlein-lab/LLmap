@@ -1,0 +1,30 @@
+{
+  "name": "3p25_3_VHL_region",
+  "taxonomy_id": "paralog_family",
+  "description": "3p25.3 region around the VHL gene and ITPR1 distal end. Carries flanking SDs that contribute to recurrent submicroscopic deletions seen in some von Hippel-Lindau and spinocerebellar ataxia 15 (ITPR1) patients.",
+  "coordinates": {"grch38": {"chr": "chr3", "start": 9800000, "end": 10800000}},
+  "size_bp": 1000000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Flanking SD blocks of ~30-50 kb at ~95% identity; unique segment contains VHL, IRAK2, GHRL, partial ITPR1."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.1,
+    "anchor_weight_scale": 0.6,
+    "max_occ": 20000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "von Hippel-Lindau disease",
+    "Spinocerebellar ataxia 15 (ITPR1)"
+  ],
+  "sources": [
+    "doi:10.1038/nrg2593",
+    "doi:10.1126/science.1072047"
+  ],
+  "confidence": 0.7
+}

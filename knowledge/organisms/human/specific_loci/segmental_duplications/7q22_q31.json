@@ -1,0 +1,30 @@
+{
+  "name": "7q22_q31_recurrent_region",
+  "taxonomy_id": "paralog_family",
+  "description": "7q22-q31 region with several SD blocks that mediate recurrent rearrangements including 7q22.1 microdeletion and the 7q31.2 CFTR-region rearrangements seen in some cystic-fibrosis structural alleles. Less penetrant than 7q11.23 but recognised SD hotspot.",
+  "coordinates": {"grch38": {"chr": "chr7", "start": 99000000, "end": 118000000}},
+  "size_bp": 19000000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Multiple SD clusters along 7q22-q31 including GTF2IRD2-paralog containing blocks and KCTD7-region duplicons; CFTR (7q31.2) flanked by smaller SDs that mediate rare structural rearrangements."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 40000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "7q22.1 microdeletion syndrome",
+    "Cystic fibrosis (CFTR structural alleles)"
+  ],
+  "sources": [
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nrg2593"
+  ],
+  "confidence": 0.65
+}

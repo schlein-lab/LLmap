@@ -1,0 +1,30 @@
+{
+  "name": "chr14p_acrocentric_short_arm",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 14 short arm (14p), an acrocentric short arm composed of alpha-satellite, beta-satellite, 45S rDNA NOR and gamma-like sequences. Site of recurrent Robertsonian translocation breakpoints. Mostly unassembled in GRCh38; resolved in T2T-CHM13.",
+  "coordinates": {"grch38": {"chr": "chr14", "start": 0, "end": 16100000}},
+  "size_bp": 16100000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Acrocentric short-arm architecture shared with chr13/15/21/22; alpha-sat -> beta-sat -> NOR -> stalk; rDNA copy number variable per individual."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Robertsonian translocations involving chr14",
+    "rob(13;14) most common Robertsonian in humans"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/nature01400"
+  ],
+  "confidence": 0.85
+}

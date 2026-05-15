@@ -1,0 +1,32 @@
+{
+  "name": "Xq28_recurrent_int22h_F8",
+  "taxonomy_id": "paralog_family",
+  "description": "Xq28 region containing the F8 (factor VIII) gene with int22h-1, int22h-2, int22h-3 SD blocks at >99.9% identity. NAHR between int22h-1 (inside intron 22 of F8) and int22h-2 or int22h-3 (telomeric) causes the F8 intron-22 inversion responsible for ~45% of severe haemophilia A. Also a recurrent ~0.5 Mb duplication CNV at Xq28 (MECP2/FLNA region) further telomeric.",
+  "coordinates": {"grch38": {"chr": "chrX", "start": 154700000, "end": 155400000}},
+  "size_bp": 700000,
+  "architecture": {
+    "type": "inverted",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.9,
+    "internal_structure": "Three int22h palindrome copies of ~9.5 kb at >99.9% identity, two telomeric to F8 in inverted orientation, one inside F8 intron 22; near-perfect identity mediates the inversion."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Severe haemophilia A (F8 intron-22 inversion)",
+    "Xq28 duplication syndrome (MECP2)",
+    "X-linked intellectual disability"
+  ],
+  "sources": [
+    "doi:10.1038/ng1193-236",
+    "doi:10.1086/377110",
+    "PMID:8076953"
+  ],
+  "confidence": 0.95
+}

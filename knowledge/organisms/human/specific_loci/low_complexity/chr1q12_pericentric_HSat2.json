@@ -1,0 +1,31 @@
+{
+  "name": "chr1q12_pericentric_HSat2_HSat3",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 1 q-arm pericentric heterochromatin block (1q12), composed of human satellite 2 (HSat2; CATTC/GGAAT pentamer-based) and human satellite 3 (HSat3; ATTCC-based) tandem arrays. Largely unassembled in GRCh38; fully resolved only in T2T-CHM13. Stains as a prominent C-band; harbours classical satellite 2/3 polymorphisms.",
+  "coordinates": {"grch38": {"chr": "chr1", "start": 125184587, "end": 142200000}},
+  "size_bp": 17000000,
+  "architecture": {
+    "type": "tandem",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 95.0,
+    "internal_structure": "Tandem arrays of HSat2 (CATTC/GGAAT-rich pentamers) and HSat3 (ATTCC-rich); long monotonous blocks at >95% identity; the largest classical heterochromatin block in the genome."
+  },
+  "mapping_hints": {
+    "lambda_scale": 3.0,
+    "anchor_weight_scale": 0.2,
+    "max_occ": 200000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "ICF syndrome (DNMT3B/ZBTB24/CDCA7/HELLS hypomethylation; instability at 1q12 and 16q11)"
+  ],
+  "sources": [
+    "doi:10.1126/science.abj6987",
+    "doi:10.1126/science.abl4178",
+    "PMID:225837",
+    "doi:10.1038/nature10923"
+  ],
+  "confidence": 0.9
+}

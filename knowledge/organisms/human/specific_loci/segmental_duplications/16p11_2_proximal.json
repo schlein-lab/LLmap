@@ -1,0 +1,33 @@
+{
+  "name": "16p11_2_proximal_autism",
+  "taxonomy_id": "paralog_family",
+  "description": "16p11.2 proximal recurrent microdeletion/duplication region (~600 kb, BP4-BP5), flanked by directly oriented SD blocks. One of the most penetrant CNV loci for autism and developmental delay; the duplication confers schizophrenia risk.",
+  "coordinates": {"grch38": {"chr": "chr16", "start": 29600000, "end": 30200000}},
+  "size_bp": 600000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 99.5,
+    "internal_structure": "BP4 and BP5 SD blocks of ~150 kb at >99% identity (BOLA2/SLX1/SULT1A4 duplicons); unique core contains TBX6, MAZ, KIF22, MVP, CDIPT, PRRT2, MAPK3, DOC2A."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 60000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "16p11.2 deletion syndrome (autism)",
+    "16p11.2 duplication syndrome (schizophrenia, ID)",
+    "scoliosis (TBX6 dosage)"
+  ],
+  "sources": [
+    "doi:10.1056/NEJMoa075974",
+    "doi:10.1056/NEJMoa0805384",
+    "doi:10.1038/nature08727",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.95
+}

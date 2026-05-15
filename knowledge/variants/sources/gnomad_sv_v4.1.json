@@ -1,0 +1,17 @@
+{
+  "id": "gnomad_sv",
+  "display_name": "gnomAD v4.1 SVs",
+  "organism": "human",
+  "assembly": "GRCh38",
+  "kind": "sv",
+  "version": "4.1",
+  "url": "https://gnomad.broadinstitute.org/downloads#v4-structural-variants",
+  "format": "VCF.gz",
+  "license": "CC0 (gnomAD data release terms)",
+  "doi": ["10.1038/s41586-020-2287-8"],
+  "expected_count": 1200000,
+  "size_on_disk_gb": 0.3,
+  "ingest_command": "bcftools view -f PASS gnomad.v4.1.sv.sites.vcf.gz | bcftools annotate -x '^INFO/SVTYPE,INFO/SVLEN,INFO/AF,INFO/END' | llmap variant-ingest --source gnomad_sv --kind sv --bucket-bp 100 --output gnomad_sv.priors",
+  "output_format": "llmap_priors_v1",
+  "notes": "Short-read derived SVs. Excellent recall for <1 kb events, lower recall for >10 kb. Pair with HPRC/Audano/Beyter for long-range coverage."
+}

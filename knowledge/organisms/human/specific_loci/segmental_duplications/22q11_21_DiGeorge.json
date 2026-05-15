@@ -1,0 +1,35 @@
+{
+  "name": "22q11_21_DiGeorge_VCFS_LCR22",
+  "taxonomy_id": "paralog_family",
+  "description": "22q11.21 DiGeorge / Velocardiofacial syndrome region, flanked by four LCR22 SD blocks (A, B, C, D) at >97% identity. Most common pathogenic recurrent microdeletion in humans (~1 in 4000). NAHR between LCR22-A and LCR22-D creates the canonical 3 Mb deletion; A-B and A-C deletions are smaller nested forms.",
+  "coordinates": {"grch38": {"chr": "chr22", "start": 18600000, "end": 21800000}},
+  "size_bp": 3200000,
+  "architecture": {
+    "type": "direct_orientation_block",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 98.0,
+    "internal_structure": "Four LCR22 blocks (A, B, C, D) of ~250-400 kb each, containing GGT/PRODH/USP18/BCRP paralogs at >97% identity; unique core contains TBX1, COMT, CRKL, DGCR8, RTN4R, HIRA."
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.4,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "22q11.2 deletion syndrome (DiGeorge, VCFS)",
+    "22q11.2 duplication syndrome",
+    "tetralogy of Fallot",
+    "schizophrenia"
+  ],
+  "sources": [
+    "doi:10.1086/302631",
+    "doi:10.1038/nrg2593",
+    "doi:10.1086/302727",
+    "doi:10.1126/science.1072047",
+    "doi:10.1038/nature19075"
+  ],
+  "confidence": 0.95
+}

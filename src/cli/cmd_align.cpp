@@ -11,6 +11,9 @@
 #include <vector>
 
 #include "annot/annotation_store.h"
+#include "checkpoint/checkpoint_cache.h"
+#include "checkpoint/checkpoint_dispatcher.h"
+#include "checkpoint/checkpoint_types.h"
 #include "classical/classical_pipeline.h"
 #include "core/thread_pool.h"
 #include "io/fasta_reader.h"
@@ -182,6 +185,34 @@ int run_align(int argc, char** argv) {
     classical::ClassicalPipeline pipeline(pipe_cfg);
     pipeline.SetIndex(std::move(index));
     pipeline.SetReferenceSequences(ref_seqs);
+
+    // Layer 3 active LLM consult dispatcher. Owned here; passed by pointer
+    // into the chain-DP / extension layer (TODO: actual chain-DP-side
+    // checkpoint firing -- see src/classical/chain_dp.cpp).
+    checkpoint::LlmMode llm_mode = checkpoint::LlmMode::Off;
+    if (args.llm_mode == "auto")     llm_mode = checkpoint::LlmMode::Auto;
+    else if (args.llm_mode == "required") llm_mode = checkpoint::LlmMode::Required;
+
+    std::unique_ptr<checkpoint::CheckpointCache> checkpoint_cache;
+    std::unique_ptr<checkpoint::CheckpointDispatcher> checkpoint_dispatcher;
+    if (llm_mode != checkpoint::LlmMode::Off) {
+        checkpoint_cache = std::make_unique<checkpoint::CheckpointCache>(
+            args.llm_cache_dir.empty()
+                ? std::filesystem::path{}
+                : std::filesystem::path(args.llm_cache_dir));
+        // Agent wiring stays optional: an agent is constructed only if the
+        // legacy --llm flag is set and the API key is available. When the
+        // chain-DP-side checkpoint firing lands, replace nullptr here with
+        // the PipelineAgent pointer created below.
+        checkpoint_dispatcher = std::make_unique<checkpoint::CheckpointDispatcher>(
+            llm_mode, checkpoint_cache.get(), nullptr);
+        if (args.verbose) {
+            std::fprintf(stderr,
+                "Layer 3 checkpoint dispatcher: mode=%s, cache=%s\n",
+                checkpoint::LlmModeName(llm_mode),
+                checkpoint_cache->RootDir().c_str());
+        }
+    }
 
     if (args.verbose) {
         std::fprintf(stderr, "Loading reads: %s\n", args.reads.c_str());

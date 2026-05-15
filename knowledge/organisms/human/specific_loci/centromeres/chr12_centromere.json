@@ -1,0 +1,33 @@
+{
+  "name": "chr12_centromere",
+  "taxonomy_id": "centromere_like",
+  "description": "Chromosome 12 centromere/pericentromere (acen band interval). Alpha-satellite higher-order repeat (HOR) array: D12Z3 (~8-monomer HOR); SF2. Flanked by pericentric HSat2/HSat3 satellite blocks. GRCh38 represents this region only as a placeholder gap interval filled with model alpha-satellite; fully sequence-resolved only in T2T-CHM13.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chr12",
+      "start": 34769407,
+      "end": 37185252
+    },
+    "chm13": {
+      "chr": "chr12",
+      "start": 34620838,
+      "end": 37200000
+    }
+  },
+  "size_bp": 2415845,
+  "expected_copy_count": "thousands of 171 bp alpha-satellite monomers organised into HOR units (~1-6 kb each), tandemly arrayed",
+  "mapping_hints": {
+    "expected_unique": false,
+    "max_occ": 200000,
+    "lambda_scale": 3.0,
+    "report_multi_position": true,
+    "allow_high_mismatch": true,
+    "require_psv_disambig": false
+  },
+  "sources": [
+    "doi:10.1126/science.abl4178",
+    "doi:10.1126/science.abj6987",
+    "PMID:2581134"
+  ],
+  "confidence": 0.9
+}

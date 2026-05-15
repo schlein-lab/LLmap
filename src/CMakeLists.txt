@@ -266,6 +266,25 @@ target_include_directories(llmap_claude_agent PUBLIC
 target_compile_features(llmap_claude_agent PUBLIC cxx_std_23)
 target_link_libraries(llmap_claude_agent PUBLIC llmap_core)
 
+# Checkpoint module — Layer 3 active LLM consult layer
+add_library(llmap_checkpoint STATIC
+    checkpoint/checkpoint_cache.cpp
+    checkpoint/checkpoint_dispatcher.cpp
+    checkpoint/checkpoint_prompts.cpp
+    checkpoint/checkpoint_tools.cpp
+)
+
+target_include_directories(llmap_checkpoint PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_checkpoint PUBLIC cxx_std_23)
+target_link_libraries(llmap_checkpoint PUBLIC
+    llmap_core
+    llmap_annot
+    llmap_claude_agent
+)
+
 # CLI — full CLI surface
 add_executable(llmap
     cli/llmap_main.cpp
@@ -285,4 +304,4 @@ add_executable(llmap
     cli/cmd_check.cpp
     cli/cmd_annotate_ref.cpp
 )
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot llmap_checkpoint)

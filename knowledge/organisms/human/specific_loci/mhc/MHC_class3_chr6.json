@@ -1,0 +1,43 @@
+{
+  "name": "MHC_class3_chr6",
+  "taxonomy_id": "paralog_family",
+  "description": "MHC class III region on chr6p21.32-33, central ~700 kb wedged between class I (telomeric) and class II (centromeric). Highest gene density in the human genome (~60 genes in 700 kb). Contains complement components (C2, C4A, C4B, CFB), heat-shock proteins (HSPA1A, HSPA1B, HSPA1L), tumour necrosis factor cluster (TNF, LTA, LTB), and steroid 21-hydroxylase CYP21A2 with its CYP21A1P pseudogene. C4A/C4B copy number is highly variable (0-6 copies per haplotype) and the CYP21A2/CYP21A1P pair is a classic ~98% identical paralog requiring PSV-aware mapping for congenital adrenal hyperplasia diagnostics.",
+  "coordinates": {
+    "grch38": {"chr": "chr6", "start": 31380000, "end": 32400000},
+    "chm13":  {"chr": "chr6", "start": 31180000, "end": 32200000}
+  },
+  "size_bp": 1020000,
+  "expected_paralogs": [
+    {"name": "TNF",       "approx_offset_in_locus": 150000},
+    {"name": "LTA",       "approx_offset_in_locus": 150000},
+    {"name": "LTB",       "approx_offset_in_locus": 150000},
+    {"name": "HSPA1A",    "approx_offset_in_locus": 250000},
+    {"name": "HSPA1B",    "approx_offset_in_locus": 260000},
+    {"name": "HSPA1L",    "approx_offset_in_locus": 270000},
+    {"name": "C2",        "approx_offset_in_locus": 350000},
+    {"name": "CFB",       "approx_offset_in_locus": 360000},
+    {"name": "RNF5_AGER", "approx_offset_in_locus": 450000},
+    {"name": "CYP21A1P",  "approx_offset_in_locus": 600000},
+    {"name": "C4A_C4B",   "approx_offset_in_locus": 620000},
+    {"name": "CYP21A2",   "approx_offset_in_locus": 680000},
+    {"name": "TNXB",      "approx_offset_in_locus": 690000}
+  ],
+  "expected_copy_count": "1 per haplotype for most genes; C4A/C4B copy number 0-6 per haplotype (RCCX module); CYP21A2/CYP21A1P pair with 98% identity",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.2,
+    "anchor_weight_scale": 0.7,
+    "max_occ": 30000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "haplotype_specific_copy_number": true,
+    "RCCX_module_handling": true
+  },
+  "sources": [
+    "doi:10.1038/44853",
+    "doi:10.1038/nrg1489",
+    "doi:10.1210/edrv.21.3.0398",
+    "doi:10.1146/annurev.genom.7.080505.115726"
+  ],
+  "confidence": 0.9
+}

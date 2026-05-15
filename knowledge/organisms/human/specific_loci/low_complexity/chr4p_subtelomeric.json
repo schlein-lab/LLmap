@@ -1,0 +1,29 @@
+{
+  "name": "chr4p_subtelomeric_variable",
+  "taxonomy_id": "low_complexity",
+  "description": "Chromosome 4 p-arm subtelomeric region containing a mosaic of subterminal repeats, degenerate TTAGGG stretches and small SDs. Site of Wolf-Hirschhorn syndrome (4p- / 4p16.3 deletion) with variable breakpoints.",
+  "coordinates": {"grch38": {"chr": "chr4", "start": 0, "end": 2200000}},
+  "size_bp": 2200000,
+  "architecture": {
+    "type": "complex",
+    "copy_number_in_population": "variable_CNV",
+    "homology_percent": 90.0,
+    "internal_structure": "Subterminal repeat mosaic; TAR1 family elements; degenerate telomere; canonical (TTAGGG)n distal cap."
+  },
+  "mapping_hints": {
+    "lambda_scale": 2.0,
+    "anchor_weight_scale": 0.4,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "allow_high_mismatch": true
+  },
+  "related_diseases": [
+    "Wolf-Hirschhorn syndrome (4p16.3 deletion)"
+  ],
+  "sources": [
+    "doi:10.1101/gr.3284105",
+    "doi:10.1086/302941"
+  ],
+  "confidence": 0.7
+}

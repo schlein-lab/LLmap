@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.1.0",
+  "description": "LLmap variant-priors schema. Layer 4 of the knowledge stack: population SV/SNV catalogs ingested once and consumed deterministically at mapping time.",
+
+  "database_catalog": {
+    "description": "Supported variant databases. Each source/<name>.json supplies an ingest spec adhering to this entry shape.",
+    "entries": [
+      {"id": "dbsnp",                "kind": "snv",    "organism": "human"},
+      {"id": "gnomad_genome_snv",    "kind": "snv",    "organism": "human"},
+      {"id": "gnomad_sv",            "kind": "sv",     "organism": "human"},
+      {"id": "dgv",                  "kind": "sv",     "organism": "human"},
+      {"id": "dbvar",                "kind": "sv",     "organism": "human"},
+      {"id": "1kg_sv_phase3",        "kind": "sv",     "organism": "human"},
+      {"id": "hprc_panvariants",     "kind": "mixed",  "organism": "human"},
+      {"id": "clinvar",              "kind": "snv",    "organism": "human"},
+      {"id": "audano_sv_2019",       "kind": "sv",     "organism": "human"},
+      {"id": "beyter_iceland_2021",  "kind": "sv",     "organism": "human"}
+    ]
+  },
+
+  "source_spec_schema": {
+    "description": "Schema for one sources/<id>.json file. See sources/ for live specs.",
+    "fields": [
+      {"name": "id",              "type": "string",  "required": true,  "note": "matches database_catalog.entries.id"},
+      {"name": "display_name",    "type": "string",  "required": true},
+      {"name": "organism",        "type": "string",  "required": true},
+      {"name": "kind",            "type": "string",  "required": true,  "enum": ["snv", "sv", "mixed"]},
+      {"name": "version",         "type": "string",  "required": true},
+      {"name": "url",             "type": "string",  "required": true},
+      {"name": "format",          "type": "string",  "required": true,  "enum": ["VCF", "BCF", "BED", "TSV", "VCF.gz", "BCF.gz", "BED.gz"]},
+      {"name": "license",         "type": "string",  "required": true},
+      {"name": "doi",             "type": "array<string>", "required": false},
+      {"name": "expected_count",  "type": "int",     "required": false, "note": "approximate variant record count for sanity check"},
+      {"name": "size_on_disk_gb", "type": "float",   "required": false, "note": "after ingest, prior table size"},
+      {"name": "ingest_command",  "type": "string",  "required": true,  "note": "pseudocode bcftools/bedtools pipeline producing the prior table"},
+      {"name": "output_format",   "type": "string",  "required": true,  "note": "always 'llmap_priors_v1' for first iteration"},
+      {"name": "notes",           "type": "string",  "required": false}
+    ]
+  },
+
+  "per_position_prior_format": {
+    "description": "Per-position record after ingest. One physical row per genomic bucket (default 100 bp). See PRIOR_FORMAT.md.",
+    "columns": [
+      {"name": "chr",                  "type": "string"},
+      {"name": "pos_bucket",           "type": "int", "note": "left edge of the 100-bp bucket"},
+      {"name": "n_snv_alt_alleles",    "type": "int"},
+      {"name": "snv_max_af",           "type": "float", "range": [0.0, 1.0]},
+      {"name": "n_sv_overlapping",     "type": "int"},
+      {"name": "sv_max_af",            "type": "float", "range": [0.0, 1.0]},
+      {"name": "sv_summary",           "type": "string", "note": "comma-list of TYPE:AF, e.g. DEL:0.012,INS:0.003,DUP:0.0006"}
+    ]
+  },
+
+  "aggregation_rules": {
+    "description": "How records from multiple catalogs combine into a single per-position prior.",
+    "snv": {
+      "n_alt_alleles": "max() across catalogs at same position",
+      "max_af":        "max() across catalogs at same position",
+      "rationale":     "dbSNP / gnomAD / ClinVar are overlapping populations; take the upper-bound AF as the most defensible prior."
+    },
+    "sv": {
+      "n_overlapping": "sum() of unique SVs after dedup by (TYPE, start_bucket, end_bucket) at +/-1 bucket tolerance",
+      "max_af":        "max() across catalogs",
+      "summary":       "union of TYPE:AF tuples, keeping max AF per TYPE per bucket"
+    },
+    "tie_breaking": "When AF is missing in one catalog and present in another, prefer the catalog with explicit AF. Pure presence (e.g. DGV) contributes only to n_*; AF stays 0.0."
+  },
+
+  "consumed_by": {
+    "description": "Runtime consumers of the prior table.",
+    "entries": [
+      {"id": "align/chain_dp",   "uses": "snv_max_af + sv_max_af to scale mismatch / soft-clip penalty"},
+      {"id": "align/sv_caller",  "uses": "sv_summary to recognise that a candidate is a known polymorphism"},
+      {"id": "neural_encoder",   "uses": "full vector as auxiliary input channel during training"}
+    ]
+  }
+}

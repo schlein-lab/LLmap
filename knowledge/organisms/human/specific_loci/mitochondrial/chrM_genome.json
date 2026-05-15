@@ -1,0 +1,50 @@
+{
+  "name": "chrM_genome",
+  "taxonomy_id": "custom",
+  "custom_subtype": "mitochondrial_chromosome",
+  "description": "Mitochondrial chromosome (chrM): 16,569 bp circular double-stranded DNA molecule encoding 13 OXPHOS protein subunits, 22 tRNAs, 2 rRNAs (12S, 16S), and a non-coding regulatory D-loop containing OriH, OriL, and the two HV1/HV2 hypervariable regions used in forensics. The GRCh38 chrM sequence is the revised Cambridge Reference Sequence (rCRS, Andrews 1999). Maps at 100-10000 copies per somatic cell depending on tissue; heteroplasmy (multiple co-existing mtDNA sequences within a cell) is the rule rather than the exception. Nuclear mitochondrial DNA segments (NUMTs) on the nuclear chromosomes mimic chrM at lower identity and must be flagged separately to avoid false heteroplasmy calls.",
+  "coordinates": {
+    "grch38": {"chr": "chrM", "start": 0, "end": 16569},
+    "chm13":  {"chr": "chrM", "start": 0, "end": 16569}
+  },
+  "size_bp": 16569,
+  "circular": true,
+  "expected_copy_count": "100-10000 copies per somatic cell; varies by tissue (muscle and brain at the high end, mature blood cells lower); oocytes >100000",
+  "expected_paralogs": [
+    {"name": "D_loop_HV1_HV2", "approx_offset_in_locus": 16024, "note": "non-coding control region 16024-576 spanning the origin"},
+    {"name": "MT-RNR1_12S",    "approx_offset_in_locus": 648},
+    {"name": "MT-RNR2_16S",    "approx_offset_in_locus": 1671},
+    {"name": "MT-ND1", "approx_offset_in_locus": 3307},
+    {"name": "MT-ND2", "approx_offset_in_locus": 4470},
+    {"name": "MT-CO1", "approx_offset_in_locus": 5904},
+    {"name": "MT-CO2", "approx_offset_in_locus": 7586},
+    {"name": "MT-ATP8","approx_offset_in_locus": 8366},
+    {"name": "MT-ATP6","approx_offset_in_locus": 8527},
+    {"name": "MT-CO3", "approx_offset_in_locus": 9207},
+    {"name": "MT-ND3", "approx_offset_in_locus": 10059},
+    {"name": "MT-ND4L","approx_offset_in_locus": 10470},
+    {"name": "MT-ND4", "approx_offset_in_locus": 10760},
+    {"name": "MT-ND5", "approx_offset_in_locus": 12337},
+    {"name": "MT-ND6", "approx_offset_in_locus": 14149},
+    {"name": "MT-CYB", "approx_offset_in_locus": 14747}
+  ],
+  "mapping_hints": {
+    "expected_unique": true,
+    "lambda_scale": 1.0,
+    "anchor_weight_scale": 1.5,
+    "max_occ": 100,
+    "report_multi_position": false,
+    "require_psv_disambig": false,
+    "circular_handling": true,
+    "NUMT_flagging": true,
+    "heteroplasmy_aware": true,
+    "uses_mitochondrial_codon_table": true
+  },
+  "sources": [
+    "doi:10.1038/13779",
+    "doi:10.1038/290457a0",
+    "doi:10.1146/annurev.genet.39.110304.095751",
+    "doi:10.1126/science.abj6987"
+  ],
+  "confidence": 0.98
+}

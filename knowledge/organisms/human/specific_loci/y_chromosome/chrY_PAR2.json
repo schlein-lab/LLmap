@@ -1,0 +1,31 @@
+{
+  "name": "chrY_PAR2",
+  "taxonomy_id": "paralog_family",
+  "description": "Pseudoautosomal region 2 (PAR2) at the tip of chrYq and chrXq. ~330 kb of sequence identical (>99.9%) between the two sex chromosomes. Smaller and less obligate-crossover-prone than PAR1 (recombines in ~2% of meioses). Contains 5 genes including IL9R, SPRY3, VAMP7, WASIR1. Same masking convention as PAR1.",
+  "coordinates": {
+    "grch38": {"chr": "chrY", "start": 56887903, "end": 57217415},
+    "chm13":  {"chr": "chrY", "start": 62122809, "end": 62460029}
+  },
+  "size_bp": 329512,
+  "expected_paralogs": [
+    {"name": "chrX_PAR2_equivalent", "approx_offset_in_locus": 0, "note": "100% identical sequence at chrX:155701383-156030895"}
+  ],
+  "expected_copy_count": "2 copies per male genome (chrX and chrY); 2 copies per female genome (both chrX)",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.5,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": false,
+    "sex_aware_handling": true,
+    "PAR_masking_recommended": true
+  },
+  "sources": [
+    "doi:10.1038/nature01722",
+    "doi:10.1038/nrg2828",
+    "doi:10.1126/science.abj6987",
+    "doi:10.1038/s41586-023-06457-y"
+  ],
+  "confidence": 0.95
+}

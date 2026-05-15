@@ -1,0 +1,38 @@
+{
+  "name": "MHC_class1_chr6",
+  "taxonomy_id": "paralog_family",
+  "description": "MHC class I region on chr6p21.33, telomeric portion of the ~3.6 Mb extended MHC. Contains the three classical class I genes HLA-A, HLA-B, HLA-C plus non-classical class I HLA-E, HLA-F, HLA-G and the MIC family (MICA, MICB). HLA-A/B/C are the most polymorphic loci in the human genome (>10000 alleles each as of 2026) with peptide-binding-groove residues under strong balancing selection. Sequence divergence between alleles at one locus can exceed 5%, complicating short-read mapping; long-read or PSV-aware mapping is required for accurate typing.",
+  "coordinates": {
+    "grch38": {"chr": "chr6", "start": 29640000, "end": 31380000},
+    "chm13":  {"chr": "chr6", "start": 29440000, "end": 31180000}
+  },
+  "size_bp": 1740000,
+  "expected_paralogs": [
+    {"name": "HLA-F",  "approx_offset_in_locus": 0},
+    {"name": "HLA-G",  "approx_offset_in_locus": 70000},
+    {"name": "HLA-A",  "approx_offset_in_locus": 300000},
+    {"name": "HLA-E",  "approx_offset_in_locus": 800000},
+    {"name": "HLA-C",  "approx_offset_in_locus": 1500000},
+    {"name": "HLA-B",  "approx_offset_in_locus": 1600000},
+    {"name": "MICA",   "approx_offset_in_locus": 1690000},
+    {"name": "MICB",   "approx_offset_in_locus": 1740000}
+  ],
+  "expected_copy_count": "1 of each gene per haplotype; allele diversity vastly exceeds inter-paralog divergence",
+  "mapping_hints": {
+    "expected_unique": "ambiguous",
+    "lambda_scale": 1.3,
+    "anchor_weight_scale": 0.5,
+    "max_occ": 50000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": true,
+    "HLA_typing_handoff": true
+  },
+  "sources": [
+    "doi:10.1038/44853",
+    "doi:10.1038/nrg1489",
+    "doi:10.1038/nature12716",
+    "IPD-IMGT/HLA database"
+  ],
+  "confidence": 0.95
+}
