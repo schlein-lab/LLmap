@@ -13,8 +13,8 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | Hummel-2 status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 221 |
-| Total iterations | 221 |
+| Last successful iteration | 222 |
+| Total iterations | 222 |
 
 ---
 
@@ -463,6 +463,7 @@ notes: |
 | 209 | 2026-05-15 | n/a | Verification pass (iteration 209) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 210 | 2026-05-15 | n/a | Verification pass (iteration 210) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 221 | 2026-05-15 | n/a | Verification pass (iteration 221) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
+| 222 | 2026-05-15 | n/a | Verification pass (iteration 222) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 
 ---
 
