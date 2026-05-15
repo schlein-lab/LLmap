@@ -1,0 +1,46 @@
+{
+  "name": "chrX_MECP2dup_flank_K2_distal",
+  "description": "K1/K2 segmental duplication flanking MECP2. K2 distal flank ~45 kb. >99% identity, mediates recurrent ~250 kb-1 Mb MECP2 duplication.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 154100000,
+      "end": 154145000
+    }
+  },
+  "size_bp": 45000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "K1",
+      "K2"
+    ],
+    "homology_percent": 99.7,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "K1/K2 amplicon",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "MECP2 duplication syndrome",
+    "Lubs Xq28 dup"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "MECP2 TS=3 HI=3"
+  },
+  "confidence": 0.92,
+  "sources": [
+    "Lugtenberg et al 2006 Eur J Hum Genet MECP2 dup",
+    "Van Esch et al 2005 Am J Hum Genet MECP2 dup"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

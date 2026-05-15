@@ -1,0 +1,50 @@
+{
+  "name": "chrXY_EIF1AX_EIF1AY_gametolog",
+  "description": "X/Y gametolog pair EIF1AX_EIF1AY. Identity ~98.0%, length ~15 kb. Xp22.12 20_142_000-20_157_000 vs Yq11.222 20_500_000-20_520_000. Related to: thyroid cancer EIF1AX hotspot.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 0,
+      "end": 0,
+      "note": "Xp22.12 20_142_000-20_157_000"
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "Yq11.222 20_500_000-20_520_000"
+    }
+  },
+  "size_bp": 15000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "EIF1AX",
+      "EIF1AY"
+    ],
+    "homology_percent": 98.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "gametolog pair EIF1AX_EIF1AY",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "thyroid cancer EIF1AX hotspot"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family"
+}

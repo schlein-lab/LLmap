@@ -1,0 +1,47 @@
+{
+  "name": "chrXY_AMELY_AMELX_paralog",
+  "description": "AMELY (Yp11.2) / AMELX (Xp22.1-p22.3) paralog pair. Source of AMEL sex-typing PCR artifacts and rare Yp deletions removing AMELY.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 6700000,
+      "end": 6720000
+    },
+    "grch38_chrX": {
+      "chr": "chrX",
+      "start": 11293000,
+      "end": 11310000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "AMELY",
+      "AMELX"
+    ],
+    "homology_percent": 90.0,
+    "sd_length_kb": 7,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "AMEL paralog",
+    "copy_number_in_population": "AMELY deletion polymorphism 1-8% Asian populations"
+  },
+  "related_diseases": [
+    "AMEL sex-typing failure"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.95,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

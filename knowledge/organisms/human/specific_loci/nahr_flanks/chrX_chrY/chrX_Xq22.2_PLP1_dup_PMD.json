@@ -1,0 +1,46 @@
+{
+  "name": "chrX_PLP1_dup_PMD",
+  "description": "PLP1 duplication causing Pelizaeus-Merzbacher disease. Most caused by NAHR / FoSTeS / MMBIR between flanking LCRs.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 103700000,
+      "end": 104100000
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "PLP1_LCR_proximal",
+      "PLP1_LCR_distal"
+    ],
+    "homology_percent": 97.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "2-15 bp (predominantly MMBIR)",
+    "internal_structure": "PLP1, RAB9B, TMEM31",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Pelizaeus-Merzbacher disease",
+    "SPG2 spastic paraplegia"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "PLP1 TS=3 HI=3"
+  },
+  "confidence": 0.92,
+  "sources": [
+    "Carrozzo et al 1997 Am J Hum Genet PLP1 dup",
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

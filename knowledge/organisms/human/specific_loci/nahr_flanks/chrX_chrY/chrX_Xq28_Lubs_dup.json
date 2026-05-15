@@ -1,0 +1,47 @@
+{
+  "name": "chrX_Lubs_Xq28_dup",
+  "description": "Lubs Xq28 duplication syndrome: smaller recurrent ~250-500 kb dup, MECP2/IRAK1, K1/K2 NAHR mediated. Hypotonia, ID, infections.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 153280000,
+      "end": 153800000
+    }
+  },
+  "size_bp": 520000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "K1",
+      "K2"
+    ],
+    "homology_percent": 99.7,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "MECP2 + flanking",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Lubs syndrome",
+    "MECP2 duplication syndrome"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "TS=3"
+  },
+  "confidence": 0.9,
+  "sources": [
+    "Lugtenberg et al 2006 Eur J Hum Genet MECP2 dup",
+    "Van Esch et al 2005 Am J Hum Genet MECP2 dup",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

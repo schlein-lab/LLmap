@@ -1,0 +1,44 @@
+{
+  "name": "chrX_intragenic_TAFAZZIN",
+  "description": "Intragenic NAHR/MMBIR-prone gene TAFAZZIN. Recurrent exon-level del/dup driven by intronic repeats. Barth syndrome.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 154411000,
+      "end": 154421000
+    }
+  },
+  "size_bp": 10000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "TAFAZZIN_intronic_repeats"
+    ],
+    "homology_percent": 90.0,
+    "sd_length_kb": 5,
+    "microhomology_bp_at_breakpoint": "2-15 bp",
+    "internal_structure": "TAFAZZIN exons + introns",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Barth syndrome"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "TAFAZZIN HI=3 (most)"
+  },
+  "confidence": 0.82,
+  "sources": [
+    "ClinGen dosage curation",
+    "gnomAD-SV v4.1"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

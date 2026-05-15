@@ -1,0 +1,46 @@
+{
+  "name": "chrX_F8_int22h_2_telomeric",
+  "description": "F8 intron-22 homologous repeat (int22h). Telomeric extragenic copy (inv). ~9.5 kb, >99% identity, inverted orientation between intragenic and extragenic copies → severe hemophilia A inversion in ~45% of cases.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 154708000,
+      "end": 154718000
+    }
+  },
+  "size_bp": 10000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "int22h-1",
+      "int22h-2",
+      "int22h-3"
+    ],
+    "homology_percent": 99.9,
+    "sd_length_kb": 9.5,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "int22h repeat unit",
+    "copy_number_in_population": "fixed 3 copies, allelic inversion polymorphism"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.7,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 80000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Hemophilia A severe (F8 inv-22)"
+  ],
+  "recurrence_evidence": {
+    "clingen_dosage_call": "F8 HI=3"
+  },
+  "confidence": 0.97,
+  "sources": [
+    "Lakich et al 1993 Nat Genet F8 int22 inversion",
+    "Lupski 2009 Genome Med F8 inversion"
+  ],
+  "taxonomy_id": "paralog_family"
+}

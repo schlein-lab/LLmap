@@ -1,0 +1,44 @@
+{
+  "name": "chrY_somatic_LoY_complete",
+  "description": "Mosaic loss of Y in hematopoietic cells - most common large-scale somatic CNV in aging males. Driven by Y instability + palindrome-mediated rearrangement followed by selection.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 1,
+      "end": 57227415
+    }
+  },
+  "size_bp": 57227415,
+  "nahr_class": "somatic_mitotic",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "whole_Y"
+    ],
+    "homology_percent": 0.0,
+    "sd_length_kb": 0,
+    "microhomology_bp_at_breakpoint": "n/a (whole chr)",
+    "internal_structure": "whole Y chromosome",
+    "copy_number_in_population": "up to 40% of men >70 in blood"
+  },
+  "related_diseases": [
+    "increased mortality, cancer, Alzheimer risk"
+  ],
+  "recurrence_evidence": {
+    "tumor_recurrence": "highly recurrent in CHIP"
+  },
+  "confidence": 0.95,
+  "sources": [
+    "Forsberg 2014 Nat Genet",
+    "Thompson 2019 Nature"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

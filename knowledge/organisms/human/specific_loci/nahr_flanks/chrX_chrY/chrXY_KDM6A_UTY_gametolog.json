@@ -1,0 +1,50 @@
+{
+  "name": "chrXY_KDM6A_UTY_gametolog",
+  "description": "X/Y gametolog pair KDM6A_UTY. Identity ~87.0%, length ~20 kb. Xp11.3 44_873_000-45_112_000 vs Yq11.221 13_481_000-13_700_000. Related to: Kabuki 2.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 0,
+      "end": 0,
+      "note": "Xp11.3 44_873_000-45_112_000"
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "Yq11.221 13_481_000-13_700_000"
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "KDM6A",
+      "UTY"
+    ],
+    "homology_percent": 87.0,
+    "sd_length_kb": 20,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "gametolog pair KDM6A_UTY",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Kabuki 2"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family"
+}

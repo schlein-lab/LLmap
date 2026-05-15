@@ -1,0 +1,43 @@
+{
+  "name": "chrY_HERV15yq11_2_distal",
+  "description": "Distal HERV15 yq11 element flanking AZFa (USP9Y/DDX3Y boundary).",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 14280000,
+      "end": 14300000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "HERV15yq11-1",
+      "HERV15yq11-2"
+    ],
+    "homology_percent": 94.0,
+    "sd_length_kb": 10,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "HERV15 endogenous retrovirus element",
+    "copy_number_in_population": "deletion in AZFa pts"
+  },
+  "related_diseases": [
+    "AZFa deletion"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.9,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Lange et al 2008/2009 Cell + Genome Res Y SD map"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "chrX_IKBKG_pseudogene_SD",
+  "description": "chrX Xq28 locus IKBKG_pseudogene_SD SD/NAHR substrate. Mediator: IKBKGP. Genes: IKBKGP.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 154600000,
+      "end": 154620000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "IKBKGP"
+    ],
+    "homology_percent": 97.5,
+    "sd_length_kb": 17,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "IKBKGP",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "IP recurrent del flank"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.9,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

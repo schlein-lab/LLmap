@@ -1,0 +1,43 @@
+{
+  "name": "chrX_CUL4B_SD",
+  "description": "chrX Xq24 locus CUL4B_SD SD/NAHR substrate. Mediator: CUL4B_SD. Genes: CUL4B.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 119700000,
+      "end": 119720000
+    }
+  },
+  "size_bp": 20000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "CUL4B_SD"
+    ],
+    "homology_percent": 92.0,
+    "sd_length_kb": 15,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "CUL4B",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "related_diseases": [
+    "Cabezas syndrome"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.78,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

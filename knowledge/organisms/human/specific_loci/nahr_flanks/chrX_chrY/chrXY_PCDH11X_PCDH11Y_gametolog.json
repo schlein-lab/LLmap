@@ -1,0 +1,50 @@
+{
+  "name": "chrXY_PCDH11X_PCDH11Y_gametolog",
+  "description": "X/Y gametolog pair PCDH11X_PCDH11Y. Identity ~96.5%, length ~400 kb. Xq21.3 92_000_000-92_400_000 vs Yp11.2 5_000_000-5_400_000. Related to: X-Y translocation hotspot, recent.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 0,
+      "end": 0,
+      "note": "Xq21.3 92_000_000-92_400_000"
+    },
+    "grch38_chrY": {
+      "chr": "chrY",
+      "start": 0,
+      "end": 0,
+      "note": "Yp11.2 5_000_000-5_400_000"
+    }
+  },
+  "size_bp": 400000,
+  "nahr_class": "evolutionary",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "PCDH11X",
+      "PCDH11Y"
+    ],
+    "homology_percent": 96.5,
+    "sd_length_kb": 400,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "gametolog pair PCDH11X_PCDH11Y",
+    "copy_number_in_population": "fixed paralogs"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "X-Y translocation hotspot, recent"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Mueller et al 2008 Genome Res Y architecture",
+    "Bailey & Eichler SD-DB"
+  ],
+  "taxonomy_id": "paralog_family"
+}

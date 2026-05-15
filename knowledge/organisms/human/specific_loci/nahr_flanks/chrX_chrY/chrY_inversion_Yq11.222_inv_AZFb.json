@@ -1,0 +1,43 @@
+{
+  "name": "chrY_Yq11.222_inv_AZFb",
+  "description": "Y chromosome inversion Yq11.222_inv_AZFb. AZFb inv polymorphism (reciprocal of P5/proxP1 del). Mediator: P5/proximal-P1 inversion.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrY",
+      "start": 18400000,
+      "end": 25500000
+    }
+  },
+  "size_bp": 7100000,
+  "nahr_class": "inversion",
+  "architecture": {
+    "type": "inverted_orientation_block",
+    "BP_mediating_SDs": [
+      "P5/proximal-P1 inversion"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 200,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "Y arms in inverted orientation",
+    "copy_number_in_population": "polymorphic inversion"
+  },
+  "related_diseases": [
+    "infertility risk modifier"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.85,
+  "sources": [
+    "Skaletsky et al 2003 Nature 423:825",
+    "Repping et al 2003 Nat Genet 35:247",
+    "Mueller et al 2008 Genome Res Y architecture"
+  ],
+  "taxonomy_id": "paralog_family",
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  }
+}

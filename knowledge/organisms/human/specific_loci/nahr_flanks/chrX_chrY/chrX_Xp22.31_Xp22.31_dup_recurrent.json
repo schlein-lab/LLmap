@@ -1,0 +1,43 @@
+{
+  "name": "chrX_Xp22.31_dup_recurrent",
+  "description": "chrX Xp22.31 locus Xp22.31_dup_recurrent SD/NAHR substrate. Mediator: S232.",
+  "coordinates": {
+    "grch38": {
+      "chr": "chrX",
+      "start": 6445000,
+      "end": 8135000
+    }
+  },
+  "size_bp": 1690000,
+  "nahr_class": "recurrent_del_dup",
+  "architecture": {
+    "type": "direct_orientation_block",
+    "BP_mediating_SDs": [
+      "S232"
+    ],
+    "homology_percent": 99.5,
+    "sd_length_kb": 45,
+    "microhomology_bp_at_breakpoint": "varies",
+    "internal_structure": "STS, VCX, PNPLA4",
+    "copy_number_in_population": "variable_CNV"
+  },
+  "mapping_hints": {
+    "lambda_scale": 1.6,
+    "anchor_weight_scale": 0.3,
+    "max_occ": 100000,
+    "report_multi_position": true,
+    "require_psv_disambig": true,
+    "allow_high_mismatch": false
+  },
+  "related_diseases": [
+    "Xp22.31 dup syndrome (variable expressivity)"
+  ],
+  "recurrence_evidence": {},
+  "confidence": 0.92,
+  "sources": [
+    "Sharp et al 2005/2008 Nat Genet predictive NAHR map",
+    "Bailey & Eichler SD-DB",
+    "ClinGen dosage curation"
+  ],
+  "taxonomy_id": "paralog_family"
+}
