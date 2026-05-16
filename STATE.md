@@ -13,7 +13,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | the HPC cluster status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 240 |
+| Last successful iteration | 241 |
 | Total iterations | 237 |
 
 ---
@@ -486,6 +486,7 @@ notes: |
 | 238 | 2026-05-16 | n/a | Verification pass (iteration 238) | Confirmed: build passes, 1518 tests pass, monolith count 0, version 1.0.0; autonomous build remains complete; awaiting manual GPU validation + release tagging |
 | 239 | 2026-05-16 | n/a | Fallback commit (iteration 239) | Build passes, 1518 tests pass, monolith count 0 |
 | 240 | 2026-05-16 | D.2 | Phase D.2 verification: coverage CI already implemented | CMakeLists.txt has LLMAP_ENABLE_COVERAGE; CI has coverage job with lcov; marked Phase D complete; 1518 tests pass; monolith count 0; Phase D COMPLETE |
+| 241 | 2026-05-16 | n/a | Verification pass (iteration 241) | Build passes, 1518 tests pass, monolith count 0; all phases complete; awaiting manual GPU validation + release tagging |
 
 ---
 
