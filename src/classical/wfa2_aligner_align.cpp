@@ -94,11 +94,17 @@ std::optional<WFA2Result> WFA2Aligner::ExtendLeft(
         // Reverse the CIGAR
         std::reverse(result->cigar.begin(), result->cigar.end());
 
-        // Adjust coordinates
-        result->query_start = query_end - result->query_end;
-        result->query_end = query_end - result->query_start;
-        result->ref_start = ref_end - result->ref_end;
-        result->ref_end = ref_end - result->ref_start;
+        // Adjust coordinates. Save originals first — assigning query_start
+        // before reading it (then using it to compute query_end) corrupts the
+        // soft-clip length / NM stats whenever WFA2 trimmed any leading bases.
+        const int32_t orig_query_start = result->query_start;
+        const int32_t orig_query_end   = result->query_end;
+        const int32_t orig_ref_start   = result->ref_start;
+        const int32_t orig_ref_end     = result->ref_end;
+        result->query_start = query_end - orig_query_end;
+        result->query_end   = query_end - orig_query_start;
+        result->ref_start   = ref_end   - orig_ref_end;
+        result->ref_end     = ref_end   - orig_ref_start;
     }
 
     return result;
