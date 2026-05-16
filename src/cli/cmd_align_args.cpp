@@ -83,7 +83,7 @@ void PrintAlignUsage() {
         "\n"
         "Presets (recommended for best results):\n"
         "  -x PRESET               Read type preset:\n"
-        "                            map-hifi: PacBio HiFi (k=19, w=19, identity=0.90)\n"
+        "                            map-hifi: PacBio HiFi (k=19, w=19, identity=0.85)\n"
         "                            map-ont:  Oxford Nanopore (k=15, w=10, identity=0.70)\n"
         "                            map-pb:   Legacy PacBio CLR (same as map-ont)\n"
         "                            sr:       Short reads/Illumina (k=21, w=11, identity=0.95)\n"
