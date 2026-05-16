@@ -113,3 +113,19 @@ Issues recovered:
 unreliable ScheduleWakeup → bench-state divergence pattern.
 
 Bench resumed at arabidopsis tier 6.
+
+## Iter 007 — 2026-05-16T08:55 CEST — T1/T2 not a regression, two real fixes found
+
+T1/T2 investigator: F1=0.477 was STALE report from old binary 4667060.
+Current binary 506389a + fixed scorer → T1 F1=0.940 (recall 0.887,
+precision 1.000). Real findings:
+
+1. **ExtendLeft coord swap bug** in src/classical/wfa2_aligner_align.cpp
+   :98-101 — overwrites query_start/ref_start before re-reading them,
+   corrupts soft-clip length + NM/identity stats. 4-line fix.
+
+2. **min_identity=0.90 too aggressive** on map-hifi preset — drops
+   1135/10000 borderline HiFi reads on T1. Lower to 0.85 expects
+   F1 ≈ 0.97.
+
+Fix agent dispatched to apply both + rebuild + re-validate.
