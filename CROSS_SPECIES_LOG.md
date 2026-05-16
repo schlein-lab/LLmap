@@ -98,3 +98,18 @@ fixture probing IGH/paralog regions where LLmap's chain-DP picks
 wrong paralog. Phase C investigator agent dispatched.
 
 Bench at 21/~80 (organism × tier) cells, currently celegans tier 5.
+
+## Iter 006 — 2026-05-16T08:45 CEST — Recovery from session restart
+
+Issues recovered:
+1. llmap binary was deleted (autonomous_driver clean rebuild) — rebuilt
+   v1.0.0 commit 506389a0 fresh.
+2. Bench died at human tier 2 (no llmap binary). Restarted.
+3. T1/T2 investigator was interrupted mid-run. Re-dispatched.
+4. the HPC cluster flipped UP (RRZ SSH key change resolved, manual flip).
+
+**Watchdog infrastructure added**: `scripts/bench_watchdog.sh` + cron
+`*/5 * * * *` relaunches `run_all_species.sh` if dead. Fixes the
+unreliable ScheduleWakeup → bench-state divergence pattern.
+
+Bench resumed at arabidopsis tier 6.
