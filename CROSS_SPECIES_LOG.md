@@ -129,3 +129,23 @@ precision 1.000). Real findings:
    F1 ≈ 0.97.
 
 Fix agent dispatched to apply both + rebuild + re-validate.
+
+## Iter 008 — 2026-05-16T09:30 CEST — T1 re-validated with new binary, real F1=0.940
+
+T1 re-aligned with binary b3694583 (post-WFA2-fix, post-stale-report):
+- F1@1kb = 0.9398
+- precision@1kb = 1.000
+- recall@1kb = 0.8865 (8865/10000 mapped)
+- F1@100bp = 0.9385
+
+The investigator's "min_identity=0.90 → 0.85 expects F1≈0.97" claim
+was wrong — `map-hifi` preset ALREADY had 0.85f set (line 46 of
+src/cli/cmd_align_args.cpp). The 1135 unmapped reads have post-align
+identity below 0.85 — that's the real LLmap ceiling on T1.
+
+Versus minimap2 F1=1.000 on T1, this is a -0.06 real delta (not -0.5
+as the stale report falsely suggested). Phase C tuning should focus
+on those 1135 borderline reads — either WFA2 alignment quality
+improvement or a 2-pass retry mode at lower stringency.
+
+Bench continues at great_apes tier 6.
