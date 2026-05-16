@@ -149,3 +149,20 @@ on those 1135 borderline reads — either WFA2 alignment quality
 improvement or a 2-pass retry mode at lower stringency.
 
 Bench continues at great_apes tier 6.
+
+## Iter 009 — 2026-05-16T09:45 CEST — Phase C real signal + LLmap SV win
+
+Scoreboard 347 records / 32 cells. **Top-5 LLmap wins all on
+drosophila tier 6** (SV injection mode):
+- SV_INV: LLmap 0.995 vs minimap2 0.174 = +0.820 F1
+- SD: 1.000 vs 0.197 = +0.803
+- SV_DUP: 1.000 vs 0.207 = +0.793
+- SV_DEL: 0.999 vs 0.208 = +0.791
+
+LLmap's chain-DP + wave-particle approach dominates structural
+variant mapping. minimap2 fails on tier 6 SVs across most organisms
+except where LLmap also struggles (arabidopsis t6: 0.857 vs 1.000).
+
+**Real regression target: great_apes tier 1** — LLmap 0.700 overall
+vs minimap2 1.000. Even unique-class reads at 0.681. Investigator
+agent dispatched. Bench at human tier 10 (16/17 organisms processed).
