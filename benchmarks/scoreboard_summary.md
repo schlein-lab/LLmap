@@ -1,17 +1,17 @@
 # LLmap cross-species scoreboard
 
-Aggregated over **987** result rows across **19** organisms, **88** (organism, tier) cells, **4** mappers (bwa-mem2, llmap, minimap2, winnowmap).
+Aggregated over **975** result rows across **19** organisms, **88** (organism, tier) cells, **4** mappers (bwa-mem2, llmap, minimap2, winnowmap).
 
 ## Head-to-head (LLmap vs other mappers)
 
-- **vs minimap2** [all regions (overall+by_class)]: LLmap wins **15**, ties **67**, loses **301** of **383** cells.
+- **vs minimap2** [all regions (overall+by_class)]: LLmap wins **15**, ties **67**, loses **296** of **378** cells.
 - **vs minimap2** [region_class=SD]: LLmap wins **2**, ties **7**, loses **26** of **35** cells.
 - **vs minimap2** [region_class=centromere]: LLmap wins **0**, ties **11**, loses **22** of **33** cells.
 - **vs minimap2** [region_class=telomere]: LLmap wins **0**, ties **15**, loses **34** of **49** cells.
 - **vs minimap2** [region_class=low_complexity]: LLmap wins **0**, ties **11**, loses **15** of **26** cells.
-- **vs minimap2** [region_class=SV_DEL]: LLmap wins **3**, ties **0**, loses **27** of **30** cells.
-- **vs minimap2** [region_class=SV_DUP]: LLmap wins **3**, ties **0**, loses **27** of **30** cells.
-- **vs minimap2** [region_class=SV_INV]: LLmap wins **3**, ties **0**, loses **27** of **30** cells.
+- **vs minimap2** [region_class=SV_DEL]: LLmap wins **3**, ties **0**, loses **26** of **29** cells.
+- **vs minimap2** [region_class=SV_DUP]: LLmap wins **3**, ties **0**, loses **26** of **29** cells.
+- **vs minimap2** [region_class=SV_INV]: LLmap wins **3**, ties **0**, loses **26** of **29** cells.
 
 ## Overall F1 by organism x tier (region_class=all)
 
@@ -91,10 +91,10 @@ Aggregated over **987** result rows across **19** organisms, **88** (organism, t
 | viruses_dna | tier5 | NA | 0.960 | 1.000 | NA |
 | viruses_dna | tier6 | NA | 0.924 | 1.000 | NA |
 | viruses_rna | tier1 | NA | 0.959 | 1.000 | NA |
-| viruses_rna | tier10 | NA | 0.001 | 0.995 | NA |
-| viruses_rna | tier2 | NA | 0.000 | 0.996 | NA |
-| viruses_rna | tier5 | NA | 0.001 | 0.997 | NA |
-| viruses_rna | tier6 | NA | 0.002 | 0.995 | NA |
+| viruses_rna | tier10 | NA | NA | 1.000 | NA |
+| viruses_rna | tier2 | NA | 0.961 | 1.000 | NA |
+| viruses_rna | tier5 | NA | 0.965 | 1.000 | NA |
+| viruses_rna | tier6 | NA | 0.952 | 1.000 | NA |
 | zebrafish | tier1 | NA | 0.668 | 1.000 | NA |
 | zebrafish | tier10 | NA | 0.703 | 1.000 | NA |
 | zebrafish | tier2 | NA | 0.680 | 1.000 | NA |
@@ -115,8 +115,8 @@ Aggregated over **987** result rows across **19** organisms, **88** (organism, t
 
 | organism | tier | region_class | best_other | LLmap F1 | other F1 | delta |
 |---|---|---|---|---:|---:|---:|
-| viruses_rna | tier2 | all | minimap2 | 0.000 | 0.996 | -0.996 |
-| viruses_rna | tier2 | unique | minimap2 | 0.000 | 0.996 | -0.996 |
-| viruses_rna | tier5 | all | minimap2 | 0.001 | 0.997 | -0.996 |
-| viruses_rna | tier5 | unique | minimap2 | 0.001 | 0.997 | -0.996 |
-| viruses_rna | tier10 | SV_DUP | minimap2 | 0.002 | 0.997 | -0.995 |
+| homo_sapiens | T2 | all | minimap2 | 0.445 | 1.000 | -0.555 |
+| homo_sapiens | T1 | all | minimap2 | 0.477 | 1.000 | -0.523 |
+| great_apes | tier1 | telomere | minimap2 | 0.529 | 1.000 | -0.471 |
+| metagenomic | tier6 | SV_INV | minimap2 | 0.534 | 0.999 | -0.464 |
+| maize | tier10 | telomere | minimap2 | 0.561 | 1.000 | -0.439 |

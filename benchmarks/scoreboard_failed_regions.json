@@ -557,7 +557,7 @@
     "tier": "tier6",
     "region_class": "all",
     "mapper": "minimap2",
-    "failure_mode": "empty_sam"
+    "failure_mode": "missing_bam"
   },
   {
     "organism": "human",
@@ -1339,156 +1339,65 @@
   {
     "organism": "viruses_rna",
     "tier": "tier10",
-    "region_class": "SV_DEL",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.002)"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier10",
-    "region_class": "SV_DUP",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.002)"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier10",
-    "region_class": "SV_INV",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.000)"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier10",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier10",
     "region_class": "all",
     "mapper": "llmap",
-    "failure_mode": "low_F1(0.001)"
+    "failure_mode": "empty_sam"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier10",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier10",
-    "region_class": "unique",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.002)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier2",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier2",
-    "region_class": "all",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.000)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier2",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier2",
-    "region_class": "unique",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.000)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier5",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier5",
-    "region_class": "all",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.001)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier5",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier5",
-    "region_class": "unique",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.001)"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier6",
-    "region_class": "SV_DEL",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.003)"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier6",
-    "region_class": "SV_DUP",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.003)"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier6",
-    "region_class": "SV_INV",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.000)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier6",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier6",
-    "region_class": "all",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.002)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier6",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier6",
-    "region_class": "unique",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.002)"
+    "failure_mode": "missing"
   },
   {
     "organism": "zebrafish",
