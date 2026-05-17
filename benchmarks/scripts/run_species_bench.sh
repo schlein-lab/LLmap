@@ -146,6 +146,38 @@ if $PAIRED || [[ "$MEAN_LEN" -lt 500 ]]; then
 fi
 echo "[run_species_bench] mean read length ~${MEAN_LEN}bp -> long_read=$IS_LONG_READ" >&2
 
+# Per-organism preset overrides (registry-driven).
+#
+# Without this, the runner defaults to `map-hifi` for any long-read tier,
+# which silently catastrophises for organisms whose error_profile_override
+# pushes per-base error above ~2% (viruses_rna at 4% saw LLmap F1 ≈ 0.002
+# vs minimap2 0.998 on tier 1). The fix is to read read_profile from the
+# registry: ont -> map-ont, hifi -> map-hifi, illumina -> sr. Organisms
+# can also pin an explicit llmap_preset and llmap_min_identity field.
+REGISTRY_PATH="$BENCH_ROOT/species_registry.json"
+ORG_READ_PROFILE="$(python3 - "$REGISTRY_PATH" "$ORGANISM" <<'PY'
+import json, sys
+reg = json.load(open(sys.argv[1]))
+cfg = reg.get(sys.argv[2], {})
+print(cfg.get("read_profile", ""))
+PY
+)"
+ORG_LLMAP_PRESET="$(python3 - "$REGISTRY_PATH" "$ORGANISM" <<'PY'
+import json, sys
+reg = json.load(open(sys.argv[1]))
+cfg = reg.get(sys.argv[2], {})
+print(cfg.get("llmap_preset", ""))
+PY
+)"
+ORG_LLMAP_MIN_IDENTITY="$(python3 - "$REGISTRY_PATH" "$ORGANISM" <<'PY'
+import json, sys
+reg = json.load(open(sys.argv[1]))
+cfg = reg.get(sys.argv[2], {})
+v = cfg.get("llmap_min_identity")
+print("" if v is None else v)
+PY
+)"
+
 # ---- step 2: per-mapper runs -------------------------------------------------
 
 run_llmap() {
@@ -166,12 +198,26 @@ run_llmap() {
   local sam="$out/aln.sam"
   local preset="map-hifi"
   $IS_LONG_READ || preset="sr"
-  echo "[llmap] aligning preset=$preset -> $bam" >&2
+  # Registry overrides: explicit llmap_preset wins; otherwise map
+  # read_profile (ont/hifi/illumina) to the canonical LLmap preset.
+  if [[ -n "$ORG_LLMAP_PRESET" ]]; then
+    preset="$ORG_LLMAP_PRESET"
+  elif $IS_LONG_READ; then
+    case "$ORG_READ_PROFILE" in
+      ont|ont_short) preset="map-ont" ;;
+      hifi|hifi_low) preset="map-hifi" ;;
+    esac
+  fi
+  local extra_args=()
+  if [[ -n "$ORG_LLMAP_MIN_IDENTITY" ]]; then
+    extra_args+=(--min-identity "$ORG_LLMAP_MIN_IDENTITY")
+  fi
+  echo "[llmap] aligning preset=$preset extra=(${extra_args[*]:-}) -> $bam" >&2
   local t0; t0=$(date +%s.%N)
   local llmap_rc=0
   /usr/bin/time -v -o "$out/.time" \
      "$LLMAP_BIN" align -x "$preset" --reference "$REF" -r "$READS" \
-                        -o "$sam" --threads "$THREADS" --sam 2>"$out/stderr.log" \
+                        -o "$sam" --threads "$THREADS" --sam "${extra_args[@]}" 2>"$out/stderr.log" \
      || llmap_rc=$?
   local t1; t1=$(date +%s.%N)
   if [[ $llmap_rc -ne 0 ]]; then
@@ -207,6 +253,16 @@ run_minimap2() {
   local cmd_prefix; cmd_prefix="$(echo "$info" | awk -F'\t' '$1=="OK" && $2=="apptainer" {print $4}')"
   local preset="map-hifi"
   $IS_LONG_READ || preset="sr"
+  # Mirror the LLmap registry-driven preset rules so the bench compares apples
+  # to apples (minimap2 -ax map-hifi happens to be tolerant enough to mask
+  # this for now, but recording the preset choice via the registry keeps the
+  # two mappers honest as profiles evolve).
+  if $IS_LONG_READ; then
+    case "$ORG_READ_PROFILE" in
+      ont|ont_short) preset="map-ont" ;;
+      hifi|hifi_low) preset="map-hifi" ;;
+    esac
+  fi
   echo "[minimap2] preset=$preset -> $bam" >&2
   local sam="$out/aln.sam"
   local extra=""

@@ -129,7 +129,10 @@
     "read_profile": "ont",
     "error_profile": {"sub_pct": 0.02, "ins_pct": 0.01, "del_pct": 0.01},
     "length_distribution": {"mean": 2000, "sd": 800, "min": 100, "max": 8000},
-    "coverage_target_x": 50
+    "coverage_target_x": 50,
+    "llmap_preset": "map-ont",
+    "llmap_min_identity": 0.30,
+    "_preset_rationale": "4% per-base error from registry override is harsher than the canonical ont profile; LLmap's default map-hifi (k19w19, min_identity 0.85) cannot find a single read. map-ont (k15w10, min_identity 0.30) recovers F1>=0.94 on tier 1. The extra-low 0.30 floor compensates for inflated I/D counts when chains span the random placeholder reference; see CROSS_SPECIES_LOG.md 2026-05-17 entry."
   },
   "bacteria": {
     "reference": "benchmarks/datasets/cache/bacteria/reference.fa",
