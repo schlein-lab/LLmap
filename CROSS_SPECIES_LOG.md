@@ -166,3 +166,30 @@ except where LLmap also struggles (arabidopsis t6: 0.857 vs 1.000).
 **Real regression target: great_apes tier 1** — LLmap 0.700 overall
 vs minimap2 1.000. Even unique-class reads at 0.681. Investigator
 agent dispatched. Bench at human tier 10 (16/17 organisms processed).
+
+## Iter 010 — 2026-05-16T09:55 CEST — Full bench signal: massive regression matrix
+
+Bench now 86 summary.json files / 989 scoreboard records. Full matrix:
+
+**LLmap WINS** (where minimap2 fails):
+- drosophila tier 6: +0.80 F1 (SV mode)
+- rice tier 6: +0.77 (minimap2 hit 0.000)
+- metagenomic tier 10: +0.85 (minimap2 hit 0.000)
+
+**LLmap CRITICAL FAIL** (systematic):
+- viruses_rna ALL tiers: F1=0.000-0.002 vs minimap2 0.99+ ← MUST FIX
+- great_apes ALL tiers: 0.70-0.77 vs 1.0 (cross-species divergence?)
+- maize ALL tiers: 0.64-0.67 vs 1.0
+- rat ALL tiers: 0.81-0.83 vs 1.0
+- rice tier 1-5: 0.76-0.78 vs 1.0
+- zebrafish: 0.67-0.70 vs 1.0
+- mouse: NA (bench may have skipped llmap on mouse — check)
+
+**LLmap parity** (F1 ≥0.99 both):
+- arabidopsis tier 1-5/10, bacteria, celegans (tier 1/2/5/10),
+  drosophila (tier 1/2/5), scerevisiae tier 1, synthetic_stress
+
+Pattern hypothesis: viruses_rna failure likely tiny-contig issue
+(virus loci 30-200bp << reads ~12kb). Dispatched focused investigator.
+
+Bench at mouse tier 5 (no llmap accuracy.json yet).
