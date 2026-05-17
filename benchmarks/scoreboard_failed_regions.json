@@ -557,7 +557,7 @@
     "tier": "tier6",
     "region_class": "all",
     "mapper": "minimap2",
-    "failure_mode": "missing_bam"
+    "failure_mode": "empty_sam"
   },
   {
     "organism": "human",
@@ -1327,28 +1327,14 @@
     "tier": "tier1",
     "region_class": "all",
     "mapper": "bwa-mem2",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier1",
-    "region_class": "all",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.002)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",
     "tier": "tier1",
     "region_class": "all",
     "mapper": "winnowmap",
-    "failure_mode": "missing_bam"
-  },
-  {
-    "organism": "viruses_rna",
-    "tier": "tier1",
-    "region_class": "unique",
-    "mapper": "llmap",
-    "failure_mode": "low_F1(0.002)"
+    "failure_mode": "missing"
   },
   {
     "organism": "viruses_rna",

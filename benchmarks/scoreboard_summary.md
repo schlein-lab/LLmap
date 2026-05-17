@@ -1,6 +1,6 @@
 # LLmap cross-species scoreboard
 
-Aggregated over **989** result rows across **19** organisms, **88** (organism, tier) cells, **4** mappers (bwa-mem2, llmap, minimap2, winnowmap).
+Aggregated over **987** result rows across **19** organisms, **88** (organism, tier) cells, **4** mappers (bwa-mem2, llmap, minimap2, winnowmap).
 
 ## Head-to-head (LLmap vs other mappers)
 
@@ -90,7 +90,7 @@ Aggregated over **989** result rows across **19** organisms, **88** (organism, t
 | viruses_dna | tier2 | NA | 0.957 | 1.000 | NA |
 | viruses_dna | tier5 | NA | 0.960 | 1.000 | NA |
 | viruses_dna | tier6 | NA | 0.924 | 1.000 | NA |
-| viruses_rna | tier1 | NA | 0.002 | 0.998 | NA |
+| viruses_rna | tier1 | NA | 0.959 | 1.000 | NA |
 | viruses_rna | tier10 | NA | 0.001 | 0.995 | NA |
 | viruses_rna | tier2 | NA | 0.000 | 0.996 | NA |
 | viruses_rna | tier5 | NA | 0.001 | 0.997 | NA |
@@ -115,8 +115,8 @@ Aggregated over **989** result rows across **19** organisms, **88** (organism, t
 
 | organism | tier | region_class | best_other | LLmap F1 | other F1 | delta |
 |---|---|---|---|---:|---:|---:|
-| viruses_rna | tier1 | all | minimap2 | 0.002 | 0.998 | -0.996 |
-| viruses_rna | tier1 | unique | minimap2 | 0.002 | 0.998 | -0.996 |
 | viruses_rna | tier2 | all | minimap2 | 0.000 | 0.996 | -0.996 |
 | viruses_rna | tier2 | unique | minimap2 | 0.000 | 0.996 | -0.996 |
 | viruses_rna | tier5 | all | minimap2 | 0.001 | 0.997 | -0.996 |
+| viruses_rna | tier5 | unique | minimap2 | 0.001 | 0.997 | -0.996 |
+| viruses_rna | tier10 | SV_DUP | minimap2 | 0.002 | 0.997 | -0.995 |

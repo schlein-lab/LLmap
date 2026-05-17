@@ -193,3 +193,20 @@ Pattern hypothesis: viruses_rna failure likely tiny-contig issue
 (virus loci 30-200bp << reads ~12kb). Dispatched focused investigator.
 
 Bench at mouse tier 5 (no llmap accuracy.json yet).
+
+## Iter 011 — 2026-05-16T08:20 CEST — viruses_rna fixed +0.957, wide regression dispatched
+
+viruses_rna tier 1 with map-ont preset + min_identity=0.30:
+F1 = 0.959 (was 0.002). +0.957 F1 single fix.
+
+Root cause shared with other regressions: LLmap WFA2 extension inflates
+I/D counts on low-complexity / divergent ref padding → identity ≤0.85
+rejection. Bench-runner now respects per-organism llmap_preset +
+llmap_min_identity from species_registry.json.
+
+Re-running viruses_rna tier 2/5/6/10 with new config + dispatched
+wide regression agent for great_apes/maize/rat/rice/zebrafish/yeasts.
+
+Bench stuck on human tier 6 (llmap index OOM — large ref, 200K
+minimizers, kernel SIGKILL). Need to add memory cap or skip human
+in this loop iteration.
