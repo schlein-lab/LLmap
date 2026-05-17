@@ -13,7 +13,7 @@ This file is the source of truth for autonomous-driver continuation. The driver 
 | Driver cadence | every 15 min |
 | the HPC cluster status | required for heavy jobs |
 | Local-box status | required for driver + Claude CLI |
-| Last successful iteration | 336 |
+| Last successful iteration | 337 |
 | Total iterations | 238 |
 
 ---
@@ -596,3 +596,4 @@ If Claude fails to advance for 3 consecutive iterations, driver pages via Zyrkel
 | 334 | 2026-05-17 | n/a | Verification pass (iteration 334) | Build passes, 1518 tests pass, monolith count 0; all phases complete; awaiting manual GPU validation + release tagging |
 | 335 | 2026-05-17 | n/a | Verification pass (iteration 335) | Build passes, 1518 tests pass, monolith count 0; all phases complete; awaiting manual GPU validation + release tagging |
 | 336 | 2026-05-17 | n/a | Verification pass (iteration 336) | Build passes, 1518 tests pass, monolith count 0; all phases complete; awaiting manual GPU validation + release tagging |
+| 337 | 2026-05-17 | n/a | Verification pass (iteration 337) | Build passes, 1518 tests pass, monolith count 0; all phases complete; awaiting manual GPU validation + release tagging |
