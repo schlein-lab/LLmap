@@ -114,3 +114,12 @@ benchmarks/reports/*/*/rep*/slurm.err
 benchmarks/reports/*/*/rep*/submit.sbatch
 benchmarks/reports/*/*/rep*/star_tmp/
 benchmarks/reports/tool_versions.json
+# Heavy regeneratable bench artifacts (keep summary.json/accuracy.json only)
+benchmarks/reports/*/*/reads.fastq
+benchmarks/reports/*/*/reads.R*.fastq
+benchmarks/reports/*/*/aln.sam
+benchmarks/reports/*/*/.idx/
+benchmarks/reports/*/*/comparison.tsv
+benchmarks/reports/*/*/.locks/
+benchmarks/.locks/
+build_the HPC cluster/
