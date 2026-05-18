@@ -384,11 +384,11 @@ viruses_dna	tier6	telomere	NaN	0.9565217391304348	1.0	NaN
 viruses_dna	tier6	unique	NaN	0.9626532887402452	0.9995520114685065	NaN
 viruses_rna	tier1	all	NaN	0.9588755856324831	1.0	NaN
 viruses_rna	tier1	unique	NaN	0.9588755856324831	1.0	NaN
-viruses_rna	tier10	SV_DEL	NaN	NaN	1.0	NaN
-viruses_rna	tier10	SV_DUP	NaN	NaN	1.0	NaN
-viruses_rna	tier10	SV_INV	NaN	NaN	1.0	NaN
-viruses_rna	tier10	all	NaN	NaN	0.9998499774966245	NaN
-viruses_rna	tier10	unique	NaN	NaN	0.9997506027101173	NaN
+viruses_rna	tier10	SV_DEL	NaN	0.9586709886547812	1.0	NaN
+viruses_rna	tier10	SV_DUP	NaN	0.9515557306025995	1.0	NaN
+viruses_rna	tier10	SV_INV	NaN	0.8909606809890556	1.0	NaN
+viruses_rna	tier10	all	NaN	0.9512872948455771	0.9998499774966245	NaN
+viruses_rna	tier10	unique	NaN	0.9624902992153144	0.9997506027101173	NaN
 viruses_rna	tier2	all	NaN	0.961038961038961	1.0	NaN
 viruses_rna	tier2	unique	NaN	0.961038961038961	1.0	NaN
 viruses_rna	tier5	all	NaN	0.9652853225723006	1.0	NaN

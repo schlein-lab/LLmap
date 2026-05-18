@@ -210,3 +210,108 @@ wide regression agent for great_apes/maize/rat/rice/zebrafish/yeasts.
 Bench stuck on human tier 6 (llmap index OOM — large ref, 200K
 minimizers, kernel SIGKILL). Need to add memory cap or skip human
 in this loop iteration.
+
+## Iter 012 — 2026-05-16T11:00 CEST — Phase D dispatched, wide-regression in flight
+
+viruses_rna fix validated across 4/5 tiers (tier 10 still empty-SAM).
+Wide-regression agent still running (no notification yet) — should
+extend the registry-override fix to great_apes/maize/rat/rice/zebrafish.
+
+**Phase D dispatched**: build losslessmap.com static site from current
+scoreboard. Page set: index/scoreboard/organism/methodology + JSON
+data + build.py regenerator. Cross-species F1 heatmap on landing page.
+
+Bench still cycling through mouse + human (large refs, frequent index
+OOM). 86 summary.json files / 975 records. The pure-bench coverage is
+essentially what we'll publish as v1 on losslessmap.com.
+
+## Iter 013 — 2026-05-16T11:25 CEST — Compute moves to the HPC cluster, local for site only
+
+User flagged that the local box was crashing from concurrent
+mapping jobs. Killed all local bench processes + removed
+`scripts/bench_watchdog.sh` from cron. Local from now on hosts:
+- web/losslessmap.com/ static site (OK)
+- autonomous_driver.sh (build + verify, no heavy compute)
+
+Heavy compute moves to the HPC cluster SLURM. Agent dispatched to build:
+- the HPC cluster_bench_submit.sh (rsync + sbatch)
+- the HPC cluster_bench.slurm (array job 1-85)
+- the HPC cluster_bench_array_manifest.tsv (organism × tier matrix)
+- the HPC cluster_bench_collect.sh (rsync results back + regenerate site)
+- the HPC cluster_bench_status.sh (squeue + tail logs)
+
+Phase D losslessmap.com v1 site shipped: build.py + 19 organism
+pages + heatmap (99 excellent / 25 good / 24 warn / 15 bad / 108 na).
+
+## Iter 014 — 2026-05-16T11:40 CEST — the HPC cluster SLURM bench submitted (job 2069701)
+
+After 3 submission fixes (sbatch path, front-node routing, RRZ-specific
+SLURM constraints: --partition=std --account=your_slurm_account no --mem),
+the 85-array bench is now live on the HPC cluster std partition.
+
+- Job ID: 2069701
+- Tasks: array 1-85 (17 organisms × 5 tiers)
+- Resources: 8 cpus/task, 8h walltime
+- Logs: /beegfs/u/<user>/llmap_bench/slurm_logs/bench_2069701_<task>.{out,err}
+- Output: /beegfs/u/<user>/llmap_bench/benchmarks/reports/<org>/<tier>/
+
+Local box is compute-free now (web/losslessmap.com static site only).
+Monitor: `bash scripts/the HPC cluster_bench_status.sh`
+Collect when done: `bash scripts/the HPC cluster_bench_collect.sh`
+
+## Iter 015 — 2026-05-16T11:55 CEST — the HPC cluster bench blocked by libc mismatch
+
+SLURM job 2069701 cancelled — all tasks failed in <2s with:
+- "gmake: /usr/bin/cmake: No such file" (no cmake on PATH)
+- prebuilt llmap binary failed ldd: `GLIBCXX_3.4.32 not found`,
+  `GLIBC_2.38 not found`, `libonnxruntime.so.1 not found`
+
+the HPC cluster nodes have older libc; LLmap was built against Ubuntu 24.04
+toolchain. Need apptainer container with bundled deps.
+
+Container-build agent dispatched:
+- containers/llmap.def (Ubuntu 24.04 base + onnxruntime bundled)
+- scripts/build_llmap_container.sh + variant for the HPC cluster build
+- SLURM bench update to wrap mapper calls via `apptainer exec`
+
+Local stays compute-free except for the apptainer build itself
+(one-time, finite).
+
+## Iter 016 — 2026-05-18T15:08 CEST — LLmap nativ auf the HPC cluster + SLURM job läuft
+
+User pushed back: "warum kein LLmap auf the HPC cluster — kompilier doch dort".
+Recht hatte er. Native build path:
+- gcc 12.2.0 + cmake (via miniforge3) + samtools/minimap2 (via miniforge3)
+- /tmp full auf front1 -> TMPDIR=/beegfs/u/<user>/tmp
+- `cmake -S . -B build_the HPC cluster -DLLMAP_BUILD_TESTS=OFF`
+- `cmake --build build_the HPC cluster -j 4 --target llmap`
+- Resultat: `/beegfs/u/<user>/llmap_bench/build_the HPC cluster/src/llmap` 2.1MB binary
+
+SLURM script rewritten to native (no apptainer). Job 2071597 submitted,
+60 tasks parallel laufend auf nodes n001-n167. First task arabidopsis
+tier 1 confirmed working: 762/1000 mapped, 76% identity floor 0.947,
+140 reads/s.
+
+Workflow now stable:
+- Code-fixes lokal -> git push -> ssh the HPC cluster pull -> incremental rebuild
+- Bench-runs auf the HPC cluster std partition
+- Results -> rsync back -> aggregate -> losslessmap.com
+
+## Iter 017 — 2026-05-18T15:35 CEST — the HPC clusternative bench DONE, results collected
+
+SLURM job 2071597: **83/85 done.flag**, 2 cells skipped on retry due to
+cached results from earlier local runs (celegans tier 10, rat tier 2 —
+both have valid prior summary.json). Wall time: <30 min for 60-parallel
+on the HPC cluster std partition (vs estimated 85h serial local).
+
+Collect synced 26.88 GB back to local. Aggregator: **989 records,
+383 cells**. losslessmap.com rebuilt (19 organism pages).
+
+Key results vs minimap2 (preserved across the HPC cluster migration):
+- LLmap wins: 15 cells (drosophila tier 6 SV_INV/DEL/DUP +0.79-0.82 F1)
+- LLmap ties at F1=1.000: 67 cells
+- LLmap below minimap2 by ≥0.001: 301 cells
+- the HPC clusternative F1 ≈ local-built F1 (within rounding)
+
+Phase A-D complete. Stable workflow: code-fix lokal → push → the HPC cluster pull
++ incremental rebuild → SLURM submit → rsync collect → losslessmap.com.
