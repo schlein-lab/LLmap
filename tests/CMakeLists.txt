@@ -604,6 +604,18 @@ target_link_libraries(test_psv
 )
 gtest_discover_tests(test_psv)
 
+add_executable(test_igh_locus
+    unit/test_igh_locus.cpp
+)
+target_link_libraries(test_igh_locus
+    PRIVATE
+    llmap_igh_locus
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_igh_locus)
+
 # ========== Single-cell Module Tests ==========
 
 add_executable(test_cb_preservation

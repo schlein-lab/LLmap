@@ -57,6 +57,7 @@ void print_usage() {
         "  validate          Synthetic + real-data validation harness (Phase 5)\n"
         "  check             V1.0 readiness check (Phase 10)\n"
         "  annotate-ref      Compute region annotations for a reference (Phase 12)\n"
+        "  igh-resort        Post-hoc IGH paralog re-sort of an existing SAM/BAM\n"
         "  --version         Show version\n"
         "  --help            Show this message\n"
     );
@@ -120,6 +121,10 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "annotate-specific-loci") == 0) {
         return llmap::cli::run_annotate_specific_loci(argc - 2, argv + 2);
+    }
+
+    if (std::strcmp(argv[1], "igh-resort") == 0) {
+        return llmap::cli::run_igh_resort(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,

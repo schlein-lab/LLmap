@@ -227,6 +227,19 @@ target_include_directories(llmap_psv PUBLIC
 target_compile_features(llmap_psv PUBLIC cxx_std_23)
 target_link_libraries(llmap_psv PUBLIC llmap_core)
 
+# IGH locus module — post-hoc paralog re-sort via exact exon anchors
+add_library(llmap_igh_locus STATIC
+    igh_locus/igh_anchor_catalog.cpp
+    igh_locus/igh_resort.cpp
+)
+
+target_include_directories(llmap_igh_locus PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(llmap_igh_locus PUBLIC cxx_std_23)
+target_link_libraries(llmap_igh_locus PUBLIC llmap_core)
+
 # Single-cell module — cell barcode and UMI preservation
 add_library(llmap_singlecell STATIC
     singlecell/cb_preservation.cpp
@@ -307,5 +320,6 @@ add_executable(llmap
     cli/cmd_check.cpp
     cli/cmd_annotate_ref.cpp
     cli/cmd_annotate_specific_loci.cpp
+    cli/cmd_igh_resort.cpp
 )
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot llmap_checkpoint)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot llmap_checkpoint llmap_igh_locus)

@@ -5,6 +5,29 @@ All notable changes to LLmap are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+#### IGH locus post-hoc re-sort module (`src/igh_locus`)
+- Alignment-free, paralog-specific re-sorting of immunoglobulin heavy-chain
+  constant-region reads. Standard seed-chain-extend mappers collapse IGHG1/2/3/4
+  (and IGHM/A/E) paralog reads onto whichever copy wins the chain score; this
+  module re-scans each IGH read against exact CH-exon anchors and re-points it to
+  its true copy of origin. Works for genomic and transcriptomic mappings.
+- `IghAnchorCatalog` — loads paralog-specific exon anchors from FASTA (exact +
+  reverse-complement matching, optional seeded ≤k-mismatch Hamming search).
+- `IghRegion` — IGHC locus interval table (GRCh38 + CHM13) for genomic gating.
+- `ApplyResort` — in-place re-sort over `AlignmentRecord`s; sets
+  `paralog_assignment` and re-points target/coords on disagreement.
+- Integrated into `llmap align` as a post-hoc stage, ON by default
+  (`--no-igh-locus` to disable, `--igh-anchors FILE`, `--igh-max-mismatch INT`).
+- New `llmap igh-resort` subcommand re-sorts an existing SAM/BAM (e.g. minimap2
+  output) via the SAM stream — no htslib dependency, composes with samtools.
+- Default GRCh38 IGH constant-region anchor catalog at
+  `data/igh/igh_anchors_grch38.fa` (29 CH-exon anchors with genomic loc tags).
+- Module has zero external dependencies (stdlib + `llmap_core`).
+
 ## [1.0.0] - 2026-05-14
 
 ### Added
