@@ -28,6 +28,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `data/igh/igh_anchors_grch38.fa` (29 CH-exon anchors with genomic loc tags).
 - Module has zero external dependencies (stdlib + `llmap_core`).
 
+#### Remote reference/anchor fetching (`src/core/remote_fetch`)
+- Readers now accept `http(s)://` and `s3://` URLs in addition to local paths.
+  `s3://bucket/key` is translated to the AWS virtual-hosted HTTPS endpoint.
+- `FetchToCache` downloads a URL once into a local cache (idempotent reuse) and
+  returns the cached path, so existing FASTA/anchor readers work unchanged on
+  remote inputs. Optional sibling `.fai`/`.gzi` fetch for region queries.
+- Dependency-light: shells out via fork/exec (no shell, no injection) to `curl`
+  then `wget`; no compile-time libcurl linkage. Degrades gracefully when no
+  downloader is present. Verified that Hummel compute nodes have outbound
+  internet (S3 + api.anthropic.com), enabling remote inputs and the LLM consult
+  layer from within SLURM jobs.
+- Wired into `--igh-anchors` (align), `igh-resort --anchors`, and
+  `igh-resort --in` (remote SAM input).
+
 ## [1.0.0] - 2026-05-14
 
 ### Added

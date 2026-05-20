@@ -8,6 +8,7 @@ add_library(llmap_core STATIC
     core/thread_pool.cpp
     core/logging.cpp
     core/error.cpp
+    core/remote_fetch.cpp
     core/config.cpp
     core/config_parse.cpp
     core/v1_readiness.cpp
