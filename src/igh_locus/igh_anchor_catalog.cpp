@@ -9,6 +9,8 @@
 #include <sstream>
 #include <unordered_map>
 
+#include "core/remote_fetch.h"
+
 namespace llmap::igh_locus {
 
 namespace {
@@ -103,7 +105,14 @@ bool IsIghGene(std::string_view token) {
 
 std::optional<IghAnchorCatalog> IghAnchorCatalog::LoadFasta(
     const std::string& path, int max_mismatch) {
-    std::ifstream in(path);
+    // Accept remote anchors (http(s)://, s3://): fetch to local cache first.
+    std::string local_path = path;
+    if (core::IsRemotePath(path)) {
+        auto fetched = core::FetchToCache(path);
+        if (!fetched) return std::nullopt;
+        local_path = *fetched;
+    }
+    std::ifstream in(local_path);
     if (!in) return std::nullopt;
 
     IghAnchorCatalog cat;

@@ -130,6 +130,7 @@ void PrintAlignUsage() {
         "IGH locus re-sort (post-hoc, ON by default):\n"
         "  --igh-anchors FILE      FASTA of paralog-specific CH exon anchors\n"
         "                          (headers: GENE_COPY_HAP_EXON, optional loc=chr:start-end)\n"
+        "                          accepts local path, http(s):// or s3:// URL\n"
         "  --igh-max-mismatch INT  Tolerated mismatches per exon anchor [0 = exact]\n"
         "  --no-igh-locus          Disable the IGH post-hoc re-sort stage\n"
         "\n"

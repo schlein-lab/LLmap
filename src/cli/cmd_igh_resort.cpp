@@ -26,6 +26,7 @@
 #include <vector>
 
 #include "cli/commands.h"
+#include "core/remote_fetch.h"
 #include "igh_locus/igh_anchor_catalog.h"
 #include "igh_locus/igh_region.h"
 
@@ -49,10 +50,11 @@ void PrintUsage() {
         "Re-sort IGH-locus reads of an existing SAM/BAM to their true paralog\n"
         "copy using exact exon anchors. Reads SAM on stdin, writes SAM on stdout.\n\n"
         "Required:\n"
-        "  --anchors FILE        FASTA of paralog-specific CH exon anchors\n"
-        "                        headers: GENE_COPY_HAP_EXON [ loc=chr:start-end ]\n\n"
+        "  --anchors FILE|URL    FASTA of paralog-specific CH exon anchors\n"
+        "                        headers: GENE_COPY_HAP_EXON [ loc=chr:start-end ]\n"
+        "                        accepts local path, http(s):// or s3:// URL\n\n"
         "Options:\n"
-        "  --in FILE             Input SAM (default: stdin)\n"
+        "  --in FILE|URL         Input SAM (default: stdin; accepts URL)\n"
         "  --out FILE            Output SAM (default: stdout)\n"
         "  --max-mismatch INT    Tolerated mismatches per exon anchor [0 = exact]\n"
         "  --min-exons INT       Distinct exons required to re-sort [2]\n"
@@ -118,8 +120,17 @@ int run_igh_resort(int argc, char** argv) {
     std::istream* in = &std::cin;
     std::ifstream fin;
     if (o.in_path != "-") {
-        fin.open(o.in_path);
-        if (!fin) { std::fprintf(stderr, "error: cannot open %s\n", o.in_path.c_str()); return 66; }
+        std::string in_local = o.in_path;
+        if (core::IsRemotePath(o.in_path)) {
+            auto fetched = core::FetchToCache(o.in_path);
+            if (!fetched) {
+                std::fprintf(stderr, "error: could not fetch %s\n", o.in_path.c_str());
+                return 66;
+            }
+            in_local = *fetched;
+        }
+        fin.open(in_local);
+        if (!fin) { std::fprintf(stderr, "error: cannot open %s\n", in_local.c_str()); return 66; }
         in = &fin;
     }
     std::ostream* out = &std::cout;

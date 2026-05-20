@@ -616,6 +616,17 @@ target_link_libraries(test_igh_locus
 )
 gtest_discover_tests(test_igh_locus)
 
+add_executable(test_remote_fetch
+    unit/test_remote_fetch.cpp
+)
+target_link_libraries(test_remote_fetch
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_remote_fetch)
+
 # ========== Single-cell Module Tests ==========
 
 add_executable(test_cb_preservation
