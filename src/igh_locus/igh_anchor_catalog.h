@@ -47,8 +47,11 @@ struct IghMatch {
     int n_anchor_hits{0};       // total anchor sequences hit
     int n_distinct_exons{0};    // distinct exons of the winning copy
     bool ambiguous_gene{false}; // >1 gene tied on distinct-exon support
+    bool ambiguous_copy{false}; // >1 copy tied on max distinct exons (read covers
+                                // only exons shared between those copies)
     bool is_reverse{false};     // winning copy matched on the reverse strand
     std::vector<std::string> matched_exons;  // exons of the winning copy
+    std::vector<std::string> tied_copies;    // copies tied at the top exon count
     std::optional<std::string> contig;       // winning copy genomic contig
     std::optional<std::uint64_t> start;      // winning copy genomic start
     std::optional<std::uint64_t> end;

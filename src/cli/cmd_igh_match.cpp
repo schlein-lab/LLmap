@@ -142,9 +142,10 @@ int run_igh_match(int argc, char** argv) {
         return 65;
     }
 
-    (*out) << "read_id\tgene\tcopy\tn_exons\tstrand\tambiguous\n";
+    (*out) << "read_id\tgene\tcopy\tn_exons\tstrand\tambiguous_gene\t"
+              "ambiguous_copy\ttied_copies\n";
 
-    std::size_t n_reads = 0, n_called = 0, n_ambiguous = 0;
+    std::size_t n_reads = 0, n_called = 0, n_ambiguous = 0, n_ambiguous_copy = 0;
     std::map<std::string, std::size_t> per_gene, per_copy;
 
     auto handle = [&](const std::string& header, const std::string& seq) {
@@ -155,11 +156,18 @@ int run_igh_match(int argc, char** argv) {
         if (!m.matched || m.n_distinct_exons < o.min_exons) return;
         ++n_called;
         if (m.ambiguous_gene) ++n_ambiguous;
+        if (m.ambiguous_copy) ++n_ambiguous_copy;
         per_gene[m.gene]++;
         per_copy[m.copy_label]++;
+        std::string tied;
+        for (const auto& c : m.tied_copies) {
+            if (!tied.empty()) tied += ",";
+            tied += c;
+        }
         (*out) << ReadId(header) << '\t' << m.gene << '\t' << m.copy_label << '\t'
                << m.n_distinct_exons << '\t' << (m.is_reverse ? '-' : '+') << '\t'
-               << (m.ambiguous_gene ? "1" : "0") << '\n';
+               << (m.ambiguous_gene ? "1" : "0") << '\t'
+               << (m.ambiguous_copy ? "1" : "0") << '\t' << tied << '\n';
     };
 
     std::string line, seq;
@@ -193,8 +201,8 @@ int run_igh_match(int argc, char** argv) {
 
     out->flush();
     std::fprintf(stderr,
-        "[igh-match] reads=%zu calls=%zu ambiguous=%zu\n",
-        n_reads, n_called, n_ambiguous);
+        "[igh-match] reads=%zu calls=%zu ambiguous_gene=%zu ambiguous_copy=%zu\n",
+        n_reads, n_called, n_ambiguous, n_ambiguous_copy);
     std::fprintf(stderr, "[igh-match] per-gene:\n");
     for (const auto& [g, c] : per_gene)
         std::fprintf(stderr, "    %s\t%zu\n", g.c_str(), c);
