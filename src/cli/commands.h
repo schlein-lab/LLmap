@@ -17,5 +17,6 @@ int run_check(int argc, char** argv);
 int run_annotate_ref(int argc, char** argv);
 int run_annotate_specific_loci(int argc, char** argv);
 int run_igh_resort(int argc, char** argv);
+int run_igh_match(int argc, char** argv);
 
 }  // namespace llmap::cli

@@ -58,6 +58,7 @@ void print_usage() {
         "  check             V1.0 readiness check (Phase 10)\n"
         "  annotate-ref      Compute region annotations for a reference (Phase 12)\n"
         "  igh-resort        Post-hoc IGH paralog re-sort of an existing SAM/BAM\n"
+        "  igh-match         Alignment-free IGH paralog assignment from reads (FASTQ/FASTA)\n"
         "  --version         Show version\n"
         "  --help            Show this message\n"
     );
@@ -125,6 +126,10 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "igh-resort") == 0) {
         return llmap::cli::run_igh_resort(argc - 2, argv + 2);
+    }
+
+    if (std::strcmp(argv[1], "igh-match") == 0) {
+        return llmap::cli::run_igh_match(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,
