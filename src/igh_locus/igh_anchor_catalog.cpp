@@ -267,12 +267,24 @@ IghMatch IghAnchorCatalog::Match(std::string_view read_seq) const {
         if (e == top) ++n_genes_at_top;
     }
 
+    // Copy-level ambiguity: >1 copy tied on the max distinct-exon count means the
+    // read covers only exons shared (sequence-identical) between those copies, so
+    // it cannot be resolved to one copy. We still report a (tie-broken) best copy
+    // but flag the tie and list the tied copies, rather than over-committing.
+    std::vector<std::string> tied;
+    for (const auto& [label, agg] : per_copy) {
+        if (agg.exons.size() == top) tied.push_back(label);
+    }
+    std::sort(tied.begin(), tied.end());
+
     m.matched = true;
     m.gene = best_agg->gene;
     m.copy_label = *best;
     m.n_anchor_hits = best_agg->hits;
     m.n_distinct_exons = static_cast<int>(best_agg->exons.size());
     m.ambiguous_gene = n_genes_at_top > 1;
+    m.ambiguous_copy = tied.size() > 1;
+    m.tied_copies = std::move(tied);
     m.is_reverse = best_agg->reverse;
     m.matched_exons = best_agg->exons;
 

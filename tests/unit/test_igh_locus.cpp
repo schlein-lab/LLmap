@@ -43,7 +43,46 @@ std::string WriteCatalogFasta() {
     return path.string();
 }
 
+// Two IGHG4 copies sharing an identical CH2 but with distinct CH1: a read over
+// only the shared CH2 is copy-ambiguous; a read over CH1 resolves to one copy.
+const std::string kC1_CH1 = "ACACACGTGTACACGTACGTACACGTGTACACGTACGTACACGTGTACAC";
+const std::string kC2_CH1 = "GAGAGTCTCTGAGTCTCAGAGTCTCTGAGTCTCAGAGTCTCTGAGTCTCA";
+const std::string kShared_CH2 = "TTGGTTGGCCAACCAATTGGCCAATTGGCCAATTGGTTGGCCAACCAATT";
+
+std::string WriteAmbigCatalogFasta() {
+    auto path = std::filesystem::temp_directory_path() /
+                "llmap_igh_ambig_anchors.fa";
+    std::ofstream out(path);
+    out << ">IGHG4_C1_hap1_CH1_50bp\n" << kC1_CH1 << "\n";
+    out << ">IGHG4_C1_hap1_CH2_50bp\n" << kShared_CH2 << "\n";
+    out << ">IGHG4_C2_hap2_CH1_50bp\n" << kC2_CH1 << "\n";
+    out << ">IGHG4_C2_hap2_CH2_50bp\n" << kShared_CH2 << "\n";  // identical CH2
+    return path.string();
+}
+
 }  // namespace
+
+TEST(IghAnchorCatalog, AmbiguousCopyOnSharedExon) {
+    auto cat = IghAnchorCatalog::LoadFasta(WriteAmbigCatalogFasta());
+    ASSERT_TRUE(cat.has_value());
+    // Read covers ONLY the shared CH2 -> both copies tie at 1 exon.
+    IghMatch m = cat->Match("GG" + kShared_CH2 + "CC");
+    EXPECT_TRUE(m.matched);
+    EXPECT_EQ(m.gene, "IGHG4");
+    EXPECT_TRUE(m.ambiguous_copy);
+    EXPECT_EQ(m.tied_copies.size(), 2u);
+}
+
+TEST(IghAnchorCatalog, ResolvedCopyOnDiscriminatingExon) {
+    auto cat = IghAnchorCatalog::LoadFasta(WriteAmbigCatalogFasta());
+    ASSERT_TRUE(cat.has_value());
+    // Read covers C1's distinct CH1 + the shared CH2 -> C1 wins (2 vs 1 exon).
+    IghMatch m = cat->Match("GG" + kC1_CH1 + "AT" + kShared_CH2 + "CC");
+    EXPECT_TRUE(m.matched);
+    EXPECT_EQ(m.copy_label, "IGHG4_C1_hap1");
+    EXPECT_FALSE(m.ambiguous_copy);
+    EXPECT_EQ(m.n_distinct_exons, 2);
+}
 
 TEST(IghRegion, GenomicMembershipSuffixContig) {
     IghRegion r = IghRegion::Default();
