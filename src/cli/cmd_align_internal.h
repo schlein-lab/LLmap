@@ -79,6 +79,15 @@ struct AlignArgs {
     // pass it to the chain DP so per-anchor parameters can be overridden
     // per region (paralog, low-complexity, centromere, ...).
     std::string region_annot;
+
+    // Post-hoc IGH-locus re-sort. Runs after standard mapping and re-points
+    // reads in the immunoglobulin heavy-chain constant region to their true
+    // paralog copy using exact exon anchors. ON by default; disable with
+    // --no-igh-locus. Needs an anchor FASTA (--igh-anchors); if none is given
+    // the stage is a no-op.
+    bool enable_igh_locus = true;
+    std::string igh_anchors;        // FASTA of paralog-specific CH exon anchors
+    int igh_max_mismatch = 0;       // 0 = exact; >0 tolerates read error
 };
 
 void PrintAlignUsage();
@@ -126,6 +135,8 @@ struct BatchAlignResult {
     std::size_t n_mapped = 0;
     std::size_t n_unmapped = 0;
     double identity_sum_weighted = 0.0;
+    std::size_t igh_resorted = 0;
+    std::size_t igh_paralog_set = 0;
     bool error = false;
 };
 

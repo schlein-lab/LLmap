@@ -127,6 +127,12 @@ void PrintAlignUsage() {
         "  --classical-only        Pure seed-chain-extend mode (no probabilistic framework)\n"
         "                          Reduces memory footprint; disables --llm if set\n"
         "\n"
+        "IGH locus re-sort (post-hoc, ON by default):\n"
+        "  --igh-anchors FILE      FASTA of paralog-specific CH exon anchors\n"
+        "                          (headers: GENE_COPY_HAP_EXON, optional loc=chr:start-end)\n"
+        "  --igh-max-mismatch INT  Tolerated mismatches per exon anchor [0 = exact]\n"
+        "  --no-igh-locus          Disable the IGH post-hoc re-sort stage\n"
+        "\n"
         "Other:\n"
         "  -v, --verbose           Verbose output\n"
         "  -h, --help              Show this help\n"
@@ -223,6 +229,12 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             args.psv_only = true;
         } else if (arg == "--classical-only") {
             args.classical_only = true;
+        } else if (arg == "--igh-anchors" && i + 1 < argc) {
+            args.igh_anchors = argv[++i];
+        } else if (arg == "--igh-max-mismatch" && i + 1 < argc) {
+            args.igh_max_mismatch = std::stoi(argv[++i]);
+        } else if (arg == "--no-igh-locus") {
+            args.enable_igh_locus = false;
         } else if (arg[0] == '-') {
             std::fprintf(stderr, "Unknown option: %s\n", arg.c_str());
             return false;

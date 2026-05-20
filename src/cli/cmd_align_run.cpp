@@ -12,6 +12,8 @@
 #include "classical/classical_pipeline.h"
 #include "core/alignment_record.h"
 #include "core/thread_pool.h"
+#include "igh_locus/igh_anchor_catalog.h"
+#include "igh_locus/igh_resort.h"
 #include "output/bam_writer.h"
 #include "output/parquet_writer.h"
 #include "psv/psv_catalog.h"
@@ -57,6 +59,27 @@ BatchAlignResult RunAlignmentBatches(
     constexpr std::size_t kBatchSize = 50000;
 
     BatchAlignResult result;
+
+    // Load the IGH paralog anchor catalog once (post-hoc re-sort stage). The
+    // stage is ON by default but only acts when an anchor FASTA is supplied.
+    std::optional<igh_locus::IghAnchorCatalog> igh_catalog;
+    if (args.enable_igh_locus && !args.igh_anchors.empty()) {
+        igh_catalog = igh_locus::IghAnchorCatalog::LoadFasta(
+            args.igh_anchors, args.igh_max_mismatch);
+        if (igh_catalog) {
+            std::fprintf(stderr,
+                "[igh] post-hoc re-sort enabled: %zu anchors from %s (max_mismatch=%d)\n",
+                igh_catalog->size(), args.igh_anchors.c_str(),
+                args.igh_max_mismatch);
+        } else {
+            std::fprintf(stderr,
+                "[igh] warning: could not load anchors from %s; skipping re-sort\n",
+                args.igh_anchors.c_str());
+        }
+    } else if (args.enable_igh_locus && args.verbose) {
+        std::fprintf(stderr,
+            "[igh] re-sort enabled but no --igh-anchors given; stage is a no-op\n");
+    }
 
     while (read_reader.HasMore()) {
         std::vector<std::string> batch_names;
@@ -122,6 +145,15 @@ BatchAlignResult RunAlignmentBatches(
         if (psv_catalog) {
             ApplyPsvAssignments(
                 *psv_catalog, args, records, batch_seqs, args.verbose);
+        }
+
+        if (igh_catalog) {
+            igh_locus::ResortOptions ropts;
+            ropts.verbose = args.verbose;
+            igh_locus::ResortStats rs =
+                igh_locus::ApplyResort(*igh_catalog, records, batch_seqs, ropts);
+            result.igh_resorted += rs.n_resorted;
+            result.igh_paralog_set += rs.n_paralog_set;
         }
 
         if (!bam_writer.WriteBatch(records)) {
