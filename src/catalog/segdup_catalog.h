@@ -14,6 +14,7 @@
 
 #include <cstdint>
 #include <filesystem>
+#include <functional>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -211,6 +212,24 @@ public:
 
     /// Count of entries matching a structural_architecture value.
     std::size_t count_architecture(std::string_view architecture) const;
+
+    /// Iterate over every T1 (curated) entry in load order.
+    ///
+    /// Stable while the catalog is unmodified; the reference passed to the
+    /// callback is valid only for the duration of that callback invocation.
+    /// Use this in preference to scraping `entries()` + filtering when you
+    /// only care about curated records — it documents intent at the call
+    /// site and makes adapter code (e.g. classify::SegDupCatalogAdapter)
+    /// independent of the internal tier-encoding.
+    void for_each_curated(
+        const std::function<void(const SegDupCatalogEntry&)>& cb) const;
+
+    /// Predicate-filtered variant. The predicate runs first; the callback
+    /// only fires for curated entries that pass it. Saves callers from
+    /// writing a two-stage filter at every call site.
+    void for_each_curated(
+        const std::function<bool(const SegDupCatalogEntry&)>& predicate,
+        const std::function<void(const SegDupCatalogEntry&)>& cb) const;
 
 private:
     std::vector<SegDupCatalogEntry> entries_;

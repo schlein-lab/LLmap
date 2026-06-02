@@ -34,3 +34,17 @@ target_link_libraries(test_bulk_loader
     GTest::gtest_main
 )
 gtest_discover_tests(test_bulk_loader)
+
+# for_each_curated() + adapter no-IGHG-hardcode proof.
+# Links llmap_classify so it can exercise SegDupCatalogAdapter.
+add_executable(test_for_each_curated
+    test_for_each_curated.cpp
+)
+target_link_libraries(test_for_each_curated
+    PRIVATE
+    llmap_catalog
+    llmap_classify
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_for_each_curated)

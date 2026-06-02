@@ -51,32 +51,25 @@ SegDupCatalogAdapter::LookupByPosition(std::string_view target_id,
 std::optional<CatalogEntryView>
 SegDupCatalogAdapter::LookupByHaplotypeClass(
     std::string_view haplotype_class) const {
-    // No direct lookup-by-haplotype in the catalog; scan all entries.
-    // Catalog typically holds < 300 T1 entries — linear scan is fine.
-    for (const auto& e : cat_.lookup_by_locus_id("")) {
-        // unused fallthrough — kept tiny for compile, will swap to proper
-        // accessor once `for_each_curated()` lands in the catalog API.
-        (void)e;
-        break;
-    }
-    // Walk: catalog exposes only id-keyed lookup; we need a haplotype-keyed
-    // iteration. Use a temporary pull via id-list when the catalog grows
-    // that accessor. Until then we just match the IGHG4 trio via direct
-    // id heuristics so the IGH-mode tests have a working code path.
-    static const char* const k_known_ids[] = {
-        "IGHG4_chimdup_tandem",
-        "IGHG_canondup_nahr_block",
-        "IGHG4_chimdup_canonical_arch",
-    };
-    for (const char* id : k_known_ids) {
-        auto hits = cat_.lookup_by_locus_id(id);
-        for (const auto& e : hits) {
+    // The catalog has no haplotype-keyed index — we scan every curated
+    // record linearly via for_each_curated(). The curated tier is expected
+    // to stay well under a thousand entries (currently 24, target ~300 by
+    // v2026.Q4), so a linear scan is cheap; this method is also never
+    // called from the alignment hot loop.
+    //
+    // First match wins. If two curated entries happen to share the same
+    // haplotype_class string the catalog is malformed — we surface the
+    // first one as a best-effort hit rather than failing, but a future
+    // catalog validator should reject duplicates upstream.
+    std::optional<CatalogEntryView> found;
+    cat_.for_each_curated(
+        [&](const catalog::SegDupCatalogEntry& e) {
+            if (found) return;                                  // first wins
             if (e.haplotype_class == haplotype_class) {
-                return make_view(e);
+                found = make_view(e);
             }
-        }
-    }
-    return std::nullopt;
+        });
+    return found;
 }
 
 }  // namespace llmap::classify::igh

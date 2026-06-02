@@ -222,4 +222,37 @@ SegDupCatalog::count_architecture(std::string_view architecture) const {
     return n;
 }
 
+// ---------------------------------------------------------------------------
+// for_each_curated — replaces ad-hoc `entries() + filter` patterns.
+//
+// Linear scan over the entries_ vector; the curated tier is expected to stay
+// in the low hundreds (24 entries at the time of writing, with v2026.Q3
+// backlog targets of ~50). If profiling ever flags this as a hot path we can
+// switch to a pre-computed index of curated-only positions — but it would
+// only matter if a caller started running this inside the alignment hot
+// loop, which the API contract explicitly discourages.
+//
+// Why not just expose `entries()` and let callers filter? The adapter
+// (src/classify/segdup_catalog_adapter.cpp::LookupByHaplotypeClass)
+// previously hard-coded an IGHG-trio whitelist because there was no clean
+// way to iterate just curated records. Surfacing `for_each_curated` makes
+// the curated-tier-only intent first-class at the call site and lets the
+// adapter drop the hard-code.
+// ---------------------------------------------------------------------------
+
+void SegDupCatalog::for_each_curated(
+    const std::function<void(const SegDupCatalogEntry&)>& cb) const {
+    for (const auto& e : entries_) {
+        if (e.is_curated()) cb(e);
+    }
+}
+
+void SegDupCatalog::for_each_curated(
+    const std::function<bool(const SegDupCatalogEntry&)>& predicate,
+    const std::function<void(const SegDupCatalogEntry&)>& cb) const {
+    for (const auto& e : entries_) {
+        if (e.is_curated() && predicate(e)) cb(e);
+    }
+}
+
 }  // namespace llmap::catalog
