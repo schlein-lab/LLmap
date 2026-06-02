@@ -76,6 +76,18 @@ target_link_libraries(test_junction_db
 )
 gtest_discover_tests(test_junction_db)
 
+# Block 4.5c — short-read pipeline (paired-end + equivalence classes).
+add_executable(test_short_read_handler
+    unit/test_short_read_handler.cpp
+)
+target_link_libraries(test_short_read_handler
+    PRIVATE
+    llmap_io
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_short_read_handler)
+
 add_executable(test_bucket_pyramid
     unit/test_bucket_pyramid.cpp
 )
