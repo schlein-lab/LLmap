@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/schlein-lab/LLmap/catalog/schema/curated.schema.json",
+  "title": "LLmap SegDup Catalog — T1 Curated Locus",
+  "description": "One JSON file per high-priority segmental-duplication locus. Backed by published evidence (primary_sources) and database provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "locus_id", "human_name", "version", "schema_version",
+    "structural_architecture", "haplotype_class", "mechanism", "clinical_function",
+    "coords", "diagnostic_features", "mapping_strategy", "provenance"
+  ],
+  "properties": {
+    "locus_id":        { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]+$",
+                         "description": "stable id (gene-name-style allowed, must match filename)" },
+    "human_name":      { "type": "string", "minLength": 4 },
+    "version":         { "type": "string", "pattern": "^v[0-9]{4}\\.Q[1-4]$",
+                         "description": "catalog release this entry belongs to, e.g. v2026.Q2" },
+    "schema_version":  { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+
+    "structural_architecture": {
+      "type": "string",
+      "description": "Strukturelle Kopiezahl + Anordnung. KEINE Sequenz-Information — das ist haplotype_class.",
+      "enum": ["single_copy",
+               "tandem_dup_small", "tandem_dup_large",
+               "intrachromosomal_interspersed", "interchromosomal",
+               "subtelomeric", "pericentromeric",
+               "palindromic_inverted", "inverted_dispersed",
+               "complex_mosaic", "unresolved"]
+    },
+    "haplotype_class": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Locus-spezifischer Haplotyp-Klassen-Tag (z.B. 'IGHG4_chimdup_homozygous', 'IGHG_canonical_homozygous'). Bedeutung pro Locus in diagnostic_features.discriminating_snps dokumentieren — KEIN globales Enum, weil jeder Locus eigene PSV-Klassen hat. Konvention: '<locus_short>_<descriptor>'.",
+      "pattern": "^[A-Za-z][A-Za-z0-9_]+$"
+    },
+    "mechanism": {
+      "type": "array", "uniqueItems": true,
+      "items": { "type": "string",
+                 "enum": ["nahr_prone", "nahr_inversion_substrate",
+                          "gene_conversion_prone", "core_duplicon",
+                          "palindrome_mediated_nahr", "none_documented"] }
+    },
+    "clinical_function": {
+      "type": "array", "uniqueItems": true,
+      "items": { "type": "string",
+                 "enum": ["microdel_microdup_syndrome", "mendelian_disease_locus",
+                          "immune_receptor_locus", "mhc_locus",
+                          "dispersed_paralog_gene_family", "pseudogene_paralog_pair",
+                          "gene_conversion_disease_locus", "pangenome_only"] }
+    },
+    "nahr_status": {
+      "type": "string",
+      "enum": ["high_identity_nahr_prone", "ambiguous_low_identity",
+               "non_nahr", "not_applicable"]
+    },
+
+    "coords": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "null" },
+          { "type": "object",
+            "required": ["chrom", "start", "end"],
+            "properties": {
+              "chrom":  { "type": "string" },
+              "start":  { "type": "integer", "minimum": 0 },
+              "end":    { "type": "integer", "minimum": 1 },
+              "strand": { "type": "string", "enum": ["+", "-", "."] },
+              "note":   { "type": "string" }
+            }
+          }
+        ]
+      },
+      "description": "Keys are assembly identifiers (GRCh38, CHM13, HPRC_pangenome_v1.1, mm39, ...). null means coords not yet resolved on that assembly."
+    },
+
+    "unit_size_bp":              { "type": ["integer", "null"], "minimum": 1 },
+    "copy_count_typical":        { "type": "string" },
+    "identity_pct_within_unit":  { "type": ["number", "null"],  "minimum": 0, "maximum": 100 },
+    "boundary_sharpness":        { "type": "string",  "enum": ["sharp", "gradual", "unknown"] },
+    "boundary_position_bp_upstream_of_CH1": { "type": "integer" },
+    "co_duplicated_genes":       { "type": "array", "items": { "type": "string" },
+                                   "description": "Gene symbols co-amplified with focal gene (e.g. NAHR-blocks)" },
+    "architecture_note":         { "type": "string",
+                                   "description": "Free-form caveat when standard architecture tag does not capture nuance" },
+
+    "diagnostic_features": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "discriminating_snps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "position", "ref", "alt", "class"],
+            "properties": {
+              "id":          { "type": "string" },
+              "position":    { "type": "object" },
+              "ref":         { "type": "string", "pattern": "^[ACGTN]+$" },
+              "alt":         { "type": "string", "pattern": "^[ACGTN]+$" },
+              "consequence": { "type": "string" },
+              "class":       { "type": "string",
+                               "enum": ["DUP_fixed", "ORIG_fixed",
+                                        "DUP_polymorph", "ORIG_polymorph",
+                                        "private", "uncertain"] },
+              "frequency_in_carriers":        { "type": "number", "minimum": 0, "maximum": 1 },
+              "frequency_in_canonical_haps":  { "type": "number", "minimum": 0, "maximum": 1 },
+              "frequency_in_dup_haps":        { "type": "number", "minimum": 0, "maximum": 1 },
+              "source":      { "type": "string" },
+              "note":        { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "mapping_strategy": {
+      "type": "object",
+      "required": ["primary"],
+      "properties": {
+        "primary": {
+          "type": "object",
+          "required": ["kmer_size", "max_mismatch"],
+          "properties": {
+            "kmer_size":             { "type": "integer", "minimum": 11, "maximum": 64 },
+            "max_mismatch":          { "type": "integer", "minimum": 0,  "maximum": 10 },
+            "include_flanking_bp":   { "type": "integer", "minimum": 0 },
+            "include_flanking_anchor": { "type": "string" },
+            "require_unique_chain":  { "type": "boolean" },
+            "note":                  { "type": "string" }
+          }
+        },
+        "fallback_chain": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stage", "name"],
+            "properties": {
+              "stage": { "type": "integer", "minimum": 1, "maximum": 9 },
+              "name":  { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+
+    "test_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sample", "expected_class"],
+        "properties": {
+          "sample":          { "type": "string" },
+          "hap":             { "type": ["integer", "string"] },
+          "expected_class":  { "type": "string" },
+          "expected_copies": { "type": "array", "items": { "type": "string" } },
+          "note":            { "type": "string" }
+        }
+      }
+    },
+
+    "provenance": {
+      "type": "object",
+      "required": ["primary_sources", "curator", "first_added", "last_reviewed"],
+      "properties": {
+        "primary_sources": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["type", "id"],
+            "properties": {
+              "type": { "type": "string",
+                       "enum": ["paper", "preprint", "database_record",
+                                "internal_analysis", "personal_communication"] },
+              "id":   { "type": "string" },
+              "year": { "type": "integer", "minimum": 1990 },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "supporting_databases": { "type": "array", "items": { "type": "string" } },
+        "internal_analysis_artifacts": { "type": "array", "items": { "type": "string" } },
+        "curator":       { "type": "string" },
+        "first_added":   { "type": "string", "format": "date" },
+        "last_reviewed": { "type": "string", "format": "date" }
+      }
+    },
+
+    "related_loci": { "type": "array", "items": { "type": "string" } }
+  }
+}
