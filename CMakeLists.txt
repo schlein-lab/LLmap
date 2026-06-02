@@ -269,6 +269,9 @@ add_subdirectory(src/catalog)
 # so its zlib dep stays explicit and the GENCODE GFF3 loader can evolve
 # without touching the main src tree.
 add_subdirectory(src/anchor)
+# RNA modification / splicing-state / AID-footprint annotators
+# (Plan-Block 2.6). Pure-data + classifier modules; no I/O dep.
+add_subdirectory(src/rnamod)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -281,6 +284,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests)
     add_subdirectory(tests/catalog)
     add_subdirectory(tests/anchor)
+    add_subdirectory(tests/rnamod)
 endif()
 
 # Status summary
