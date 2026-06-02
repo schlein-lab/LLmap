@@ -123,3 +123,4 @@ benchmarks/reports/*/*/comparison.tsv
 benchmarks/reports/*/*/.locks/
 benchmarks/.locks/
 build_the HPC cluster/
+build_catalog/
