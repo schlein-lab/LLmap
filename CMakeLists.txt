@@ -276,6 +276,10 @@ add_subdirectory(src/rnamod)
 # aware, six segregated origin tables. Independent of llmap_anchor at
 # build time (anchor header-only), but tests link both.
 add_subdirectory(src/index)
+# Multi-Signal Fusion Engine (Plan-Block 4.5) — 10-factor likelihood
+# fusion that feeds Wave-Collapse. The differentiating layer vs every
+# existing long-read aligner.
+add_subdirectory(src/fusion)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -290,6 +294,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests/anchor)
     add_subdirectory(tests/rnamod)
     add_subdirectory(tests/index)
+    add_subdirectory(tests/fusion)
 endif()
 
 # Status summary
