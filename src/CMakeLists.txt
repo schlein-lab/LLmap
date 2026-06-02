@@ -1,5 +1,6 @@
 add_library(llmap_core STATIC
     core/alignment_record.cpp
+    core/transcript_kind.cpp
     core/bucket_pyramid.cpp
     core/wave_state.cpp
     core/simd.cpp
@@ -40,7 +41,8 @@ target_include_directories(llmap_io PUBLIC
 target_compile_features(llmap_io PUBLIC cxx_std_23)
 target_link_libraries(llmap_io PUBLIC llmap_core)
 
-# Output module — writers (cluster assignments, BAM/Parquet)
+# Output module — writers (cluster assignments, BAM/Parquet) + lossless
+# invariant accountant (lossless_aggregator) used by every sink.
 add_library(llmap_output STATIC
     output/cluster_writer.cpp
     output/bam_writer.cpp
@@ -51,6 +53,7 @@ add_library(llmap_output STATIC
     output/parquet_reader.cpp
     output/parquet_reader_read.cpp
     output/parquet_reader_util.cpp
+    output/lossless_aggregator.cpp
 )
 
 target_include_directories(llmap_output PUBLIC

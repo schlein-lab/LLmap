@@ -11,6 +11,34 @@ target_link_libraries(test_alignment_record
 )
 gtest_discover_tests(test_alignment_record)
 
+# Extended status set: MappedSterile / MappedPreMrna / MappedCircular /
+# PartialMappedExact / ChimericIntra / ChimericInter / DarkNovel
+# plus TranscriptKind round-trip + IsAnyMapped predicate.
+add_executable(test_alignment_record_extended
+    unit/test_alignment_record_extended.cpp
+)
+target_link_libraries(test_alignment_record_extended
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_alignment_record_extended)
+
+# Lossless invariant accountant tests (counters, invariant detection,
+# JSON summary round-trip, thread-safety under contention).
+add_executable(test_lossless_aggregator
+    unit/test_lossless_aggregator.cpp
+)
+target_link_libraries(test_lossless_aggregator
+    PRIVATE
+    llmap_core
+    llmap_output
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_lossless_aggregator)
+
 add_executable(test_bucket_pyramid
     unit/test_bucket_pyramid.cpp
 )
