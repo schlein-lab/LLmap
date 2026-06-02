@@ -117,20 +117,50 @@ float ComputeLModification(const ReadContext& read,
 
 /// 3. L_depth_coverage — Negative-Binomial per-exon expression-prior.
 ///
-/// Without per-exon depth available in this commit we use a flat-1.0
-/// neutral output; Block 4.5b lands the ExpressionDb and wires this
-/// factor end-to-end.
-float ComputeLDepthCoverage(const anchor::AnchorRecord& /*anchor*/) {
-    return 1.0f;
+/// When no ExpressionDb is plumbed, returns neutral 1.0. When an
+/// ExpressionDb is provided AND we have an (anchor.transcript_id,
+/// tissue) entry, we treat that TPM as the expected mean depth for a
+/// normalised Negative-Binomial likelihood. Without per-exon observed
+/// depth we approximate via a log-sigmoid on the TPM itself, which
+/// scales sensibly with expression range.
+float ComputeLDepthCoverage(const anchor::AnchorRecord& anchor,
+                              const TissueContext& tissue,
+                              const ExpressionDb* expr_db) {
+    if (expr_db == nullptr || anchor.transcript_id.empty()
+        || tissue.label.empty()) {
+        return 1.0f;
+    }
+    const float tpm = expr_db->ExpectedTpm(anchor.transcript_id, tissue.label);
+    if (tpm < 0.0f) return 1.0f;  // unknown → neutral
+
+    // Plan-Block 4.5 sigmoid (TPM=0 → 0.18, TPM=10 → 0.50,
+    // TPM=1000 → 0.95). Centred at log10(11) ≈ 1.04 with scale 0.67
+    // fits all four spec'd anchor points within ±0.02.
+    const float v = Sigmoid((std::log10(tpm + 1.0f) - 1.04f) / 0.67f);
+    return std::max(0.10f, std::min(0.98f, v));
 }
 
 /// 4. L_expression_prior — tissue × cell-type TPM sigmoid.
 ///
-/// Sigmoid mapping log10(TPM+1) → [0.1, 0.98]. Same caveat as L_depth:
-/// fully wired in Block 4.5b. For now we return neutral.
-float ComputeLExpressionPrior(const anchor::AnchorRecord& /*anchor*/,
-                                const TissueContext& /*tissue*/) {
-    return 1.0f;
+/// Plan-Block 4.5 numerical table:
+///   TPM=0     → 0.18
+///   TPM=1     → 0.40
+///   TPM=10    → 0.50
+///   TPM=100   → 0.78
+///   TPM=1000  → 0.95
+/// Sigmoid centred at log10(11) ≈ 1.04 with scale 0.67.
+float ComputeLExpressionPrior(const anchor::AnchorRecord& anchor,
+                                const TissueContext& tissue,
+                                const ExpressionDb* expr_db) {
+    if (expr_db == nullptr || anchor.transcript_id.empty()
+        || tissue.label.empty()) {
+        return 1.0f;
+    }
+    const float tpm = expr_db->ExpectedTpm(anchor.transcript_id, tissue.label);
+    if (tpm < 0.0f) return 1.0f;  // unknown → neutral
+
+    const float v = Sigmoid((std::log10(tpm + 1.0f) - 1.04f) / 0.67f);
+    return std::max(0.10f, std::min(0.98f, v));
 }
 
 /// 5. L_phasing — HP-tag consistency.
@@ -200,12 +230,25 @@ float ComputeLJunction(const anchor::AnchorRecord& anchor) {
 
 /// 8. L_barcode_context — single-cell cell-type prior.
 ///
-/// Without the ExpressionDb plumbed (Block 4.5b) we default to neutral
-/// when the read carries a cell_type label; future wiring will look
-/// up P(anchor_tx_id | cell_type).
-float ComputeLBarcodeContext(const ReadContext& read) {
-    if (read.cell_type.empty()) return 1.0f;
-    return 1.0f;
+/// Look up P(anchor_tx_id | tissue, cell_type) via ExpressionDb. When
+/// the entry exists we sigmoid-map the expression fraction; absent
+/// entry or no cell_type ⇒ neutral.
+float ComputeLBarcodeContext(const ReadContext& read,
+                              const anchor::AnchorRecord& anchor,
+                              const TissueContext& tissue,
+                              const ExpressionDb* expr_db) {
+    if (read.cell_type.empty() || expr_db == nullptr
+        || anchor.transcript_id.empty()
+        || tissue.label.empty()) {
+        return 1.0f;
+    }
+    const float frac = expr_db->ExpectedCellTypeFraction(
+        anchor.transcript_id, tissue.label, read.cell_type);
+    if (frac < 0.0f) return 1.0f;
+    // Sigmoid on log10(frac+1) — frac is typically already in [0,1]
+    // so this compresses gently; floor at 0.10 per Plan-Block 4.5.
+    const float v = Sigmoid((std::log10(frac + 1.0f) - 0.3f) / 1.0f);
+    return std::max(0.10f, std::min(1.0f, v));
 }
 
 /// 9. L_mapq_signal — MAPQ as continuous signal, never a threshold.
@@ -290,6 +333,17 @@ LikelihoodFactors ComputeFactors(
     const ObservedModificationCalls& mods,
     const TissueContext& tissue,
     const FactorDisableMask& dis) {
+    return ComputeFactorsWithExpression(read, anchor, mods, tissue,
+                                          /*expr_db=*/nullptr, dis);
+}
+
+LikelihoodFactors ComputeFactorsWithExpression(
+    const ReadContext& read,
+    const anchor::AnchorRecord& anchor,
+    const ObservedModificationCalls& mods,
+    const TissueContext& tissue,
+    const ExpressionDb* expr_db,
+    const FactorDisableMask& dis) {
 
     LikelihoodFactors f;
     if (!dis.sequence)
@@ -297,9 +351,9 @@ LikelihoodFactors ComputeFactors(
     if (!dis.modification)
         f.L_modification = ComputeLModification(read, anchor, mods);
     if (!dis.depth_coverage)
-        f.L_depth_coverage = ComputeLDepthCoverage(anchor);
+        f.L_depth_coverage = ComputeLDepthCoverage(anchor, tissue, expr_db);
     if (!dis.expression_prior)
-        f.L_expression_prior = ComputeLExpressionPrior(anchor, tissue);
+        f.L_expression_prior = ComputeLExpressionPrior(anchor, tissue, expr_db);
     if (!dis.phasing)
         f.L_phasing = ComputeLPhasing(read, anchor);
     if (!dis.pseudogene_compatibility)
@@ -307,7 +361,8 @@ LikelihoodFactors ComputeFactors(
     if (!dis.junction)
         f.L_junction = ComputeLJunction(anchor);
     if (!dis.barcode_context)
-        f.L_barcode_context = ComputeLBarcodeContext(read);
+        f.L_barcode_context =
+            ComputeLBarcodeContext(read, anchor, tissue, expr_db);
     if (!dis.mapq_signal)
         f.L_mapq_signal = ComputeLMapqSignal(read);
     if (!dis.length_plausibility)

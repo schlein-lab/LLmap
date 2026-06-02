@@ -8,6 +8,7 @@
 
 add_library(llmap_fusion STATIC
     likelihood_factors.cpp
+    expression_db.cpp
 )
 
 target_include_directories(llmap_fusion PUBLIC

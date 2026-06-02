@@ -33,6 +33,7 @@
 
 #include "anchor/anchor_record.h"
 #include "core/transcript_kind.h"
+#include "fusion/expression_db.h"
 
 #include <cstdint>
 #include <optional>
@@ -145,6 +146,17 @@ LikelihoodFactors ComputeFactors(
     const anchor::AnchorRecord& anchor,
     const ObservedModificationCalls& mods,
     const TissueContext& tissue,
+    const FactorDisableMask& disabled = {});
+
+/// Overload that consults the ExpressionDb for L_expression_prior /
+/// L_depth_coverage / L_barcode_context. When `expr_db` is null, falls
+/// through to the no-expression version above.
+LikelihoodFactors ComputeFactorsWithExpression(
+    const ReadContext& read,
+    const anchor::AnchorRecord& anchor,
+    const ObservedModificationCalls& mods,
+    const TissueContext& tissue,
+    const ExpressionDb* expr_db,
     const FactorDisableMask& disabled = {});
 
 }  // namespace llmap::fusion
