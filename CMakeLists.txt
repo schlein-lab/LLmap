@@ -262,6 +262,9 @@ configure_file(
 
 # Subdirectories
 add_subdirectory(src)
+# SegDup catalog loader — independent of src/CMakeLists.txt to keep the
+# catalog module self-contained (own nlohmann_json dep).
+add_subdirectory(src/catalog)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -272,6 +275,7 @@ if(LLMAP_ENABLE_TESTS)
     )
     FetchContent_MakeAvailable(googletest)
     add_subdirectory(tests)
+    add_subdirectory(tests/catalog)
 endif()
 
 # Status summary
