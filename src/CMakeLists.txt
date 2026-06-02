@@ -184,7 +184,8 @@ if(LLMAP_WFA2_AVAILABLE)
     target_include_directories(llmap_classical PUBLIC ${WFA2_INCLUDE_DIR})
 endif()
 
-# Annot module — region annotations + classifier + interval tree
+# Annot module — region annotations + classifier + interval tree + the
+# Transcript-Mode splice/junction/RNA-kind annotators (Plan-Block 2.5).
 add_library(llmap_annot STATIC
     annot/annot_types.cpp
     annot/feature_extractor.cpp
@@ -193,6 +194,9 @@ add_library(llmap_annot STATIC
     annot/classifier.cpp
     annot/classifier_json.cpp
     annot/classifier_predicate.cpp
+    annot/splice_site_db.cpp
+    annot/transcript_kind_classifier.cpp
+    annot/junction_db.cpp
 )
 
 target_include_directories(llmap_annot PUBLIC

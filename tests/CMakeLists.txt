@@ -39,6 +39,43 @@ target_link_libraries(test_lossless_aggregator
 )
 gtest_discover_tests(test_lossless_aggregator)
 
+# Block 2.5 — Splice-site PWMs + branch-point + polypyrimidine.
+add_executable(test_splice_site_db
+    unit/test_splice_site_db.cpp
+)
+target_link_libraries(test_splice_site_db
+    PRIVATE
+    llmap_annot
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_splice_site_db)
+
+# Block 2.5 — TranscriptKind heuristic classifier.
+add_executable(test_transcript_kind_classifier
+    unit/test_transcript_kind_classifier.cpp
+)
+target_link_libraries(test_transcript_kind_classifier
+    PRIVATE
+    llmap_annot
+    llmap_anchor
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_transcript_kind_classifier)
+
+# Block 2.5 — Multi-source JunctionDb (GENCODE + GTEx + ChessDB + circBase).
+add_executable(test_junction_db
+    unit/test_junction_db.cpp
+)
+target_link_libraries(test_junction_db
+    PRIVATE
+    llmap_annot
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_junction_db)
+
 add_executable(test_bucket_pyramid
     unit/test_bucket_pyramid.cpp
 )
