@@ -1,0 +1,116 @@
+Bootstrap: docker
+From: ubuntu:24.04
+# NOTE: build_llmap_container.sh prefers the Dockerfile path (containers/
+# Dockerfile) when only docker is available locally, because singularity
+# 3.11's `%post` runs in an isolated net namespace where apt cannot reach
+# archive.ubuntu.com. If you have native apptainer with fakeroot, this .def
+# works as-is.
+
+%labels
+    Author        schlein.lab@gmail.com
+    Application   LLmap
+    Version       1.0.0
+    Description   Lossless. LLM-Augmented. Wave-Particle. Sequence mapper.
+    BaseOS        Ubuntu 24.04 (glibc 2.39, libstdc++ from gcc-13.3)
+    BuildHost     local Ubuntu 24.04 box / the HPC cluster compute node
+
+%files
+    # Bundle the ONNX Runtime shared libs we link against. The local build
+    # has RUNPATH pointing at /home/<user>/llmap-local/third_party/...;
+    # inside the container we put them under /opt/onnxruntime/lib so any
+    # rebuild from inside the container picks them up via LD_LIBRARY_PATH.
+    /home/<user>/llmap-local/third_party/onnxruntime/lib   /opt/onnxruntime/lib
+    /home/<user>/llmap-local/third_party/onnxruntime/include /opt/onnxruntime/include
+
+    # Ship the prebuilt llmap binary so we don't have to rebuild on every
+    # compute node (rebuild is fine inside the container, but pre-shipped
+    # binary is the fast path for the bench). The build_llmap_container.sh
+    # script will copy build/src/llmap into this path before %files runs.
+    /home/<user>/llmap-local/build/src/llmap               /opt/llmap/bin/llmap
+
+%post
+    set -eux
+
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+
+    # Compiler + build tooling — gcc-13 ships with Ubuntu 24.04 by default
+    # and provides GLIBCXX_3.4.32. Needed for rebuilding llmap inside the
+    # container on the HPC cluster compute nodes if the shipped binary is stale.
+    apt-get install -y --no-install-recommends \
+        gcc-13 g++-13 \
+        cmake \
+        ninja-build \
+        make \
+        git \
+        ca-certificates \
+        pkg-config \
+        python3 python3-pip python3-venv \
+        libcurl4-openssl-dev libssl-dev libzstd-dev \
+        zlib1g-dev libbz2-dev liblzma-dev \
+        libdeflate-dev \
+        libomp-dev \
+        wget curl \
+        less file procps
+
+    # Bioinformatics tools — used by the benchmark wrappers.
+    # samtools/minimap2 are also available via miniforge3 on the HPC cluster under
+    # /home/<user>/miniforge3/bin/, but bundling them keeps the container
+    # self-contained and lets it run on any node.
+    apt-get install -y --no-install-recommends \
+        samtools \
+        minimap2 \
+        bwa \
+        tabix
+
+    # Make gcc-13 the default.
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 \
+        --slave /usr/bin/g++ g++ /usr/bin/g++-13
+
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+    # Wire onnxruntime into the standard linker path.
+    echo "/opt/onnxruntime/lib" > /etc/ld.so.conf.d/onnxruntime.conf
+    ldconfig
+
+    # Quick sanity: print what we have.
+    gcc --version | head -1
+    cmake --version | head -1
+    minimap2 --version
+    samtools --version | head -1
+
+%environment
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
+    # llmap binary picks up onnxruntime via system ld.so cache OR runpath.
+    # Belt + suspenders: also set LD_LIBRARY_PATH.
+    export LD_LIBRARY_PATH=/opt/onnxruntime/lib:${LD_LIBRARY_PATH:-}
+    export PATH=/opt/llmap/bin:${PATH}
+
+%runscript
+    # Default action: forward all args to llmap. Lets users run:
+    #   apptainer run llmap.sif --version
+    #   apptainer run llmap.sif align ...
+    exec /opt/llmap/bin/llmap "$@"
+
+%test
+    set -e
+    /opt/llmap/bin/llmap --version
+    minimap2 --version
+    samtools --version | head -1
+    echo "[llmap.sif] self-test OK"
+
+%help
+    LLmap container — Ubuntu 24.04 base with:
+      - llmap 1.0.0 at /opt/llmap/bin/llmap
+      - ONNX Runtime shared libs at /opt/onnxruntime/lib
+      - minimap2, samtools, bwa, tabix
+      - gcc-13 / g++-13 / cmake / ninja for rebuilds
+
+    Usage:
+      apptainer run  llmap.sif --version           # via %runscript
+      apptainer exec llmap.sif llmap align ...     # explicit
+      apptainer exec --bind /beegfs llmap.sif bash # interactive
+
+    Bind /beegfs on the HPC cluster so data + outputs are visible.

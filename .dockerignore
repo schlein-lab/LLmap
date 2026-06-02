@@ -1,0 +1,11 @@
+# Anything not explicitly needed by containers/Dockerfile.
+# The build context is $LLMAP_ROOT but we only COPY:
+#   third_party/onnxruntime/lib
+#   third_party/onnxruntime/include
+#   build/src/llmap
+# Everything else is excluded.
+*
+!third_party/onnxruntime/lib/**
+!third_party/onnxruntime/include/**
+!build/src/llmap
+!containers/Dockerfile
