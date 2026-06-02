@@ -280,6 +280,9 @@ add_subdirectory(src/index)
 # fusion that feeds Wave-Collapse. The differentiating layer vs every
 # existing long-read aligner.
 add_subdirectory(src/fusion)
+# Transcript-Mode spliced WaveCollapse extension (Plan-Block 5).
+# Standalone — DNA-mode em_iterator stays bit-identical.
+add_subdirectory(src/wavecollapse)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -295,6 +298,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests/rnamod)
     add_subdirectory(tests/index)
     add_subdirectory(tests/fusion)
+    add_subdirectory(tests/wavecollapse)
 endif()
 
 # Status summary
