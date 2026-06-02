@@ -272,6 +272,10 @@ add_subdirectory(src/anchor)
 # RNA modification / splicing-state / AID-footprint annotators
 # (Plan-Block 2.6). Pure-data + classifier modules; no I/O dep.
 add_subdirectory(src/rnamod)
+# Transcript-mode reverse k-mer index (Plan-Block 3) — exon-boundary
+# aware, six segregated origin tables. Independent of llmap_anchor at
+# build time (anchor header-only), but tests link both.
+add_subdirectory(src/index)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -285,6 +289,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests/catalog)
     add_subdirectory(tests/anchor)
     add_subdirectory(tests/rnamod)
+    add_subdirectory(tests/index)
 endif()
 
 # Status summary
