@@ -124,3 +124,4 @@ benchmarks/reports/*/*/.locks/
 benchmarks/.locks/
 build_the HPC cluster/
 build_catalog/
+*.sif
