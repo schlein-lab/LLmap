@@ -680,3 +680,9 @@ target_link_libraries(test_align_integration
     GTest::gtest_main
 )
 gtest_discover_tests(test_align_integration)
+
+# ========== Classify Module Tests ==========
+add_subdirectory(classify)
+
+# ========== Mapper Module Tests ==========
+add_subdirectory(mapper)

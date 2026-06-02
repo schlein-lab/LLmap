@@ -241,6 +241,12 @@ target_include_directories(llmap_igh_locus PUBLIC
 target_compile_features(llmap_igh_locus PUBLIC cxx_std_23)
 target_link_libraries(llmap_igh_locus PUBLIC llmap_core)
 
+# Mapper module — SegDup fallback hierarchy (and future mapper bits).
+add_subdirectory(mapper)
+
+# Classify module — IGH-mode upstream-anchor classifier (canonical/chimdup).
+add_subdirectory(classify)
+
 # Single-cell module — cell barcode and UMI preservation
 add_library(llmap_singlecell STATIC
     singlecell/cb_preservation.cpp
