@@ -283,6 +283,9 @@ add_subdirectory(src/fusion)
 # Transcript-Mode spliced WaveCollapse extension (Plan-Block 5).
 # Standalone — DNA-mode em_iterator stays bit-identical.
 add_subdirectory(src/wavecollapse)
+# Transcript-Mode spliced-chain joiner (Plan-Block 6). Operates on top
+# of the classical chainer output without modifying it.
+add_subdirectory(src/mapping)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -299,6 +302,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests/index)
     add_subdirectory(tests/fusion)
     add_subdirectory(tests/wavecollapse)
+    add_subdirectory(tests/mapping)
 endif()
 
 # Status summary
