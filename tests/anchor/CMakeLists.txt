@@ -12,3 +12,15 @@ target_link_libraries(test_anchor_store
     GTest::gtest_main
 )
 gtest_discover_tests(test_anchor_store)
+
+# Block 4 — cluster-anchor promotion (Stage-1 → AnchorStore).
+add_executable(test_cluster_anchor_promotion
+    test_cluster_anchor_promotion.cpp
+)
+target_link_libraries(test_cluster_anchor_promotion
+    PRIVATE
+    llmap_anchor
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_cluster_anchor_promotion)
