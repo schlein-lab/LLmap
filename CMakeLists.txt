@@ -265,6 +265,10 @@ add_subdirectory(src)
 # SegDup catalog loader — independent of src/CMakeLists.txt to keep the
 # catalog module self-contained (own nlohmann_json dep).
 add_subdirectory(src/catalog)
+# Multi-source anchor store — Transcript-Mode Plan-Block 2. Standalone
+# so its zlib dep stays explicit and the GENCODE GFF3 loader can evolve
+# without touching the main src tree.
+add_subdirectory(src/anchor)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -276,6 +280,7 @@ if(LLMAP_ENABLE_TESTS)
     FetchContent_MakeAvailable(googletest)
     add_subdirectory(tests)
     add_subdirectory(tests/catalog)
+    add_subdirectory(tests/anchor)
 endif()
 
 # Status summary
