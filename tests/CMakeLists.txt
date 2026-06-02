@@ -88,6 +88,20 @@ target_link_libraries(test_short_read_handler
 )
 gtest_discover_tests(test_short_read_handler)
 
+# Block 8 — Transcript-mode output schema (BAM tags + Pangenome GAF +
+# BRANCH-compatible GAF bridge).
+add_executable(test_schema_transcript
+    unit/test_schema_transcript.cpp
+)
+target_link_libraries(test_schema_transcript
+    PRIVATE
+    llmap_output
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_schema_transcript)
+
 add_executable(test_bucket_pyramid
     unit/test_bucket_pyramid.cpp
 )

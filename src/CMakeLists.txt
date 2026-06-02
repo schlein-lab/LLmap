@@ -44,7 +44,8 @@ target_compile_features(llmap_io PUBLIC cxx_std_23)
 target_link_libraries(llmap_io PUBLIC llmap_core)
 
 # Output module — writers (cluster assignments, BAM/Parquet) + lossless
-# invariant accountant (lossless_aggregator) used by every sink.
+# invariant accountant (lossless_aggregator) used by every sink + the
+# Transcript-Mode schema helpers (Plan-Block 8).
 add_library(llmap_output STATIC
     output/cluster_writer.cpp
     output/bam_writer.cpp
@@ -56,6 +57,9 @@ add_library(llmap_output STATIC
     output/parquet_reader_read.cpp
     output/parquet_reader_util.cpp
     output/lossless_aggregator.cpp
+    output/schema_transcript.cpp
+    output/pangenome_bridge.cpp
+    output/branch_bridge.cpp
 )
 
 target_include_directories(llmap_output PUBLIC
