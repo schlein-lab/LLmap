@@ -10,6 +10,7 @@ add_library(llmap_anchor STATIC
     anchor_record.cpp
     anchor_store.cpp
     anchor_loader_gencode.cpp
+    anchor_loader_misc.cpp
     cluster_anchor_promotion.cpp
 )
 

@@ -1,6 +1,7 @@
 add_library(llmap_core STATIC
     core/alignment_record.cpp
     core/transcript_kind.cpp
+    core/transcript_mode.cpp
     core/bucket_pyramid.cpp
     core/wave_state.cpp
     core/simd.cpp

@@ -344,42 +344,7 @@ LoadStatus AnchorStore::LoadGencodeGff(
     return status;
 }
 
-// ---------------------------------------------------------------------------
-// Stub implementations for sources we'll fill in subsequent blocks.
-// ---------------------------------------------------------------------------
-
-LoadStatus AnchorStore::LoadMane(const std::filesystem::path& /*tsv*/) {
-    LoadStatus s;
-    s.ok = true;  // empty no-op; MANE-loader lands in Block 9 surfaces.
-    s.error = "MANE loader not yet implemented (Block 9 integration "
-              "surfaces). Returning empty success so the pipeline keeps "
-              "moving; tag GENCODE anchors manually if needed in interim.";
-    return s;
-}
-
-LoadStatus AnchorStore::LoadImgtGeneDb(
-    const std::filesystem::path& /*fasta*/) {
-    LoadStatus s;
-    s.ok = true;
-    s.error = "IMGT/GENE-DB loader not yet implemented (Block 9).";
-    return s;
-}
-
-LoadStatus AnchorStore::LoadPangenomeAnnotations(
-    const std::filesystem::path& /*hprc_root*/,
-    const std::vector<std::string>& /*sample_ids*/) {
-    LoadStatus s;
-    s.ok = true;
-    s.error = "Pangenome per-Hap loader not yet implemented (Block 9).";
-    return s;
-}
-
-LoadStatus AnchorStore::ImportBranchBubbles(
-    const std::filesystem::path& /*bed*/) {
-    LoadStatus s;
-    s.ok = true;
-    s.error = "BRANCH bubble import not yet implemented (Block 9).";
-    return s;
-}
+// Implementations for LoadMane / LoadImgtGeneDb / LoadPangenomeAnnotations /
+// ImportBranchBubbles live in anchor_loader_misc.cpp (Block 9 surfaces).
 
 }  // namespace llmap::anchor
