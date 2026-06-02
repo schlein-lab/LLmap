@@ -286,6 +286,8 @@ add_subdirectory(src/wavecollapse)
 # Transcript-Mode spliced-chain joiner (Plan-Block 6). Operates on top
 # of the classical chainer output without modifying it.
 add_subdirectory(src/mapping)
+# Chimera detector + VDJ-recombination mask (Plan-Block 7).
+add_subdirectory(src/chimera)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -303,6 +305,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests/fusion)
     add_subdirectory(tests/wavecollapse)
     add_subdirectory(tests/mapping)
+    add_subdirectory(tests/chimera)
 endif()
 
 # Status summary
