@@ -1,0 +1,104 @@
+{
+  "locus_id": "TAP1_TAP2_locus",
+  "human_name": "TAP1 / TAP2 antigen-processing transporter paralog pair (MHC class-II region)",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "TAP1_TAP2_polymorphic",
+  "mechanism": ["gene_conversion_prone"],
+  "clinical_function": ["mhc_locus"],
+  "nahr_status": "non_nahr",
+
+  "coords": {
+    "GRCh38": {
+      "chrom": "chr6", "start": 32812986, "end": 32844206, "strand": "-",
+      "note": "Locus spans TAP2 (chr6:32812986-32827362, -) and TAP1 (chr6:32844026-32856998 — note encoded on minus strand, refined to TAP1 start 32844206). TAP1 and TAP2 are head-to-head ABC-transporter paralogs in the class-II region, flanked by PSMB8 and PSMB9 proteasome-subunit genes. The TAP1/TAP2 + PSMB8/9 quartet is the antigen-processing module embedded in MHC class-II."
+    },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 31220,
+  "copy_count_typical": "1 each (TAP1 + TAP2 functional paralogs per haplotype)",
+  "identity_pct_within_unit": 35,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["TAP1", "TAP2", "PSMB8", "PSMB9"],
+  "architecture_note": "TAP1 and TAP2 are ancient paralogs (ABC-transporter superfamily) — protein identity ~35 %, much lower than HLA-A/B/C class-I paralogs. They are NOT a classical Bailey SD by identity, but are included as T1 because (a) they lie within the MHC and inherit its mosaic structure, (b) they are functionally polymorphic with documented disease associations, (c) short-read mapping to ABC-transporter domains across TAP1/TAP2/ABCB family is a documented confounder. Less polymorphic than HLA class I/II but enough alleles (TAP1: ~20, TAP2: ~30 in IPD-IMGT) to require allele-aware handling.",
+
+  "diagnostic_features": {
+    "discriminating_snps": [],
+    "diversity_hotspots": {
+      "tap1_coding_polymorphisms": {
+        "region": "TAP1 exons (substrate-binding pocket and ABC-domain)",
+        "note": "TAP1*01-*05 alleles defined by coding SNPs. See IPD-IMGT for sequences (CC-BY-ND)."
+      },
+      "tap2_coding_polymorphisms": {
+        "region": "TAP2 exons (substrate-binding pocket)",
+        "note": "TAP2*01-*04 alleles. TAP2*Bky2 carries a stop in exon 11 → truncated transporter, recessive bare-lymphocyte-syndrome-1 (BLS-1) when homozygous."
+      }
+    },
+    "snp_density_note": "TAP1: ~20 alleles, TAP2: ~30 alleles in IPD-IMGT/HLA — far less polymorphic than HLA class I/II but clinically relevant. Most disease associations are through LD with HLA-DR/DQ rather than direct TAP-allele effects.",
+    "ipd_imgt_reference": {
+      "database": "IPD-IMGT/HLA",
+      "url": "https://www.ebi.ac.uk/ipd/imgt/hla/",
+      "license": "CC-BY-ND (external reference only)",
+      "use": "Resolve TAP1/TAP2 allele-specific PSVs via API"
+    },
+    "paralog_crossmap_note": "Although TAP1 and TAP2 are only ~35 % identical at protein level, individual ABC-transporter motif blocks have higher local identity. Reads spanning the canonical ABC-cassette can cross-map to other ABCB-family members.",
+    "gene_conversion_evidence": {
+      "documented": "limited",
+      "note": "Less classical gene-conversion evidence than for HLA class I/II; some intra-locus TAP1/TAP2 allele-shaping is plausible (Powis 1992)."
+    },
+    "clinical_associations_note": "TAP2*Bky2 homozygosity → BLS-1 (bare lymphocyte syndrome type 1, OMIM #604571). TAP-deficiency: defective MHC class-I peptide loading, recurrent infections. Most TAP polymorphism associations are via LD with class-II DR/DQ haplotypes (e.g. T1D, RA)."
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 4,
+      "include_flanking_bp": 200,
+      "include_flanking_anchor": "TAP1_start",
+      "require_unique_chain": false,
+      "note": "TAP1/TAP2 cross-mapping is less severe than HLA class I/II but the locus sits in the MHC class-II mosaic — neighbouring HLA-DM/DO genes and ABC-family paralogs elsewhere in the genome compound the problem. require_unique_chain=false is consistent with other MHC entries."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch", "kmer_size": 25, "max_mismatch": 6,
+        "trigger": "primary returns no chain" },
+      { "stage": 2, "name": "chain_only", "use_extension": false,
+        "trigger": "extension diverges in ABC-cassette region" },
+      { "stage": 3, "name": "multi_position", "report_all_top_k": true, "k": 4,
+        "trigger": "TAP1↔TAP2 or ABC-family ambiguity",
+        "rationale": "report all hits; caller resolves via flanking" },
+      { "stage": 4, "name": "llm_checkpoint", "opt_in_flag": "--llm-fallback" },
+      { "stage": 5, "name": "novel_haplotype_flag", "emit_warning": true,
+        "rationale": "loss-of-function alleles (TAP2*Bky2) should trigger explicit flag" }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1101/gr.213538.116", "year": 2017,
+        "note": "Norman PJ et al., Genome Res — MHC haplotypes including TAP/PSMB" },
+      { "type": "paper", "id": "10.1007/s00251-007-0262-2", "year": 2008,
+        "note": "Horton R et al., Immunogenetics — MHC Haplotype Project includes TAP1/TAP2" },
+      { "type": "database_record", "id": "IPD-IMGT/HLA", "year": 2024,
+        "note": "TAP1/TAP2 alleles maintained in IPD-IMGT/HLA; CC-BY-ND, external reference only" },
+      { "type": "database_record", "id": "OMIM:604571", "year": 2024,
+        "note": "Bare lymphocyte syndrome type 1 (TAP-deficiency)" }
+    ],
+    "supporting_databases": [
+      "IPD-IMGT/HLA (https://www.ebi.ac.uk/ipd/imgt/hla/) — external reference only",
+      "HPRC R2 pangenome (Liao 2023 + 2026 update)",
+      "T2T-CHM13 v2.0 (Nurk 2022)",
+      "Ensembl/GENCODE GRCh38 coordinates",
+      "OMIM"
+    ],
+    "license_note": "IPD-IMGT/HLA sequences/PSV lists are CC-BY-ND and NOT embedded in this catalog.",
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["HLA_A_block", "HLA_B_block", "HLA_C_block", "HLA_DRB1_block", "MICA_MICB_locus"]
+}

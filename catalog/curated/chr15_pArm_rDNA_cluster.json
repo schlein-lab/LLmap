@@ -1,0 +1,91 @@
+{
+  "locus_id": "chr15_pArm_rDNA_cluster",
+  "human_name": "Chromosome 15 short-arm rDNA + flanking segmental duplications",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "acrocentric_rDNA_cluster_chr15",
+  "mechanism": ["nahr_prone", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "pangenome_only"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": null,
+    "CHM13":  { "chrom": "chr15", "start": 0, "end": 17083673, "strand": ".",
+                "note": "T2T-CHM13 v2.0 chr15 p-arm — 0 to centromere boundary (~17.1 Mb). rDNA array core at 2,506,442-4,707,485 (~2.20 Mb). Coordinates from Nurk 2022, doi:10.1126/science.abj6987." },
+    "HPRC_pangenome_v1.1": { "chrom": "chr15", "start": 0, "end": 17000000, "strand": ".",
+                "note": "HPRC v1.1 acrocentric pangenome — chr15 PHR total 719 kb (SMALLEST of the five — chr15 is the outlier). Per Guarracino 2023." }
+  },
+
+  "unit_size_bp": 43000,
+  "copy_count_typical": "~51 rDNA copies on CHM13 hap; no/minimal SST1 array (chr15 outlier)",
+  "identity_pct_within_unit": 99.5,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": ["45S rDNA (18S, 5.8S, 28S rRNA)"],
+  "architecture_note": "GRCh38 chr15 p-arm is N-masked. chr15 is the outlier of the five acrocentrics: PHR total only 719 kb (vs 2.8-6.5 Mb for chr13/14/21/22), SST1 array absent or minimal, and linkage-disequilibrium decay rate is NOT elevated in chr15 PHR (Guarracino 2023). This means chr15 participates less in ectopic NAHR with other acrocentrics — rob(13;15), rob(14;15), rob(15;22) are rarer than rob(13;14) and rob(14;21).",
+
+  "diagnostic_features": {
+    "rDNA_array": {
+      "chrom": "chr15",
+      "start_chm13": 2506442,
+      "end_chm13": 4707485,
+      "size_mb": 2.20,
+      "unit_size_bp": 43000,
+      "copy_count_estimate": "~51 copies (CHM13 hap)",
+      "note": "Mid-sized rDNA array per Nurk 2022"
+    },
+    "sst1_array": {
+      "location": "15p11.2",
+      "presence": "minimal/absent",
+      "note": "chr15 lacks the prominent SST1 SD block found on chr13/14/21 (Guarracino 2023)"
+    },
+    "phr_total_kb": 719,
+    "ld_decay_in_phr": "NOT elevated (unique chr15 feature) — chr15 PHR has same LD decay rate as the long arm, indicating little inter-acrocentric recombination",
+    "robertsonian_partners": ["chr13 (rob(13;15) rare)", "chr14 (rob(14;15) rare)", "chr21 (rob(15;21))", "chr22 (rob(15;22))"],
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 2,
+      "include_flanking_bp": 1000,
+      "require_unique_chain": false,
+      "note": "chr15 is structurally most distinct from chr13/14/21 (smaller PHR, no SST1) → more chr15-specific anchors available. May achieve unique mapping more readily than other acrocentrics."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "multi_position",
+        "report_all_top_k": true, "k": 5,
+        "trigger": "default for acrocentric SDs but with reduced K due to chr15 specificity" },
+      { "stage": 2, "name": "chr15_specificity_anchor",
+        "trigger": "context allows discrimination",
+        "rationale": "chr15 lacks SST1 — absence-of-SST1 is itself a chr15 anchor" },
+      { "stage": 3, "name": "novel_haplotype_flag",
+        "emit_warning": true }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1126/science.abj6987", "year": 2022,
+        "note": "Nurk S et al., Science. T2T-CHM13 v2.0. rDNA array chr15 2506442-4707485 (2.20 Mb)." },
+      { "type": "paper", "id": "10.1038/s41586-023-05976-y", "year": 2023,
+        "note": "Guarracino A et al., Nature. chr15 PHR = 719 kb (smallest), LD decay not elevated — chr15 is the acrocentric outlier." },
+      { "type": "paper", "id": "10.1126/science.abk3112", "year": 2022,
+        "note": "Hoyt SJ et al., Science." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 (marbl/CHM13)",
+      "HPRC R2 pangenome",
+      "UCSC genomicSuperDups — does not cover chr15 p-arm (N-masked in hg38)",
+      "ClinGen Recurrent CNV list — Robertsonian rob(13;15), rob(14;15), rob(15;22)"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["chr13_pArm_rDNA_cluster", "chr14_pArm_rDNA_cluster", "chr21_pArm_rDNA_cluster", "chr22_pArm_rDNA_cluster"]
+}

@@ -1,0 +1,91 @@
+{
+  "locus_id": "chr14_pArm_rDNA_cluster",
+  "human_name": "Chromosome 14 short-arm rDNA + flanking segmental duplications",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "acrocentric_rDNA_cluster_chr14",
+  "mechanism": ["nahr_prone", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "pangenome_only"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": null,
+    "CHM13":  { "chrom": "chr14", "start": 0, "end": 16164943, "strand": ".",
+                "note": "T2T-CHM13 v2.0 chr14 p-arm — 0 to centromere boundary (~16.2 Mb). rDNA array core at 2,099,537-2,817,811 (~718 kb, smallest of the five). Coordinates from Nurk 2022, doi:10.1126/science.abj6987." },
+    "HPRC_pangenome_v1.1": { "chrom": "chr14", "start": 0, "end": 16000000, "strand": ".",
+                "note": "HPRC v1.1 acrocentric pangenome — chr14 PHR total 6.48 Mb (largest of the five). Per Guarracino 2023." }
+  },
+
+  "unit_size_bp": 43000,
+  "copy_count_typical": "~17 rDNA copies on CHM13 hap (smallest array); SST1 array inverted at 14p11.2 vs chr13/21",
+  "identity_pct_within_unit": 99.5,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": ["45S rDNA (18S, 5.8S, 28S rRNA)", "SST1 array (NBL2)"],
+  "architecture_note": "GRCh38 chr14 p-arm is N-masked. SST1 array on 14p11.2 is in inverted orientation relative to chr13/chr21 (Guarracino 2023) — this orientation difference explains why chr14 involvement in Robertsonian translocations (most commonly 13;14 and 14;21) requires distinct mechanisms vs same-orientation chr13-chr21. chr14 PHR is the largest of the five at 6.48 Mb.",
+
+  "diagnostic_features": {
+    "rDNA_array": {
+      "chrom": "chr14",
+      "start_chm13": 2099537,
+      "end_chm13": 2817811,
+      "size_mb": 0.72,
+      "unit_size_bp": 43000,
+      "copy_count_estimate": "~17 copies (CHM13 hap); smallest array of the five",
+      "note": "Smallest rDNA array in CHM13 (Nurk 2022)"
+    },
+    "sst1_array": {
+      "location": "14p11.2",
+      "orientation_vs_chr13_chr21": "inverted",
+      "note": "Inverted orientation per Guarracino 2023 — distinguishes chr14 from same-orientation chr13/chr21 SD block"
+    },
+    "phr_total_mb": 6.48,
+    "robertsonian_partners": ["chr13 (rob(13;14) is the most common Robertsonian translocation, ~1 in 1300 births)", "chr21 (rob(14;21) causes ~5% of Down syndrome)", "chr15", "chr22"],
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 2,
+      "include_flanking_bp": 1000,
+      "require_unique_chain": false,
+      "note": "Same constraints as chr13 — multi-position by default. Orientation of SST1 (inverted vs chr13/21) can be a chr14-specific anchor when long-read context spans SST1 boundary."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "multi_position",
+        "report_all_top_k": true, "k": 5,
+        "trigger": "default for acrocentric SDs" },
+      { "stage": 2, "name": "sst1_orientation_anchor",
+        "trigger": "long-read spans SST1 array boundary",
+        "rationale": "inverted orientation distinguishes chr14 from chr13/chr21" },
+      { "stage": 3, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "rob(13;14) and rob(14;21) products create chimeric p-arm chains" }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1126/science.abj6987", "year": 2022,
+        "note": "Nurk S et al., Science. T2T-CHM13 v2.0. rDNA array chr14 2099537-2817811 (718 kb, smallest of five)." },
+      { "type": "paper", "id": "10.1038/s41586-023-05976-y", "year": 2023,
+        "note": "Guarracino A et al., Nature. PHR chr14 = 6.48 Mb (largest PHR); SST1 inverted at 14p11.2 vs chr13/21." },
+      { "type": "paper", "id": "10.1126/science.abk3112", "year": 2022,
+        "note": "Hoyt SJ et al., Science. Acrocentric repeat element characterisation." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 (marbl/CHM13)",
+      "HPRC R2 pangenome",
+      "UCSC genomicSuperDups — does not cover chr14 p-arm (N-masked in hg38)",
+      "ClinGen Recurrent CNV list — Robertsonian rob(13;14), rob(14;21), rob(14;15), rob(14;22)"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["chr13_pArm_rDNA_cluster", "chr15_pArm_rDNA_cluster", "chr21_pArm_rDNA_cluster", "chr22_pArm_rDNA_cluster"]
+}

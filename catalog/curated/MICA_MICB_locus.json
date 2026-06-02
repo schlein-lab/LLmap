@@ -1,0 +1,104 @@
+{
+  "locus_id": "MICA_MICB_locus",
+  "human_name": "MICA / MICB stress-induced MHC class-I-related paralog pair",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "MICA_polymorphic",
+  "mechanism": ["gene_conversion_prone"],
+  "clinical_function": ["mhc_locus", "mendelian_disease_locus"],
+  "nahr_status": "non_nahr",
+
+  "coords": {
+    "GRCh38": {
+      "chrom": "chr6", "start": 31399784, "end": 31480901, "strand": "+",
+      "note": "Locus spans MICA (chr6:31399784-31415315, +) to MICB (chr6:31462658-31480901, +). MICA-MICB are ~63 kb apart, both in the class-I region between HLA-B and HLA-DRA. Both paralogs are stress-induced NKG2D ligands."
+    },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 81117,
+  "copy_count_typical": "2 paralogs per haplotype (MICA + MICB); MICA presence/absence allele also exists (MICA-del/MICA-null)",
+  "identity_pct_within_unit": 84,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": ["MICA", "MICB"],
+  "architecture_note": "MICA and MICB are paralogous class-I-related genes (MIC = MHC class-I chain-related). They sit in the class-I region of MHC and are themselves polymorphic (MICA ~140 alleles, MICB ~50 alleles in IPD-IMGT/HLA). MICA-MICB nucleotide identity ~84 % over coding region. A null/deletion allele of MICA (MICA*Del) exists at appreciable frequency in some populations. complex_mosaic tag reflects the paralog-pair embedded in the larger MHC mosaic.",
+
+  "diagnostic_features": {
+    "discriminating_snps": [],
+    "diversity_hotspots": {
+      "exon_2": {
+        "region": "α1 domain (MIC class-I-like fold)",
+        "note": "Polymorphic — MICA alleles differ here. See IPD-IMGT/HLA (CC-BY-ND) for allele-specific PSVs."
+      },
+      "exon_3": {
+        "region": "α2 domain",
+        "note": "Polymorphic. Together with exon 2 defines MICA/MICB allele types."
+      },
+      "exon_5_microsatellite": {
+        "region": "Transmembrane GCT/AGC microsatellite (MICA-TM)",
+        "note": "Trinucleotide repeat in exon 5 (TM region) of MICA defines MICA-A4, A5, A5.1, A6, A9 etc. variants. Mappers must handle the variable-length repeat — short-read mapping fails here."
+      }
+    },
+    "snp_density_note": "MICA: ~140 alleles. MICB: ~50 alleles. MICA-MICB inter-paralog identity ~84 % nt makes cross-mapping a documented confounder.",
+    "ipd_imgt_reference": {
+      "database": "IPD-IMGT/HLA",
+      "url": "https://www.ebi.ac.uk/ipd/imgt/hla/",
+      "license": "CC-BY-ND (external reference only)",
+      "use": "Resolve MICA/MICB allele-specific PSVs and exon-5 microsatellite alleles via API"
+    },
+    "gene_conversion_evidence": {
+      "documented": true,
+      "note": "Inter-paralog gene conversion between MICA and MICB is documented (Bahram 1996; Choy 2010). Likely contributes to MICA-MICB allele diversification."
+    },
+    "clinical_associations_note": "MICA polymorphism: behçet disease, psoriatic arthritis, type-1 diabetes, ankylosing spondylitis (in LD with HLA-B*27 and B*51); MICA-A5.1 (TM-frameshift, soluble form). MICA-MICB are stress ligands for NKG2D — relevant to tumor immunology and transplantation."
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 4,
+      "include_flanking_bp": 200,
+      "include_flanking_anchor": "MICA_exon2_start",
+      "require_unique_chain": false,
+      "note": "MICA reads cross-map to MICB (~84 % identity); both paralogs must be reported. Exon-5 microsatellite needs separate STR-aware logic."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch", "kmer_size": 25, "max_mismatch": 6,
+        "trigger": "primary returns no chain" },
+      { "stage": 2, "name": "chain_only", "use_extension": false,
+        "trigger": "extension diverges in exon 2/3 or microsatellite" },
+      { "stage": 3, "name": "multi_position", "report_all_top_k": true, "k": 4,
+        "trigger": "MICA↔MICB ambiguity",
+        "rationale": "report both paralog hits; caller resolves via flanking" },
+      { "stage": 4, "name": "llm_checkpoint", "opt_in_flag": "--llm-fallback" },
+      { "stage": 5, "name": "novel_haplotype_flag", "emit_warning": true,
+        "rationale": "MICA-Del / MICA-null and novel TM repeats need explicit flagging" }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1101/gr.213538.116", "year": 2017,
+        "note": "Norman PJ et al., Genome Res — MHC haplotypes including MIC variation" },
+      { "type": "paper", "id": "10.1007/s00251-007-0262-2", "year": 2008,
+        "note": "Horton R et al., Immunogenetics — MHC Haplotype Project includes MICA/MICB" },
+      { "type": "database_record", "id": "IPD-IMGT/HLA", "year": 2024,
+        "note": "MICA/MICB alleles maintained in IPD-IMGT/HLA; CC-BY-ND, external reference only" }
+    ],
+    "supporting_databases": [
+      "IPD-IMGT/HLA (https://www.ebi.ac.uk/ipd/imgt/hla/) — external reference only",
+      "HPRC R2 pangenome (Liao 2023 + 2026 update)",
+      "T2T-CHM13 v2.0 (Nurk 2022)",
+      "Ensembl/GENCODE GRCh38 coordinates"
+    ],
+    "license_note": "IPD-IMGT/HLA sequences/PSV lists are CC-BY-ND and NOT embedded in this catalog.",
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["HLA_A_block", "HLA_B_block", "HLA_C_block", "HLA_DRB1_block", "TAP1_TAP2_locus"]
+}

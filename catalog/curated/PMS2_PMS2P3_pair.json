@@ -1,0 +1,144 @@
+{
+  "locus_id": "PMS2_PMS2P3_pair",
+  "human_name": "PMS2 (functional, 7p22.2) and PMS2CL / PMS2P3 (pseudogene, 7p22.1) pair",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "intrachromosomal_interspersed",
+  "haplotype_class": "PMS2_canonical_vs_pseudogene",
+  "mechanism": ["gene_conversion_prone"],
+  "clinical_function": ["mendelian_disease_locus", "pseudogene_paralog_pair", "gene_conversion_disease_locus"],
+  "nahr_status": "ambiguous_low_identity",
+
+  "coords": {
+    "GRCh38": {
+      "chrom": "chr7", "start": 5970925, "end": 6751392, "strand": ".",
+      "note": "PMS2 (functional) chr7:5,970,925-6,009,130 (-strand, 7p22.2); PMS2CL / PMS2P3 pseudogene chr7:6,735,305-6,751,392 (+strand, 7p22.1). Separated by ~720 kb of unique sequence; pseudogene is in inverted orientation relative to PMS2. Note: 'PMS2P3' is the HGNC pseudogene symbol; 'PMS2CL' is the most-cited literature alias (Hayward 2007 uses PMS2CL). Ensembl gives PMS2P3 at chr7:75.51-75.52 Mb (a DIFFERENT pseudogene — PMS2P3 sensu Ensembl is unrelated to the Lynch-syndrome-relevant pseudogene). For this catalog entry the clinically relevant pseudogene is PMS2CL at chr7:6.73 Mb."
+    },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 100000,
+  "copy_count_typical": "2 paralog loci per haploid (1 functional + 1 pseudogene); not classical CNV",
+  "identity_pct_within_unit": 98.0,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": [],
+  "architecture_note": "PMS2 and PMS2CL share ~100 kb of high-identity sequence covering PMS2 exons 9, 11, 12, 13, 14, 15. The pseudogene LACKS exon 10 (Alu-mediated 2.7 kb deletion — Hayward 2007), which is the only structural anchor distinguishing the two paralogs unambiguously. Mechanism is ongoing inter-locus gene conversion (IGC) between PMS2 and PMS2CL, not NAHR DEL/DUP — there is no recurrent deletion product. structural_architecture = 'intrachromosomal_interspersed' because the two paralogs sit on the same chromosome arm but are separated by ~720 kb of unique sequence in inverted orientation.",
+
+  "diagnostic_features": {
+    "discriminating_snps": [
+      {
+        "id": "PMS2_exon10_anchor",
+        "position": {
+          "gene": "PMS2",
+          "feature": "exon 10",
+          "transcript": "PMS2-201",
+          "note": "exon 10 is unique to functional PMS2; absent from PMS2CL pseudogene (deleted by Alu-mediated 2.7 kb deletion)"
+        },
+        "ref": "N", "alt": "N",
+        "consequence": "structural anchor (presence/absence of exon 10), not a point variant",
+        "class": "ORIG_fixed",
+        "frequency_in_canonical_haps": 1.0,
+        "frequency_in_dup_haps": 0.0,
+        "source": "Hayward BE, De Vos M, Valleley EMA et al. 2007 Hum Mutat 28:424-430 (doi:10.1002/humu.20457)",
+        "note": "THE diagnostic anchor — only feature reliably distinguishing PMS2 from PMS2CL at short-read resolution. Reads mapping uniquely to exon 10 are PMS2-only. Any 3' region (exons 11-15) carries the gene-conversion ambiguity."
+      },
+      {
+        "id": "PMS2CL_exon13_15_PSV_block",
+        "position": {
+          "gene": "PMS2 / PMS2CL",
+          "feature": "exons 13-15 + intron 12 through 3'UTR",
+          "note": "Hayward 2007 catalogued the PSV positions distinguishing PMS2 from PMS2CL in exons 11-15; the supplementary Table contains the per-position calls. Exons 13-15 are the IGC hot zone."
+        },
+        "ref": "N", "alt": "N",
+        "consequence": "haplotype-block PSV set",
+        "class": "uncertain",
+        "source": "Hayward 2007 (doi:10.1002/humu.20457); Vaughn 2010 Hum Mutat (doi:10.1002/humu.21195, exon 13-15 quantification)",
+        "note": "Coded as 'uncertain' because Hayward 2007 explicitly shows these PSVs are NOT fixed — sequence transfer between PMS2 and PMS2CL is ongoing, so a position diagnostic in one individual may be non-diagnostic in another. THIS IS A CHALLENGE FOR LLmap: traditional PSV-anchored mapping fails when the PSVs themselves drift."
+      }
+    ],
+    "psv_strategy_note": "PMS2 is the hardest of the five loci in this batch because Hayward 2007 (the field-defining paper) explicitly demonstrated that 'PSVs are unsafe' — sequence exchange between PMS2 and PMS2CL is ongoing and creates haplotypes where formerly-paralog-specific positions have been swapped. The clinical mutation-detection workflow has therefore moved AWAY from short-read PSV calling toward (a) PMS2 cDNA sequencing (Vaughn 2010), (b) MLPA with exon-10-anchored probes (Vaughn 2011 Hum Mutat doi:10.1002/humu.21516), (c) long-read paralog-resolved sequencing (Illumina/PacBio modern workflows). For LLmap T1: report 5' exons (1-9) confidently and flag 3' exons (11-15) as 'IGC-affected; manual review' until a paralog-resolved haplotype call can be produced from spanning long reads.",
+    "gene_conversion_disease_mechanism": {
+      "process": "Inter-locus gene conversion between PMS2 and PMS2CL; can create both (a) pathogenic alleles by transferring pseudogene-derived stop codons into functional PMS2, and (b) functional 'hybrid alleles' by transferring PMS2-derived sequence into PMS2CL",
+      "clinical_relevance": "Lynch syndrome (autosomal-dominant MMR-deficient cancer predisposition); PMS2-Lynch is dominated by IGC artifacts in mutation reporting",
+      "source_doi": "10.1002/humu.20457",
+      "secondary_doi": "10.1086/520921",
+      "note": "Hendriks 2007 AJHG (PMC2706000) on PMS2 cancer-spectrum is the clinical anchor; Hayward 2007 is the molecular-mechanism anchor."
+    },
+    "promoter_signature": null,
+    "switch_region": null
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 2,
+      "include_flanking_bp": 1000,
+      "include_flanking_anchor": "PMS2_exon10_unique",
+      "require_unique_chain": false,
+      "note": "k=25 / mm=2 for PMS2 exons 1-9 (5' end, single-copy region). For exons 11-15, mapping is intrinsically ambiguous due to IGC and CANNOT be resolved by short reads alone — flag the region rather than emitting a confident call. Exon 10 is the unique anchor: reads spanning exon 10 boundaries are unambiguously PMS2."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch",
+        "kmer_size": 25, "max_mismatch": 4,
+        "trigger": "primary returns no chain in 3' exons",
+        "rationale": "covers IGC-derived hybrid alleles" },
+      { "stage": 2, "name": "exon10_anchor_walk",
+        "trigger": "always for chr7:5.9-6.8 Mb region",
+        "rationale": "reads chained to PMS2 exon 10 boundary are PMS2-confident; reads NOT chainable to exon 10 (i.e. originate from PMS2CL or IGC hybrid) must be flagged" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 2,
+        "trigger": "no exon-10 anchor reachable; both PMS2 and PMS2CL plausible",
+        "rationale": "expected — report both candidates for downstream IGC-aware caller" },
+      { "stage": 4, "name": "llm_checkpoint",
+        "opt_in_flag": "--llm-fallback",
+        "trigger": "candidate Lynch-syndrome pathogenic variant in PMS2 3' exons",
+        "rationale": "evaluate whether variant pattern matches a known PMS2CL-to-PMS2 IGC tract (Hayward 2007 supplementary); critical for clinical reporting" },
+      { "stage": 5, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "emit 'PMS2/PMS2CL ambiguous — clinical caller required; do NOT auto-report as Lynch variant' for any 3'-exon variant call" }
+    ]
+  },
+
+  "test_cases": [
+    { "sample": "GIAB_HG002", "hap": "both",
+      "expected_class": "PMS2_canonical_diploid",
+      "note": "HG002 reported wild-type at PMS2 in modern Illumina + PacBio truth sets" },
+    { "sample": "Lynch_PMS2_proband_example", "hap": "1",
+      "expected_class": "PMS2_pathogenic_3prime_variant",
+      "note": "Synthetic placeholder for a PMS2-Lynch patient — used to verify LLmap does NOT auto-emit a confident pathogenic call in the IGC-affected 3' exons" }
+  ],
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper",
+        "id": "10.1002/humu.20457",
+        "year": 2007,
+        "note": "Hayward BE, De Vos M, Valleley EMA, Charlton RS, Taylor GR, Sheridan E, Bonthron DT — Extensive gene conversion at the PMS2 DNA mismatch repair locus. Hum Mutat 28(5):424-430. THE field-defining paper for PMS2/PMS2CL IGC; supplementary contains PSV table for exons 11-15." },
+      { "type": "paper",
+        "id": "10.1086/520921",
+        "year": 2007,
+        "note": "Hendriks YMC et al. — Heterozygous mutations in PMS2 cause hereditary nonpolyposis colorectal carcinoma (Lynch syndrome). Gastroenterology 133:419-426 (also AJHG follow-up). Clinical-spectrum anchor for PMS2-Lynch." },
+      { "type": "database_record",
+        "id": "ClinGen_HBOC_PMS2",
+        "year": 2025,
+        "note": "ClinGen Hereditary Cancer GCEP — PMS2 variant interpretation guidelines (latest version); explicitly flags 3'-exon IGC-affected region as requiring paralog-resolved validation." }
+    ],
+    "supporting_databases": [
+      "UCSC genomicSuperDups (hg38) — captures the PMS2 / PMS2CL ~100 kb high-identity pair",
+      "ClinGen Hereditary Cancer GCEP (PMS2-specific guidelines)",
+      "T2T-CHM13 v2.0 SD-BED (Vollger 2022) — resolves both paralogs",
+      "HPRC R2 pangenome — IGC tract variability across haplotypes",
+      "Paraphase-160-region-list (PacBio) — PMS2/PMS2CL included",
+      "InSiGHT PMS2 LOVD — clinical variant database with paralog annotations"
+    ],
+    "db_coverage_note": "Well represented in UCSC + ClinGen. The PMS2/PMS2CL nomenclature is unstable across databases (Ensembl uses PMS2P3 for a DIFFERENT pseudogene at chr7:75.5 Mb); LLmap must hard-code coordinates rather than rely on gene symbols. Naming confusion is itself a catalogued problem (see Bouras 2024 Genes Chromosomes Cancer, doi:10.1002/gcc.23193).",
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["NCF1_cluster"]
+}

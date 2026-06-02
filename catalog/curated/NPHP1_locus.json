@@ -1,0 +1,118 @@
+{
+  "locus_id": "NPHP1_locus",
+  "human_name": "NPHP1 (nephrocystin-1) tandem locus at 2q13 with flanking 45 kb directly-oriented LCRs",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "tandem_dup_large",
+  "haplotype_class": "NPHP1_canonical_or_deleted",
+  "mechanism": ["nahr_prone"],
+  "clinical_function": ["mendelian_disease_locus", "microdel_microdup_syndrome"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": { "chrom": "chr2", "start": 110122311, "end": 110205066, "strand": "-",
+                "note": "NPHP1 gene proper (Ensembl GRCh38). The pathogenic ~290 kb recurrent deletion spans NPHP1 plus the ~45 kb flanking LCRs from approx chr2:110,030,000-110,330,000; the locus sits in a complex inverted-repeat / direct-repeat architecture at 2q13" },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 45000,
+  "copy_count_typical": "2-3 directly-oriented 45 kb LCR copies flanking NPHP1; flanking ~330 kb inverted repeats add a second layer",
+  "identity_pct_within_unit": 99.5,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["MALL", "RGPD5", "RGPD6"],
+  "architecture_note": "Lupski-style classical recurrent-DEL architecture. Two directly-oriented ~45 kb LCRs flank NPHP1; NAHR between them produces a recurrent ~290 kb homozygous deletion that accounts for ~80% of NPHP1 disease cases (Saunier 2000). Additionally, two larger ~330 kb inverted repeats flank the whole locus and can produce non-pathogenic inversion polymorphisms.",
+
+  "diagnostic_features": {
+    "discriminating_snps": [],
+    "psv_strategy_note": "Per-base PSV tables for the NPHP1 flanking 45 kb LCRs are not standardised in the literature; the locus is classically diagnosed at the structural (CNV / deletion) level, not at SNP level. Diagnostic discrimination relies on (a) detecting copy-number of NPHP1 itself (0 = pathogenic homozygous deletion, 1 = heterozygous carrier, 2 = wild-type), (b) breakpoint signature in the flanking 45 kb LCR pair, (c) presence/absence of MALL gene which is co-deleted in the ~290 kb pathogenic allele. For LLmap T1 the discriminator is read-depth + flanking junction sequence, not a discrete SNP set.",
+    "recurrent_deletion": {
+      "size_bp": 290000,
+      "mechanism": "NAHR between two directly-oriented ~45 kb LCRs",
+      "co_deleted_genes": ["NPHP1", "MALL (partial in some breakpoints)"],
+      "frequency_in_NPHP_disease_cohorts": "~80% homozygous",
+      "source_doi": "10.1086/302819",
+      "note": "Saunier et al. 2000 AJHG 66:778-789 — original characterization."
+    },
+    "inversion_polymorphism": {
+      "size_kb": 358,
+      "flanking_repeat_size_kb": 330,
+      "orientation": "inverted",
+      "pathogenicity": "non-pathogenic (common polymorphism)",
+      "source_doi": "10.1371/journal.pgen.1005686",
+      "note": "Yu et al. 2015 PLOS Genet — characterised the inversion polymorphism flanked by two inverted ~358 kb LCRs."
+    },
+    "promoter_signature": null,
+    "switch_region": null
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 2,
+      "include_flanking_bp": 500,
+      "include_flanking_anchor": "NPHP1_TSS",
+      "require_unique_chain": false,
+      "note": "k=25 / mm=2 for the NPHP1 gene body itself (single-copy in the wild-type allele). Mapping must additionally check the flanking 45 kb LCR boundary signature to call deletion vs canonical."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch",
+        "kmer_size": 25, "max_mismatch": 4,
+        "trigger": "primary returns no chain",
+        "rationale": "flanking LCR has 99.5% identity — variants within an LCR copy can still chain-fail at mm=2" },
+      { "stage": 2, "name": "depth_check",
+        "trigger": "always (parallel to primary)",
+        "rationale": "depth at NPHP1 vs flanking unique = best deletion-call signal; primary structural diagnostic" },
+      { "stage": 3, "name": "junction_search",
+        "trigger": "depth suggests deletion",
+        "rationale": "find LCR-A / LCR-B junction read evidence to confirm the recurrent 290 kb breakpoint" },
+      { "stage": 4, "name": "llm_checkpoint",
+        "opt_in_flag": "--llm-fallback",
+        "trigger": "atypical junction not matching the canonical ~290 kb pattern",
+        "rationale": "rare non-recurrent breakpoints reported (Saunier 2000); LLM evaluation of novel breakpoint sequence" },
+      { "stage": 5, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "report 'NPHP1 locus structural variant — non-canonical breakpoint' for curator review" }
+    ]
+  },
+
+  "test_cases": [
+    { "sample": "GIAB_HG002", "hap": "both",
+      "expected_class": "canonical_diploid",
+      "note": "GIAB HG002 has wild-type NPHP1 — useful as negative control for deletion detection" },
+    { "sample": "NPHP_proband_example", "hap": "both",
+      "expected_class": "homozygous_290kb_deletion",
+      "note": "Synthetic placeholder for any NPHP1-deleted patient case — expect 0x depth over NPHP1 + canonical ~290 kb breakpoint junction (Saunier 2000)" }
+  ],
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper",
+        "id": "10.1086/302819",
+        "year": 2000,
+        "note": "Saunier S, Calado J, Benessy F et al. — Characterization of the NPHP1 locus: mutational mechanism involved in deletions in familial juvenile nephronophthisis. Am J Hum Genet 66:778-789. Note: original Saunier et al. 1997 (Nat Genet) reported the linkage; the 2000 AJHG paper is the segmental-architecture characterization paper and is the appropriate primary citation for SD architecture." },
+      { "type": "paper",
+        "id": "10.1371/journal.pgen.1005686",
+        "year": 2015,
+        "note": "Yu H, Liu G, Liu Y et al. — Comparative genomic analyses of the human NPHP1 locus reveal complex genomic architecture and its regional evolution in primates. PLOS Genet 11:e1005686. Detailed comparative SD analysis." },
+      { "type": "database_record",
+        "id": "OMIM:256100",
+        "year": 2000,
+        "note": "Nephronophthisis-1 (juvenile) — OMIM clinical reference; lists the locus and recurrent-deletion phenotype." }
+    ],
+    "supporting_databases": [
+      "UCSC genomicSuperDups (hg38) — captures the flanking 45 kb LCRs and the larger 330 kb inverted repeats",
+      "ClinGen Dosage Sensitivity Map ISCA-37405 (NPHP1 region)",
+      "T2T-CHM13 v2.0 — NPHP1 locus resolved (no SD-collapse)",
+      "HPRC R2 pangenome — haplotype-level inversion polymorphism evidence"
+    ],
+    "db_coverage_note": "Locus is well represented in UCSC SD and ClinGen. GRCh38 has both flanking 45 kb LCRs correctly placed (unlike IGHG4 dup); structural detection is feasible from short-read depth + long-read junction.",
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["NBPF_olduvai_cluster"]
+}

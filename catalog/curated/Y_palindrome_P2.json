@@ -1,0 +1,82 @@
+{
+  "locus_id": "Y_palindrome_P2",
+  "human_name": "Y chromosome palindrome P2 (AZFc, CDY/RBMY adjacent to P1)",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "palindromic_inverted",
+  "haplotype_class": "Y_palindrome_P2_canonical",
+  "mechanism": ["palindrome_mediated_nahr", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "mendelian_disease_locus"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": { "chrom": "chrY", "start": 22500000, "end": 23200000, "strand": ".",
+                "note": "Approximate — between P3 and P1 in AZFc per Skaletsky 2003. GRCh38 P1-P3 discordant with T2T-Y per Rhie 2023." },
+    "CHM13":  { "chrom": "chrY", "start": 23897358, "end": 24167130, "strand": ".",
+                "note": "T2T-CHM13 v2.0/Y v1 — P2-left-arm 23897358-24035399 (138041 bp), P2-right-arm 24037534-24167130 (129596 bp), spacer 24035399-24037534 (~2.1 kb). Source: chm13v2.0Y_inverted_repeats_v1.bed (marbl). Central part nearly identical to P1." },
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 138041,
+  "copy_count_typical": "2 arms (palindromic)",
+  "identity_pct_within_unit": 99.97,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["CDY1a/CDY1b paralogs", "TTTY3", "TTTY4"],
+  "architecture_note": "Central part nearly identical to adjacent P1 palindrome (Skaletsky 2003). Contributes to ampliconic mosaicism that drives AZFc deletions via P1-P2-P3 cross-palindrome NAHR.",
+
+  "diagnostic_features": {
+    "arm_length_bp": 138041,
+    "spacer_length_bp": 2135,
+    "total_span_bp": 269772,
+    "arm_to_arm_identity_pct": 99.97,
+    "azf_region": "AZFc",
+    "p1_p2_p3_relationship": "Skaletsky 2003 reports >80% of P1 sequence is shared with P2 and P3; cross-palindrome NAHR is documented (Repping 2002)",
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 1,
+      "include_flanking_bp": 500,
+      "require_unique_chain": false,
+      "note": "Same as P1 — 99.97% identity requires spacer/flanking anchoring."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "spacer_anchor",
+        "trigger": "primary returns ambiguous chains across both arms",
+        "rationale": "P2 spacer is tiny (~2 kb) — most reads will not span it; need to use boundary anchors" },
+      { "stage": 2, "name": "flanking_anchor",
+        "trigger": "spacer not in read window",
+        "rationale": "anchor to P3-P2 or P2-P1 boundary unique sequence" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 4,
+        "trigger": "both arms equally plausible" },
+      { "stage": 4, "name": "novel_haplotype_flag",
+        "emit_warning": true }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1038/nature01722", "year": 2003,
+        "note": "Skaletsky H et al., Nature. Table 3: P2 arm 122 kb, spacer 2.1 kb, identity 99.97%, total 246 kb (refined to 138 kb arms in T2T-Y)." },
+      { "type": "paper", "id": "10.1038/nature01723", "year": 2003,
+        "note": "Rozen S et al., Nature. Abundant gene conversion between arms of palindromes — provides arm-to-arm identity context." },
+      { "type": "paper", "id": "10.1086/342928", "year": 2002,
+        "note": "Repping S et al., AJHG — P5/proximal-P1 NAHR also involves P2-P3 amplicon mosaic" },
+      { "type": "paper", "id": "10.1038/s41586-023-06457-y", "year": 2023,
+        "note": "Rhie A et al., Nature. T2T-Y precise coordinates for P2." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 chm13v2.0Y_inverted_repeats_v1.bed (marbl/CHM13 GitHub)"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["Y_palindrome_P1", "Y_palindrome_P3", "Y_palindrome_P4", "Y_palindrome_P5"]
+}

@@ -1,0 +1,98 @@
+{
+  "locus_id": "chr13_pArm_rDNA_cluster",
+  "human_name": "Chromosome 13 short-arm rDNA + flanking segmental duplications",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "acrocentric_rDNA_cluster_chr13",
+  "mechanism": ["nahr_prone", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "pangenome_only"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": null,
+    "CHM13":  { "chrom": "chr13", "start": 0, "end": 16522942, "strand": ".",
+                "note": "T2T-CHM13 v2.0 chr13 p-arm — 0 to centromere boundary (~16.5 Mb). rDNA array core at 5,817,416-9,348,041 (~3.53 Mb, 45S rDNA head-to-tail repeats of ~43 kb unit). The largest of the five human rDNA arrays. Coordinates from Nurk 2022, doi:10.1126/science.abj6987." },
+    "HPRC_pangenome_v1.1": { "chrom": "chr13", "start": 0, "end": 16500000, "strand": ".",
+                "note": "HPRC v1.1 acrocentric pangenome — SAACs form an inter-chromosomal community per Guarracino 2023; chr13 PHR total 4.53 Mb. Per-haplotype coordinates vary." }
+  },
+
+  "unit_size_bp": 43000,
+  "copy_count_typical": "~80-300 rDNA copies in array; flanking SD blocks shared with chr14, chr21",
+  "identity_pct_within_unit": 99.5,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": ["45S rDNA (18S, 5.8S, 28S rRNA)", "SST1 array (NBL2)"],
+  "architecture_note": "GRCh38 chr13 p-arm is N-masked (~16 Mb of Ns) — entry is pangenome-only by necessity. T2T-CHM13 first provided complete sequence (Nurk 2022). SST1 array on 13p11.2 shares >99% pairwise identity with 14p11.2 and 21p11.2 in direct orientation (Guarracino 2023). A 630 kb SD ~1.6 Mb distal of SST1 array mediates ectopic chr13-chr21 recombination — proposed Robertsonian translocation mechanism.",
+
+  "diagnostic_features": {
+    "rDNA_array": {
+      "chrom": "chr13",
+      "start_chm13": 5817416,
+      "end_chm13": 9348041,
+      "size_mb": 3.53,
+      "unit_size_bp": 43000,
+      "copy_count_estimate": "~82 copies (3.53 Mb / 43 kb)",
+      "note": "Largest of the five human rDNA arrays per Nurk 2022. CHM13 represents one haplotype; population variability is substantial — Hori 2024, Guarracino 2023 estimate 60-800 copies total across the 5 acrocentric arrays per cell"
+    },
+    "sst1_array": {
+      "location": "13p11.2",
+      "unit_size_bp_range": "1400-2400",
+      "pairwise_identity_with_chr14_pct": 99.0,
+      "pairwise_identity_with_chr21_pct": 99.0,
+      "note": "GC-rich, PRDM9-binding-motif enriched — recombination hotspot per Guarracino 2023"
+    },
+    "distal_sd_630kb": {
+      "size_kb": 630,
+      "distance_from_sst1_array_mb": 1.6,
+      "function": "ectopic chr13-chr21 recombination breakpoint — candidate substrate for the most common (chr13;chr21) Robertsonian translocation"
+    },
+    "phr_total_mb": 4.53,
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 2,
+      "include_flanking_bp": 1000,
+      "require_unique_chain": false,
+      "note": "rDNA array is intractable for unique mapping at the unit level — k=31, mm=2 with chain-context only. Disambiguation between acrocentric short arms (chr13/14/15/21/22) requires >99% identity SD context; for population variant calling, treat as multi-position by default."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "multi_position",
+        "report_all_top_k": true, "k": 5,
+        "trigger": "default — acrocentric SDs are not uniquely resolvable at the read level",
+        "rationale": "rDNA + SST1 + 630-kb SD all >99% identical across chr13/14/21 — multi-position is the honest output" },
+      { "stage": 2, "name": "assembly_anchor",
+        "trigger": "user supplies HiFi/ONT long-read context",
+        "rationale": "p-arm SDs are tractable only with reads spanning ≥100 kb of SD context" },
+      { "stage": 3, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "Robertsonian-translocation products create chimeric chr13-chr14 or chr13-chr21 acrocentric arms — flag explicitly" }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1126/science.abj6987", "year": 2022,
+        "note": "Nurk S et al., Science. The complete sequence of a human genome (T2T-CHM13 v2.0). rDNA array coordinates: chr13 5817416-9348041 (3.53 Mb)." },
+      { "type": "paper", "id": "10.1038/s41586-023-05976-y", "year": 2023,
+        "note": "Guarracino A et al., Nature. Recombination between heterologous human acrocentric chromosomes. PHR chr13 = 4.53 Mb; 13p11.2/14p11.2/21p11.2 SST1 array >99% identity; 630-kb SD 1.6 Mb distal of SST1 = Robertsonian breakpoint candidate." },
+      { "type": "paper", "id": "10.1126/science.abk3112", "year": 2022,
+        "note": "Hoyt SJ et al., Science. From telomere to telomere: the transcriptional and epigenetic state of human repeat elements. Acrocentric satellite + SST1 characterisation." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 (marbl/CHM13 GitHub) — primary coordinate source",
+      "HPRC R2 pangenome (Liao 2023 + 2026 update) — inter-haplotype variability",
+      "UCSC genomicSuperDups — DOES NOT cover acrocentric p-arms (N-masked in hg38)",
+      "ClinGen Recurrent CNV list — Robertsonian translocations 13;14, 13;21, 14;21, 14;15, 15;22, 21;22"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["chr14_pArm_rDNA_cluster", "chr15_pArm_rDNA_cluster", "chr21_pArm_rDNA_cluster", "chr22_pArm_rDNA_cluster"]
+}

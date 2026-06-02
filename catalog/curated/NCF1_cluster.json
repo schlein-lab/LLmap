@@ -1,0 +1,131 @@
+{
+  "locus_id": "NCF1_cluster",
+  "human_name": "NCF1 + NCF1B + NCF1C (p47phox) gene/pseudogene cluster at 7q11.23",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "tandem_dup_small",
+  "haplotype_class": "NCF1_canonical_or_gtgt_del",
+  "mechanism": ["gene_conversion_prone"],
+  "clinical_function": ["mendelian_disease_locus", "pseudogene_paralog_pair"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": {
+      "chrom": "chr7", "start": 73220646, "end": 75172044, "strand": ".",
+      "note": "Three paralogs dispersed across 7q11.23: NCF1B chr7:73,220,646-73,235,790 (+), NCF1 chr7:74,773,975-74,789,376 (+), NCF1C chr7:75,156,639-75,172,044 (-). Region also contains the Williams-Beuren-syndrome LCR cluster. NCF1 paralogs are ~15 kb each, embedded in the WBS LCR-A/B/C blocks. Intra-paralog identity >98% (Heyworth 2002, Roesler 2010)."
+    },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 15000,
+  "copy_count_typical": "3 diploid wild-type (1 NCF1 + 1 NCF1B + 1 NCF1C); CNV reported (1-4) — see Brunson 2010",
+  "identity_pct_within_unit": 98.0,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["GTF2IRD2", "GTF2IRD2B", "GTF2I"],
+  "architecture_note": "NCF1 cluster sits inside the Williams-Beuren syndrome (WBS) LCR architecture at 7q11.23. NCF1 itself is functional; NCF1B (at chr7:73.2 Mb, +strand) and NCF1C (at chr7:75.2 Mb, -strand) are pseudogenes carrying the signature 'GT' deletion at the start of exon 2 (Vázquez 2001; Heyworth 2002). The pathogenic CGD allele arises via GENE CONVERSION transferring the pseudogene ΔGT into functional NCF1, NOT via NAHR deletion of NCF1 itself. >90% of NCF1-CGD alleles carry this ΔGT.",
+
+  "diagnostic_features": {
+    "discriminating_snps": [
+      {
+        "id": "NCF1_exon2_GTGT_vs_GT",
+        "position": {
+          "gene": "NCF1",
+          "feature": "exon 2 start",
+          "transcript": "NCF1-201",
+          "cds_offset_approx": 73,
+          "note": "exact CDS offset varies by transcript annotation; canonical position is the dinucleotide GT at the very start of exon 2"
+        },
+        "ref": "GTGT", "alt": "GT",
+        "consequence": "frameshift (premature stop); ΔGT = pseudogene-style allele = loss of p47phox protein",
+        "class": "ORIG_fixed",
+        "frequency_in_canonical_haps": 1.0,
+        "frequency_in_dup_haps": 0.0,
+        "source": "Vázquez N et al. 2001 Exp Hematol 29:234-243 (doi:10.1016/s0301-472x(00)00646-9); Heyworth PG, Noack D, Cross AR 2002 Blood 100:1845-1851 (doi:10.1182/blood-2002-03-0861)",
+        "note": "THE diagnostic PSV for the locus. Functional NCF1 carries GTGT; both pseudogenes (NCF1B, NCF1C) carry GT (the dinucleotide deletion). Pathogenic CGD alleles are gene-converted NCF1 copies that now carry the pseudogene-style GT. Detection at short-read level is confounded by inter-paralog identity — this is the canonical example of why paralog-aware mapping matters clinically."
+      }
+    ],
+    "psv_strategy_note": "Frontiers Immunol 2025 (Hoffmeister et al., doi:10.3389/fimmu.2025.1640496) describe a reliable HTS workflow for NCF1 ΔGT detection using paralog-specific long-range PCR + amplicon sequencing; their Figure 1 / Supplementary Table 1 list additional PSV positions distinguishing NCF1 from NCF1B / NCF1C across exons 1-11. For LLmap T1, the ΔGT in exon 2 is the dominant clinical PSV; downstream tools may want to also catalogue the ~30 additional inter-paralog differences across the 15 kb unit (intronic + synonymous), which can be cross-referenced to that paper's supplementary.",
+    "gene_conversion_disease_mechanism": {
+      "process": "Inter-locus gene conversion transferring the ΔGT (2 bp deletion) from NCF1B/NCF1C INTO functional NCF1",
+      "frequency_in_NCF1_CGD_patients": "~90% of CGD alleles",
+      "implication": "NCF1-CGD is the prototype gene-conversion-disease locus; clinical interpretation must distinguish 'true ΔGT in NCF1' vs 'sequencing-artifact mismapped pseudogene read'",
+      "source_doi": "10.1016/s0301-472x(00)00646-9"
+    },
+    "promoter_signature": null,
+    "switch_region": null
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 2,
+      "include_flanking_bp": 500,
+      "include_flanking_anchor": "NCF1_exon2_start",
+      "require_unique_chain": false,
+      "note": "k=25 / mm=2 over the 15 kb unit. The exon-2 GTGT-vs-GT diagnostic site sits in a region where flanking unique anchors are within ~1-2 kb. Mapping MUST treat the three paralogs as distinct contigs and require junction-anchored reads for confident NCF1-vs-NCF1B/C assignment. Short-read calling at NCF1 without paralog awareness is unreliable (Hoffmeister 2025)."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch",
+        "kmer_size": 25, "max_mismatch": 3,
+        "trigger": "primary returns no chain",
+        "rationale": "covers minor private variants" },
+      { "stage": 2, "name": "anchor_walk",
+        "trigger": "always (parallel)",
+        "rationale": "walk from nearest unique anchor (GTF2IRD2 vs GTF2IRD2B flanking) into the NCF1/NCF1B/NCF1C unit; junction-anchored placement is the only reliable paralog call" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 3,
+        "trigger": "no unique anchor reachable",
+        "rationale": "expected — report all three NCF1-paralog candidates when read cannot be anchored" },
+      { "stage": 4, "name": "llm_checkpoint",
+        "opt_in_flag": "--llm-fallback",
+        "trigger": "gene-conversion product suspected (ΔGT in NCF1 background)",
+        "rationale": "evaluate flanking SNPs against canonical NCF1 vs pseudogene patterns to distinguish true CGD allele from mismapped pseudogene read" },
+      { "stage": 5, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "report 'NCF1 cluster — paralog ambiguous, manual review' for curator review" }
+    ]
+  },
+
+  "test_cases": [
+    { "sample": "GIAB_HG002", "hap": "both",
+      "expected_class": "NCF1_canonical_diploid",
+      "note": "HG002 wild-type at NCF1 cluster; useful negative control" },
+    { "sample": "CGD_patient_example", "hap": "both",
+      "expected_class": "NCF1_dGT_gene_converted",
+      "note": "Synthetic placeholder for an NCF1-CGD patient with biallelic ΔGT in NCF1 — expect short-read mapper without paralog awareness to undercall this; LLmap should detect via flanking-anchor walk" }
+  ],
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper",
+        "id": "10.1016/s0301-472x(00)00646-9",
+        "year": 2001,
+        "note": "Vázquez N, Lehrnbecher T, Chen R et al. — Mutational analysis of patients with p47-phox-deficient chronic granulomatous disease: The significance of recombination events between the p47-phox gene (NCF1) and its highly homologous pseudogenes. Exp Hematol 29:234-243. (Task originally cited 'Vázquez 2001' as PNAS; the matching paper is Exp Hematol.) Defines the GTGT-vs-GT signature." },
+      { "type": "paper",
+        "id": "10.1182/blood-2002-03-0861",
+        "year": 2002,
+        "note": "Heyworth PG, Noack D, Cross AR — Identification of a novel NCF-1 (p47-phox) pseudogene not containing the signature GT deletion: significance for A47° CGD carrier detection. Blood 100:1845-1851. (Task originally cited 'Roesler 2010'; the canonical GT-pseudogene paper is Heyworth 2002 — a later Roesler paper exists on CGD genotype-phenotype but the architecture reference is Heyworth.) Confirms three-paralog architecture and the diagnostic complications." },
+      { "type": "paper",
+        "id": "10.3389/fimmu.2025.1640496",
+        "year": 2025,
+        "note": "Hoffmeister F et al. — Reliable genetic diagnosis of NCF1 (p47phox)-deficient CGD using high-throughput sequencing. Front Immunol. Modern paralog-aware HTS workflow; supplementary tables contain PSVs across the 15 kb unit." }
+    ],
+    "supporting_databases": [
+      "UCSC genomicSuperDups (hg38) — captures the NCF1 / NCF1B / NCF1C WBS-LCR architecture",
+      "OMIM 233700 (CGD autosomal recessive type IV)",
+      "ClinGen NCF1 dosage record",
+      "T2T-CHM13 v2.0 SD-BED (Vollger 2022) — resolves all three paralogs",
+      "HPRC R2 pangenome — haplotype-level WBS-LCR variation",
+      "Paraphase-160-region-list (PacBio) — NCF1 cluster included"
+    ],
+    "db_coverage_note": "Well represented in UCSC + OMIM + ClinGen. Inter-paralog identity ~98% over 15 kb means short-read PSV-only calling is fragile; long-read / WBS-anchored mapping (Paraphase, LLmap) is the appropriate tool.",
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["FCGR_cluster", "PMS2_PMS2P3_pair"]
+}

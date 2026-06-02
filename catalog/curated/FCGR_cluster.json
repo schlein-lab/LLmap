@@ -1,0 +1,137 @@
+{
+  "locus_id": "FCGR_cluster",
+  "human_name": "FCGR2A/2B/2C/3A/3B low-affinity Fc-gamma receptor cluster at 1q23.3",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "tandem_dup_large",
+  "haplotype_class": "FCGR_cluster_diversity",
+  "mechanism": ["nahr_prone", "gene_conversion_prone"],
+  "clinical_function": ["dispersed_paralog_gene_family", "immune_receptor_locus"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": { "chrom": "chr1", "start": 161505415, "end": 161710000, "strand": ".",
+                "note": "Locus spans FCGR2A (chr1:161,505,415-161,524,013, +) through FCGR3A, FCGR2C, FCGR3B (161,623,196-161,631,963, -) and FCGR2B (161,662,803-161,679,490, +); 82.5 kb segmental-duplication unit underlies the CNV region containing FCGR3A/FCGR2C/FCGR3B but NOT FCGR2A or FCGR2B (Niederer 2010; Breunis 2009)" },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 82500,
+  "copy_count_typical": "2 (diploid wild-type); CNV range 1-4 copies of the FCGR3A/2C/3B-containing unit",
+  "identity_pct_within_unit": 98.5,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["FCGR3A", "FCGR2C", "FCGR3B", "HSPA7"],
+  "architecture_note": "Classical Lupski-style NAHR-prone DP-LCR. The 82.5 kb tandem-duplication unit is directly oriented and >98% identical, satisfying the canonical NAHR substrate criteria. NAHR products include FCGR3B deletion (RA / SLE / autoimmune risk), FCGR2C deletion, and chimeric FCGR2A/2C or FCGR3A/3B genes (Mueller 2013, Niederer 2010). FCGR2C is itself a chimeric pseudo-paralog: extracellular domain shared with FCGR2B, transmembrane/cytoplasmic with FCGR2A (Breunis 2008).",
+
+  "diagnostic_features": {
+    "discriminating_snps": [
+      {
+        "id": "FCGR2A_p.H131R",
+        "position": { "gene": "FCGR2A", "transcript": "FCGR2A-001", "protein_offset": 131, "grch38_chr1_approx": 161509955 },
+        "ref": "A", "alt": "G",
+        "consequence": "p.His131Arg",
+        "class": "ORIG_polymorph",
+        "source": "rs1801274; classical FCGR2A functional polymorphism affecting IgG2 binding affinity",
+        "note": "Allele-frequency-balanced polymorphism (~0.5/0.5) used as PSV-style anchor distinguishing FCGR2A from FCGR2B/2C in the CNV region. NOT a paralog-discriminator per se but a clinically validated coding SNP."
+      },
+      {
+        "id": "FCGR3A_p.V158F",
+        "position": { "gene": "FCGR3A", "transcript": "FCGR3A-001", "protein_offset": 158, "grch38_chr1_approx": 161544401 },
+        "ref": "T", "alt": "G",
+        "consequence": "p.Phe158Val",
+        "class": "ORIG_polymorph",
+        "source": "rs396991; classical FCGR3A functional polymorphism affecting IgG1/IgG3 binding",
+        "note": "Distinguishes FCGR3A from FCGR3B at the protein level (FCGR3B is GPI-anchored, lacks the cytoplasmic tail of FCGR3A); the V158F position is one of the diagnostic differences used in Niederer 2010 / Breunis 2009 read assignment."
+      },
+      {
+        "id": "FCGR3B_NA1_NA2",
+        "position": { "gene": "FCGR3B", "transcript": "FCGR3B-001", "region": "EC1 domain exon 3" },
+        "ref": "N", "alt": "N",
+        "consequence": "haplotype block (4 amino-acid differences)",
+        "class": "ORIG_polymorph",
+        "source": "Ory 1989; reviewed in Niederer 2010",
+        "note": "NA1 vs NA2 (HNA-1a vs HNA-1b) is the classical FCGR3B-specific haplotype distinguishing the two common allotypes; relevant for CNV-on-haplotype-background interpretation. Coded here as 'N>N' because it is a multi-SNP block not a single substitution; see Niederer 2010 supplementary for PSV table."
+      }
+    ],
+    "psv_strategy_note": "Niederer 2010 published a detailed PSV table for the 82.5 kb LCR (supplementary Table S2 of HMG 19:3282) covering FCGR2A-vs-2B-vs-2C-vs-3A-vs-3B discrimination. The locus is therefore one of the better-characterized clinical SD clusters for short-read PSV-based read assignment. For LLmap T1, the discriminator strategy is to combine (a) the Niederer PSV table for paralog identity, (b) read-depth over the CNV region for copy-number, (c) junction reads at the 82.5 kb LCR boundary for chimera detection.",
+    "chimeric_genes": {
+      "FCGR2A_2C_chimera": "NAHR product fusing 5' FCGR2A with 3' FCGR2C; reported aberrant expression",
+      "FCGR3A_3B_chimera": "rare NAHR product",
+      "FCGR3B_to_FCGR3A_conversion": "documented IGC tract",
+      "source_doi": "10.1038/gene.2015.25",
+      "note": "Mueller M et al. 2015 Genes Immun — Nonallelic homologous recombination of the FCGR2/3 locus results in copy number variation and novel chimeric FCGR2 genes."
+    },
+    "promoter_signature": null,
+    "switch_region": null
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 3,
+      "include_flanking_bp": 300,
+      "require_unique_chain": false,
+      "note": "k=25 / mm=3 for the 82.5 kb LCR (98.5% identity → expected ~3 mismatches per 200 bp; per 25-mer ~0.4 mismatches average, mm=3 covers tail). Higher than IGHG4 (mm=2) because FCGR inter-paralog divergence is greater."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch",
+        "kmer_size": 25, "max_mismatch": 5,
+        "trigger": "primary returns no chain",
+        "rationale": "covers gene-converted tracts where local identity drops" },
+      { "stage": 2, "name": "chain_only",
+        "use_extension": false,
+        "trigger": "extension diverges over LCR boundary" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 4,
+        "trigger": "≥2 chains within Δscore tolerance",
+        "rationale": "expected — 82.5 kb LCR has multiple equally-plausible paralog assignments for many reads" },
+      { "stage": 4, "name": "junction_search_chimera",
+        "trigger": "chain ends within 5 kb of known FCGR2/3 LCR boundary",
+        "rationale": "detect NAHR chimeric FCGR2A/2C and FCGR3A/3B alleles" },
+      { "stage": 5, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "FCGR CNV is highly polymorphic; flag unknown breakpoints" }
+    ]
+  },
+
+  "test_cases": [
+    { "sample": "CHM13", "hap": "T2T",
+      "expected_class": "FCGR_canonical_diploid",
+      "note": "T2T-CHM13 resolves all five paralogs at single-copy reference state" },
+    { "sample": "HG002", "hap": "both",
+      "expected_class": "FCGR_canonical_diploid",
+      "note": "GIAB HG002 reported as wild-type at FCGR cluster in current HPRC R2 release; recheck per release" }
+  ],
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper",
+        "id": "10.1093/hmg/ddq216",
+        "year": 2010,
+        "note": "Niederer HA, Willcocks LC, Rayner TF et al. — Copy number, linkage disequilibrium and disease association in the FCGR locus. Hum Mol Genet 19:3282-3294. PSV table for the 82.5 kb LCR and CNV detection assay design." },
+      { "type": "paper",
+        "id": "10.1002/humu.20997",
+        "year": 2009,
+        "note": "Breunis WB, van Mirre E, Bruin M et al. — Copy number variation at the FCGR locus includes FCGR3A, FCGR2C and FCGR3B but not FCGR2A and FCGR2B. Hum Mutat 30:E640-E650. Established the CNV boundaries of the 82.5 kb unit." },
+      { "type": "paper",
+        "id": "10.1038/gene.2015.25",
+        "year": 2015,
+        "note": "Mueller M, Barros P, Witherden AS et al. — Nonallelic homologous recombination of the FCGR2/3 locus results in copy number variation and novel chimeric FCGR2 genes with aberrant functional expression. Genes Immun 16:432-440. Mechanism and chimeric product characterization. (Originally task-cited 'Mueller 2013'; the matching FCGR-NAHR paper is the 2015 Genes Immun one.)" }
+    ],
+    "supporting_databases": [
+      "UCSC genomicSuperDups (hg38) — captures the FCGR 82.5 kb LCR cleanly",
+      "T2T-CHM13 v2.0 SD-BED (Vollger 2022)",
+      "HPRC R2 pangenome (Liao 2023 + 2026 update)",
+      "ClinGen Dosage Sensitivity — FCGR3B haploinsufficiency (autoimmune risk)",
+      "Paraphase-160-region-list (PacBio) — FCGR cluster included"
+    ],
+    "db_coverage_note": "Well represented in UCSC + ClinGen. PSV table from Niederer 2010 supplementary is the authoritative short-read PSV catalog. Not a 'pangenome_only' locus — present in GRCh38.",
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["NCF1_cluster"]
+}

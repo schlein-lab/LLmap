@@ -1,0 +1,180 @@
+{
+  "locus_id": "IGHG4_chimdup_tandem",
+  "human_name": "IGHG4 chimeric tandem duplication",
+  "version": "v2026.Q2",
+  "schema_version": "0.1",
+
+  "structural_architecture": "tandem_dup_small",
+  "haplotype_class": "IGHG4_chimdup_homozygous",
+  "mechanism": ["gene_conversion_prone"],
+  "clinical_function": ["immune_receptor_locus", "pangenome_only"],
+  "nahr_status": "ambiguous_low_identity",
+
+  "coords": {
+    "GRCh38": { "chrom": "chr14", "start": 105625772, "end": 105645272, "strand": "-",
+                "note": "single canonical IGHG4 in GRCh38; tandem-dup not represented" },
+    "CHM13":  { "chrom": "chr14", "start":  99891444, "end":  99910944, "strand": "-",
+                "note": "both CHM13 IGHG4 copies carry chimdup signature" },
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 19500,
+  "copy_count_typical": "2-3",
+  "identity_pct_within_unit": 99.99,
+  "boundary_sharpness": "sharp",
+  "boundary_position_bp_upstream_of_CH1": 11500,
+
+  "diagnostic_features": {
+    "discriminating_snps": [
+      {
+        "id": "IGHG4_CH1_pos21",
+        "position": { "transcript": "IGHG4-201", "cds_offset": 21, "grch38_chr14": 105626046 },
+        "ref": "G", "alt": "C",
+        "consequence": "p.Ser7=",
+        "class": "ORIG_polymorph",
+        "frequency_in_canonical_haps": 0.875,
+        "frequency_in_dup_haps": 0.0,
+        "source": "per_copy_minimap2_variants (8 HPRC samples)"
+      },
+      {
+        "id": "IGHG4_CH1_pos57",
+        "position": { "transcript": "IGHG4-201", "cds_offset": 57, "grch38_chr14": 105626010 },
+        "ref": "C", "alt": "T",
+        "consequence": "p.Ser19=",
+        "class": "ORIG_polymorph",
+        "frequency_in_canonical_haps": 0.5,
+        "frequency_in_dup_haps": 0.0,
+        "source": "per_copy_minimap2_variants"
+      },
+      {
+        "id": "IGHG4_CH1_pos69",
+        "position": { "transcript": "IGHG4-201", "cds_offset": 69, "grch38_chr14": 105625998 },
+        "ref": "C", "alt": "G",
+        "consequence": "p.Ala23=",
+        "class": "DUP_fixed",
+        "frequency_in_canonical_haps": 0.0,
+        "frequency_in_dup_haps": 1.0,
+        "source": "per_copy_minimap2_variants + DeepVariant iso-seq confirmation",
+        "note": "same site as +68 in per_read_genotyping_findings (0-based VCF vs 1-based mRNA)"
+      },
+      {
+        "id": "IGHG4_CH1_pos189",
+        "position": { "transcript": "IGHG4-201", "cds_offset": 189, "grch38_chr14": 105625878 },
+        "ref": "C", "alt": "T",
+        "consequence": "p.Tyr63=",
+        "class": "ORIG_polymorph",
+        "frequency_in_canonical_haps": 0.5,
+        "frequency_in_dup_haps": 0.0,
+        "source": "per_copy_minimap2_variants"
+      },
+      {
+        "id": "IGHG4_CH1_pos252",
+        "position": { "transcript": "IGHG4-201", "cds_offset": 252, "grch38_chr14": 105625815 },
+        "ref": "C", "alt": "T",
+        "consequence": "p.Asn84=",
+        "class": "DUP_fixed",
+        "frequency_in_canonical_haps": 0.0,
+        "frequency_in_dup_haps": 1.0,
+        "source": "per_copy_minimap2_variants + DeepVariant iso-seq confirmation",
+        "note": "same site as +251 in per_read_genotyping_findings"
+      }
+    ],
+    "snp_density_per_295bp_CH1": "5 SNVs (1.69 %), all synonymous, indel-free",
+    "promoter_signature": {
+      "window_relative_to_anchor": "-100..0",
+      "anchor": "IGHG4_CH1_start",
+      "canonical_motif": "CGGTTCTT...GTCTATCTGCGATGG",
+      "duplicate_motif":  "GGGTTCTT...AACTGTCCGCGAGG",
+      "note": "100 bp promoter / 5'UTR; NOT the Sγ4 switch region. The duplicate-motif is IGHG1-recombinant style — hence 'chimeric'."
+    },
+    "switch_region": {
+      "name": "Sgamma4",
+      "discriminates_copies": false,
+      "identity_between_copies_pct": 99.99,
+      "evidence_samples": ["HG00329 hap1 G030290 vs G030293",
+                           "HG00272 hap1 G063814/G063816 and G063802/G063804"],
+      "note": "Sγ4 cannot be used as discriminator; canonical and tandem-dup copies are essentially identical over 10 kb upstream. 0 indels. Sγ4-core (1-5 kb upstream, GC 65-72%) is 100 % identical."
+    },
+    "ch2_ch3_drift": {
+      "present": true,
+      "per_sample_variable": true,
+      "evidence": "HG00329 hap1: dup copy G030293 carries CH2/CH3 SNPs not present on canonical G030290"
+    }
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 2,
+      "include_flanking_bp": 200,
+      "include_flanking_anchor": "CH1_start",
+      "require_unique_chain": false,
+      "note": "k=25 + mm=2 covers all 5 CH1 SNPs; max 2 SNPs co-occur in any 25-mer (closest pair pos 57+69 are 12 bp apart). k=31 also safe. k=51 fails — 3 SNPs in window."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch",
+        "kmer_size": 25, "max_mismatch": 4,
+        "trigger": "primary returns no chain or all chains below confidence floor",
+        "rationale": "handles variant-rich CH2/CH3 drift" },
+      { "stage": 2, "name": "chain_only",
+        "use_extension": false,
+        "trigger": "extension diverges (gap-open spike)",
+        "rationale": "report best chain without forcing alignment to chimeric region" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 4,
+        "trigger": "≥2 chains within Δscore tolerance",
+        "rationale": "expected for tandem-dup — both copies equally plausible" },
+      { "stage": 4, "name": "llm_checkpoint",
+        "opt_in_flag": "--llm-fallback",
+        "trigger": "user opt-in AND stages 1-3 inconclusive",
+        "rationale": "novel haplotype evaluation by LLM against PSV pattern" },
+      { "stage": 5, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "neither canonical nor dup-fixed PSV pattern matches; flag for curation review" }
+    ]
+  },
+
+  "test_cases": [
+    { "sample": "HG00329", "hap": 1,
+      "expected_class": "tandem_dup",
+      "expected_copies": ["G030290 (canonical-architecture, dup-SNPs)", "G030293 (duplicate, dup-SNPs)"],
+      "note": "het carrier; both hap1 copies tagged 'duplication' in igh_arch" },
+    { "sample": "HG00329", "hap": 2,
+      "expected_class": "canonical_single",
+      "expected_copies": ["G030279"],
+      "note": "single original IGHG4 with pos 21 SNP" },
+    { "sample": "HG00126", "hap": "both",
+      "expected_class": "canonical_single",
+      "note": "NoDup control" }
+  ],
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "preprint",
+        "id": "10.1101/2025.10.09.25337669v1",
+        "year": 2025,
+        "note": "medRxiv Belios et al. — IGHG4 ChimDup first characterisation" },
+      { "type": "paper",
+        "id": "10.1016/j.xgen.2025.100784",
+        "year": 2025,
+        "note": "Mikocziova et al., Cell Genomics — independent validation of IGHG4 tandem-dup architecture" }
+    ],
+    "supporting_databases": [
+      "UCSC genomicSuperDups (hg38, frozen 2014-10-14) — does NOT capture this dup (19.5 kb tandem absent from GRCh38)",
+      "T2T-CHM13 v2.0 SD-BED (Vollger 2022) — both CHM13 IGHG4 copies are duplicates; primary single-ref SD source for this locus",
+      "HPRC R2 pangenome (Liao 2023 + 2026 update) — primary evidence source for haplotype variability",
+      "Paraphase-160-region-list (PacBio) — IGHG paralog group included"
+    ],
+    "db_coverage_note": "Locus is fundamentally absent from UCSC because the dup unit is not in GRCh38. T2T-CHM13 + HPRC pangenome are mandatory sources.",
+    "internal_analysis_artifacts": [
+      "results/igh_arch/ighg4_per_copy_minimap2_variants.tsv",
+      "results/igh_arch/exon1_snps/exon1_canonical_vs_dup_SNPs.tsv",
+      "/beegfs/u/<user>/llmap_bench/ighg_validation/sgamma4_canonical_vs_dup.md"
+    ],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["IGHG_canondup_nahr_block", "IGH_constant_region"]
+}

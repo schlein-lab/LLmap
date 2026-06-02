@@ -1,0 +1,88 @@
+{
+  "locus_id": "Y_palindrome_P5",
+  "human_name": "Y chromosome palindrome P5 (AZFb, P5/proximal-P1 NAHR substrate)",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "palindromic_inverted",
+  "haplotype_class": "Y_palindrome_P5_canonical",
+  "mechanism": ["palindrome_mediated_nahr", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "mendelian_disease_locus"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": { "chrom": "chrY", "start": 17500000, "end": 18450000, "strand": ".",
+                "note": "Approximate — Rhie 2023 states P4-P8 concordant between GRCh38-Y and T2T-Y. Coordinate match expected ~ ±200 kb." },
+    "CHM13":  { "chrom": "chrY", "start": 18362332, "end": 19356680, "strand": ".",
+                "note": "T2T-CHM13 v2.0/Y v1 — P5-left-arm 18362332-18857802 (495470 bp), P5-right-arm 18861260-19356680 (495420 bp), spacer 18857802-18861260 (~3.5 kb). Source: chm13v2.0Y_inverted_repeats_v1.bed (marbl)." },
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 495470,
+  "copy_count_typical": "2 arms (palindromic, near-symmetric)",
+  "identity_pct_within_unit": 99.98,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["PRY", "TTTY"],
+  "architecture_note": "P5 proximal arm is the upstream NAHR substrate for AZFb (P5/proximal-P1) deletions per Repping 2002. The ~6.2 Mb AZFb deletion removes everything between P5-proximal-arm and P1-proximal-arm (P5-P4-P3-P2-P1-proximal), causing meiotic arrest. P5 has the smallest spacer (~3.5 kb) of P1-P5.",
+
+  "diagnostic_features": {
+    "arm_length_bp": 495470,
+    "spacer_length_bp": 3458,
+    "total_span_bp": 994348,
+    "arm_to_arm_identity_pct": 99.98,
+    "azf_region": "AZFb (P5/proximal-P1 deletion proximal endpoint)",
+    "clinical_deletion_products": [
+      { "name": "P5/proximal-P1 deletion (AZFb)", "size_mb": 6.2,
+        "phenotype": "azoospermia, meiotic arrest at pachytene",
+        "mechanism": "NAHR between P5 proximal arm and 92 kb block in P1.2 (Repping 2002)" },
+      { "name": "P5/distal-P1 deletion (AZFb+c)", "size_mb": 7.7,
+        "phenotype": "Sertoli-cell-only syndrome, complete spermatogenic failure" }
+    ],
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 1,
+      "include_flanking_bp": 500,
+      "require_unique_chain": false,
+      "note": "Identity 99.98% — mm=1. Spacer is tiny (~3.5 kb) so flanking anchor (P4 distal / P5 distal-flank) is critical."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "flanking_anchor",
+        "trigger": "primary returns ambiguous chains across both arms",
+        "rationale": "P5 spacer too small to anchor most reads; rely on P4-adjacent or X-degenerate-flank unique sequence" },
+      { "stage": 2, "name": "azfb_deletion_check",
+        "trigger": "read spans potential AZFb breakpoint",
+        "rationale": "if P5-proximal-arm sequence is fused to P1 chain, flag as P5/proximal-P1 NAHR product" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 2 },
+      { "stage": 4, "name": "novel_haplotype_flag",
+        "emit_warning": true }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1038/nature01722", "year": 2003,
+        "note": "Skaletsky H et al., Nature. Table 3: P5 arm 496 kb, spacer 3.5 kb, identity 99.98%, total 996 kb." },
+      { "type": "paper", "id": "10.1086/342928", "year": 2002,
+        "note": "Repping S et al., AJHG. P5/proximal-P1 NAHR — defining AZFb deletion mechanism." },
+      { "type": "paper", "id": "10.1038/nature01723", "year": 2003,
+        "note": "Rozen S et al., Nature. Gene conversion in P5 arms." },
+      { "type": "paper", "id": "10.1038/s41586-023-06457-y", "year": 2023,
+        "note": "Rhie A et al., Nature. P4-P8 concordant between GRCh38-Y and T2T-Y. CHM13-Y/v1 contained an inversion error at P5 boundary; corrected in v2." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 chm13v2.0Y_inverted_repeats_v1.bed (marbl/CHM13 GitHub)",
+      "OMIM 415000 (AZFb spermatogenic failure)"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["Y_palindrome_P1", "Y_palindrome_P2", "Y_palindrome_P3", "Y_palindrome_P4"]
+}

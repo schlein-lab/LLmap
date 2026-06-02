@@ -1,0 +1,93 @@
+{
+  "locus_id": "chr21_pArm_rDNA_cluster",
+  "human_name": "Chromosome 21 short-arm rDNA + flanking segmental duplications",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "acrocentric_rDNA_cluster_chr21",
+  "mechanism": ["nahr_prone", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "pangenome_only"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": null,
+    "CHM13":  { "chrom": "chr21", "start": 0, "end": 10864561, "strand": ".",
+                "note": "T2T-CHM13 v2.0 chr21 p-arm — 0 to centromere boundary (~10.9 Mb). rDNA array core at 3,108,298-5,612,715 (~2.50 Mb). Coordinates from Nurk 2022, doi:10.1126/science.abj6987." },
+    "HPRC_pangenome_v1.1": { "chrom": "chr21", "start": 0, "end": 10800000, "strand": ".",
+                "note": "HPRC v1.1 acrocentric pangenome — chr21 PHR total 3.79 Mb. Per Guarracino 2023." }
+  },
+
+  "unit_size_bp": 43000,
+  "copy_count_typical": "~58 rDNA copies on CHM13 hap; SST1 array on 21p11.2 in direct orientation vs chr13",
+  "identity_pct_within_unit": 99.5,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": ["45S rDNA (18S, 5.8S, 28S rRNA)", "SST1 array (NBL2)"],
+  "architecture_note": "GRCh38 chr21 p-arm is N-masked. SST1 array on 21p11.2 is in direct orientation with 13p11.2 at >99% identity (Guarracino 2023) — substrate for ectopic chr13-chr21 NAHR. rob(14;21) is the most clinically important Robertsonian translocation, causing ~5% of all Down syndrome cases (familial Down syndrome).",
+
+  "diagnostic_features": {
+    "rDNA_array": {
+      "chrom": "chr21",
+      "start_chm13": 3108298,
+      "end_chm13": 5612715,
+      "size_mb": 2.50,
+      "unit_size_bp": 43000,
+      "copy_count_estimate": "~58 copies (CHM13 hap)",
+      "note": "Mid-sized rDNA array per Nurk 2022"
+    },
+    "sst1_array": {
+      "location": "21p11.2",
+      "orientation_vs_chr13": "direct (same orientation)",
+      "pairwise_identity_with_chr13_pct": 99.0,
+      "pairwise_identity_with_chr14_pct": 99.0,
+      "note": "21p11.2 SST1 forms an inter-chromosomal SD community with 13p11.2 and 14p11.2"
+    },
+    "phr_total_mb": 3.79,
+    "robertsonian_partners": ["chr13 (rob(13;21))", "chr14 (rob(14;21) — most common cause of familial Down syndrome)", "chr15 (rare)", "chr21 (isochromosome i(21q) → 21q-uniparental-disomy variants)"],
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 2,
+      "include_flanking_bp": 1000,
+      "require_unique_chain": false,
+      "note": "Same constraints as chr13 — multi-position by default. chr13/21 SST1 ambiguity is the dominant challenge."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "multi_position",
+        "report_all_top_k": true, "k": 5,
+        "trigger": "default for acrocentric SDs" },
+      { "stage": 2, "name": "rob_14_21_breakpoint_check",
+        "trigger": "long-read context suggests chimeric chr14p-chr21q chain",
+        "rationale": "rob(14;21) products create dicentric or fused acrocentric arms detectable in HiFi/ONT chains" },
+      { "stage": 3, "name": "novel_haplotype_flag",
+        "emit_warning": true }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1126/science.abj6987", "year": 2022,
+        "note": "Nurk S et al., Science. T2T-CHM13 v2.0. rDNA array chr21 3108298-5612715 (2.50 Mb). Note: chr21 first complete acrocentric assembly was Miga 2020 (chrX) → Logsdon 2021 (chr8) framework; chr21 itself was completed by the T2T Consortium (Nurk 2022)." },
+      { "type": "paper", "id": "10.1038/s41586-023-05976-y", "year": 2023,
+        "note": "Guarracino A et al., Nature. chr21 PHR = 3.79 Mb; SST1 direct vs chr13; rob(14;21) clinical context." },
+      { "type": "paper", "id": "10.1126/science.abk3112", "year": 2022,
+        "note": "Hoyt SJ et al., Science." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 (marbl/CHM13)",
+      "HPRC R2 pangenome",
+      "UCSC genomicSuperDups — does not cover chr21 p-arm (N-masked in hg38)",
+      "ClinGen Recurrent CNV list — Robertsonian rob(14;21), rob(13;21), rob(15;21), rob(21;22); isochromosome i(21q)",
+      "OMIM 190685 (Down syndrome)"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["chr13_pArm_rDNA_cluster", "chr14_pArm_rDNA_cluster", "chr15_pArm_rDNA_cluster", "chr22_pArm_rDNA_cluster"]
+}

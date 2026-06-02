@@ -1,0 +1,80 @@
+{
+  "locus_id": "Y_palindrome_P3",
+  "human_name": "Y chromosome palindrome P3 (AZFb-AZFc boundary)",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "palindromic_inverted",
+  "haplotype_class": "Y_palindrome_P3_canonical",
+  "mechanism": ["palindrome_mediated_nahr", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "mendelian_disease_locus"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": { "chrom": "chrY", "start": 21800000, "end": 22600000, "strand": ".",
+                "note": "Approximate — between P4 and P2 per Skaletsky 2003. GRCh38 P1-P3 discordant with T2T-Y per Rhie 2023; P3 contains a known inversion vs T2T-Y." },
+    "CHM13":  { "chrom": "chrY", "start": 22760852, "end": 23582346, "strand": ".",
+                "note": "T2T-CHM13 v2.0/Y v1 — P3-left-arm 22760852-23044266 (283414 bp), P3-right-arm 23213315-23582346 (369031 bp), spacer 23044266-23213315 (~169 kb). Asymmetric arms reflect ampliconic insertions. Source: chm13v2.0Y_inverted_repeats_v1.bed (marbl)." },
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 283414,
+  "copy_count_typical": "2 arms (palindromic, asymmetric due to amplicon mosaic)",
+  "identity_pct_within_unit": 99.94,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["PRY", "PRY2", "RBMY1A1", "TTTY"],
+  "architecture_note": "P3 has the largest spacer (~169 kb) of P1-P5 and the lowest arm-to-arm identity (99.94%) — relatively older than P1/P2. Asymmetric arms in T2T-Y (left 283 kb, right 369 kb).",
+
+  "diagnostic_features": {
+    "arm_length_bp": 283414,
+    "spacer_length_bp": 169049,
+    "total_span_bp": 821494,
+    "arm_to_arm_identity_pct": 99.94,
+    "azf_region": "AZFb (P5/proximal-P1 deletion endpoint) and AZFc-proximal",
+    "asymmetry_note": "Right arm in T2T-Y is 369 kb vs left arm 283 kb — likely contains additional amplicon insertion(s) not present on left arm",
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 2,
+      "include_flanking_bp": 500,
+      "require_unique_chain": false,
+      "note": "Identity 99.94% (slightly lower than P1/P2) → mm=2. Large spacer (~169 kb) is the strongest anchor."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "spacer_anchor",
+        "trigger": "primary returns ambiguous chains across both arms",
+        "rationale": "P3 spacer is large (~169 kb) — high probability that long reads span it" },
+      { "stage": 2, "name": "asymmetry_check",
+        "trigger": "arm length matters for class assignment",
+        "rationale": "right-arm insertion present → assign right-arm; absent → left-arm" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 4 },
+      { "stage": 4, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "Rhie 2023 documents a P3 inversion in GRCh38 — variant haplotypes possible" }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1038/nature01722", "year": 2003,
+        "note": "Skaletsky H et al., Nature. Table 3: P3 arm 283 kb, spacer 170 kb, identity 99.94%, total 736 kb." },
+      { "type": "paper", "id": "10.1086/342928", "year": 2002,
+        "note": "Repping S et al., AJHG — P3 boundary of AZFb deletion." },
+      { "type": "paper", "id": "10.1038/s41586-023-06457-y", "year": 2023,
+        "note": "Rhie A et al., Nature. P3 inversion confirmed in T2T-Y by Strand-seq; P3 discordant with GRCh38-Y." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 chm13v2.0Y_inverted_repeats_v1.bed (marbl/CHM13 GitHub)"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["Y_palindrome_P1", "Y_palindrome_P2", "Y_palindrome_P4", "Y_palindrome_P5"]
+}

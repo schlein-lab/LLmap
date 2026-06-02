@@ -1,0 +1,122 @@
+{
+  "locus_id": "IGHG_canondup_nahr_block",
+  "human_name": "IGH constant region NAHR-block duplication (canonical-PSV)",
+  "version": "v2026.Q2",
+  "schema_version": "0.1",
+
+  "structural_architecture": "tandem_dup_large",
+  "haplotype_class": "IGHG_canonical_homozygous",
+  "mechanism": ["gene_conversion_prone"],
+  "clinical_function": ["immune_receptor_locus", "pangenome_only"],
+  "nahr_status": "ambiguous_low_identity",
+
+  "coords": {
+    "GRCh38": { "chrom": "chr14", "start": 105500000, "end": 105800000, "strand": "-",
+                "note": "approximate; co-duplicates IGHG4/IGHG2/IGHA1/IGHE within ~120 kb block" },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 120000,
+  "copy_count_typical": "2",
+  "identity_pct_within_unit": 84.8,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": ["IGHG4", "IGHG2", "IGHA1", "IGHE"],
+
+  "diagnostic_features": {
+    "discriminating_snps": [
+      {
+        "id": "IGHG4_CH1_pos69",
+        "position": { "transcript": "IGHG4-201", "cds_offset": 69, "grch38_chr14": 105625998 },
+        "ref": "C", "alt": "G",
+        "consequence": "p.Ala23=",
+        "class": "ORIG_fixed",
+        "expected_pattern_in_carriers": "BOTH copies show REF allele (canonical)",
+        "frequency_in_canonical_haps": 0.875,
+        "frequency_in_dup_haps_of_this_class": 0.07,
+        "source": "DNA-Architecture 104-sample sweep — 14/15 NAHR-block-haps show canonical-pattern at this position"
+      },
+      {
+        "id": "IGHG4_CH1_pos252",
+        "position": { "transcript": "IGHG4-201", "cds_offset": 252, "grch38_chr14": 105625815 },
+        "ref": "C", "alt": "T",
+        "consequence": "p.Asn84=",
+        "class": "ORIG_fixed",
+        "expected_pattern_in_carriers": "BOTH copies show REF allele (canonical)",
+        "source": "DNA-Architecture 104-sample sweep"
+      }
+    ],
+    "snp_density_note": "Unlike Tandem-Small (which is 100 % chimdup-PSV), NAHR-block carriers are 14/15 canonical-PSV. This is a mechanistically distinct CNV class — the ~120 kb block likely arose from independent NAHR between IGHG paralog flanks, not from gene-conversion of an already-chimdup tandem-dup.",
+    "promoter_signature": {
+      "window_relative_to_anchor": "-100..0",
+      "anchor": "IGHG4_CH1_start",
+      "expected_motif": "CGGTTCTT...GTCTATCTGCGATGG (canonical)",
+      "note": "14/15 NAHR-block carriers show canonical motif on both IGHG4 copies (= the dup is canonical-canonical, not chimeric)"
+    },
+    "switch_region": {
+      "name": "Sgamma4",
+      "discriminates_copies": "partial",
+      "identity_between_copies_pct": 84.8,
+      "gaps_pct": 14.8,
+      "note": "Sγ4 between the two NAHR-block copies has 84.8 % identity with 14.8 % gaps (HG00290 hap2 G048887 vs G048898 evidence), much lower than Tandem-Small (99.99 %). This is structural evidence that the two CNV classes formed by different mechanisms."
+    }
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 2,
+      "include_flanking_bp": 200,
+      "require_unique_chain": false,
+      "block_size_threshold_bp": 50000,
+      "note": "Mapper must detect block-spanning chains: a NAHR-block carrier shows ~120 kb of synteny between the two copies. Tandem-Small shows ~19.5 kb. Distinguishing the two classes requires long-read or assembly-context spanning the block boundary."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch", "kmer_size": 25, "max_mismatch": 4,
+        "trigger": "Sγ4 / inter-copy region has 14.8 % gaps", "rationale": "NAHR-block has gaps that break primary chains" },
+      { "stage": 2, "name": "chain_only", "use_extension": false,
+        "trigger": "extension diverges in inter-copy gap region" },
+      { "stage": 3, "name": "block_span_check",
+        "trigger": "verify both copies of co-dup partners (G2/A1/E) are present",
+        "rationale": "distinguishes NAHR-block (4-gene co-dup) from incidental Tandem-Small near other IG genes" },
+      { "stage": 4, "name": "llm_checkpoint", "opt_in_flag": "--llm-fallback" },
+      { "stage": 5, "name": "novel_haplotype_flag", "emit_warning": true }
+    ]
+  },
+
+  "test_cases": [
+    { "sample": "HG00290", "hap": 2, "expected_class": "NAHR_block_canonical",
+      "expected_copies": ["G048887 canonical-arch + canonical-PSVs", "G048898 canonical-arch + canonical-PSVs"],
+      "note": "primary anchor from [[hg00290_paralog_sweep]]" },
+    { "sample": "HG00321", "hap": 2, "expected_class": "NAHR_block_canonical" },
+    { "sample": "HG00323", "hap": 2, "expected_class": "NAHR_block_canonical" },
+    { "sample": "HG00350", "hap": 2, "expected_class": "NAHR_block_canonical" },
+    { "sample": "HG02083", "hap": 2, "expected_class": "NAHR_block_canonical" },
+    { "sample": "HG03139", "hap": "both", "expected_class": "NAHR_block_canonical",
+      "note": "homozygous NAHR-block carrier" },
+    { "sample": "HG02015", "hap": 1, "expected_class": "NAHR_block_mixed",
+      "note": "1 of 15 NAHR-block haps with mixed PSV signature — possible gene-conversion between NAHR-block and chimdup haplotype" }
+  ],
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "preprint", "id": "10.1101/2025.10.09.25337669v1", "year": 2025,
+        "note": "medRxiv Belios et al." },
+      { "type": "internal_analysis", "id": "DNA_architecture_104_haps_sweep", "year": 2026,
+        "note": "DNA-Architecture-Test across 104 HPRC R2 samples (208 haps), 15/208 = 7.2 % NAHR-block-class identified" }
+    ],
+    "supporting_databases": [
+      "HPRC R2 pangenome (Liao 2023 + 2026 update) — primary evidence",
+      "T2T-CHM13 v2.0 SD-BED (Vollger 2022)"
+    ],
+    "internal_analysis_artifacts": [
+      "/beegfs/u/<user>/llmap_bench/hprc_igh/dna_architecture.tsv",
+      "/beegfs/u/<user>/llmap_bench/hprc_igh/dna_architecture_report.md"
+    ],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["IGHG4_chimdup_tandem", "IGHG4_chimdup_canonical_arch", "IGH_constant_region"]
+}

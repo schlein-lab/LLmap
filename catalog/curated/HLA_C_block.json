@@ -1,0 +1,101 @@
+{
+  "locus_id": "HLA_C_block",
+  "human_name": "HLA-C class-I locus (polymorphic, KIR ligand, gene-conversion-prone)",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "HLA_C_high_diversity",
+  "mechanism": ["gene_conversion_prone"],
+  "clinical_function": ["mhc_locus", "mendelian_disease_locus"],
+  "nahr_status": "non_nahr",
+
+  "coords": {
+    "GRCh38": { "chrom": "chr6", "start": 31268749, "end": 31272092, "strand": "-",
+                "note": "HLA-C gene body on PGF reference haplotype; ~85 kb upstream of HLA-B" },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": { "chrom": "chr6", "start": 31268749, "end": 31272092, "strand": "-",
+                "note": "allele-graph representation in pangenome" }
+  },
+
+  "unit_size_bp": 3343,
+  "copy_count_typical": "1 (single locus, >6700 known alleles per IPD-IMGT/HLA)",
+  "identity_pct_within_unit": null,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": [],
+  "architecture_note": "HLA-C is the third classical class-I gene, slightly less polymorphic than HLA-A/B but still hyperdiverse. Same complex_mosaic rationale as HLA-A/B.",
+
+  "diagnostic_features": {
+    "discriminating_snps": [],
+    "diversity_hotspots": {
+      "exon_2": {
+        "region": "Peptide-binding groove α1 domain",
+        "note": "Hyperpolymorphic. See IPD-IMGT/HLA for PSVs (CC-BY-ND, no inline copy)."
+      },
+      "exon_3": {
+        "region": "Peptide-binding groove α2 domain",
+        "note": "Hyperpolymorphic. Includes the C1/C2 dimorphism (Asn80/Lys80) that determines KIR2DL1/2/3 ligand specificity."
+      },
+      "exon_4": {
+        "region": "α3 / Ig-like domain",
+        "note": "Less polymorphic anchor."
+      }
+    },
+    "snp_density_note": "HLA-C has >6700 distinct alleles (IPD-IMGT/HLA Release 3.55+, 2024). Coding-region nt identity to HLA-B is ~88 %, leading to cross-locus mapping ambiguity.",
+    "ipd_imgt_reference": {
+      "database": "IPD-IMGT/HLA",
+      "url": "https://www.ebi.ac.uk/ipd/imgt/hla/",
+      "license": "CC-BY-ND (external reference only)",
+      "use": "Resolve allele-specific PSVs via API at runtime"
+    },
+    "gene_conversion_evidence": {
+      "documented": true,
+      "note": "HLA-C↔HLA-B inter-locus gene conversion is documented (Parham 1989; Chen 2007). The C1/C2 KIR-ligand dimorphism likely arose by gene conversion from HLA-B."
+    },
+    "clinical_associations_note": "HLA-C*06:02 (psoriasis); HLA-C alleles determine KIR-ligand specificity → NK cell function, transplantation, HIV control."
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 4,
+      "include_flanking_bp": 200,
+      "include_flanking_anchor": "HLA_C_exon2_start",
+      "require_unique_chain": false,
+      "note": "Mirrors HLA-A/B. HLA-C reads cross-map heavily to HLA-B (~88 % nt identity)."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch", "kmer_size": 25, "max_mismatch": 6,
+        "trigger": "primary returns no chain" },
+      { "stage": 2, "name": "chain_only", "use_extension": false,
+        "trigger": "extension diverges in exon 2/3" },
+      { "stage": 3, "name": "multi_position", "report_all_top_k": true, "k": 6,
+        "trigger": "≥2 chains within Δscore tolerance" },
+      { "stage": 4, "name": "llm_checkpoint", "opt_in_flag": "--llm-fallback" },
+      { "stage": 5, "name": "novel_haplotype_flag", "emit_warning": true }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1101/gr.213538.116", "year": 2017,
+        "note": "Norman PJ et al., Genome Res — 95 MHC haplotypes" },
+      { "type": "paper", "id": "10.1007/s00251-007-0262-2", "year": 2008,
+        "note": "Horton R et al., Immunogenetics — MHC Haplotype Project" },
+      { "type": "database_record", "id": "IPD-IMGT/HLA", "year": 2024,
+        "note": "Robinson J et al., maintainers; CC-BY-ND, external reference only" }
+    ],
+    "supporting_databases": [
+      "IPD-IMGT/HLA (https://www.ebi.ac.uk/ipd/imgt/hla/) — external reference only",
+      "HPRC R2 pangenome (Liao 2023 + 2026 update)",
+      "T2T-CHM13 v2.0 (Nurk 2022)",
+      "Ensembl/GENCODE GRCh38 coordinates"
+    ],
+    "license_note": "IPD-IMGT/HLA sequences/PSV lists are CC-BY-ND and NOT embedded in this catalog.",
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["HLA_A_block", "HLA_B_block", "HLA_DRB1_block", "MICA_MICB_locus", "TAP1_TAP2_locus"]
+}

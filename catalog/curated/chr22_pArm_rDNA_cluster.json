@@ -1,0 +1,86 @@
+{
+  "locus_id": "chr22_pArm_rDNA_cluster",
+  "human_name": "Chromosome 22 short-arm rDNA + flanking segmental duplications",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "complex_mosaic",
+  "haplotype_class": "acrocentric_rDNA_cluster_chr22",
+  "mechanism": ["nahr_prone", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "pangenome_only"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": null,
+    "CHM13":  { "chrom": "chr22", "start": 0, "end": 15054318, "strand": ".",
+                "note": "T2T-CHM13 v2.0 chr22 p-arm — 0 to centromere boundary (~15.1 Mb). rDNA array core at 4,793,794-5,720,650 (~927 kb). Coordinates from Nurk 2022, doi:10.1126/science.abj6987." },
+    "HPRC_pangenome_v1.1": { "chrom": "chr22", "start": 0, "end": 15000000, "strand": ".",
+                "note": "HPRC v1.1 acrocentric pangenome — chr22 PHR total 2.81 Mb. Per Guarracino 2023." }
+  },
+
+  "unit_size_bp": 43000,
+  "copy_count_typical": "~22 rDNA copies on CHM13 hap",
+  "identity_pct_within_unit": 99.5,
+  "boundary_sharpness": "gradual",
+  "co_duplicated_genes": ["45S rDNA (18S, 5.8S, 28S rRNA)", "SST1 array (NBL2)"],
+  "architecture_note": "GRCh38 chr22 p-arm is N-masked. chr22 is the smallest acrocentric overall (~15 Mb p-arm). PHR = 2.81 Mb. Note this entry is for the chr22 SHORT arm (acrocentric SDs); the chr22q11.2 microdeletion syndrome is a SEPARATE long-arm locus (covered by a different T1 entry if/when added). Robertsonian rob(13;22), rob(14;22), rob(15;22), rob(21;22) are all reported but less common than rob(13;14).",
+
+  "diagnostic_features": {
+    "rDNA_array": {
+      "chrom": "chr22",
+      "start_chm13": 4793794,
+      "end_chm13": 5720650,
+      "size_mb": 0.93,
+      "unit_size_bp": 43000,
+      "copy_count_estimate": "~22 copies (CHM13 hap)",
+      "note": "Second-smallest rDNA array (after chr14) per Nurk 2022"
+    },
+    "sst1_array": {
+      "location": "22p11.2",
+      "note": "Present but less characterised than chr13/14/21 SST1 cluster — chr22 was less central in Guarracino 2023's inter-acrocentric NAHR analysis"
+    },
+    "phr_total_mb": 2.81,
+    "robertsonian_partners": ["chr13 (rob(13;22))", "chr14 (rob(14;22))", "chr15 (rob(15;22))", "chr21 (rob(21;22))"],
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 2,
+      "include_flanking_bp": 1000,
+      "require_unique_chain": false,
+      "note": "Standard acrocentric strategy. chr22 p-arm has less inter-chromosomal SD overlap than chr13/14/21 — may be more tractable."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "multi_position",
+        "report_all_top_k": true, "k": 5,
+        "trigger": "default for acrocentric SDs" },
+      { "stage": 2, "name": "novel_haplotype_flag",
+        "emit_warning": true }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1126/science.abj6987", "year": 2022,
+        "note": "Nurk S et al., Science. T2T-CHM13 v2.0. rDNA array chr22 4793794-5720650 (927 kb)." },
+      { "type": "paper", "id": "10.1038/s41586-023-05976-y", "year": 2023,
+        "note": "Guarracino A et al., Nature. chr22 PHR = 2.81 Mb." },
+      { "type": "paper", "id": "10.1126/science.abk3112", "year": 2022,
+        "note": "Hoyt SJ et al., Science." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 (marbl/CHM13)",
+      "HPRC R2 pangenome",
+      "UCSC genomicSuperDups — does not cover chr22 p-arm (N-masked in hg38)",
+      "ClinGen Recurrent CNV list — Robertsonian rob(13;22), rob(14;22), rob(15;22), rob(21;22). NOTE: 22q11.2 microdel syndrome is a DIFFERENT (long-arm) locus."
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["chr13_pArm_rDNA_cluster", "chr14_pArm_rDNA_cluster", "chr15_pArm_rDNA_cluster", "chr21_pArm_rDNA_cluster"]
+}

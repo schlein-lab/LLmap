@@ -1,0 +1,78 @@
+{
+  "locus_id": "Y_palindrome_P4",
+  "human_name": "Y chromosome palindrome P4 (AZFb, RBMY1 cluster)",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "palindromic_inverted",
+  "haplotype_class": "Y_palindrome_P4_canonical",
+  "mechanism": ["palindrome_mediated_nahr", "gene_conversion_prone"],
+  "clinical_function": ["microdel_microdup_syndrome", "mendelian_disease_locus"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": { "chrom": "chrY", "start": 18450000, "end": 18870000, "strand": ".",
+                "note": "Approximate — Rhie 2023 states P4-P8 are concordant between GRCh38-Y and T2T-Y in arm/spacer lengths and identity (99.84-99.96%). Coordinate match expected ~ ±200 kb." },
+    "CHM13":  { "chrom": "chrY", "start": 19356702, "end": 19776671, "strand": ".",
+                "note": "T2T-CHM13 v2.0/Y v1 — P4-left-arm 19356702-19546840 (190138 bp), P4-right-arm 19586496-19776671 (190175 bp), spacer 19546840-19586496 (~40 kb). Source: chm13v2.0Y_inverted_repeats_v1.bed (marbl)." },
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": 190138,
+  "copy_count_typical": "2 arms (palindromic, near-symmetric)",
+  "identity_pct_within_unit": 99.98,
+  "boundary_sharpness": "sharp",
+  "co_duplicated_genes": ["RBMY1A1 family copies", "TTTY"],
+  "architecture_note": "Nested in X-degenerate context (Rhie 2023). One of the symmetric palindromes — arms differ by only 37 bp.",
+
+  "diagnostic_features": {
+    "arm_length_bp": 190138,
+    "spacer_length_bp": 39656,
+    "total_span_bp": 419969,
+    "arm_to_arm_identity_pct": 99.98,
+    "azf_region": "AZFb",
+    "discriminating_snps": []
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 31,
+      "max_mismatch": 1,
+      "include_flanking_bp": 500,
+      "require_unique_chain": false,
+      "note": "Identity 99.98% (highest of P1-P5 in Skaletsky Table 3) — mm=1 sufficient. Spacer ~40 kb."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "spacer_anchor",
+        "trigger": "primary returns ambiguous chains across both arms",
+        "rationale": "P4 spacer ~40 kb — moderate; HiFi reads ≥20 kb often span partial spacer" },
+      { "stage": 2, "name": "flanking_anchor",
+        "trigger": "spacer not in read window",
+        "rationale": "anchor to P3-P4 or P4-P5 boundary" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 2 },
+      { "stage": 4, "name": "novel_haplotype_flag",
+        "emit_warning": true }
+    ]
+  },
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper", "id": "10.1038/nature01722", "year": 2003,
+        "note": "Skaletsky H et al., Nature. Table 3: P4 arm 190 kb, spacer 40 kb, identity 99.98%, total 419 kb." },
+      { "type": "paper", "id": "10.1038/nature01723", "year": 2003,
+        "note": "Rozen S et al., Nature. Arm-to-arm gene conversion in P4." },
+      { "type": "paper", "id": "10.1038/s41586-023-06457-y", "year": 2023,
+        "note": "Rhie A et al., Nature. P4-P8 concordant between GRCh38-Y and T2T-Y, arm-to-arm identity 99.84-99.96% in T2T-Y. Coordinate match expected." }
+    ],
+    "supporting_databases": [
+      "T2T-CHM13 v2.0 chm13v2.0Y_inverted_repeats_v1.bed (marbl/CHM13 GitHub)"
+    ],
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["Y_palindrome_P1", "Y_palindrome_P2", "Y_palindrome_P3", "Y_palindrome_P5"]
+}

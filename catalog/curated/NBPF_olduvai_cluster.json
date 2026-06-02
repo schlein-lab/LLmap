@@ -1,0 +1,121 @@
+{
+  "locus_id": "NBPF_olduvai_cluster",
+  "human_name": "NBPF gene family / Olduvai (DUF1220) cluster on chromosome 1",
+  "version": "v2026.Q2",
+  "schema_version": "0.2",
+
+  "structural_architecture": "intrachromosomal_interspersed",
+  "haplotype_class": "NBPF_olduvai_high_copy",
+  "mechanism": ["nahr_prone", "core_duplicon"],
+  "clinical_function": ["dispersed_paralog_gene_family", "pangenome_only"],
+  "nahr_status": "high_identity_nahr_prone",
+
+  "coords": {
+    "GRCh38": { "chrom": "chr1", "start": 16562319, "end": 149800000, "strand": ".",
+                "note": "NBPF family is dispersed across chr1: 1p36 (NBPF1 ~16.56 Mb), 1p13/1p11 satellite block, and the 1q21.1-q21.2 expansion (~145-149 Mb) where the bulk of high-copy NBPF8/NBPF9/NBPF10/NBPF11/NBPF14/NBPF15/NBPF19/NBPF20 paralogs reside; coordinates here are bounding-box not contiguous segdup" },
+    "CHM13":  null,
+    "HPRC_pangenome_v1.1": null
+  },
+
+  "unit_size_bp": null,
+  "copy_count_typical": "250-350 Olduvai domain copies per diploid human; ~24-30 NBPF paralog genes in GRCh38",
+  "identity_pct_within_unit": 99.0,
+  "boundary_sharpness": "gradual",
+  "architecture_note": "NBPF is the canonical 'core duplicon' family (Jiang 2007). The unit of duplication is the ~1.6 kb Olduvai triplet (HLS1-HLS2-HLS3 = three exons encoding two Olduvai domains), embedded in larger HOR (higher-order-repeat) blocks of variable size that have expanded primarily in 1q21.1-q21.2 plus a satellite block at 1p11.2 / 1p36.13. The locus does NOT have a single tandem-dup unit; it is a mosaic of nested expansions. structural_architecture='intrachromosomal_interspersed' is the dominant geometry but several paralog pairs cross into 'interchromosomal' (1p<->1q).",
+
+  "diagnostic_features": {
+    "discriminating_snps": [],
+    "psv_strategy_note": "PSV-level discrimination between individual NBPF paralogs is not feasible from a small SNP table because (a) inter-paralog identity exceeds 99% over the Olduvai HOR, (b) paralogs are not in stable 1:1 correspondence across haplotypes — copy number varies 250-350 Olduvai domains per diploid, (c) HPRC R2 + T2T-CHM13 are the first assemblies to fully resolve the cluster. For LLmap T1, the discriminator is the *HOR pattern* (Olduvai triplet composition + flanking unique-anchor sequence), not point variants. Downstream tools should treat NBPF reads as multi-position mappings by default.",
+    "olduvai_triplet_structure": {
+      "unit": "HLS1 + HLS2 + HLS3 exons encoding two Olduvai domains (~65 aa each)",
+      "size_bp": "~1600",
+      "source_doi": "10.12688/f1000research.13586.2",
+      "note": "Sikela 2018 / Dougherty 2018 nomenclature paper (F1000Res, after originally published 2017). HLS = Human-Lineage-Specific exons."
+    },
+    "copy_number_evolution": {
+      "non_primate_mammals": "1-9 Olduvai copies",
+      "monkeys":             "25-40 Olduvai copies",
+      "great_apes":          "90-125 Olduvai copies",
+      "humans":              "250-350 Olduvai copies (diploid, high inter-individual variance)",
+      "source_doi": "10.12688/f1000research.13586.2",
+      "note": "Largest human-lineage-specific coding copy-number expansion in the genome."
+    },
+    "satellite_block_1p11": {
+      "note": "1p11.2 satellite (NBPF8 locus) is a known interchromosomal jump from the 1q21.1 cluster; one of the few NBPF paralogs reliably anchored outside 1q.",
+      "source_doi": "10.1126/science.abj6965"
+    },
+    "promoter_signature": null,
+    "switch_region": null
+  },
+
+  "mapping_strategy": {
+    "primary": {
+      "kmer_size": 25,
+      "max_mismatch": 4,
+      "include_flanking_bp": 500,
+      "require_unique_chain": false,
+      "note": "k=25 / mm=4 chosen because intra-cluster identity routinely exceeds 99% and a single Olduvai HOR copy can carry 1-3 point differences in a 25 bp window. With mm=2 a large fraction of reads would chain-fail. Mapping must NOT require unique chains — multi-mapping is expected and correct."
+    },
+    "fallback_chain": [
+      { "stage": 1, "name": "relaxed_mismatch",
+        "kmer_size": 25, "max_mismatch": 6,
+        "trigger": "primary returns no chain",
+        "rationale": "deep Olduvai HOR convergence may need wider tolerance" },
+      { "stage": 2, "name": "chain_only",
+        "use_extension": false,
+        "trigger": "extension diverges over HOR boundary",
+        "rationale": "extension across HOR seams generates spurious indels" },
+      { "stage": 3, "name": "multi_position",
+        "report_all_top_k": true, "k": 16,
+        "trigger": "always (default for this locus)",
+        "rationale": "NBPF reads SHOULD multi-map — single-best-hit is wrong here" },
+      { "stage": 4, "name": "llm_checkpoint",
+        "opt_in_flag": "--llm-fallback",
+        "trigger": "novel HOR pattern not in catalog",
+        "rationale": "evaluate triplet composition against known NBPF1-30 patterns" },
+      { "stage": 5, "name": "novel_haplotype_flag",
+        "emit_warning": true,
+        "rationale": "report total Olduvai-domain count rather than gene-level assignment when paralog cannot be determined" }
+    ]
+  },
+
+  "test_cases": [
+    { "sample": "CHM13", "hap": "T2T",
+      "expected_class": "high_copy_resolved",
+      "note": "T2T-CHM13 v2.0 provides the first complete sequence-level resolution of 1q21.1 NBPF cluster (Vollger 2022); use as reference truth set" },
+    { "sample": "HG002", "hap": "both",
+      "expected_class": "high_copy_resolved",
+      "note": "HPRC R2 + diploid assembly available; NBPF copy-number quantifiable" }
+  ],
+
+  "provenance": {
+    "primary_sources": [
+      { "type": "paper",
+        "id": "10.12688/f1000research.13586.2",
+        "year": 2018,
+        "note": "Sikela JM, van Roy F, Sigrist CJA, Bateman A, Bruford EA — joint nomenclature paper renaming DUF1220 -> Olduvai (Dougherty/Sikela group co-authored). F1000Research. This is the canonical Olduvai-domain reference." },
+      { "type": "paper",
+        "id": "10.1038/ng.2007.9",
+        "year": 2007,
+        "note": "Jiang Z, Tang H, Ventura M et al. — Ancestral reconstruction of segmental duplications reveals punctuated cores of human genome evolution. Nat Genet 39:1361-1368. Defines NBPF as the prototype 'core duplicon'." },
+      { "type": "paper",
+        "id": "10.1126/science.abj6965",
+        "year": 2022,
+        "note": "Vollger MR et al. — Segmental duplications and their variation in a complete human genome (T2T-CHM13). Science 376:eabj6965. First sequence-complete view of the NBPF 1q21.1 cluster." }
+    ],
+    "supporting_databases": [
+      "UCSC genomicSuperDups (hg38) — captures the 1q21.1 NBPF block as a dense SD cluster",
+      "T2T-CHM13 v2.0 SD-BED (Vollger 2022) — primary truth set",
+      "HPRC R2 pangenome (Liao 2023 + 2026 update) — haplotype copy-number variation",
+      "HGNC NBPF gene family page — paralog naming NBPF1..NBPF30",
+      "ClinGen 1q21.1 region (ISCA-37395) — recurrent CNV link"
+    ],
+    "db_coverage_note": "NBPF is well represented in UCSC SD-BED but individual paralog boundaries shift between GRCh38 and T2T-CHM13 because GRCh38 collapses several Olduvai HOR copies. Use CHM13 + HPRC R2 as primary; GRCh38 coordinates here are approximate region bounds.",
+    "internal_analysis_artifacts": [],
+    "curator": "schlein-lab",
+    "first_added": "2026-06-02",
+    "last_reviewed": "2026-06-02"
+  },
+
+  "related_loci": ["NPHP1_locus"]
+}
