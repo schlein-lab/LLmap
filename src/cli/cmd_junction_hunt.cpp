@@ -29,8 +29,13 @@
 #include "junction_hunter/pair_kmer_index.h"
 #include "junction_hunter/read_tiler.h"
 #include "junction_hunter/consensus_caller.h"
+#include "junction_hunter/cascade_pair_index.h"
+#include "junction_hunter/cascade_caller.h"
 #include "io/fasta_reader.h"
 #include "io/mmap_fasta.h"
+
+#include <array>
+#include <atomic>
 
 namespace llmap::cli {
 
@@ -119,44 +124,78 @@ int run_junction_hunt(int argc, char** argv) {
         return 1;
     }
 
-    std::vector<junction_hunter::PairKmerIndex> indices;
-    indices.reserve(pairs.size());
-    junction_hunter::MultiKConfig kcfg;
-    std::size_t total_unique = 0;
-    for (const auto& p : pairs) {
+    // Variable-tier cascade: smallest-k membership for ALL pairs up-
+    // front, higher-k tiers built lazily per pair only after a read
+    // promotes that pair. Default cascade {11,17,25,35,51,71,101,125}
+    // covers both short reads (≤150 bp) and long reads, with k=125
+    // representing the longest fragment a 150 bp short read could
+    // carry from one paralog at a NAHR junction.
+    auto ccfg = junction_hunter::CascadeConfig::LongReadPreset();
+
+    // Cache reference-extracted sequences so lazy tier-N builds don't
+    // re-mmap. Reasonable memory: median pair has ~30 kb LCR + ~100 kb
+    // interior → ~600 MB total for 3500 pairs.
+    struct PairSeqs { std::string up, down, inn; };
+    std::vector<PairSeqs> pair_seqs(pairs.size());
+    std::vector<junction_hunter::CascadePairIndex> cidx(pairs.size());
+    std::size_t tier1_unique = 0;
+    for (std::size_t i = 0; i < pairs.size(); ++i) {
+        const auto& p = pairs[i];
         const auto up_len   = p.lcr_up_end   > p.lcr_up_start   ? p.lcr_up_end   - p.lcr_up_start   : 0;
         const auto down_len = p.lcr_down_end > p.lcr_down_start ? p.lcr_down_end - p.lcr_down_start : 0;
         const auto in_len   = p.interior_end > p.interior_start ? p.interior_end - p.interior_start : 0;
-        std::string up   = ref.GetSubsequence(p.chrom, p.lcr_up_start,   up_len);
-        std::string down = ref.GetSubsequence(p.chrom, p.lcr_down_start, down_len);
-        std::string inn  = ref.GetSubsequence(p.chrom, p.interior_start, in_len);
-        junction_hunter::PairKmerIndex idx;
-        auto st = junction_hunter::BuildPairKmerIndex(p, up, down, inn, kcfg, idx);
-        total_unique += st.total_unique;
-        indices.push_back(std::move(idx));
+        pair_seqs[i].up   = ref.GetSubsequence(p.chrom, p.lcr_up_start,   up_len);
+        pair_seqs[i].down = ref.GetSubsequence(p.chrom, p.lcr_down_start, down_len);
+        pair_seqs[i].inn  = ref.GetSubsequence(p.chrom, p.interior_start, in_len);
+        cidx[i].k_values = ccfg.k_values;
+        tier1_unique += junction_hunter::BuildCascadeTier1(
+            p, pair_seqs[i].up, pair_seqs[i].down, pair_seqs[i].inn, cidx[i]);
+        if (args.verbose && (i + 1) % 500 == 0)
+            std::fprintf(stderr, "[junction-hunt]   tier-1 built %zu/%zu pairs (%zu k-mers)\n",
+                          i + 1, pairs.size(), tier1_unique);
     }
     if (args.verbose)
-        std::fprintf(stderr, "[junction-hunt] built %zu pair indices (%zu total k-mers)\n",
-                      indices.size(), total_unique);
+        std::fprintf(stderr, "[junction-hunt] tier-1 ready: %zu pairs, %zu k-mers (k=%u)\n",
+                      pairs.size(), tier1_unique,
+                      ccfg.k_values.empty() ? 0u : static_cast<unsigned>(ccfg.k_values[0]));
 
-    // 3. Stream reads.
+    // 3. Stream reads through the cascade.
     std::ofstream out(args.output);
     if (!out) { std::fprintf(stderr, "error: cannot write %s\n", args.output.c_str()); return 1; }
     out << "read_id\tpair_id\tcall\tn_kmer_total\tn_up\tn_dn\tn_in\tn_amb\t"
            "up_mono\tdn_mono\tbreakpoint_read_pos\tbreakpoint_quality\n";
 
     llmap::io::FastaReader rd(args.reads);
-    // FastaReader has no IsValid() — rely on HasMore() in the loop;
-    // LastError() is checked after the first failed Next().
-    std::size_t n_reads = 0, n_junctions = 0;
+    std::size_t n_reads = 0, n_junctions = 0, n_tier1_pass = 0;
+    std::size_t n_promoted_pairs = 0;
     while (rd.HasMore()) {
         auto record = rd.Next();
         if (!record.IsValid()) continue;
         ++n_reads;
-        auto tiling = junction_hunter::TileRead(record.sequence, kcfg);
-        for (std::size_t i = 0; i < indices.size(); ++i) {
-            auto rec = junction_hunter::CallJunction(record.name, tiling, indices[i], pairs[i], kcfg);
+        for (std::size_t i = 0; i < cidx.size(); ++i) {
+            // Tier-0 fast path: cheap k-mer counting at smallest k.
+            // 99 % of (read, pair) tuples land here and are dropped.
+            auto first = junction_hunter::CascadeCall(
+                record.name, record.sequence, cidx[i], ccfg);
+            if (first.call == junction_hunter::JunctionCall::Unmapped) continue;
+
+            // Tier 0 passed. Build all higher tiers for THIS pair if
+            // not already cached (idempotent across reads).
+            bool any_built_now = false;
+            for (std::size_t t = 1; t < cidx[i].k_values.size(); ++t) {
+                if (!cidx[i].tier_built[t]) {
+                    junction_hunter::BuildCascadeTierN(t,
+                        pair_seqs[i].up, pair_seqs[i].down, pair_seqs[i].inn, cidx[i]);
+                    any_built_now = true;
+                }
+            }
+            if (any_built_now) ++n_promoted_pairs;
+
+            // Run the full cascade now that higher tiers exist.
+            auto rec = junction_hunter::CascadeCall(
+                record.name, record.sequence, cidx[i], ccfg);
             if (rec.call == junction_hunter::JunctionCall::Unmapped) continue;
+            ++n_tier1_pass;
             out << rec.read_id << '\t' << rec.pair_id << '\t'
                 << junction_hunter::JunctionCallName(rec.call) << '\t'
                 << rec.n_kmer_total << '\t'
@@ -167,7 +206,9 @@ int run_junction_hunt(int argc, char** argv) {
             if (rec.call == junction_hunter::JunctionCall::JunctionReal) ++n_junctions;
         }
         if (args.verbose && n_reads % 10000 == 0)
-            std::fprintf(stderr, "[junction-hunt]   %zu reads, %zu junctions so far\n", n_reads, n_junctions);
+            std::fprintf(stderr,
+                "[junction-hunt]   %zu reads, %zu tier-1 passes, %zu promoted pairs, %zu junctions\n",
+                n_reads, n_tier1_pass, n_promoted_pairs, n_junctions);
     }
 
     auto dt = std::chrono::steady_clock::now() - t0;

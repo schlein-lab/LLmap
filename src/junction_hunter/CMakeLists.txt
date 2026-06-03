@@ -14,6 +14,8 @@ add_library(llmap_junction_hunter STATIC
     read_tiler.cpp
     pair_kmer_index.cpp
     consensus_caller.cpp
+    cascade_pair_index.cpp
+    cascade_caller.cpp
 )
 
 target_include_directories(llmap_junction_hunter PUBLIC
