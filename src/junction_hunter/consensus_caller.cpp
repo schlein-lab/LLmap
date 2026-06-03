@@ -139,14 +139,28 @@ JunctionRecord CallJunction(std::string_view read_id,
         }
     }
 
-    // Excessive ambiguity → paralog-ambiguous.
-    if (rec.n_kmer_total > 0 &&
-        static_cast<double>(rec.n_ambiguous) / rec.n_kmer_total > 0.20) {
+    // Ambiguous positions are NOISE, not a verdict: at LCR identity 98 %
+    // a large fraction of short-k matches in a real LCR read end up
+    // ambiguous because the k-mer is identical between LCR_up and
+    // LCR_down. Disambiguation comes from the longer k that have the
+    // PSVs baked in. We only fall to ParalogAmbiguous when there is NO
+    // unambiguous signal to lean on.
+    const std::uint32_t n_signal = rec.n_consensus_up + rec.n_consensus_dn + rec.n_consensus_in;
+    if (n_signal == 0 && rec.n_ambiguous > 0) {
         rec.call = JunctionCall::ParalogAmbiguous;
         return rec;
     }
 
-    // Interior present → canonical (locus intact).
+    // Interior present (with no LCR-half signal) → canonical (locus intact).
+    if (rec.n_consensus_in > 0 &&
+        rec.n_consensus_up == 0 && rec.n_consensus_dn == 0) {
+        rec.call = JunctionCall::CanonicalInterior;
+        rec.up_monotonicity = SimpleMonotonicity(votes, LocusClass::Interior);
+        return rec;
+    }
+    // Interior PLUS one LCR end → still locus intact (read overhangs one LCR
+    // and walks into the interior). Common for reads anchored at LCR_up
+    // that extend past the inner edge.
     if (rec.n_consensus_in > 0 &&
         (rec.n_consensus_up == 0 || rec.n_consensus_dn == 0)) {
         rec.call = JunctionCall::CanonicalInterior;
@@ -154,7 +168,9 @@ JunctionRecord CallJunction(std::string_view read_id,
         return rec;
     }
 
-    // Pure single LCR.
+    // Pure single LCR (no other end + no interior). Ambiguous positions
+    // are tolerated because at LCR identity <99 % they are the dominant
+    // class for short-k votes.
     if (rec.n_consensus_up > 0 && rec.n_consensus_dn == 0 && rec.n_consensus_in == 0) {
         rec.call = JunctionCall::CanonicalUp;
         rec.up_monotonicity = SimpleMonotonicity(votes, LocusClass::LcrUp);
