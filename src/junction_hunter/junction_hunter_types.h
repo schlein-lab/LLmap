@@ -68,10 +68,22 @@ struct JunctionRecord {
     std::uint32_t n_consensus_dn{0};
     std::uint32_t n_consensus_in{0};
     std::uint32_t n_ambiguous{0};         ///< Multi-k conflict positions
-    float up_monotonicity{0.0f};          ///< Spearman ρ; ≥0.95 = monotonic
-    float dn_monotonicity{0.0f};
-    std::uint32_t breakpoint_read_pos{0}; ///< Index where consensus flips
-    float breakpoint_quality{0.0f};       ///< Multi-k agreement in ±50 bp window
+    /// PSV-grade support: consensus positions whose winning class is
+    /// LcrUp / LcrDown AND was backed by a long k (k ≥ psv_k_min). These
+    /// are the positions that actually carry a paralogous-sequence
+    /// variant, i.e. real evidence that a given copy was traversed —
+    /// distinct from short-k membership noise. A real junction needs
+    /// PSV-grade support on BOTH copies.
+    std::uint32_t n_psv_up{0};
+    std::uint32_t n_psv_dn{0};
+    float up_monotonicity{0.0f};          ///< |Spearman ρ| of LcrUp offsets vs read_pos
+    float dn_monotonicity{0.0f};          ///< |Spearman ρ| of LcrDown offsets vs read_pos
+    std::uint32_t breakpoint_read_pos{0}; ///< Read index where the up→down consensus flips
+    /// Genomic coordinates of the breakpoint: last up-copy position and
+    /// first down-copy position flanking the flip. 0 if not a junction.
+    std::uint64_t breakpoint_genomic_up{0};
+    std::uint64_t breakpoint_genomic_dn{0};
+    float breakpoint_quality{0.0f};       ///< Mean multi-k agreement in the flip window
     JunctionCall call{JunctionCall::Unmapped};
 };
 
@@ -82,11 +94,21 @@ struct MultiKConfig {
     /// Minimum number of k-values that must agree on the hit class at a
     /// given read position for it to count as a consensus position.
     std::uint8_t consensus_min{3};
-    /// Monotonicity threshold (Spearman ρ on hit positions vs read
-    /// positions); below this, the LCR-half is rejected as non-monotonic.
+    /// Monotonicity threshold (|Spearman ρ| of in-region offsets vs read
+    /// positions); below this, the LCR-half is rejected as non-monotonic
+    /// and a both-ends read is called ChimeraArtifact rather than
+    /// JunctionReal. Strand-agnostic (|ρ|): antisense reads walk a copy
+    /// with decreasing offset, which is still monotonic.
     float monotonicity_min{0.95f};
-    /// Minimum PSV-switch count to call JunctionReal (per spec §1.4).
+    /// Minimum PSV-grade consensus positions required on EACH copy to
+    /// call JunctionReal (per spec §1.4). A both-ends read whose geometry
+    /// is monotonic but lacks this much long-k evidence on the weaker
+    /// copy is called ParalogAmbiguous, not JunctionReal.
     std::uint32_t min_psv_switches{3};
+    /// Smallest k that counts as "PSV-grade". At LCR identity <99 % only
+    /// the long k carry paralogous-sequence variants; short k are shared
+    /// between copies and only establish membership.
+    std::uint8_t psv_k_min{51};
 };
 
 /// Stage-1 anchor table — pre-extracted k=51 k-mers unique to a single

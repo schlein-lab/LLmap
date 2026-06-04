@@ -163,7 +163,9 @@ int run_junction_hunt(int argc, char** argv) {
     std::ofstream out(args.output);
     if (!out) { std::fprintf(stderr, "error: cannot write %s\n", args.output.c_str()); return 1; }
     out << "read_id\tpair_id\tcall\tn_kmer_total\tn_up\tn_dn\tn_in\tn_amb\t"
-           "up_mono\tdn_mono\tbreakpoint_read_pos\tbreakpoint_quality\n";
+           "n_psv_up\tn_psv_dn\tup_mono\tdn_mono\t"
+           "breakpoint_read_pos\tbreakpoint_genomic_up\tbreakpoint_genomic_dn\t"
+           "breakpoint_quality\n";
 
     llmap::io::FastaReader rd(args.reads);
     std::size_t n_reads = 0, n_junctions = 0, n_tier1_pass = 0;
@@ -201,8 +203,11 @@ int run_junction_hunt(int argc, char** argv) {
                 << rec.n_kmer_total << '\t'
                 << rec.n_consensus_up << '\t' << rec.n_consensus_dn << '\t'
                 << rec.n_consensus_in << '\t' << rec.n_ambiguous << '\t'
+                << rec.n_psv_up << '\t' << rec.n_psv_dn << '\t'
                 << rec.up_monotonicity << '\t' << rec.dn_monotonicity << '\t'
-                << rec.breakpoint_read_pos << '\t' << rec.breakpoint_quality << '\n';
+                << rec.breakpoint_read_pos << '\t'
+                << rec.breakpoint_genomic_up << '\t' << rec.breakpoint_genomic_dn << '\t'
+                << rec.breakpoint_quality << '\n';
             if (rec.call == junction_hunter::JunctionCall::JunctionReal) ++n_junctions;
         }
         if (args.verbose && n_reads % 10000 == 0)

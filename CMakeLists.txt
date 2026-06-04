@@ -309,6 +309,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests/wavecollapse)
     add_subdirectory(tests/mapping)
     add_subdirectory(tests/chimera)
+    add_subdirectory(tests/junction_hunter)
 endif()
 
 # Status summary

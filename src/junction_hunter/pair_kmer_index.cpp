@@ -50,11 +50,13 @@ void IndexSegment(std::string_view seq,
         }
         if (!clean) continue;
         std::uint64_t h = HashKmer(seq.substr(i, k));
-        auto [it, inserted] = tbl.emplace(h, cls);
+        auto [it, inserted] = tbl.try_emplace(
+            h, KmerLoc{cls, static_cast<std::uint32_t>(i)});
         if (inserted) {
             ++unique_count;
-        } else if (it->second != cls && it->second != LocusClass::Ambiguous) {
-            it->second = LocusClass::Ambiguous;
+        } else if (it->second.cls != cls
+                   && it->second.cls != LocusClass::Ambiguous) {
+            it->second.cls = LocusClass::Ambiguous;
             ++amb_count;
         }
     }

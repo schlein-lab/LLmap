@@ -29,10 +29,22 @@ enum class LocusClass : std::uint8_t {
 
 const char* LocusClassName(LocusClass c) noexcept;
 
-/// Per-k lookup table. Values: class tag for that hash (most common
-/// case is None when hash not present; full-bucket structure inflates
-/// memory for marginal gain).
-using KmerClassMap = std::unordered_map<std::uint64_t, LocusClass>;
+/// Resolved location of a k-mer in the reference: its genomic class plus
+/// the 0-based offset WITHIN that region (LcrUp / LcrDown / Interior).
+/// The offset is what makes the outside-in monotonicity test possible —
+/// a real NAHR read walks the up-copy with monotonically increasing
+/// offsets, then the down-copy with monotonically increasing offsets;
+/// a chimeric artefact scrambles them. For an Ambiguous k-mer (present
+/// in more than one region at this k) the offset is meaningless and is
+/// ignored by the caller. When a k-mer repeats within one region the
+/// FIRST occurrence's offset is kept (rare for the PSV-grade long k).
+struct KmerLoc {
+    LocusClass cls{LocusClass::None};
+    std::uint32_t offset{0};
+};
+
+/// Per-k lookup table: k-mer hash → {class, in-region offset}.
+using KmerClassMap = std::unordered_map<std::uint64_t, KmerLoc>;
 
 /// All five per-k tables for one NAHR-pair.
 struct PairKmerIndex {

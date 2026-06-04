@@ -81,7 +81,7 @@ Tier1HitCounts CountTier1Hits(std::string_view read_seq,
         auto h = HashKmer(read_seq.substr(i, k));
         auto it = tbl.find(h);
         if (it == tbl.end()) continue;
-        switch (it->second) {
+        switch (it->second.cls) {
             case LocusClass::LcrUp:     ++c.up;  break;
             case LocusClass::LcrDown:   ++c.dn;  break;
             case LocusClass::Interior:  ++c.inn; break;
