@@ -288,6 +288,9 @@ add_subdirectory(src/wavecollapse)
 add_subdirectory(src/mapping)
 # Chimera detector + VDJ-recombination mask (Plan-Block 7).
 add_subdirectory(src/chimera)
+# Mode-5 NAHR-junction hunter (alignment-free, multi-k cascade). Self-
+# contained; merged from feature/mode5-transcript-wiring.
+add_subdirectory(src/junction_hunter)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
