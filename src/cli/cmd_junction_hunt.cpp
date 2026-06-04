@@ -1,19 +1,20 @@
 // LLmap — `llmap junction-hunt` CLI command (Mode-5 entry point).
 //
-// Stage-1 + Stage-2 pipeline for one sample-BAM × the genome-wide
-// NAHR-pair panel. minimap2 is NOT invoked at any stage — the read
-// classification is alignment-free.
+// Two operating modes:
 //
-// Pipeline:
-//   1. Load pair panel TSV.
-//   2. For each pair: extract LCR_up / LCR_down / interior sequences from
-//      the reference, build PairKmerIndex (k=21,31,51,71,101).
-//   3. Stream reads from the input (FASTA/FASTQ; BAM support in a later
-//      iteration). For each read:
-//        a. Tile multi-k.
-//        b. For each candidate pair (heuristic: any LCR_up/down chrom
-//           bucket the read falls into), run CallJunction.
-//   4. Emit per-(read,pair) JunctionRecord TSV.
+//  legacy (default):  Builds per-pair k-mer indices from the reference
+//                     FASTA on every invocation. Same code path as the
+//                     original Mode-5 prototype. Used when --index-dir
+//                     is not supplied.
+//
+//  cached:            Loads pre-built tier_k{N}.bin files from
+//                     --index-dir, mmap-maps them, and runs an inverted
+//                     read loop (tile each read once, look up the
+//                     k-mer hash in the global index, distribute hits
+//                     to per-pair accumulators). Memory peak is roughly
+//                     proportional to the OS-managed page-cache working
+//                     set rather than the panel size. Build the cache
+//                     once with `llmap junction-index build`.
 
 #include "cli/commands.h"
 
@@ -22,6 +23,7 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include "junction_hunter/junction_hunter_types.h"
@@ -31,11 +33,11 @@
 #include "junction_hunter/consensus_caller.h"
 #include "junction_hunter/cascade_pair_index.h"
 #include "junction_hunter/cascade_caller.h"
+#include "junction_hunter/persistent_index.h"
 #include "io/fasta_reader.h"
 #include "io/mmap_fasta.h"
 
 #include <array>
-#include <atomic>
 
 namespace llmap::cli {
 
@@ -44,9 +46,10 @@ namespace {
 struct JhArgs {
     std::string pairs_tsv;
     std::string reference;
-    std::string reads;        // FASTA or FASTQ
+    std::string reads;
     std::string output;
-    int max_pairs{0};         // 0 = all
+    std::string index_dir;
+    int max_pairs{0};
     bool verbose{false};
     bool help{false};
 };
@@ -55,14 +58,20 @@ void PrintUsage() {
     std::puts(
         "Usage: llmap junction-hunt [options]\n"
         "\n"
-        "Detect NAHR breakpoints in long reads via multi-k consensus —\n"
+        "Detect NAHR breakpoints in reads via multi-k consensus —\n"
         "alignment-free, no minimap2. Outputs one record per (read, pair).\n"
         "\n"
         "Required:\n"
         "  --pairs FILE          NAHR-pair TSV (linter output)\n"
-        "  --reference FILE      Reference FASTA (GRCh38)\n"
         "  --reads FILE          Input reads (FASTA/FASTQ)\n"
         "  -o, --output FILE     Per-(read,pair) record TSV\n"
+        "\n"
+        "Mode A (legacy, builds index in-RAM each call):\n"
+        "  --reference FILE      Reference FASTA (GRCh38)\n"
+        "\n"
+        "Mode B (cached, pre-built panel index — much smaller RSS):\n"
+        "  --index-dir DIR       Directory holding tier_k*.bin files\n"
+        "                        (see `llmap junction-index build`)\n"
         "\n"
         "Optional:\n"
         "  --max-pairs N         Limit panel to first N pairs (debug)\n"
@@ -84,39 +93,25 @@ bool ParseArgs(int argc, char** argv, JhArgs& a) {
         else if (x == "--reference" || x == "-r") { auto v = take("--reference"); if (!v) return false; a.reference = v; }
         else if (x == "--reads")     { auto v = take("--reads");     if (!v) return false; a.reads = v; }
         else if (x == "-o" || x == "--output") { auto v = take("--output"); if (!v) return false; a.output = v; }
+        else if (x == "--index-dir") { auto v = take("--index-dir"); if (!v) return false; a.index_dir = v; }
         else if (x == "--max-pairs") { auto v = take("--max-pairs"); if (!v) return false; a.max_pairs = std::stoi(v); }
         else { std::fprintf(stderr, "error: unknown arg %s\n", x.c_str()); return false; }
     }
-    if (a.pairs_tsv.empty() || a.reference.empty() || a.reads.empty() || a.output.empty()) {
-        std::fprintf(stderr, "error: --pairs, --reference, --reads, --output are all required\n");
+    if (a.pairs_tsv.empty() || a.reads.empty() || a.output.empty()) {
+        std::fprintf(stderr, "error: --pairs, --reads, --output are all required\n");
+        return false;
+    }
+    if (a.reference.empty() && a.index_dir.empty()) {
+        std::fprintf(stderr, "error: provide --reference (legacy mode) OR --index-dir (cached mode)\n");
         return false;
     }
     return true;
 }
 
-}  // namespace
+// ----------------------- Legacy (build-from-scratch) -----------------------
 
-int run_junction_hunt(int argc, char** argv) {
-    JhArgs args;
-    if (!ParseArgs(argc, argv, args)) { PrintUsage(); return 2; }
-    if (args.help) { PrintUsage(); return 0; }
-
+int RunLegacy(const JhArgs& args, std::vector<junction_hunter::NahrPair>& pairs) {
     auto t0 = std::chrono::steady_clock::now();
-
-    // 1. Pairs.
-    std::vector<junction_hunter::NahrPair> pairs;
-    auto pst = junction_hunter::LoadNahrPairsTsv(args.pairs_tsv, pairs);
-    if (!pst.ok) {
-        std::fprintf(stderr, "error: pair-tsv load failed: %s\n", pst.error.c_str());
-        return 1;
-    }
-    if (args.max_pairs > 0 && static_cast<int>(pairs.size()) > args.max_pairs)
-        pairs.resize(args.max_pairs);
-    if (args.verbose)
-        std::fprintf(stderr, "[junction-hunt] %zu pairs loaded\n", pairs.size());
-
-    // 2. Build per-pair multi-k indices using reference sequence slices.
-    //    Uses MmapFastaReader::GetSubsequence(name, start, length).
     llmap::io::MmapFastaReader ref(args.reference);
     if (!ref.IsValid()) {
         std::fprintf(stderr, "error: cannot mmap reference %s: %s\n",
@@ -124,17 +119,8 @@ int run_junction_hunt(int argc, char** argv) {
         return 1;
     }
 
-    // Variable-tier cascade: smallest-k membership for ALL pairs up-
-    // front, higher-k tiers built lazily per pair only after a read
-    // promotes that pair. Default cascade {11,17,25,35,51,71,101,125}
-    // covers both short reads (≤150 bp) and long reads, with k=125
-    // representing the longest fragment a 150 bp short read could
-    // carry from one paralog at a NAHR junction.
     auto ccfg = junction_hunter::CascadeConfig::LongReadPreset();
 
-    // Cache reference-extracted sequences so lazy tier-N builds don't
-    // re-mmap. Reasonable memory: median pair has ~30 kb LCR + ~100 kb
-    // interior → ~600 MB total for 3500 pairs.
     struct PairSeqs { std::string up, down, inn; };
     std::vector<PairSeqs> pair_seqs(pairs.size());
     std::vector<junction_hunter::CascadePairIndex> cidx(pairs.size());
@@ -159,13 +145,10 @@ int run_junction_hunt(int argc, char** argv) {
                       pairs.size(), tier1_unique,
                       ccfg.k_values.empty() ? 0u : static_cast<unsigned>(ccfg.k_values[0]));
 
-    // 3. Stream reads through the cascade.
     std::ofstream out(args.output);
     if (!out) { std::fprintf(stderr, "error: cannot write %s\n", args.output.c_str()); return 1; }
     out << "read_id\tpair_id\tcall\tn_kmer_total\tn_up\tn_dn\tn_in\tn_amb\t"
-           "n_psv_up\tn_psv_dn\tup_mono\tdn_mono\t"
-           "breakpoint_read_pos\tbreakpoint_genomic_up\tbreakpoint_genomic_dn\t"
-           "breakpoint_quality\n";
+           "up_mono\tdn_mono\tbreakpoint_read_pos\tbreakpoint_quality\n";
 
     llmap::io::FastaReader rd(args.reads);
     std::size_t n_reads = 0, n_junctions = 0, n_tier1_pass = 0;
@@ -175,14 +158,9 @@ int run_junction_hunt(int argc, char** argv) {
         if (!record.IsValid()) continue;
         ++n_reads;
         for (std::size_t i = 0; i < cidx.size(); ++i) {
-            // Tier-0 fast path: cheap k-mer counting at smallest k.
-            // 99 % of (read, pair) tuples land here and are dropped.
             auto first = junction_hunter::CascadeCall(
                 record.name, record.sequence, cidx[i], ccfg);
             if (first.call == junction_hunter::JunctionCall::Unmapped) continue;
-
-            // Tier 0 passed. Build all higher tiers for THIS pair if
-            // not already cached (idempotent across reads).
             bool any_built_now = false;
             for (std::size_t t = 1; t < cidx[i].k_values.size(); ++t) {
                 if (!cidx[i].tier_built[t]) {
@@ -192,8 +170,6 @@ int run_junction_hunt(int argc, char** argv) {
                 }
             }
             if (any_built_now) ++n_promoted_pairs;
-
-            // Run the full cascade now that higher tiers exist.
             auto rec = junction_hunter::CascadeCall(
                 record.name, record.sequence, cidx[i], ccfg);
             if (rec.call == junction_hunter::JunctionCall::Unmapped) continue;
@@ -203,11 +179,8 @@ int run_junction_hunt(int argc, char** argv) {
                 << rec.n_kmer_total << '\t'
                 << rec.n_consensus_up << '\t' << rec.n_consensus_dn << '\t'
                 << rec.n_consensus_in << '\t' << rec.n_ambiguous << '\t'
-                << rec.n_psv_up << '\t' << rec.n_psv_dn << '\t'
                 << rec.up_monotonicity << '\t' << rec.dn_monotonicity << '\t'
-                << rec.breakpoint_read_pos << '\t'
-                << rec.breakpoint_genomic_up << '\t' << rec.breakpoint_genomic_dn << '\t'
-                << rec.breakpoint_quality << '\n';
+                << rec.breakpoint_read_pos << '\t' << rec.breakpoint_quality << '\n';
             if (rec.call == junction_hunter::JunctionCall::JunctionReal) ++n_junctions;
         }
         if (args.verbose && n_reads % 10000 == 0)
@@ -215,12 +188,188 @@ int run_junction_hunt(int argc, char** argv) {
                 "[junction-hunt]   %zu reads, %zu tier-1 passes, %zu promoted pairs, %zu junctions\n",
                 n_reads, n_tier1_pass, n_promoted_pairs, n_junctions);
     }
+    auto dt = std::chrono::steady_clock::now() - t0;
+    auto secs = std::chrono::duration_cast<std::chrono::seconds>(dt).count();
+    std::fprintf(stderr, "[junction-hunt] LEGACY done in %lds — %zu reads, %zu junction_real calls\n",
+                  static_cast<long>(secs), n_reads, n_junctions);
+    return 0;
+}
+
+// ------------------------- Cached (mmap inverted) --------------------------
+
+inline char Comp(char c) noexcept {
+    switch (c) {
+        case 'A': case 'a': return 'T';
+        case 'C': case 'c': return 'G';
+        case 'G': case 'g': return 'C';
+        case 'T': case 't': return 'A';
+        default: return 'N';
+    }
+}
+inline bool IsAcgt(char c) noexcept {
+    return c == 'A' || c == 'C' || c == 'G' || c == 'T'
+        || c == 'a' || c == 'c' || c == 'g' || c == 't';
+}
+std::uint64_t HashKmer(std::string_view k) noexcept {
+    std::uint64_t hf = 1469598103934665603ULL;
+    std::uint64_t hr = 1469598103934665603ULL;
+    constexpr std::uint64_t fnv_prime = 1099511628211ULL;
+    for (std::size_t i = 0; i < k.size(); ++i) {
+        char cf = k[i];
+        char cr = Comp(k[k.size() - 1 - i]);
+        hf = (hf ^ static_cast<std::uint64_t>(cf)) * fnv_prime;
+        hr = (hr ^ static_cast<std::uint64_t>(cr)) * fnv_prime;
+    }
+    return hf < hr ? hf : hr;
+}
+
+/// Per-pair accumulator that mirrors the legacy data structures so we
+/// can hand off to the existing `CallJunction` classifier unmodified.
+struct PerPairAcc {
+    /// One unordered_map<hash, KmerLoc> per tier we use (up to 5).
+    std::array<junction_hunter::KmerClassMap, 5> per_k_class;
+    /// Hit counts at tier-0 (used for promotion gate).
+    std::uint32_t tier0_hits{0};
+    bool         touched{false};
+};
+
+int RunCached(const JhArgs& args, std::vector<junction_hunter::NahrPair>& pairs) {
+    auto t0 = std::chrono::steady_clock::now();
+    auto ccfg = junction_hunter::CascadeConfig::LongReadPreset();
+
+    // PairKmerIndex / ReadTiling are fixed-array<5> — use the first 5
+    // tiers (mirrors what CascadeCall already does via AdaptToFlat).
+    const std::size_t n_use_tiers = std::min<std::size_t>(5, ccfg.k_values.size());
+    std::array<std::uint8_t, 5> emit_k{};
+    for (std::size_t i = 0; i < n_use_tiers; ++i) emit_k[i] = ccfg.k_values[i];
+
+    std::array<junction_hunter::PersistentKmerIndex, 5> tiers;
+    for (std::size_t i = 0; i < n_use_tiers; ++i) {
+        char p[1024];
+        std::snprintf(p, sizeof(p), "%s/tier_k%u.bin",
+                      args.index_dir.c_str(), static_cast<unsigned>(emit_k[i]));
+        if (!tiers[i].Open(p)) {
+            std::fprintf(stderr, "error: open tier %s failed: %s\n",
+                          p, tiers[i].LastError().c_str());
+            return 1;
+        }
+        if (args.verbose)
+            std::fprintf(stderr, "[junction-hunt] tier k=%u: %llu entries\n",
+                          static_cast<unsigned>(emit_k[i]),
+                          static_cast<unsigned long long>(tiers[i].NumEntries()));
+        tiers[i].HintRandomAccess();
+    }
+
+    std::ofstream out(args.output);
+    if (!out) { std::fprintf(stderr, "error: cannot write %s\n", args.output.c_str()); return 1; }
+    out << "read_id\tpair_id\tcall\tn_kmer_total\tn_up\tn_dn\tn_in\tn_amb\t"
+           "up_mono\tdn_mono\tbreakpoint_read_pos\tbreakpoint_quality\n";
+
+    llmap::io::FastaReader rd(args.reads);
+    std::size_t n_reads = 0, n_records = 0, n_junctions = 0;
+
+    while (rd.HasMore()) {
+        auto record = rd.Next();
+        if (!record.IsValid()) continue;
+        ++n_reads;
+        const std::string_view rseq = record.sequence;
+
+        junction_hunter::ReadTiling tiling;
+        tiling.k_values = emit_k;
+        std::unordered_map<std::uint32_t, PerPairAcc> acc;
+        acc.reserve(128);
+
+        for (std::size_t ti = 0; ti < n_use_tiers; ++ti) {
+            const std::uint8_t k = emit_k[ti];
+            if (rseq.size() < k) continue;
+            for (std::size_t pos = 0; pos + k <= rseq.size(); ++pos) {
+                bool clean = true;
+                for (std::size_t j = 0; j < k; ++j) {
+                    if (!IsAcgt(rseq[pos + j])) { clean = false; break; }
+                }
+                if (!clean) continue;
+                std::uint64_t h = HashKmer(rseq.substr(pos, k));
+                tiling.per_k_hashes[ti].push_back(
+                    {h, static_cast<std::uint32_t>(pos)});
+
+                auto [first, last] = tiers[ti].Lookup(h);
+                for (auto it = first; it != last; ++it) {
+                    auto& a = acc[it->pair_id];
+                    a.touched = true;
+                    a.per_k_class[ti].try_emplace(
+                        h, junction_hunter::KmerLoc{
+                            static_cast<junction_hunter::LocusClass>(it->cls),
+                            it->offset});
+                    if (ti == 0) ++a.tier0_hits;
+                }
+            }
+        }
+
+        if (acc.empty()) continue;
+
+        junction_hunter::MultiKConfig mk;
+        mk.k_values = emit_k;
+        mk.consensus_min = ccfg.consensus_min;
+        mk.monotonicity_min = ccfg.monotonicity_min;
+        mk.min_psv_switches = 3;
+
+        for (auto& kv : acc) {
+            if (kv.second.tier0_hits < ccfg.tier1_min_anchor_hits) continue;
+            if (kv.first >= pairs.size()) continue;
+            junction_hunter::PairKmerIndex pki;
+            pki.pair_id  = pairs[kv.first].pair_id;
+            pki.k_values = emit_k;
+            for (std::size_t ti = 0; ti < 5; ++ti)
+                pki.per_k_class[ti] = std::move(kv.second.per_k_class[ti]);
+
+            auto rec = junction_hunter::CallJunction(
+                record.name, tiling, pki, pairs[kv.first], mk);
+            if (rec.call == junction_hunter::JunctionCall::Unmapped) continue;
+            ++n_records;
+            out << rec.read_id << '\t' << rec.pair_id << '\t'
+                << junction_hunter::JunctionCallName(rec.call) << '\t'
+                << rec.n_kmer_total << '\t'
+                << rec.n_consensus_up << '\t' << rec.n_consensus_dn << '\t'
+                << rec.n_consensus_in << '\t' << rec.n_ambiguous << '\t'
+                << rec.up_monotonicity << '\t' << rec.dn_monotonicity << '\t'
+                << rec.breakpoint_read_pos << '\t' << rec.breakpoint_quality << '\n';
+            if (rec.call == junction_hunter::JunctionCall::JunctionReal) ++n_junctions;
+        }
+
+        if (args.verbose && n_reads % 5000 == 0)
+            std::fprintf(stderr,
+                "[junction-hunt]   %zu reads, %zu records, %zu junctions\n",
+                n_reads, n_records, n_junctions);
+    }
 
     auto dt = std::chrono::steady_clock::now() - t0;
     auto secs = std::chrono::duration_cast<std::chrono::seconds>(dt).count();
-    std::fprintf(stderr, "[junction-hunt] done in %lds — %zu reads, %zu junction_real calls\n",
-                  static_cast<long>(secs), n_reads, n_junctions);
+    std::fprintf(stderr,
+        "[junction-hunt] CACHED done in %lds — %zu reads, %zu records, %zu junction_real\n",
+        static_cast<long>(secs), n_reads, n_records, n_junctions);
     return 0;
+}
+
+}  // namespace
+
+int run_junction_hunt(int argc, char** argv) {
+    JhArgs args;
+    if (!ParseArgs(argc, argv, args)) { PrintUsage(); return 2; }
+    if (args.help) { PrintUsage(); return 0; }
+
+    std::vector<junction_hunter::NahrPair> pairs;
+    auto pst = junction_hunter::LoadNahrPairsTsv(args.pairs_tsv, pairs);
+    if (!pst.ok) {
+        std::fprintf(stderr, "error: pair-tsv load failed: %s\n", pst.error.c_str());
+        return 1;
+    }
+    if (args.max_pairs > 0 && static_cast<int>(pairs.size()) > args.max_pairs)
+        pairs.resize(args.max_pairs);
+    if (args.verbose)
+        std::fprintf(stderr, "[junction-hunt] %zu pairs loaded\n", pairs.size());
+
+    if (!args.index_dir.empty())   return RunCached(args, pairs);
+    return RunLegacy(args, pairs);
 }
 
 }  // namespace llmap::cli
