@@ -133,6 +133,15 @@ MmapStats MmapFastaReader::GetStats() const {
         stats.total_bases += entry.length;
     }
 
+    if (impl_->owned_heap) {
+        // Heap-backed buffer (decompressed gz). Always fully resident.
+        size_t page_size = GetPageSize();
+        size_t num_pages = (impl_->file_size + page_size - 1) / page_size;
+        stats.resident_pages = num_pages;
+        stats.resident_fraction = 1.0;
+        return stats;
+    }
+
 #ifdef __linux__
     size_t page_size = GetPageSize();
     size_t num_pages = (impl_->file_size + page_size - 1) / page_size;
@@ -153,19 +162,20 @@ MmapStats MmapFastaReader::GetStats() const {
 }
 
 void MmapFastaReader::AdviseSequential() {
-    if (impl_ && impl_->mapped != nullptr) {
+    if (impl_ && impl_->mapped != nullptr && !impl_->owned_heap) {
         madvise(impl_->mapped, impl_->file_size, MADV_SEQUENTIAL);
     }
 }
 
 void MmapFastaReader::AdviseRandom() {
-    if (impl_ && impl_->mapped != nullptr) {
+    if (impl_ && impl_->mapped != nullptr && !impl_->owned_heap) {
         madvise(impl_->mapped, impl_->file_size, MADV_RANDOM);
     }
 }
 
 void MmapFastaReader::AdviseWillNeed(size_t index) {
-    if (!impl_ || impl_->mapped == nullptr || index >= impl_->sequences.size()) {
+    if (!impl_ || impl_->mapped == nullptr || impl_->owned_heap
+        || index >= impl_->sequences.size()) {
         return;
     }
     const auto& entry = impl_->sequences[index];
@@ -176,7 +186,8 @@ void MmapFastaReader::AdviseWillNeed(size_t index) {
 }
 
 void MmapFastaReader::AdviseDontNeed(size_t index) {
-    if (!impl_ || impl_->mapped == nullptr || index >= impl_->sequences.size()) {
+    if (!impl_ || impl_->mapped == nullptr || impl_->owned_heap
+        || index >= impl_->sequences.size()) {
         return;
     }
     const auto& entry = impl_->sequences[index];

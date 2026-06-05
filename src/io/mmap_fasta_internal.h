@@ -27,6 +27,13 @@ public:
     size_t file_size = 0;
     std::string last_error;
 
+    // When the input file was gz-compressed we decompress the entire
+    // payload into this heap buffer at open-time and point `mapped` at
+    // its data. The destructor must delete[] the buffer instead of
+    // calling munmap, and madvise calls become no-ops.
+    bool   owned_heap = false;
+    char*  heap_buffer = nullptr;
+
     std::vector<SequenceEntry> sequences;
     std::unordered_map<std::string, size_t> name_to_index;
 

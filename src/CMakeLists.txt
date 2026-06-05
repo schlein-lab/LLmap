@@ -42,7 +42,9 @@ target_include_directories(llmap_io PUBLIC
 )
 
 target_compile_features(llmap_io PUBLIC cxx_std_23)
-target_link_libraries(llmap_io PUBLIC llmap_core)
+# zlib: transparent .fa.gz reads via FastaReader + MmapFastaReader.
+find_package(ZLIB REQUIRED)
+target_link_libraries(llmap_io PUBLIC llmap_core ZLIB::ZLIB)
 
 # Output module — writers (cluster assignments, BAM/Parquet) + lossless
 # invariant accountant (lossless_aggregator) used by every sink + the
