@@ -316,8 +316,18 @@ target_compile_features(llmap_checkpoint PUBLIC cxx_std_23)
 target_link_libraries(llmap_checkpoint PUBLIC
     llmap_core
     llmap_annot
-    llmap_claude_agent
 )
+
+# The live LLM-consult path (claude_agent + its HTTP/CUDA-sandbox deps) is
+# optional. With LLMAP_ENABLE_CLAUDE=ON (default) it is linked and the
+# dispatcher consults the model; with OFF, checkpoint links standalone and
+# every consult degrades to a deterministic FallbackDecision. This lets pure
+# alignment consumers (e.g. BRANCH) link llmap_classical without dragging in
+# the agent stack.
+if(LLMAP_ENABLE_CLAUDE)
+    target_compile_definitions(llmap_checkpoint PRIVATE LLMAP_ENABLE_CLAUDE)
+    target_link_libraries(llmap_checkpoint PUBLIC llmap_claude_agent)
+endif()
 
 # llmap_classical uses checkpoint layer (forward ref resolved here)
 target_link_libraries(llmap_classical PUBLIC llmap_checkpoint)

@@ -2,8 +2,15 @@
 
 #include "checkpoint/checkpoint_dispatcher.h"
 #include "checkpoint/checkpoint_prompts.h"
+// The live LLM-consult path links the claude_agent module (and, transitively,
+// its HTTP/CUDA-sandbox dependencies). It is optional: when LLMAP_ENABLE_CLAUDE
+// is off the dispatcher still compiles and links standalone, and every consult
+// degrades to a deterministic FallbackDecision. This decoupling lets pure
+// alignment consumers (e.g. BRANCH) link llmap_classical without the agent.
+#ifdef LLMAP_ENABLE_CLAUDE
 #include "claude_agent/pipeline_agent.h"
 #include "claude_agent/anthropic_client.h"
+#endif
 
 #include <iostream>
 
@@ -84,6 +91,7 @@ std::optional<AgentDecision> CheckpointDispatcher::AskAgent(
     auto user_prompt = BuildPrompt(type, ctx);
     auto system = SystemPrompt();
 
+#ifdef LLMAP_ENABLE_CLAUDE
     // Path 1: direct AnthropicClient (preferred for synchronous consults).
     if (client_ && client_->HasApiKey()) {
         try {
@@ -106,6 +114,11 @@ std::optional<AgentDecision> CheckpointDispatcher::AskAgent(
             return std::nullopt;
         }
     }
+#else
+    // LLM consults compiled out — no agent linked. Inputs go unused.
+    (void)user_prompt;
+    (void)system;
+#endif
 
     // Path 2: PipelineAgent (long-running diagnostics, not yet suitable for
     // per-checkpoint sync calls — left as a fallback for forward compat).
