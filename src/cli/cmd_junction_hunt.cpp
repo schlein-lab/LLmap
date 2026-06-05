@@ -34,6 +34,7 @@
 #include "junction_hunter/cascade_pair_index.h"
 #include "junction_hunter/cascade_caller.h"
 #include "junction_hunter/persistent_index.h"
+#include "junction_hunter/reference_gate.h"
 #include "io/fasta_reader.h"
 #include "io/mmap_fasta.h"
 
@@ -49,6 +50,9 @@ struct JhArgs {
     std::string reads;
     std::string output;
     std::string index_dir;
+    std::string reference_index;   ///< .llmi for routed mode
+    std::string nahr_bed;          ///< NAHR-arm BED for routed mode
+    std::string routed_out;        ///< optional SKIP/UNMAPPED audit TSV
     int max_pairs{0};
     bool verbose{false};
     bool help{false};
@@ -73,6 +77,13 @@ void PrintUsage() {
         "  --index-dir DIR       Directory holding tier_k*.bin files\n"
         "                        (see `llmap junction-index build`)\n"
         "\n"
+        "Mode C (routed, reference-anchored gate + cache fallback):\n"
+        "  --reference-index F   .llmi minimizer index of GRCh38/CHM13\n"
+        "                        (see `llmap index`); enables routed mode\n"
+        "  --nahr-bed FILE       NAHR-arm BED (chrom\\tstart\\tend\\tpair_id\\tarm)\n"
+        "  --routed-out FILE     Optional audit TSV for SKIP/UNMAPPED reads\n"
+        "  --index-dir DIR       Same persistent cache as Mode B\n"
+        "\n"
         "Optional:\n"
         "  --max-pairs N         Limit panel to first N pairs (debug)\n"
         "  -v, --verbose         Verbose progress\n"
@@ -94,6 +105,9 @@ bool ParseArgs(int argc, char** argv, JhArgs& a) {
         else if (x == "--reads")     { auto v = take("--reads");     if (!v) return false; a.reads = v; }
         else if (x == "-o" || x == "--output") { auto v = take("--output"); if (!v) return false; a.output = v; }
         else if (x == "--index-dir") { auto v = take("--index-dir"); if (!v) return false; a.index_dir = v; }
+        else if (x == "--reference-index") { auto v = take("--reference-index"); if (!v) return false; a.reference_index = v; }
+        else if (x == "--nahr-bed")  { auto v = take("--nahr-bed");  if (!v) return false; a.nahr_bed = v; }
+        else if (x == "--routed-out") { auto v = take("--routed-out"); if (!v) return false; a.routed_out = v; }
         else if (x == "--max-pairs") { auto v = take("--max-pairs"); if (!v) return false; a.max_pairs = std::stoi(v); }
         else { std::fprintf(stderr, "error: unknown arg %s\n", x.c_str()); return false; }
     }
@@ -101,8 +115,16 @@ bool ParseArgs(int argc, char** argv, JhArgs& a) {
         std::fprintf(stderr, "error: --pairs, --reads, --output are all required\n");
         return false;
     }
-    if (a.reference.empty() && a.index_dir.empty()) {
-        std::fprintf(stderr, "error: provide --reference (legacy mode) OR --index-dir (cached mode)\n");
+    const bool have_routed = !a.reference_index.empty();
+    if (have_routed) {
+        if (a.index_dir.empty() || a.nahr_bed.empty()) {
+            std::fprintf(stderr, "error: --reference-index requires --index-dir AND --nahr-bed\n");
+            return false;
+        }
+    } else if (a.reference.empty() && a.index_dir.empty()) {
+        std::fprintf(stderr,
+            "error: provide --reference (legacy), --index-dir (cached), or "
+            "--reference-index + --index-dir + --nahr-bed (routed)\n");
         return false;
     }
     return true;
@@ -350,6 +372,172 @@ int RunCached(const JhArgs& args, std::vector<junction_hunter::NahrPair>& pairs)
     return 0;
 }
 
+// ------------------------------ Routed mode --------------------------------
+// Gate: ReferenceGate.Classify(read) → Skip / RouteToNahr / Unmapped.
+// On RouteToNahr, run the same inverted lookup as RunCached but ONLY for
+// the read's nominated pair_id (if known). For Skip/Unmapped, optionally
+// log to a routed-out audit file.
+
+static int RunRouted(JhArgs& args, std::vector<junction_hunter::NahrPair>& pairs) {
+    auto t0 = std::chrono::steady_clock::now();
+    auto ccfg = junction_hunter::CascadeConfig::LongReadPreset();
+
+    junction_hunter::ReferenceGate gate;
+    if (!gate.Load(args.reference_index, args.nahr_bed)) {
+        std::fprintf(stderr, "error: reference-gate load: %s\n",
+                      gate.LastError().c_str());
+        return 1;
+    }
+
+    // Open cache tiers (same as cached mode).
+    const std::size_t n_use_tiers = std::min<std::size_t>(5, ccfg.k_values.size());
+    std::array<std::uint8_t, 5> emit_k{};
+    for (std::size_t i = 0; i < n_use_tiers; ++i) emit_k[i] = ccfg.k_values[i];
+
+    std::array<junction_hunter::PersistentKmerIndex, 5> tiers;
+    for (std::size_t i = 0; i < n_use_tiers; ++i) {
+        char p[1024];
+        std::snprintf(p, sizeof(p), "%s/tier_k%u.bin",
+                      args.index_dir.c_str(), static_cast<unsigned>(emit_k[i]));
+        if (!tiers[i].Open(p)) {
+            std::fprintf(stderr, "error: open tier %s failed: %s\n",
+                          p, tiers[i].LastError().c_str());
+            return 1;
+        }
+        tiers[i].HintRandomAccess();
+    }
+
+    // Pair-id (string) → pairs[] index for fast routing lookup.
+    std::unordered_map<std::string, std::uint32_t> pid_to_idx;
+    pid_to_idx.reserve(pairs.size());
+    for (std::uint32_t i = 0; i < pairs.size(); ++i) {
+        pid_to_idx.emplace(pairs[i].pair_id, i);
+    }
+
+    std::ofstream out(args.output);
+    if (!out) { std::fprintf(stderr, "error: cannot write %s\n", args.output.c_str()); return 1; }
+    out << "read_id\tpair_id\tcall\tn_kmer_total\tn_up\tn_dn\tn_in\tn_amb\t"
+           "up_mono\tdn_mono\tbreakpoint_read_pos\tbreakpoint_quality\n";
+
+    std::ofstream routed_out;
+    if (!args.routed_out.empty()) {
+        routed_out.open(args.routed_out);
+        if (routed_out)
+            routed_out << "read_id\tverdict\tref_id\tref_start\tn_seeds\tpair_id\tarm\n";
+    }
+
+    llmap::io::FastaReader rd(args.reads);
+    std::size_t n_reads = 0, n_skip = 0, n_route = 0, n_unmap = 0;
+    std::size_t n_records = 0, n_junctions = 0;
+
+    while (rd.HasMore()) {
+        auto record = rd.Next();
+        if (!record.IsValid()) continue;
+        ++n_reads;
+        const std::string_view rseq = record.sequence;
+
+        auto g = gate.Classify(rseq);
+        if (g.verdict == junction_hunter::GateResult::Skip) {
+            ++n_skip;
+            if (routed_out) routed_out << record.name << "\tSKIP\t" << g.ref_id
+                                        << '\t' << g.ref_start << '\t'
+                                        << g.n_seeds_in_bucket << "\t\t\n";
+            continue;
+        }
+        if (g.verdict == junction_hunter::GateResult::Unmapped) {
+            ++n_unmap;
+            if (routed_out) routed_out << record.name << "\tUNMAPPED\t\t\t"
+                                        << g.n_seeds_in_bucket << "\t\t\n";
+            continue;
+        }
+        ++n_route;
+        if (routed_out) routed_out << record.name << "\tROUTE\t" << g.ref_id
+                                    << '\t' << g.ref_start << '\t'
+                                    << g.n_seeds_in_bucket << '\t'
+                                    << g.pair_id << '\t' << g.arm << '\n';
+
+        // Read is routed to NAHR cache. Build per-read tiling + per-pair
+        // accumulator across ALL tiers (mirrors RunCached's body). The
+        // route hint (g.pair_id) is logged but we still scan all pairs
+        // since a single read may overlap multiple NAHR loci.
+        junction_hunter::ReadTiling tiling;
+        tiling.k_values = emit_k;
+        std::unordered_map<std::uint32_t, PerPairAcc> acc;
+        acc.reserve(32);
+
+        for (std::size_t ti = 0; ti < n_use_tiers; ++ti) {
+            const std::uint8_t k = emit_k[ti];
+            if (rseq.size() < k) continue;
+            for (std::size_t pos = 0; pos + k <= rseq.size(); ++pos) {
+                bool clean = true;
+                for (std::size_t j = 0; j < k; ++j) {
+                    if (!IsAcgt(rseq[pos + j])) { clean = false; break; }
+                }
+                if (!clean) continue;
+                std::uint64_t h = HashKmer(rseq.substr(pos, k));
+                tiling.per_k_hashes[ti].push_back(
+                    {h, static_cast<std::uint32_t>(pos)});
+
+                auto [first, last] = tiers[ti].Lookup(h);
+                for (auto it = first; it != last; ++it) {
+                    auto& a = acc[it->pair_id];
+                    a.touched = true;
+                    a.per_k_class[ti].try_emplace(
+                        h, junction_hunter::KmerLoc{
+                            static_cast<junction_hunter::LocusClass>(it->cls),
+                            it->offset});
+                    if (ti == 0) ++a.tier0_hits;
+                }
+            }
+        }
+
+        junction_hunter::MultiKConfig mk;
+        mk.k_values = emit_k;
+        mk.consensus_min = ccfg.consensus_min;
+        mk.monotonicity_min = ccfg.monotonicity_min;
+        mk.min_psv_switches = 3;
+
+        for (auto& kv : acc) {
+            if (kv.second.tier0_hits < ccfg.tier1_min_anchor_hits) continue;
+            if (kv.first >= pairs.size()) continue;
+            junction_hunter::PairKmerIndex pki;
+            pki.pair_id  = pairs[kv.first].pair_id;
+            pki.k_values = emit_k;
+            for (std::size_t ti = 0; ti < 5; ++ti)
+                pki.per_k_class[ti] = std::move(kv.second.per_k_class[ti]);
+            auto rec = junction_hunter::CallJunction(
+                record.name, tiling, pki, pairs[kv.first], mk);
+            if (rec.call == junction_hunter::JunctionCall::Unmapped) continue;
+            ++n_records;
+            out << rec.read_id << '\t' << rec.pair_id << '\t'
+                << junction_hunter::JunctionCallName(rec.call) << '\t'
+                << rec.n_kmer_total << '\t'
+                << rec.n_consensus_up << '\t' << rec.n_consensus_dn << '\t'
+                << rec.n_consensus_in << '\t' << rec.n_ambiguous << '\t'
+                << rec.up_monotonicity << '\t' << rec.dn_monotonicity << '\t'
+                << rec.breakpoint_read_pos << '\t' << rec.breakpoint_quality << '\n';
+            if (rec.call == junction_hunter::JunctionCall::JunctionReal) ++n_junctions;
+        }
+
+        if (args.verbose && n_reads % 1000 == 0)
+            std::fprintf(stderr,
+                "[junction-hunt]   %zu reads | skip=%zu route=%zu unmap=%zu | records=%zu jct=%zu\n",
+                n_reads, n_skip, n_route, n_unmap, n_records, n_junctions);
+    }
+
+    auto dt = std::chrono::steady_clock::now() - t0;
+    auto secs = std::chrono::duration_cast<std::chrono::seconds>(dt).count();
+    std::fprintf(stderr,
+        "[junction-hunt] ROUTED done in %lds — %zu reads | skip=%zu (%.1f%%) "
+        "route=%zu (%.2f%%) unmap=%zu (%.1f%%) | records=%zu jct=%zu\n",
+        static_cast<long>(secs), n_reads,
+        n_skip,  n_reads ? 100.0 * n_skip  / n_reads : 0.0,
+        n_route, n_reads ? 100.0 * n_route / n_reads : 0.0,
+        n_unmap, n_reads ? 100.0 * n_unmap / n_reads : 0.0,
+        n_records, n_junctions);
+    return 0;
+}
+
 }  // namespace
 
 int run_junction_hunt(int argc, char** argv) {
@@ -368,7 +556,8 @@ int run_junction_hunt(int argc, char** argv) {
     if (args.verbose)
         std::fprintf(stderr, "[junction-hunt] %zu pairs loaded\n", pairs.size());
 
-    if (!args.index_dir.empty())   return RunCached(args, pairs);
+    if (!args.reference_index.empty()) return RunRouted(args, pairs);
+    if (!args.index_dir.empty())       return RunCached(args, pairs);
     return RunLegacy(args, pairs);
 }
 

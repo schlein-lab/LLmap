@@ -18,6 +18,7 @@ add_library(llmap_junction_hunter STATIC
     cascade_caller.cpp
     persistent_index.cpp
     persistent_index_builder.cpp
+    reference_gate.cpp
 )
 
 target_include_directories(llmap_junction_hunter PUBLIC
@@ -25,4 +26,5 @@ target_include_directories(llmap_junction_hunter PUBLIC
 )
 
 target_compile_features(llmap_junction_hunter PUBLIC cxx_std_23)
-target_link_libraries(llmap_junction_hunter PUBLIC llmap_core llmap_io)
+target_link_libraries(llmap_junction_hunter PUBLIC
+    llmap_core llmap_io llmap_classical llmap_annot)
