@@ -61,6 +61,7 @@ void print_usage() {
         "  igh-match         Alignment-free IGH paralog assignment from reads (FASTQ/FASTA)\n"
         "  transcript-index  Build exon-boundary-aware reverse k-mer index from GENCODE (Mode-5+)\n"
         "  junction-hunt     Detect NAHR breakpoints in reads via multi-k consensus (Mode-5)\n"
+        "  taxbin            LLmap-native taxonomic binning of un-human reads (Mode-6)\n"
         "  --version         Show version\n"
         "  --help            Show this message\n"
     );
@@ -140,6 +141,9 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "junction-hunt") == 0) {
         return llmap::cli::run_junction_hunt(argc - 2, argv + 2);
+    }
+    if (std::strcmp(argv[1], "taxbin") == 0) {
+        return llmap::cli::run_taxbin(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,

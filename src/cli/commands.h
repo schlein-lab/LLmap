@@ -20,5 +20,6 @@ int run_igh_resort(int argc, char** argv);
 int run_igh_match(int argc, char** argv);
 int run_transcript_index(int argc, char** argv);
 int run_junction_hunt(int argc, char** argv);
+int run_taxbin(int argc, char** argv);
 
 }  // namespace llmap::cli

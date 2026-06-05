@@ -10,6 +10,7 @@
 add_library(llmap_classify STATIC
     upstream_anchor.cpp
     segdup_catalog_adapter.cpp
+    taxbin.cpp
 )
 
 target_include_directories(llmap_classify PUBLIC
