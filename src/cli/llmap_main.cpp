@@ -142,6 +142,10 @@ int main(int argc, char** argv) {
         return llmap::cli::run_junction_hunt(argc - 2, argv + 2);
     }
 
+    if (std::strcmp(argv[1], "triobin") == 0) {
+        return llmap::cli::run_triobin(argc - 2, argv + 2);
+    }
+
     std::fprintf(stderr,
         "llmap: command '%s' not yet implemented.\n"
         "Use 'llmap --help' for available commands.\n",
