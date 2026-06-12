@@ -187,6 +187,56 @@ TEST(BamWriterTest, WriteMappedWithAlternatives) {
     std::filesystem::remove(tmp);
 }
 
+TEST(BamWriterTest, SplitAsSupplementaryEmitsSeparateLine) {
+    // R-D: transcript/split mode — an alternative (e.g. an unjoined alt-exon
+    // block) is emitted as its own SUPPLEMENTARY (0x800) line cross-linked via
+    // SA, NOT collapsed into an XA tag. The alt-exon block stays a first-class
+    // alignment so downstream tools never lose it.
+    auto tmp = std::filesystem::temp_directory_path() / "test_split_supp.sam";
+    auto refs = TestRefs();
+
+    BamWriterConfig config;
+    config.emit_split_as_supplementary = true;
+
+    auto writer = BamWriter::Create(tmp, refs, config);
+    ASSERT_NE(writer, nullptr);
+
+    AlignmentHit primary;
+    primary.target_id = "chr14";
+    primary.start = 100000;
+    primary.end = 100500;
+    primary.cigar.ops = "500M";
+    primary.score = 480;
+    primary.nm = 3;
+
+    AlignmentHit frag;  // the unjoined alt-exon block
+    frag.target_id = "chr14";
+    frag.start = 200000;
+    frag.end = 200080;
+    frag.cigar.ops = "80M";
+    frag.score = 75;
+    frag.nm = 1;
+
+    auto rec = make_mapped("read_split", 580, primary, {frag});
+    EXPECT_TRUE(writer->Write(rec));
+    writer->Close();
+
+    auto content = ReadFile(tmp);
+    // No XA in split mode — the fragment is a real line instead.
+    EXPECT_EQ(content.find("XA:Z:"), std::string::npos);
+    // SA cross-link present.
+    EXPECT_NE(content.find("SA:Z:"), std::string::npos);
+    // Supplementary FLAG 0x800 == 2048 on its own line.
+    EXPECT_NE(content.find("\t2048\t"), std::string::npos);
+    // The fragment's CIGAR + position appear as a separate alignment line.
+    EXPECT_NE(content.find("80M"), std::string::npos);
+    EXPECT_NE(content.find("200001"), std::string::npos);  // 1-based fragment pos
+    // The read id appears at least twice (primary + supplementary).
+    EXPECT_NE(content.find("read_split"), content.rfind("read_split"));
+
+    std::filesystem::remove(tmp);
+}
+
 TEST(BamWriterTest, MappedWithParalogTags) {
     auto tmp = std::filesystem::temp_directory_path() / "test_paralog.sam";
     auto refs = TestRefs();

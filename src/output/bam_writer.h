@@ -54,6 +54,13 @@ struct BamWriterConfig {
 
     // Output options
     bool include_alternatives = true;     // XA tag for alternative alignments
+    // Transcript/split-read mode: emit each alternative as its own
+    // SUPPLEMENTARY (0x800) SAM line cross-linked with SA tags, instead of
+    // collapsing them into an XA tag on the primary. This is the correct SAM
+    // representation for split reads (e.g. a spliced read whose exon blocks
+    // span a junction the joiner could not merge) — the alt-exon block becomes
+    // a first-class alignment, not a tag, so downstream tools never lose it.
+    bool emit_split_as_supplementary = false;
     bool include_tentative = true;        // Write tentative as unmapped with tags
     bool include_wavecollapse_tags = true; // XC:cluster, XL:level, XI:iteration
     bool include_paralog_tags = true;      // XP:paralog probability

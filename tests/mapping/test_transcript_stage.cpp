@@ -165,6 +165,27 @@ TEST(TranscriptStage, ReverseStrandMerges) {
     EXPECT_EQ(out[0].cigar, "100M1000N100M");
 }
 
+TEST(TranscriptStage, WeakMotifStillMergesWithNop) {
+    // R-A: intron-like geometry but weak/non-canonical motif (scorer 0.05).
+    // With the transcript-mode floor threshold the read still merges into ONE
+    // spliced alignment, the gap is an N op (intron skip, not a D deletion),
+    // and the low motif confidence is preserved for the jM tag.
+    std::string ref = MakeRef(1200);  // no GT/AG patch → scorer returns 0.05
+    std::vector<LinearSubChain> subs = {
+        Sub("chr1", 0, 100, 0, 100, '+', "100M"),
+        Sub("chr1", 1100, 1200, 100, 200, '+', "100M"),
+    };
+    TranscriptStageConfig cfg;
+    cfg.joiner.min_junction_probability = 0.05f;  // motif = evidence, not gate
+    auto out = ApplyTranscriptStage(subs, LookupFor("chr1", ref),
+                                    CanonicalScorer(), cfg);
+    ASSERT_EQ(out.size(), 1u);
+    EXPECT_TRUE(out[0].is_spliced);
+    EXPECT_EQ(out[0].cigar, "100M1000N100M");  // N op despite weak motif
+    ASSERT_EQ(out[0].junction_conf.size(), 1u);
+    EXPECT_LT(out[0].junction_conf[0], 0.30f);  // low confidence preserved
+}
+
 TEST(TranscriptStage, EmptyInput) {
     auto out = ApplyTranscriptStage({}, LookupFor("chr1", ""), CanonicalScorer(),
                                     {});

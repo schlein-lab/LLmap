@@ -3,6 +3,7 @@
 #include "cli/commands.h"
 #include "cli/cmd_align_internal.h"
 
+#include <algorithm>
 #include <chrono>
 #include <cstdio>
 #include <filesystem>
@@ -210,6 +211,14 @@ int run_align(int argc, char** argv) {
     // (the joiner re-collapses them into one spliced alignment).
     if (args.resolved_mode == core::TranscriptMode::Transcript) {
         pipe_cfg.report_secondary = true;
+        // Lossless / no-drop: short terminal or novel exons (alternative 3'
+        // ends, NMD-escape last exons, short UTR exons) must survive the
+        // length filter so the spliced stage can attach them — otherwise the
+        // informative exon block is dropped before the joiner ever sees it and
+        // the read collapses onto the wrong (annotated) isoform. Micro-exons
+        // below the seed footprint are a separate (seeding) concern.
+        pipe_cfg.min_aligned_bases =
+            std::min(pipe_cfg.min_aligned_bases, 15);
     }
 
     classical::ClassicalPipeline pipeline(pipe_cfg);
@@ -292,6 +301,11 @@ int run_align(int argc, char** argv) {
                                    : output::BamOutputFormat::SAM;
     bam_cfg.include_wavecollapse_tags = false;
     bam_cfg.include_paralog_tags = psv_catalog.has_value();
+    // R-D: in Transcript-Mode unjoined exon fragments are emitted as
+    // SUPPLEMENTARY (0x800) lines + SA links rather than an XA tag, so a
+    // split spliced read keeps every exon block as a first-class alignment.
+    bam_cfg.emit_split_as_supplementary =
+        args.resolved_mode == core::TranscriptMode::Transcript;
 
     auto bam_writer = output::BamWriter::Create(args.output, ref_info, bam_cfg);
     if (!bam_writer) {

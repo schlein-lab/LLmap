@@ -235,6 +235,11 @@ bool BamWriter::Write(const AlignmentRecord& record,
         const auto& hit = *record.primary;
         std::uint8_t mapq = CalculateMapq(record);
 
+        // Split-read (transcript) mode: alternatives become first-class
+        // SUPPLEMENTARY lines + SA cross-links instead of an XA tag.
+        const bool split_mode =
+            config_.emit_split_as_supplementary && !record.alternatives.empty();
+
         // Get reference index
         auto ref_it = impl_->ref_name_to_idx.find(hit.target_id);
         std::string rname = (ref_it != impl_->ref_name_to_idx.end())
@@ -269,8 +274,23 @@ bool BamWriter::Write(const AlignmentRecord& record,
         // RG tag
         impl_->file << "\tRG:Z:" << config_.read_group_id;
 
-        // XA tag for alternatives
-        if (config_.include_alternatives && !record.alternatives.empty()) {
+        // SA tag (split-read): primary links to every supplementary part.
+        if (split_mode) {
+            impl_->file << "\tSA:Z:";
+            for (const auto& alt : record.alternatives) {
+                impl_->file << alt.target_id << ","
+                            << (alt.start + 1) << ","
+                            << (alt.is_reverse ? '-' : '+') << ","
+                            << (alt.cigar.ops.empty() ? "*" : alt.cigar.ops) << ","
+                            << static_cast<int>(mapq) << ","
+                            << alt.nm << ";";
+            }
+        }
+
+        // XA tag for alternatives (suppressed in split mode — those alternatives
+        // are emitted as full SUPPLEMENTARY lines below instead).
+        if (config_.include_alternatives && !record.alternatives.empty() &&
+            !split_mode) {
             impl_->file << "\tXA:Z:";
             for (std::size_t i = 0; i < record.alternatives.size(); ++i) {
                 const auto& alt = record.alternatives[i];
@@ -312,6 +332,38 @@ bool BamWriter::Write(const AlignmentRecord& record,
         impl_->file << "\n";
         impl_->stats.mapped_written++;
         impl_->stats.alternatives_written += record.alternatives.size();
+
+        // Supplementary lines for split-read parts (transcript mode): each
+        // alternative becomes its own 0x800 SAM line, SA-linked to the primary,
+        // so the alt-exon block is never lost or buried in a tag.
+        if (split_mode) {
+            for (const auto& alt : record.alternatives) {
+                auto alt_it = impl_->ref_name_to_idx.find(alt.target_id);
+                const std::string alt_rname =
+                    (alt_it != impl_->ref_name_to_idx.end()) ? alt.target_id : "*";
+                const std::uint16_t sflag =
+                    static_cast<std::uint16_t>(0x800 | (alt.is_reverse ? 0x10 : 0));
+                impl_->file << record.read_id << "\t"
+                            << sflag << "\t"
+                            << alt_rname << "\t"
+                            << (alt.start + 1) << "\t"
+                            << static_cast<int>(mapq) << "\t"
+                            << (alt.cigar.ops.empty() ? "*" : alt.cigar.ops) << "\t"
+                            << "*\t0\t0\t"
+                            << "*\t*"  // SEQ, QUAL omitted on supplementary parts
+                            << "\tAS:i:" << alt.score
+                            << "\tNM:i:" << alt.nm
+                            << "\tRG:Z:" << config_.read_group_id
+                            << "\tSA:Z:" << hit.target_id << ","
+                            << (hit.start + 1) << ","
+                            << (hit.is_reverse ? '-' : '+') << ","
+                            << (cigar_str.empty() ? "*" : cigar_str) << ","
+                            << static_cast<int>(mapq) << ","
+                            << hit.nm << ";"
+                            << "\n";
+                impl_->stats.mapped_written++;
+            }
+        }
     }
 
     impl_->stats.records_written++;

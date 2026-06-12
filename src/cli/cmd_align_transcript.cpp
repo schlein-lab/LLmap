@@ -97,7 +97,16 @@ AlignmentRecord BuildTranscriptRecord(const classical::ReadAlignmentResult& res,
         return JunctionProbFromSplice(splice_db.ScoreJunction(d, a, i3, i5));
     };
 
-    auto spliced = mapping::ApplyTranscriptStage(subs, ref_lookup, scorer, {});
+    // R-A: in Transcript-Mode the joiner threshold is the lossless floor, not a
+    // canonicality gate. An intron-sized, query-colinear gap (the geometry
+    // checks in GapLooksLikeIntron) is merged even when the splice motif is
+    // weak/non-canonical — exactly the novel-alt-exon / NMD-escape case the
+    // reference annotation would miss. The motif strength is preserved as the
+    // jM junction confidence; it never blocks the merge or fragments the read.
+    mapping::TranscriptStageConfig cfg;
+    cfg.joiner.min_junction_probability = 0.05f;  // == the scorer's floor
+
+    auto spliced = mapping::ApplyTranscriptStage(subs, ref_lookup, scorer, cfg);
 
     if (spliced.empty()) {
         // Should not happen (res.HasAlignment()), but stay safe: primary only.

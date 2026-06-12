@@ -139,6 +139,17 @@ std::vector<SplicedAlignment> ApplyTranscriptStage(
         for (const auto& chain : res.chains) {
             const auto& subs = chain.sub_chains;
             if (subs.empty()) continue;
+
+            // A junction that survived the joiner IS an intron (the geometry
+            // gate already enforced intron size + colinearity). So the CIGAR
+            // gap must be N (intron skip), regardless of how canonical the
+            // motif looked — the canonicality lives in the jM confidence, it
+            // must NOT downgrade the gap to a D (deletion). Force is_confirmed
+            // on a local copy before emitting the CIGAR. This is the R-A
+            // contract: motif is evidence (→ jM), never a gate (→ N vs D).
+            SplicedChain joined = chain;
+            for (auto& j : joined.junctions) j.is_confirmed = true;
+
             SplicedAlignment a;
             a.ref_id = chain.ref_id;
             a.strand = chain.strand;
@@ -153,11 +164,11 @@ std::vector<SplicedAlignment> ApplyTranscriptStage(
             }
             a.query_start = qs;
             a.query_end = qe;
-            a.cigar = EmitSplicedCigar(chain);
+            a.cigar = EmitSplicedCigar(joined);
             a.is_spliced = subs.size() > 1;
             for (const auto& j : chain.junctions) {
                 a.junctions.emplace_back(j.donor_ref_pos, j.acceptor_ref_pos);
-                a.junction_conf.push_back(j.probability);
+                a.junction_conf.push_back(j.probability);  // true (possibly low) confidence
             }
             out.push_back(std::move(a));
         }
