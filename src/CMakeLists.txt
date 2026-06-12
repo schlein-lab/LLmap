@@ -35,6 +35,7 @@ add_library(llmap_io STATIC
     io/mmap_fasta.cpp
     io/mmap_fasta_seq.cpp
     io/short_read_handler.cpp
+    io/input_sniffer.cpp
 )
 
 target_include_directories(llmap_io PUBLIC
@@ -335,6 +336,7 @@ add_executable(llmap
     cli/cmd_align_psv.cpp
     cli/cmd_align_report.cpp
     cli/cmd_align_run.cpp
+    cli/cmd_align_transcript.cpp
     cli/cmd_sc_paralog_matrix.cpp
     cli/cmd_sc_qc_report.cpp
     cli/cmd_sc_qc_report_args.cpp
@@ -346,4 +348,4 @@ add_executable(llmap
     cli/cmd_transcript_index.cpp
     cli/cmd_junction_hunt.cpp
 )
-target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot llmap_checkpoint llmap_igh_locus llmap_anchor llmap_index llmap_junction_hunter)
+target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot llmap_checkpoint llmap_igh_locus llmap_anchor llmap_index llmap_junction_hunter llmap_mapping)

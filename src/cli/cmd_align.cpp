@@ -16,9 +16,12 @@
 #include "claude_agent/anthropic_client.h"
 #include "checkpoint/checkpoint_types.h"
 #include "classical/classical_pipeline.h"
+#include "core/logging.h"
 #include "core/thread_pool.h"
+#include "core/transcript_mode.h"
 #include "io/fasta_reader.h"
 #include "io/fastq_reader.h"
+#include "io/input_sniffer.h"
 #include "output/bam_writer.h"
 #include "output/parquet_writer.h"
 #include "psv/psv_catalog.h"
@@ -70,6 +73,26 @@ int run_align(int argc, char** argv) {
     if (!args.index.empty() && !std::filesystem::exists(args.index)) {
         std::fprintf(stderr, "Error: index file not found: %s\n", args.index.c_str());
         return 1;
+    }
+
+    // Resolve the input mode (Transcript-Mode architecture). `--mode` (if not
+    // Auto) wins; otherwise the input sniffer decides from format / basename /
+    // length stats. Emitted as a [mode-detect] log line.
+    {
+        const bool has_reads = !args.reads.empty();
+        const bool has_assembly = !args.assembly.empty();
+        const io::SniffResult sniff =
+            io::ResolveMode(args.reads, args.mode, has_reads, has_assembly);
+        args.resolved_mode = sniff.mode;
+        char msg[512];
+        std::snprintf(msg, sizeof(msg),
+            "[mode-detect] detected=%s format=%s reason=\"%s\"",
+            core::TranscriptModeName(sniff.mode),
+            io::FileFormatName(sniff.format), sniff.reason.c_str());
+        LLMAP_LOG_INFO(msg);
+        if (args.verbose) {
+            std::fprintf(stderr, "%s\n", msg);
+        }
     }
 
     auto start_time = std::chrono::steady_clock::now();
@@ -182,6 +205,12 @@ int run_align(int argc, char** argv) {
     if (region_store) {
         pipe_cfg.chain_config.annot = &region_store->Index();
     }
+    // Transcript-Mode: a spliced read is reported by the chainer as several
+    // per-exon chains. Report them all so the spliced stage can join them
+    // (the joiner re-collapses them into one spliced alignment).
+    if (args.resolved_mode == core::TranscriptMode::Transcript) {
+        pipe_cfg.report_secondary = true;
+    }
 
     classical::ClassicalPipeline pipeline(pipe_cfg);
     pipeline.SetIndex(std::move(index));
@@ -293,7 +322,7 @@ int run_align(int argc, char** argv) {
     BatchAlignResult result = RunAlignmentBatches(
         pipeline, *read_reader, *bam_writer,
         parquet_writer.get(), thread_pool.get(),
-        psv_catalog, args);
+        psv_catalog, args, ref_names, ref_seqs);
 
     if (result.error) {
         return 1;

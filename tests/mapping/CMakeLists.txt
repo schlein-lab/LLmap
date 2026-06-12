@@ -12,3 +12,14 @@ target_link_libraries(test_chain_spliced
     GTest::gtest_main
 )
 gtest_discover_tests(test_chain_spliced)
+
+add_executable(test_transcript_stage
+    test_transcript_stage.cpp
+)
+target_link_libraries(test_transcript_stage
+    PRIVATE
+    llmap_mapping
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_transcript_stage)

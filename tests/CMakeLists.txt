@@ -772,6 +772,19 @@ target_link_libraries(test_align_integration
 )
 gtest_discover_tests(test_align_integration)
 
+# ========== Input Sniffer / Transcript-Mode resolution ==========
+add_executable(test_input_sniffer
+    unit/test_input_sniffer.cpp
+)
+target_link_libraries(test_input_sniffer
+    PRIVATE
+    llmap_io
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_input_sniffer)
+
 # ========== Classify Module Tests ==========
 add_subdirectory(classify)
 

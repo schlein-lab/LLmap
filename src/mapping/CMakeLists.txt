@@ -6,6 +6,7 @@
 
 add_library(llmap_mapping STATIC
     chain_spliced.cpp
+    transcript_stage.cpp
 )
 
 target_include_directories(llmap_mapping PUBLIC

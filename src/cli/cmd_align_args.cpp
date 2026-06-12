@@ -126,6 +126,10 @@ void PrintAlignUsage() {
         "Pipeline mode:\n"
         "  --classical-only        Pure seed-chain-extend mode (no probabilistic framework)\n"
         "                          Reduces memory footprint; disables --llm if set\n"
+        "  --mode MODE             Input mode: auto|transcript|reads|assembly|\n"
+        "                          reads_vs_assembly [auto]. Auto is sniffed from the\n"
+        "                          input (format/basename/length stats).\n"
+        "  --assembly FILE         Assembly FASTA (with --reads → reads_vs_assembly mode)\n"
         "\n"
         "IGH locus re-sort (post-hoc, ON by default):\n"
         "  --igh-anchors FILE      FASTA of paralog-specific CH exon anchors\n"
@@ -236,6 +240,19 @@ bool ParseAlignArgs(int argc, char** argv, AlignArgs& args) {
             args.igh_max_mismatch = std::stoi(argv[++i]);
         } else if (arg == "--no-igh-locus") {
             args.enable_igh_locus = false;
+        } else if (arg == "--mode" && i + 1 < argc) {
+            const std::string mode_str = argv[++i];
+            auto parsed = core::ParseTranscriptMode(mode_str);
+            if (!parsed) {
+                std::fprintf(stderr,
+                    "Unknown --mode: %s (expected "
+                    "auto|transcript|reads|assembly|reads_vs_assembly)\n",
+                    mode_str.c_str());
+                return false;
+            }
+            args.mode = *parsed;
+        } else if (arg == "--assembly" && i + 1 < argc) {
+            args.assembly = argv[++i];
         } else if (arg[0] == '-') {
             std::fprintf(stderr, "Unknown option: %s\n", arg.c_str());
             return false;

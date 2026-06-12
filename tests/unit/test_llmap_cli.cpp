@@ -21,6 +21,7 @@ std::string GetLlmapBinary() {
     // Try to find in build directory
     std::filesystem::path candidates[] = {
         "src/llmap",                           // In-tree build (from build/)
+        "../src/llmap",                        // gtest_discover_tests CWD = build/tests
         "../build/src/llmap",                  // Out-of-tree (from tests/)
         "/home/<user>/llmap-local/build/src/llmap"  // Absolute fallback
     };

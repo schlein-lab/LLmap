@@ -2,16 +2,21 @@
 // Contains the main alignment loop and batch streaming.
 
 #include "cli/cmd_align_internal.h"
+#include "cli/cmd_align_transcript.h"
 
 #include <chrono>
 #include <cstdio>
+#include <optional>
 #include <sstream>
 #include <string>
 #include <vector>
 
+#include "annot/splice_site_db.h"
 #include "classical/classical_pipeline.h"
 #include "core/alignment_record.h"
 #include "core/thread_pool.h"
+#include "core/transcript_mode.h"
+#include "mapping/transcript_stage.h"
 #include "igh_locus/igh_anchor_catalog.h"
 #include "igh_locus/igh_resort.h"
 #include "output/bam_writer.h"
@@ -54,11 +59,30 @@ BatchAlignResult RunAlignmentBatches(
     output::ParquetWriter* parquet_writer,
     core::ThreadPool* thread_pool,
     const std::optional<psv::PsvCatalog>& psv_catalog,
-    const AlignArgs& args) {
+    const AlignArgs& args,
+    const std::vector<std::string>& ref_names,
+    const std::vector<std::string>& ref_seqs) {
 
     constexpr std::size_t kBatchSize = 50000;
 
     BatchAlignResult result;
+
+    // Transcript-Mode spliced stage: joins per-exon alignments into spliced
+    // records. Loaded once; only active when the resolved mode is Transcript.
+    const bool transcript_mode =
+        args.resolved_mode == core::TranscriptMode::Transcript;
+    std::optional<annot::SpliceSiteDb> splice_db;
+    mapping::RefSeqLookup ref_lookup;
+    if (transcript_mode) {
+        splice_db.emplace();
+        splice_db->LoadDefaults();
+        ref_lookup = MakeRefLookup(ref_names, ref_seqs);
+        if (args.verbose) {
+            std::fprintf(stderr,
+                "[transcript] spliced stage active (%zu reference seqs)\n",
+                ref_names.size());
+        }
+    }
 
     // Load the IGH paralog anchor catalog once (post-hoc re-sort stage). The
     // stage is ON by default but only acts when an anchor FASTA is supplied.
@@ -129,10 +153,17 @@ BatchAlignResult RunAlignmentBatches(
         for (std::size_t i = 0; i < results.size(); ++i) {
             const auto& res = results[i];
             if (res.HasAlignment()) {
-                const auto* primary = res.PrimaryAlignment();
-                if (primary) {
-                    records.push_back(ConvertClassicalAlignment(*primary, batch_lens[i]));
+                if (transcript_mode) {
+                    records.push_back(BuildTranscriptRecord(
+                        res, batch_lens[i], ref_lookup, *splice_db));
                     ++result.n_mapped;
+                } else {
+                    const auto* primary = res.PrimaryAlignment();
+                    if (primary) {
+                        records.push_back(
+                            ConvertClassicalAlignment(*primary, batch_lens[i]));
+                        ++result.n_mapped;
+                    }
                 }
             } else {
                 records.push_back(make_unmapped(

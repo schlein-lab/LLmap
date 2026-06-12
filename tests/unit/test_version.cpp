@@ -20,6 +20,7 @@ namespace {
 std::string GetLlmapBinary() {
     std::filesystem::path candidates[] = {
         "src/llmap",
+        "../src/llmap",  // gtest_discover_tests CWD = build/tests
         "../build/src/llmap",
         "/home/<user>/llmap-local/build/src/llmap"
     };

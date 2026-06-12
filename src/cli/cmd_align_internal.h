@@ -11,6 +11,7 @@
 #include "claude_agent/pipeline_agent.h"
 #include "core/alignment_record.h"
 #include "core/thread_pool.h"
+#include "core/transcript_mode.h"
 #include "io/fastq_reader.h"
 #include "output/bam_writer.h"
 #include "output/parquet_writer.h"
@@ -88,6 +89,19 @@ struct AlignArgs {
     bool enable_igh_locus = true;
     std::string igh_anchors;        // FASTA of paralog-specific CH exon anchors
     int igh_max_mismatch = 0;       // 0 = exact; >0 tolerates read error
+
+    // Input-mode dispatch (Transcript-Mode architecture,
+    // docs/design/llmap_mode_architecture.md). `--mode` carries the user
+    // override; Auto is the default and is resolved by the input sniffer
+    // (io/input_sniffer) from the primary input file. `resolved_mode` holds
+    // the concrete mode after ResolveMode() runs (never Auto).
+    core::TranscriptMode mode = core::TranscriptMode::Auto;
+    core::TranscriptMode resolved_mode = core::TranscriptMode::GenomeReads;
+
+    // Optional assembly input. When set together with --reads, mode resolves
+    // to ReadsVsAssembly. (Assembly pipeline wiring is a later block; the flag
+    // already participates in mode detection here.)
+    std::string assembly;
 };
 
 void PrintAlignUsage();
@@ -153,7 +167,9 @@ BatchAlignResult RunAlignmentBatches(
     output::ParquetWriter* parquet_writer,
     core::ThreadPool* thread_pool,
     const std::optional<psv::PsvCatalog>& psv_catalog,
-    const AlignArgs& args);
+    const AlignArgs& args,
+    const std::vector<std::string>& ref_names,
+    const std::vector<std::string>& ref_seqs);
 
 // Finalize aggregated stats (compute avg_identity)
 void FinalizeAlignStats(BatchAlignResult& result);
