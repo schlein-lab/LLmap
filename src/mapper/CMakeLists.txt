@@ -13,6 +13,7 @@ add_library(llmap_mapper STATIC
     minimizer_cluster.cpp
     consensus_propagation.cpp
     assemble_pipeline.cpp
+    merge_ambiguity.cpp
 )
 
 target_include_directories(llmap_mapper PUBLIC

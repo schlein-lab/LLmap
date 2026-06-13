@@ -83,3 +83,15 @@ target_link_libraries(test_assemble_pipeline
     GTest::gtest_main
 )
 gtest_discover_tests(test_assemble_pipeline)
+
+add_executable(test_merge_ambiguity
+    test_merge_ambiguity.cpp
+)
+target_link_libraries(test_merge_ambiguity
+    PRIVATE
+    llmap_mapper
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_merge_ambiguity)
