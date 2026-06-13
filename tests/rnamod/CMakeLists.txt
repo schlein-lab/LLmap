@@ -34,3 +34,14 @@ target_link_libraries(test_aid_footprint
     GTest::gtest_main
 )
 gtest_discover_tests(test_aid_footprint)
+
+add_executable(test_damage_profile
+    test_damage_profile.cpp
+)
+target_link_libraries(test_damage_profile
+    PRIVATE
+    llmap_rnamod
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_damage_profile)

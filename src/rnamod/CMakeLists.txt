@@ -9,6 +9,7 @@ add_library(llmap_rnamod STATIC
     modification_db.cpp
     splicing_state.cpp
     aid_footprint.cpp
+    damage_profile.cpp
 )
 
 target_include_directories(llmap_rnamod PUBLIC

@@ -21,5 +21,6 @@ int run_igh_match(int argc, char** argv);
 int run_transcript_index(int argc, char** argv);
 int run_junction_hunt(int argc, char** argv);
 int run_splice_determinism(int argc, char** argv);
+int run_provenance_spectrum(int argc, char** argv);
 
 }  // namespace llmap::cli

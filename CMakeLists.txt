@@ -291,6 +291,9 @@ add_subdirectory(src/chimera)
 # Mode-5 NAHR-junction hunter (alignment-free, multi-k cascade). Self-
 # contained; merged from feature/mode5-transcript-wiring.
 add_subdirectory(src/junction_hunter)
+# Provenance / Contamination Mode: per-read provenance class + lossless
+# contamination spectrum (every read in exactly one bucket).
+add_subdirectory(src/provenance)
 
 if(LLMAP_ENABLE_TESTS)
     enable_testing()
@@ -310,6 +313,7 @@ if(LLMAP_ENABLE_TESTS)
     add_subdirectory(tests/mapping)
     add_subdirectory(tests/chimera)
     add_subdirectory(tests/junction_hunter)
+    add_subdirectory(tests/provenance)
 endif()
 
 # Status summary

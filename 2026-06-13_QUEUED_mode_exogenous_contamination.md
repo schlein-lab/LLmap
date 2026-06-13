@@ -128,3 +128,18 @@ Konkrete Form:
 Vorteil für die Klinik/Thesis: der Variant-Caller sieht nur den sauberen Host-Bucket;
 der Provenienz-Bucket ist separat auswertbar (Kontaminations-QC + biologisch echte
 Sonderfälle wie A→I-Editing oder CHIP getrennt quantifiziert, nie als germline-SNV vermengt).
+
+## Realdaten-Validierung (Operator, 2026-06-13) — NACH Mode-Fertigstellung
+Operator: „1-2 Longread-Genome + Short-read-Genome auf diese Special Buckets testen."
+- **Input (auf the HPC cluster/BeeGFS):** Longread = HG002 HiFi + HG002/ONT; Short-read = HG002 /
+  NA12878 Illumina WGS. Ein **LCL-stämmiges** Sample (1000G/HapMap) ist der beste Stresstest
+  (sollte messbares EBV-`exo` + NUMT-`para` + Damage-`dmg`-Spektrum zeigen).
+- **Lauf:** `llmap align` mit always-on Provenienz-Layer → pro Sample `contamination_spectrum.parquet`.
+- **Erwartete Readouts pro Bucket-Familie:** `host`-Fraktion (Großteil), `exo:*` (EBV bei LCL,
+  PhiX-Spike-in-Reste), `para`/`numt`/`pseudo` (Segdup/mt-Confounds), `dmg:*`/`edit:*` (8-oxoG-/
+  Deaminierungs-/ADAR-Fraktion — Long- vs Short-read unterscheiden sich hier stark), `chim`/`xsample`.
+- **Plattform-Vergleich:** Longread vs Short-read zeigt unterschiedliche Artefakt-Profile
+  (z.B. ONT-Concatemere/`chim` vs Illumina-8-oxoG/Index-Hop) → validiert, dass die Detektor-Klassen
+  plattform-spezifisch korrekt greifen.
+- **Σ-Invariante als Lossless-Beweis:** Σ(alle PV-Klassen) == N_input pro Sample.
+- Ausführung = the HPC cluster (Agent 2's Daten-Lane); Detektor-Klassen = Agent 1.
