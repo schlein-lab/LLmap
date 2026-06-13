@@ -106,7 +106,7 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     // Extend alignment from query start (0) to first anchor position.
     // Soft-clip directly if the unaligned span is large (extension cost is
     // O(span²) and the gain is negligible past the first ~500 bp).
-    constexpr uint32_t kMaxExtensionSpan = 500;
+    const uint32_t kMaxExtensionSpan = config_.extension_max_span;
     uint32_t left_query_bases = first_anchor.query_pos;
     uint32_t left_ref_bases = 0;
     uint32_t actual_ref_start = chain.ref_start;
@@ -244,12 +244,27 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
             deletions += ref_gap;
         }
 
-        // k-mer match (the anchor itself)
-        aln.cigar.push_back({CigarOp::Match, k});
-        matches += k;
+        // k-mer match (the anchor itself). Minimizers can overlap the previous
+        // anchor's k-mer when the window w < k (e.g. map-ont w=10 < k=15), so
+        // adjacent anchors share up to k-1 bases. Emitting a full k-base match
+        // per anchor then double-counts that overlap and inflates the CIGAR
+        // beyond the read length (observed: a clean 220 bp exon → `7=364M6=`,
+        // 377 query bases). Emit only the portion of this k-mer that extends
+        // past what the previous anchor already covered, so every query/ref
+        // base is consumed exactly once and downstream query coordinates (the
+        // spliced-stage joiner relies on them) stay exact.
+        uint32_t kmer_add = k;
+        if (anchor.query_pos < prev_query) {
+            uint32_t overlap = prev_query - anchor.query_pos;
+            kmer_add = (overlap < k) ? (k - overlap) : 0;
+        }
+        if (kmer_add > 0) {
+            aln.cigar.push_back({CigarOp::Match, kmer_add});
+            matches += kmer_add;
+        }
 
-        prev_query = anchor.query_pos + k;
-        prev_ref = anchor.ref_pos + k;
+        prev_query = std::max(prev_query, anchor.query_pos + k);
+        prev_ref = std::max(prev_ref, anchor.ref_pos + k);
     }
 
     // Handle trailing gap after last anchor (within chain span)
@@ -262,11 +277,6 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     uint32_t actual_ref_end = chain.ref_end;
 
     if (have_ref_seqs && right_query_bases > 0 && right_query_bases <= kMaxExtensionSpan) {
-        // Mirror of the left-extension fix: drop the +50 of downstream ref
-        // padding. The right path tracks query_softclip via aligned_query, so
-        // a trailing deletion is less load-bearing here than on the left —
-        // but the same dynamic causes off-by-up-to-50 ref_end inflation. Use
-        // exact query span; real indels are picked up by the inner WFA2 chain.
         uint32_t right_ref_bases = std::min(right_query_bases, ref_len - last_anchor_end_ref);
 
         if (right_ref_bases > 0) {

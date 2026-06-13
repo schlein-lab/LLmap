@@ -29,6 +29,17 @@ struct ChainConfig {
                                       // this, chains span paralog boundaries
                                       // with cross-paralog "indels" producing
                                       // low-identity composite alignments.
+    uint32_t intron_break_min = 0;    // Transcript-Mode (R-B). When > 0, break
+                                      // the chain at an intron-signature gap:
+                                      // reference advances >= this many bp more
+                                      // than the query (a reference-only gap =
+                                      // intron), not a balanced indel. Breaking
+                                      // here yields one clean sub-chain per exon
+                                      // for the spliced-stage joiner to merge
+                                      // with N-ops. 0 = off (DNA mode, behaviour
+                                      // unchanged). Distinct from max_gap_diff,
+                                      // which bounds *balanced* indel mass; an
+                                      // intron is intentionally unbalanced.
     uint32_t min_chain_anchors = 3;   // Min anchors to form valid chain
 
     // Score filtering (tuned for improved mapping rate per Phase A.1)

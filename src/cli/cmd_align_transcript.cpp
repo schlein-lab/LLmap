@@ -55,6 +55,44 @@ bool Better(const mapping::SplicedAlignment& a,
     return (a.query_end - a.query_start) > (b.query_end - b.query_start);
 }
 
+// Recover the true per-exon read span [start, end) from a CIGAR. ExtendChain
+// stores query_start=0 / query_end=read_len on EVERY alignment — the real
+// per-exon read offsets live only in the soft-clips. Copying aln.query_start/
+// end would make every sub-chain span the whole read → apparent full overlap →
+// the spliced joiner's "b.query_start >= a.query_end" check always fails and
+// nothing ever merges. So derive the span here:
+//   query_start = leading soft-clip length
+//   query_end   = query_start + Σ(query-consuming aligned ops: M/I/=/X)
+// (D/N/H/P don't consume query; a trailing soft-clip sits beyond query_end.)
+void QuerySpanFromCigar(const std::string& cigar, std::uint32_t& qstart,
+                        std::uint32_t& qend) {
+    std::uint32_t num = 0, leading_s = 0, aligned = 0;
+    bool seen_aligned = false;
+    for (const char c : cigar) {
+        if (c >= '0' && c <= '9') {
+            num = num * 10 + static_cast<std::uint32_t>(c - '0');
+            continue;
+        }
+        switch (c) {
+            case 'S':
+                if (!seen_aligned) leading_s += num;  // leading clip only
+                break;
+            case 'M':
+            case 'I':
+            case '=':
+            case 'X':
+                aligned += num;
+                seen_aligned = true;
+                break;
+            default:
+                break;  // D/N/H/P consume no query
+        }
+        num = 0;
+    }
+    qstart = leading_s;
+    qend = leading_s + aligned;
+}
+
 }  // namespace
 
 mapping::RefSeqLookup MakeRefLookup(const std::vector<std::string>& names,
@@ -83,11 +121,15 @@ AlignmentRecord BuildTranscriptRecord(const classical::ReadAlignmentResult& res,
         s.ref_id = aln.ref_name;
         s.ref_start = static_cast<std::uint64_t>(aln.ref_start);
         s.ref_end = static_cast<std::uint64_t>(aln.ref_end);
-        s.query_start = static_cast<std::uint32_t>(aln.query_start);
-        s.query_end = static_cast<std::uint32_t>(aln.query_end);
         s.score = aln.score;
         s.strand = aln.is_forward ? '+' : '-';
         s.cigar = aln.CigarString();
+        // Real per-exon read span from the CIGAR soft-clips (NOT aln.query_*,
+        // which ExtendChain pins to the whole read → false full overlap).
+        std::uint32_t qs = 0, qe = 0;
+        QuerySpanFromCigar(s.cigar, qs, qe);
+        s.query_start = qs;
+        s.query_end = qe;
         subs.push_back(std::move(s));
     }
 
@@ -105,6 +147,14 @@ AlignmentRecord BuildTranscriptRecord(const classical::ReadAlignmentResult& res,
     // jM junction confidence; it never blocks the merge or fragments the read.
     mapping::TranscriptStageConfig cfg;
     cfg.joiner.min_junction_probability = 0.05f;  // == the scorer's floor
+    // Seed-window boundary slop: each exon's aligned span ends/starts ~20-30 bp
+    // inside the true exon edge (extension_max_span cap), so adjacent exon
+    // sub-chains leave a small read gap (observed ~47 bp across one junction).
+    // That gap is pure slop — it is losslessly encoded as an I by
+    // EmitSplicedCigar — and the merge is still gated by intron geometry
+    // (ref_gap must be intron-sized). Raise the tolerance so real multi-exon
+    // transcripts merge into one spliced alignment instead of fragmenting.
+    cfg.joiner.max_query_gap_bp = 80;
 
     auto spliced = mapping::ApplyTranscriptStage(subs, ref_lookup, scorer, cfg);
 

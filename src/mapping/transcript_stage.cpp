@@ -109,6 +109,10 @@ std::vector<SplicedAlignment> ApplyTranscriptStage(
 
     for (auto& [key, group] : groups) {
         // Order along the reference (the order JoinSplicedChains expects).
+        // NOTE: sub-chain dedup for the min_score_fraction≈0 redundant-chain
+        // case is a documented follow-up (novel-isoform reads); a naive
+        // query-overlap dedup regressed the canonical reads, so it is omitted
+        // here until done correctly against real sub-chain dumps.
         std::sort(group.begin(), group.end(),
                   [](const LinearSubChain& x, const LinearSubChain& y) {
                       if (x.ref_start != y.ref_start) return x.ref_start < y.ref_start;

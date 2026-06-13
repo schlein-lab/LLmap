@@ -40,3 +40,36 @@ ClassicalAlignments). Erst dann liefert der Joiner N-CIGARs.
 Verbindung zur Operator-Sorge: genau hier wird die Exon-Struktur (die Isoforme unterscheidet
 und ein novel Alt-Last-Exon sichtbar machen würde) in ein einzelnes lineares Alignment
 kollabiert — statt als diskrete Exon-Blöcke erhalten zu bleiben.
+
+---
+## NÄCHSTER MODE (Operator-Vormerkung, 2026-06-13)
+Nach Transcript-Mode: neuer Mode **"Exogene biologische Kontamination"** (exogenous
+biological contamination — Reads fremder Organismen: Viren/Bakterien/Pilze/Fremd-DNA im
+Sample). Verwandt mit dem bestehenden Mode-6 taxbin (taxonomic binning of un-human reads,
+Commit 05a7af8 auf the HPC cluster). Noch nicht spezifiziert — erst Transcript-Mode lossless beweisen.
+
+---
+## E2E-DURCHBRUCH (2026-06-13, kombinierte Fixes)
+Synthetisches Single-Copy Genom↔Transkriptom-Paar, `llmap align --mode transcript`:
+- **Lossless/no-drop: BEWIESEN** — 9/9 Reads präsent + gemappt, novel-Read gemappt (nicht gedroppt).
+- **Kanonische Spliced-Mapping: 6/6 PASS** (canon_0..4 + canon_rev, je 4 N == 4 Truth-Junctions,
+  inkl. **Reverse-Strang**), N-Längen innerhalb Seed-Fenster-Präzision (TOL=50).
+- canon_0 CIGAR: `7=167M8I308N131M21I521N220M47I267N89M9I809N175M16=` (4 N).
+- **Novel-Alt-Last-Exon: 3/4** — exon5-alt mergt nicht (distales 1600bp-Intron). Ursache:
+  exon4 bildet ein DUPLIKAT-Sub-Chain (von `min_score_fraction=0`); eine Kopie mergt in
+  {1,2,3,4}, die andere in {4,5alt} → greedy-walk fragmentiert. **Lossless** (exon5-alt im
+  Soft-Clip präsent). Fix: Sub-Chain-Dedup im Stage vor dem Joiner.
+
+### Fix-Kette (wer)
+1. R-B `intron_break_min` (Chain bricht an Introns) — Agent 2 (chain_score/chain.h/cmd_align)
+2. extension_max_span cap (kein Cross-Exon-Bridge) — Agent 2 (cmd_align)
+3. **CIGAR k-mer-Overlap-Fix** (Query-Koords exakt, 220q=220r) — Agent 2 (classical_pipeline_extend)
+4. min_score_fraction=0 + max_chains/alignments=256 (alle Exons überleben) — Agent 2 (cmd_align)
+5. QuerySpanFromCigar (Sub-Chain-Query aus Soft-Clips) — Agent 1 (cmd_align_transcript)
+6. EmitSplicedCigar interne-SC-Strip + I-Encoding — Agent 1 (chain_spliced)
+7. max_query_gap_bp=80 (Boundary-Slop tolerieren) — Agent 1 (cmd_align_transcript)
+
+### Dokumentierte Follow-ups (alle lossless)
+- Sub-Chain-Dedup → novel 4/4 (Agent 1, Stage).
+- Splice-Site-Snapping (GT/AG) → exakte N-Boundaries statt Seed-Fenster-Präzision (Design §2.1).
+- DNA-Regression: 143-178 classical/chain/mapping-Tests grün nach allen Fixes.

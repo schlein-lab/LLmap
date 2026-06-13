@@ -16,6 +16,8 @@
 
 #include <algorithm>
 #include <sstream>
+#include <utility>
+#include <vector>
 
 namespace llmap::mapping {
 
@@ -129,19 +131,61 @@ SplicedChainResult JoinSplicedChains(
 // EmitSplicedCigar — concatenate sub-chain CIGARs with N or D between.
 // ---------------------------------------------------------------------------
 
+namespace {
+
+// Tokenise a CIGAR string into (length, op) pairs.
+std::vector<std::pair<std::uint64_t, char>> ParseCigar(const std::string& s) {
+    std::vector<std::pair<std::uint64_t, char>> ops;
+    std::uint64_t num = 0;
+    for (const char c : s) {
+        if (c >= '0' && c <= '9') {
+            num = num * 10 + static_cast<std::uint64_t>(c - '0');
+        } else {
+            ops.emplace_back(num, c);
+            num = 0;
+        }
+    }
+    return ops;
+}
+
+}  // namespace
+
 std::string EmitSplicedCigar(const SplicedChain& sc) {
+    const auto& subs = sc.sub_chains;
+    const std::size_t n = subs.size();
     std::stringstream ss;
-    for (std::size_t i = 0; i < sc.sub_chains.size(); ++i) {
-        ss << sc.sub_chains[i].cigar;
-        if (i + 1 < sc.sub_chains.size()) {
-            const auto& a = sc.sub_chains[i];
-            const auto& b = sc.sub_chains[i + 1];
-            const std::uint64_t intron_len = (b.ref_start > a.ref_end)
-                ? (b.ref_start - a.ref_end) : 0;
-            if (intron_len == 0) continue;  // shouldn't happen post-joiner
-            const char op = (i < sc.junctions.size()
-                              && sc.junctions[i].is_confirmed) ? 'N' : 'D';
-            ss << intron_len << op;
+    for (std::size_t i = 0; i < n; ++i) {
+        auto ops = ParseCigar(subs[i].cigar);
+        // The trailing soft-clip of a non-last sub-chain and the leading
+        // soft-clip of a non-first sub-chain represented the neighbouring exon
+        // — now encoded as the intron N. Drop them, else they become illegal
+        // INTERNAL soft-clips in the merged CIGAR. The leading clip of the
+        // first sub-chain and the trailing clip of the last are real read ends
+        // and are kept.
+        if (i > 0 && !ops.empty() && ops.front().second == 'S') {
+            ops.erase(ops.begin());
+        }
+        if (i + 1 < n && !ops.empty() && ops.back().second == 'S') {
+            ops.pop_back();
+        }
+        for (const auto& [len, op] : ops) ss << len << op;
+
+        if (i + 1 < n) {
+            const auto& a = subs[i];
+            const auto& b = subs[i + 1];
+            // Residual read gap between the two exon blocks (their aligned ends
+            // didn't meet exactly) → an insertion, so the total query length
+            // stays exact (an N consumes no query).
+            if (b.query_start > a.query_end) {
+                ss << (b.query_start - a.query_end) << 'I';
+            }
+            const std::uint64_t intron_len =
+                (b.ref_start > a.ref_end) ? (b.ref_start - a.ref_end) : 0;
+            if (intron_len > 0) {
+                const char op = (i < sc.junctions.size() &&
+                                 sc.junctions[i].is_confirmed) ? 'N' : 'D';
+                ss << intron_len << op;
+            }
         }
     }
     return ss.str();

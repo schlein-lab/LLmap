@@ -170,3 +170,22 @@ TEST(ChainSpliced, EmitCigarSingleSubChainReturnsSubCigar) {
     sc.sub_chains.push_back(MakeSub("chr14", 1000, 1100, 0, 100, "100M"));
     EXPECT_EQ(EmitSplicedCigar(sc), "100M");
 }
+
+TEST(ChainSpliced, EmitCigarStripsInternalSoftClipsAndKeepsQueryExact) {
+    // Real-shape sub-chains: each per-exon alignment soft-clips the OTHER
+    // exon's read bases (ExtendChain emits a full-read CIGAR per exon). The
+    // merge must drop those INTERNAL clips (they are the intron now), and encode
+    // the small residual read gap as an insertion so the query length stays
+    // exact — never an illegal internal S.
+    SplicedChain sc;
+    sc.sub_chains.push_back(MakeSub("chr14", 1000, 1214, 0, 214, "7=207M226S"));
+    sc.sub_chains.push_back(MakeSub("chr14", 1524, 1740, 224, 440, "224S201M15="));
+    Junction j;
+    j.is_confirmed = true;
+    sc.junctions.push_back(j);
+
+    const auto cigar = EmitSplicedCigar(sc);
+    EXPECT_EQ(cigar, "7=207M10I310N201M15=") << cigar;
+    EXPECT_EQ(cigar.find('S'), std::string::npos)
+        << "no internal soft-clip may survive; got: " << cigar;
+}

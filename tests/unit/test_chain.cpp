@@ -246,6 +246,44 @@ TEST_F(ChainTest, IsColinearMatchesScore) {
     EXPECT_FALSE(IsColinear(a, c, config));
 }
 
+// --- Transcript-Mode intron break (R-B) -----------------------------------
+
+// Default (intron_break_min == 0) is DNA mode: an intron-signature gap still
+// links as before — behaviour is bit-identical to pre-change.
+TEST_F(ChainTest, IntronBreakOffByDefault) {
+    config.intron_break_min = 0;
+    Anchor a{0, 100, 100, true};
+    Anchor b{0, 400, 150, true};  // ref_gap=300, query_gap=50 (intron-like)
+    EXPECT_GT(AnchorPairScore(a, b, config), std::numeric_limits<int32_t>::min());
+}
+
+// With the break enabled, a large reference-only gap (intron) breaks the chain.
+TEST_F(ChainTest, IntronBreakRejectsReferenceOnlyGap) {
+    config.intron_break_min = 50;
+    Anchor a{0, 100, 100, true};
+    Anchor b{0, 400, 150, true};  // ref_gap-query_gap = 250 >= 50 -> break
+    EXPECT_EQ(AnchorPairScore(a, b, config),
+              std::numeric_limits<int32_t>::min());
+}
+
+// A small *balanced* indel must still link even in transcript mode — only the
+// reference-side excess signals an intron.
+TEST_F(ChainTest, IntronBreakKeepsBalancedIndel) {
+    config.intron_break_min = 50;
+    Anchor a{0, 100, 100, true};
+    Anchor b{0, 140, 135, true};  // ref_gap-query_gap = 5 < 50 -> keep
+    EXPECT_GT(AnchorPairScore(a, b, config), std::numeric_limits<int32_t>::min());
+}
+
+// A query-side insertion (read advances more than the reference) is not an
+// intron and must stay linked.
+TEST_F(ChainTest, IntronBreakKeepsQueryInsertion) {
+    config.intron_break_min = 50;
+    Anchor a{0, 100, 100, true};
+    Anchor b{0, 130, 350, true};  // ref_gap-query_gap = -220 < 50 -> keep
+    EXPECT_GT(AnchorPairScore(a, b, config), std::numeric_limits<int32_t>::min());
+}
+
 TEST_F(ChainTest, ExtractChainsFromHits) {
     std::vector<MinimizerHit> hits = {
         {0, 100, 100, true},

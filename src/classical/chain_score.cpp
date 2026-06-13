@@ -33,6 +33,19 @@ int32_t AnchorPairScore(
         query_gap = -query_gap;
     }
 
+    // Transcript-Mode intron break (R-B). A large reference-only gap — the
+    // reference advances much more than the query — is an intron, not a
+    // balanced indel. Refuse to chain across it so the DP starts a fresh chain
+    // at `b`, giving the spliced-stage joiner one clean sub-chain per exon
+    // (which it then re-merges with N-ops + a junction confidence). Gated on
+    // intron_break_min > 0 so DNA mode (default 0) is bit-identical. The check
+    // is asymmetric on purpose: only reference-side excess (ref_gap - query_gap)
+    // signals an intron; query-side excess is a read insertion and stays linked.
+    if (config.intron_break_min > 0 &&
+        (ref_gap - query_gap) >= static_cast<int64_t>(config.intron_break_min)) {
+        return std::numeric_limits<int32_t>::min();
+    }
+
     // Check gap limits
     if (static_cast<uint64_t>(ref_gap) > config.max_gap_ref ||
         static_cast<uint64_t>(query_gap) > config.max_gap_query) {

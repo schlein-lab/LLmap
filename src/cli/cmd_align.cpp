@@ -219,6 +219,35 @@ int run_align(int argc, char** argv) {
         // below the seed footprint are a separate (seeding) concern.
         pipe_cfg.min_aligned_bases =
             std::min(pipe_cfg.min_aligned_bases, 15);
+        // R-B: break the chain at every intron-signature gap (large
+        // reference-only gap), not just the ones exceeding max_gap_diff. This
+        // turns each exon into a clean single-exon sub-chain — the precondition
+        // the spliced stage needs to re-join them with N-ops. Without it, small
+        // introds (<= max_gap_diff) link into one low-identity composite chain
+        // that the identity filter then drops, leaving only one exon aligned
+        // and the rest soft-clipped. Matches JoinerConfig::min_intron_bp (50).
+        pipe_cfg.chain_config.intron_break_min = 50;
+        // R-B (cont.): cap chain-end WFA extension so a sub-chain ending at an
+        // intron break is NOT extended across the intron into the neighbouring
+        // exon (that produced the `7=364M225I` identity-0.62 artefact the filter
+        // then dropped). Beyond this flank the read is soft-clipped and the next
+        // exon is handled as its own sub-chain. Kept above the seed window (k+w)
+        // so the genuine exon-boundary flank is still recovered.
+        pipe_cfg.extension_max_span = 50;
+        // R-B (cont.): the per-exon sub-chains are COMPLEMENTARY (each covers a
+        // different exon of the same read), not competing alignments of one
+        // region. The default min_score_fraction (keep chains >= 0.5x best)
+        // therefore wrongly drops the SHORTER exons — e.g. a 120 bp exon next
+        // to a 240 bp one (0.5x240=120) is borderline-culled, so it never
+        // reaches the joiner and the transcript loses that exon + its junction.
+        // Drop the relative cull in transcript mode; the absolute floor
+        // (min_chain_score) still removes spurious tiny chains.
+        pipe_cfg.chain_config.min_score_fraction = 0.0f;
+        // A transcript has many exons (often >5, sometimes dozens); the default
+        // caps of 5 would extend/report only the first few sub-chains and lose
+        // the rest. Raise both so every exon's sub-chain survives to the joiner.
+        pipe_cfg.max_chains_to_extend = 256;
+        pipe_cfg.max_alignments = 256;
     }
 
     classical::ClassicalPipeline pipeline(pipe_cfg);

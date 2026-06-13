@@ -40,6 +40,14 @@ struct ClassicalPipelineConfig {
 
     // Extension alignment
     WFA2Config extension_config;
+    // Max un-anchored chain-end flank (bp) to WFA-extend before soft-clipping
+    // the remainder. DNA default 500 (behaviour unchanged). Transcript-Mode
+    // lowers this so a chain end sitting at an intron break does NOT extend
+    // across the intron into the next exon — which would otherwise appear as a
+    // large insertion + mismatches and fail the identity filter (the empirical
+    // `7=364M225I` artefact). The adjacent exon is soft-clipped instead and
+    // recovered as its own sub-chain by the R-B break + spliced joiner.
+    uint32_t extension_max_span = 500;
 
     // Filtering
     float min_identity = 0.80f;        // Minimum alignment identity (Phase C.1 precision improvement)
