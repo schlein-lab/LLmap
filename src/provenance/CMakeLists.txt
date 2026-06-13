@@ -12,6 +12,10 @@ add_library(llmap_provenance STATIC
     provenance_resolver.cpp
     pseudogene_catalog.cpp
     chimera_provenance.cpp
+    te_family_catalog.cpp
+    te_spread_mass.cpp
+    mei_detector.cpp
+    provenance_baseline.cpp
 )
 
 target_include_directories(llmap_provenance PUBLIC

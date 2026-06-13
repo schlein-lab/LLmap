@@ -11,6 +11,17 @@ target_link_libraries(test_alignment_record
 )
 gtest_discover_tests(test_alignment_record)
 
+add_executable(test_pangenome_mappability
+    unit/test_pangenome_mappability.cpp
+)
+target_link_libraries(test_pangenome_mappability
+    PRIVATE
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_pangenome_mappability)
+
 # Extended status set: MappedSterile / MappedPreMrna / MappedCircular /
 # PartialMappedExact / ChimericIntra / ChimericInter / DarkNovel
 # plus TranscriptKind round-trip + IsAnyMapped predicate.
