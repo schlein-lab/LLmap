@@ -47,3 +47,15 @@ target_link_libraries(test_cluster_consensus
     GTest::gtest_main
 )
 gtest_discover_tests(test_cluster_consensus)
+
+add_executable(test_minimizer_cluster
+    test_minimizer_cluster.cpp
+)
+target_link_libraries(test_minimizer_cluster
+    PRIVATE
+    llmap_mapper
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_minimizer_cluster)

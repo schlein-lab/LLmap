@@ -10,6 +10,7 @@ add_library(llmap_mapper STATIC
     sufficiency.cpp
     consensus_resolution.cpp
     cluster_consensus.cpp
+    minimizer_cluster.cpp
 )
 
 target_include_directories(llmap_mapper PUBLIC
