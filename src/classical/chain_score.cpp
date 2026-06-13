@@ -43,6 +43,23 @@ int32_t AnchorPairScore(
     // signals an intron; query-side excess is a read insertion and stays linked.
     if (config.intron_break_min > 0 &&
         (ref_gap - query_gap) >= static_cast<int64_t>(config.intron_break_min)) {
+        // Splice-aware (B2): an intron-signature gap within [intron_break_min,
+        // max_intron] is chained across with a cheap near-constant cost so the
+        // exons accumulate into ONE strong chain — bypassing the balanced-indel
+        // bounds below (which would reject an intron). The query side at an exon
+        // junction is ~continuous (small query_gap); we credit those matched bases
+        // and charge only splice_gap_open for the intron, NOT gap_penalty × length.
+        if (config.splice_aware &&
+            (ref_gap - query_gap) <= static_cast<int64_t>(config.max_intron)) {
+            const int64_t matched =
+                static_cast<int64_t>(query_gap) * config.match_score;
+            return static_cast<int32_t>(std::clamp(
+                matched - static_cast<int64_t>(config.splice_gap_open),
+                static_cast<int64_t>(std::numeric_limits<int32_t>::min()),
+                static_cast<int64_t>(std::numeric_limits<int32_t>::max())));
+        }
+        // Otherwise (DNA mode, or a gap too large to be an intron): hard break so
+        // the joiner gets a clean sub-chain boundary.
         return std::numeric_limits<int32_t>::min();
     }
 

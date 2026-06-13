@@ -40,6 +40,19 @@ struct ChainConfig {
                                       // unchanged). Distinct from max_gap_diff,
                                       // which bounds *balanced* indel mass; an
                                       // intron is intentionally unbalanced.
+    // Splice-aware chaining (B2). When true, an intron-signature gap (a reference-
+    // only gap >= intron_break_min and <= max_intron) is NOT a hard break — it is
+    // chained across with a cheap, near-constant splice cost (splice_gap_open),
+    // bypassing the balanced-indel bounds (max_gap_ref / max_gap_diff) that would
+    // otherwise reject it. This lets the exons of one transcript accumulate into a
+    // SINGLE strong colinear chain (their scores add across the intron) instead of
+    // scattering into weak per-exon sub-chains that drown in the candidate soup and
+    // never reach the joiner. The transcript stage then re-splits the chain at the
+    // splice gaps into per-exon sub-chains for the joiner (which snaps GT/AG +
+    // emits exact N). Requires intron_break_min > 0 to define the intron signature.
+    bool     splice_aware = false;
+    uint32_t max_intron = 200000;     // Max reference-only gap treated as an intron
+    int32_t  splice_gap_open = 2;     // Cheap constant cost to open a splice gap
     uint32_t min_chain_anchors = 3;   // Min anchors to form valid chain
 
     // Score filtering (tuned for improved mapping rate per Phase A.1)
