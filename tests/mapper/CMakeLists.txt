@@ -35,3 +35,15 @@ target_link_libraries(test_consensus_resolution
     GTest::gtest_main
 )
 gtest_discover_tests(test_consensus_resolution)
+
+add_executable(test_cluster_consensus
+    test_cluster_consensus.cpp
+)
+target_link_libraries(test_cluster_consensus
+    PRIVATE
+    llmap_mapper
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_cluster_consensus)

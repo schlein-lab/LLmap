@@ -9,6 +9,7 @@ add_library(llmap_mapper STATIC
     fallback_chain.cpp
     sufficiency.cpp
     consensus_resolution.cpp
+    cluster_consensus.cpp
 )
 
 target_include_directories(llmap_mapper PUBLIC
