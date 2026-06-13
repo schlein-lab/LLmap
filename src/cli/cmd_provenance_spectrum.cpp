@@ -17,6 +17,7 @@
 #include "provenance/provenance_resolver.h"
 #include "provenance/pseudogene_catalog.h"
 
+#include <cctype>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -24,6 +25,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 namespace llmap::cli {
@@ -33,6 +35,7 @@ namespace {
 struct Args {
     std::string in = "-";
     std::string out_prefix = "provenance";
+    bool dup_pos_heuristic = false;
     bool help = false;
 };
 
@@ -51,6 +54,12 @@ void PrintUsage() {
         "Options:\n"
         "  --in FILE        Input SAM (default: stdin)\n"
         "  --out-prefix P   Output prefix [provenance]\n"
+        "  --dup-position-heuristic\n"
+        "                   Flag coordinate duplicates in UNMARKED BAMs: reads\n"
+        "                   sharing the markdup signature (unclipped 5' position +\n"
+        "                   strand) as a prior primary read get the `dup` class\n"
+        "                   (OR'd with the 0x400 flag). Off by default — only use\n"
+        "                   when upstream MarkDuplicates was NOT run.\n"
         "  -h, --help       Show this help\n");
 }
 
@@ -60,6 +69,7 @@ bool ParseArgs(int argc, char** argv, Args& a) {
         if (arg == "-h" || arg == "--help") { a.help = true; return true; }
         else if (arg == "--in" && i + 1 < argc) a.in = argv[++i];
         else if (arg == "--out-prefix" && i + 1 < argc) a.out_prefix = argv[++i];
+        else if (arg == "--dup-position-heuristic") a.dup_pos_heuristic = true;
         else { std::fprintf(stderr, "Unknown arg: %s\n", arg.c_str()); return false; }
     }
     return true;
@@ -78,8 +88,49 @@ bool FindTag(const std::vector<std::string>& tok, const char* key, std::string& 
 // align-free signals available in any sorted BAM. Catalog-backed classes
 // (para via PSV, numt via NUMT-BED+chrM, exo via a contaminant panel, mei via a
 // TE catalog) need their reference data and correctly stay Host/None here.
+// markdup signature of a primary read: refid + 5' UNCLIPPED coordinate in the
+// read's orientation + strand. Two reads with the same signature are coordinate
+// duplicates — the same key samtools markdup uses for single reads, so we flag
+// PCR/optical duplicates even when MarkDuplicates was never run. Empty for
+// unmapped reads (no coordinate). CIGAR ops parsed: leading/trailing S/H are the
+// clip; M/D/N/=/X consume the reference.
+std::string DupSignature(const std::vector<std::string>& tok) {
+    const int flag = std::atoi(tok[1].c_str());
+    if (flag & 0x4) return {};                         // unmapped → no coordinate
+    const std::string& cig = tok[5];
+    if (cig == "*" || cig.empty()) return {};
+    const std::int64_t pos = std::atoll(tok[3].c_str());
+    const bool reverse = (flag & 0x10) != 0;
+
+    std::int64_t ref_span = 0, lead_clip = 0, trail_clip = 0;
+    std::int64_t num = 0;
+    bool seen_aligned = false, only_clip_so_far = true;
+    std::int64_t last_clip = 0;
+    for (char c : cig) {
+        if (std::isdigit(static_cast<unsigned char>(c))) { num = num * 10 + (c - '0'); continue; }
+        switch (c) {
+            case 'S': case 'H':
+                if (!seen_aligned && only_clip_so_far) lead_clip = num;
+                last_clip = num;                       // trailing clip = last clip op seen
+                break;
+            case 'M': case 'D': case 'N': case '=': case 'X':
+                ref_span += num; seen_aligned = true; only_clip_so_far = false; last_clip = 0;
+                break;
+            case 'I': seen_aligned = true; only_clip_so_far = false; last_clip = 0; break;
+            default: break;
+        }
+        num = 0;
+    }
+    trail_clip = last_clip;
+    // 5' unclipped coordinate in read orientation.
+    const std::int64_t coord = reverse ? (pos + ref_span - 1 + trail_clip)
+                                       : (pos - lead_clip);
+    return tok[2] + (reverse ? "-" : "+") + std::to_string(coord);
+}
+
 provenance::ReadProvenance DeriveFromBam(const std::vector<std::string>& tok,
-                                         const provenance::PseudogeneCatalog& cat) {
+                                         const provenance::PseudogeneCatalog& cat,
+                                         bool position_dup = false) {
     const int flag = std::atoi(tok[1].c_str());
     const int mapq = std::atoi(tok[4].c_str());
     const bool unmapped = (flag & 0x4) != 0;
@@ -88,7 +139,9 @@ provenance::ReadProvenance DeriveFromBam(const std::vector<std::string>& tok,
     provenance::ReadEvidence ev;
     ev.aligned_bases = static_cast<std::uint32_t>(tok[9].size());
     ev.host_posterior = unmapped ? 0.0f : std::min(1.0f, static_cast<float>(mapq) / 60.0f);
-    ev.is_duplicate = (flag & 0x400) != 0;            // PCR/optical duplicate
+    // PCR/optical duplicate: the 0x400 flag (if MarkDuplicates ran) OR the
+    // coordinate-signature heuristic (for unmarked BAMs, when enabled).
+    ev.is_duplicate = ((flag & 0x400) != 0) || position_dup;
     ev.is_chimera = FindTag(tok, "SA:Z:", dummy);     // supplementary mapping (crude)
 
     provenance::MappingConfusionEvidence me;
@@ -123,7 +176,8 @@ int run_provenance_spectrum(int argc, char** argv) {
     pseudo_cat.LoadBuiltinStarter();
 
     provenance::ContaminationSpectrum spectrum;
-    std::uint64_t n_input = 0, n_tagged = 0, n_derived = 0;
+    std::uint64_t n_input = 0, n_tagged = 0, n_derived = 0, n_pos_dup = 0;
+    std::unordered_set<std::string> seen_sigs;   // markdup signatures (heuristic)
     std::string line;
     while (std::getline(*in, line)) {
         if (line.empty() || line[0] == '@') continue;
@@ -150,7 +204,16 @@ int run_provenance_spectrum(int argc, char** argv) {
         } else {
             // Derive from plain BAM fields (the genome-test path).
             ++n_derived;
-            rp = DeriveFromBam(tok, pseudo_cat);
+            bool position_dup = false;
+            if (a.dup_pos_heuristic) {
+                const std::string sig = DupSignature(tok);
+                // First read at a signature is the original; later ones are dups.
+                if (!sig.empty() && !seen_sigs.insert(sig).second) {
+                    position_dup = true;
+                    ++n_pos_dup;
+                }
+            }
+            rp = DeriveFromBam(tok, pseudo_cat, position_dup);
         }
         spectrum.Add(rp);
     }
@@ -159,6 +222,10 @@ int run_provenance_spectrum(int argc, char** argv) {
                  static_cast<unsigned long long>(n_input),
                  static_cast<unsigned long long>(n_tagged),
                  static_cast<unsigned long long>(n_derived));
+    if (a.dup_pos_heuristic)
+        std::fprintf(stderr, "provenance-spectrum: %llu coordinate-duplicates flagged "
+                     "by position heuristic (unmarked-BAM mode)\n",
+                     static_cast<unsigned long long>(n_pos_dup));
 
     const std::string out = a.out_prefix + ".contamination_spectrum.tsv";
     if (!spectrum.WriteTsv(out)) {
