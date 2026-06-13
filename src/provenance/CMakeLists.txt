@@ -17,6 +17,8 @@ add_library(llmap_provenance STATIC
     mei_detector.cpp
     provenance_baseline.cpp
     te_population_prior.cpp
+    numt_catalog.cpp
+    exo_panel.cpp
 )
 
 target_include_directories(llmap_provenance PUBLIC

@@ -111,3 +111,25 @@ target_link_libraries(test_te_population_prior
     GTest::gtest_main
 )
 gtest_discover_tests(test_te_population_prior)
+
+add_executable(test_numt_catalog
+    test_numt_catalog.cpp
+)
+target_link_libraries(test_numt_catalog
+    PRIVATE
+    llmap_provenance
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_numt_catalog)
+
+add_executable(test_exo_panel
+    test_exo_panel.cpp
+)
+target_link_libraries(test_exo_panel
+    PRIVATE
+    llmap_provenance
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_exo_panel)
