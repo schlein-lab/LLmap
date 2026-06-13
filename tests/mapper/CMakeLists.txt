@@ -23,3 +23,15 @@ target_link_libraries(test_sufficiency
     GTest::gtest_main
 )
 gtest_discover_tests(test_sufficiency)
+
+add_executable(test_consensus_resolution
+    test_consensus_resolution.cpp
+)
+target_link_libraries(test_consensus_resolution
+    PRIVATE
+    llmap_mapper
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_consensus_resolution)

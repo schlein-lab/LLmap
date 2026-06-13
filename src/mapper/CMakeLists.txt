@@ -8,6 +8,7 @@ add_library(llmap_mapper STATIC
     fallback_stages.cpp
     fallback_chain.cpp
     sufficiency.cpp
+    consensus_resolution.cpp
 )
 
 target_include_directories(llmap_mapper PUBLIC
