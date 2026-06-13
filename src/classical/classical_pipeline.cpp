@@ -261,6 +261,14 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
         SelectTranscriptLocus(chain_result.chains, config_.transcript_locus_span);
     }
 
+    // Splice-aware (B2): the dominant locus survived the soup/locus-selection as ONE
+    // strong spanned chain over all its exons; split it at its internal splice gaps
+    // into per-exon chains so each extends on its own (never naively across an intron)
+    // and the transcript stage re-merges them with N + GT/AG snapping. No-op unless
+    // splice_aware (DNA mode untouched). Done BEFORE chains_to_try so the per-exon
+    // chains count against the extension budget.
+    SplitChainsAtSpliceGaps(chain_result.chains, anchors, config_.chain_config);
+
     uint32_t chains_to_try = std::min(
         config_.max_chains_to_extend,
         static_cast<uint32_t>(chain_result.chains.size()));

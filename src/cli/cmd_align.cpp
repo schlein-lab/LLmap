@@ -273,6 +273,13 @@ int run_align(int argc, char** argv) {
         // remove is already bounded by transcript_locus_span + max_chains_to_extend
         // + min_score_fraction. Only LOWER the floor (never raise a tighter preset).
         pipe_cfg.chain_config.min_chain_score = std::min(args.min_chain, 15);
+        // Splice-aware chaining (B2): chain exons COLINEARLY across introns into one
+        // strong chain (so the weak distant exons survive the soup/budget by adding
+        // their score to the dominant locus), then SplitChainsAtSpliceGaps re-separates
+        // them for per-exon extension + the joiner's N/snapping. intron_break_min (50)
+        // defines the intron signature; max_intron bounds it (largest human introns).
+        pipe_cfg.chain_config.splice_aware = true;
+        pipe_cfg.chain_config.max_intron = 1'000'000;
     }
 
     classical::ClassicalPipeline pipeline(pipe_cfg);

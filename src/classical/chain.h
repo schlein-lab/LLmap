@@ -132,6 +132,19 @@ ChainResult ExtractChainsFromAnchors(
     uint32_t query_len,
     const ChainConfig& config = {});
 
+// Splice-aware (B2) downstream of the DP: split each spanned chain at its internal
+// splice gaps (a reference-only gap between consecutive chain anchors in
+// [intron_break_min, max_intron]) into one per-exon sub-chain, IN PLACE. The DP let
+// the exons accumulate into one strong chain (so it survived the candidate-soup
+// filters); this re-separates them — using the SAME geometry the DP scored as a
+// splice gap — so each exon extends on its own (never naively across the intron) and
+// the transcript-stage joiner re-merges them with N. No-op unless splice_aware and
+// intron_break_min > 0; chains without an internal splice gap pass through unchanged.
+void SplitChainsAtSpliceGaps(
+    std::vector<Chain>& chains,
+    std::span<const Anchor> anchors,
+    const ChainConfig& config);
+
 // Compute chain score between two anchors
 // Returns negative if anchors are not colinear
 int32_t AnchorPairScore(

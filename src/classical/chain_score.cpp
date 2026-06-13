@@ -6,6 +6,63 @@
 
 namespace llmap::classical {
 
+void SplitChainsAtSpliceGaps(
+    std::vector<Chain>& chains,
+    std::span<const Anchor> anchors,
+    const ChainConfig& config)
+{
+    if (!config.splice_aware || config.intron_break_min == 0) return;
+
+    std::vector<Chain> out;
+    out.reserve(chains.size());
+
+    auto emit_segment = [&](const Chain& parent, std::size_t a_lo, std::size_t a_hi) {
+        // Build a per-exon Chain from parent.anchors[a_lo .. a_hi] (inclusive).
+        Chain s;
+        s.ref_id = parent.ref_id;
+        s.is_forward = parent.is_forward;
+        std::uint32_t rmin = UINT32_MAX, rmax = 0, qmin = UINT32_MAX, qmax = 0;
+        for (std::size_t j = a_lo; j <= a_hi; ++j) {
+            const Anchor& an = anchors[parent.anchors[j]];
+            rmin = std::min(rmin, an.ref_pos);   rmax = std::max(rmax, an.ref_pos);
+            qmin = std::min(qmin, an.query_pos); qmax = std::max(qmax, an.query_pos);
+            s.anchors.push_back(parent.anchors[j]);
+        }
+        s.ref_start = rmin; s.ref_end = rmax;
+        s.query_start = qmin; s.query_end = qmax;
+        // Score proportional to this exon's anchor share of the (strong) parent.
+        const std::size_t n = parent.anchors.empty() ? 1 : parent.anchors.size();
+        s.score = static_cast<int32_t>(
+            static_cast<int64_t>(parent.score) * (a_hi - a_lo + 1) / n);
+        out.push_back(std::move(s));
+    };
+
+    for (auto& chain : chains) {
+        if (chain.anchors.size() < 2) { out.push_back(std::move(chain)); continue; }
+        std::size_t seg_lo = 0;
+        bool split = false;
+        for (std::size_t j = 0; j + 1 < chain.anchors.size(); ++j) {
+            const Anchor& a = anchors[chain.anchors[j]];
+            const Anchor& b = anchors[chain.anchors[j + 1]];
+            std::int64_t ref_gap = static_cast<std::int64_t>(b.ref_pos) - a.ref_pos;
+            std::int64_t query_gap =
+                static_cast<std::int64_t>(b.query_pos) - a.query_pos;
+            if (!a.same_strand) query_gap = -query_gap;  // reverse: query descends
+            const std::int64_t diff = ref_gap - query_gap;  // ref-only excess
+            // Same criterion the DP used to score this as a splice gap.
+            if (diff >= static_cast<std::int64_t>(config.intron_break_min) &&
+                diff <= static_cast<std::int64_t>(config.max_intron)) {
+                emit_segment(chain, seg_lo, j);   // close the exon at anchor j
+                seg_lo = j + 1;
+                split = true;
+            }
+        }
+        if (!split) { out.push_back(std::move(chain)); continue; }
+        emit_segment(chain, seg_lo, chain.anchors.size() - 1);  // trailing exon
+    }
+    chains = std::move(out);
+}
+
 int32_t AnchorPairScore(
     const Anchor& a,
     const Anchor& b,
