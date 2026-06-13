@@ -58,6 +58,15 @@ struct ClassicalPipelineConfig {
     uint32_t max_chains_to_extend = 5;    // Reverted partway from 3 → 5 (was 10 originally)
     bool report_secondary = false;         // Primary only by default (matches minimap2)
 
+    // Transcript-Mode locus selection. On a large reference a single 4 kb read
+    // throws hundreds of scattered spurious chains (repeat/paralog minimizer
+    // hits); the real transcript's exons cluster in one gene-sized locus. When
+    // set, reorder chains so the dominant colinear locus (the one whose chains
+    // cover the most distinct read query) comes first, so the bounded extension
+    // budget hits the exons instead of the noise — the precondition for the
+    // R-B break + spliced joiner to assemble all exons. 0 = off (DNA unchanged).
+    uint32_t transcript_locus_span = 0;   // max intron-gap within a locus (bp); 0 = off
+
     // Parallelization
     uint32_t num_threads = 0;              // 0 = use hardware_concurrency
 

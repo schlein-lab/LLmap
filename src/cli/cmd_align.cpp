@@ -242,12 +242,26 @@ int run_align(int argc, char** argv) {
         // reaches the joiner and the transcript loses that exon + its junction.
         // Drop the relative cull in transcript mode; the absolute floor
         // (min_chain_score) still removes spurious tiny chains.
-        pipe_cfg.chain_config.min_score_fraction = 0.0f;
-        // A transcript has many exons (often >5, sometimes dozens); the default
-        // caps of 5 would extend/report only the first few sub-chains and lose
-        // the rest. Raise both so every exon's sub-chain survives to the joiner.
-        pipe_cfg.max_chains_to_extend = 256;
-        pipe_cfg.max_alignments = 256;
+        // Keep short exons (min_score_fraction culls relative to the best/longest
+        // exon's chain) but not at 0.0 — on a real chromosome a 4 kb read throws
+        // hundreds of scattered low-score minimizer-hit chains; 0.0 keeps them
+        // all and the per-read WFA extension load explodes (300 reads vs chr14
+        // did not finish in 120 s). A small floor drops the scattered junk while
+        // the genuine exon chains (the top-scoring, colinear ones) survive.
+        pipe_cfg.chain_config.min_score_fraction = 0.05f;
+        // A transcript has many exons (sometimes dozens), so the default cap of
+        // 5 is too low — but 256 over-extends on real references. 64 bounds the
+        // per-read WFA work while still covering every exon of all but the most
+        // extreme transcripts (the chains are extended best-score-first).
+        pipe_cfg.max_chains_to_extend = 64;
+        pipe_cfg.max_alignments = 64;
+        // On a real chromosome a 4 kb read throws hundreds of scattered spurious
+        // chains (repeat/paralog hits); the real exons cluster in one gene. Pull
+        // that dominant colinear locus ahead of the noise so the 64-chain budget
+        // hits the exons (else only 1/11 reads spliced vs minimap2's 18/24). The
+        // span bounds the intra-locus intron gap — generous enough for the
+        // largest human introns (~1 Mb) while separating far-scattered noise.
+        pipe_cfg.transcript_locus_span = 1'000'000;
     }
 
     classical::ClassicalPipeline pipeline(pipe_cfg);

@@ -17,6 +17,80 @@ namespace {
 // Each thread gets its own ChainScratch that grows as needed but never shrinks,
 // avoiding repeated heap allocations when processing many reads.
 thread_local ChainScratch tl_chain_scratch;
+
+// Transcript-Mode: reorder chains so the dominant colinear transcript locus
+// comes first. A 4 kb read on a 100 Mb chromosome throws hundreds of scattered
+// spurious chains (repeat/paralog minimizer hits); the real exons cluster in
+// one gene-sized locus (same ref+strand, ref gaps <= max_intron). We pick the
+// locus whose chains cover the most distinct read QUERY (the transcript tiles
+// the read) and move it ahead of the noise, so the bounded extension budget
+// (max_chains_to_extend) lands on the exons. Score order within each group is
+// preserved. No-op for < 2 chains.
+void SelectTranscriptLocus(std::vector<Chain>& chains, uint32_t max_intron) {
+    const std::size_t n = chains.size();
+    if (n < 2) return;
+
+    std::vector<uint32_t> idx(n);
+    for (uint32_t i = 0; i < n; ++i) idx[i] = i;
+    std::sort(idx.begin(), idx.end(), [&](uint32_t a, uint32_t b) {
+        const Chain& ca = chains[a];
+        const Chain& cb = chains[b];
+        if (ca.ref_id != cb.ref_id) return ca.ref_id < cb.ref_id;
+        if (ca.is_forward != cb.is_forward) return ca.is_forward < cb.is_forward;
+        return ca.ref_start < cb.ref_start;
+    });
+
+    // Distinct read-query coverage of chains idx[a..b) (merge overlaps so two
+    // chains hitting the same exon don't inflate the locus score).
+    auto cover = [&](std::size_t a, std::size_t b) -> std::int64_t {
+        std::vector<std::pair<uint32_t, uint32_t>> iv;
+        iv.reserve(b - a);
+        for (std::size_t k = a; k < b; ++k)
+            iv.push_back({chains[idx[k]].query_start, chains[idx[k]].query_end});
+        std::sort(iv.begin(), iv.end());
+        std::int64_t cov = 0, cs = -1, ce = -1;
+        for (const auto& [s, e] : iv) {
+            if (static_cast<std::int64_t>(s) > ce) {
+                if (ce >= 0) cov += ce - cs;
+                cs = s; ce = e;
+            } else if (static_cast<std::int64_t>(e) > ce) {
+                ce = e;
+            }
+        }
+        if (ce >= 0) cov += ce - cs;
+        return cov;
+    };
+
+    std::int64_t best_cover = -1;
+    std::size_t best_lo = 0, best_hi = 0, lo = 0;
+    for (std::size_t k = 1; k <= n; ++k) {
+        bool brk = (k == n);
+        if (!brk) {
+            const Chain& p = chains[idx[k - 1]];
+            const Chain& c = chains[idx[k]];
+            brk = (p.ref_id != c.ref_id) || (p.is_forward != c.is_forward) ||
+                  (c.ref_start > p.ref_end &&
+                   c.ref_start - p.ref_end > max_intron);
+        }
+        if (brk) {
+            const std::int64_t cov = cover(lo, k);
+            if (cov > best_cover) { best_cover = cov; best_lo = lo; best_hi = k; }
+            lo = k;
+        }
+    }
+
+    std::vector<bool> in_best(n, false);
+    for (std::size_t k = best_lo; k < best_hi; ++k) in_best[idx[k]] = true;
+
+    std::vector<Chain> best, rest;
+    best.reserve(best_hi - best_lo);
+    rest.reserve(n - (best_hi - best_lo));
+    for (std::size_t i = 0; i < n; ++i)
+        (in_best[i] ? best : rest).push_back(std::move(chains[i]));
+    chains.clear();
+    for (auto& c : best) chains.push_back(std::move(c));
+    for (auto& c : rest) chains.push_back(std::move(c));
+}
 }  // namespace
 
 std::string ClassicalAlignment::CigarString() const {
@@ -180,6 +254,13 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
     // Phase 3: Extension (for top chains)
     Timer ext_timer;
     const auto& seqs = index_->GetSequences();
+
+    // Transcript-Mode: pull the dominant colinear locus ahead of the spurious
+    // scattered chains so the bounded extension budget hits the real exons.
+    if (config_.transcript_locus_span > 0) {
+        SelectTranscriptLocus(chain_result.chains, config_.transcript_locus_span);
+    }
+
     uint32_t chains_to_try = std::min(
         config_.max_chains_to_extend,
         static_cast<uint32_t>(chain_result.chains.size()));

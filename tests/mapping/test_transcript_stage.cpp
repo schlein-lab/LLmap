@@ -186,6 +186,27 @@ TEST(TranscriptStage, WeakMotifStillMergesWithNop) {
     EXPECT_LT(out[0].junction_conf[0], 0.30f);  // low confidence preserved
 }
 
+TEST(TranscriptStage, SnapsSlopBoundaryToCanonicalSiteExactN) {
+    // Seed slop: exonA aligns 10 bp short of the true donor, exonB starts 10 bp
+    // after the true acceptor → a 20 bp read gap. The true intron is [100,1100)
+    // with GT at 100 and AG at 1098. Splice-site snapping must pull both exons
+    // to the canonical site, closing the gap (no I) and emitting the EXACT
+    // 1000N — not an inflated N or an I-padded gap.
+    std::string ref = MakeRef(1300);
+    Patch(ref, 100, "GT");    // donor (intron 5')
+    Patch(ref, 1098, "AG");   // acceptor (intron 3')
+    std::vector<LinearSubChain> subs = {
+        Sub("chr1", 0, 90, 0, 90, '+', "90M110S"),       // ends 10 bp short
+        Sub("chr1", 1110, 1200, 110, 200, '+', "110S90M"),  // starts 10 bp late
+    };
+    auto out = ApplyTranscriptStage(subs, LookupFor("chr1", ref),
+                                    CanonicalScorer(), {});
+    ASSERT_EQ(out.size(), 1u);
+    EXPECT_TRUE(out[0].is_spliced);
+    EXPECT_EQ(out[0].cigar, "100M1000N100M") << out[0].cigar;  // exact, no I
+    EXPECT_EQ(out[0].cigar.find('I'), std::string::npos);
+}
+
 TEST(TranscriptStage, EmptyInput) {
     auto out = ApplyTranscriptStage({}, LookupFor("chr1", ""), CanonicalScorer(),
                                     {});

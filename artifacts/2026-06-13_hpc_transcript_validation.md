@@ -73,3 +73,57 @@ Synthetisches Single-Copy Genom↔Transkriptom-Paar, `llmap align --mode transcr
 - Sub-Chain-Dedup → novel 4/4 (Agent 1, Stage).
 - Splice-Site-Snapping (GT/AG) → exakte N-Boundaries statt Seed-Fenster-Präzision (Design §2.1).
 - DNA-Regression: 143-178 classical/chain/mapping-Tests grün nach allen Fixes.
+
+---
+## BENCHMARK vs minimap2 (2026-06-13, echte Daten)
+100 genom-weite PacBio iso-seq FLNC-Reads (scisoseq dedup BAM) vs GRCh38 chr14,
+`llmap align --mode transcript -x map-ont` vs `minimap2 -ax splice:hq -uf`:
+
+| Metrik | llmap | minimap2 |
+|---|---|---|
+| mapped | 11 (11%) | 24 (24%) |
+| spliced reads (>=1 N) | 1 | 18 |
+| distinct introns | 19 | 62 |
+| Junction-Jaccard (±10bp) | 0.125 | (Referenz) |
+| Primary-Placement-Agreement | 2/5 | — |
+| Speed | ~1.1 s/read | ~ms/read |
+
+### Ehrliche Bewertung
+- **Synthetik (clean): bewiesen** — lossless spliced Mapping, canon+reverse exakt (6/9).
+- **Echte Daten: LLmap weit hinter minimap2.** Kernlücke: auf real-error-behafteten CCS-Reads
+  **feuert das Splicing kaum** (1 vs 18 spliced) — der R-B-Seed-Break + Seed-Fenster-Boundary-
+  Ansatz ist fragil gegen Sequenzierfehler nahe Exon-Grenzen (Error → Seed bricht → Exon-Sub-Chain
+  fehlt → kein N). minimap2 ist dagegen robust.
+- **Speed:** ~1 s/read (chr14, CPU) = Größenordnungen langsamer; Chain-DP auf 104MB-Ref + WFA-Last.
+- **Mapping-Rate halbiert** (11% vs 24%): real-Reads haben Barcodes/Adapter/Fehler, die llmap
+  schlechter soft-clippt.
+
+### Nächste Optimierungs-Prioritäten (aus dem Benchmark)
+1. **Error-Robustheit des Splicings** (das große Gap): Splicing muss auf fehlerbehafteten Reads
+  feuern — Splice-Site-Snapping (GT/AG) statt Seed-Fenster, fehler-tolerante Exon-Boundary.
+2. **Speed:** Chain-DP/Candidate-Gen auf großen Referenzen (Index-Caching, weniger WFA).
+3. **Sensitivität:** Adapter/Barcode-Soft-Clip, Preset-Tuning für CCS iso-seq.
+
+---
+## SPLICE-SNAPPING + LOCUS-SELEKTION (2026-06-13) + GENCODE-Testset
+Fix-Kette für real-Data-Splicing: (i) GT/AG-Snapping (`splice_snap`, Agent2) → N exakt,
+(ii) Chain-Locus-Selektion (`SelectTranscriptLocus`, Agent2) → richtige Exon-Chains extended.
+
+Benchmark 100 echte FLNC-Reads vs chr14 (llmap map-ont vs minimap2 splice:hq):
+| Metrik | vor Snapping | +Snapping | +Locus-Selektion | minimap2 |
+|---|---|---|---|---|
+| mapped | 11 | 11 | **20** | 24 |
+| spliced | 1 | 1 | **5** | 18 |
+| Junction-Jaccard vs mm2 | 0.125 | 0.286 | 0.269 | — |
+
+Boundary-Konkordanz vs GENCODE v46 (chr14, 49.252 Introns):
+| | llmap | minimap2 |
+|---|---|---|
+| Junctions | 23 | 62 |
+| **exakt 0bp auf GENCODE** | **73.9%** | 32.3% |
+| unmatched >50bp | 21.7% | 66.1% |
+
+ERKENNTNIS: llmaps Junctions sind bp-scharf (74% exakt = Snapping wirkt). Precision-at-low-Recall:
+nur 5 spliced (mm2: 18). D(p)-Verteilung braucht mehr Recall (within-Locus-Multi-Exon-Assemblierung
+5→18) = nächster Chaining-Block. minimap2's 66% „unmatched" = breiterer Recall inkl. Single-Cell-
+novel/Artefakt-Junctions (kein Apfel-Apfel ohne geteilte Reads).

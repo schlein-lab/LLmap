@@ -2,6 +2,8 @@
 
 #include "mapping/transcript_stage.h"
 
+#include "mapping/splice_snap.h"
+
 #include <algorithm>
 #include <cctype>
 #include <string>
@@ -47,6 +49,81 @@ std::string RevComp(std::string_view ref, std::uint64_t start, std::uint64_t end
 
 std::uint64_t Min64(std::uint64_t a, std::uint64_t b) { return a < b ? a : b; }
 std::uint64_t Max64(std::uint64_t a, std::uint64_t b) { return a > b ? a : b; }
+
+// --- CIGAR boundary surgery (used to apply a splice snap) ----------------
+
+std::vector<std::pair<std::uint64_t, char>> ParseCigar(const std::string& s) {
+    std::vector<std::pair<std::uint64_t, char>> ops;
+    std::uint64_t num = 0;
+    for (const char c : s) {
+        if (c >= '0' && c <= '9') {
+            num = num * 10 + static_cast<std::uint64_t>(c - '0');
+        } else {
+            ops.emplace_back(num, c);
+            num = 0;
+        }
+    }
+    return ops;
+}
+
+std::string SerializeCigar(const std::vector<std::pair<std::uint64_t, char>>& ops) {
+    std::string s;
+    for (const auto& [len, op] : ops) {
+        if (len == 0) continue;  // drop zero-length ops (e.g. emptied clip)
+        s += std::to_string(len);
+        s.push_back(op);
+    }
+    return s;
+}
+
+// Move the aligned/clip boundary at one end of a CIGAR by `delta` bases, trading
+// against the soft-clip there. delta>0 grows the terminal match op (claims bases
+// from the soft-clip); delta<0 shrinks it (returns bases to the clip). `front`
+// selects the leading end, else the trailing end. Returns false if not
+// representable (insufficient soft-clip to grow into, or match too small to
+// shrink) so the caller can skip the snap and keep the original boundary.
+bool AdjustBoundaryCigar(std::vector<std::pair<std::uint64_t, char>>& ops,
+                         long delta, bool front) {
+    if (delta == 0) return true;
+    if (ops.empty()) return false;
+    auto is_match = [](char op) { return op == 'M' || op == '=' || op == 'X'; };
+
+    // Index of the terminal soft-clip (if any) and the adjacent match op.
+    const std::size_t clip = front ? 0 : ops.size() - 1;
+    const bool has_clip = ops[clip].second == 'S';
+    std::size_t match;
+    if (front) {
+        match = has_clip ? 1 : 0;
+        if (match >= ops.size()) return false;
+    } else {
+        if (has_clip) {
+            if (ops.size() < 2) return false;
+            match = ops.size() - 2;
+        } else {
+            match = ops.size() - 1;
+        }
+    }
+    if (!is_match(ops[match].second)) return false;
+
+    if (delta > 0) {
+        const std::uint64_t d = static_cast<std::uint64_t>(delta);
+        if (!has_clip || ops[clip].first < d) return false;  // need clip to claim
+        ops[clip].first -= d;
+        ops[match].first += d;
+    } else {
+        const std::uint64_t d = static_cast<std::uint64_t>(-delta);
+        if (ops[match].first <= d) return false;  // keep the exon non-empty
+        ops[match].first -= d;
+        if (has_clip) {
+            ops[clip].first += d;
+        } else if (front) {
+            ops.insert(ops.begin(), std::pair<std::uint64_t, char>{d, 'S'});
+        } else {
+            ops.push_back(std::pair<std::uint64_t, char>{d, 'S'});
+        }
+    }
+    return true;
+}
 
 }  // namespace
 
@@ -119,12 +196,45 @@ std::vector<SplicedAlignment> ApplyTranscriptStage(
                       return x.query_start < y.query_start;
                   });
 
-        // Per-pair junction probabilities from reference splice motifs.
+        const std::string_view ref =
+            ref_lookup ? ref_lookup(key.first) : std::string_view{};
+
+        // Splice-site snapping: snap each adjacent boundary to the canonical
+        // GT..AG site (strand-aware) nearest the seed boundary. This closes the
+        // residual read gap to zero (query_split) and sets the intron to its
+        // TRUE length, so EmitSplicedCigar emits an exact N (no I) and the
+        // joiner's geometry gate fires reliably on error-bearing reads. The
+        // boundary M ops + soft-clips are grown/shrunk to match; a snap that
+        // can't be represented in the CIGAR is skipped (boundary kept as-is, so
+        // the non-canonical I-encoding path still applies).
+        if (!ref.empty() && group.size() > 1) {
+            for (std::size_t i = 0; i + 1 < group.size(); ++i) {
+                LinearSubChain& a = group[i];
+                LinearSubChain& b = group[i + 1];
+                const SpliceSnap snap = SnapJunction(a, b, ref, key.second);
+                if (!snap.snapped) continue;
+                const long da = static_cast<long>(snap.query_split) -
+                                static_cast<long>(a.query_end);
+                const long db = static_cast<long>(b.query_start) -
+                                static_cast<long>(snap.query_split);
+                auto a_ops = ParseCigar(a.cigar);
+                auto b_ops = ParseCigar(b.cigar);
+                if (!AdjustBoundaryCigar(a_ops, da, /*front=*/false)) continue;
+                if (!AdjustBoundaryCigar(b_ops, db, /*front=*/true)) continue;
+                a.cigar = SerializeCigar(a_ops);
+                b.cigar = SerializeCigar(b_ops);
+                a.ref_end = snap.donor_ref_pos;
+                a.query_end = snap.query_split;
+                b.ref_start = snap.acceptor_ref_pos;
+                b.query_start = snap.query_split;
+            }
+        }
+
+        // Per-pair junction probabilities from reference splice motifs (computed
+        // on the snapped boundaries → canonical wherever snapping fired).
         std::vector<float> probs;
         if (group.size() > 1) {
             probs.reserve(group.size() - 1);
-            const std::string_view ref =
-                ref_lookup ? ref_lookup(key.first) : std::string_view{};
             for (std::size_t i = 0; i + 1 < group.size(); ++i) {
                 float p = 0.5f;  // default when motifs / scorer unavailable
                 std::string d, acc, i3, i5;

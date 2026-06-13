@@ -61,6 +61,7 @@ void print_usage() {
         "  igh-match         Alignment-free IGH paralog assignment from reads (FASTQ/FASTA)\n"
         "  transcript-index  Build exon-boundary-aware reverse k-mer index from GENCODE (Mode-5+)\n"
         "  junction-hunt     Detect NAHR breakpoints in reads via multi-k consensus (Mode-5)\n"
+        "  splice-determinism Per-position splice determinism D(pos) + junction usage from a spliced SAM\n"
         "  --version         Show version\n"
         "  --help            Show this message\n"
     );
@@ -140,6 +141,10 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "junction-hunt") == 0) {
         return llmap::cli::run_junction_hunt(argc - 2, argv + 2);
+    }
+
+    if (std::strcmp(argv[1], "splice-determinism") == 0) {
+        return llmap::cli::run_splice_determinism(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,

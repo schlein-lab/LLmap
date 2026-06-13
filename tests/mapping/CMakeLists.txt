@@ -23,3 +23,25 @@ target_link_libraries(test_transcript_stage
     GTest::gtest_main
 )
 gtest_discover_tests(test_transcript_stage)
+
+add_executable(test_splice_snap
+    test_splice_snap.cpp
+)
+target_link_libraries(test_splice_snap
+    PRIVATE
+    llmap_mapping
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_splice_snap)
+
+add_executable(test_splice_determinism
+    test_splice_determinism.cpp
+)
+target_link_libraries(test_splice_determinism
+    PRIVATE
+    llmap_mapping
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_splice_determinism)
