@@ -1,3 +1,5 @@
+#include <cstdlib>
+#include <cstdio>
 // LLmap — ClassicalPipeline: chain extension with WFA2 alignment.
 
 #include "classical/classical_pipeline.h"
@@ -346,6 +348,12 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
         ? static_cast<float>(matches) / static_cast<float>(total_aligned)
         : 0.0f;
 
+    if (const char* d = std::getenv("LLMAP_DEBUG_GAP"); d && d[0] == '1') {
+        std::fprintf(stderr,
+            "[gap] anchors=%zu qlen=%u M=%zu X=%zu I=%zu D=%zu total=%zu ident=%.3f\n",
+            chain.anchors.size(), query_len, matches, mismatches, insertions,
+            deletions, total_aligned, aln.identity);
+    }
     return aln;
 }
 
