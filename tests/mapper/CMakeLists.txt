@@ -59,3 +59,27 @@ target_link_libraries(test_minimizer_cluster
     GTest::gtest_main
 )
 gtest_discover_tests(test_minimizer_cluster)
+
+add_executable(test_consensus_propagation
+    test_consensus_propagation.cpp
+)
+target_link_libraries(test_consensus_propagation
+    PRIVATE
+    llmap_mapper
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_consensus_propagation)
+
+add_executable(test_assemble_pipeline
+    test_assemble_pipeline.cpp
+)
+target_link_libraries(test_assemble_pipeline
+    PRIVATE
+    llmap_mapper
+    llmap_core
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_assemble_pipeline)
