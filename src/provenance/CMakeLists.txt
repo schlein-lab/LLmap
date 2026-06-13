@@ -16,6 +16,7 @@ add_library(llmap_provenance STATIC
     te_spread_mass.cpp
     mei_detector.cpp
     provenance_baseline.cpp
+    te_population_prior.cpp
 )
 
 target_include_directories(llmap_provenance PUBLIC

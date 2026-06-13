@@ -351,5 +351,6 @@ add_executable(llmap
     cli/cmd_splice_determinism.cpp
     cli/cmd_provenance_spectrum.cpp
     cli/cmd_provenance_qc.cpp
+    cli/cmd_pangenome_mappability.cpp
 )
 target_link_libraries(llmap PRIVATE llmap_core llmap_ai llmap_io llmap_output llmap_self_interference llmap_reference_collapse llmap_classical llmap_validation llmap_claude_agent llmap_singlecell llmap_psv llmap_annot llmap_checkpoint llmap_igh_locus llmap_anchor llmap_index llmap_junction_hunter llmap_mapping llmap_provenance)

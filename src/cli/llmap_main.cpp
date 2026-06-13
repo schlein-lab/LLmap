@@ -64,6 +64,7 @@ void print_usage() {
         "  splice-determinism Per-position splice determinism D(pos) + junction usage from a spliced SAM\n"
         "  provenance-spectrum Per-read provenance → contamination spectrum (Σ-invariant) from a tagged SAM\n"
         "  provenance-qc     Population-baseline QC of the provenance spectrum (pangenome expected values)\n"
+        "  pangenome-mappability  Build the cross-sample M(pos) mapping-determinism track from raw pangenome BAMs\n"
         "  --version         Show version\n"
         "  --help            Show this message\n"
     );
@@ -155,6 +156,10 @@ int main(int argc, char** argv) {
 
     if (std::strcmp(argv[1], "provenance-qc") == 0) {
         return llmap::cli::run_provenance_qc(argc - 2, argv + 2);
+    }
+
+    if (std::strcmp(argv[1], "pangenome-mappability") == 0) {
+        return llmap::cli::run_pangenome_mappability(argc - 2, argv + 2);
     }
 
     std::fprintf(stderr,

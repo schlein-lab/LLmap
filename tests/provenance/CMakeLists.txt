@@ -100,3 +100,14 @@ target_link_libraries(test_provenance_baseline
     GTest::gtest_main
 )
 gtest_discover_tests(test_provenance_baseline)
+
+add_executable(test_te_population_prior
+    test_te_population_prior.cpp
+)
+target_link_libraries(test_te_population_prior
+    PRIVATE
+    llmap_provenance
+    GTest::gtest
+    GTest::gtest_main
+)
+gtest_discover_tests(test_te_population_prior)
