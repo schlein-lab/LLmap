@@ -262,6 +262,17 @@ int run_align(int argc, char** argv) {
         // span bounds the intra-locus intron gap — generous enough for the
         // largest human introns (~1 Mb) while separating far-scattered noise.
         pipe_cfg.transcript_locus_span = 1'000'000;
+        // RECALL (spliced): a SHORT exon's per-exon sub-chain scores well below the
+        // whole-read min_chain_score floor (40 for HiFi) and is culled in the chain
+        // DP *before* extension — so the exon never reaches the joiner and the read
+        // collapses to a single-exon (unspliced) alignment. The matched-benchmark
+        // sweep isolated this: at the preset floor only the long exons survive
+        // (spliced 1/20); dropping the floor to 15 recovers short exons (spliced
+        // 6/20) WITHOUT relaxing min_identity (which would instead admit junk
+        // cross-intron composites). The scattered low-score noise this used to
+        // remove is already bounded by transcript_locus_span + max_chains_to_extend
+        // + min_score_fraction. Only LOWER the floor (never raise a tighter preset).
+        pipe_cfg.chain_config.min_chain_score = std::min(args.min_chain, 15);
     }
 
     classical::ClassicalPipeline pipeline(pipe_cfg);
