@@ -269,6 +269,17 @@ ReadAlignmentResult ClassicalPipeline::AlignRead(
     // chains count against the extension budget.
     SplitChainsAtSpliceGaps(chain_result.chains, anchors, config_.chain_config);
 
+    if (const char* d = std::getenv("LLMAP_DEBUG_CHAINS"); d && d[0]=='1') {
+        std::fprintf(stderr, "[chains] %zu formed for %.20s\n",
+                     chain_result.chains.size(), std::string(query_name).c_str());
+        for (std::size_t ci = 0; ci < chain_result.chains.size() && ci < 15; ++ci) {
+            const auto& c = chain_result.chains[ci];
+            std::fprintf(stderr, "  #%zu fwd=%d ref=%u..%u q=%u..%u anchors=%u score=%d\n",
+                ci, c.is_forward, c.ref_start, c.ref_end, c.query_start, c.query_end,
+                c.NumAnchors(), c.score);
+        }
+    }
+
     uint32_t chains_to_try = std::min(
         config_.max_chains_to_extend,
         static_cast<uint32_t>(chain_result.chains.size()));

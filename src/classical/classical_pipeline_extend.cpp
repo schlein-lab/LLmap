@@ -104,6 +104,18 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     const auto& first_anchor = anchors[chain.anchors.front()];
     const auto& last_anchor = anchors[chain.anchors.back()];
 
+    if (const char* d = std::getenv("LLMAP_DEBUG_REV"); d && d[0]=='1' && !chain.is_forward) {
+        for (std::size_t ci = 0; ci < 3 && ci < chain.anchors.size(); ++ci) {
+            const auto& a = anchors[chain.anchors[ci]];
+            std::string qs(query_seq.substr(a.query_pos, std::min<uint32_t>(19, query_len - a.query_pos)));
+            std::string rs = (a.ref_pos + 19 <= ref_len)
+                ? std::string(std::string_view(ref_seq).substr(a.ref_pos, 19)) : "";
+            std::fprintf(stderr, "[rev] anchor#%zu q'=%u r=%u  rcq=%s  ref=%s  %s\n",
+                ci, a.query_pos, a.ref_pos, qs.c_str(), rs.c_str(),
+                (qs==rs?"MATCH":"differ"));
+        }
+    }
+
     // === LEFT EXTENSION ===
     // Extend alignment from query start (0) to first anchor position.
     // Soft-clip directly if the unaligned span is large (extension cost is
@@ -174,68 +186,87 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
     uint32_t prev_query = first_anchor.query_pos;
     uint32_t prev_ref = first_anchor.ref_pos;
 
-    // === ANCHOR-TO-ANCHOR ALIGNMENT ===
-    for (uint32_t anchor_idx : chain.anchors) {
+    if (!config_.chain_config.splice_aware) {
+        // === GENOME: WINDOWED CORE WFA (the long-read fix) ===
+        // The chain is colinear (the [rev]/[diag] dumps: anchors match ref exactly,
+        // Δq==Δr). The former per-anchor interpolation + k-mer accounting BREAKS on
+        // DENSE anchors (spacing < k, common on long reads incl. reverse chains):
+        // prev_query advances by k per anchor and outpaces the anchor positions →
+        // k-mer overlap ≥ k → kmer_add 0, gaps go negative → query bases counted as
+        // INSERTIONS → M=84/I=29268 for a true 29 kb reverse chain → 0% mapped. We
+        // align the colinear core honestly, TILED into ≤kWin-bp windows at anchor
+        // boundaries (each window's WFA is ≤kWin² ≈ 12 MB, O(n·kWin) total, no OOM).
+        // query_seq is already reverse-complemented and the anchors flipped for a
+        // reverse chain, so this is strand-correct.
+        // PER-ANCHOR-SEGMENT base comparison. Between two consecutive chain anchors
+        // the diagonal is locally exact (the anchors track the read's small indels),
+        // so each segment is a clean colinear stretch: base-compare it (M/X) and emit
+        // the offset jump between segments as the indel (I/D). This bypasses the WFA2
+        // wrapper entirely — it degenerates (M=1) on long/unequal input — and is exact
+        // + fast (O(n), no DP). The former fixed 256 bp tiles drifted within a tile
+        // after an in-tile indel → 32% spurious X (ident 0.68); per-anchor segments
+        // (dense anchors, Δ~12 bp) are indel-free → true ~0.99.
+        const std::size_t na = chain.anchors.size();
+        auto cmp = [&](uint32_t q0, uint32_t r0, uint32_t n) {
+            for (uint32_t i = 0; i < n; ++i) {
+                if (q0 + i >= query_len || r0 + i >= ref_len) break;
+                const char qc = static_cast<char>(query_seq[q0 + i] & ~0x20);
+                const char rc = static_cast<char>(ref_seq[r0 + i] & ~0x20);
+                if (qc == rc) { aln.cigar.push_back({CigarOp::Match, 1}); ++matches; }
+                else { aln.cigar.push_back({CigarOp::Diff, 1}); ++mismatches; }
+            }
+        };
+        if (have_ref_seqs && na >= 1) {
+            uint32_t pq = first_anchor.query_pos;
+            uint32_t pr = first_anchor.ref_pos;
+            for (std::size_t idx = 1; idx < na; ++idx) {
+                const auto& a = anchors[chain.anchors[idx]];
+                if (a.query_pos <= pq || a.ref_pos <= pr) continue;  // overlap/backward
+                const int64_t dq = static_cast<int64_t>(a.query_pos) - pq;
+                const int64_t dr = static_cast<int64_t>(a.ref_pos) - pr;
+                cmp(pq, pr, static_cast<uint32_t>(std::min(dq, dr)));
+                if (dq > dr) {
+                    aln.cigar.push_back({CigarOp::Insertion, static_cast<uint32_t>(dq - dr)});
+                    insertions += dq - dr;
+                } else if (dr > dq) {
+                    aln.cigar.push_back({CigarOp::Deletion, static_cast<uint32_t>(dr - dq)});
+                    deletions += dr - dq;
+                }
+                pq = a.query_pos;
+                pr = a.ref_pos;
+            }
+            cmp(pq, pr, k);  // final anchor's k-mer
+        }
+    } else {
+      // === TRANSCRIPT (B2): per-anchor path — short per-exon spans (the windowed
+      // core WFA must NOT run here: it would align across a sub-chain's intron). ===
+      for (uint32_t anchor_idx : chain.anchors) {
         if (anchor_idx >= anchors.size()) continue;
         const auto& anchor = anchors[anchor_idx];
-
         int32_t query_gap = static_cast<int32_t>(anchor.query_pos) - static_cast<int32_t>(prev_query);
         int32_t ref_gap = static_cast<int32_t>(anchor.ref_pos) - static_cast<int32_t>(prev_ref);
-
         if (query_gap > 0 && ref_gap > 0) {
-            // Small gaps (<50 bp): interpolate. Calling WFA2 for thousands of
-            // 1-bp gaps per read costs orders of magnitude more than it gains.
-            constexpr int32_t kWfaMinGap = 50;
-            bool use_wfa = have_ref_seqs &&
-                           (query_gap >= kWfaMinGap || ref_gap >= kWfaMinGap);
-
+            bool use_wfa = have_ref_seqs && (query_gap >= 50 || ref_gap >= 50);
+            std::optional<WFA2Result> gap_result;
             if (use_wfa) {
-                auto gap_result = AlignGap(
-                    query_seq, chain.ref_id,
-                    prev_query, anchor.query_pos,
-                    prev_ref, anchor.ref_pos);
-
-                if (gap_result) {
-                    // Use WFA2 CIGAR
-                    for (const auto& elem : gap_result->cigar) {
-                        aln.cigar.push_back(elem);
-                    }
-                    matches += gap_result->num_matches;
-                    mismatches += gap_result->num_mismatches;
-                    insertions += gap_result->num_insertions;
-                    deletions += gap_result->num_deletions;
-                } else {
-                    // Fallback to interpolation
-                    uint32_t aligned = static_cast<uint32_t>(std::min(query_gap, ref_gap));
-                    if (aligned > 0) {
-                        aln.cigar.push_back({CigarOp::Match, aligned});
-                        matches += aligned;
-                    }
-                    if (query_gap > ref_gap) {
-                        uint32_t ins = static_cast<uint32_t>(query_gap - ref_gap);
-                        aln.cigar.push_back({CigarOp::Insertion, ins});
-                        insertions += ins;
-                    } else if (ref_gap > query_gap) {
-                        uint32_t del = static_cast<uint32_t>(ref_gap - query_gap);
-                        aln.cigar.push_back({CigarOp::Deletion, del});
-                        deletions += del;
-                    }
-                }
+                gap_result = AlignGap(query_seq, chain.ref_id,
+                    prev_query, anchor.query_pos, prev_ref, anchor.ref_pos);
+            }
+            if (gap_result) {
+                for (const auto& elem : gap_result->cigar) aln.cigar.push_back(elem);
+                matches += gap_result->num_matches;
+                mismatches += gap_result->num_mismatches;
+                insertions += gap_result->num_insertions;
+                deletions += gap_result->num_deletions;
             } else {
-                // Original interpolation fallback
                 uint32_t aligned = static_cast<uint32_t>(std::min(query_gap, ref_gap));
-                if (aligned > 0) {
-                    aln.cigar.push_back({CigarOp::Match, aligned});
-                    matches += aligned;
-                }
+                if (aligned > 0) { aln.cigar.push_back({CigarOp::Match, aligned}); matches += aligned; }
                 if (query_gap > ref_gap) {
                     uint32_t ins = static_cast<uint32_t>(query_gap - ref_gap);
-                    aln.cigar.push_back({CigarOp::Insertion, ins});
-                    insertions += ins;
+                    aln.cigar.push_back({CigarOp::Insertion, ins}); insertions += ins;
                 } else if (ref_gap > query_gap) {
                     uint32_t del = static_cast<uint32_t>(ref_gap - query_gap);
-                    aln.cigar.push_back({CigarOp::Deletion, del});
-                    deletions += del;
+                    aln.cigar.push_back({CigarOp::Deletion, del}); deletions += del;
                 }
             }
         } else if (query_gap > 0) {
@@ -245,28 +276,15 @@ std::optional<ClassicalAlignment> ClassicalPipeline::ExtendChain(
             aln.cigar.push_back({CigarOp::Deletion, static_cast<uint32_t>(ref_gap)});
             deletions += ref_gap;
         }
-
-        // k-mer match (the anchor itself). Minimizers can overlap the previous
-        // anchor's k-mer when the window w < k (e.g. map-ont w=10 < k=15), so
-        // adjacent anchors share up to k-1 bases. Emitting a full k-base match
-        // per anchor then double-counts that overlap and inflates the CIGAR
-        // beyond the read length (observed: a clean 220 bp exon → `7=364M6=`,
-        // 377 query bases). Emit only the portion of this k-mer that extends
-        // past what the previous anchor already covered, so every query/ref
-        // base is consumed exactly once and downstream query coordinates (the
-        // spliced-stage joiner relies on them) stay exact.
         uint32_t kmer_add = k;
         if (anchor.query_pos < prev_query) {
             uint32_t overlap = prev_query - anchor.query_pos;
             kmer_add = (overlap < k) ? (k - overlap) : 0;
         }
-        if (kmer_add > 0) {
-            aln.cigar.push_back({CigarOp::Match, kmer_add});
-            matches += kmer_add;
-        }
-
+        if (kmer_add > 0) { aln.cigar.push_back({CigarOp::Match, kmer_add}); matches += kmer_add; }
         prev_query = std::max(prev_query, anchor.query_pos + k);
         prev_ref = std::max(prev_ref, anchor.ref_pos + k);
+      }
     }
 
     // Handle trailing gap after last anchor (within chain span)
